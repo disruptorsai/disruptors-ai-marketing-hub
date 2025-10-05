@@ -12,7 +12,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storageKey: 'api-auth', // Unique storage key to avoid conflicts with other clients
+    autoRefreshToken: true,
+    persistSession: true,
+  }
+})
 
 /**
  * Admin login with email/password

@@ -159,10 +159,33 @@ export default function About() {
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {team.map((member, index) => (
-                <TeamMemberCard key={member.id} member={member} delay={index * 0.1} />
-              ))}
+            <div className="space-y-10">
+              {/* Row 1: Josh */}
+              {team.filter(m => m.name.toLowerCase().includes('josh')).length > 0 && (
+                <div className="grid grid-cols-1 gap-10 max-w-md mx-auto">
+                  {team.filter(m => m.name.toLowerCase().includes('josh')).map((member, index) => (
+                    <TeamMemberCard key={member.id} member={member} delay={0} />
+                  ))}
+                </div>
+              )}
+
+              {/* Row 2: Kyle and Tyler */}
+              {team.filter(m => m.name.toLowerCase().includes('kyle') || m.name.toLowerCase().includes('tyler')).length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl mx-auto">
+                  {team.filter(m => m.name.toLowerCase().includes('kyle') || m.name.toLowerCase().includes('tyler')).map((member, index) => (
+                    <TeamMemberCard key={member.id} member={member} delay={0.1 + (index * 0.1)} />
+                  ))}
+                </div>
+              )}
+
+              {/* Row 3: Carson and William */}
+              {team.filter(m => m.name.toLowerCase().includes('carson') || m.name.toLowerCase().includes('william')).length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl mx-auto">
+                  {team.filter(m => m.name.toLowerCase().includes('carson') || m.name.toLowerCase().includes('william')).map((member, index) => (
+                    <TeamMemberCard key={member.id} member={member} delay={0.3 + (index * 0.1)} />
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">

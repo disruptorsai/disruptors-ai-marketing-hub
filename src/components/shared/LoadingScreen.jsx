@@ -7,7 +7,7 @@ export default function LoadingScreen({ onComplete }) {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const duration = 2500; // 2.5 seconds
+    const duration = 1200; // 1.2 seconds - faster loading
     const interval = 50; // Update every 50ms
     const steps = duration / interval;
     const increment = 100 / steps;
@@ -37,20 +37,17 @@ export default function LoadingScreen({ onComplete }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] bg-gray-100 flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
+          style={{
+            backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         >
 
-          {/* Grid Overlay */}
-          <div className="absolute inset-0 opacity-20">
-            <svg width="100%" height="100%" className="w-full h-full">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#000" strokeWidth="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
 
           {/* Content */}
           <div className="relative z-10 w-full h-full flex">
@@ -60,9 +57,9 @@ export default function LoadingScreen({ onComplete }) {
               <motion.img
                 src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/brand/logos/logo.svg"
                 alt="Disruptors Media"
-                className="h-16 opacity-60"
+                className="h-16 brightness-0 invert opacity-90"
                 initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.6 }}
+                animate={{ scale: 1, opacity: 0.9 }}
                 transition={{ duration: 0.8 }}
               />
             </div>
@@ -78,7 +75,7 @@ export default function LoadingScreen({ onComplete }) {
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <motion.span
-                  className="text-8xl sm:text-9xl font-black text-gray-900 leading-none"
+                  className="text-8xl sm:text-9xl font-black text-white leading-none"
                   key={Math.floor(progress)}
                   initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
@@ -95,14 +92,14 @@ export default function LoadingScreen({ onComplete }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">
                   YOUR
                 </h2>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">
                   EXPERIENCE IS
                 </h2>
-                <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-wider">
-                  <span className="border-b-4 border-gray-900">LOADING</span>
+                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-wider">
+                  <span className="border-b-4 border-white">LOADING</span>
                 </h2>
               </motion.div>
 
@@ -111,7 +108,7 @@ export default function LoadingScreen({ onComplete }) {
 
           {/* Animated progress bar at bottom */}
           <motion.div
-            className="absolute bottom-0 left-0 h-1 bg-gray-900"
+            className="absolute bottom-0 left-0 h-1 bg-white"
             initial={{ width: "0%" }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1, ease: "easeOut" }}

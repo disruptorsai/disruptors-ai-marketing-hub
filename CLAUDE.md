@@ -58,6 +58,8 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Layout wrapper system** where `Layout.jsx` wraps all pages and receives `currentPageName` prop
 - **Dual routing definition** with both custom mapping and React Router `<Routes>`
 - **Page patterns**: Work case studies (`work-[client-name].jsx`), Solutions (`solutions-[service].jsx`)
+- **Lazy loading strategy**: All pages except Home are lazy-loaded using React.lazy() with Suspense
+- **Demo pages** (3D/animation heavy) are lazy-loaded to defer ~2MB physics bundle until needed
 
 ### Component Architecture (49 UI + 15 Shared + Domain-Specific)
 
@@ -140,6 +142,8 @@ Extensive integration with 23+ MCP servers across:
 - Ctrl+Shift+Escape for emergency exit
 - Matrix-style login interface with session-based authentication (24-hour expiry)
 - Secure admin dashboard accessible only via secret patterns
+- Admin blog management at `/blog-management` route
+- Service role authentication for elevated admin operations
 
 ### Technology Stack
 
@@ -252,7 +256,23 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 **UI & Styling**: `tailwindcss@^3.4.17`, `@radix-ui/*` (20+ packages), `framer-motion@^12.4.7`
 **Animation**: `gsap@^3.13.0`, `@splinetool/react-spline@^4.1.0`, `@splinetool/runtime@^1.10.71`
 **Data & API**: `@supabase/supabase-js@^2.57.4`, `@base44/sdk@^0.1.2`
-**AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`, `@anthropic-ai/sdk@^0.64.0`
+**AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`, `@anthropic-ai/sdk@^0.65.0`
+
+### Build Optimization & Performance
+
+**Vite Configuration** (`vite.config.js:34-101`):
+- **Manual chunk splitting** for optimal bundle distribution:
+  - `vendor-react`: Core React/Router (reduces main bundle size)
+  - `vendor-ui`: All 20+ Radix UI components grouped together
+  - `vendor-animation`: Framer Motion + GSAP separated
+  - `vendor-3d`: Spline libraries isolated (only loaded when needed)
+  - `vendor-ai`: AI generation libraries (OpenAI, Gemini, Replicate)
+  - `vendor-database`: Supabase + Base44 SDK
+  - `vendor-utils`: Utility libraries (clsx, tailwind-merge, zod, etc.)
+- **Experimental min chunk size**: 20KB to prevent excessive fragmentation
+- **Chunk size warning limit**: 250KB (prevents bloated bundles)
+- **Path alias**: `@/` resolves to `src/` directory
+- **Global polyfills**: `global` → `globalThis`, `process.env` → `{}`
 
 ## Important Development Notes
 

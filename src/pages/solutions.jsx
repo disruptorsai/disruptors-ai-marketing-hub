@@ -6,6 +6,7 @@ import { createPageUrl } from '@/utils';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
 import ServicesHandScroll from '../components/shared/ServicesHandScroll';
 import DualCTABlock from '../components/shared/DualCTABlock';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const services = [
   { title: "AI Automation", hook: "Automate repetitive tasks and workflows", link: "solutions-ai-automation", icon: "Cpu" },
@@ -111,7 +112,82 @@ export default function Solutions() {
             </div>
         </div>
       </section>
-      
+
+      {/* What We Do Section */}
+      <section className="py-24 sm:py-32 bg-[#E8D5C4]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* Left Column - Introduction */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="lg:sticky lg:top-24"
+            >
+              <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                WHAT WE DO
+              </h2>
+              <p className="text-xl text-gray-800 leading-relaxed font-mono">
+                Call us traditional, but we believe in the old-fashioned way of connection. And no, we don't mean Myspace. You can have a killer product or service, but that's not what sets you apart. It's how people feel after each interaction.
+              </p>
+            </motion.div>
+
+            {/* Right Column - Accordion */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                <AccordionItem value="item-1" className="border-b-2 border-gray-900">
+                  <AccordionTrigger className="text-left hover:no-underline group py-6">
+                    <div className="flex flex-col items-start w-full pr-4">
+                      <span className="text-sm font-mono text-gray-600 mb-2">01</span>
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                        CREATIVE & STRATEGY
+                      </h3>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-lg text-gray-800 leading-relaxed pb-6 font-mono">
+                    We craft personalized, AI-driven strategies that bridge the gap between your goals and tangible results. We also captivate audiences with compelling content and design, fueled by the power of AI-assisted creativity.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2" className="border-b-2 border-gray-900">
+                  <AccordionTrigger className="text-left hover:no-underline group py-6">
+                    <div className="flex flex-col items-start w-full pr-4">
+                      <span className="text-sm font-mono text-gray-600 mb-2">02</span>
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                        DIGITAL MARKETING & PRESENCE
+                      </h3>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-lg text-gray-800 leading-relaxed pb-6 font-mono">
+                    Elevate your digital presence with our comprehensive strategies. We ensure your brand stands out, driving traffic and enhancing visibility. <Link to="/contact" className="text-blue-700 underline hover:text-blue-800">Contact us</Link> to disrupt your industry.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-3" className="border-b-2 border-gray-900">
+                  <AccordionTrigger className="text-left hover:no-underline group py-6">
+                    <div className="flex flex-col items-start w-full pr-4">
+                      <span className="text-sm font-mono text-gray-600 mb-2">03</span>
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                        OPTIMIZATION & ANALYTICS
+                      </h3>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-lg text-gray-800 leading-relaxed pb-6 font-mono">
+                    Refine your strategy with our AI-powered tools and data insights for peak performance. We turn data into actionable intelligence. <Link to="/contact" className="text-blue-700 underline hover:text-blue-800">Contact us</Link> to optimize your marketing efforts.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Block */}
       <section className="relative bg-gray-800 text-white py-20">
          <DualCTABlock />
