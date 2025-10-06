@@ -18,9 +18,9 @@ export default function Podcast() {
   const [activeImage, setActiveImage] = useState(0);
 
   return (
-    <div className="text-white">
+    <div className="text-black">
       {/* Page Title */}
-      <PageTitle title="PODCAST" light />
+      <PageTitle title="PODCAST" />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -47,7 +47,7 @@ export default function Podcast() {
               <h1 className="text-5xl sm:text-6xl font-bold mb-6">
                 Professional Podcast Production
               </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-xl text-black mb-8 leading-relaxed">
                 From concept to distribution, we create podcast content that builds authority, engages audiences, and drives business growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -89,7 +89,7 @@ export default function Podcast() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               State-of-the-Art Podcast Studio
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-black max-w-3xl mx-auto">
               Our professional studio is equipped with industry-leading audio and video gear to ensure your content looks and sounds exceptional.
             </p>
           </motion.div>
@@ -130,15 +130,15 @@ export default function Podcast() {
                 <Video className="w-8 h-8 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Multi-Camera Production</h3>
-                  <p className="text-gray-300">Professional multi-camera setup with dynamic angles and seamless switching for engaging visual storytelling.</p>
+                  <p className="text-black">Professional multi-camera setup with dynamic angles and seamless switching for engaging visual storytelling.</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
                 <Headphones className="w-8 h-8 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Crystal Clear Audio</h3>
-                  <p className="text-gray-300">Broadcast-quality audio recording with professional microphones and acoustic treatment for pristine sound.</p>
+                  <p className="text-black">Broadcast-quality audio recording with professional microphones and acoustic treatment for pristine sound.</p>
                 </div>
               </div>
 
@@ -146,7 +146,7 @@ export default function Podcast() {
                 <Play className="w-8 h-8 text-yellow-400 mt-1" />
                 <div>
                   <h3 className="text-2xl font-bold mb-2">Full Production Service</h3>
-                  <p className="text-gray-300">From pre-production planning to post-production editing and distribution across all major platforms.</p>
+                  <p className="text-black">From pre-production planning to post-production editing and distribution across all major platforms.</p>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@ export default function Podcast() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">What Our Podcast Guests Say</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-black max-w-2xl mx-auto">
               Hear from the people who've experienced our studio firsthand.
             </p>
           </motion.div>
@@ -184,10 +184,10 @@ export default function Podcast() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">Korina Flint</h3>
-                  <p className="text-sm text-gray-400">Health & Wellness Professional</p>
+                  <p className="text-sm text-black">Health & Wellness Professional</p>
                 </div>
               </div>
-              <blockquote className="text-gray-200 leading-relaxed">
+              <blockquote className="text-black leading-relaxed">
                 "I am thoroughly impressed with Disruptors Media. They are super talented and knowledgeable, but what impressed me even more is their dedication to their mission. They truly want to help others spread the message of health and wellness. My experience shooting a podcast with them was amazing."
               </blockquote>
             </motion.div>
@@ -205,10 +205,10 @@ export default function Podcast() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">Sydney Osmun</h3>
-                  <p className="text-sm text-gray-400">Podcast Guest</p>
+                  <p className="text-sm text-black">Podcast Guest</p>
                 </div>
               </div>
-              <blockquote className="text-gray-200 leading-relaxed">
+              <blockquote className="text-black leading-relaxed">
                 "I've been blown away by every detail from my entire experience. Their studio is top notch with different settings, high-class equipment, incredible host, and fast turnaround."
               </blockquote>
             </motion.div>
@@ -226,10 +226,10 @@ export default function Podcast() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">Mariah Tyler Moore</h3>
-                  <p className="text-sm text-gray-400">Content Creator</p>
+                  <p className="text-sm text-black">Content Creator</p>
                 </div>
               </div>
-              <blockquote className="text-gray-200 leading-relaxed">
+              <blockquote className="text-black leading-relaxed">
                 "Working with Kyle to record the podcast was such a fun and invigorating experience! The discussion was incredible and the studio atmosphere is fantastic."
               </blockquote>
             </motion.div>
@@ -247,10 +247,10 @@ export default function Podcast() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">Portia Louder</h3>
-                  <p className="text-sm text-gray-400">Industry Expert</p>
+                  <p className="text-sm text-black">Industry Expert</p>
                 </div>
               </div>
-              <blockquote className="text-gray-200 leading-relaxed">
+              <blockquote className="text-black leading-relaxed">
                 "I had a great experience recording a podcast. The host was well spoken and understood the topic. The studio is incredible."
               </blockquote>
             </motion.div>
@@ -268,7 +268,7 @@ export default function Podcast() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">Ready to Start Your Podcast?</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-black mb-8 max-w-2xl mx-auto">
               Let's create a podcast that positions you as the authority in your industry and drives real business results.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">

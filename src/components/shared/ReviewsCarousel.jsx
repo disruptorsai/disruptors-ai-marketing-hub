@@ -159,7 +159,7 @@ export default function ReviewsCarousel({
             >
               <div className="h-full bg-black/40 backdrop-blur-xl rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-white/10 relative overflow-hidden">
                 {/* Decorative gradient */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
 
                 {/* Quote icon */}
                 <div className="mb-6 flex items-start justify-between">
@@ -168,7 +168,7 @@ export default function ReviewsCarousel({
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'}`}
+                        className={`w-4 h-4 ${i < review.rating ? 'text-white fill-white' : 'text-gray-600'}`}
                       />
                     ))}
                   </div>
@@ -181,7 +181,7 @@ export default function ReviewsCarousel({
 
                 {/* Author info */}
                 <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg">
                     {review.name.charAt(0)}
                   </div>
                   <div className="flex-1">
@@ -206,7 +206,7 @@ export default function ReviewsCarousel({
               onClick={() => scrollToIndex(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === activeIndex
-                  ? 'w-8 h-2 bg-blue-500'
+                  ? 'w-8 h-2 bg-white'
                   : 'w-2 h-2 bg-white/40 hover:bg-white/60'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}

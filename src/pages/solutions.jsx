@@ -8,6 +8,7 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
+import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
 
 const services = [
   { title: "AI Automation", hook: "Automate repetitive tasks and workflows", link: "solutions-ai-automation", icon: "Cpu" },

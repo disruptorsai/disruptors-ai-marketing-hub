@@ -60,14 +60,14 @@ export default function Work() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Link 
-                  to={createPageUrl(client.path)} 
+                <Link
+                  to={createPageUrl(client.path)}
                   className="block"
                 >
-                  <div className="relative h-48 flex items-center justify-center p-6 transition-transform duration-300 ease-in-out group-hover:scale-110">
-                    <img 
-                      src={client.logo} 
-                      alt={client.name} 
+                  <div className="relative h-48 flex items-center justify-center p-6 bg-black/30 backdrop-blur-sm rounded-xl transition-transform duration-300 ease-in-out group-hover:scale-110">
+                    <img
+                      src={client.logo}
+                      alt={client.name}
                       className="max-h-32 max-w-full w-auto object-contain"
                     />
                   </div>

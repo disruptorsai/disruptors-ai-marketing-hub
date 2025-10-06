@@ -38,12 +38,12 @@ export default function ReviewCarousel() {
             <div key={index} className="bg-gray-800/90 backdrop-blur-sm border border-gray-700 p-8 rounded-3xl hover:shadow-2xl transition-shadow duration-300">
               {/* Quote icon */}
               <div className="mb-6 flex items-start justify-between">
-                <Quote className="w-10 h-10 text-yellow-400/30" />
+                <Quote className="w-10 h-10 text-white/30" />
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'}`}
+                      className={`w-4 h-4 ${i < review.rating ? 'text-white fill-white' : 'text-gray-600'}`}
                     />
                   ))}
                 </div>
@@ -56,7 +56,7 @@ export default function ReviewCarousel() {
 
               {/* Author info */}
               <div className="flex items-center gap-4 pt-6 border-t border-gray-700">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-lg">
                   {review.name.charAt(0)}
                 </div>
                 <div className="flex-1">
