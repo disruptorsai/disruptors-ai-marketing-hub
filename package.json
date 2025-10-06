@@ -98,6 +98,7 @@
     "@splinetool/runtime": "^1.10.71",
     "@supabase/supabase-js": "^2.57.4",
     "ai": "^5.0.60",
+    "chromium-bidi": "^9.2.1",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
