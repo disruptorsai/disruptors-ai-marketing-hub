@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+  PLAYWRIGHT_BROWSERS_PATH = "0"
 
 # Admin Nexus Functions Configuration
 [functions]
