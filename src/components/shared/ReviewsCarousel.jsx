@@ -127,7 +127,7 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-4">
             {title}
           </h2>
           <p className="text-lg text-gray-200 max-w-2xl mx-auto">

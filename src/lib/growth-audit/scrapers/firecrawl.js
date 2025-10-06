@@ -22,7 +22,7 @@ export class FirecrawlScraper {
    */
   constructor(apiKey) {
     this.app = new FirecrawlApp({
-      apiKey: apiKey || import.meta.env.VITE_FIRECRAWL_API_KEY || ''
+      apiKey: apiKey || process.env.VITE_FIRECRAWL_API_KEY || ''
     });
   }
 

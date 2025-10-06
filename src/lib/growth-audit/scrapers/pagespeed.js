@@ -37,7 +37,7 @@ export class PageSpeedInsights {
    * @param {string} [apiKey] - Google PageSpeed Insights API key (optional)
    */
   constructor(apiKey) {
-    this.apiKey = apiKey || import.meta.env.VITE_PAGESPEED_API_KEY || '';
+    this.apiKey = apiKey || process.env.VITE_PAGESPEED_API_KEY || '';
   }
 
   /**

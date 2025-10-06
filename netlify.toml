@@ -11,6 +11,7 @@
 # Admin Nexus Functions Configuration
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["@ai-sdk/openai", "@ai-sdk/anthropic", "chromium-bidi", "playwright-core"]
 
 [[redirects]]
   from = "/*"
