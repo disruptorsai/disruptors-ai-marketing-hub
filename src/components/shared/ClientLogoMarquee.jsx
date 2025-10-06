@@ -21,7 +21,7 @@ export default function ClientLogoMarquee({
   title = "Trusted by Industry Leaders"
 }) {
   return (
-    <section className="py-4 overflow-hidden">
+    <section className="py-2 overflow-hidden">
       <Marquee
         speed={80}
         gradient={true}
@@ -29,7 +29,7 @@ export default function ClientLogoMarquee({
         gradientWidth={100}
         pauseOnHover={true}
         pauseOnClick={true}
-        className="py-4"
+        className="py-2"
       >
         {logos.map((logo, index) => (
           <Link
@@ -37,13 +37,13 @@ export default function ClientLogoMarquee({
             to={createPageUrl(logo.slug)}
             className="mx-20 group inline-block"
           >
-            <div className="flex items-center justify-center h-64 w-96">
+            <div className="flex items-center justify-center h-20 w-48">
               {logo.src ? (
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="max-h-48 w-auto object-contain opacity-60 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 ease-out"
+                  className="max-h-16 w-auto object-contain opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500 ease-out"
                   draggable="false"
                 />
               ) : (

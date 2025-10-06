@@ -81,6 +81,10 @@ const DemoBestOfAll = lazy(() => import('./demos/best-of-all.jsx'));
 const GrowthAuditDemo = lazy(() => import('./demos/growth-audit.jsx'));
 const GrowthAuditResults = lazy(() => import('./demos/growth-audit-results.jsx'));
 
+// Hidden utility pages - lazy loaded
+const GraveyardArchive = lazy(() => import('./GraveyardArchive.jsx'));
+const ScreenshotManager = lazy(() => import('./ScreenshotManager.jsx'));
+
 const PAGES = {
     
     Home: Home,
@@ -179,6 +183,10 @@ const PAGES = {
     "demos-best-of-all": DemoBestOfAll,
     "demos-growth-audit": GrowthAuditDemo,
     "demos-growth-audit-results": GrowthAuditResults,
+
+    // Hidden utility pages
+    "graveyard-archive": GraveyardArchive,
+    "screenshot-manager": ScreenshotManager,
 
 }
 
@@ -304,6 +312,10 @@ function PagesContent() {
                 <Route path="/demos/best-of-all" element={<DemoBestOfAll />} />
                 <Route path="/demos/growth-audit" element={<GrowthAuditDemo />} />
                 <Route path="/demos/growth-audit/:jobId" element={<GrowthAuditResults />} />
+
+                {/* Hidden utility pages */}
+                <Route path="/graveyard-archive" element={<GraveyardArchive />} />
+                <Route path="/screenshot-manager" element={<ScreenshotManager />} />
 
                 {/* Catch-all route for 404 pages */}
                 <Route path="*" element={<NotFound />} />

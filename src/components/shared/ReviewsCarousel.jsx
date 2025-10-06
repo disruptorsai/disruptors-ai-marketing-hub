@@ -127,10 +127,10 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-4">
+          <h2 className="font-sans text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-4">
             {title}
           </h2>
-          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
+          <p className="font-sans text-lg text-gray-200 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about working with us.
           </p>
         </motion.div>
@@ -175,7 +175,7 @@ export default function ReviewsCarousel({
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-gray-100 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
+                <blockquote className="font-sans text-gray-100 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
                   "{review.quote}"
                 </blockquote>
 
@@ -185,9 +185,9 @@ export default function ReviewsCarousel({
                     {review.name.charAt(0)}
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-white">{review.name}</div>
-                    <div className="text-sm text-gray-300">{review.role}</div>
-                    <div className="text-sm text-gray-400">{review.company}</div>
+                    <div className="font-sans font-semibold text-white">{review.name}</div>
+                    <div className="font-sans text-sm text-gray-300">{review.role}</div>
+                    <div className="font-sans text-sm text-gray-400">{review.company}</div>
                   </div>
                   <div className="text-xs text-gray-300 font-medium px-3 py-1 bg-white/10 rounded-full">
                     {review.source}

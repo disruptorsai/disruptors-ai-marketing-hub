@@ -35,7 +35,7 @@ export default function AlternatingLayout({ sections = [] }) {
                 >
                   {section.kicker && (
                     <motion.p
-                      className={`text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mb-2 sm:mb-4 ${section.textColor === 'text-black' ? 'text-gray-700' : 'text-indigo-300'}`}
+                      className={`font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mb-2 sm:mb-4 ${section.textColor === 'text-black' ? 'text-gray-700' : 'text-indigo-300'}`}
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
@@ -47,7 +47,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.headline && (
                     <motion.h2
-                      className={`${section.headlineSize || 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-4 sm:mb-6 md:mb-8 ${section.textColor || 'text-white'} ${section.textColor === 'text-black' ? '' : 'drop-shadow-lg'}`}
+                      className={`font-sans ${section.headlineSize || 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-4 sm:mb-6 md:mb-8 ${section.textColor || 'text-white'} ${section.textColor === 'text-black' ? '' : 'drop-shadow-lg'}`}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.8 }}
@@ -59,7 +59,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.body && (
                     <motion.div
-                      className={`text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl leading-relaxed font-light mb-6 sm:mb-8 ${section.textColor === 'text-black' ? 'text-gray-800' : 'text-gray-100'}`}
+                      className={`font-sans text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl leading-relaxed font-light mb-6 sm:mb-8 ${section.textColor === 'text-black' ? 'text-gray-800' : 'text-gray-100'}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8 }}
@@ -79,7 +79,7 @@ export default function AlternatingLayout({ sections = [] }) {
                       <Button
                         asChild
                         size="lg"
-                        className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto"
+                        className="font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto"
                       >
                         <Link to={createPageUrl(section.cta.link)}>
                           {section.cta.label}

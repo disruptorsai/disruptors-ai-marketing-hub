@@ -219,7 +219,7 @@ export default function Layout({ children, currentPageName }) {
                     <Link
                       key={item.name}
                       to={createPageUrl(item.path)}
-                      className="text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
+                      className="font-sans text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
                     >
                       {item.name}
                     </Link>
@@ -229,7 +229,7 @@ export default function Layout({ children, currentPageName }) {
                 <div className="hidden lg:flex items-center">
                    <Link
                      to={createPageUrl('book-strategy-session')}
-                     className="group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-sm font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+                     className="font-sans group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-sm font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
                      style={{
                        clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                        animation: 'goldPulse 3s ease-in-out infinite',
@@ -275,7 +275,7 @@ export default function Layout({ children, currentPageName }) {
                       <Link
                         key={item.name}
                         to={createPageUrl(item.path)}
-                        className="block text-base font-medium text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
+                        className="font-sans block text-base font-medium text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
                       >
                         {item.name}
                       </Link>

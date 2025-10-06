@@ -32,7 +32,7 @@ export default function ReviewCarousel() {
   return (
     <section className="py-8 sm:py-12 bg-gray-900 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 text-white">What Our Clients Say</h2>
+        <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 text-white">What Our Clients Say</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {reviews.map((review, index) => (
             <div key={index} className="bg-gray-800/90 backdrop-blur-sm border border-gray-700 p-8 rounded-3xl hover:shadow-2xl transition-shadow duration-300">
@@ -50,7 +50,7 @@ export default function ReviewCarousel() {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-gray-200 text-base leading-relaxed mb-6 min-h-[120px]">
+              <blockquote className="font-sans text-gray-200 text-base leading-relaxed mb-6 min-h-[120px]">
                 "{review.quote}"
               </blockquote>
 

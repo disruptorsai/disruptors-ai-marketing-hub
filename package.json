@@ -56,7 +56,10 @@
     "validate:models": "node scripts/validate-model-usage.js",
     "verify:no-dalle3": "node scripts/verify-dalle3-simple.js",
     "test:gpt-image-1": "node scripts/test-gpt-image-1.js",
-    "test:nano-banana": "node scripts/test-nano-banana.js"
+    "test:nano-banana": "node scripts/test-nano-banana.js",
+    "screenshot:capture": "node scripts/capture-screenshot.js",
+    "screenshot:all": "node scripts/capture-screenshot.js --all",
+    "screenshot:batch": "node scripts/capture-screenshot.js --all --viewports=desktop,tablet,mobile"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.23",
