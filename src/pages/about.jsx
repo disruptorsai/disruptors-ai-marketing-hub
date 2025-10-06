@@ -143,7 +143,7 @@ export default function About() {
       />
       
       {/* Section 3: Meet the Team (Unchanged) */}
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -163,33 +163,24 @@ export default function About() {
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
-            <div className="space-y-10">
-              {/* Row 1: Josh */}
-              {team.filter(m => m.name.toLowerCase().includes('josh')).length > 0 && (
-                <div className="grid grid-cols-1 gap-10 max-w-md mx-auto">
-                  {team.filter(m => m.name.toLowerCase().includes('josh')).map((member, index) => (
-                    <TeamMemberCard key={member.id} member={member} delay={0} />
-                  ))}
-                </div>
-              )}
-
-              {/* Row 2: Kyle and Tyler */}
-              {team.filter(m => m.name.toLowerCase().includes('kyle') || m.name.toLowerCase().includes('tyler')).length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl mx-auto">
-                  {team.filter(m => m.name.toLowerCase().includes('kyle') || m.name.toLowerCase().includes('tyler')).map((member, index) => (
-                    <TeamMemberCard key={member.id} member={member} delay={0.1 + (index * 0.1)} />
-                  ))}
-                </div>
-              )}
-
-              {/* Row 3: Carson and William */}
-              {team.filter(m => m.name.toLowerCase().includes('carson') || m.name.toLowerCase().includes('william')).length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl mx-auto">
-                  {team.filter(m => m.name.toLowerCase().includes('carson') || m.name.toLowerCase().includes('william')).map((member, index) => (
-                    <TeamMemberCard key={member.id} member={member} delay={0.3 + (index * 0.1)} />
-                  ))}
-                </div>
-              )}
+            /* Mobile: Single column carousel-like layout with hierarchy
+               Tablet/Portrait: 2 columns
+               Desktop: All 5 in a single row */
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
+              {/* Sort team by hierarchy: Josh first, then others */}
+              {[...team]
+                .sort((a, b) => {
+                  // Josh first (CEO/Founder priority)
+                  if (a.name.toLowerCase().includes('josh')) return -1;
+                  if (b.name.toLowerCase().includes('josh')) return 1;
+                  // Then Kyle and Tyler (co-founders/leadership)
+                  if (a.name.toLowerCase().includes('kyle') || a.name.toLowerCase().includes('tyler')) return -1;
+                  if (b.name.toLowerCase().includes('kyle') || b.name.toLowerCase().includes('tyler')) return 1;
+                  return 0;
+                })
+                .map((member, index) => (
+                  <TeamMemberCard key={member.id} member={member} delay={index * 0.1} />
+                ))}
             </div>
           ) : (
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
@@ -200,7 +191,7 @@ export default function About() {
       </section>
 
       {/* Section 4: Our Values in Action */}
-      <section className="py-20 sm:py-28 bg-white/5 backdrop-blur-sm">
+      <section className="py-12 sm:py-16 bg-white/5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -277,7 +268,7 @@ export default function About() {
       </section>
 
       {/* Section 5: Call to Action */}
-       <section className="bg-gray-900 text-white py-20">
+       <section className="bg-gray-900 text-white py-12">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
             <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>

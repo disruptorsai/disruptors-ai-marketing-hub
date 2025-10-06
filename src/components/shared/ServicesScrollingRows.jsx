@@ -75,7 +75,7 @@ function ServiceCard({ service }) {
   return (
     <Link
       to={createPageUrl(service.slug)}
-      className="relative block flex-shrink-0 w-[400px] h-[500px] rounded-2xl overflow-hidden mx-4"
+      className="relative block flex-shrink-0 w-[280px] sm:w-[350px] lg:w-[400px] h-[380px] sm:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mx-3 sm:mx-4"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -96,14 +96,14 @@ function ServiceCard({ service }) {
 
       {/* Content Container */}
       <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end h-full p-8 pointer-events-none">
-        {/* Title - bigger and bolder */}
+        {/* Title - bigger and bolder, responsive sizing */}
         <motion.div
           className="relative z-10"
           initial={{ y: 0 }}
           animate={{ y: isHovered ? -120 : 0 }}
           transition={{ duration: 1.5, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <h3 className="text-4xl font-black text-white tracking-tight leading-tight">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
             {service.title}
           </h3>
         </motion.div>
@@ -118,7 +118,7 @@ function ServiceCard({ service }) {
           }}
           transition={{ duration: 1.5, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <p className="text-xl text-white/95 leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-white/95 leading-relaxed">
             {service.description}
           </p>
         </motion.div>
@@ -204,7 +204,7 @@ export default function ServicesScrollingRows({
   title = "A Solution for Every Challenge"
 }) {
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
       <div className="relative max-w-full">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20 px-4 sm:px-6 lg:px-8">

@@ -117,7 +117,7 @@ export default function ReviewsCarousel({
   };
 
   return (
-    <section className="relative py-20 sm:py-28 overflow-hidden">
+    <section className="relative py-12 sm:py-16 overflow-hidden">
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -163,12 +163,12 @@ export default function ReviewsCarousel({
 
                 {/* Quote icon */}
                 <div className="mb-6 flex items-start justify-between">
-                  <Quote className="w-10 h-10 text-white/40" />
+                  <Quote className="w-10 h-10 text-[#C9A53B]/60" />
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < review.rating ? 'text-white fill-white' : 'text-gray-600'}`}
+                        className={`w-4 h-4 ${i < review.rating ? 'text-[#C9A53B] fill-[#C9A53B]' : 'text-gray-600'}`}
                       />
                     ))}
                   </div>

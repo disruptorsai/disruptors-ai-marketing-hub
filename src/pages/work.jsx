@@ -26,7 +26,7 @@ export default function Work() {
       <PageTitle title="WORK" />
 
       {/* Header Section */}
-      <section className="py-16 sm:py-24 text-center">
+      <section className="py-12 sm:py-16 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export default function Work() {
       </section>
 
       {/* Case Study Grid */}
-      <section className="py-20 sm:py-24 bg-transparent">
+      <section className="py-12 sm:py-16 bg-transparent">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {clients.map((client, index) => (
@@ -79,7 +79,7 @@ export default function Work() {
       </section>
 
       {/* Mini CTA Block */}
-      <section className="py-16 sm:py-20 text-center">
+      <section className="py-12 sm:py-16 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export default function Work() {
       </section>
 
       {/* Final CTA Block */}
-      <section className="bg-gray-900 text-white py-20">
+      <section className="bg-gray-900 text-white">
         <DualCTABlock />
       </section>
     </div>

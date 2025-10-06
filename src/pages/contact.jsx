@@ -39,7 +39,7 @@ export default function Contact() {
       {/* Enhanced Hero Section */}
       <AlternatingLayout sections={contactHeroData} />
 
-      <div className="bg-white py-8 sm:py-12 md:py-16 lg:py-24">
+      <div className="bg-white py-8 sm:py-12 md:py-16">
         <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

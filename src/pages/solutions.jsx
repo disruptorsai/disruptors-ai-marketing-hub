@@ -113,7 +113,7 @@ export default function Solutions() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-24 sm:py-32 bg-[#E8D5C4]">
+      <section className="py-12 sm:py-16 bg-[#E8D5C4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Column - Introduction */}
@@ -188,7 +188,7 @@ export default function Solutions() {
       </section>
 
       {/* CTA Block */}
-      <section className="relative bg-gray-800 text-white py-20">
+      <section className="relative bg-gray-800 text-white">
          <DualCTABlock />
       </section>
     </div>

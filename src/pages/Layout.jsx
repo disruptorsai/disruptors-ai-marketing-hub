@@ -175,8 +175,8 @@ export default function Layout({ children, currentPageName }) {
           {/* Only show normal site content if not in admin mode */}
           {!isAdminAuthenticated && (
             <>
-              <header className="fixed top-0 left-0 right-0 z-50 pt-4 sm:pt-6">
-            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <header className="fixed top-0 left-0 right-0 z-50">
+            <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
             <div className={`text-white ${
             isHomePage
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
