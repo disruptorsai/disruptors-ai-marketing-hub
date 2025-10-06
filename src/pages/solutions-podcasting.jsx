@@ -21,6 +21,18 @@ const service = {
       description: 'Turn every episode into blog posts, social clips, newsletters, and more-multiplying your content ROI.'
     }
   ],
+  testimonials: [
+    {
+      name: 'Korina Flint',
+      company: 'Health & Wellness Professional',
+      quote: 'I am thoroughly impressed with Disruptors Media. They are super talented and knowledgeable, but what impressed me even more is their dedication to their mission. They truly want to help others spread the message of health and wellness. My experience shooting a podcast with them was amazing.'
+    },
+    {
+      name: 'Nathan Unkefer',
+      company: 'Content Creator',
+      quote: 'The finished product was quickly and professionally edited and looks great. I\'d recommend this group to anyone!'
+    }
+  ],
   cta_label: 'Start Your Podcast',
   cta_link: 'podcast'
 };

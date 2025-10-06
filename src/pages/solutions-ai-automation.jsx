@@ -21,6 +21,18 @@ const service = {
       description: 'Track clear metrics showing time saved, costs reduced, and revenue generated through automation.'
     }
   ],
+  testimonials: [
+    {
+      name: 'Blunt Honest Reviews',
+      company: 'Business Owner',
+      quote: 'If there was a 10-star option, I would use it! These guys are brilliant! They found ways to streamline my company and automate processes I didn\'t even realize could be automated.'
+    },
+    {
+      name: 'Jay Webb',
+      company: 'Entrepreneur',
+      quote: 'Tyler is a master at helping busy entrepreneurs develop systems and outreach that result in leads.'
+    }
+  ],
   cta_label: 'Book a Strategy Session',
   cta_link: 'book-strategy-session'
 };

@@ -199,7 +199,84 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 4: Call to Action */}
+      {/* Section 4: Our Values in Action */}
+      <section className="py-20 sm:py-28 bg-white/5 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">Why Clients Trust Us</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Our commitment to integrity, value, and excellence speaks for itself.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
+                  G
+                </div>
+                <h3 className="font-bold text-xl text-center mb-2">Gabriel Costa e Silva</h3>
+                <p className="text-sm text-gray-600 text-center mb-4">Client</p>
+              </div>
+              <blockquote className="text-gray-800 leading-relaxed text-center">
+                "All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve."
+              </blockquote>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
+                  T
+                </div>
+                <h3 className="font-bold text-xl text-center mb-2">Tim Toone</h3>
+                <p className="text-sm text-gray-600 text-center mb-4">Business Owner</p>
+              </div>
+              <blockquote className="text-gray-800 leading-relaxed text-center">
+                "I really appreciate their feedback and coaching on what the best bang for my buck is for advertising. Kyle's honesty and transparency made all the difference."
+              </blockquote>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
+                  D
+                </div>
+                <h3 className="font-bold text-xl text-center mb-2">Dalton Simon</h3>
+                <p className="text-sm text-gray-600 text-center mb-4">Client</p>
+              </div>
+              <blockquote className="text-gray-800 leading-relaxed text-center">
+                "A really professional agency — thorough, hard working, and full of integrity. Loved working with them."
+              </blockquote>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Call to Action */}
        <section className="bg-gray-900 text-white py-20">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>

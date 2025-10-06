@@ -154,6 +154,110 @@ export default function Podcast() {
         </div>
       </section>
 
+      {/* Client Testimonials */}
+      <section className="bg-gray-900/50 backdrop-blur-sm py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">What Our Podcast Guests Say</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Hear from the people who've experienced our studio firsthand.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-xl">
+                  K
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Korina Flint</h3>
+                  <p className="text-sm text-gray-400">Health & Wellness Professional</p>
+                </div>
+              </div>
+              <blockquote className="text-gray-200 leading-relaxed">
+                "I am thoroughly impressed with Disruptors Media. They are super talented and knowledgeable, but what impressed me even more is their dedication to their mission. They truly want to help others spread the message of health and wellness. My experience shooting a podcast with them was amazing."
+              </blockquote>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-xl">
+                  S
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Sydney Osmun</h3>
+                  <p className="text-sm text-gray-400">Podcast Guest</p>
+                </div>
+              </div>
+              <blockquote className="text-gray-200 leading-relaxed">
+                "I've been blown away by every detail from my entire experience. Their studio is top notch with different settings, high-class equipment, incredible host, and fast turnaround."
+              </blockquote>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl">
+                  M
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Mariah Tyler Moore</h3>
+                  <p className="text-sm text-gray-400">Content Creator</p>
+                </div>
+              </div>
+              <blockquote className="text-gray-200 leading-relaxed">
+                "Working with Kyle to record the podcast was such a fun and invigorating experience! The discussion was incredible and the studio atmosphere is fantastic."
+              </blockquote>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center text-white font-bold text-xl">
+                  P
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">Portia Louder</h3>
+                  <p className="text-sm text-gray-400">Industry Expert</p>
+                </div>
+              </div>
+              <blockquote className="text-gray-200 leading-relaxed">
+                "I had a great experience recording a podcast. The host was well spoken and understood the topic. The studio is incredible."
+              </blockquote>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-transparent py-20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

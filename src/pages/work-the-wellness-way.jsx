@@ -21,7 +21,8 @@ const caseData = {
     { icon: Zap, name: "AI Assessments" },
     { icon: Target, name: "Content Systems" }
   ],
-  testimonial: "This platform has revolutionized how we serve our patients. The AI insights are incredibly valuable.",
+  testimonial: "I have been so impressed — they've gotten me millions of views on my social media, and I've seen a large uptick in new patients in my office. The strategy and support they've given is significantly better than the 5 or so other marketing companies I've worked with.",
+  testimonialAuthor: "Jason Painter, Healthcare Practice",
   clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp",
   heroImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop"
 };
@@ -77,7 +78,7 @@ export default function WorkTheWellnessWay() {
           {/* Testimonial */}
           <div className="bg-[#E0E0E0] border border-[#C7C7C7] rounded-2xl p-8 sm:p-12 text-center">
             <p className="text-xl sm:text-2xl italic text-gray-800 mb-4">"{caseData.testimonial}"</p>
-            <p className="text-[#6B7280]">- {caseData.client}</p>
+            <p className="text-[#6B7280]">- {caseData.testimonialAuthor || caseData.client}</p>
           </div>
 
           {/* CTA */}

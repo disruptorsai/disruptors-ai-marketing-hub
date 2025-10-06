@@ -4,7 +4,7 @@ import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import ThreePillars from '../components/shared/ThreePillars';
 import ReviewsCarousel from '../components/shared/ReviewsCarousel';
-import ServiceScroller from '../components/shared/ServiceScroller';
+import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 
 export default function Home() {
@@ -87,16 +87,18 @@ export default function Home() {
       {/* Services / Solutions */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
-            alt="Abstract geometric background"
+          <video
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
-            loading="lazy"
           />
         </div>
-        <div className="absolute inset-0 z-[1] bg-white/40"></div>
+        <div className="absolute inset-0 z-[1] bg-black/50"></div>
         <div className="relative z-10">
-          <ServiceScroller />
+          <ServicesScrollingRows />
         </div>
       </section>
 

@@ -3,8 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
 import ServicesHandScroll from '../components/shared/ServicesHandScroll';
+import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
@@ -93,27 +93,21 @@ export default function Solutions() {
         description="Transform your business with cutting-edge automation and intelligent marketing strategies"
       />
 
-      {/* Services Grid */}
-      <section className="pb-24 sm:pb-32 pt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Section Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center mb-16"
-            >
-                <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">OUR SERVICES</p>
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Choose Your Path to Growth</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">Select the services that align with your business goals. Mix and match to create your perfect growth strategy.</p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {services.map((service, index) => (
-                    <ServiceCard key={service.link} service={service} index={index} />
-                ))}
-            </div>
+      {/* Services Horizontal Scrolling Carousel */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <video
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-black/50"></div>
+        <div className="relative z-10">
+          <ServicesScrollingRows title="Choose Your Path to Growth" />
         </div>
       </section>
 
