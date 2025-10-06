@@ -117,7 +117,7 @@ export default function ReviewsCarousel({
   };
 
   return (
-    <section className="relative py-12 sm:py-16 overflow-hidden">
+    <section className="relative py-8 sm:py-12 overflow-hidden">
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -125,7 +125,7 @@ export default function ReviewsCarousel({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-4">
             {title}

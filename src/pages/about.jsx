@@ -143,7 +143,7 @@ export default function About() {
       />
       
       {/* Section 3: Meet the Team (Unchanged) */}
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,7 +191,7 @@ export default function About() {
       </section>
 
       {/* Section 4: Our Values in Action */}
-      <section className="py-12 sm:py-16 bg-white/5 backdrop-blur-sm">
+      <section className="py-8 sm:py-12 bg-white/5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -268,7 +268,7 @@ export default function About() {
       </section>
 
       {/* Section 5: Call to Action */}
-       <section className="bg-gray-900 text-white py-12">
+       <section className="bg-gray-900 text-white py-8">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
             <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>

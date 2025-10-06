@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { gsap } from 'gsap';
@@ -70,12 +70,12 @@ const ROW_2 = SERVICES.slice(4, 9); // Last 5 services
  * ServiceCard component with hover animation
  */
 function ServiceCard({ service }) {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link
       to={createPageUrl(service.slug)}
-      className="relative block flex-shrink-0 w-[280px] sm:w-[350px] lg:w-[400px] h-[380px] sm:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mx-3 sm:mx-4"
+      className="relative block flex-shrink-0 w-[500px] sm:w-[650px] lg:w-[800px] h-[450px] sm:h-[550px] lg:h-[650px] rounded-2xl overflow-hidden mx-4 sm:mx-6"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -136,63 +136,130 @@ function ServiceCard({ service }) {
 }
 
 /**
- * ScrollingRow component with GSAP infinite scroll
+ * ScrollingRow component with drag-to-scroll and infinite loop
  */
-function ScrollingRow({ services, direction = 'left', speed = 60 }) {
+function ScrollingRow({ services, direction = 'left', speed = 80 }) {
+  const containerRef = useRef(null);
   const rowRef = useRef(null);
-  const animationRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const x = useMotionValue(0);
+  const [cardWidth, setCardWidth] = useState(0);
 
+  // Spring physics for smooth momentum
+  const springX = useSpring(x, {
+    damping: 50,
+    stiffness: 400,
+    mass: 3
+  });
+
+  // Duplicate services for seamless infinite loop (4x for smooth dragging)
+  const duplicatedServices = [
+    ...services,
+    ...services,
+    ...services,
+    ...services
+  ];
+
+  // Calculate card width on mount
   useEffect(() => {
     if (!rowRef.current) return;
+    const firstCard = rowRef.current.querySelector('.service-card');
+    if (firstCard) {
+      // Get actual card width including margins
+      const rect = firstCard.getBoundingClientRect();
+      const styles = window.getComputedStyle(firstCard);
+      const marginLeft = parseFloat(styles.marginLeft);
+      const marginRight = parseFloat(styles.marginRight);
+      setCardWidth(rect.width + marginLeft + marginRight);
+    }
+  }, []);
 
-    const row = rowRef.current;
-    const firstCard = row.querySelector('.service-card');
+  // Auto-scroll animation when not dragging
+  useEffect(() => {
+    if (!cardWidth || isDragging) return;
 
-    if (!firstCard) return;
-
-    // Calculate card width including margin
-    const cardWidth = firstCard.offsetWidth + 32; // 400px + 32px (mx-4 on each side)
     const totalWidth = cardWidth * services.length;
+    const currentX = x.get();
+    const startX = currentX;
 
-    // Create seamless infinite scroll
-    gsap.set(row, { x: 0 });
+    // Calculate animation duration based on current position
+    const pixelsToScroll = direction === 'left' ? totalWidth : -totalWidth;
+    const duration = (Math.abs(pixelsToScroll) / cardWidth) * (speed / services.length);
 
-    animationRef.current = gsap.to(row, {
-      x: direction === 'left' ? -totalWidth : totalWidth,
-      duration: speed,
-      ease: 'none',
-      repeat: -1,
-      modifiers: {
-        x: (x) => {
-          const value = parseFloat(x) % totalWidth;
-          return `${value}px`;
+    const controls = animate(x, startX + pixelsToScroll, {
+      duration,
+      ease: 'linear',
+      repeat: Infinity,
+      repeatType: 'loop',
+      onUpdate: (latest) => {
+        // Wrap around for infinite loop
+        const totalWidth = cardWidth * services.length;
+        if (direction === 'left' && latest <= -totalWidth) {
+          x.set(latest + totalWidth);
+        } else if (direction === 'right' && latest >= 0) {
+          x.set(latest - totalWidth);
         }
       }
     });
 
-    return () => {
-      if (animationRef.current) {
-        animationRef.current.kill();
-      }
-    };
-  }, [services, direction, speed]);
+    return () => controls.stop();
+  }, [x, cardWidth, services.length, isDragging, direction, speed]);
 
-  // Duplicate services for seamless infinite loop
-  const duplicatedServices = [...services, ...services, ...services];
+  // Handle drag constraints and wrapping
+  const handleDrag = (event, info) => {
+    if (!cardWidth) return;
+
+    const totalWidth = cardWidth * services.length;
+    const currentX = x.get();
+
+    // Wrap around during drag
+    if (currentX <= -totalWidth * 2) {
+      x.set(currentX + totalWidth);
+    } else if (currentX >= -totalWidth) {
+      x.set(currentX - totalWidth);
+    }
+  };
 
   return (
-    <div className="overflow-hidden py-8">
-      <div
+    <div ref={containerRef} className="overflow-hidden py-8 cursor-grab active:cursor-grabbing">
+      <motion.div
         ref={rowRef}
         className="flex"
-        style={{ willChange: 'transform' }}
+        style={{
+          x: springX,
+          willChange: 'transform'
+        }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.1}
+        dragTransition={{
+          power: 0.2,
+          timeConstant: 200,
+          modifyTarget: (target) => {
+            // Snap to nearest card
+            if (!cardWidth) return target;
+            return Math.round(target / cardWidth) * cardWidth;
+          }
+        }}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
+        onDrag={handleDrag}
       >
         {duplicatedServices.map((service, index) => (
-          <div key={`${service.slug}-${index}`} className="service-card">
+          <div
+            key={`${service.slug}-${index}`}
+            className="service-card"
+            onMouseDown={(e) => {
+              // Prevent drag on link elements to allow clicking
+              if (e.target.closest('a')) {
+                e.stopPropagation();
+              }
+            }}
+          >
             <ServiceCard service={service} />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -204,7 +271,7 @@ export default function ServicesScrollingRows({
   title = "A Solution for Every Challenge"
 }) {
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+    <section className="relative py-8 sm:py-12 lg:py-16 overflow-hidden">
       <div className="relative max-w-full">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20 px-4 sm:px-6 lg:px-8">

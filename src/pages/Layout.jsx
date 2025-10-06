@@ -176,8 +176,7 @@ export default function Layout({ children, currentPageName }) {
           {!isAdminAuthenticated && (
             <>
               <header className="fixed top-0 left-0 right-0 z-50">
-            <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
-            <div className={`text-white ${
+            <div className={`w-full text-white ${
             isHomePage
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
               : 'bg-black/70 backdrop-blur-md'
@@ -228,9 +227,27 @@ export default function Layout({ children, currentPageName }) {
                 </nav>
 
                 <div className="hidden lg:flex items-center">
-                   <Link to={createPageUrl('book-strategy-session')} className="group relative inline-flex items-center justify-center h-10 px-4 xl:px-6 text-xs font-bold text-white uppercase bg-transparent border border-white touch-manipulation" style={{clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)'}}>
+                   <Link
+                     to={createPageUrl('book-strategy-session')}
+                     className="group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-sm font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+                     style={{
+                       clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
+                       animation: 'goldPulse 3s ease-in-out infinite',
+                       boxShadow: '0 0 15px rgba(255, 215, 0, 0.3)'
+                     }}
+                   >
                       <span>Book a Call</span>
-                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                      <style jsx>{`
+                        @keyframes goldPulse {
+                          0%, 100% {
+                            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.15);
+                          }
+                          50% {
+                            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 0 50px rgba(255, 215, 0, 0.25);
+                          }
+                        }
+                      `}</style>
                    </Link>
                 </div>
 
@@ -270,7 +287,6 @@ export default function Layout({ children, currentPageName }) {
                 </motion.div>
               )}
             </AnimatePresence>
-            </div>
             </div>
           </header>
           

@@ -14,7 +14,7 @@ export default function AlternatingLayout({ sections = [] }) {
         return (
           <section
             key={index}
-            className={`min-h-[80vh] flex items-center py-8 sm:py-12 ${
+            className={`flex items-center py-8 sm:py-10 md:py-12 ${
               section.backgroundColor || (index % 3 === 0 ? 'bg-gray-900 text-white backdrop-blur-md' : index % 3 === 1 ? 'bg-gray-800 text-white backdrop-blur-sm' : 'bg-gray-900 text-white')
             }`}
           >

@@ -145,7 +145,7 @@ export default function Home() {
       </section>
 
       {/* Client Logos Marquee */}
-      <div className="py-8 bg-gray-900 overflow-hidden">
+      <div className="py-2 sm:py-3 bg-gray-900 overflow-hidden">
         <ClientLogoMarquee />
       </div>
 
@@ -156,7 +156,7 @@ export default function Home() {
       <AlternatingLayout sections={alternatingData} />
 
       {/* Our Approach (3 Pillars) */}
-      <section className="bg-gray-900 text-white py-12 sm:py-16">
+      <section className="bg-gray-900 text-white py-8 sm:py-12">
         <ThreePillars />
       </section>
 

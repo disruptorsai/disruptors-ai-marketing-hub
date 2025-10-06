@@ -9,55 +9,55 @@ import { customClient } from '@/lib/custom-sdk';
 const FALLBACK_SERVICES = [
   {
     title: "AI Automation",
-    hook: "Automate repetitive tasks and workflows",
+    hook: "Transform your business operations by automating repetitive tasks, streamlining workflows, and eliminating manual bottlenecks. Our AI-powered solutions free your team to focus on high-value activities while machines handle the routine work with precision and speed.",
     slug: "solutions-ai-automation",
     image: "/generated/anachron-lite/ai-automation-icon-anachron-lite.png"
   },
   {
     title: "Social Media Marketing",
-    hook: "Build and engage your community",
+    hook: "Build authentic connections with your audience through strategic content that cuts through the noise. We create data-driven campaigns that engage your community, spark conversations, and turn followers into loyal customers who advocate for your brand.",
     slug: "solutions-social-media",
     image: "/generated/anachron-lite/social-media-marketing-icon-anachron-lite.png"
   },
   {
     title: "SEO & GEO",
-    hook: "Get found by your ideal customers",
+    hook: "Dominate local and organic search results to ensure your ideal customers find you first. We combine technical SEO expertise with geo-targeted strategies to boost your visibility, drive qualified traffic, and establish your authority in your market.",
     slug: "solutions-seo-geo",
     image: "/generated/anachron-lite/seo-geo-icon-anachron-lite.png"
   },
   {
     title: "Lead Generation",
-    hook: "Fill your pipeline with qualified prospects",
+    hook: "Fill your sales pipeline with high-quality, ready-to-convert prospects through proven multi-channel strategies. We identify your ideal customers, craft compelling offers, and deploy targeted campaigns that consistently deliver qualified leads to fuel your growth.",
     slug: "solutions-lead-generation",
     image: "/generated/anachron-lite/lead-generation-icon-anachron-lite.png"
   },
   {
     title: "Paid Advertising",
-    hook: "Maximize ROI across all channels",
+    hook: "Maximize your advertising ROI across Google Ads, Meta, LinkedIn, and emerging platforms with data-driven campaigns. Our performance marketing experts continuously optimize your ad spend to reduce acquisition costs while scaling results that directly impact your bottom line.",
     slug: "solutions-paid-advertising",
     image: "/generated/anachron-lite/paid-advertising-icon-anachron-lite.png"
   },
   {
     title: "Podcasting",
-    hook: "Build authority through audio content",
+    hook: "Establish thought leadership and build deep audience connections through strategic podcast production and promotion. We handle everything from concept development to editing, distribution, and amplification—turning your voice into a powerful brand asset that drives authority and trust.",
     slug: "solutions-podcasting",
     image: "/generated/anachron-lite/podcasting-icon-anachron-lite.png"
   },
   {
     title: "Custom Apps",
-    hook: "Tailored solutions for your needs",
+    hook: "Solve unique business challenges with tailor-made software solutions designed specifically for your workflows and goals. From internal tools to customer-facing platforms, we build scalable applications that give you a competitive edge and streamline your operations.",
     slug: "solutions-custom-apps",
     image: "/generated/anachron-lite/custom-apps-icon-anachron-lite.png"
   },
   {
     title: "CRM Management",
-    hook: "Organize and nurture your relationships",
+    hook: "Transform scattered customer data into a strategic asset with expertly configured and managed CRM systems. We optimize your customer relationship workflows, implement automation that nurtures leads at scale, and provide insights that help you close more deals faster.",
     slug: "solutions-crm-management",
     image: "/generated/anachron-lite/crm-management-icon-anachron-lite.png"
   },
   {
     title: "Fractional CMO",
-    hook: "Strategic marketing leadership",
+    hook: "Access C-suite marketing leadership without the full-time executive cost. Our fractional CMOs bring decades of experience developing growth strategies, building high-performing teams, and driving measurable results—giving you the strategic guidance needed to scale.",
     slug: "solutions-fractional-cmo",
     image: "/generated/anachron-lite/fractional-cmo-icon-anachron-lite.png"
   }
@@ -157,7 +157,7 @@ export default function ServiceScroller({
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -171,10 +171,10 @@ export default function ServiceScroller({
                 to={createPageUrl(service.slug)}
                 className="block h-full"
               >
-                <div className="relative h-full bg-white rounded-2xl p-8 border border-gray-200 shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-1">
+                <div className="relative h-full bg-white rounded-xl p-5 border border-gray-200 shadow-md transition-all duration-300 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1">
                   {/* Icon */}
-                  <div className="mb-6 relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mx-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
+                  <div className="mb-4 relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 mx-auto">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
                     <img
                       src={service.image}
                       alt={`${service.title} service illustration`}
@@ -186,8 +186,8 @@ export default function ServiceScroller({
                         e.target.nextElementSibling.style.display = 'flex';
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl hidden items-center justify-center">
-                      <div className="text-2xl text-white font-black">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl hidden items-center justify-center">
+                      <div className="text-lg text-white font-black">
                         {service.title.split(' ').map(word => word[0]).join('')}
                       </div>
                     </div>
@@ -195,18 +195,18 @@ export default function ServiceScroller({
 
                   {/* Content */}
                   <div className="text-center">
-                    <h3 className="text-xl sm:text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-3 tracking-tight">
+                    <h3 className="text-lg sm:text-xl font-black text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
                       {service.title}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-xs sm:text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
                       {service.hook}
                     </p>
                   </div>
 
                   {/* Hover arrow indicator */}
-                  <div className="absolute bottom-6 right-6 w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

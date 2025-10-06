@@ -21,19 +21,7 @@ export default function ClientLogoMarquee({
   title = "Trusted by Industry Leaders"
 }) {
   return (
-    <section className="py-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
-        <motion.div
-          className="bg-white/80 backdrop-blur-md rounded-3xl p-6 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-        </motion.div>
-      </div>
-
+    <section className="py-4 overflow-hidden">
       <Marquee
         speed={80}
         gradient={true}
