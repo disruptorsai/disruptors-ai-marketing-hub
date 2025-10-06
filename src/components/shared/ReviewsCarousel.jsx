@@ -117,9 +117,7 @@ export default function ReviewsCarousel({
   };
 
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      {/* Background gradient accent */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/20 to-pink-50/30 pointer-events-none"></div>
+    <section className="relative py-20 sm:py-28 overflow-hidden">
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -129,10 +127,10 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
             {title}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about working with us.
           </p>
         </motion.div>
@@ -159,39 +157,39 @@ export default function ReviewsCarousel({
               viewport={{ once: true }}
               className="testimonial-card flex-shrink-0 w-[85vw] sm:w-[450px] snap-center"
             >
-              <div className="h-full bg-white/80 backdrop-blur-xl rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100/50 relative overflow-hidden">
+              <div className="h-full bg-black/40 backdrop-blur-xl rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-white/10 relative overflow-hidden">
                 {/* Decorative gradient */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
 
                 {/* Quote icon */}
                 <div className="mb-6 flex items-start justify-between">
-                  <Quote className="w-10 h-10 text-blue-500/30" />
+                  <Quote className="w-10 h-10 text-white/40" />
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
+                        className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'}`}
                       />
                     ))}
                   </div>
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
+                <blockquote className="text-gray-100 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
                   "{review.quote}"
                 </blockquote>
 
                 {/* Author info */}
-                <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
                     {review.name.charAt(0)}
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-gray-900">{review.name}</div>
-                    <div className="text-sm text-gray-600">{review.role}</div>
-                    <div className="text-sm text-gray-500">{review.company}</div>
+                    <div className="font-semibold text-white">{review.name}</div>
+                    <div className="text-sm text-gray-300">{review.role}</div>
+                    <div className="text-sm text-gray-400">{review.company}</div>
                   </div>
-                  <div className="text-xs text-gray-400 font-medium px-3 py-1 bg-gray-100 rounded-full">
+                  <div className="text-xs text-gray-300 font-medium px-3 py-1 bg-white/10 rounded-full">
                     {review.source}
                   </div>
                 </div>
@@ -208,8 +206,8 @@ export default function ReviewsCarousel({
               onClick={() => scrollToIndex(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === activeIndex
-                  ? 'w-8 h-2 bg-blue-600'
-                  : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                  ? 'w-8 h-2 bg-blue-500'
+                  : 'w-2 h-2 bg-white/40 hover:bg-white/60'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

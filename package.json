@@ -47,6 +47,8 @@
     "deploy:rollback": "node scripts/deployment-orchestrator.js rollback",
     "deploy:watch": "node scripts/deployment-orchestrator.js watch",
     "deploy:sync-env": "node scripts/deployment-orchestrator.js sync-env",
+    "push": "bash scripts/git-push-deploy.sh",
+    "push:force": "bash scripts/git-push-deploy.sh --force-with-lease",
     "test:image-apis": "node scripts/test-image-generation-apis.js",
     "figma:extract": "node scripts/figma-mcp-extractor.js",
     "figma:status": "ps aux | grep figma | grep -v grep",

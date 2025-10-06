@@ -103,7 +103,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-full"
+          className="relative w-full px-1"
         >
           <div className="relative overflow-hidden shadow-2xl aspect-video">
             <video
@@ -112,7 +112,7 @@ export default function Hero({
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-105"
             />
             {/* Black Transparent Overlay */}
             <div className="absolute inset-0 bg-black/40"></div>

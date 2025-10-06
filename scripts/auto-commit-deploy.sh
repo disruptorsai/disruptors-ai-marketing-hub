@@ -29,18 +29,10 @@ Changes saved and pushed to trigger Netlify deployment.
 
 Co-Authored-By: Claude <noreply@anthropic.com>"
 
-    # Push to remote
-    echo "📤 Pushing to remote..."
-    if git push; then
-      echo "✅ Push successful at $(date)"
-
-      # Wait a bit for Netlify to start deployment
-      sleep 10
-
-      # Check Netlify deployment status
-      echo "🔍 Checking Netlify deployment..."
-      npx netlify deploys:list 2>/dev/null | head -10
-
+    # Push to remote and trigger Netlify deploy
+    echo "📤 Pushing to remote and triggering deploy..."
+    if bash scripts/git-push-deploy.sh; then
+      echo "✅ Push and deploy triggered at $(date)"
       echo ""
     else
       echo "❌ Push failed at $(date)"
