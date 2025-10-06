@@ -47,7 +47,7 @@ const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
     autoRefreshToken: false,
     persistSession: false,
     detectSessionInUrl: false,
-    storageKey: 'disruptors-ai-admin-auth', // Unique storage key matching main client pattern
+    storage: null, // Disable storage entirely for admin client to prevent GoTrueClient warning
   },
   db: {
     schema: "public",
@@ -722,6 +722,7 @@ function entityNameToTableName(entityName) {
     'TeamMember': 'team_members',
     'CaseStudy': 'case_study',
     'Post': 'posts',  // Blog posts table is plural
+    'Service': 'services',  // Services table is plural
     // Add other special mappings as needed
   };
 

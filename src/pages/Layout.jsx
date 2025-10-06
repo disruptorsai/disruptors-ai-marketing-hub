@@ -75,38 +75,59 @@ export default function Layout({ children, currentPageName }) {
 
   // Animate footer separator lines with scroll-mapped GSAP
   React.useEffect(() => {
-    const footerContainer = document.getElementById('footer-lines-container');
-    if (!footerContainer) return;
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const footerContainer = document.getElementById('footer-lines-container');
+      if (!footerContainer) {
+        console.warn('Footer lines container not found');
+        return;
+      }
 
-    // Bottom line (thickest) stays at bottom, others animate UP from it
-    // Equal 15px gaps between all lines (accounting for line heights: 1px, 2px, 4px, 7px, 9px, 11px)
-    const bottomPosition = 98; // Fixed position for bottom line (line 6)
-    const finalPositions = [0, 16, 33, 52, 74, 98]; // Equal 15px gaps between lines
-
-    // Animate each line - all start at bottom, spread upward
-    finalPositions.forEach((finalY, index) => {
-      const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
-      if (!line) return;
-
-      gsap.fromTo(
-        line,
-        { y: bottomPosition }, // Start: all lines stacked at bottom
-        {
-          y: finalY, // End: spread UP from bottom line
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerContainer,
-            start: "top 66%", // Start when footer is 1/3 up the page
-            end: "bottom bottom", // When page is scrolled to bottom
-            scrub: 2.5, // Slower scrubbing for smoother animation
-            markers: false, // Set to true for debugging
-          }
+      // Create animation timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: footerContainer,
+          start: "top bottom", // Start when footer enters viewport
+          end: "top 20%", // End when footer is near top
+          scrub: 1,
+          markers: true, // Debug mode
         }
-      );
-    });
+      });
+
+      // Line heights and spacing
+      const gaps = [98, 82, 65, 46, 24, 0]; // Spacing from bottom
+
+      // Animate all lines from stacked position to spread positions
+      gaps.forEach((gap, index) => {
+        const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
+        if (!line) {
+          console.warn(`Line ${index + 1} not found`);
+          return;
+        }
+
+        // All lines start at 0, animate to their final gap positions
+        tl.fromTo(
+          line,
+          {
+            y: 0,
+            force3D: true
+          },
+          {
+            y: -gap,
+            ease: "none",
+            force3D: true
+          },
+          0 // All animate at the same time (parallel)
+        );
+      });
+
+      // Refresh ScrollTrigger
+      ScrollTrigger.refresh();
+    }, 100);
 
     // Cleanup
     return () => {
+      clearTimeout(timer);
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, [location]);

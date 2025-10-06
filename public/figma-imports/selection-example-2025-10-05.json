@@ -1,0 +1,617 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-05T23:15:45.123Z",
+    "extractedBy": "Figma MCP Server",
+    "mcpServers": [
+      "cursor-talk-to-figma-mcp@0.3.3",
+      "figma-developer-mcp@0.6.3"
+    ],
+    "figmaFile": {
+      "key": "example-file-key",
+      "name": "Design System - Marketing Pages",
+      "version": "1.0.0"
+    },
+    "selectionCount": 5,
+    "note": "This is an EXAMPLE file showing the expected data structure. Replace with actual Figma data using MCP tools."
+  },
+  "selection": {
+    "nodes": [
+      {
+        "id": "123:456",
+        "name": "Hero Section",
+        "type": "FRAME",
+        "visible": true,
+        "locked": false,
+        "absoluteBoundingBox": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 800
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "color": {
+              "r": 0.173,
+              "g": 0.420,
+              "b": 0.667
+            }
+          }
+        ],
+        "layoutMode": "VERTICAL",
+        "primaryAxisSizingMode": "FIXED",
+        "counterAxisSizingMode": "FIXED",
+        "paddingLeft": 64,
+        "paddingRight": 64,
+        "paddingTop": 80,
+        "paddingBottom": 80,
+        "itemSpacing": 32,
+        "children": [
+          {
+            "id": "123:457",
+            "name": "Headline",
+            "type": "TEXT",
+            "visible": true,
+            "locked": false,
+            "characters": "Transform Your Marketing with AI",
+            "absoluteBoundingBox": {
+              "x": 64,
+              "y": 80,
+              "width": 800,
+              "height": 120
+            },
+            "style": {
+              "fontFamily": "Inter",
+              "fontPostScriptName": "Inter-Bold",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "lineHeightPx": 84,
+              "lineHeightPercent": 116.67,
+              "letterSpacing": -2,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "TOP"
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1
+                }
+              }
+            ]
+          },
+          {
+            "id": "123:458",
+            "name": "Subheadline",
+            "type": "TEXT",
+            "visible": true,
+            "locked": false,
+            "characters": "Powerful AI tools designed for modern marketers. Automate, optimize, and scale your campaigns effortlessly.",
+            "absoluteBoundingBox": {
+              "x": 64,
+              "y": 236,
+              "width": 600,
+              "height": 80
+            },
+            "style": {
+              "fontFamily": "Inter",
+              "fontPostScriptName": "Inter-Regular",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "lineHeightPx": 36,
+              "lineHeightPercent": 150,
+              "letterSpacing": 0,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "TOP"
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 0.8,
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1
+                }
+              }
+            ]
+          },
+          {
+            "id": "123:459",
+            "name": "CTA Button",
+            "type": "FRAME",
+            "visible": true,
+            "locked": false,
+            "absoluteBoundingBox": {
+              "x": 64,
+              "y": 348,
+              "width": 200,
+              "height": 56
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "color": {
+                  "r": 0.788,
+                  "g": 0.435,
+                  "b": 0.298
+                }
+              }
+            ],
+            "cornerRadius": 8,
+            "layoutMode": "HORIZONTAL",
+            "primaryAxisAlignItems": "CENTER",
+            "counterAxisAlignItems": "CENTER",
+            "paddingLeft": 32,
+            "paddingRight": 32,
+            "paddingTop": 16,
+            "paddingBottom": 16,
+            "children": [
+              {
+                "id": "123:460",
+                "name": "Button Text",
+                "type": "TEXT",
+                "visible": true,
+                "locked": false,
+                "characters": "Get Started",
+                "absoluteBoundingBox": {
+                  "x": 96,
+                  "y": 364,
+                  "width": 136,
+                  "height": 24
+                },
+                "style": {
+                  "fontFamily": "Inter",
+                  "fontPostScriptName": "Inter-SemiBold",
+                  "fontSize": 16,
+                  "fontWeight": 600,
+                  "lineHeightPx": 24,
+                  "lineHeightPercent": 150,
+                  "letterSpacing": 0,
+                  "textAlignHorizontal": "CENTER",
+                  "textAlignVertical": "CENTER"
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "visible": true,
+                    "opacity": 1,
+                    "color": {
+                      "r": 1,
+                      "g": 1,
+                      "b": 1
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "234:567",
+        "name": "Feature Card",
+        "type": "COMPONENT",
+        "visible": true,
+        "locked": false,
+        "componentId": "234:567",
+        "absoluteBoundingBox": {
+          "x": 0,
+          "y": 900,
+          "width": 400,
+          "height": 300
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "color": {
+              "r": 1,
+              "g": 1,
+              "b": 1
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 0.1,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          }
+        ],
+        "strokeWeight": 1,
+        "cornerRadius": 12,
+        "effects": [
+          {
+            "type": "DROP_SHADOW",
+            "visible": true,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.1
+            },
+            "offset": {
+              "x": 0,
+              "y": 4
+            },
+            "radius": 12,
+            "spread": 0
+          }
+        ],
+        "layoutMode": "VERTICAL",
+        "primaryAxisSizingMode": "FIXED",
+        "counterAxisSizingMode": "AUTO",
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "paddingTop": 32,
+        "paddingBottom": 32,
+        "itemSpacing": 16,
+        "componentProperties": {
+          "icon": {
+            "type": "INSTANCE_SWAP",
+            "value": "icon-ai"
+          },
+          "title": {
+            "type": "TEXT",
+            "value": "AI-Powered Analysis"
+          },
+          "description": {
+            "type": "TEXT",
+            "value": "Get deep insights into your marketing performance with advanced AI analytics."
+          }
+        },
+        "children": [
+          {
+            "id": "234:568",
+            "name": "Icon",
+            "type": "INSTANCE",
+            "visible": true,
+            "locked": false,
+            "componentId": "icon-ai",
+            "absoluteBoundingBox": {
+              "x": 32,
+              "y": 932,
+              "width": 48,
+              "height": 48
+            }
+          },
+          {
+            "id": "234:569",
+            "name": "Title",
+            "type": "TEXT",
+            "visible": true,
+            "locked": false,
+            "characters": "AI-Powered Analysis",
+            "absoluteBoundingBox": {
+              "x": 32,
+              "y": 996,
+              "width": 336,
+              "height": 32
+            },
+            "style": {
+              "fontFamily": "Inter",
+              "fontPostScriptName": "Inter-SemiBold",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "lineHeightPx": 32,
+              "lineHeightPercent": 133.33,
+              "letterSpacing": -0.5,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "TOP"
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "color": {
+                  "r": 0.1,
+                  "g": 0.1,
+                  "b": 0.1
+                }
+              }
+            ]
+          },
+          {
+            "id": "234:570",
+            "name": "Description",
+            "type": "TEXT",
+            "visible": true,
+            "locked": false,
+            "characters": "Get deep insights into your marketing performance with advanced AI analytics.",
+            "absoluteBoundingBox": {
+              "x": 32,
+              "y": 1044,
+              "width": 336,
+              "height": 60
+            },
+            "style": {
+              "fontFamily": "Inter",
+              "fontPostScriptName": "Inter-Regular",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeightPx": 24,
+              "lineHeightPercent": 150,
+              "letterSpacing": 0,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "TOP"
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 0.7,
+                "color": {
+                  "r": 0.3,
+                  "g": 0.3,
+                  "b": 0.3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "345:678",
+        "name": "Background Gradient",
+        "type": "RECTANGLE",
+        "visible": true,
+        "locked": false,
+        "absoluteBoundingBox": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 2000
+        },
+        "fills": [
+          {
+            "type": "GRADIENT_LINEAR",
+            "visible": true,
+            "opacity": 1,
+            "gradientStops": [
+              {
+                "color": {
+                  "r": 0.173,
+                  "g": 0.420,
+                  "b": 0.667,
+                  "a": 1
+                },
+                "position": 0
+              },
+              {
+                "color": {
+                  "r": 0.235,
+                  "g": 0.478,
+                  "b": 0.416,
+                  "a": 1
+                },
+                "position": 1
+              }
+            ],
+            "gradientTransform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "456:789",
+        "name": "Logo",
+        "type": "GROUP",
+        "visible": true,
+        "locked": false,
+        "absoluteBoundingBox": {
+          "x": 64,
+          "y": 32,
+          "width": 180,
+          "height": 48
+        },
+        "children": [
+          {
+            "id": "456:790",
+            "name": "Logo Mark",
+            "type": "VECTOR",
+            "visible": true,
+            "locked": false,
+            "absoluteBoundingBox": {
+              "x": 64,
+              "y": 32,
+              "width": 48,
+              "height": 48
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1
+                }
+              }
+            ]
+          },
+          {
+            "id": "456:791",
+            "name": "Logo Text",
+            "type": "TEXT",
+            "visible": true,
+            "locked": false,
+            "characters": "Disruptors AI",
+            "absoluteBoundingBox": {
+              "x": 124,
+              "y": 40,
+              "width": 120,
+              "height": 32
+            },
+            "style": {
+              "fontFamily": "Inter",
+              "fontPostScriptName": "Inter-Bold",
+              "fontSize": 24,
+              "fontWeight": 700,
+              "lineHeightPx": 32,
+              "lineHeightPercent": 133.33,
+              "letterSpacing": -0.5,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "CENTER"
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "567:890",
+        "name": "Stats Grid",
+        "type": "FRAME",
+        "visible": true,
+        "locked": false,
+        "absoluteBoundingBox": {
+          "x": 0,
+          "y": 1300,
+          "width": 1440,
+          "height": 400
+        },
+        "fills": [],
+        "layoutMode": "HORIZONTAL",
+        "primaryAxisSizingMode": "FIXED",
+        "counterAxisSizingMode": "AUTO",
+        "primaryAxisAlignItems": "SPACE_BETWEEN",
+        "counterAxisAlignItems": "CENTER",
+        "paddingLeft": 80,
+        "paddingRight": 80,
+        "paddingTop": 60,
+        "paddingBottom": 60,
+        "itemSpacing": 48,
+        "children": [
+          {
+            "id": "567:891",
+            "name": "Stat Item 1",
+            "type": "FRAME",
+            "visible": true,
+            "locked": false,
+            "absoluteBoundingBox": {
+              "x": 80,
+              "y": 1360,
+              "width": 300,
+              "height": 120
+            },
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 8,
+            "children": [
+              {
+                "id": "567:892",
+                "name": "Number",
+                "type": "TEXT",
+                "visible": true,
+                "locked": false,
+                "characters": "10M+",
+                "style": {
+                  "fontFamily": "Inter",
+                  "fontSize": 48,
+                  "fontWeight": 700,
+                  "lineHeightPx": 56
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {
+                      "r": 0.173,
+                      "g": 0.420,
+                      "b": 0.667
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "567:893",
+                "name": "Label",
+                "type": "TEXT",
+                "visible": true,
+                "locked": false,
+                "characters": "Marketing Campaigns Optimized",
+                "style": {
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": 400,
+                  "lineHeightPx": 28
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "opacity": 0.7,
+                    "color": {
+                      "r": 0.3,
+                      "g": 0.3,
+                      "b": 0.3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "totalNodes": 5,
+      "nodeTypes": {
+        "FRAME": 3,
+        "COMPONENT": 1,
+        "GROUP": 1
+      },
+      "textNodes": 7,
+      "colors": [
+        "#2C6BAA",
+        "#FFFFFF",
+        "#C96F4C",
+        "#1A1A1A",
+        "#4D4D4D",
+        "#3C7A6A"
+      ],
+      "fonts": [
+        {
+          "family": "Inter",
+          "weights": [400, 600, 700],
+          "sizes": [16, 18, 24, 48, 72]
+        }
+      ],
+      "exportableAssets": [
+        {
+          "id": "456:790",
+          "name": "Logo Mark",
+          "type": "VECTOR",
+          "format": "SVG"
+        }
+      ]
+    }
+  }
+}

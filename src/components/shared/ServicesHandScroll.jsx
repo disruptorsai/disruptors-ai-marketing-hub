@@ -229,7 +229,7 @@ const ServicesHandScroll = ({
           }}
         >
           <Spline
-            scene="https://prod.spline.design/XBh0IU16gBCVNZ0V/scene.splinecode"
+            scene={`https://prod.spline.design/XBh0IU16gBCVNZ0V/scene.splinecode?v=${Date.now()}`}
             onLoad={handleSplineLoad}
             onError={handleSplineError}
             style={{

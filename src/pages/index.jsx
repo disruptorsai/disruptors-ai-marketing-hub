@@ -78,6 +78,8 @@ const DemoSocialProof = lazy(() => import('./demos/social-proof.jsx'));
 const DemoInteractive = lazy(() => import('./demos/interactive.jsx'));
 const DemoConversion = lazy(() => import('./demos/conversion.jsx'));
 const DemoBestOfAll = lazy(() => import('./demos/best-of-all.jsx'));
+const GrowthAuditDemo = lazy(() => import('./demos/growth-audit.jsx'));
+const GrowthAuditResults = lazy(() => import('./demos/growth-audit-results.jsx'));
 
 const PAGES = {
     
@@ -175,6 +177,8 @@ const PAGES = {
     "demos-interactive": DemoInteractive,
     "demos-conversion": DemoConversion,
     "demos-best-of-all": DemoBestOfAll,
+    "demos-growth-audit": GrowthAuditDemo,
+    "demos-growth-audit-results": GrowthAuditResults,
 
 }
 
@@ -298,6 +302,8 @@ function PagesContent() {
                 <Route path="/demos/interactive" element={<DemoInteractive />} />
                 <Route path="/demos/conversion" element={<DemoConversion />} />
                 <Route path="/demos/best-of-all" element={<DemoBestOfAll />} />
+                <Route path="/demos/growth-audit" element={<GrowthAuditDemo />} />
+                <Route path="/demos/growth-audit/:jobId" element={<GrowthAuditResults />} />
 
                 {/* Catch-all route for 404 pages */}
                 <Route path="*" element={<NotFound />} />

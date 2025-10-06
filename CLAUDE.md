@@ -118,6 +118,16 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Workflow**: Research → Select → Generate → Edit → Publish
 - **See**: `docs/KEYWORD_RESEARCH_SYSTEM.md` for complete documentation
 
+**Growth Audit System** (`src/lib/growth-audit/`):
+- **AI-Powered Website Analysis**: Instant growth audits using Claude Sonnet 4.5
+- **Multi-Source Data Collection**: Firecrawl (web crawling), Playwright (metadata), Brandfetch (brand detection), PageSpeed Insights (performance)
+- **Business Profile Generation**: Automated extraction of brand identity, offerings, ICP, tech stack, competitors
+- **Opportunity Detection**: 8-15 prioritized growth opportunities across 10 categories (SEO, Content, Performance, CRO, Local, Social, Paid, EmailCRM, DataTracking, AI)
+- **Evidence-Based Recommendations**: Each opportunity includes impact scoring, effort estimation, actionable steps, and evidence URLs
+- **Netlify Functions**: Serverless architecture with job queueing and polling-based results delivery
+- **Demo Pages**: `/demos/growth-audit` (landing) and `/demos/growth-audit/:jobId` (results)
+- **See**: `docs/GROWTH_AUDIT_INTEGRATION.md` for complete documentation
+
 ### MCP (Model Context Protocol) Ecosystem
 
 Extensive integration with 23+ MCP servers across:
@@ -183,6 +193,11 @@ Extensive integration with 23+ MCP servers across:
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# Growth Audit System (Required for /demos/growth-audit)
+VITE_FIRECRAWL_API_KEY=your_firecrawl_key      # Web crawling (required)
+VITE_BRANDFETCH_API_KEY=your_brandfetch_key    # Brand detection (optional)
+VITE_PAGESPEED_API_KEY=your_google_api_key     # PageSpeed Insights (optional)
 
 # AI Generation Services
 VITE_OPENAI_API_KEY=your_openai_key          # gpt-image-1 ONLY (NOT DALL-E)
