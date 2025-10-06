@@ -103,7 +103,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-full px-1"
+          className="relative w-full"
         >
           <div className="relative overflow-hidden shadow-2xl aspect-video">
             <video
