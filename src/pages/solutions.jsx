@@ -7,6 +7,7 @@ import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefca
 import ServicesHandScroll from '../components/shared/ServicesHandScroll';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import PageTitle from '../components/shared/PageTitle';
 
 const services = [
   { title: "AI Automation", hook: "Automate repetitive tasks and workflows", link: "solutions-ai-automation", icon: "Cpu" },
@@ -83,6 +84,9 @@ const ServiceCard = ({ service, index }) => {
 export default function Solutions() {
   return (
     <div>
+      {/* Page Title */}
+      <PageTitle title="Full Funnel Approach" />
+
       {/* Interactive 3D Hero Section with Scroll Animation */}
       <ServicesHandScroll
         title="AI-Powered Marketing Solutions"

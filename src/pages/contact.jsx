@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { CheckCircle } from "lucide-react";
 import AlternatingLayout from '../components/shared/AlternatingLayout';
+import PageTitle from '../components/shared/PageTitle';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -32,6 +33,9 @@ export default function Contact() {
 
   return (
     <div>
+      {/* Page Title */}
+      <PageTitle title="CONTACT" />
+
       {/* Enhanced Hero Section */}
       <AlternatingLayout sections={contactHeroData} />
 

@@ -98,21 +98,6 @@ export default function Hero({
 
       {/* Content Container - Constrained Width */}
       <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">
-        {/* Text Content - Same Width as Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-6 sm:mb-8 md:mb-12"
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-black mb-4 sm:mb-6 px-2">
-            {h1}
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed mx-auto max-w-3xl px-4">
-            {lead}
-          </p>
-        </motion.div>
-
         {/* Video Container with Centered Logo and Irregular Shape */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -120,7 +105,7 @@ export default function Hero({
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative w-full"
         >
-          <div className="relative hero-video-shape overflow-hidden shadow-2xl rounded-2xl sm:rounded-3xl">
+          <div className="relative overflow-hidden shadow-2xl aspect-video">
             <video
               src={media.video.url}
               autoPlay
@@ -129,6 +114,8 @@ export default function Hero({
               playsInline
               className="w-full h-full object-cover"
             />
+            {/* Black Transparent Overlay */}
+            <div className="absolute inset-0 bg-black/40"></div>
             {/* Centered Logo Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-4 gap-4 sm:gap-6">
               <img
@@ -150,34 +137,6 @@ export default function Hero({
         </motion.div>
       </div>
 
-       <style>{`
-        .text-shadow-lg {
-          text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
-        }
-        .text-shadow {
-          text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-        }
-        .hero-video-shape {
-          clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
-          aspect-ratio: 16/9;
-          min-height: 250px;
-        }
-        @media (min-width: 640px) {
-          .hero-video-shape {
-            min-height: 300px;
-          }
-        }
-        @media (min-width: 768px) {
-          .hero-video-shape {
-            min-height: 350px;
-          }
-        }
-        @media (min-width: 1024px) {
-          .hero-video-shape {
-            min-height: 400px;
-          }
-        }
-      `}</style>
     </section>
   );
 }

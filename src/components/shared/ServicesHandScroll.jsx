@@ -107,17 +107,27 @@ const ServicesHandScroll = ({
       services: servicesObject ? { ...servicesObject.rotation } : null
     };
 
-    // Ensure services image stays visible - it's an image plane with no material
+    // PERMANENTLY set services image to be fully visible (no animation)
     if (servicesObject) {
       servicesObject.visible = true;
+      // Lock visibility and opacity permanently
+      if (servicesObject.material) {
+        servicesObject.material.opacity = 1;
+        servicesObject.material.transparent = false; // Changed to false - fully opaque, no transparency
+        servicesObject.material.needsUpdate = true;
+      }
+      // Prevent any scale changes
+      if (servicesObject.scale) {
+        servicesObject.scale.set(servicesObject.scale.x, servicesObject.scale.y, servicesObject.scale.z);
+      }
     }
 
     // Main scroll trigger with improved scrub for 3D performance
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: container,
-      start: "top top",
-      end: "bottom top",
-      scrub: 2, // Increased scrub for smoother 3D animations
+      start: "top 20%", // Start later - when top of container is 20% from top of viewport
+      end: "bottom 40%", // End later - when bottom of container is 40% from top of viewport
+      scrub: 3, // Increased from 2 to 3 for even smoother, slower animation
       anticipatePin: 1,
       onUpdate: (self) => {
         const progress = self.progress;
@@ -125,37 +135,18 @@ const ServicesHandScroll = ({
         // Use requestAnimationFrame for smoother updates
         requestAnimationFrame(() => {
           try {
-            // Animate hand - smooth rotation only
+            // Animate hand - smooth rotation only (even slower rotation)
             if (handObject && initialRotations.hand) {
               gsap.to(handObject.rotation, {
-                z: initialRotations.hand.z + (progress * Math.PI * 0.5),
+                z: initialRotations.hand.z + (progress * Math.PI * 0.08), // Reduced from 0.15 to 0.08 for slower rotation
                 duration: 0.1,
                 ease: "none",
                 overwrite: true
               });
             }
 
-            // Animate services image - KEEP IT VISIBLE, minimal movement
-            if (servicesObject && initialPositions.services && initialRotations.services) {
-              // Very subtle horizontal sway only - NO vertical movement
-              const newX = initialPositions.services.x + (Math.sin(progress * Math.PI * 2) * 10);
-
-              gsap.to(servicesObject.position, {
-                x: newX,
-                // y stays at initial position - don't move it down off screen!
-                duration: 0.1,
-                ease: "none",
-                overwrite: true
-              });
-
-              // Very subtle rotation
-              gsap.to(servicesObject.rotation, {
-                z: initialRotations.services.z - (progress * Math.PI * 0.1),
-                duration: 0.1,
-                ease: "none",
-                overwrite: true
-              });
-            }
+            // Services image - PERMANENTLY VISIBLE, NO ANIMATION
+            // (Animation removed - keeping it static and always visible)
 
             // Animate background - slow parallax
             if (bgObject && initialPositions.bg) {
@@ -194,7 +185,7 @@ const ServicesHandScroll = ({
 
     // Increased scrub on mobile for better performance
     if (isMobile) {
-      scrollTriggerRef.current.vars.scrub = 3;
+      scrollTriggerRef.current.vars.scrub = 4;
     }
 
   }, [isMobile]);

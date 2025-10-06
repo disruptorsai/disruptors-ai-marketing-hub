@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Play, Mic, Headphones, Video, ArrowRight } from 'lucide-react';
+import PageTitle from '../components/shared/PageTitle';
 
 const studioImages = [
   "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712352/disruptors-media/content/studio/gl3a0022.jpg",
@@ -18,6 +19,9 @@ export default function Podcast() {
 
   return (
     <div className="text-white">
+      {/* Page Title */}
+      <PageTitle title="PODCAST" light />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Background Video */}

@@ -5,6 +5,7 @@ import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import DualCTABlock from '../components/shared/DualCTABlock';
+import PageTitle from '../components/shared/PageTitle';
 
 const clients = [
   { name: "TradeWorx USA", logo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg", path: "work-tradeworx-usa" },
@@ -21,6 +22,9 @@ const clients = [
 export default function Work() {
   return (
     <div>
+      {/* Page Title */}
+      <PageTitle title="WORK" />
+
       {/* Header Section */}
       <section className="py-16 sm:py-24 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

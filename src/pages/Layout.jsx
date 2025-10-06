@@ -83,17 +83,6 @@ export default function Layout({ children, currentPageName }) {
         return;
       }
 
-      // Create animation timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: footerContainer,
-          start: "top bottom", // Start when footer enters viewport
-          end: "top 20%", // End when footer is near top
-          scrub: 1,
-          markers: true, // Debug mode
-        }
-      });
-
       // Line heights and spacing
       const gaps = [98, 82, 65, 46, 24, 0]; // Spacing from bottom
 
@@ -105,8 +94,8 @@ export default function Layout({ children, currentPageName }) {
           return;
         }
 
-        // All lines start at 0, animate to their final gap positions
-        tl.fromTo(
+        // Individual ScrollTrigger for each line
+        gsap.fromTo(
           line,
           {
             y: 0,
@@ -115,9 +104,15 @@ export default function Layout({ children, currentPageName }) {
           {
             y: -gap,
             ease: "none",
-            force3D: true
-          },
-          0 // All animate at the same time (parallel)
+            force3D: true,
+            scrollTrigger: {
+              trigger: footerContainer,
+              start: "top 90%", // Start when footer top hits 90% down the viewport
+              end: "top 30%", // End when footer top hits 30% down the viewport
+              scrub: 1,
+              markers: false, // Debug mode off
+            }
+          }
         );
       });
 
@@ -188,12 +183,14 @@ export default function Layout({ children, currentPageName }) {
           {/* Only show normal site content if not in admin mode */}
           {!isAdminAuthenticated && (
             <>
-              <header className={`fixed top-0 left-0 right-0 z-50 text-white ${
+              <header className="fixed top-0 left-0 right-0 z-50 pt-4 sm:pt-6">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className={`text-white ${
             isHomePage
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
               : 'bg-black/70 backdrop-blur-md'
           }`}>
-            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className="px-3 sm:px-4 md:px-6 lg:px-8">
               <div className={`flex justify-between items-center ${
                 isHomePage
                   ? `transition-all duration-500 ease-in-out ${scrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24 md:h-28 lg:h-32'}`
@@ -262,11 +259,7 @@ export default function Layout({ children, currentPageName }) {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className={`lg:hidden border-t border-gray-700 ${
-                    isHomePage
-                      ? `transition-colors duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-black/80 backdrop-blur-sm'}`
-                      : 'bg-black/90 backdrop-blur-md'
-                  }`}
+                  className="lg:hidden border-t border-gray-700"
                 >
                   <div className="px-4 py-6 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
                     {navItems.map((item) => (
@@ -285,9 +278,11 @@ export default function Layout({ children, currentPageName }) {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
+            </div>
           </header>
           
-          <div className={`${!isHomePage && 'pt-16 sm:pt-20'}`}>
+          <div className={`${!isHomePage && 'pt-20 sm:pt-26'}`}>
             <AnimatePresence mode="wait">
               <motion.main
                 key={currentPageName}

@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioAssets, portfolioImages, portfolioVideos } from '@/data/portfolio-assets';
 import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
+import PageTitle from '../components/shared/PageTitle';
 
 const FILTER_OPTIONS = [
   { id: 'all', label: 'All', icon: Grid3x3, count: portfolioAssets.length },
@@ -26,6 +27,9 @@ export default function Gallery() {
 
   return (
     <div className="relative min-h-screen">
+      {/* Page Title */}
+      <PageTitle title="GALLERY" light />
+
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <img

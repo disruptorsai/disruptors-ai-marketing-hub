@@ -5,6 +5,7 @@ import { Linkedin } from 'lucide-react';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
+import PageTitle from '../components/shared/PageTitle';
 
 const TeamMemberCard = ({ member, delay }) => (
   <motion.div
@@ -77,6 +78,9 @@ export default function About() {
 
   return (
     <div>
+      {/* Page Title */}
+      <PageTitle title="ABOUT" />
+
       {/* Hero Video Section */}
       <section className="w-full bg-transparent overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
