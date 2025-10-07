@@ -626,36 +626,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 2: Our Philosophy */}
-      <TwoColumnLayout
-        reversed
-        kicker="Our Philosophy"
-        headline={
-            <>
-              AI Shouldn't Replace Human Connection.
-              <br />
-              <span className="text-gray-600">It Should Make It Possible at Scale.</span>
-            </>
-        }
-        body={
-            <div className="space-y-4 text-gray-700">
-                <p>Technology (when done right) frees us from the robotic so we can do the relational.</p>
-                <p>AI shouldn't automate away your voice.</p>
-                <p>Systems shouldn't remove the soul from your business.</p>
-                <p>Marketing shouldn't feel like manipulation.</p>
-                <p className="font-bold text-gray-800">We believe:</p>
-                <ul className="space-y-2">
-                    <li>Authentic connection is the greatest marketing advantage</li>
-                    <li>Technology exists to expand your capacity</li>
-                    <li>Your brand is a movement, not a machine</li>
-                </ul>
-                <p>When you partner with Disruptors Media, you're not outsourcing your growth. You're gaining a team that aligns with your purpose and executes with precision.</p>
-            </div>
-        }
-        leftContent={
-          <img src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png" alt="AI Partnership" className="w-full h-full object-contain"/>
-        }
-      />
 
       {/* Call to Action */}
        <section className="bg-gray-900 text-white py-8">

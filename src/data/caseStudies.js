@@ -161,7 +161,7 @@ export const caseStudies = [
     client: 'Muscle Works',
     title: 'Muscle Works Fitness Studio Growth',
     path: 'work-muscle-works',
-    logo: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/muscleworks_logo.png',
+    logo: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862158/case-studies/case-studies/muscleworks_logo.png',
     heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop',
     video: null,
     industry: 'Fitness & Wellness',

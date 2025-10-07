@@ -39,13 +39,13 @@ export default function ResourceCard({
             <img
               src={image}
               alt={title}
-              className="w-full h-full object-contain rounded-3xl group-hover:scale-110 transition-transform duration-300"
+              className="w-full h-full object-contain rounded-3xl opacity-60 group-hover:opacity-85 group-hover:scale-110 transition-all duration-300"
               style={{
                 filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))'
               }}
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center opacity-60 group-hover:opacity-85 group-hover:scale-110 transition-all duration-300"
               style={{
                 filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))'
               }}
