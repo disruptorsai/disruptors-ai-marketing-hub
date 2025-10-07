@@ -1,0 +1,27 @@
+This file contains the replacement code for all 6 remaining capability cards with premium styling matching the first two.
+
+The pattern for Marketing cards (yellow background):
+- w-96 (wider cards)
+- p-10 (more padding)
+- bg-gradient-to-br from-yellow-500 via-yellow-500 to-yellow-600
+- border border-yellow-400/50
+- group hover effects with shine
+- w-24 h-24 icons
+- MARKETING badge with dot indicator
+
+The pattern for AI cards (white background):
+- w-96 (wider cards)
+- p-10 (more padding)
+- bg-white
+- Yellow accent line at top
+- border border-gray-200
+- group hover effects with yellow tint
+- w-24 h-24 icons with gradient background
+- AI POWERED badge with animated pulse dot
+
+Each card has:
+- whileHover={{ y: -8 }} for lift effect
+- duration: 0.6 with easeOut
+- Staggered delays (0.2, 0.3, 0.4, etc.)
+- group class for hover states
+- Relative z-10 content wrapper

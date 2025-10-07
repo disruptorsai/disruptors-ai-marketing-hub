@@ -3,7 +3,7 @@
 import https from 'https';
 
 const NETLIFY_TOKEN = process.env.NETLIFY_AUTH_TOKEN || 'nfp_MLwjLNbFh8cHfP6Bdoy4fTmBaUP5EPEi61d7';
-const SITE_ID = 'cheerful-custard-2e6fc5';
+const SITE_ID = '979e7724-fd7b-4d24-a661-203b67c7049f';
 
 function fetchDeployments() {
   const options = {

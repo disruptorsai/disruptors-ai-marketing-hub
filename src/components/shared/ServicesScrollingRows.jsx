@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { gsap } from 'gsap';
+import { ArrowRight } from 'lucide-react';
 
 // Service data with new Cloudinary images
 const SERVICES = [
@@ -72,20 +72,11 @@ const ROW_2 = SERVICES.slice(4, 9); // Last 5 services
 function ServiceCard({ service, isDragging }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = (e) => {
-    // Prevent navigation if currently dragging
-    if (isDragging) {
-      e.preventDefault();
-    }
-  };
-
   return (
-    <Link
-      to={createPageUrl(service.slug)}
+    <div
       className="relative block flex-shrink-0 w-[300px] sm:w-[390px] lg:w-[480px] h-[270px] sm:h-[330px] lg:h-[390px] rounded-2xl overflow-hidden mx-3 sm:mx-4 shadow-xl hover:shadow-2xl transition-shadow duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={handleClick}
     >
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -111,7 +102,7 @@ function ServiceCard({ service, isDragging }) {
           animate={{ y: isHovered ? -60 : 0 }}
           transition={{ duration: 1.5, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-white tracking-tight leading-tight">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
             {service.title}
           </h3>
         </motion.div>
@@ -139,7 +130,7 @@ function ServiceCard({ service, isDragging }) {
         animate={{ borderColor: isHovered ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0)' }}
         transition={{ duration: 1.2 }}
       />
-    </Link>
+    </div>
   );
 }
 
@@ -335,15 +326,20 @@ export default function ServicesScrollingRows({
             {title}
           </motion.h2>
 
-          <motion.p
-            className="text-white text-lg sm:text-xl max-w-2xl mx-auto"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Tailored strategies that scale with your business
-          </motion.p>
+            <Link
+              to={createPageUrl('solutions')}
+              className="font-sans group inline-flex items-center justify-center h-12 px-8 text-base font-bold text-white uppercase bg-transparent border-2 border-white hover:bg-white hover:text-black touch-manipulation transition-all duration-300 rounded-lg"
+            >
+              <span>Our Services</span>
+              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Row 1: Scrolling Right */}

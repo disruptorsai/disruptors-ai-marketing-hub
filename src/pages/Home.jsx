@@ -11,19 +11,6 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 export default function Home() {
   const alternatingData = [
     {
-      kicker: "REVOLUTION",
-      headline: "Transform Your Business with AI",
-      body: "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies that scale your business beyond current limitations.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
-      imageAlt: "AI Technology Transformation",
-      backgroundColor: "bg-transparent backdrop-blur-md",
-      textColor: "text-black",
-      cta: {
-        label: "Start Your Transformation",
-        link: "book-strategy-session"
-      }
-    },
-    {
       kicker: "PARTNERSHIP",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
@@ -86,7 +73,7 @@ export default function Home() {
         <ClientLogoMarquee />
       </div>
 
-      {/* REVOLUTION and PARTNERSHIP Sections */}
+      {/* PARTNERSHIP Section */}
       <AlternatingLayout sections={alternatingData} />
 
       {/* Free Marketing Audit CTA */}
