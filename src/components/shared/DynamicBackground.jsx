@@ -183,21 +183,21 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
     };
   }, [pageContext, intensity]);
 
-  if (!isMounted) return null;
-
   return (
     <div className="relative min-h-screen">
-      {/* Canvas Background */}
-      <motion.canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none -z-10"
-        style={{
-          filter: blur,
-          opacity: opacity,
-        }}
-      />
+      {/* Canvas Background - only render when mounted */}
+      {isMounted && (
+        <motion.canvas
+          ref={canvasRef}
+          className="fixed inset-0 pointer-events-none -z-10"
+          style={{
+            filter: blur,
+            opacity: opacity,
+          }}
+        />
+      )}
 
-      {/* Content */}
+      {/* Content - always render */}
       <div className="relative z-10">{children}</div>
 
       {/* Optional overlay for better text contrast */}
