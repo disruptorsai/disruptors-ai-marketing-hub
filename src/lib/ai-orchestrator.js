@@ -200,8 +200,7 @@ class AIMediaOrchestrator {
       budget: options.budget || 'medium',
       specialization: options.specialization,
       width: options.width || 1024,
-      height: options.height || 1024,
-      inputFidelity: options.inputFidelity || 'medium' // high for logos/faces
+      height: options.height || 1024
     };
 
     const model = this.selectOptimalModel('image', context);
@@ -354,12 +353,19 @@ class AIMediaOrchestrator {
     this._validateModel(model);
 
     try {
+      // Map quality to valid OpenAI values: 'low', 'medium', 'high'
+      const qualityMap = {
+        'standard': 'medium',
+        'premium': 'high',
+        'budget': 'low'
+      };
+      const openaiQuality = qualityMap[context.quality] || context.quality || 'medium';
+
       const response = await this.openai.images.generate({
         model: model, // gpt-image-1
         prompt: prompt,
         size: this._getOpenAISize(context),
-        quality: context.quality || 'standard',
-        input_fidelity: context.inputFidelity || 'medium', // Use 'high' for faces/logos
+        quality: openaiQuality, // Valid values: 'low', 'medium', 'high'
         n: 1
       });
 
@@ -372,8 +378,7 @@ class AIMediaOrchestrator {
           prompt: prompt,
           model: model,
           size: this._getOpenAISize(context),
-          quality: context.quality || 'standard',
-          inputFidelity: context.inputFidelity,
+          quality: openaiQuality,
           note: 'Generated with OpenAI gpt-image-1 (natively multimodal, streaming support)'
         }
       };
@@ -571,12 +576,12 @@ class AIMediaOrchestrator {
   calculateCost(provider, type, options = {}) {
     const costs = {
       openai: {
-        // gpt-image-1 pricing: $0.02 (1024x1024), $0.03 (1536x1024), $0.19 (HD with input_fidelity: high)
+        // gpt-image-1 pricing based on quality: low (~$0.02), medium (~$0.07), high (~$0.19) per image
         image: () => {
-          if (options.inputFidelity === 'high') return 0.19;
-          const size = this._getOpenAISize(options);
-          if (size === '1536x1024' || size === '1024x1536') return 0.03;
-          return 0.02;
+          const quality = options.quality || 'medium';
+          if (quality === 'high') return 0.19;
+          if (quality === 'medium') return 0.07;
+          return 0.02; // low quality
         }
       },
       google: {

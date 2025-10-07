@@ -1,0 +1,9 @@
+{
+  "title": "Growth Audit Tool",
+  "name": "growth-audit-tool",
+  "style": "3d-clay",
+  "prompt": "Professional app store icon, 1024x1024px square format, centered composition with padding.\n\n3D clay aesthetic with soft matte touchable surfaces. An upward trending arrow or growth chart made of smooth sculpted 3D clay material. Playful yet professional minimalist composition.\n\nColor palette: Smooth gradient background from bright teal #14b8a6 transitioning to vibrant green #10b981, 3D clay elements in pure white and cream tones with matte finish, subtle gold accent highlights #c9a53b.\n\nSoft studio lighting from top-left corner, gentle drop shadows creating natural depth. Notion and Linear style minimalism with premium SaaS polish. Icon perfectly centered with generous padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:25:29.223Z",
+  "filepath": "/images/resource-icons/growth-audit-tool.png"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Workflow Automation",
+  "name": "workflow-automation",
+  "category": "Automation & Workflow",
+  "style": "glassmorphism",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. Connected workflow nodes with arrows showing automation flow, translucent glass connectors.\n\nColor palette: Indigo gradient #6366f1 to purple #9333ea, white/light purple glass nodes, gold flow indicators #d4af37.\n\nModern automation aesthetic. Glass layers, connection flow, professional. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:28:59.679Z",
+  "filepath": "/images/resource-icons/workflow-automation.png"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "AI Content Writer",
+  "name": "ai-content-writer",
+  "style": "glassmorphism",
+  "prompt": "Professional app store icon, 1024x1024px square format, centered composition with padding.\n\nGlassmorphism style with elegant frosted glass effect. A modern glowing pen or quill floating in center, surrounded by floating text particles and soft sparkles. Multiple translucent glass layers creating depth and dimension.\n\nColor palette: Deep blue gradient background transitioning from vibrant #2563eb to deep #1e40af, white and light blue translucent glass elements with subtle shadows, gold accent sparkles #d4af37.\n\nModern premium SaaS aesthetic. Soft drop shadows, gaussian blur effects on glass, polished professional feel. Generous padding around icon, perfectly centered. High-end app store quality, crisp and sharp.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:25:21.725Z",
+  "filepath": "/images/resource-icons/ai-content-writer.png"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "SEO Optimizer",
+  "name": "seo-optimizer",
+  "category": "Marketing & Growth",
+  "style": "glassmorphism",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. A magnifying glass with search graph trending upward inside the lens, translucent glass layers.\n\nColor palette: Emerald green gradient #10b981 to teal #14b8a6, white/light green glass elements, gold highlight accents #d4af37.\n\nModern SEO tool aesthetic. Soft shadows, glass blur, professional. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:28:14.235Z",
+  "filepath": "/images/resource-icons/seo-optimizer.png"
+}

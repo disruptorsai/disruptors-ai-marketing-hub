@@ -1,0 +1,10 @@
+{
+  "title": "Report Generator",
+  "name": "report-generator",
+  "category": "Content Creation",
+  "style": "advanced-gradient",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nAdvanced mesh gradient. A document or report with flowing data visualizations, charts, and graphs blending into gradients.\n\nColor palette: Blue #3b82f6 to green #10b981 to yellow #eab308 mesh gradient, professional data aesthetic. Gold highlights #d4af37.\n\nModern reporting aesthetic. Data visualization, gradient flows, clean. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:29:37.957Z",
+  "filepath": "/images/resource-icons/report-generator.png"
+}

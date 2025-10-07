@@ -1,0 +1,10 @@
+{
+  "title": "Content Calendar",
+  "name": "content-calendar",
+  "category": "Automation & Workflow",
+  "style": "advanced-gradient",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nAdvanced mesh gradient. A calendar grid with glowing scheduled posts or events, flowing gradient fills.\n\nColor palette: Coral #fb7185 to purple #a855f7 to blue #60a5fa mesh gradient, organized aesthetic. Gold event markers #d4af37.\n\nModern calendar app aesthetic. Grid structure, gradient fills, clean. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:29:15.647Z",
+  "filepath": "/images/resource-icons/content-calendar.png"
+}

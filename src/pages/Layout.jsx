@@ -224,7 +224,6 @@ export default function Layout({ children, currentPageName }) {
                     >
                       <CascadeScrambleText
                         text={item.name}
-                        wordDelay={30}
                         enableRandomGlitch={true}
                       />
                     </Link>
@@ -244,7 +243,6 @@ export default function Layout({ children, currentPageName }) {
                       <CascadeScrambleText
                         text="Book a Call"
                         as="span"
-                        wordDelay={30}
                         enableRandomGlitch={true}
                       />
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
@@ -289,7 +287,6 @@ export default function Layout({ children, currentPageName }) {
                       >
                         <CascadeScrambleText
                           text={item.name}
-                          wordDelay={30}
                           enableRandomGlitch={true}
                         />
                       </Link>
@@ -298,7 +295,6 @@ export default function Layout({ children, currentPageName }) {
                         <Link to={createPageUrl('book-strategy-session')}>
                           <CascadeScrambleText
                             text="Book a Call"
-                            wordDelay={30}
                             enableRandomGlitch={true}
                           />
                         </Link>
@@ -349,7 +345,6 @@ export default function Layout({ children, currentPageName }) {
                     text="Book a call"
                     className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
                     as="span"
-                    wordDelay={40}
                     enableRandomGlitch={true}
                   />
                   <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
@@ -366,7 +361,6 @@ export default function Layout({ children, currentPageName }) {
                   >
                     <CascadeScrambleText
                       text={link.name}
-                      wordDelay={35}
                       enableRandomGlitch={true}
                     />
                   </Link>
@@ -380,7 +374,6 @@ export default function Layout({ children, currentPageName }) {
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
                     <CascadeScrambleText
                       text={`©${new Date().getFullYear()} Disruptors Media inc.`}
-                      wordDelay={35}
                       enableRandomGlitch={true}
                     />
                   </p>

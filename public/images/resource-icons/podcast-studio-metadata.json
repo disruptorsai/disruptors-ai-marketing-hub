@@ -1,0 +1,10 @@
+{
+  "title": "Podcast Studio",
+  "name": "podcast-studio",
+  "category": "Content Creation",
+  "style": "3d-clay",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. A professional microphone with audio waveforms emanating from it, sculpted clay material.\n\nColor palette: Gradient from red #ef4444 to pink #ec4899, clay microphone in white with matte finish, gold waveforms #c9a53b.\n\nSoft studio lighting, gentle shadows. Podcast aesthetic. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:29:30.548Z",
+  "filepath": "/images/resource-icons/podcast-studio.png"
+}

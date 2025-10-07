@@ -1,0 +1,9 @@
+{
+  "title": "Analytics Dashboard",
+  "name": "analytics-dashboard",
+  "style": "advanced-gradient",
+  "prompt": "Professional app store icon, 1024x1024px square format, centered composition with padding.\n\nAdvanced mesh gradient style with sophisticated multi-color blends. Abstract data visualization featuring flowing gradient lines, smooth bar chart elements, or elegant pie chart segments that blend beautifully into gradient flows.\n\nColor palette: Rich purple #9333ea blending seamlessly to bright blue #3b82f6 flowing into vibrant pink #ec4899 in smooth mesh gradient, vibrant yet professional. Subtle gold highlight accents #d4af37 on key data points.\n\nModern dynamic data-forward aesthetic. Clean geometric shapes with smooth anti-aliased edges, seamless gradient transitions, professional SaaS dashboard appearance. Icon perfectly centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:25:36.934Z",
+  "filepath": "/images/resource-icons/analytics-dashboard.png"
+}

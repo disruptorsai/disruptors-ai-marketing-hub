@@ -1,0 +1,10 @@
+{
+  "title": "AI Chatbot Builder",
+  "name": "chatbot-builder",
+  "category": "AI Tools",
+  "style": "3d-clay",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. A friendly chat bubble with small animated sparkles around it, made of smooth sculpted clay material. Minimalist and approachable.\n\nColor palette: Gradient from vibrant blue #3b82f6 to cyan #06b6d4, clay chat bubble in white with matte finish, gold accent sparkles #c9a53b.\n\nSoft studio lighting, gentle shadows. Modern messaging app aesthetic. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:27:57.422Z",
+  "filepath": "/images/resource-icons/chatbot-builder.png"
+}

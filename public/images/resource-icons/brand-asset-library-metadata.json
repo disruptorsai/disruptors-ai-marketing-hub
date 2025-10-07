@@ -1,0 +1,10 @@
+{
+  "title": "Brand Asset Library",
+  "name": "brand-asset-library",
+  "category": "Content Creation",
+  "style": "glassmorphism",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. A grid of asset tiles (images, colors, fonts) with translucent glass overlay showing brand elements.\n\nColor palette: Rose gradient #f43f5e to purple #a855f7, white/light pink glass tiles, gold frame accents #d4af37.\n\nModern brand management aesthetic. Asset grid, glass layers, professional. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:29:45.304Z",
+  "filepath": "/images/resource-icons/brand-asset-library.png"
+}

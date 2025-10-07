@@ -9,11 +9,11 @@ function ScrambleWord({ word, delay = 0, onComplete }) {
 
   const { ref } = useScramble({
     text: displayText,
-    speed: 1,        // Full speed (60fps)
+    speed: 0.8,      // Slightly slower (48fps)
     tick: 1,         // Every tick
-    step: 3,         // Move forward 3 characters per tick (fast)
-    scramble: 2,     // 2 scrambles per character (quick flash)
-    seed: 0,         // No extra randomness ahead
+    step: 1,         // Move forward 1 character per tick (slower reveal)
+    scramble: 5,     // 5 scrambles per character (more visible scrambling)
+    seed: 2,         // Add randomness ahead for wave effect
     playOnMount: true,
     range: [65, 90, 97, 122], // A-Z, a-z only
     onAnimationEnd: onComplete,
@@ -51,7 +51,7 @@ export default function CascadeScrambleText({
   text,
   className = '',
   as: Component = 'span',
-  wordDelay = 40, // 40ms between each word (faster cascade)
+  wordDelay = 120, // 120ms between each word (smooth cascade)
   enableRandomGlitch = false,
   ...props
 }) {

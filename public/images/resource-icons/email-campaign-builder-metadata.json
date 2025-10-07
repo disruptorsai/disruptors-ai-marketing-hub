@@ -1,0 +1,10 @@
+{
+  "title": "Email Campaign Builder",
+  "name": "email-campaign-builder",
+  "category": "Marketing & Growth",
+  "style": "3d-clay",
+  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. An envelope opening with small stars or sparkles emerging from it, sculpted clay material.\n\nColor palette: Gradient from blue #2563eb to indigo #4f46e5, clay envelope in white with matte finish, gold stars #c9a53b.\n\nSoft studio lighting, gentle shadows. Email marketing aesthetic. Centered with padding.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-07T19:28:30.000Z",
+  "filepath": "/images/resource-icons/email-campaign-builder.png"
+}

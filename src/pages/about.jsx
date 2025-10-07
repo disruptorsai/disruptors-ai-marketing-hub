@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TeamMember } from '@/api/entities';
 import { Linkedin } from 'lucide-react';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
@@ -43,21 +43,49 @@ export default function About() {
 
   // Horizontal scroll capabilities section
   const scrollContainerRef = useRef(null);
-  const sectionRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
+  // Drag to scroll functionality
+  useEffect(() => {
+    const slider = scrollContainerRef.current;
+    if (!slider) return;
 
-  // Smooth horizontal scroll with more granular control
-  // Extended section height gives more scroll distance = smoother animation
-  const x = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    ["0%", "0%", "-50%", "-50%"],
-    { ease: "easeInOut" }
-  );
+    const handleMouseDown = (e) => {
+      setIsDragging(true);
+      setStartX(e.pageX - slider.offsetLeft);
+      setScrollLeft(slider.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+      setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed multiplier
+      slider.scrollLeft = scrollLeft - walk;
+    };
+
+    slider.addEventListener('mousedown', handleMouseDown);
+    slider.addEventListener('mouseleave', handleMouseLeave);
+    slider.addEventListener('mouseup', handleMouseUp);
+    slider.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      slider.removeEventListener('mousedown', handleMouseDown);
+      slider.removeEventListener('mouseleave', handleMouseLeave);
+      slider.removeEventListener('mouseup', handleMouseUp);
+      slider.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isDragging, startX, scrollLeft]);
 
   const aboutIntroData = [
     {
@@ -133,19 +161,26 @@ export default function About() {
       <AlternatingLayout sections={aboutIntroData} />
 
       {/* Capabilities Horizontal Scroller - Premium Design */}
-      <section ref={sectionRef} className="relative bg-black py-40 sm:py-60 overflow-hidden" style={{ minHeight: '150vh' }}>
-        {/* Subtle grid pattern background */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }} />
+      <section className="relative bg-black py-12 overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
+          </video>
+          {/* Black overlay with 90% opacity */}
+          <div className="absolute inset-0 bg-black/90" />
         </div>
 
         {/* Yellow accent line at top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,13 +188,13 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="inline-block mb-6">
+            <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
                 <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
               </div>
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
               What We Bring to the Table
             </h2>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
@@ -174,12 +209,11 @@ export default function About() {
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
           {/* Scrollable container */}
-          <div className="overflow-hidden pb-4">
-            <motion.div
-              ref={scrollContainerRef}
-              className="flex gap-12 px-4 sm:px-6 lg:px-8"
-              style={{ x, width: 'max-content' }}
-            >
+          <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pb-4 select-none"
+          >
+            <div className="flex gap-12 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
               {/* Marketing - Expert Digital Marketing */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -484,28 +518,9 @@ export default function About() {
                   </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </div>
-
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-            <svg className="w-4 h-4 text-yellow-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            <p className="text-gray-400 text-sm font-medium tracking-wide">Scroll to explore our capabilities</p>
-            <svg className="w-4 h-4 text-yellow-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </motion.div>
 
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
@@ -514,37 +529,6 @@ export default function About() {
       {/* Partnership Section */}
       <AlternatingLayout sections={partnershipData} />
 
-      {/* Section 2: Our Philosophy */}
-      <TwoColumnLayout
-        reversed
-        kicker="Our Philosophy"
-        headline={
-            <>
-              AI Shouldn’t Replace Human Connection.
-              <br />
-              <span className="text-gray-600">It Should Make It Possible at Scale.</span>
-            </>
-        }
-        body={
-            <div className="space-y-4 text-gray-700">
-                <p>Technology (when done right) frees us from the robotic so we can do the relational.</p>
-                <p>AI shouldn’t automate away your voice.</p>
-                <p>Systems shouldn’t remove the soul from your business.</p>
-                <p>Marketing shouldn’t feel like manipulation.</p>
-                <p className="font-bold text-gray-800">We believe:</p>
-                <ul className="space-y-2">
-                    <li>Authentic connection is the greatest marketing advantage</li>
-                    <li>Technology exists to expand your capacity</li>
-                    <li>Your brand is a movement, not a machine</li>
-                </ul>
-                <p>When you partner with Disruptors Media, you're not outsourcing your growth. You’re gaining a team that aligns with your purpose and executes with precision.</p>
-            </div>
-        }
-        leftContent={
-          <img src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png" alt="AI Partnership" className="w-full h-full object-contain"/>
-        }
-      />
-      
       {/* Section 3: Meet the Team (Unchanged) */}
       <section className="py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -639,84 +623,38 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 4: Our Values in Action */}
-      <section className="py-8 sm:py-12 bg-white/5 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">Why Clients Trust Us</h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Our commitment to integrity, value, and excellence speaks for itself.
-            </p>
-          </motion.div>
+      {/* Section 2: Our Philosophy */}
+      <TwoColumnLayout
+        reversed
+        kicker="Our Philosophy"
+        headline={
+            <>
+              AI Shouldn't Replace Human Connection.
+              <br />
+              <span className="text-gray-600">It Should Make It Possible at Scale.</span>
+            </>
+        }
+        body={
+            <div className="space-y-4 text-gray-700">
+                <p>Technology (when done right) frees us from the robotic so we can do the relational.</p>
+                <p>AI shouldn't automate away your voice.</p>
+                <p>Systems shouldn't remove the soul from your business.</p>
+                <p>Marketing shouldn't feel like manipulation.</p>
+                <p className="font-bold text-gray-800">We believe:</p>
+                <ul className="space-y-2">
+                    <li>Authentic connection is the greatest marketing advantage</li>
+                    <li>Technology exists to expand your capacity</li>
+                    <li>Your brand is a movement, not a machine</li>
+                </ul>
+                <p>When you partner with Disruptors Media, you're not outsourcing your growth. You're gaining a team that aligns with your purpose and executes with precision.</p>
+            </div>
+        }
+        leftContent={
+          <img src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png" alt="AI Partnership" className="w-full h-full object-contain"/>
+        }
+      />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
-            >
-              <div className="mb-4">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
-                  G
-                </div>
-                <h3 className="font-bold text-xl text-center mb-2">Gabriel Costa e Silva</h3>
-                <p className="text-sm text-gray-600 text-center mb-4">Client</p>
-              </div>
-              <blockquote className="text-gray-800 leading-relaxed text-center">
-                "All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve."
-              </blockquote>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
-            >
-              <div className="mb-4">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
-                  T
-                </div>
-                <h3 className="font-bold text-xl text-center mb-2">Tim Toone</h3>
-                <p className="text-sm text-gray-600 text-center mb-4">Business Owner</p>
-              </div>
-              <blockquote className="text-gray-800 leading-relaxed text-center">
-                "I really appreciate their feedback and coaching on what the best bang for my buck is for advertising. Kyle's honesty and transparency made all the difference."
-              </blockquote>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-8"
-            >
-              <div className="mb-4">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-2xl mb-4">
-                  D
-                </div>
-                <h3 className="font-bold text-xl text-center mb-2">Dalton Simon</h3>
-                <p className="text-sm text-gray-600 text-center mb-4">Client</p>
-              </div>
-              <blockquote className="text-gray-800 leading-relaxed text-center">
-                "A really professional agency — thorough, hard working, and full of integrity. Loved working with them."
-              </blockquote>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: Call to Action */}
+      {/* Call to Action */}
        <section className="bg-gray-900 text-white py-8">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
