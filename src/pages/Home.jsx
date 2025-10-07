@@ -102,16 +102,6 @@ export default function Home() {
             >
               <span>Free Marketing Audit</span>
               <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
-              <style jsx>{`
-                @keyframes goldPulse {
-                  0%, 100% {
-                    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.2);
-                  }
-                  50% {
-                    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.3);
-                  }
-                }
-              `}</style>
             </Link>
           </motion.div>
         </div>

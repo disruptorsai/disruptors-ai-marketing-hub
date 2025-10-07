@@ -246,16 +246,6 @@ export default function Layout({ children, currentPageName }) {
                         enableRandomGlitch={true}
                       />
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                      <style jsx>{`
-                        @keyframes goldPulse {
-                          0%, 100% {
-                            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.15);
-                          }
-                          50% {
-                            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 0 50px rgba(255, 215, 0, 0.25);
-                          }
-                        }
-                      `}</style>
                    </Link>
                 </div>
 
