@@ -33,31 +33,31 @@ export default function ResourceCard({
     >
       {/* Clean App Icon Only */}
       <div className="flex flex-col items-center text-center">
-        {/* App Icon - No Border, Clean Drop Shadow */}
-        <div className="relative w-32 h-32 flex items-center justify-center">
+        {/* App Icon - Large, No Border, Clean Drop Shadow */}
+        <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center">
           {image ? (
             <img
               src={image}
               alt={title}
               className="w-full h-full object-contain rounded-3xl group-hover:scale-110 transition-transform duration-300"
               style={{
-                filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4))'
+                filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))'
               }}
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
               style={{
-                filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4))'
+                filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))'
               }}
             >
-              {Icon && <Icon className="w-16 h-16 text-[#FFD700]/50" strokeWidth={1.5} />}
+              {Icon && <Icon className="w-20 h-20 md:w-24 md:h-24 text-[#FFD700]/50" strokeWidth={1.5} />}
             </div>
           )}
         </div>
 
         {/* Title on Hover - Appears Below Icon */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-          <h3 className="text-sm font-semibold text-white bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-lg">
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+          <h3 className="text-base font-bold text-white bg-black/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-[#FFD700]/30">
             {title}
           </h3>
         </div>
