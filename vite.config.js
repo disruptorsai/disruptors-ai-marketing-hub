@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc' // Using SWC for faster builds (2025 best practice)
 import path from 'path'
 
 // https://vite.dev/config/

@@ -211,6 +211,9 @@ export default function Resources() {
     setTimeout(() => setSelectedTool(null), 300);
   };
 
+  // Flatten all tools into single array
+  const allTools = TOOL_CATEGORIES.flatMap(category => category.tools);
+
   return (
     <div className="min-h-screen relative">
       {/* Full Screen Background Video */}
@@ -230,17 +233,14 @@ export default function Resources() {
       {/* Content */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <div className="text-white py-20 sm:py-24 lg:py-32 px-4">
+        <div className="text-white py-16 sm:py-20 lg:py-24 px-4">
           <div className="max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center justify-center mb-8">
-                <Sparkles className="w-16 h-16 md:w-20 md:h-20 text-[#FFD700]" strokeWidth={1.5} />
-              </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight">
                 AI Marketing Tools
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
@@ -250,65 +250,29 @@ export default function Resources() {
           </div>
         </div>
 
-        {/* Tools Grid */}
+        {/* Bento Grid - All Apps */}
         <div className="max-w-7xl mx-auto px-4 pb-20 md:pb-32">
-          {TOOL_CATEGORIES.map((category, categoryIndex) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="mb-20 last:mb-0"
-            >
-              {/* Category Header */}
-              <div className="mb-10 text-center">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight">
-                  {category.name}
-                </h2>
-                <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
-                  {category.description}
-                </p>
-              </div>
-
-              {/* Category Tools Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {category.tools.map((tool, toolIndex) => (
-                  <motion.div
-                    key={tool.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: categoryIndex * 0.1 + toolIndex * 0.05 }}
-                  >
-                    <ResourceCard
-                      {...tool}
-                      onClick={() => handleToolClick(tool)}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 md:gap-12"
+          >
+            {allTools.map((tool, toolIndex) => (
+              <motion.div
+                key={tool.title}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: toolIndex * 0.03 }}
+              >
+                <ResourceCard
+                  {...tool}
+                  onClick={() => handleToolClick(tool)}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-
-        {/* Coming Soon Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="border-t-2 border-[#FFD700]/30 text-white py-16 px-4 mb-20"
-        >
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-3xl md:text-4xl font-black mb-6 tracking-tight">
-              More Tools Coming Soon
-            </h3>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 font-light">
-              We're constantly adding new AI-powered tools to help you grow. Join the waitlist to get early access.
-            </p>
-            <div className="inline-block px-6 py-3 border-2 border-[#FFD700] text-[#FFD700] font-bold uppercase text-sm tracking-wider rounded-lg hover:bg-[#FFD700] hover:text-black transition-all duration-300 cursor-pointer">
-              Join Waitlist
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Waitlist Modal */}
