@@ -20,10 +20,13 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
     <motion.div
       animate={{
         scale: isHovered ? 1.2 : 1,
-        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
+        opacity: isOtherHovered ? 0.4 : 1,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg"
+      style={{
+        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
+      }}
     >
       <img
         src={member.headshot}
