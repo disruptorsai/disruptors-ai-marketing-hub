@@ -213,6 +213,17 @@ button:focus-visible {
   body {
     @apply bg-transparent text-black;
   }
+
+  /* Gold text selection highlight */
+  ::selection {
+    background-color: rgba(212, 175, 55, 0.99); /* Gold */
+    color: #000000; /* Black text for contrast */
+  }
+
+  ::-moz-selection {
+    background-color: rgba(212, 175, 55, 0.99); /* Gold */
+    color: #000000; /* Black text for contrast */
+  }
 }
 
 @layer utilities {
