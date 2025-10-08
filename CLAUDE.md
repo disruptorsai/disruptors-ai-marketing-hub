@@ -106,7 +106,7 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Brand Voice**: Disruptors & Co tone - bold, contrarian, no-fluff content for skilled trades
 - **Keyword Optimization**: Primary/secondary keyword targeting with AIO & GEO optimization
 - **Batch Processing**: Generate multiple articles with rate limiting and progress tracking
-- **Blog Management UI**: "Write Articles" button in `/blog-management` interface
+- **Blog Management UI**: "Write Articles" button in admin Content Management module
 - **Smart Filtering**: Only generates for posts without existing content (<200 chars)
 - **See**: `docs/AUTOBLOG_SYSTEM.md` for complete documentation
 
@@ -120,15 +120,20 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Workflow**: Research → Select → Generate → Edit → Publish
 - **See**: `docs/KEYWORD_RESEARCH_SYSTEM.md` for complete documentation
 
-**Growth Audit System** (`src/lib/growth-audit/`):
+**Growth Audit System** (`src/lib/growth-audit/`, `netlify/functions/`):
 - **AI-Powered Website Analysis**: Instant growth audits using Claude Sonnet 4.5
 - **Multi-Source Data Collection**: Firecrawl (web crawling), Playwright (metadata), Brandfetch (brand detection), PageSpeed Insights (performance)
 - **Business Profile Generation**: Automated extraction of brand identity, offerings, ICP, tech stack, competitors
 - **Opportunity Detection**: 8-15 prioritized growth opportunities across 10 categories (SEO, Content, Performance, CRO, Local, Social, Paid, EmailCRM, DataTracking, AI)
-- **Evidence-Based Recommendations**: Each opportunity includes impact scoring, effort estimation, actionable steps, and evidence URLs
-- **Netlify Functions**: Serverless architecture with job queueing and polling-based results delivery
+- **Service Package Mapping**: AI maps opportunities to Starter/Core/Scale service packages with 30/60/90 day execution plans
+- **Sales Copy Generation**: Automated email templates and custom copy generation
+- **Netlify Functions**:
+  - `growth-audit-ingest.js` - Data collection orchestration with job queueing
+  - `growth-audit-stream.js` - Polling-based results delivery via Server-Sent Events
+  - `shared/job-storage.js` - In-memory job state management
 - **Demo Pages**: `/demos/growth-audit` (landing) and `/demos/growth-audit/:jobId` (results)
-- **See**: `docs/GROWTH_AUDIT_INTEGRATION.md` for complete documentation
+- **Architecture**: Serverless job queue → Data collection → AI analysis → SSE streaming → Results page
+- **See**: `docs/GROWTH_AUDIT_INTEGRATION_REPORT.md`, `docs/GROWTH_AUDIT_QUICK_REFERENCE.md` for complete documentation
 
 **Business Brain System** (`src/admin/modules/BusinessBrainBuilder.jsx`, Netlify functions):
 - **AI-Powered Knowledge Base**: Central intelligence layer for all AI-generated content
@@ -289,6 +294,33 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 - TypeScript adoption for utilities (`src/utils/index.ts`)
 - Performance optimization with lazy loading and efficient routing
 
+### Netlify Serverless Functions
+
+**10 Background Functions** (`netlify/functions/`):
+- **Growth Audit System** (2 functions):
+  - `growth-audit-ingest.js` - Website crawling, brand detection, PageSpeed analysis
+  - `growth-audit-stream.js` - Server-Sent Events streaming for real-time results
+- **Business Brain System** (3 functions):
+  - `brain-auto-initialize.ts` - Auto-scrape website to create starter brain
+  - `brain-enhance.ts` - AI onboarding conversation engine with Claude
+  - `brain-content-generate.ts` - Brain-aware content generation
+- **Admin Nexus System** (2 functions):
+  - `ai_invoke.ts` - AI generation with streaming support
+  - `agent_train-background.ts` - Background AI agent training
+- **Content & SEO** (2 functions):
+  - `dataforseo-keywords.js` - Keyword research with DataForSEO API
+  - `ingest_dispatch-background.ts` - Content ingestion dispatcher
+- **Utilities** (1 function):
+  - `screenshot-capture.js` - Playwright-based screenshot capture
+
+**Shared Utilities** (`netlify/functions/shared/`):
+- `job-storage.js` - In-memory job queue and state management
+
+**External Dependencies** (configured in `netlify.toml`):
+- AI SDKs: `@ai-sdk/openai`, `@ai-sdk/anthropic`, `ai`
+- Browser automation: `playwright`, `playwright-core`, `chromium-bidi`
+- Scraping & analysis: `@mendable/firecrawl-js`, `node-vibrant`, `culori`
+
 ### Deployment Configuration
 
 - **Platform**: Netlify with automatic Git deployment
@@ -298,9 +330,11 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 - **Admin Dashboard**: https://app.netlify.com/projects/cheerful-custard-2e6fc5
 - **Build Command**: `npm run build`
 - **Publish Directory**: `dist`
+- **Functions Directory**: `netlify/functions`
 - **SPA Routing**: Handled by `_redirects` file
-- **Security**: CSP headers, XSS protection, frame options
-- **Environment**: Node.js 18, optimized caching
+- **Security**: CSP headers for AI APIs (OpenAI, Anthropic, Gemini, Firecrawl, Brandfetch, PageSpeed), XSS protection, frame options
+- **Environment**: Node.js 18, esbuild bundler, optimized caching
+- **Function Timeout**: 26 seconds (Netlify free tier limit)
 - **MCP Integration**: Netlify MCP server (`@netlify/mcp@latest`) configured in `mcp.json:114-123`
   - Deploy with full context (branch, logs, config)
   - Manage environment variables and secrets
@@ -357,6 +391,34 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 3. Verify tables: `node scripts/verify-business-brain-tables.cjs`
 4. See detailed instructions: `APPLY_MIGRATION_NOW.md` or `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md`
 
+### Key Workflow Patterns
+
+**Growth Audit Job Queue Flow**:
+1. User submits URL on `/demos/growth-audit`
+2. `growth-audit-ingest.js` creates job, starts background data collection
+3. Orchestrator runs: Firecrawl → Playwright → Brandfetch → PageSpeed
+4. AI analyzer generates business profile + 8-15 opportunities with Claude Sonnet 4.5
+5. Service mapper creates Starter/Core/Scale packages with 30/60/90 day plans
+6. Sales copy generator creates email templates
+7. Client polls `growth-audit-stream.js` via Server-Sent Events
+8. Results displayed on `/demos/growth-audit/:jobId`
+
+**Business Brain Onboarding Flow**:
+1. Admin creates brain via Business Brain Builder module
+2. Auto-initialize function scrapes website with Firecrawl
+3. AI extracts facts (20-50) with confidence scores (0.3-0.5 = Level 1 Starter)
+4. Optional: AI onboarding conversation enhances brain to Level 2 (0.6-0.8)
+5. Optional: Manual brand guidelines upload achieves Level 3 Expert (0.9-1.0)
+6. Brain facts used as context in all AI content generation (blog posts, copy, etc.)
+
+**Admin Access Flow**:
+1. Public site: Click logo 5 times in 3 seconds OR press Ctrl+Shift+D
+2. Matrix-style login appears (secret access pattern activated)
+3. Authenticate with email/password (session-based, 24-hour expiry)
+4. Redirect to `/admin/secret` with 11 modules
+5. Lazy-load modules on demand (zero impact on public site)
+6. Emergency exit: Ctrl+Shift+Escape clears session
+
 ### Testing and Quality Assurance
 - **No test framework** is configured - verify functionality through manual browser testing
 - **Linting**: Always run `npm run lint` before commits (ESLint with React rules)
@@ -365,7 +427,9 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 ### Data Layer Architecture
 - **Use `src/lib/custom-sdk.js`** for ALL data operations - provides Base44-compatible API over Supabase
 - **Dual client setup**: Service role for admin operations, regular for user operations
+- **Supabase Client Consolidation**: Single client instance in `src/lib/supabase-client.js` prevents multiple GoTrueClient warnings
 - **Environment variables**: All client-accessible config uses `VITE_` prefix
+- **Server-side operations**: Netlify functions use service role key for elevated permissions
 
 ### Automation and Workflow
 - **Auto-commit system**: `npm run dev:auto` enables intelligent auto-commits during development

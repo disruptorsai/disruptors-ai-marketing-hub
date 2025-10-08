@@ -10,8 +10,8 @@ import { ArrowRight, Lock } from 'lucide-react';
  * @param {string} props.category - Category tag (e.g., "AI Tools", "Analytics")
  * @param {string} props.image - Image URL or placeholder
  * @param {string} props.icon - Lucide icon component
- * @param {boolean} props.comingSoon - Whether tool is locked/coming soon
- * @param {Function} props.onClick - Click handler (opens waitlist modal)
+ * @param {boolean} props.isLive - Whether tool is live and accessible
+ * @param {Function} props.onClick - Click handler (opens waitlist modal or navigates)
  */
 export default function ResourceCard({
   title,
@@ -19,7 +19,7 @@ export default function ResourceCard({
   category,
   image,
   icon: Icon,
-  comingSoon = true,
+  isLive = false,
   onClick
 }) {
   return (
@@ -51,6 +51,13 @@ export default function ResourceCard({
               }}
             >
               {Icon && <Icon className="w-20 h-20 md:w-24 md:h-24 text-[#FFD700]/50" strokeWidth={1.5} />}
+            </div>
+          )}
+
+          {/* Live Badge */}
+          {isLive && (
+            <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+              LIVE
             </div>
           )}
         </div>

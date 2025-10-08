@@ -262,8 +262,10 @@ function PagesContent() {
                 <Route path="/blog-management" element={<BlogManagement />} />
 
                 <Route path="/business-brain-manager" element={<BusinessBrainManager />} />
+                <Route path="/app/business-brain" element={<BusinessBrainManager />} />
 
                 <Route path="/ai-content-writer" element={<AIContentWriter />} />
+                <Route path="/app/content-writer" element={<AIContentWriter />} />
 
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 

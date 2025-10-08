@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Brain,
@@ -38,6 +39,8 @@ const TOOL_CATEGORIES = [
         category: 'AI Tools',
         icon: PenTool,
         image: '/images/resource-icons/ai-content-writer.png',
+        route: '/app/content-writer',
+        isLive: true,
       },
       {
         title: 'AI Image Generator',
@@ -73,6 +76,8 @@ const TOOL_CATEGORIES = [
         category: 'Marketing',
         icon: TrendingUp,
         image: '/images/resource-icons/growth-audit-tool.png',
+        route: '/demos/growth-audit',
+        isLive: true,
       },
       {
         title: 'SEO Optimizer',
@@ -198,10 +203,18 @@ const TOOL_CATEGORIES = [
 ];
 
 export default function Resources() {
+  const navigate = useNavigate();
   const [selectedTool, setSelectedTool] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToolClick = (tool) => {
+    // If tool has a route and is live, navigate to it
+    if (tool.isLive && tool.route) {
+      navigate(tool.route);
+      return;
+    }
+
+    // Otherwise show waitlist modal
     setSelectedTool(tool);
     setIsModalOpen(true);
   };
@@ -226,8 +239,8 @@ export default function Resources() {
           className="w-full h-full object-cover"
           src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759352555/airis_lk5i30.mp4"
         />
-        {/* Black overlay with 95% opacity (5% transparency) */}
-        <div className="absolute inset-0 bg-black/95"></div>
+        {/* Black overlay with 80% opacity (20% transparency) */}
+        <div className="absolute inset-0 bg-black/80"></div>
       </div>
 
       {/* Content */}

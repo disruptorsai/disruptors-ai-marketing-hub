@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Brain, Search, Palette, MessageSquare, Plug2, Plus, Edit, Trash2, AlertCircle, CheckCircle, TrendingUp } from 'lucide-react';
 import { BrainAPI } from '@/lib/brain-api';
+import { supabase } from '@/lib/supabase-client';
 import { useToast } from '@/components/ui/use-toast';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -51,9 +52,6 @@ export default function BusinessBrainManager() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock user ID - in production, get from auth context
-  const userId = 'demo-user-id';
-
   useEffect(() => {
     loadBrain();
   }, []);
@@ -62,7 +60,20 @@ export default function BusinessBrainManager() {
     try {
       setLoading(true);
       setError(null);
-      const brainData = await BrainAPI.getBrainByUser(userId);
+
+      // Get authenticated user
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        setError('Please sign in to access Business Brain Manager');
+        toast({
+          title: 'Authentication Required',
+          description: 'Please sign in to access your Business Brain.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      const brainData = await BrainAPI.getBrainByUser(user.id);
       setBrain(brainData);
     } catch (err) {
       console.error('Failed to load brain:', err);
