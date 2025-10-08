@@ -50,6 +50,7 @@ if (!isDevelopment && supabaseUrl && !supabaseUrl.includes('127.0.0.1')) {
   console.info('Supabase: Connected to production instance:', supabaseUrl)
 }
 
+// Create main Supabase client (anon key for user operations)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,
@@ -61,3 +62,34 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 
 // Export as supabaseClient for backward compatibility
 export const supabaseClient = supabase
+
+// Service role client for admin operations (bypasses RLS)
+const supabaseServiceKey = getEnvVar(
+  'VITE_SUPABASE_SERVICE_ROLE_KEY',
+  isDevelopment ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU' : ''
+)
+
+export const supabaseAdmin = supabaseServiceKey
+  ? createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+        detectSessionInUrl: false,
+      },
+      db: {
+        schema: 'public',
+      },
+      global: {
+        headers: {
+          'X-Client-Info': 'disruptors-ai-service-role',
+        },
+      },
+    })
+  : null
+
+// Log service role availability
+if (supabaseAdmin) {
+  console.info('Supabase: Service role client initialized')
+} else {
+  console.warn('Supabase: Service role client not available (missing VITE_SUPABASE_SERVICE_ROLE_KEY)')
+}

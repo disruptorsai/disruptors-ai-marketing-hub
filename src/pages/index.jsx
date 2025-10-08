@@ -38,6 +38,10 @@ const BusinessBrainManager = lazy(() => import('./business-brain-manager.jsx'));
 const AIContentWriter = lazy(() => import('./ai-content-writer.jsx'));
 const Tools = lazy(() => import('./tools.jsx'));
 
+// Auth system
+const AuthCallback = lazy(() => import('./auth-callback.jsx'));
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+
 // Work case studies - lazy loaded
 const WorkSaasContentEngine = lazy(() => import('./work-saas-content-engine.jsx'));
 const WorkTradeworxUsa = lazy(() => import('./work-tradeworx-usa.jsx'));
@@ -261,11 +265,15 @@ function PagesContent() {
 
                 <Route path="/blog-management" element={<BlogManagement />} />
 
-                <Route path="/business-brain-manager" element={<BusinessBrainManager />} />
-                <Route path="/app/business-brain" element={<BusinessBrainManager />} />
+                {/* Auth Callback */}
+                <Route path="/auth/callback" element={<AuthCallback />} />
 
-                <Route path="/ai-content-writer" element={<AIContentWriter />} />
-                <Route path="/app/content-writer" element={<AIContentWriter />} />
+                {/* Protected App Routes */}
+                <Route path="/business-brain-manager" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
+                <Route path="/app/business-brain" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
+
+                <Route path="/ai-content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
+                <Route path="/app/content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
 
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 
