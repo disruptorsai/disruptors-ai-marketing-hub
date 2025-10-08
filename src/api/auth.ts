@@ -3,22 +3,10 @@
  * Handles JWT tokens, role verification, and session management
  */
 
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '../lib/supabase-client.js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
-}
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    storageKey: 'api-auth', // Unique storage key to avoid conflicts with other clients
-    autoRefreshToken: true,
-    persistSession: true,
-  }
-})
+// Re-export for backward compatibility
+export { supabase }
 
 /**
  * Admin login with email/password

@@ -5,12 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ### Core Development
-- **Development server**: `npm run dev` - Starts Vite development server
+- **Development server**: `npm run dev` - Starts Vite development server (frontend only)
+- **Dev with functions**: `npm run dev:netlify` or `npm run dev:functions` - Starts Netlify dev server (frontend + serverless functions)
 - **Auto-commit dev**: `npm run dev:auto` - Development with intelligent auto-commit system
 - **Safe development**: `npm run dev:safe` - Development without automation
 - **Build**: `npm run build` - Creates production build using Vite
 - **Lint**: `npm run lint` - Runs ESLint on the codebase
 - **Preview**: `npm run preview` - Preview production build locally
+
+**Note**: Use `npm run dev:netlify` when working with Growth Audit, Business Brain, or any features that require Netlify functions. Regular `npm run dev` only serves the frontend and will result in 404 errors for function endpoints.
 
 ### AI Image Generation
 - **Generate service images**: `npm run generate:service-images` - Generate AI service images
@@ -426,8 +429,11 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ### Data Layer Architecture
 - **Use `src/lib/custom-sdk.js`** for ALL data operations - provides Base44-compatible API over Supabase
-- **Dual client setup**: Service role for admin operations, regular for user operations
-- **Supabase Client Consolidation**: Single client instance in `src/lib/supabase-client.js` prevents multiple GoTrueClient warnings
+- **Centralized Supabase Clients**: ALL imports MUST use `src/lib/supabase-client.js`
+  - `supabase` / `supabaseClient` - Main client for user operations (anon key)
+  - `supabaseAdmin` - Service role client for admin operations (bypasses RLS)
+  - **DO NOT create new clients** - Import from supabase-client.js to avoid "Multiple GoTrueClient instances" warning
+- **Single storage key**: `disruptors-ai-auth` used by main client across entire app
 - **Environment variables**: All client-accessible config uses `VITE_` prefix
 - **Server-side operations**: Netlify functions use service role key for elevated permissions
 
