@@ -1,14 +1,17 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import ServicesHandScroll from '../components/shared/ServicesHandScroll';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   { title: "AI Automation", hook: "Automate repetitive tasks and workflows", link: "solutions-ai-automation", icon: "Cpu" },
@@ -83,16 +86,61 @@ const ServiceCard = ({ service, index }) => {
 };
 
 export default function Solutions() {
+  const handRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!handRef.current || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Set fixed position at the pivot point (35% down, far right)
+      gsap.set(handRef.current, {
+        top: "35%",
+        right: "0%",
+        transformOrigin: "100% 50%" // Pivot from right edge, middle of hand
+      });
+
+      // Rotate around the fixed pivot point
+      gsap.fromTo(handRef.current,
+        {
+          rotation: 10 // Starting angle (more clockwise)
+        },
+        {
+          rotation: -15, // Ending angle (25 degree travel)
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+            end: "bottom center",
+            scrub: 1,
+          },
+          ease: "none"
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div>
       {/* Page Title */}
       <PageTitle title="Full Funnel Approach" />
 
-      {/* Interactive 3D Hero Section with Scroll Animation */}
-      <ServicesHandScroll
-        title="AI-Powered Marketing Solutions"
-        description="Transform your business with cutting-edge automation and intelligent marketing strategies"
-      />
+      {/* Hero Image */}
+      <section ref={sectionRef} className="w-full relative">
+        <img
+          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png"
+          alt="Our approach is simple yet impactful"
+          className="w-full h-auto"
+        />
+        {/* Scroll-Animated Hand */}
+        <img
+          ref={handRef}
+          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
+          alt="Pointing hand"
+          className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
+        />
+      </section>
 
       {/* Services Horizontal Scrolling Carousel */}
       <section className="relative overflow-hidden">
@@ -113,7 +161,7 @@ export default function Solutions() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-24 sm:py-32 bg-[#E8D5C4]">
+      <section className="py-8 sm:py-12 bg-[#cac1b8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Column - Introduction */}
@@ -188,7 +236,7 @@ export default function Solutions() {
       </section>
 
       {/* CTA Block */}
-      <section className="relative bg-gray-800 text-white py-20">
+      <section className="relative bg-gray-800 text-white">
          <DualCTABlock />
       </section>
     </div>

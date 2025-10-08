@@ -18,7 +18,9 @@
     "playwright-core",
     "playwright",
     "@mendable/firecrawl-js",
-    "node-vibrant"
+    "node-vibrant",
+    "ai",
+    "culori"
   ]
 
 [[redirects]]
@@ -39,10 +41,10 @@
       default-src 'self';
       script-src 'self' 'unsafe-inline' 'unsafe-eval';
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      font-src 'self' https://fonts.gstatic.com;
+      font-src 'self' https://fonts.gstatic.com data:;
       img-src 'self' data: blob: https: http:;
       media-src 'self' blob: https: http:;
-      connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design https://api.firecrawl.dev https://www.googleapis.com https://api.brandfetch.com wss://*.supabase.co;
+      connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design https://api.firecrawl.dev https://www.googleapis.com https://api.brandfetch.com https://fonts.gstatic.com wss://*.supabase.co;
       frame-src 'self' https://www.youtube.com https://player.vimeo.com;
       worker-src 'self' blob:;
       object-src 'none';

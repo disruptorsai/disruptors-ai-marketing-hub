@@ -1,0 +1,152 @@
+name: Capture Screenshots on PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+      - main
+
+jobs:
+  capture-screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Build application
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Start preview server
+        run: |
+          npm run preview &
+          sleep 5
+          curl --retry 10 --retry-delay 3 --retry-connrefused http://localhost:4173
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Capture PR screenshots
+        run: npm run screenshot:capture -- --all --change="PR ${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}" --viewports=desktop,mobile
+        env:
+          VITE_APP_URL: http://localhost:4173
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.VITE_SUPABASE_SERVICE_ROLE_KEY }}
+
+      - name: Checkout base branch
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git checkout origin/${{ github.base_ref }}
+
+      - name: Install dependencies (base)
+        run: npm ci
+
+      - name: Build application (base)
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Restart preview server (base)
+        run: |
+          pkill -f "vite preview" || true
+          npm run preview &
+          sleep 5
+          curl --retry 10 --retry-delay 3 --retry-connrefused http://localhost:4173
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Capture base screenshots
+        run: npm run screenshot:capture -- --all --change="Base: ${{ github.base_ref }}" --viewports=desktop,mobile
+        env:
+          VITE_APP_URL: http://localhost:4173
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.VITE_SUPABASE_SERVICE_ROLE_KEY }}
+
+      - name: Generate visual diff report
+        id: diff-report
+        run: |
+          echo "## 📸 Screenshot Comparison" > screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "Screenshots have been captured for this PR and the base branch." >> screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "**PR Branch**: \`${{ github.head_ref }}\`" >> screenshot-report.md
+          echo "**Base Branch**: \`${{ github.base_ref }}\`" >> screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "### 📊 Coverage" >> screenshot-report.md
+          echo "- Viewports: Desktop (1920x1080), Mobile (375x667)" >> screenshot-report.md
+          echo "- Pages: All pages in application" >> screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "### 🔍 View Screenshots" >> screenshot-report.md
+          echo "Screenshots are stored in the Screenshot Manager." >> screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "**Screenshot Manager**: [View Screenshots](https://dm4.wjwelsh.com/screenshot-manager)" >> screenshot-report.md
+          echo "" >> screenshot-report.md
+          echo "### 📝 Notes" >> screenshot-report.md
+          echo "- Screenshots are automatically captured on PR creation" >> screenshot-report.md
+          echo "- Compare before/after in the Screenshot Manager" >> screenshot-report.md
+          echo "- Screenshots are stored for 90 days" >> screenshot-report.md
+
+      - name: Comment PR with screenshot report
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const reportContent = fs.readFileSync('screenshot-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reportContent
+            });
+
+      - name: Upload screenshots as artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-pr-${{ github.event.pull_request.number }}
+          path: |
+            screenshots/
+          retention-days: 30
+
+      - name: Cleanup
+        if: always()
+        run: |
+          pkill -f "vite preview" || true
+          rm -f screenshot-report.md
+
+  # Optional: Visual regression testing with Percy or other tools
+  # visual-regression:
+  #   runs-on: ubuntu-latest
+  #   needs: capture-screenshots
+  #   steps:
+  #     - name: Run Percy
+  #       run: npx percy snapshot screenshots/
+  #       env:
+  #         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}

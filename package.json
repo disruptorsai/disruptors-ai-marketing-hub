@@ -56,7 +56,10 @@
     "validate:models": "node scripts/validate-model-usage.js",
     "verify:no-dalle3": "node scripts/verify-dalle3-simple.js",
     "test:gpt-image-1": "node scripts/test-gpt-image-1.js",
-    "test:nano-banana": "node scripts/test-nano-banana.js"
+    "test:nano-banana": "node scripts/test-nano-banana.js",
+    "screenshot:capture": "node scripts/capture-screenshot.js",
+    "screenshot:all": "node scripts/capture-screenshot.js --all",
+    "screenshot:batch": "node scripts/capture-screenshot.js --all --viewports=desktop,tablet,mobile"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.23",
@@ -127,6 +130,7 @@
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.54.2",
+    "react-quill": "^2.0.0",
     "react-resizable-panels": "^2.1.7",
     "react-router-dom": "^7.2.0",
     "recharts": "^2.15.1",
@@ -134,6 +138,7 @@
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
+    "use-scramble": "^2.2.15",
     "uuid": "^13.0.0",
     "vaul": "^1.1.2",
     "zod": "^3.24.2"
@@ -145,6 +150,7 @@
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react-swc": "^4.1.0",
     "autoprefixer": "^10.4.20",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",

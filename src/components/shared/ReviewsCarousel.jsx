@@ -1,7 +1,6 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, X } from 'lucide-react';
 
 const placeholderReviews = [
   {
@@ -10,8 +9,7 @@ const placeholderReviews = [
     company: "Healthcare Practice",
     quote: "I have been so impressed — they've gotten me millions of views on my social media, and I've seen a large uptick in new patients in my office. The strategy and support they've given is significantly better than the 5 or so other marketing companies I've worked with.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   },
   {
     name: "Alde Nguyen",
@@ -19,8 +17,7 @@ const placeholderReviews = [
     company: "",
     quote: "Disruptors are a brilliant full-suite marketing and product agency. They handled entire operations for our rollouts and campaigns, producing phenomenal creative assets and positioning our brand competitively. They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   },
   {
     name: "Mitchell Halvorsen",
@@ -28,8 +25,7 @@ const placeholderReviews = [
     company: "",
     quote: "I can't say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today's fast-paced digital world. They made the process smooth from start to finish.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   },
   {
     name: "Gabriel Costa e Silva",
@@ -37,8 +33,7 @@ const placeholderReviews = [
     company: "",
     quote: "All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   },
   {
     name: "Korina Flint",
@@ -46,8 +41,7 @@ const placeholderReviews = [
     company: "Health & Wellness",
     quote: "I am thoroughly impressed with Disruptors Media. They are super talented and knowledgeable, but what impressed me even more is their dedication to their mission. They truly want to help others spread the message of health and wellness. My experience shooting a podcast with them was amazing.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   },
   {
     name: "Chris",
@@ -55,171 +49,148 @@ const placeholderReviews = [
     company: "",
     quote: "Professional, well organized, and knowledgeable. If you're looking for a company that can drive revenue and expand your business success, this is the right place for you.",
     rating: 5,
-    source: "Google",
-    videoUrl: null
+    source: "Google"
   }
 ];
 
 export default function ReviewsCarousel({
-  reviews = placeholderReviews,
-  title = "What Our Clients Say"
+  reviews = placeholderReviews
 }) {
-  const scrollContainerRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [selectedReview, setSelectedReview] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Auto-scroll functionality
-  useEffect(() => {
-    if (isPaused || !scrollContainerRef.current) return;
-
-    const scrollInterval = setInterval(() => {
-      const container = scrollContainerRef.current;
-      const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
-      const gap = 24; // 1.5rem gap
-      const scrollAmount = cardWidth + gap;
-
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      const nextScroll = container.scrollLeft + scrollAmount;
-
-      if (nextScroll >= maxScroll) {
-        // Reset to start with smooth scroll
-        container.scrollTo({ left: 0, behavior: 'smooth' });
-        setActiveIndex(0);
-      } else {
-        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        setActiveIndex(prev => Math.min(prev + 1, reviews.length - 1));
-      }
-    }, 4000); // Auto-scroll every 4 seconds
-
-    return () => clearInterval(scrollInterval);
-  }, [isPaused, reviews.length]);
-
-  // Update active index on manual scroll
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
-    const gap = 24;
-    const newIndex = Math.round(container.scrollLeft / (cardWidth + gap));
-    setActiveIndex(newIndex);
-  };
-
-  const scrollToIndex = (index) => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
-    const gap = 24;
-    container.scrollTo({
-      left: index * (cardWidth + gap),
-      behavior: 'smooth'
-    });
-    setActiveIndex(index);
-  };
+  // Triple the reviews array for seamless infinite scroll
+  const infiniteReviews = [...reviews, ...reviews, ...reviews];
 
   return (
-    <section className="relative py-20 sm:py-28 overflow-hidden">
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-4">
-            {title}
-          </h2>
-          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
-          </p>
-        </motion.div>
-
-        {/* Horizontal scroll carousel */}
+    <>
+      {/* Compact Infinite Scrolling Carousel */}
+      <section className="relative py-4 overflow-hidden bg-gray-100">
         <div
-          ref={scrollContainerRef}
-          onScroll={handleScroll}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch'
-          }}
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {reviews.map((review, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="testimonial-card flex-shrink-0 w-[85vw] sm:w-[450px] snap-center"
-            >
-              <div className="h-full bg-black/40 backdrop-blur-xl rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-white/10 relative overflow-hidden">
-                {/* Decorative gradient */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-
-                {/* Quote icon */}
-                <div className="mb-6 flex items-start justify-between">
-                  <Quote className="w-10 h-10 text-white/40" />
-                  <div className="flex gap-1">
+          <motion.div
+            className="flex gap-4"
+            animate={{
+              x: [0, -100 * reviews.length],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: isHovered ? 120 : 60, // Slow down on hover (60s → 120s)
+                ease: "linear",
+              },
+            }}
+          >
+            {infiniteReviews.map((review, index) => (
+              <motion.div
+                key={index}
+                onClick={() => setSelectedReview(review)}
+                className="flex-shrink-0 w-80 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="h-full bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-2">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${i < review.rating ? 'text-white fill-white' : 'text-gray-600'}`}
+                        className={`w-3 h-3 ${i < review.rating ? 'text-[#C9A53B] fill-[#C9A53B]' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
+
+                  {/* Quote - Truncated */}
+                  <p className="font-sans text-sm text-gray-700 leading-relaxed mb-3 line-clamp-3">
+                    "{review.quote}"
+                  </p>
+
+                  {/* Author info - Compact */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-semibold text-xs">
+                      {review.name.charAt(0)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-sans font-semibold text-xs text-gray-900 truncate">{review.name}</div>
+                      <div className="font-sans text-xs text-gray-500 truncate">{review.role}</div>
+                    </div>
+                    <div className="text-xs text-gray-400 font-medium px-2 py-0.5 bg-gray-100 rounded">
+                      {review.source}
+                    </div>
+                  </div>
                 </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-                {/* Quote */}
-                <blockquote className="text-gray-100 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
-                  "{review.quote}"
-                </blockquote>
+      {/* Enlarged Review Modal */}
+      <AnimatePresence>
+        {selectedReview && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setSelectedReview(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-2xl w-full bg-white rounded-2xl p-8 shadow-2xl"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedReview(null)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
 
-                {/* Author info */}
-                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg">
-                    {review.name.charAt(0)}
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-white">{review.name}</div>
-                    <div className="text-sm text-gray-300">{review.role}</div>
-                    <div className="text-sm text-gray-400">{review.company}</div>
-                  </div>
-                  <div className="text-xs text-gray-300 font-medium px-3 py-1 bg-white/10 rounded-full">
-                    {review.source}
-                  </div>
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`w-5 h-5 ${i < selectedReview.rating ? 'text-[#C9A53B] fill-[#C9A53B]' : 'text-gray-300'}`}
+                  />
+                ))}
+              </div>
+
+              {/* Full Quote */}
+              <blockquote className="font-sans text-xl text-gray-800 leading-relaxed mb-6">
+                "{selectedReview.quote}"
+              </blockquote>
+
+              {/* Author info - Full */}
+              <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
+                <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-bold text-xl">
+                  {selectedReview.name.charAt(0)}
+                </div>
+                <div className="flex-1">
+                  <div className="font-sans font-semibold text-lg text-gray-900">{selectedReview.name}</div>
+                  <div className="font-sans text-sm text-gray-600">{selectedReview.role}</div>
+                  {selectedReview.company && (
+                    <div className="font-sans text-sm text-gray-500">{selectedReview.company}</div>
+                  )}
+                </div>
+                <div className="text-sm text-gray-600 font-medium px-4 py-2 bg-gray-100 rounded-lg">
+                  {selectedReview.source}
                 </div>
               </div>
             </motion.div>
-          ))}
-        </div>
-
-        {/* Progress indicators */}
-        <div className="flex justify-center gap-2 mt-8">
-          {reviews.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToIndex(index)}
-              className={`transition-all duration-300 rounded-full ${
-                index === activeIndex
-                  ? 'w-8 h-2 bg-white'
-                  : 'w-2 h-2 bg-white/40 hover:bg-white/60'
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
-      </div>
-
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
-    </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

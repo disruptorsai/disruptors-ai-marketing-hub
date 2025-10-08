@@ -44,13 +44,18 @@ if (!supabaseUrl || !supabaseServiceKey) {
 
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
+    storageKey: 'sb-service-role-auth-token', // Unique storage key for service role client
     autoRefreshToken: false,
     persistSession: false,
     detectSessionInUrl: false,
-    storage: null, // Disable storage entirely for admin client to prevent GoTrueClient warning
   },
   db: {
     schema: "public",
+  },
+  global: {
+    headers: {
+      'X-Client-Info': 'disruptors-ai-service-role',
+    },
   },
 });
 

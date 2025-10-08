@@ -1,8 +1,9 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioAssets, portfolioImages, portfolioVideos } from '@/data/portfolio-assets';
 import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
 import PageTitle from '../components/shared/PageTitle';
+import { optimizeCloudinaryImage, optimizeCloudinaryVideo, getVideoThumbnail, CLOUDINARY_PRESETS } from '@/utils/cloudinary-optimizer';
 
 const FILTER_OPTIONS = [
   { id: 'all', label: 'All', icon: Grid3x3, count: portfolioAssets.length },
@@ -33,9 +34,14 @@ export default function Gallery() {
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <img
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg"
+          src={optimizeCloudinaryImage(
+            "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg",
+            { width: 1920, quality: 'auto:low', crop: 'fill' }
+          )}
           alt="Background"
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
       <div className="fixed inset-0 z-[1] bg-black/60"></div>
@@ -138,45 +144,97 @@ export default function Gallery() {
 function GalleryItem({ asset, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef(null);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '200px', // Start loading 200px before entering viewport
+        threshold: 0.01,
+      }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, []);
+
+  // Optimize asset URL based on type
+  const optimizedUrl = useMemo(() => {
+    if (!isVisible) return null;
+
+    if (asset.type === 'image') {
+      return optimizeCloudinaryImage(asset.url, {
+        ...CLOUDINARY_PRESETS.gallery,
+        width: 800, // Gallery grid size
+        quality: 'auto:good',
+      });
+    } else {
+      // For videos, show thumbnail initially
+      return getVideoThumbnail(asset.url, {
+        width: 800,
+        height: 600,
+        position: '1', // 1 second into video
+      });
+    }
+  }, [asset, isVisible]);
 
   return (
     <motion.div
-      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-transparent backdrop-blur-sm"
+      ref={itemRef}
+      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-gray-800"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
+      style={{ minHeight: '200px' }} // Prevent layout shift
     >
-      {/* Asset */}
-      {asset.type === 'image' ? (
+      {/* Asset - Only render when visible */}
+      {isVisible && asset.type === 'image' ? (
         <img
-          src={asset.url}
+          src={optimizedUrl}
           alt="Portfolio item"
           className={`w-full h-auto transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setIsLoaded(true)}
           loading="lazy"
+          decoding="async"
         />
-      ) : (
-        <video
-          src={asset.url}
+      ) : isVisible && asset.type === 'video' ? (
+        <img
+          src={optimizedUrl}
+          alt="Video thumbnail"
           className={`w-full h-auto transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          onLoadedData={() => setIsLoaded(true)}
+          onLoad={() => setIsLoaded(true)}
+          loading="lazy"
+          decoding="async"
         />
-      )}
+      ) : null}
 
       {/* Loading Placeholder */}
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
-          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      {(!isLoaded || !isVisible) && (
+        <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+          {isVisible && (
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          )}
         </div>
       )}
 
@@ -393,16 +451,18 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         >
           {asset.type === 'image' ? (
             <img
-              src={asset.url}
+              src={optimizeCloudinaryImage(asset.url, CLOUDINARY_PRESETS.fullscreen)}
               alt="Portfolio item"
               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+              loading="eager"
             />
           ) : (
             <video
-              src={asset.url}
+              src={optimizeCloudinaryVideo(asset.url, { quality: 'auto:good', width: 1920 })}
               controls
               autoPlay
               loop
+              preload="metadata"
               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
             />
           )}

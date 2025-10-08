@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
  */
 export default function PageTitle({ title, light = false }) {
   return (
-    <section className="w-full bg-transparent pt-16 pb-12 sm:pt-24 sm:pb-16 relative z-10">
+    <section className="w-full bg-transparent pt-8 pb-4 sm:pt-12 sm:pb-6 relative z-10">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

@@ -1,0 +1,15 @@
+{
+  "title": "Audience Intelligence",
+  "name": "audience-intelligence",
+  "category": "Analytics & Insights",
+  "style": "ANACHRON",
+  "concept": "Ancient oracle mask with neural network patterns",
+  "materials": "Marble theater mask, bronze neural circuitry, gold leaf",
+  "symbology": "Greek theater masks with glowing thought patterns",
+  "primaryColor": "#3C7A6A",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient oracle wisdom meets AI intelligence.\n\nSubject: A classical marble theater mask (Greek tragedy/comedy fusion) with bronze neural network patterns (#3C7A6A) inlaid across the forehead. Gold leaf (#C9A53B) circuit traces flow like thoughts, connecting to small floating profile silhouettes in lapis blue holographic glow (#2C6BAA).\n\nMaterials: Weathered Parian marble with natural chips and veining, bronze inlay with verdigris oxidation, delicate gold leaf tracery, holographic projection glow.\n\nLighting: Soft overcast diffuse light, cyan-teal glow from neural patterns, golden highlights on raised marble features.\n\nColor palette: Verdigris green #3C7A6A neural circuits, lapis blue #2C6BAA audience holograms, muted gold #C9A53B thought traces, ivory marble.\n\nFinish: Neoclassical sculpture aesthetic with tool marks, painterly rendering of marble texture, subtle tech glow integration.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:12:52.271Z",
+  "filepath": "/images/resource-icons/audience-intelligence.png"
+}

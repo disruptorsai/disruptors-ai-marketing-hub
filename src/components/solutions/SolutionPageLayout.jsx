@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import PlaceholderAnimation from '../shared/PlaceholderAnimation';
 import DualCTABlock from '../shared/DualCTABlock';
-import { CheckCircle, Quote } from 'lucide-react';
+import { CheckCircle, Quote, ArrowRight, HelpCircle } from 'lucide-react';
 
 export default function SolutionPageLayout({ service }) {
     if (!service) {
@@ -19,7 +19,11 @@ export default function SolutionPageLayout({ service }) {
         descriptivePhrase,
         overview,
         image,
+        heroImage,
         outcomes = [],
+        process = [],
+        features = [],
+        faqs = [],
         testimonials = [],
         cta_label = 'Book a Strategy Session',
         cta_link = 'book-strategy-session'
@@ -45,10 +49,18 @@ export default function SolutionPageLayout({ service }) {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <div className="flex gap-4 justify-center">
-                                <PlaceholderAnimation type="funnel" />
-                                <PlaceholderAnimation type="fingers" />
-                            </div>
+                            {heroImage ? (
+                                <img
+                                    src={heroImage}
+                                    alt={`${title} hero`}
+                                    className="w-full h-auto object-cover rounded-3xl shadow-2xl"
+                                />
+                            ) : (
+                                <div className="flex gap-4 justify-center">
+                                    <PlaceholderAnimation type="funnel" />
+                                    <PlaceholderAnimation type="fingers" />
+                                </div>
+                            )}
                         </motion.div>
                     </div>
                 </div>
@@ -106,6 +118,134 @@ export default function SolutionPageLayout({ service }) {
                                     <CheckCircle className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
                                     <h3 className="font-bold text-lg mb-2 text-white">{outcome.title}</h3>
                                     <p className="text-gray-100 text-sm">{outcome.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Process / How It Works */}
+            {process.length > 0 && (
+                <section className="py-16 sm:py-24 bg-gray-900/30 backdrop-blur-sm">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">How It Works</h2>
+                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                                Our proven process for delivering results
+                            </p>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {process.map((step, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="relative"
+                                >
+                                    <div className="bg-gray-900/90 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-gray-700 h-full">
+                                        <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                                            {index + 1}
+                                        </div>
+                                        <h3 className="font-bold text-xl mb-3 text-white">{step.title}</h3>
+                                        <p className="text-gray-300 text-sm leading-relaxed">{step.description}</p>
+                                    </div>
+                                    {index < process.length - 1 && (
+                                        <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                                            <ArrowRight className="w-8 h-8 text-yellow-400" />
+                                        </div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Features / Deliverables */}
+            {features.length > 0 && (
+                <section className="py-16 sm:py-24">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-12"
+                        >
+                            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">What You Get</h2>
+                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                                Comprehensive solutions tailored to your needs
+                            </p>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {features.map((feature, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                                    viewport={{ once: true }}
+                                    className="bg-gray-900/90 backdrop-blur-md p-6 rounded-2xl border border-gray-700 flex items-start gap-4"
+                                >
+                                    <CheckCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                                    <div>
+                                        <h3 className="font-semibold text-white mb-1">{feature.title}</h3>
+                                        {feature.description && (
+                                            <p className="text-gray-400 text-sm">{feature.description}</p>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* FAQ Section */}
+            {faqs.length > 0 && (
+                <section className="py-16 sm:py-24 bg-gray-900/50 backdrop-blur-sm">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="text-center mb-12"
+                        >
+                            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
+                            <p className="text-xl text-gray-300">
+                                Everything you need to know about {title}
+                            </p>
+                        </motion.div>
+
+                        <div className="space-y-6">
+                            {faqs.map((faq, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <HelpCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                                        <div>
+                                            <h3 className="font-bold text-lg text-white mb-2">{faq.question}</h3>
+                                            <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>

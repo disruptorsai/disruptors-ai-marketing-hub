@@ -1,0 +1,15 @@
+{
+  "title": "Lead Scoring Engine",
+  "name": "lead-scoring-engine",
+  "category": "Automation & Workflow",
+  "style": "ANACHRON",
+  "concept": "Ancient weighing scale with holographic scoring metrics",
+  "materials": "Bronze balance scale, marble weights, gold leaf numbers",
+  "symbology": "Justice scales with glowing lead quality indicators",
+  "primaryColor": "#C9A53B",
+  "accentColor": "#2C6BAA",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient scales of justice meets lead qualification.\n\nSubject: An elegant bronze balance scale with verdigris patina (#3C7A6A), marble weights on each side marked with gold leaf (#C9A53B) scoring numbers. Holographic lapis blue (#2C6BAA) quality indicators and star ratings floating above the balanced pans. Small terracotta (#C96F4C) lead tokens being weighed.\n\nMaterials: Weathered bronze with authentic oxidation, carved marble weights with natural veining, gold leaf numerals, terracotta tokens, holographic metrics.\n\nLighting: Warm side light, cyan scoring glow from holograms, golden number highlights, balance beam casting shadow.\n\nColor palette: Muted gold #C9A53B base color and scoring, lapis blue #2C6BAA holographic metrics, verdigris #3C7A6A bronze scale, terracotta #C96F4C tokens.\n\nFinish: Academic painting of metal and marble, precise balance mechanism rendering, painterly textures, cohesive glow integration.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:14:00.360Z",
+  "filepath": "/images/resource-icons/lead-scoring-engine.png"
+}

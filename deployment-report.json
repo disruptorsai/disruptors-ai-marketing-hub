@@ -1,0 +1,291 @@
+{
+  "timestamp": "2025-10-03T04:40:24.447Z",
+  "deploymentUrl": "https://disruptors-ai-marketing-hub.netlify.app",
+  "testResults": {
+    "pageLoads": {
+      "home": {
+        "status": "passed",
+        "message": "Page loaded successfully",
+        "loadTime": 1409,
+        "title": "Disruptors AI Marketing Hub",
+        "hasContent": true,
+        "statusCode": 200
+      },
+      "about": {
+        "status": "passed",
+        "message": "Page loaded successfully",
+        "loadTime": 1765,
+        "title": "Disruptors AI Marketing Hub",
+        "hasContent": true,
+        "statusCode": 200
+      },
+      "work": {
+        "status": "passed",
+        "message": "Page loaded successfully",
+        "loadTime": 1465,
+        "title": "Disruptors AI Marketing Hub",
+        "hasContent": true,
+        "statusCode": 200
+      },
+      "solutions": {
+        "status": "passed",
+        "message": "Page loaded successfully",
+        "loadTime": 1491,
+        "title": "Disruptors AI Marketing Hub",
+        "hasContent": true,
+        "statusCode": 200
+      },
+      "contact": {
+        "status": "passed",
+        "message": "Page loaded successfully",
+        "loadTime": 1464,
+        "title": "Disruptors AI Marketing Hub",
+        "hasContent": true,
+        "statusCode": 200
+      }
+    },
+    "navigation": {
+      "status": "passed",
+      "message": "Tested 3 navigation links",
+      "linksFound": 18,
+      "tested": [
+        {
+          "link": "About",
+          "status": "success",
+          "url": "https://disruptors-ai-marketing-hub.netlify.app/about"
+        },
+        {
+          "link": "Work",
+          "status": "success",
+          "url": "https://disruptors-ai-marketing-hub.netlify.app/work"
+        },
+        {
+          "link": "Contact",
+          "status": "success",
+          "url": "https://disruptors-ai-marketing-hub.netlify.app/contact"
+        }
+      ]
+    },
+    "adminAccess": {
+      "status": "passed",
+      "message": "Admin portal accessible, 11/11 modules route correctly",
+      "adminPortalStatus": 200,
+      "loginFormVisible": true,
+      "modules": [
+        {
+          "name": "Dashboard Overview",
+          "route": "/admin/dashboard",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Content Management",
+          "route": "/admin/content",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Team Management",
+          "route": "/admin/team",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Media Library",
+          "route": "/admin/media",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Business Brain Builder",
+          "route": "/admin/business-brain",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Agent Chat",
+          "route": "/admin/agent-chat",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Agent Builder",
+          "route": "/admin/agent-builder",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Brand DNA Builder",
+          "route": "/admin/brand-dna",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Telemetry Dashboard",
+          "route": "/admin/telemetry",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Workflow Manager",
+          "route": "/admin/workflows",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "Integrations Hub",
+          "route": "/admin/integrations",
+          "status": 200,
+          "redirectedToLogin": false,
+          "accessible": true,
+          "passed": true
+        }
+      ],
+      "modulesAccessible": 11,
+      "totalModules": 11
+    },
+    "console": {
+      "status": "failed",
+      "message": "Found 7 errors and 4 warnings",
+      "errors": [
+        "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design wss://*.supabase.co\".\n",
+        "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+        "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto….app/assets/vendor-database-DEJ43wme.js:23:22444), hint: , code: }",
+        "Refused to connect to 'http://127.0.0.1:54321/rest/v1/site_media?select=*&order=display_order.asc&limit=100' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design wss://*.supabase.co\".\n",
+        "Fetch API cannot load http://127.0.0.1:54321/rest/v1/site_media?select=*&order=display_order.asc&limit=100. Refused to connect because it violates the document's Content Security Policy.",
+        "Refused to connect to 'http://127.0.0.1:54321/rest/v1/service?select=*&order=display_order.asc&limit=100' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design wss://*.supabase.co\".\n",
+        "Fetch API cannot load http://127.0.0.1:54321/rest/v1/service?select=*&order=display_order.asc&limit=100. Refused to connect because it violates the document's Content Security Policy."
+      ],
+      "warnings": [
+        "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+        "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+        "⚠ Failed to load hero media from database: TypeError: Failed to fetch",
+        "⚠ Failed to load services from database: TypeError: Failed to fetch"
+      ],
+      "totalErrors": 7,
+      "totalWarnings": 4
+    },
+    "apiIntegrations": {},
+    "responsive": {
+      "status": "passed",
+      "message": "Tested 4 viewports",
+      "results": [
+        {
+          "viewport": "Desktop",
+          "dimensions": "1920x1080",
+          "status": "passed",
+          "bodyVisible": true,
+          "hasHorizontalOverflow": false
+        },
+        {
+          "viewport": "Laptop",
+          "dimensions": "1366x768",
+          "status": "passed",
+          "bodyVisible": true,
+          "hasHorizontalOverflow": false
+        },
+        {
+          "viewport": "Tablet",
+          "dimensions": "768x1024",
+          "status": "passed",
+          "bodyVisible": true,
+          "hasHorizontalOverflow": false
+        },
+        {
+          "viewport": "Mobile",
+          "dimensions": "375x667",
+          "status": "passed",
+          "bodyVisible": true,
+          "hasHorizontalOverflow": false
+        }
+      ]
+    },
+    "security": {
+      "status": "passed",
+      "message": "All security headers present",
+      "headers": {
+        "x-frame-options": "DENY",
+        "x-xss-protection": "1; mode=block",
+        "x-content-type-options": "nosniff",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: http:; media-src 'self' blob: https: http:; connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design wss://*.supabase.co; frame-src 'self' https://www.youtube.com https://player.vimeo.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';",
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "missingHeaders": []
+    },
+    "performance": {
+      "status": "passed",
+      "message": "FCP: 976ms (target: <1500ms)",
+      "metrics": {
+        "domContentLoaded": 0.5,
+        "loadComplete": 7.299999997019768,
+        "firstPaint": 976,
+        "firstContentfulPaint": 976,
+        "domInteractive": 229.59999999403954,
+        "totalLoadTime": 1123.7999999970198,
+        "FCP Status": "Good"
+      }
+    },
+    "netlifyFunctions": {
+      "status": "warning",
+      "message": "1/4 Netlify Functions accessible",
+      "functions": [
+        {
+          "name": "dataforseo-keywords",
+          "endpoint": "/.netlify/functions/dataforseo-keywords",
+          "status": 405,
+          "accessible": true,
+          "passed": true
+        },
+        {
+          "name": "ai_invoke",
+          "endpoint": "/.netlify/functions/ai_invoke",
+          "status": 500,
+          "accessible": false,
+          "passed": false
+        },
+        {
+          "name": "agent_train-background",
+          "endpoint": "/.netlify/functions/agent_train-background",
+          "status": 202,
+          "accessible": false,
+          "passed": false
+        },
+        {
+          "name": "ingest_dispatch-background",
+          "endpoint": "/.netlify/functions/ingest_dispatch-background",
+          "status": 202,
+          "accessible": false,
+          "passed": false
+        }
+      ],
+      "totalFunctions": 4,
+      "accessibleFunctions": 1
+    }
+  },
+  "summary": {
+    "totalTests": 12,
+    "passed": 10,
+    "failed": 1,
+    "warnings": 1
+  }
+}

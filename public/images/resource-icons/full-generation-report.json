@@ -1,0 +1,105 @@
+{
+  "timestamp": "2025-10-07T19:29:45.305Z",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "total": 19,
+  "generated": 16,
+  "skipped": 3,
+  "failed": 0,
+  "results": [
+    {
+      "success": true,
+      "title": "AI Content Writer",
+      "skipped": true
+    },
+    {
+      "success": true,
+      "title": "AI Image Generator",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\ai-image-generator.png"
+    },
+    {
+      "success": true,
+      "title": "AI Chatbot Builder",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\chatbot-builder.png"
+    },
+    {
+      "success": true,
+      "title": "AI Video Generator",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\video-generator.png"
+    },
+    {
+      "success": true,
+      "title": "Growth Audit Tool",
+      "skipped": true
+    },
+    {
+      "success": true,
+      "title": "SEO Optimizer",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\seo-optimizer.png"
+    },
+    {
+      "success": true,
+      "title": "Social Media Manager",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\social-media-manager.png"
+    },
+    {
+      "success": true,
+      "title": "Email Campaign Builder",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\email-campaign-builder.png"
+    },
+    {
+      "success": true,
+      "title": "Analytics Dashboard",
+      "skipped": true
+    },
+    {
+      "success": true,
+      "title": "Conversion Tracker",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\conversion-tracker.png"
+    },
+    {
+      "success": true,
+      "title": "Performance Monitor",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\performance-monitor.png"
+    },
+    {
+      "success": true,
+      "title": "Audience Intelligence",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\audience-intelligence.png"
+    },
+    {
+      "success": true,
+      "title": "Workflow Automation",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\workflow-automation.png"
+    },
+    {
+      "success": true,
+      "title": "Lead Scoring Engine",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\lead-scoring-engine.png"
+    },
+    {
+      "success": true,
+      "title": "Content Calendar",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\content-calendar.png"
+    },
+    {
+      "success": true,
+      "title": "Integration Hub",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\integration-hub.png"
+    },
+    {
+      "success": true,
+      "title": "Podcast Studio",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\podcast-studio.png"
+    },
+    {
+      "success": true,
+      "title": "Report Generator",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\report-generator.png"
+    },
+    {
+      "success": true,
+      "title": "Brand Asset Library",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\resource-icons\\brand-asset-library.png"
+    }
+  ]
+}

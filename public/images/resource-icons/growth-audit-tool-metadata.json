@@ -1,0 +1,15 @@
+{
+  "title": "Growth Audit Tool",
+  "name": "growth-audit-tool",
+  "category": "Analytics & Insights",
+  "style": "ANACHRON",
+  "concept": "Ancient surveyor tools with holographic metrics",
+  "materials": "Bronze compass and ruler, marble measuring stone, gold markers",
+  "symbology": "Surveying instruments with glowing growth trajectories",
+  "primaryColor": "#3C7A6A",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient land surveying meets modern growth analysis.\n\nSubject: Classical bronze compass and straight edge with verdigris patina (#3C7A6A), arranged on marble measuring stone. Gold leaf (#C9A53B) measurement marks transforming into holographic upward growth arrows and audit checkmarks in lapis blue (#2C6BAA). Small terracotta (#C96F4C) growth chart glowing beside tools.\n\nMaterials: Weathered bronze with authentic oxidation, carved marble base with measuring increments, gold leaf markers, holographic data projections.\n\nLighting: Golden hour side light, cyan-teal audit glow, golden measurement highlights, warm marble shadows.\n\nColor palette: Verdigris green #3C7A6A bronze tools, lapis blue #2C6BAA holographic metrics, terracotta #C96F4C chart, muted gold #C9A53B markers.\n\nFinish: Academic oil painting of precision instruments, metallic patina detail, marble carving, cohesive light on all elements.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:13:43.324Z",
+  "filepath": "/images/resource-icons/growth-audit-tool.png"
+}

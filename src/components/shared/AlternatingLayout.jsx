@@ -14,18 +14,18 @@ export default function AlternatingLayout({ sections = [] }) {
         return (
           <section
             key={index}
-            className={`min-h-[100svh] flex items-center py-6 sm:py-8 md:py-12 ${
+            className={`flex items-center py-8 sm:py-10 md:py-12 ${
               section.backgroundColor || (index % 3 === 0 ? 'bg-gray-900 text-white backdrop-blur-md' : index % 3 === 1 ? 'bg-gray-800 text-white backdrop-blur-sm' : 'bg-gray-900 text-white')
             }`}
           >
             <div className="max-w-[1600px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 w-full">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-center min-h-[70vh] sm:min-h-[75vh] lg:min-h-[80vh] ${
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center ${
                 isReversed ? 'lg:grid-flow-col-dense' : ''
               }`}>
 
                 {/* Text Content - Larger Typography */}
                 <motion.div
-                  className={`space-y-4 sm:space-y-6 md:space-y-8 ${isReversed ? 'lg:col-start-2' : ''} ${
+                  className={`space-y-3 sm:space-y-4 md:space-y-6 ${isReversed ? 'lg:col-start-2' : ''} ${
                     isReversed ? 'lg:pl-4 xl:pl-8' : 'lg:pr-4 xl:pr-8'
                   }`}
                   initial={{ opacity: 0, x: isReversed ? 60 : -60 }}
@@ -35,7 +35,7 @@ export default function AlternatingLayout({ sections = [] }) {
                 >
                   {section.kicker && (
                     <motion.p
-                      className={`text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mb-2 sm:mb-4 ${section.textColor === 'text-black' ? 'text-gray-700' : 'text-indigo-300'}`}
+                      className={`font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mb-2 sm:mb-4 ${section.textColor === 'text-black' ? 'text-gray-700' : 'text-indigo-300'}`}
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
@@ -47,7 +47,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.headline && (
                     <motion.h2
-                      className={`${section.headlineSize || 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-4 sm:mb-6 md:mb-8 ${section.textColor || 'text-white'} ${section.textColor === 'text-black' ? '' : 'drop-shadow-lg'}`}
+                      className={`font-sans ${section.headlineSize || 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-4 sm:mb-6 md:mb-8 ${section.textColor || 'text-white'} ${section.textColor === 'text-black' ? '' : 'drop-shadow-lg'}`}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.8 }}
@@ -59,7 +59,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.body && (
                     <motion.div
-                      className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed font-light mb-6 sm:mb-8 md:mb-12 ${section.textColor === 'text-black' ? 'text-gray-800' : 'text-gray-100'}`}
+                      className={`font-sans text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl leading-relaxed font-light mb-6 sm:mb-8 ${section.textColor === 'text-black' ? 'text-gray-800' : 'text-gray-100'}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8 }}
@@ -79,7 +79,7 @@ export default function AlternatingLayout({ sections = [] }) {
                       <Button
                         asChild
                         size="lg"
-                        className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto"
+                        className="font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto"
                       >
                         <Link to={createPageUrl(section.cta.link)}>
                           {section.cta.label}

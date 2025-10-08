@@ -42,8 +42,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Watch mode**: `npm run deploy:watch` - Auto-deploy on changes
 - **Sync env**: `npm run deploy:sync-env` - Sync environment variables to Netlify
 
-### Database Setup
+### Database & Migration Management
 - **Setup database**: `npm run db:setup` - Initialize database schema and configuration
+- **Apply Business Brain migration**: `node scripts/apply-business-brain-migration.js` - Apply Business Brain infrastructure
+- **Verify Business Brain tables**: `node scripts/verify-business-brain-tables.cjs` - Verify migration success
 
 ## Project Architecture
 
@@ -128,6 +130,23 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Demo Pages**: `/demos/growth-audit` (landing) and `/demos/growth-audit/:jobId` (results)
 - **See**: `docs/GROWTH_AUDIT_INTEGRATION.md` for complete documentation
 
+**Business Brain System** (`src/admin/modules/BusinessBrainBuilder.jsx`, Netlify functions):
+- **AI-Powered Knowledge Base**: Central intelligence layer for all AI-generated content
+- **Multi-Source Knowledge Ingestion**: Web scraping (Firecrawl), AI onboarding (Claude), manual entry, file uploads
+- **Three-Tier Brain Levels**:
+  - Level 1 Starter (auto-generated, confidence 0.3-0.5)
+  - Level 2 Enhanced (AI onboarding, confidence 0.6-0.8)
+  - Level 3 Expert (full brand guidelines, confidence 0.9-1.0)
+- **Brand Identity Storage**: Colors, typography, logo, brand rules, voice/tone guidelines
+- **Fact Management**: Categorized facts with FTS + vector search, confidence scoring, evidence URLs
+- **Content Personalization**: All AI content uses brain context for brand-consistent generation
+- **Netlify Functions**:
+  - `brain-auto-initialize.ts` - Auto-scrape and create starter brain
+  - `brain-enhance.ts` - AI onboarding conversation engine
+  - `brain-content-generate.ts` - Brain-aware content generation
+- **Database Schema**: 7 new tables (business_brains, brain_facts, brand_rules, brand_assets, onboarding_sessions, knowledge_sources, posts_brain_facts)
+- **See**: `docs/BUSINESS_BRAIN_COMPLETE_SYSTEM.md`, `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md` for complete documentation
+
 ### MCP (Model Context Protocol) Ecosystem
 
 Extensive integration with 23+ MCP servers across:
@@ -152,8 +171,28 @@ Extensive integration with 23+ MCP servers across:
 - Ctrl+Shift+Escape for emergency exit
 - Matrix-style login interface with session-based authentication (24-hour expiry)
 - Secure admin dashboard accessible only via secret patterns
-- Admin blog management at `/blog-management` route
+- Admin route: `/admin/secret` with 11 modules
 - Service role authentication for elevated admin operations
+
+**Admin Modules** (`src/admin/modules/`):
+- **Dashboard Overview**: Stats, activity monitoring, system health
+- **Content Management**: AI-powered post editor with blog management
+- **Team Management**: Role-based permissions, team member profiles
+- **Media Library**: Asset catalog with AI image tracking
+- **Business Brain Builder**: Knowledge base with fact extraction and onboarding
+- **Agent Chat**: Interactive AI agent conversations
+- **Agent Builder** (stub): AI agent creation and training interface
+- **Brand DNA Builder** (stub): Brand voice and style configuration
+- **Workflow Manager** (stub): Automation pipeline designer
+- **Integrations Hub** (stub): Third-party service connections
+- **Telemetry Dashboard** (stub): System monitoring and analytics
+
+**Admin Architecture**:
+- Zero-impact public site integration (single route guard in App.jsx)
+- Lazy-loaded modules for optimal performance
+- Dual authentication contexts (admin vs. public)
+- TypeScript API layer (`src/admin/api/`) with JavaScript public API preserved
+- Session-based auth with 24-hour expiry
 
 ### Technology Stack
 
@@ -198,6 +237,10 @@ VITE_SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 VITE_FIRECRAWL_API_KEY=your_firecrawl_key      # Web crawling (required)
 VITE_BRANDFETCH_API_KEY=your_brandfetch_key    # Brand detection (optional)
 VITE_PAGESPEED_API_KEY=your_google_api_key     # PageSpeed Insights (optional)
+
+# Keyword Research System (DataForSEO)
+DATAFORSEO_LOGIN=your_dataforseo_email         # Real keyword data
+DATAFORSEO_PASSWORD=your_dataforseo_password   # Volume, difficulty, CPC, trends
 
 # AI Generation Services
 VITE_OPENAI_API_KEY=your_openai_key          # gpt-image-1 ONLY (NOT DALL-E)
@@ -291,6 +334,29 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ## Important Development Notes
 
+### Business Brain Migration Status
+
+**Database Migration**: The Business Brain infrastructure migration is **ready but not yet applied** to production database.
+
+**Migration Files**:
+- `supabase/migrations/20250107_business_brain_infrastructure.sql` - Complete schema with 7 new tables
+- `scripts/apply-business-brain-migration.js` - Migration application script
+- `scripts/verify-business-brain-tables.cjs` - Post-migration verification
+- `APPLY_MIGRATION_NOW.md` - Step-by-step migration instructions
+
+**What's Included**:
+- 7 new tables: business_brains, brain_facts, brand_rules, brand_assets, onboarding_sessions, knowledge_sources, posts_brain_facts
+- Full-text search (FTS) + vector embeddings for semantic fact search
+- Row Level Security (RLS) policies on all tables
+- Functions: search_brain_facts (FTS), calculate_brain_health (metrics)
+- Views: brain_health_summary (aggregated metrics)
+
+**Before Using Business Brain Features**:
+1. Review migration SQL: `supabase/migrations/20250107_business_brain_infrastructure.sql`
+2. Apply migration: `node scripts/apply-business-brain-migration.js`
+3. Verify tables: `node scripts/verify-business-brain-tables.cjs`
+4. See detailed instructions: `APPLY_MIGRATION_NOW.md` or `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md`
+
 ### Testing and Quality Assurance
 - **No test framework** is configured - verify functionality through manual browser testing
 - **Linting**: Always run `npm run lint` before commits (ESLint with React rules)
@@ -342,6 +408,17 @@ The project includes a comprehensive Spline MCP Server for 3D scene management:
 - **GSAP Integration**: Seamless coordination with GSAP animations
 
 See `docs/mcp-servers/spline-mcp-server.md` for detailed usage instructions.
+
+### Base44 AI Content Writer Analysis
+The project includes a complete analysis of the Base44 AI Content Writer system for feature extraction and migration planning:
+- **Complete Feature Inventory**: 170 source files, 20+ entities analyzed
+- **Multitenant Architecture**: Client-based multitenancy with knowledge base management
+- **AI Training System**: Client-specific AI training with file uploads
+- **Content Workflow**: Ideation → Generation → Review → Scheduling → Publishing
+- **Rich Text Editor**: ReactQuill WYSIWYG with auto-markdown-to-HTML conversion
+- **Dual AI Providers**: Claude/OpenAI LLM abstraction layer
+- **See**: `docs/BASE44_AI_CONTENT_WRITER_ANALYSIS.md` for complete analysis
+
 ### ANACHRON Lite Icon Generation System
 
 **Style Guide for AI-Generated Service Icons**

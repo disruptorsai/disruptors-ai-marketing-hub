@@ -1,0 +1,15 @@
+{
+  "title": "Brand Asset Library",
+  "name": "brand-asset-library",
+  "category": "Content Creation",
+  "style": "ANACHRON",
+  "concept": "Ancient library scroll cabinet with mosaic preview tiles",
+  "materials": "Marble scroll compartments, mosaic tile thumbnails, bronze frames",
+  "symbology": "Library of Alexandria architecture with glowing asset grid",
+  "primaryColor": "#C96F4C",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Library of Alexandria meets modern asset management.\n\nSubject: A classical marble scroll cabinet with organized compartments, each containing glowing mosaic tile \"thumbnails\" showing brand assets (colors, fonts, images). Bronze frame (#3C7A6A) with verdigris around the cabinet, gold leaf (#C9A53B) labels on compartments.\n\nMaterials: Warm beige marble with natural veining, small mosaic tesserae in brand colors (lapis, terracotta, verdigris, gold), weathered bronze frame, gold leaf accents.\n\nLighting: Warm side light through columns, soft multi-color glow from mosaic tiles, golden highlights on bronze frame.\n\nColor palette: Terracotta #C96F4C marble tones, lapis blue #2C6BAA mosaic glow, verdigris #3C7A6A bronze frame, muted gold #C9A53B labels.\n\nFinish: Academic oil painting with architectural precision, mosaic detail work, subtle craquelure, cohesive light on all surfaces.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:13:01.147Z",
+  "filepath": "/images/resource-icons/brand-asset-library.png"
+}

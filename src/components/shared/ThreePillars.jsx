@@ -27,9 +27,9 @@ export default function ThreePillars({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-8 sm:mb-12 md:mb-16"
+        className="text-center mb-6 sm:mb-8"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white px-2">{title}</h2>
+        <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white px-2">{title}</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
@@ -43,8 +43,8 @@ export default function ThreePillars({
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">{pillar.title}</h3>
-              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{pillar.description}</p>
+              <h3 className="font-sans text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">{pillar.title}</h3>
+              <p className="font-sans text-sm sm:text-base text-gray-300 leading-relaxed">{pillar.description}</p>
             </motion.div>
           );
         })}

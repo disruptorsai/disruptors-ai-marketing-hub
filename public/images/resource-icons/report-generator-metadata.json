@@ -1,0 +1,15 @@
+{
+  "title": "Report Generator",
+  "name": "report-generator",
+  "category": "Content Creation",
+  "style": "ANACHRON",
+  "concept": "Ancient papyrus scroll with holographic data visualization",
+  "materials": "Aged papyrus, bronze scroll rods, gold ink, mosaic charts",
+  "symbology": "Scholarly scroll with flowing metrics and insights",
+  "primaryColor": "#3C7A6A",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient scholarly scrolls meet modern data reporting.\n\nSubject: A partially unrolled papyrus scroll with bronze rods showing verdigris patina (#3C7A6A). Written in gold ink (#C9A53B), text transforms into holographic bar charts, pie charts, and data visualizations in lapis blue (#2C6BAA) and terracotta (#C96F4C). Small mosaic \"pixel\" chart embedded in scroll.\n\nMaterials: Authentic aged papyrus texture with natural fiber, weathered bronze scroll rods, gold ink/leaf, mosaic data elements, holographic projections.\n\nLighting: Warm scholar's light from side, multi-color chart glow, golden ink highlights, papyrus fiber shadows.\n\nColor palette: Verdigris green #3C7A6A bronze rods, lapis blue #2C6BAA data visualizations, terracotta #C96F4C chart accents, muted gold #C9A53B ink.\n\nFinish: Academic painting of ancient documents, papyrus fiber detail, precise data visualization rendering, cohesive glow integration.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:14:25.020Z",
+  "filepath": "/images/resource-icons/report-generator.png"
+}

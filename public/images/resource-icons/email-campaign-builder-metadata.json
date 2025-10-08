@@ -1,0 +1,15 @@
+{
+  "title": "Email Campaign Builder",
+  "name": "email-campaign-builder",
+  "category": "Marketing & Growth",
+  "style": "ANACHRON",
+  "concept": "Ancient wax tablet with glowing message seal",
+  "materials": "Wood frame, beeswax writing surface, bronze stylus, gold seal",
+  "symbology": "Epistolary scroll with holographic delivery tracking",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient correspondence meets modern email campaigns.\n\nSubject: An elegant wax tablet (diptych) with wooden frame and beeswax surface showing carved text. Bronze stylus with verdigris (#3C7A6A) resting beside it. Golden seal (#C9A53B) on tablet glowing with holographic lapis blue (#2C6BAA) message streams flowing outward like sent emails.\n\nMaterials: Aged olive wood frame with natural grain, authentic beeswax surface (warm honey tone), bronze stylus with oxidation, gold leaf seal, holographic projections.\n\nLighting: Warm Mediterranean light, soft cyan glow from holographic messages, golden seal highlight, natural wood grain shadows.\n\nColor palette: Lapis blue #2C6BAA holographic email streams, warm wood and beeswax tones, verdigris #3C7A6A stylus, muted gold #C9A53B seal.\n\nFinish: Painterly rendering of wood grain and wax texture, academic style, subtle material wear, tech glow naturally integrated.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T03:13:34.596Z",
+  "filepath": "/images/resource-icons/email-campaign-builder.png"
+}
