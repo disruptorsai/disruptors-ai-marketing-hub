@@ -1,0 +1,9 @@
+{
+  "service": "Keyword Research",
+  "slug": "keyword-research",
+  "prompt": "Simple flat vector icon: magnifying glass with three horizontal lines inside lens, 2px black stroke, minimal geometric design, blue accent color #2C6BAA, white background, extremely simple, clean lines, centered, icon style, no details, no texture",
+  "negativePrompt": "neon, plastic, modern logos, cars, 3D render, gradients, photorealism, cartoon, oversaturation, noisy background, busy details, cluttered composition, complex details, patterns, textures, shading, shadows, 3d effects, realistic, ornate, decorative",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T23:53:17.851Z",
+  "filepath": "/generated/anachron-lite/keyword-research-icon-anachron-lite.png"
+}

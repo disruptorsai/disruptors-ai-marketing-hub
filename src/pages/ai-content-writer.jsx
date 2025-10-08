@@ -388,6 +388,45 @@ export default function AIContentWriter() {
           </button>
         </div>
 
+        {/* Get Keywords CTA */}
+        <div className="mb-8">
+          <div
+            className="bg-gradient-to-r from-white to-white rounded-xl p-6 flex items-center justify-between"
+            style={{
+              border: '1.5px solid var(--brand-primary)',
+              boxShadow: '0 4px 12px rgba(var(--brand-primary-rgb), 0.1)',
+            }}
+          >
+            <div className="flex items-center gap-4">
+              <div
+                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: 'rgba(var(--brand-primary-rgb), 0.1)' }}
+              >
+                <Search className="w-6 h-6" style={{ color: 'var(--brand-primary)' }} />
+              </div>
+              <div>
+                <h3 className="text-base font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+                  Need keyword ideas?
+                </h3>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  Research high-value keywords with volume, difficulty, and trend data
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => window.location.href = '/keyword-research'}
+              className="px-6 py-3 rounded-lg font-semibold text-white flex items-center gap-2"
+              style={{
+                backgroundColor: 'var(--brand-primary)',
+                boxShadow: '0 2px 8px rgba(var(--brand-primary-rgb), 0.2)',
+              }}
+            >
+              <Search className="w-5 h-5" />
+              Get Keywords
+            </Button>
+          </div>
+        </div>
+
         <TabsContent value="titles" className="mt-6">
           <TitleGenerator brainId={userBrain.id} onTitleSelected={() => setActiveTab('article')} />
         </TabsContent>

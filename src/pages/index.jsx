@@ -44,6 +44,7 @@ const BlogManagement = lazy(() => import('./blog-management.jsx'));
 // Business Brain system - lazy loaded
 const BusinessBrainManager = lazy(() => import('./business-brain-manager.jsx'));
 const AIContentWriter = lazy(() => import('./ai-content-writer.jsx'));
+const KeywordResearch = lazy(() => import('./keyword-research.jsx'));
 const Tools = lazy(() => import('./tools.jsx'));
 
 // Auth system
@@ -150,6 +151,8 @@ const PAGES = {
     "business-brain-manager": BusinessBrainManager,
 
     "ai-content-writer": AIContentWriter,
+
+    "keyword-research": KeywordResearch,
 
     "work-tradeworx-usa": WorkTradeworxUsa,
     
@@ -301,6 +304,9 @@ function PagesContent() {
 
                 <Route path="/ai-content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
                 <Route path="/app/content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
+
+                <Route path="/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
+                <Route path="/app/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
 
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 
