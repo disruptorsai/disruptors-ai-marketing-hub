@@ -48,7 +48,7 @@ export default function GrowthAuditDemo() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-20">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
@@ -56,7 +56,7 @@ export default function GrowthAuditDemo() {
             AI-Powered Growth Analysis
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
             Instant Growth Audit
           </h1>
 
@@ -104,9 +104,9 @@ export default function GrowthAuditDemo() {
               </CardHeader>
             </Card>
 
-            <Card className="border-purple-100 dark:border-purple-900">
+            <Card className="border-cyan-100 dark:border-cyan-900">
               <CardHeader>
-                <Target className="w-8 h-8 text-purple-600 mb-2" />
+                <Target className="w-8 h-8 text-cyan-600 mb-2" />
                 <CardTitle className="text-lg">8-15 Opportunities</CardTitle>
                 <CardDescription>AI-identified growth gaps with impact scoring</CardDescription>
               </CardHeader>

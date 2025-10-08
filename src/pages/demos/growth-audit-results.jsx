@@ -91,7 +91,7 @@ export default function GrowthAuditResults() {
   // Loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
         <Card className="max-w-md w-full">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -106,7 +106,7 @@ export default function GrowthAuditResults() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Crawling website</p>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-600 rounded-full animate-pulse animation-delay-200" />
+                <div className="w-2 h-2 bg-cyan-600 rounded-full animate-pulse animation-delay-200" />
                 <p className="text-sm text-gray-600 dark:text-gray-400">Detecting brand</p>
               </div>
               <div className="flex items-center gap-2">
@@ -280,7 +280,7 @@ export default function GrowthAuditResults() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Growth Opportunities ({profile.quickWins.length})</CardTitle>
-                  <Badge className="bg-purple-600">
+                  <Badge className="bg-cyan-600">
                     AI-Identified
                   </Badge>
                 </div>
