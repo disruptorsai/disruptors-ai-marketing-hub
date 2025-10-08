@@ -3,6 +3,7 @@ import { Brain, Search, Palette, MessageSquare, Plug2, Plus, Edit, Trash2, Alert
 import { BrainAPI } from '@/lib/brain-api';
 import { supabase } from '@/lib/supabase-client';
 import { useToast } from '@/components/ui/use-toast';
+import BrainThemedLayout, { BrandedHeading, BrandedButton } from '@/components/layout/BrainThemedLayout';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -89,51 +90,65 @@ export default function BusinessBrainManager() {
   };
 
   if (loading) {
-    return <LoadingState />;
+    return (
+      <BrainThemedLayout showLoading={true}>
+        <LoadingState />
+      </BrainThemedLayout>
+    );
   }
 
   if (error || !brain) {
-    return <ErrorState error={error} onRetry={loadBrain} />;
+    return (
+      <BrainThemedLayout showLoading={false}>
+        <ErrorState error={error} onRetry={loadBrain} />
+      </BrainThemedLayout>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Brain className="h-10 w-10 text-primary" />
-            <h1 className="text-4xl font-bold">Business Brain Manager</h1>
+    <BrainThemedLayout>
+      <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <Brain className="h-10 w-10 text-[var(--brand-primary)]" />
+              <BrandedHeading level={1} className="text-4xl">
+                Business Brain Manager
+              </BrandedHeading>
+            </div>
+            <p className="text-muted-foreground text-lg">
+              Manage your AI-powered business knowledge hub for{' '}
+              <span className="font-semibold text-[var(--brand-primary)]">
+                {brain.business_name}
+              </span>
+            </p>
           </div>
-          <p className="text-muted-foreground text-lg">
-            Manage your AI-powered business knowledge hub
-          </p>
-        </div>
 
-        {/* Main Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="dashboard" className="gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Dashboard
-            </TabsTrigger>
-            <TabsTrigger value="knowledge" className="gap-2">
-              <Search className="h-4 w-4" />
-              Knowledge
-            </TabsTrigger>
-            <TabsTrigger value="brand" className="gap-2">
-              <Palette className="h-4 w-4" />
-              Brand Voice
-            </TabsTrigger>
-            <TabsTrigger value="onboarding" className="gap-2">
-              <MessageSquare className="h-4 w-4" />
-              Onboarding
-            </TabsTrigger>
-            <TabsTrigger value="integrations" className="gap-2">
-              <Plug2 className="h-4 w-4" />
-              Integrations
-            </TabsTrigger>
-          </TabsList>
+          {/* Main Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            <TabsList className="grid w-full grid-cols-5">
+              <TabsTrigger value="dashboard" className="gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+                <TrendingUp className="h-4 w-4" />
+                Dashboard
+              </TabsTrigger>
+              <TabsTrigger value="knowledge" className="gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+                <Search className="h-4 w-4" />
+                Knowledge
+              </TabsTrigger>
+              <TabsTrigger value="brand" className="gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+                <Palette className="h-4 w-4" />
+                Brand Voice
+              </TabsTrigger>
+              <TabsTrigger value="onboarding" className="gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+                <MessageSquare className="h-4 w-4" />
+                Onboarding
+              </TabsTrigger>
+              <TabsTrigger value="integrations" className="gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+                <Plug2 className="h-4 w-4" />
+                Integrations
+              </TabsTrigger>
+            </TabsList>
 
           <TabsContent value="dashboard">
             <DashboardTab brain={brain} onRefresh={loadBrain} />
@@ -155,8 +170,9 @@ export default function BusinessBrainManager() {
             <IntegrationsTab />
           </TabsContent>
         </Tabs>
+        </div>
       </div>
-    </div>
+    </BrainThemedLayout>
   );
 }
 
@@ -1205,7 +1221,7 @@ function LoadingState() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center">
-        <Brain className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
+        <Brain className="h-16 w-16 text-[var(--brand-primary)] mx-auto mb-4 animate-pulse" />
         <p className="text-muted-foreground">Loading Business Brain...</p>
       </div>
     </div>
@@ -1218,18 +1234,18 @@ function LoadingState() {
 function ErrorState({ error, onRetry }) {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="max-w-md">
+      <Card className="max-w-md border-2 border-[var(--brand-primary)]/20">
         <CardContent className="py-12 text-center">
           <AlertCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-2">Failed to Load Brain</h3>
+          <h3 className="text-2xl font-bold mb-2 text-[var(--brand-primary)]">Failed to Load Brain</h3>
           <p className="text-muted-foreground mb-6">
             {error || 'Could not find Business Brain for this user'}
           </p>
           <div className="flex gap-3 justify-center">
-            <Button onClick={onRetry} variant="outline">
+            <Button onClick={onRetry} variant="outline" className="border-[var(--brand-primary)] text-[var(--brand-primary)]">
               Try Again
             </Button>
-            <Button>Create New Brain</Button>
+            <BrandedButton variant="primary">Create New Brain</BrandedButton>
           </div>
         </CardContent>
       </Card>

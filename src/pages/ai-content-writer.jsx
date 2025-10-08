@@ -37,6 +37,7 @@ import { supabase } from '@/lib/supabase-client';
 // Import new components
 import CalendarView from '@/components/blog/CalendarView';
 import ContentSettings from '@/components/blog/ContentSettings';
+import BrainThemedLayout, { BrandedHeading, BrandedButton } from '@/components/layout/BrainThemedLayout';
 
 // ReactQuill modules configuration
 const quillModules = {
@@ -145,69 +146,119 @@ export default function AIContentWriter() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
+      <BrainThemedLayout showLoading={true}>
+        <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="w-8 h-8 animate-spin text-[var(--brand-primary)]" />
+        </div>
+      </BrainThemedLayout>
     );
   }
 
   if (!userBrain) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle>No Business Brain Found</CardTitle>
-            <CardDescription>
-              You need to create a Business Brain before using the AI Content Writer.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button onClick={() => window.location.href = '/business-brain-manager'}>
-              Create Business Brain
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+      <BrainThemedLayout showLoading={false}>
+        <div className="container mx-auto px-4 py-12">
+          <Card className="max-w-2xl mx-auto border-2 border-[var(--brand-primary)]/20">
+            <CardHeader>
+              <CardTitle className="text-[var(--brand-primary)]">No Business Brain Found</CardTitle>
+              <CardDescription>
+                You need to create a Business Brain before using the AI Content Writer.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <BrandedButton variant="primary" onClick={() => window.location.href = '/business-brain-manager'}>
+                Create Business Brain
+              </BrandedButton>
+            </CardContent>
+          </Card>
+        </div>
+      </BrainThemedLayout>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">AI Content Writer</h1>
-        <p className="text-muted-foreground">
-          Generate SEO-optimized blog content powered by your Business Brain: {userBrain.business_name}
-        </p>
-      </div>
+    <BrainThemedLayout>
+      <div className="container mx-auto px-4 py-8">
+        {/* Branded header */}
+        <div className="mb-8">
+          <BrandedHeading level={1} className="text-4xl mb-2">
+            AI Content Writer
+          </BrandedHeading>
+          <p className="text-muted-foreground">
+            Generate SEO-optimized blog content for{' '}
+            <span className="font-semibold text-[var(--brand-primary)]">
+              {userBrain.business_name}
+            </span>
+          </p>
+        </div>
+
+        {/* Brand info cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-gradient-to-br from-[var(--brand-primary)]/10 to-[var(--brand-primary)]/5 border-2 border-[var(--brand-primary)]/20 rounded-lg p-6 hover:border-[var(--brand-primary)]/40 transition-colors">
+            <div className="flex items-center gap-3 mb-2">
+              <Bot className="w-5 h-5 text-[var(--brand-primary)]" />
+              <h3 className="text-lg font-semibold text-[var(--brand-primary)]">
+                Brand Voice Active
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              All content matches your unique brand voice and tone
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-[var(--brand-secondary)]/10 to-[var(--brand-secondary)]/5 border-2 border-[var(--brand-secondary)]/20 rounded-lg p-6 hover:border-[var(--brand-secondary)]/40 transition-colors">
+            <div className="flex items-center gap-3 mb-2">
+              <Sparkles className="w-5 h-5 text-[var(--brand-secondary)]" />
+              <h3 className="text-lg font-semibold text-[var(--brand-secondary)]">
+                SEO Optimized
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Automatically optimized for search engines and rankings
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-[var(--brand-accent)]/10 to-[var(--brand-accent)]/5 border-2 border-[var(--brand-accent)]/20 rounded-lg p-6 hover:border-[var(--brand-accent)]/40 transition-colors">
+            <div className="flex items-center gap-3 mb-2">
+              <FileText className="w-5 h-5 text-[var(--brand-accent)]" />
+              <h3 className="text-lg font-semibold text-[var(--brand-accent)]">
+                AI Powered
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Claude Sonnet 4.5 generates high-quality, engaging content
+            </p>
+          </div>
+        </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="titles" className="flex items-center gap-2">
+          <TabsTrigger value="titles" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <Sparkles className="w-4 h-4" />
             <span className="hidden sm:inline">Generate Titles</span>
             <span className="sm:hidden">Titles</span>
           </TabsTrigger>
-          <TabsTrigger value="article" className="flex items-center gap-2">
+          <TabsTrigger value="article" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <FileText className="w-4 h-4" />
             <span className="hidden sm:inline">Write Article</span>
             <span className="sm:hidden">Article</span>
           </TabsTrigger>
-          <TabsTrigger value="editor" className="flex items-center gap-2">
+          <TabsTrigger value="editor" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <Edit3 className="w-4 h-4" />
             <span className="hidden sm:inline">Edit & Publish</span>
             <span className="sm:hidden">Edit</span>
           </TabsTrigger>
-          <TabsTrigger value="library" className="flex items-center gap-2">
+          <TabsTrigger value="library" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <Library className="w-4 h-4" />
             <span className="hidden sm:inline">Library</span>
             <span className="sm:hidden">Library</span>
           </TabsTrigger>
-          <TabsTrigger value="calendar" className="flex items-center gap-2">
+          <TabsTrigger value="calendar" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <Calendar className="w-4 h-4" />
             <span className="hidden sm:inline">Calendar</span>
             <span className="sm:hidden">Cal</span>
           </TabsTrigger>
-          <TabsTrigger value="settings" className="flex items-center gap-2">
+          <TabsTrigger value="settings" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
             <Settings className="w-4 h-4" />
             <span className="hidden sm:inline">Settings</span>
             <span className="sm:hidden">Set</span>
@@ -238,7 +289,8 @@ export default function AIContentWriter() {
           <ContentSettings brainId={userBrain.id} />
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </BrainThemedLayout>
   );
 }
 

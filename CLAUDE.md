@@ -155,6 +155,18 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Database Schema**: 7 new tables (business_brains, brain_facts, brand_rules, brand_assets, onboarding_sessions, knowledge_sources, posts_brain_facts)
 - **See**: `docs/BUSINESS_BRAIN_COMPLETE_SYSTEM.md`, `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md` for complete documentation
 
+**Brain Theming System** (`src/hooks/useBrainTheming.js`, `src/components/layout/BrainThemedLayout.jsx`):
+- **Dynamic White-Label Interface**: App interfaces automatically inherit user's brand identity
+- **Brand Data Integration**: Colors, typography, and logos from Business Brain applied to UI
+- **CSS Custom Properties**: 8 variables injected globally (--brand-primary, --brand-secondary, --brand-accent, --brand-neutral, --font-heading, --font-body, --font-accent, --brand-logo-url)
+- **BrainThemedLayout Wrapper**: Automatic brain loading, theme injection, loading/error states, optional brain info header
+- **Branded Components**: 11 reusable components (BrandedStatCard, BrandedProgressBar, BrandedBadge, BrandedGradientText, etc.)
+- **Fallback Theme**: Disruptors & Co default theme when no brain exists or user not authenticated
+- **Zero Re-renders**: Theme variables injected once on mount, cleanup on unmount
+- **App Integration**: AI Content Writer and Business Brain Manager use BrainThemedLayout
+- **Testing Script**: `node scripts/test-brain-theming.js` validates schema, files, and integration
+- **See**: `docs/BRAIN_THEMING_SYSTEM.md`, `EXAMPLE_BRAIN_THEMING_INTEGRATION.md` for complete documentation
+
 ### MCP (Model Context Protocol) Ecosystem
 
 Extensive integration with 23+ MCP servers across:
@@ -253,6 +265,14 @@ if (businessInfo.website) {
 - Test credentials: `TEST_USER_CREDENTIALS.md`
 
 ### Admin Access System
+
+**⚠️ IMPORTANT - System Isolation**:
+Admin Nexus and Public User Accounts are currently **separate, isolated systems**:
+- **Public users** (`/app/*`) use Supabase Auth (Google OAuth + email/password), each with their own Business Brain
+- **Admin console** (`/admin/secret`) uses session-based auth, manages site content and team members (internal staff)
+- **No integration** exists between systems - admins cannot view/manage registered user accounts or their brains
+- **Team Management module** manages `team_members` table (site staff), NOT the `auth.users` table (registered users)
+- **Future integration planned**: See `docs/USER_ACCOUNT_ADMIN_INTEGRATION_PLAN.md` for detailed integration roadmap
 
 **Secret Access Pattern**:
 - 5 logo clicks in 3 seconds OR Ctrl+Shift+D activates admin access
