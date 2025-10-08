@@ -1,0 +1,291 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                    DATABASE QUICK REFERENCE                           ║
+║              Disruptors AI Marketing Hub - Production DB              ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+Database: https://ubqxflzuvxowigbjmqfb.supabase.co
+Generated: 2025-10-08
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ TABLE INVENTORY                                                       │
+├───────────────────────┬──────────┬──────────┬──────────┬──────────────┤
+│ Table Name            │ Exists   │ Rows     │ Columns  │ Status       │
+├───────────────────────┼──────────┼──────────┼──────────┼──────────────┤
+│ users                 │ ✅       │ 0        │ ?        │ Empty        │
+│ posts                 │ ✅       │ 7        │ 37       │ 97% complete │
+│ business_brains       │ ✅       │ 1        │ 12       │ 25% complete │
+│ brain_facts           │ ✅       │ 8        │ 10       │ 38% complete │
+│ brand_rules           │ ✅       │ 1        │ 6        │ 45% complete │
+│ brand_assets          │ ✅       │ 0        │ ?        │ Empty        │
+│ onboarding_sessions   │ ✅       │ 0        │ ?        │ Empty        │
+│ knowledge_sources     │ ✅       │ 0        │ ?        │ Empty        │
+│ posts_brain_facts     │ ❌       │ N/A      │ N/A      │ MISSING      │
+└───────────────────────┴──────────┴──────────┴──────────┴──────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ FEATURE STATUS                                                        │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ ✅ WORKING FEATURES:                                                  │
+│   • Blog post creation, editing, publishing                          │
+│   • SEO metadata (title, description, keywords)                      │
+│   • AI content generation tracking                                   │
+│   • Basic Business Brain (key-value facts)                           │
+│   • Brand rules storage                                              │
+│   • Brain levels and confidence scoring                              │
+│   • Primary and secondary keyword fields                             │
+│                                                                       │
+│ ⚠️  LIMITED FEATURES:                                                 │
+│   • No keyword metadata storage (keyword_data missing)               │
+│   • No search volume/difficulty tracking                             │
+│   • Simplified brain facts (key-value only)                          │
+│   • No fact categorization or importance levels                      │
+│   • No vector semantic search                                        │
+│                                                                       │
+│ ❌ UNAVAILABLE FEATURES:                                              │
+│   • Fact-to-post usage tracking (no junction table)                  │
+│   • Source attribution for facts                                     │
+│   • Fact version control                                             │
+│   • Verification workflow                                            │
+│   • Brand asset management                                           │
+│   • AI onboarding sessions                                           │
+│   • Integration syncing                                              │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ MIGRATION STATUS                                                      │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ Current State: PARTIAL MIGRATION                                     │
+│                                                                       │
+│ • Simple schemas applied (likely manual table creation)              │
+│ • Full Business Brain migration NOT applied                          │
+│ • Keyword migration PARTIALLY applied (2 of 3 columns)               │
+│                                                                       │
+│ Evidence:                                                             │
+│   - business_brains has 12 cols (expected 49)                        │
+│   - brain_facts has 10 cols (expected 26)                            │
+│   - posts missing keyword_data column                                │
+│   - posts_brain_facts table doesn't exist                            │
+│   - Extra column: business_description (not in spec)                 │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ SCHEMA COMPLETENESS                                                   │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  business_brains:  [████░░░░░░] 25%  (12 of 49 columns)              │
+│  brain_facts:      [████░░░░░░] 38%  (10 of 26 columns)              │
+│  brand_rules:      [█████░░░░░] 45%  (6 of 11 columns)               │
+│  posts:            [██████████] 97%  (37 of 38 columns)              │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ MISSING CRITICAL COLUMNS                                              │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ business_brains (38 missing):                                         │
+│   • Business profile: organization_id, business_name, tagline,       │
+│     industry, founded_year, company_size                             │
+│   • Contact: primary_website, email, phone, headquarters             │
+│   • Intelligence: ICP, offerings, value_props, differentiators       │
+│   • Brand: typography, logos, design_style, voice, tone              │
+│   • Content: pillars, formats, publishing_frequency                  │
+│   • Metrics: total_facts, last_trained_at                            │
+│                                                                       │
+│ brain_facts (16 missing):                                             │
+│   • Structure: fact_text, fact_type, category, subcategory           │
+│   • Source: source_type, source_url, source_file_id                  │
+│   • Search: embedding (vector), keywords                             │
+│   • Quality: importance, verified, verified_by                       │
+│   • Versioning: version, previous_version_id, is_current             │
+│                                                                       │
+│ posts (1 missing):                                                    │
+│   • keyword_data (JSONB) - Full DataForSEO metadata                  │
+│                                                                       │
+│ posts_brain_facts (ENTIRE TABLE MISSING):                            │
+│   • id, post_id, brain_fact_id, usage_context,                      │
+│     confidence_at_use, created_at                                    │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ CURRENT DATA SNAPSHOT                                                 │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ Business Brain:                                                       │
+│   Name:       Disruptors AI Brain                                    │
+│   Level:      starter                                                │
+│   Confidence: 0.3                                                    │
+│   Created:    2025-10-01                                             │
+│   Facts:      8 key-value pairs                                      │
+│                                                                       │
+│ Sample Facts (key → value):                                          │
+│   • "Company Name" → "Disruptors & Co"                               │
+│   • "Primary Service" → [stored value]                               │
+│   • "Target Audience" → [stored value]                               │
+│                                                                       │
+│ Posts:                                                                │
+│   Total: 7 posts                                                     │
+│   All have: primary_keyword = NULL                                   │
+│             secondary_keywords = NULL                                │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ MIGRATION OPTIONS                                                     │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ 1️⃣  KEYWORD MIGRATION (Low Risk, Quick Win)                          │
+│    Command: psql $DATABASE_URL -f \                                  │
+│             supabase/migrations/20250131_add_keyword_fields_to_posts.sql
+│    Impact:  Adds keyword_data column to posts                        │
+│    Risk:    🟢 Low - only adds columns, no data loss                 │
+│    Time:    < 1 minute                                               │
+│    Benefit: Enables full keyword research system                     │
+│                                                                       │
+│ 2️⃣  FULL BUSINESS BRAIN MIGRATION (High Impact, Data Loss Risk)      │
+│    Command: node scripts/apply-business-brain-migration.js           │
+│    Impact:  Drops and recreates all Business Brain tables            │
+│    Risk:    🔴 High - WILL LOSE: 1 brain, 8 facts, 1 rule            │
+│    Time:    2-5 minutes                                              │
+│    Benefit: Full feature set - vector search, analytics, versioning │
+│    Prereq:  Export existing data first!                              │
+│                                                                       │
+│ 3️⃣  INCREMENTAL MIGRATION (Safest, Most Complex)                     │
+│    Command: Custom ALTER TABLE script (needs to be created)          │
+│    Impact:  Adds missing columns without dropping tables             │
+│    Risk:    🟡 Medium - schema complexity                            │
+│    Time:    1-2 hours to create + test + apply                       │
+│    Benefit: Preserves all existing data                              │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ RECOMMENDED ACTION PLAN                                               │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ WEEK 1: Keyword Migration                                            │
+│   □ Run keyword migration (low risk)                                 │
+│   □ Test keyword research system                                     │
+│   □ Verify keyword_data storage                                      │
+│                                                                       │
+│ WEEK 2: Data Backup & Analysis                                       │
+│   □ Export business_brains (1 row)                                   │
+│   □ Export brain_facts (8 rows)                                      │
+│   □ Export brand_rules (1 row)                                       │
+│   □ Analyze data structure and transformation needs                  │
+│   □ Decide: Full migration vs. incremental                           │
+│                                                                       │
+│ WEEK 3: Business Brain Migration                                     │
+│   □ Create staging database                                          │
+│   □ Test migration on staging                                        │
+│   □ Verify all features work on staging                              │
+│   □ Plan production migration window                                 │
+│                                                                       │
+│ WEEK 4: Production Migration                                         │
+│   □ Apply migration to production                                    │
+│   □ Verify tables: node scripts/verify-business-brain-tables.cjs     │
+│   □ Re-import transformed data                                       │
+│   □ Test all Business Brain features                                 │
+│   □ Update documentation                                             │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ QUICK COMMANDS                                                        │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ Check current schema:                                                │
+│   node scripts/check-database-schema.js                              │
+│                                                                       │
+│ Detailed comparison:                                                 │
+│   node scripts/compare-schemas.js                                    │
+│                                                                       │
+│ Apply keyword migration:                                             │
+│   psql $DATABASE_URL -f \                                            │
+│     supabase/migrations/20250131_add_keyword_fields_to_posts.sql     │
+│                                                                       │
+│ Apply full Business Brain migration:                                 │
+│   node scripts/apply-business-brain-migration.js                     │
+│                                                                       │
+│ Verify migration:                                                    │
+│   node scripts/verify-business-brain-tables.cjs                      │
+│                                                                       │
+│ Export data (before migration):                                      │
+│   psql $DATABASE_URL -c "COPY business_brains TO STDOUT" > brain.csv│
+│   psql $DATABASE_URL -c "COPY brain_facts TO STDOUT" > facts.csv    │
+│   psql $DATABASE_URL -c "COPY brand_rules TO STDOUT" > rules.csv    │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ RISK ASSESSMENT                                                       │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ Current System:     🟡 MEDIUM RISK                                    │
+│   - Works but limits AI capabilities                                 │
+│   - Cannot scale to advanced features                                │
+│   - Suitable for MVP only                                            │
+│                                                                       │
+│ Migration:          🟡 MEDIUM RISK                                    │
+│   - Full migration = data loss (1 brain worth)                       │
+│   - Incremental = complexity                                         │
+│   - No migration = feature limitation                                │
+│                                                                       │
+│ Production Impact:  🟢 LOW RISK                                       │
+│   - Only 7 posts (early stage)                                       │
+│   - Only 1 brain with 8 facts                                        │
+│   - Minimal data at risk                                             │
+│                                                                       │
+│ Overall:           SAFE TO MIGRATE NOW                               │
+│   Early stage = ideal migration window                               │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│ DOCUMENTATION                                                         │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│ Full Report:                                                          │
+│   DATABASE_SCHEMA_REPORT.md                                          │
+│                                                                       │
+│ Summary:                                                              │
+│   DATABASE_SCHEMA_SUMMARY.txt                                        │
+│                                                                       │
+│ This Quick Reference:                                                │
+│   DATABASE_QUICK_REFERENCE.txt                                       │
+│                                                                       │
+│ Business Brain Docs:                                                 │
+│   docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md                           │
+│   docs/BUSINESS_BRAIN_COMPLETE_SYSTEM.md                             │
+│   APPLY_MIGRATION_NOW.md                                             │
+│                                                                       │
+│ Keyword System Docs:                                                 │
+│   docs/KEYWORD_RESEARCH_SYSTEM.md                                    │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ BOTTOM LINE                                                           ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║                                                                       ║
+║  Status:      🟡 PARTIAL MIGRATION (25-40% complete)                 ║
+║  Risk:        🟡 MEDIUM (works but limits features)                  ║
+║  Priority:    MEDIUM (migrate within 1-2 weeks)                      ║
+║                                                                       ║
+║  Immediate:   Apply keyword migration (5 min, low risk)              ║
+║  Next Week:   Plan Business Brain migration strategy                 ║
+║  2-3 Weeks:   Execute full migration                                 ║
+║                                                                       ║
+║  Current system is good for MVP.                                     ║
+║  Full migration unlocks advanced AI capabilities.                    ║
+║  Perfect time to migrate: early stage, minimal data.                 ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+Generated: 2025-10-08
+Location: /Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/
