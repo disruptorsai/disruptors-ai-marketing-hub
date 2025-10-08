@@ -28,9 +28,13 @@ export default function AuthCallback() {
         setStatus('success');
         toast.success('Successfully signed in!');
 
-        // Wait a moment then redirect
+        // Check if there's a stored return path
+        const returnPath = localStorage.getItem('auth_return_path');
+        localStorage.removeItem('auth_return_path'); // Clean up
+
+        // Wait a moment then redirect to intended destination or home
         setTimeout(() => {
-          navigate('/');
+          navigate(returnPath || '/');
         }, 1500);
       } else {
         throw new Error('No session found');

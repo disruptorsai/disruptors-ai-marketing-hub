@@ -35,6 +35,13 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
+
+      // Store the current path so we can redirect back after auth
+      const returnPath = window.location.pathname;
+      if (returnPath !== '/' && returnPath !== '/auth/callback') {
+        localStorage.setItem('auth_return_path', returnPath);
+      }
+
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -97,7 +104,12 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
 
       let result;
       if (mode === 'signup') {
-        // Sign up
+        // Sign up - store return path for after email verification
+        const returnPath = window.location.pathname;
+        if (returnPath !== '/' && returnPath !== '/auth/callback') {
+          localStorage.setItem('auth_return_path', returnPath);
+        }
+
         result = await supabase.auth.signUp({
           email,
           password,
