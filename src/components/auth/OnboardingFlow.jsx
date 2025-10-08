@@ -37,7 +37,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'The Future of AI-Powered Marketing',
     description: 'You\'ve just joined an elite group of businesses using the most advanced AI marketing platform ever built.',
     icon: Sparkles,
-    gradient: 'from-slate-800 via-blue-900 to-slate-800'
+    gradient: 'from-black via-neutral-900 to-black'
   },
   {
     id: 'brain-intro',
@@ -45,7 +45,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'AI That Knows Your Business Like You Do',
     description: 'Every company is unique. That\'s why we built Business Brain—an AI system that learns everything about YOUR business, industry, customers, and goals.',
     icon: Brain,
-    gradient: 'from-blue-900 via-slate-800 to-blue-900',
+    gradient: 'from-neutral-900 via-neutral-800 to-neutral-900',
     isInteractive: true
   },
   {
@@ -54,7 +54,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'No One Else Is Doing This',
     description: 'Generic AI gives generic results. Business Brain delivers content, strategies, and insights specifically tailored to YOUR company. It\'s like having an AI team member who knows your business inside and out.',
     icon: Zap,
-    gradient: 'from-[#FFD700]/20 via-slate-900 to-[#FFA500]/20'
+    gradient: 'from-neutral-800 via-black to-neutral-800'
   },
   {
     id: 'how-it-works',
@@ -62,7 +62,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'One Brain, All Your Marketing Tools',
     description: 'Your Business Brain automatically feeds context to every AI tool you use—blog writer, social posts, ad copy, and more. No more re-entering your business info. No more generic AI content.',
     icon: Target,
-    gradient: 'from-slate-900 via-blue-900 to-slate-900',
+    gradient: 'from-black via-neutral-900 to-black',
     isInteractive: true
   },
   {
@@ -71,7 +71,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Help Your Business Brain Learn About You',
     description: 'We\'ll use this information to personalize your AI experience.',
     icon: Target,
-    gradient: 'from-slate-900 via-blue-900 to-slate-900',
+    gradient: 'from-neutral-900 via-neutral-800 to-neutral-900',
     isForm: true
   },
   {
@@ -80,7 +80,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Define Your Brand Style (Optional)',
     description: 'Help us understand your brand\'s visual identity and voice. You can skip this and configure it later.',
     icon: Sparkles,
-    gradient: 'from-blue-900 via-slate-800 to-blue-900',
+    gradient: 'from-neutral-800 via-black to-neutral-800',
     isForm: true,
     canSkip: true
   },
@@ -90,7 +90,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Your Business Brain Is Being Created',
     description: 'We\'re setting up your personalized AI system right now. In seconds, you\'ll have access to AI tools that understand your business better than any other platform on the market.',
     icon: Rocket,
-    gradient: 'from-[#FFD700]/20 via-blue-900 to-[#FFA500]/20'
+    gradient: 'from-black via-neutral-900 to-black'
   }
 ];
 
@@ -281,18 +281,18 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
             >
               {/* Glass Card */}
               <div className="relative overflow-hidden rounded-3xl">
-                {/* Animated Gradient Background */}
+                {/* Animated Gradient Background - Subtle Black/Grey */}
                 <motion.div
                   animate={{
                     background: [
-                      'linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%)',
-                      'linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%)',
-                      'linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(239, 68, 68, 0.3) 100%)',
-                      'linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(249, 115, 22, 0.3) 100%)',
-                      'linear-gradient(135deg, rgba(249, 115, 22, 0.3) 0%, rgba(234, 179, 8, 0.3) 100%)',
+                      'linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(30, 30, 30, 1) 100%)',
+                      'linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100%)',
+                      'linear-gradient(135deg, rgba(10, 10, 10, 1) 0%, rgba(35, 35, 35, 1) 100%)',
+                      'linear-gradient(135deg, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 100%)',
+                      'linear-gradient(135deg, rgba(5, 5, 5, 1) 0%, rgba(30, 30, 30, 1) 100%)',
                     ]
                   }}
-                  transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse' }}
+                  transition={{ duration: 15, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
                   className="absolute inset-0"
                 />
 
@@ -317,14 +317,18 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                           exit={{ opacity: 0, x: -20 }}
                           transition={{ duration: 0.3 }}
                         >
-                          {/* Icon */}
+                          {/* Logo */}
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.1, type: 'spring' }}
-                            className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${currentStepData.gradient} mb-6 shadow-lg`}
+                            className="inline-flex items-center justify-center mb-6"
                           >
-                            <Icon className="w-10 h-10 text-white" />
+                            <img
+                              src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png"
+                              alt="Disruptors Logo"
+                              className="w-20 h-20 object-contain"
+                            />
                           </motion.div>
 
                           {/* Content */}
@@ -336,7 +340,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                             <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
                               {currentStepData.title}
                             </h2>
-                            <p className="text-xl text-[#FFD700] mb-6 font-semibold">
+                            <p className="text-xl text-neutral-400 mb-6 font-semibold">
                               {currentStepData.subtitle}
                             </p>
                             <p className="text-lg text-white/80 leading-relaxed mb-6">
@@ -365,8 +369,12 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                     }}
                                     className="flex flex-col items-center"
                                   >
-                                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500] flex items-center justify-center shadow-lg">
-                                      <Brain className="w-10 h-10 text-white" />
+                                    <div className="w-20 h-20 rounded-full bg-neutral-800 flex items-center justify-center shadow-lg p-3">
+                                      <img
+                                        src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png"
+                                        alt="Disruptors Logo"
+                                        className="w-full h-full object-contain"
+                                      />
                                     </div>
                                     <p className="text-white text-sm mt-2 font-semibold">Your Brain</p>
                                   </motion.div>
@@ -379,7 +387,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                         initial={{ width: 0 }}
                                         animate={{ width: 60 }}
                                         transition={{ delay: 0.6 + i * 0.2, duration: 0.5 }}
-                                        className="h-0.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500]"
+                                        className="h-0.5 bg-gradient-to-r from-neutral-500 to-neutral-600"
                                       />
                                     ))}
                                   </div>
@@ -398,7 +406,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                         transition={{ delay: 0.8 + i * 0.2 }}
                                         className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2"
                                       >
-                                        <item.icon className="w-4 h-4 text-[#FFD700]" />
+                                        <item.icon className="w-4 h-4 text-neutral-400" />
                                         <span className="text-white text-xs">{item.label}</span>
                                       </motion.div>
                                     ))}
@@ -459,7 +467,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                           className="flex flex-col items-center"
                                         >
                                           <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg">
-                                            <app.icon className="w-6 h-6 text-[#FFD700]" />
+                                            <app.icon className="w-6 h-6 text-neutral-300" />
                                           </div>
                                           <span className="text-white text-xs mt-1 whitespace-nowrap">{app.label}</span>
                                         </motion.div>
@@ -472,9 +480,9 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                         animate={{
                                           scale: [1, 1.1, 1],
                                           boxShadow: [
-                                            '0 0 20px rgba(255, 215, 0, 0.3)',
-                                            '0 0 40px rgba(255, 215, 0, 0.6)',
-                                            '0 0 20px rgba(255, 215, 0, 0.3)'
+                                            '0 0 20px rgba(115, 115, 115, 0.3)',
+                                            '0 0 40px rgba(140, 140, 140, 0.6)',
+                                            '0 0 20px rgba(115, 115, 115, 0.3)'
                                           ]
                                         }}
                                         transition={{
@@ -482,9 +490,13 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                           repeat: Infinity,
                                           ease: "easeInOut"
                                         }}
-                                        className="w-16 h-16 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500] flex items-center justify-center"
+                                        className="w-16 h-16 rounded-full bg-neutral-800 flex items-center justify-center p-3"
                                       >
-                                        <Brain className="w-8 h-8 text-white" />
+                                        <img
+                                          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png"
+                                          alt="Disruptors Logo"
+                                          className="w-full h-full object-contain"
+                                        />
                                       </motion.div>
                                     </div>
                                   </motion.div>
