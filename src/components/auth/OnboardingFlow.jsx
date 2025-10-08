@@ -193,6 +193,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
   const handleFinish = async () => {
     try {
       setIsInitializing(true);
+      console.log('Starting Business Brain creation...');
 
       // Create Business Brain with all collected data
       const brainData = {
@@ -214,8 +215,11 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
         };
       }
 
+      console.log('Brain data to create:', brainData);
+
       // Create the brain
       const brain = await BrainAPI.createBrain(brainData);
+      console.log('Brain created successfully:', brain);
 
       // If website provided, trigger auto-initialization (website scraping)
       if (businessInfo.website) {
@@ -235,17 +239,22 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       toast.success('Your Business Brain is ready!', {
-        description: 'Start using AI tools customized for your business'
+        description: 'Start using AI tools customized for your business',
+        duration: 3000
       });
 
-      // Close onboarding
+      console.log('Onboarding complete - calling onClose()');
+      // Close onboarding - this triggers navigation
       onClose();
     } catch (error) {
       console.error('Brain initialization error:', error);
+      console.error('Error details:', error.message, error.stack);
       toast.error('Setup failed', {
-        description: 'We\'ll try again when you use your first tool'
+        description: error.message || 'We\'ll try again when you use your first tool',
+        duration: 5000
       });
       // Close anyway - brain can be created on-demand later
+      console.log('Error occurred - calling onClose() anyway');
       onClose();
     } finally {
       setIsInitializing(false);

@@ -87,17 +87,25 @@ export default function AuthCallback() {
   };
 
   const handleOnboardingComplete = () => {
+    console.log('Onboarding complete - navigating...');
     setShowOnboarding(false);
+    setStatus('success'); // Update status to show success message
 
     // Check if there's a stored return path
     const returnPath = localStorage.getItem('auth_return_path');
     localStorage.removeItem('auth_return_path');
 
     // Navigate to intended destination or home
-    toast.success('Setup complete! Welcome to Disruptors');
+    toast.success('Setup complete! Welcome to Disruptors', {
+      description: 'Redirecting you now...'
+    });
+
+    // Immediate navigation
     setTimeout(() => {
-      navigate(returnPath || '/');
-    }, 1000);
+      const destination = returnPath || '/app/content-writer';
+      console.log('Navigating to:', destination);
+      navigate(destination);
+    }, 500);
   };
 
   return (
