@@ -693,7 +693,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                               whileTap={{ scale: 0.95 }}
                               onClick={handleNext}
                               disabled={isInitializing}
-                              className="flex-1 px-6 py-3 rounded-xl bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="flex-1 px-6 py-3 rounded-xl bg-gradient-to-r from-neutral-700 to-neutral-800 text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                               {isInitializing ? (
                                 <>
