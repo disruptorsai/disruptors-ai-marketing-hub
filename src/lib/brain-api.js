@@ -20,16 +20,18 @@ export class BrainAPI {
     const { data, error } = await supabase
       .from('business_brains')
       .insert({
+        name: brainData.business_name || brainData.businessName,
         business_name: brainData.business_name || brainData.businessName,
-        website_url: brainData.website_url || brainData.websiteUrl,
+        primary_website: brainData.website_url || brainData.websiteUrl || brainData.primary_website,
         industry: brainData.industry,
+        description: brainData.business_description || brainData.businessDescription,
         business_description: brainData.business_description || brainData.businessDescription,
         slug: brainData.slug,
         created_by: brainData.user_id || brainData.userId,
         onboarding_completed: brainData.onboarding_completed || false,
         brain_level: brainData.brain_level || 'starter',
         confidence_score: brainData.confidence_score || 0.3,
-        brand_colors: brainData.brand_colors || null,
+        brand_colors: brainData.brand_colors || {},
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
@@ -58,7 +60,7 @@ export class BrainAPI {
     // Call initialize with brain data
     return await this.initializeBrain(
       brain.created_by,
-      options.website_url || brain.website_url,
+      options.website_url || brain.primary_website,
       brain.business_name,
       {
         industry: brain.industry,
