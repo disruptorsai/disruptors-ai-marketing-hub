@@ -67,7 +67,7 @@ const BentoCard = ({ item, index, onExpand }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`group relative ${rowSpan} cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[280px]`}
+      className={`group relative ${rowSpan} cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[350px]`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => onExpand(item)}
@@ -112,11 +112,11 @@ const BentoCard = ({ item, index, onExpand }) => {
       <div className="relative h-full flex flex-col justify-end p-6 z-10">
         {/* Logo */}
         {item.logo && (
-          <div className="mb-4 transform group-hover:scale-110 transition-transform duration-500">
+          <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500">
             <img
               src={item.logo}
               alt={item.client}
-              className="h-12 w-auto object-contain filter brightness-0 invert"
+              className="h-20 w-auto object-contain filter brightness-0 invert"
             />
           </div>
         )}
@@ -312,12 +312,15 @@ const ExpandedCard = ({ item, onClose }) => {
 export default function BentoGrid({ items }) {
   const [expandedItem, setExpandedItem] = useState(null);
 
+  // Repeat items to fill the viewport and overflow
+  const repeatedItems = [...items, ...items, ...items];
+
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[120px]" style={{ gridAutoFlow: 'dense' }}>
-        {items.map((item, index) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 auto-rows-[200px] overflow-x-visible" style={{ gridAutoFlow: 'dense' }}>
+        {repeatedItems.map((item, index) => (
           <BentoCard
-            key={item.name || index}
+            key={`${item.name}-${index}` || index}
             item={item}
             index={index}
             onExpand={setExpandedItem}
