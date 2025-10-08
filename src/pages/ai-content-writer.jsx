@@ -120,9 +120,15 @@ export default function AIContentWriter() {
       const brain = await BrainAPI.getBrainByUser(user.id);
       setUserBrain(brain);
 
-      toast.success('Brain loaded successfully!', {
-        description: `Using brain: ${brain.business_name || 'Business Brain'}`
-      });
+      if (brain) {
+        toast.success('Brain loaded successfully!', {
+          description: `Using brain: ${brain.business_name || 'Business Brain'}`
+        });
+      } else {
+        toast.info('No Business Brain found', {
+          description: 'Complete onboarding to create your Business Brain'
+        });
+      }
     } catch (error) {
       console.error('Error loading brain:', error);
       toast.error('Failed to load Business Brain', {
