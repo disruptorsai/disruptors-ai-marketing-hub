@@ -1,0 +1,122 @@
+{
+  "homepage": {
+    "title": "Disruptors AI Marketing Hub",
+    "url": "https://dm4.wjwelsh.com/",
+    "meta": {
+      "description": null,
+      "ogImage": null,
+      "ogTitle": null,
+      "lang": "en"
+    },
+    "structure": {
+      "navCount": 2,
+      "navLinks": 18,
+      "h1Count": 1,
+      "firstH1": "Digital Marketing× AI Solutions",
+      "h2Count": 4,
+      "h3Count": 62,
+      "sections": 8,
+      "images": 75,
+      "imagesWithAlt": 75,
+      "links": 45,
+      "externalLinks": 0
+    },
+    "headings": {
+      "h1": [
+        "Digital Marketing× AI Solutions"
+      ],
+      "h2": [
+        "More Than an Agency. Your Growth Partner.",
+        "What We Bring to the Table",
+        "Ready to Accelerate Your Growth?",
+        "A Solution for Every Challenge"
+      ],
+      "h3": [
+        "Expert Digital Marketing",
+        "AI Automation",
+        "Conversion Optimization",
+        "Predictive Analytics",
+        "Performance Tracking",
+        "Content at Scale",
+        "Lead Generation",
+        "Marketing Automation",
+        "AI Automation",
+        "Social Media Marketing",
+        "SEO & GEO",
+        "Lead Generation",
+        "AI Automation",
+        "Social Media Marketing",
+        "SEO & GEO"
+      ]
+    },
+    "performance": {
+      "loadTime": 1041,
+      "domReady": 779,
+      "firstPaint": 836,
+      "fcp": 836
+    },
+    "accessibility": {
+      "hasLang": true,
+      "hasTitle": true,
+      "skipLinks": 4,
+      "ariaLabels": 6
+    }
+  },
+  "workPage": {
+    "title": "Disruptors AI Marketing Hub",
+    "url": "https://dm4.wjwelsh.com/work",
+    "meta": {
+      "description": null,
+      "ogImage": null,
+      "ogTitle": null,
+      "lang": "en"
+    },
+    "structure": {
+      "navCount": 2,
+      "navLinks": 18,
+      "h1Count": 2,
+      "firstH1": "WORK",
+      "h2Count": 3,
+      "h3Count": 9,
+      "sections": 5,
+      "images": 20,
+      "imagesWithAlt": 20,
+      "links": 29,
+      "externalLinks": 0
+    },
+    "headings": {
+      "h1": [
+        "WORK",
+        "Real Clients. Real Results."
+      ],
+      "h2": [
+        "Growth Systems That Speak for Themselves",
+        "Wondering What This Could Look Like for Your Business?",
+        "Ready to grow?"
+      ],
+      "h3": [
+        "TradeWorx USA",
+        "Timber View Financial",
+        "The Wellness Way",
+        "Sound Corrections",
+        "SegPro",
+        "Neuro Mastery",
+        "Muscle Works",
+        "Granite Paving",
+        "Auto Trim Utah"
+      ]
+    },
+    "performance": {
+      "loadTime": 270,
+      "domReady": 185,
+      "firstPaint": 288,
+      "fcp": 288
+    },
+    "accessibility": {
+      "hasLang": true,
+      "hasTitle": true,
+      "skipLinks": 4,
+      "ariaLabels": 5
+    }
+  }
+}

@@ -6,7 +6,6 @@ import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
-import AboutValuesMarquee from '../components/about/AboutValuesMarquee';
 
 const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
   <motion.div
@@ -40,7 +39,7 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
   </motion.div>
 );
 
-export default function About() {
+export default function AboutDev() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hoveredMember, setHoveredMember] = useState(null);
@@ -529,9 +528,6 @@ export default function About() {
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
-
-      {/* Light Values Scroller - Breaking up dark sections */}
-      <AboutValuesMarquee />
 
       {/* Partnership Section */}
       <AlternatingLayout sections={partnershipData} />

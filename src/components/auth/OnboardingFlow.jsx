@@ -20,7 +20,12 @@ import {
   CheckCircle,
   ArrowRight,
   ArrowLeft,
-  X
+  X,
+  FileText,
+  MessageSquare,
+  Image,
+  TrendingUp,
+  Database
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { BrainAPI } from '@/lib/brain-api';
@@ -40,7 +45,8 @@ const ONBOARDING_STEPS = [
     subtitle: 'AI That Knows Your Business Like You Do',
     description: 'Every company is unique. That\'s why we built Business Brain—an AI system that learns everything about YOUR business, industry, customers, and goals.',
     icon: Brain,
-    gradient: 'from-blue-900 via-slate-800 to-blue-900'
+    gradient: 'from-blue-900 via-slate-800 to-blue-900',
+    isInteractive: true
   },
   {
     id: 'unique-value',
@@ -49,6 +55,15 @@ const ONBOARDING_STEPS = [
     description: 'Generic AI gives generic results. Business Brain delivers content, strategies, and insights specifically tailored to YOUR company. It\'s like having an AI team member who knows your business inside and out.',
     icon: Zap,
     gradient: 'from-[#FFD700]/20 via-slate-900 to-[#FFA500]/20'
+  },
+  {
+    id: 'how-it-works',
+    title: 'How It Powers Your Apps',
+    subtitle: 'One Brain, All Your Marketing Tools',
+    description: 'Your Business Brain automatically feeds context to every AI tool you use—blog writer, social posts, ad copy, and more. No more re-entering your business info. No more generic AI content.',
+    icon: Target,
+    gradient: 'from-slate-900 via-blue-900 to-slate-900',
+    isInteractive: true
   },
   {
     id: 'business-info',
@@ -327,6 +342,159 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                             <p className="text-lg text-white/80 leading-relaxed mb-6">
                               {currentStepData.description}
                             </p>
+
+                            {/* Interactive Business Brain Demo */}
+                            {currentStepData.id === 'brain-intro' && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-6"
+                              >
+                                <div className="flex items-center justify-center gap-8">
+                                  {/* Brain Icon - Pulsing */}
+                                  <motion.div
+                                    animate={{
+                                      scale: [1, 1.1, 1],
+                                      opacity: [1, 0.8, 1]
+                                    }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      ease: "easeInOut"
+                                    }}
+                                    className="flex flex-col items-center"
+                                  >
+                                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500] flex items-center justify-center shadow-lg">
+                                      <Brain className="w-10 h-10 text-white" />
+                                    </div>
+                                    <p className="text-white text-sm mt-2 font-semibold">Your Brain</p>
+                                  </motion.div>
+
+                                  {/* Connecting Lines */}
+                                  <div className="flex flex-col gap-2">
+                                    {[0, 1, 2].map((i) => (
+                                      <motion.div
+                                        key={i}
+                                        initial={{ width: 0 }}
+                                        animate={{ width: 60 }}
+                                        transition={{ delay: 0.6 + i * 0.2, duration: 0.5 }}
+                                        className="h-0.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500]"
+                                      />
+                                    ))}
+                                  </div>
+
+                                  {/* Data Points */}
+                                  <div className="flex flex-col gap-3">
+                                    {[
+                                      { icon: Database, label: 'Business Data' },
+                                      { icon: Target, label: 'Customer Insights' },
+                                      { icon: TrendingUp, label: 'Industry Trends' }
+                                    ].map((item, i) => (
+                                      <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.8 + i * 0.2 }}
+                                        className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2"
+                                      >
+                                        <item.icon className="w-4 h-4 text-[#FFD700]" />
+                                        <span className="text-white text-xs">{item.label}</span>
+                                      </motion.div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Interactive App Integration Demo */}
+                            {currentStepData.id === 'how-it-works' && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-6"
+                              >
+                                {/* Brain at Center */}
+                                <div className="flex items-center justify-center mb-6">
+                                  <motion.div
+                                    animate={{
+                                      rotate: [0, 360]
+                                    }}
+                                    transition={{
+                                      duration: 20,
+                                      repeat: Infinity,
+                                      ease: "linear"
+                                    }}
+                                    className="relative w-24 h-24"
+                                  >
+                                    {/* Orbiting Apps */}
+                                    {[
+                                      { icon: FileText, label: 'Blog Writer', angle: 0 },
+                                      { icon: MessageSquare, label: 'Social Posts', angle: 90 },
+                                      { icon: Image, label: 'Ad Copy', angle: 180 },
+                                      { icon: Sparkles, label: 'SEO Tools', angle: 270 }
+                                    ].map((app, i) => (
+                                      <motion.div
+                                        key={i}
+                                        className="absolute"
+                                        style={{
+                                          top: '50%',
+                                          left: '50%',
+                                          transform: `translate(-50%, -50%) rotate(${app.angle}deg) translateY(-60px)`
+                                        }}
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.6 + i * 0.15 }}
+                                      >
+                                        <motion.div
+                                          animate={{
+                                            rotate: [-app.angle]
+                                          }}
+                                          transition={{
+                                            duration: 20,
+                                            repeat: Infinity,
+                                            ease: "linear"
+                                          }}
+                                          className="flex flex-col items-center"
+                                        >
+                                          <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg">
+                                            <app.icon className="w-6 h-6 text-[#FFD700]" />
+                                          </div>
+                                          <span className="text-white text-xs mt-1 whitespace-nowrap">{app.label}</span>
+                                        </motion.div>
+                                      </motion.div>
+                                    ))}
+
+                                    {/* Central Brain */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                      <motion.div
+                                        animate={{
+                                          scale: [1, 1.1, 1],
+                                          boxShadow: [
+                                            '0 0 20px rgba(255, 215, 0, 0.3)',
+                                            '0 0 40px rgba(255, 215, 0, 0.6)',
+                                            '0 0 20px rgba(255, 215, 0, 0.3)'
+                                          ]
+                                        }}
+                                        transition={{
+                                          duration: 2,
+                                          repeat: Infinity,
+                                          ease: "easeInOut"
+                                        }}
+                                        className="w-16 h-16 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500] flex items-center justify-center"
+                                      >
+                                        <Brain className="w-8 h-8 text-white" />
+                                      </motion.div>
+                                    </div>
+                                  </motion.div>
+                                </div>
+
+                                <p className="text-center text-white/70 text-sm">
+                                  Your Business Brain automatically feeds context to all your AI tools
+                                </p>
+                              </motion.div>
+                            )}
 
                             {/* Form Fields for business-info step */}
                             {currentStepData.id === 'business-info' && (

@@ -1,50 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { TeamMember } from '@/api/entities';
-import { Linkedin } from 'lucide-react';
-import TwoColumnLayout from '../components/shared/TwoColumnLayout';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
-import DualCTABlock from '../components/shared/DualCTABlock';
-import PageTitle from '../components/shared/PageTitle';
-import AboutValuesMarquee from '../components/about/AboutValuesMarquee';
+import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
+import ReviewsCarousel from '../components/shared/ReviewsCarousel';
+import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 
-const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay }}
-    viewport={{ once: true }}
-    onMouseEnter={onHover}
-    onMouseLeave={onLeave}
-    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer"
-  >
-    <motion.div
-      animate={{
-        scale: isHovered ? 1.2 : 1,
-        opacity: isOtherHovered ? 0.4 : 1,
-      }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg"
-      style={{
-        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
-      }}
-    >
-      <img
-        src={member.headshot}
-        alt={member.name}
-        className="w-full h-full object-cover"
-      />
-    </motion.div>
-    <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
-    <p className="text-black font-semibold text-lg">{member.title}</p>
-  </motion.div>
-);
-
-export default function About() {
-  const [team, setTeam] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [hoveredMember, setHoveredMember] = useState(null);
-
+export default function HomeDev() {
   // Horizontal scroll capabilities section
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -91,80 +55,74 @@ export default function About() {
     };
   }, [isDragging, startX, scrollLeft]);
 
-  const aboutIntroData = [
+  const alternatingData = [
     {
-      headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
-      body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
-      imageAlt: "AI empowerment visualization",
-      backgroundColor: "bg-transparent backdrop-blur-md",
-      textColor: "text-black"
-    }
-  ];
-
-  const partnershipData = [
-    {
-      headline: "Local Salt Lake City Expertise, National Impact",
-      body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
-      imageAlt: "Partnership and collaboration visualization",
+      kicker: "PARTNERSHIP",
+      headline: "More Than an Agency. Your Growth Partner.",
+      body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+      imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black"
     }
   ];
 
-  useEffect(() => {
-    const fetchTeam = async () => {
-      try {
-        setLoading(true);
-        // Fetch team members sorted by display_order
-        const members = await TeamMember.list('display_order');
-        // Filter only active members
-        const activeMembers = members.filter(member => member.is_active);
-        setTeam(activeMembers);
-      } catch (error) {
-        console.error('Error fetching team members:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTeam();
-  }, []);
-
   return (
-    <div>
-      {/* Page Title */}
-      <PageTitle title="ABOUT" />
+    <div className="text-gray-800">
+      {/* Full-Screen Hero with Video Background */}
+      <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E] text-white">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+        </div>
 
-      {/* Hero Video Section */}
-      <section className="w-full bg-transparent overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full overflow-hidden"
-        >
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg"
-            >
-              <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </motion.div>
+        {/* Hero Content */}
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            {/* Logo */}
+            <motion.img
+              src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+              alt="Disruptors AI"
+              className="h-24 sm:h-32 lg:h-40 mx-auto mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+
+            <h1 className="font-sans text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
+              Digital Marketing
+              <br />
+              <span className="text-[#FFD700]">× AI Solutions</span>
+            </h1>
+
+            <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
+              We drive growth with expert digital marketing, then multiply results with AI for business
+            </p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Enhanced Intro Section */}
-      <AlternatingLayout sections={aboutIntroData} />
+      {/* Client Logos Marquee */}
+      <div className="bg-gray-900 overflow-hidden">
+        <ClientLogoMarquee />
+      </div>
 
-      {/* Capabilities Horizontal Scroller - Premium Design */}
+      {/* PARTNERSHIP Section */}
+      <AlternatingLayout sections={alternatingData} />
+
+      {/* Capabilities Horizontal Scroller - What We Bring to the Table */}
       <section className="relative bg-black py-12 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0">
@@ -530,121 +488,57 @@ export default function About() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
 
-      {/* Light Values Scroller - Breaking up dark sections */}
-      <AboutValuesMarquee />
-
-      {/* Partnership Section */}
-      <AlternatingLayout sections={partnershipData} />
-
-      {/* Section 3: Meet the Team (Unchanged) */}
-      <section className="py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Free Marketing Audit CTA */}
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 max-w-2xl mx-auto">
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Meet the Disruptors</h2>
-              <p className="text-lg text-gray-600">The disruptive personalities behind the creative genius of Disruptors Media.</p>
-            </div>
+            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6">
+              Ready to Accelerate Your Growth?
+            </h2>
+            <p className="font-sans text-lg sm:text-xl text-black mb-10 max-w-2xl mx-auto">
+              Get a free, comprehensive marketing audit and discover untapped opportunities in your business.
+            </p>
+            <Link
+              to={createPageUrl('book-strategy-session')}
+              className="font-sans group relative inline-flex items-center justify-center h-16 px-10 xl:px-12 text-lg font-bold text-[#FFD700] uppercase bg-black hover:bg-gray-900 border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+              style={{
+                clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
+                animation: 'goldPulse 3s ease-in-out infinite',
+                boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
+              }}
+            >
+              <span>Free Marketing Audit</span>
+              <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
+            </Link>
           </motion.div>
-          
-          {loading ? (
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
-              <p className="text-gray-600">Loading team members...</p>
-            </div>
-          ) : team.length > 0 ? (
-            <>
-              {/* Mobile: Single column carousel-like layout with hierarchy
-                 Tablet/Portrait: 2 columns
-                 Desktop: All 5 in a single row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
-                {/* Sort team by hierarchy: Josh first, then others */}
-                {[...team]
-                  .sort((a, b) => {
-                    // Josh first (CEO/Founder priority)
-                    if (a.name.toLowerCase().includes('josh')) return -1;
-                    if (b.name.toLowerCase().includes('josh')) return 1;
-                    // Then Kyle and Tyler (co-founders/leadership)
-                    if (a.name.toLowerCase().includes('kyle') || a.name.toLowerCase().includes('tyler')) return -1;
-                    if (b.name.toLowerCase().includes('kyle') || b.name.toLowerCase().includes('tyler')) return 1;
-                    return 0;
-                  })
-                  .map((member, index) => (
-                    <TeamMemberCard
-                      key={member.id}
-                      member={member}
-                      delay={index * 0.1}
-                      isHovered={hoveredMember?.id === member.id}
-                      isOtherHovered={hoveredMember !== null && hoveredMember?.id !== member.id}
-                      onHover={() => setHoveredMember(member)}
-                      onLeave={() => setHoveredMember(null)}
-                    />
-                  ))}
-              </div>
-
-              {/* Full-width description box below team grid */}
-              <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-12">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{
-                    opacity: hoveredMember ? 1 : 0,
-                    y: hoveredMember ? 0 : 20,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="px-4 sm:px-6 lg:px-8"
-                  style={{ minHeight: hoveredMember ? 'auto' : '150px' }}
-                >
-                  {hoveredMember && (
-                    <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-white/30 max-w-7xl mx-auto">
-                      <h3 className="text-3xl font-bold text-black mb-4 text-center">{hoveredMember.name}</h3>
-                      <p className="text-black text-base leading-relaxed text-center">
-                        {hoveredMember.bio}
-                      </p>
-                      {hoveredMember.social_links?.linkedin && (
-                        <div className="mt-6 flex justify-center">
-                          <a
-                            href={hoveredMember.social_links.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
-                          >
-                            <Linkedin className="w-6 h-6" />
-                            <span className="font-semibold">Connect on LinkedIn</span>
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </motion.div>
-              </div>
-            </>
-          ) : (
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
-              <p className="text-gray-600">No team members available at this time.</p>
-            </div>
-          )}
         </div>
       </section>
 
-
-      {/* Call to Action */}
-       <section className="bg-gray-900 text-white py-8">
-         <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
-            <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>
-         </div>
-         <DualCTABlock
-          title=""
-          cta1_text="Book a Free Strategy Session"
-          cta1_link="book-strategy-session"
-          cta2_text="Get a Free Business Audit"
-          cta2_link="free-business-audit"
-         />
+      {/* Services / Solutions */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <video
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-black/50"></div>
+        <div className="relative z-10">
+          <ServicesScrollingRows />
+        </div>
       </section>
+
+      {/* Reviews - Modern Horizontal Auto-Scroll Carousel */}
+      <ReviewsCarousel />
     </div>
   );
 }

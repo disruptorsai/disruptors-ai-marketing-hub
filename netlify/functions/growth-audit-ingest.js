@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { createJob } from './shared/job-storage.js';
+import { createJob } from './shared/job-storage-universal.js';
 
 /**
  * Validate and normalize URL

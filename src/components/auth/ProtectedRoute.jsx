@@ -7,6 +7,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase-client';
+import { BrainAPI } from '@/lib/brain-api';
+import { toast } from 'sonner';
 import LoginModal from './LoginModal';
 import OnboardingFlow from './OnboardingFlow';
 
@@ -22,12 +24,19 @@ export default function ProtectedRoute({ children }) {
     checkUser();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
 
       if (!session) {
         setShowLogin(true);
+      } else if (session.user) {
+        // Check if new user needs onboarding
+        const needsOnboarding = await checkIfNewUser(session.user.id);
+        if (needsOnboarding) {
+          setShowOnboarding(true);
+          setIsNewUser(true);
+        }
       }
     });
 
@@ -41,6 +50,13 @@ export default function ProtectedRoute({ children }) {
       if (session) {
         setUser(session.user);
         setShowLogin(false);
+
+        // Check if new user needs onboarding
+        const needsOnboarding = await checkIfNewUser(session.user.id);
+        if (needsOnboarding) {
+          setShowOnboarding(true);
+          setIsNewUser(true);
+        }
       } else {
         setShowLogin(true);
       }
@@ -52,14 +68,33 @@ export default function ProtectedRoute({ children }) {
     }
   };
 
-  const handleAuthSuccess = (authUser, isNew) => {
+  const checkIfNewUser = async (userId) => {
+    try {
+      // Try to get user's business brain
+      const brain = await BrainAPI.getBrainByUser(userId);
+      return brain === null; // null = new user needs onboarding
+    } catch (error) {
+      // Error fetching brain - assume new user needs onboarding
+      console.error('Error checking user brain:', error);
+      return true;
+    }
+  };
+
+  const handleAuthSuccess = async (authUser, isNew) => {
     setUser(authUser);
     setShowLogin(false);
 
+    // If isNew is explicitly passed, use it. Otherwise check for brain.
+    let needsOnboarding = isNew;
+    if (!isNew && authUser) {
+      needsOnboarding = await checkIfNewUser(authUser.id);
+    }
+
     // Show onboarding for new users
-    if (isNew) {
+    if (needsOnboarding) {
       setIsNewUser(true);
       setShowOnboarding(true);
+      toast.info('Welcome! Let\'s set up your Business Brain');
     }
   };
 

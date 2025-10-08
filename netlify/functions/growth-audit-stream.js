@@ -4,7 +4,7 @@ import {
   updateJobStatus,
   setJobResult,
   setJobError,
-} from './shared/job-storage.js';
+} from './shared/job-storage-universal.js';
 
 /**
  * Netlify function for streaming growth audit progress via Server-Sent Events
