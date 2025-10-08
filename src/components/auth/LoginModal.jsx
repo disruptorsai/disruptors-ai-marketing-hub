@@ -190,9 +190,9 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
             >
               {/* Glassmorphism Card */}
               <div className="relative overflow-hidden rounded-3xl">
-                {/* Gradient Background - Disruptors Brand */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-slate-900/90" />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 via-transparent to-[#FFA500]/10" />
+                {/* Gradient Background - Monochrome */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-900 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/10 via-transparent to-neutral-700/10" />
 
                 {/* Glass Effect */}
                 <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl">
@@ -211,9 +211,13 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, type: 'spring' }}
-                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FFD700] to-[#FFA500] mb-4 shadow-lg"
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-neutral-800 mb-4 shadow-lg p-3"
                       >
-                        <Brain className="w-8 h-8 text-white" />
+                        <img
+                          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png"
+                          alt="Disruptors Logo"
+                          className="w-full h-full object-contain"
+                        />
                       </motion.div>
 
                       <h2 className="text-3xl font-bold text-white mb-2">
@@ -238,7 +242,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                           transition={{ type: 'spring', delay: 0.1 }}
                           className="flex justify-center"
                         >
-                          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500] flex items-center justify-center shadow-lg">
+                          <div className="w-20 h-20 rounded-full bg-neutral-800 flex items-center justify-center shadow-lg">
                             <MailCheck className="w-10 h-10 text-white" />
                           </div>
                         </motion.div>
@@ -248,7 +252,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                           <p className="text-white text-lg">
                             We sent a verification link to:
                           </p>
-                          <p className="text-[#FFD700] font-semibold text-lg">
+                          <p className="text-neutral-300 font-semibold text-lg">
                             {signupEmail}
                           </p>
                           <p className="text-white/60 text-sm">
@@ -364,7 +368,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                             whileTap={{ scale: 0.98 }}
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-neutral-700 to-neutral-800 text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             {loading ? (
                               <>
@@ -398,7 +402,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                     {/* Powered by Badge */}
                     <div className="mt-6 text-center">
                       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
-                        <Sparkles className="w-4 h-4 text-[#FFD700]" />
+                        <Sparkles className="w-4 h-4 text-neutral-400" />
                         <span className="text-white/60 text-xs">Powered by Business Brain AI</span>
                       </div>
                     </div>
