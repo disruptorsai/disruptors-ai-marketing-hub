@@ -47,28 +47,13 @@ export default function Gallery() {
       <div className="fixed inset-0 z-[1] bg-black/60"></div>
 
       {/* Content */}
-      <div className="relative z-10 py-24 sm:py-32">
+      <div className="relative z-10 py-8 sm:py-12">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-5xl sm:text-7xl font-bold text-white tracking-tight mb-4">
-              Portfolio Gallery
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              A showcase of our creative work, AI-generated content, and project highlights
-            </p>
-          </motion.div>
-
           {/* Filter Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
             className="flex flex-wrap items-center justify-center gap-4 mb-12"
           >
             {FILTER_OPTIONS.map((option) => {
@@ -118,6 +103,7 @@ export default function Gallery() {
                   >
                     <GalleryItem
                       asset={asset}
+                      index={index}
                       onClick={() => setSelectedIndex(index)}
                     />
                   </motion.div>
@@ -148,7 +134,7 @@ export default function Gallery() {
   );
 }
 
-function GalleryItem({ asset, onClick }) {
+function GalleryItem({ asset, onClick, index }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -212,7 +198,8 @@ function GalleryItem({ asset, onClick }) {
     >
       {/* Asset - Only render when visible */}
       {isVisible && asset.type === 'image' ? (
-        <img
+        <motion.img
+          layoutId={`gallery-asset-${asset.publicId}`}
           src={optimizedUrl}
           alt="Portfolio item"
           className={`w-full h-full object-cover transition-opacity duration-300 ${
@@ -223,7 +210,8 @@ function GalleryItem({ asset, onClick }) {
           decoding="async"
         />
       ) : isVisible && asset.type === 'video' ? (
-        <img
+        <motion.img
+          layoutId={`gallery-asset-${asset.publicId}`}
           src={optimizedUrl}
           alt="Video thumbnail"
           className={`w-full h-full object-cover transition-opacity duration-300 ${
@@ -448,29 +436,35 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         {/* Content */}
         <motion.div
           key={currentIndex}
-          initial={isScreensaver ? { scale: 1.1, opacity: 0, rotateY: -10 } : { scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-          exit={isScreensaver ? { scale: 0.9, opacity: 0, rotateY: 10 } : { scale: 0.9, opacity: 0 }}
-          transition={isScreensaver ? { duration: 0.8, ease: "easeInOut" } : { duration: 0.3 }}
           className="w-full h-full flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           {asset.type === 'image' ? (
-            <img
+            <motion.img
+              layoutId={`gallery-asset-${asset.publicId}`}
               src={optimizeCloudinaryImage(asset.url, CLOUDINARY_PRESETS.fullscreen)}
               alt="Portfolio item"
               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
               loading="eager"
+              initial={false}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             />
           ) : (
-            <video
-              src={optimizeCloudinaryVideo(asset.url, { quality: 'auto:good', width: 1920 })}
-              controls
-              autoPlay
-              loop
-              preload="metadata"
-              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-            />
+            <motion.div
+              layoutId={`gallery-asset-${asset.publicId}`}
+              className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl overflow-hidden"
+              initial={false}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <video
+                src={optimizeCloudinaryVideo(asset.url, { quality: 'auto:good', width: 1920 })}
+                controls
+                autoPlay
+                loop
+                preload="metadata"
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
           )}
         </motion.div>
       </motion.div>
