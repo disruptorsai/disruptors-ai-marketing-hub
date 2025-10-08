@@ -33,6 +33,11 @@ const Blog = lazy(() => import('./blog.jsx'));
 const BlogDetail = lazy(() => import('./blog-detail.jsx'));
 const BlogManagement = lazy(() => import('./blog-management.jsx'));
 
+// Business Brain system - lazy loaded
+const BusinessBrainManager = lazy(() => import('./business-brain-manager.jsx'));
+const AIContentWriter = lazy(() => import('./ai-content-writer.jsx'));
+const Tools = lazy(() => import('./tools.jsx'));
+
 // Work case studies - lazy loaded
 const WorkSaasContentEngine = lazy(() => import('./work-saas-content-engine.jsx'));
 const WorkTradeworxUsa = lazy(() => import('./work-tradeworx-usa.jsx'));
@@ -86,11 +91,13 @@ const GraveyardArchive = lazy(() => import('./GraveyardArchive.jsx'));
 const ScreenshotManager = lazy(() => import('./ScreenshotManager.jsx'));
 
 const PAGES = {
-    
+
     Home: Home,
-    
+
+    tools: Tools,
+
     assessment: Assessment,
-    
+
     calculator: Calculator,
     
     "404": NotFound,
@@ -118,7 +125,11 @@ const PAGES = {
     "blog-detail": BlogDetail,
 
     "blog-management": BlogManagement,
-    
+
+    "business-brain-manager": BusinessBrainManager,
+
+    "ai-content-writer": AIContentWriter,
+
     "work-tradeworx-usa": WorkTradeworxUsa,
     
     "work-timber-view-financial": WorkTimberViewFinancial,
@@ -217,7 +228,9 @@ function PagesContent() {
 
 
                     <Route path="/Home" element={<Home />} />
-                
+
+                <Route path="/tools" element={<Tools />} />
+
                 <Route path="/assessment" element={<Assessment />} />
                 
                 <Route path="/calculator" element={<Calculator />} />
@@ -243,11 +256,15 @@ function PagesContent() {
                 <Route path="/terms" element={<Terms />} />
                 
                 <Route path="/blog" element={<Blog />} />
-                
+
                 <Route path="/blog-detail" element={<BlogDetail />} />
 
                 <Route path="/blog-management" element={<BlogManagement />} />
-                
+
+                <Route path="/business-brain-manager" element={<BusinessBrainManager />} />
+
+                <Route path="/ai-content-writer" element={<AIContentWriter />} />
+
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 
                 <Route path="/work-timber-view-financial" element={<WorkTimberViewFinancial />} />

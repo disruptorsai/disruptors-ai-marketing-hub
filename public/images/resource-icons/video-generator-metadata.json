@@ -2,9 +2,14 @@
   "title": "AI Video Generator",
   "name": "video-generator",
   "category": "AI Tools",
-  "style": "glassmorphism",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. A translucent play button with film strip elements floating around it, frosted glass layers creating depth.\n\nColor palette: Deep purple gradient #7c3aed to magenta #db2777, white/light purple glass elements, gold frame accents #d4af37.\n\nModern video app aesthetic. Soft shadows, blur effects, premium feel. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient shadow theater with holographic projection",
+  "materials": "Marble screen, bronze puppeteer frame, gold light source",
+  "symbology": "Shadow play with glowing cinematic frames",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient shadow theater meets AI video generation.\n\nSubject: A miniature marble theater screen with bronze frame showing verdigris (#3C7A6A). Behind screen, golden light source (#C9A53B) projects both classical shadow puppets and holographic lapis blue (#2C6BAA) cinematic frames. Film strip border carved in marble with terracotta (#C96F4C) play button centerpiece.\n\nMaterials: Translucent marble screen with natural veining, weathered bronze frame, gold leaf light rays, terracotta play symbol, holographic video frames.\n\nLighting: Dramatic backlight from golden source, cyan holographic projection glow, bronze rim highlights, shadow depth on marble.\n\nColor palette: Lapis blue #2C6BAA holographic video, verdigris #3C7A6A bronze frame, muted gold #C9A53B light source, terracotta #C96F4C play button.\n\nFinish: Academic painting with theatrical lighting, translucent marble rendering, shadow play precision, cohesive projection glow.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:28:07.178Z",
+  "timestamp": "2025-10-08T03:14:50.619Z",
   "filepath": "/images/resource-icons/video-generator.png"
 }

@@ -2,9 +2,14 @@
   "title": "Social Media Manager",
   "name": "social-media-manager",
   "category": "Marketing & Growth",
-  "style": "advanced-gradient",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nAdvanced mesh gradient. Multiple connected nodes or circles representing social networks, flowing together with gradient connections.\n\nColor palette: Pink #ec4899 to orange #f97316 to blue #3b82f6 mesh gradient, vibrant social aesthetic. Gold connection points #d4af37.\n\nModern social media aesthetic. Connected network visualization, smooth gradients. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient agora marketplace with holographic network nodes",
+  "materials": "Marble columns, bronze connection points, terracotta network tiles",
+  "symbology": "Forum gathering with glowing conversation threads",
+  "primaryColor": "#C96F4C",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Roman forum meets modern social networking.\n\nSubject: Miniature marble columns arranged in circular agora pattern, connected by bronze chains with verdigris (#3C7A6A). Center has terracotta (#C96F4C) mosaic showing connected figures. Gold leaf (#C9A53B) connection lines radiating between columns, holographic lapis blue (#2C6BAA) conversation bubbles floating above network nodes.\n\nMaterials: Carved marble columns with classical capitals, bronze chains with authentic patina, terracotta mosaic center, gold leaf connections, holographic social streams.\n\nLighting: Mediterranean marketplace light, multi-color node glow, golden connection highlights, column shadow patterns.\n\nColor palette: Terracotta #C96F4C primary and mosaic, lapis blue #2C6BAA holographic social streams, verdigris #3C7A6A bronze connections, muted gold #C9A53B network lines.\n\nFinish: Architectural precision rendering, mosaic detail work, painterly column texture, tech glow as marketplace energy.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:28:22.186Z",
+  "timestamp": "2025-10-08T03:14:42.375Z",
   "filepath": "/images/resource-icons/social-media-manager.png"
 }

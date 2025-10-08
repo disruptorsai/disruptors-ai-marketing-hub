@@ -2,9 +2,14 @@
   "title": "AI Chatbot Builder",
   "name": "chatbot-builder",
   "category": "AI Tools",
-  "style": "3d-clay",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. A friendly chat bubble with small animated sparkles around it, made of smooth sculpted clay material. Minimalist and approachable.\n\nColor palette: Gradient from vibrant blue #3b82f6 to cyan #06b6d4, clay chat bubble in white with matte finish, gold accent sparkles #c9a53b.\n\nSoft studio lighting, gentle shadows. Modern messaging app aesthetic. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient amphora with dialogue speech waves",
+  "materials": "Terracotta amphora, gold leaf speech patterns, mosaic decoration",
+  "symbology": "Oracle of Delphi vessel with flowing conversation streams",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Oracle communication vessel with AI conversation flow.\n\nSubject: An elegant terracotta amphora (#C96F4C) with black-figure decoration showing figures in conversation. Golden speech wave patterns (#C9A53B) emanate from the vessel's mouth, transforming into holographic dialogue bubbles in lapis blue (#2C6BAA). Small mosaic meander pattern (Greek key) forming circuit-like conversation paths.\n\nMaterials: Fired terracotta with authentic ancient pottery finish, black figure glaze decoration, gold leaf speech patterns, holographic glow projection.\n\nLighting: Soft studio light from top-left, warm glow from vessel, cyan holographic bubble glow, golden rim highlights.\n\nColor palette: Terracotta red #C96F4C vessel, lapis blue #2C6BAA holographic dialogue, muted gold #C9A53B speech waves, black figure decoration.\n\nFinish: Painterly rendering of pottery texture, academic style, subtle craquelure, tech glow integrating naturally with ceramic surface.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:27:57.422Z",
+  "timestamp": "2025-10-08T03:13:09.426Z",
   "filepath": "/images/resource-icons/chatbot-builder.png"
 }

@@ -1,9 +1,15 @@
 {
   "title": "Analytics Dashboard",
   "name": "analytics-dashboard",
-  "style": "advanced-gradient",
-  "prompt": "Professional app store icon, 1024x1024px square format, centered composition with padding.\n\nAdvanced mesh gradient style with sophisticated multi-color blends. Abstract data visualization featuring flowing gradient lines, smooth bar chart elements, or elegant pie chart segments that blend beautifully into gradient flows.\n\nColor palette: Rich purple #9333ea blending seamlessly to bright blue #3b82f6 flowing into vibrant pink #ec4899 in smooth mesh gradient, vibrant yet professional. Subtle gold highlight accents #d4af37 on key data points.\n\nModern dynamic data-forward aesthetic. Clean geometric shapes with smooth anti-aliased edges, seamless gradient transitions, professional SaaS dashboard appearance. Icon perfectly centered with padding.",
+  "category": "Analytics & Insights",
+  "style": "ANACHRON",
+  "concept": "Ancient astronomical instrument with holographic data streams",
+  "materials": "Bronze astrolabe with verdigris, rock crystal data display",
+  "symbology": "Constellation map transforming into bar charts and metrics",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#3C7A6A",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient navigation tools with modern data visualization.\n\nSubject: An ornate bronze astrolabe with verdigris patina (#3C7A6A), its rotating rings displaying holographic bar charts and flowing data streams in lapis blue (#2C6BAA). Rock crystal lens in center showing constellation map that morphs into analytics graphs.\n\nMaterials: Weathered bronze with authentic oxidation, polished rock crystal viewport, gold leaf (#C9A53B) measurement markings, carved marble base.\n\nLighting: Dappled Mediterranean light, strong cyan holographic glow from data streams, golden rim light on bronze edges, crystal refracting light.\n\nColor palette: Lapis blue #2C6BAA for data holograms, bronze verdigris #3C7A6A, muted gold #C9A53B markings, warm marble base.\n\nFinish: Academic painting with craquelure, precise brushwork on metal details, soft glow integration with ancient surfaces.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:25:36.934Z",
+  "timestamp": "2025-10-08T03:12:43.839Z",
   "filepath": "/images/resource-icons/analytics-dashboard.png"
 }

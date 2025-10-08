@@ -2,9 +2,14 @@
   "title": "Integration Hub",
   "name": "integration-hub",
   "category": "Automation & Workflow",
-  "style": "glassmorphism",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. A central hub with multiple connection points radiating outward, translucent glass connectors.\n\nColor palette: Cyan gradient #06b6d4 to blue #3b82f6, white/light blue glass hub, gold connection points #d4af37.\n\nModern integration aesthetic. Radial connections, glass layers, professional. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient mosaic mandala with connection nodes",
+  "materials": "Mosaic tesserae, marble base, bronze connectors, gold traces",
+  "symbology": "Roman road network map with glowing integration paths",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Roman road network meets API integration hub.\n\nSubject: A circular mosaic mandala pattern with central bronze hub and radiating paths made of small marble and terracotta tesserae. Bronze connection points with verdigris (#3C7A6A) at path intersections. Gold leaf (#C9A53B) traces connecting nodes, with lapis blue (#2C6BAA) holographic data flowing between connection points.\n\nMaterials: Small mosaic tiles in brand colors, marble base with carved border, bronze connectors with authentic patina, gold leaf circuit traces, holographic flow.\n\nLighting: Overhead soft light, multi-color glow from connection points, golden trace highlights, mosaic shadow depth.\n\nColor palette: Lapis blue #2C6BAA holographic data, verdigris #3C7A6A bronze nodes, terracotta #C96F4C mosaic tiles, muted gold #C9A53B traces.\n\nFinish: Detailed mosaic tesserae rendering, academic composition, subtle grout texture, tech glow integrated with ancient tilework.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:29:23.041Z",
+  "timestamp": "2025-10-08T03:13:52.080Z",
   "filepath": "/images/resource-icons/integration-hub.png"
 }

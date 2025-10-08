@@ -2,9 +2,14 @@
   "title": "Podcast Studio",
   "name": "podcast-studio",
   "category": "Content Creation",
-  "style": "3d-clay",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. A professional microphone with audio waveforms emanating from it, sculpted clay material.\n\nColor palette: Gradient from red #ef4444 to pink #ec4899, clay microphone in white with matte finish, gold waveforms #c9a53b.\n\nSoft studio lighting, gentle shadows. Podcast aesthetic. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient amphitheater with holographic sound waves",
+  "materials": "Marble theater acoustics, bronze speaking trumpet, gold sound patterns",
+  "symbology": "Greek theater mask with emanating audio visualization",
+  "primaryColor": "#C96F4C",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient acoustic design meets modern podcasting.\n\nSubject: A miniature marble amphitheater or theater mask with perfect acoustic geometry. Bronze speaking trumpet with verdigris (#3C7A6A) positioned at center. Gold leaf (#C9A53B) sound wave patterns carved into marble radiating outward. Holographic terracotta (#C96F4C) and lapis blue (#2C6BAA) audio waveforms flowing from the trumpet.\n\nMaterials: Carved marble with classical theater geometry, bronze trumpet with authentic patina, gold leaf acoustic patterns, holographic sound visualization.\n\nLighting: Warm stage lighting from below, multi-color audio glow, golden wave pattern highlights, marble shadow depth.\n\nColor palette: Terracotta #C96F4C holographic audio, lapis blue #2C6BAA waveforms, verdigris #3C7A6A bronze trumpet, muted gold #C9A53B patterns.\n\nFinish: Neoclassical architectural rendering, acoustic detail precision, painterly marble texture, tech glow as natural emanation.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:29:30.548Z",
+  "timestamp": "2025-10-08T03:14:16.827Z",
   "filepath": "/images/resource-icons/podcast-studio.png"
 }

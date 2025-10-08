@@ -2,9 +2,14 @@
   "title": "Performance Monitor",
   "name": "performance-monitor",
   "category": "Analytics & Insights",
-  "style": "3d-clay",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\n3D clay aesthetic. A speedometer or gauge with needle pointing to high performance zone, sculpted clay.\n\nColor palette: Gradient from cyan #06b6d4 to blue #3b82f6, clay gauge in white with matte finish, gold needle #c9a53b.\n\nSoft lighting, minimal shadows. Performance monitoring aesthetic. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient water clock with holographic performance gauges",
+  "materials": "Bronze clepsydra, marble reservoir, gold measurement marks",
+  "symbology": "Water clock with flowing data streams and metrics",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#3C7A6A",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient time measurement meets performance tracking.\n\nSubject: A classical bronze water clock (clepsydra) with verdigris patina (#3C7A6A), water transformed into glowing lapis blue (#2C6BAA) holographic data streams. Marble reservoir with gold leaf (#C9A53B) measurement marks showing performance levels. Floating holographic gauges and speedometer elements above vessel.\n\nMaterials: Weathered bronze with authentic oxidation, carved marble with veining, gold leaf markers, holographic water/data streams with cyan glow.\n\nLighting: Soft Mediterranean light, strong cyan glow from flowing data, golden measurement highlights, bronze rim light.\n\nColor palette: Lapis blue #2C6BAA holographic data flow, verdigris green #3C7A6A bronze vessel, muted gold #C9A53B metrics, ivory marble.\n\nFinish: Academic oil painting, metallic patina detail, flowing water rendering as holographic data, cohesive light interaction.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:28:45.050Z",
+  "timestamp": "2025-10-08T03:14:08.691Z",
   "filepath": "/images/resource-icons/performance-monitor.png"
 }

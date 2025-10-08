@@ -2,9 +2,14 @@
   "title": "Workflow Automation",
   "name": "workflow-automation",
   "category": "Automation & Workflow",
-  "style": "glassmorphism",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nGlassmorphism style. Connected workflow nodes with arrows showing automation flow, translucent glass connectors.\n\nColor palette: Indigo gradient #6366f1 to purple #9333ea, white/light purple glass nodes, gold flow indicators #d4af37.\n\nModern automation aesthetic. Glass layers, connection flow, professional. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient aqueduct with holographic flow automation",
+  "materials": "Marble arches, bronze flow gates, gold timing mechanisms",
+  "symbology": "Roman engineering with glowing process pathways",
+  "primaryColor": "#2C6BAA",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Roman aqueduct engineering meets workflow automation.\n\nSubject: Miniature marble aqueduct arches in classical Roman style, with bronze flow gates showing verdigris (#3C7A6A). Holographic lapis blue (#2C6BAA) water/data flowing through channels in automated sequence. Gold leaf (#C9A53B) timing gears and mechanisms visible in archway keystones. Small terracotta (#C96F4C) automation nodes at flow decision points.\n\nMaterials: Carved marble arches with authentic stone texture, bronze gates with oxidation, gold leaf mechanical details, holographic flow visualization.\n\nLighting: Soft architectural light from top, cyan flow glow through channels, golden mechanism highlights, arch shadow depth.\n\nColor palette: Lapis blue #2C6BAA holographic data flow, verdigris #3C7A6A bronze gates, muted gold #C9A53B gears, terracotta #C96F4C nodes, ivory marble.\n\nFinish: Architectural rendering precision, engineering detail, painterly stone texture, tech flow as natural water element.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:28:59.679Z",
+  "timestamp": "2025-10-08T03:14:58.925Z",
   "filepath": "/images/resource-icons/workflow-automation.png"
 }

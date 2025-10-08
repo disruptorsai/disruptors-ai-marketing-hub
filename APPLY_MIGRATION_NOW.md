@@ -1,103 +1,87 @@
-# Apply Business Brain Migration - DO THIS NOW
+# Apply Posts Table Migration - IMMEDIATE ACTION REQUIRED
 
-## Quick Instructions
+## Migration Status: Ready to Apply
 
-### Step 1: Open Supabase SQL Editor
+The minimal migration adds only the 2 missing keyword columns to the posts table.
 
-**Direct Link**: https://app.supabase.com/project/ubqxflzuvxowigbjmqfb/sql/new
+## Step 1: Open Supabase SQL Editor
+
+**Direct Link**: https://supabase.com/dashboard/project/ubqxflzuvxowigbjmqfb/sql/new
 
 Or navigate:
-1. Go to https://app.supabase.com
+1. Go to https://supabase.com/dashboard
 2. Click project: ubqxflzuvxowigbjmqfb
 3. Click "SQL Editor" in sidebar
 4. Click "New Query"
 
-### Step 2: Copy Migration SQL
+## Step 2: Copy and Paste This SQL
 
-Open this file: `supabase/migrations/20250107_business_brain_infrastructure.sql`
+**⚠️ IMPORTANT: Copy ONLY the SQL below (NOT the ```sql line)**
 
-**Select ALL** (Ctrl+A) and **Copy** (Ctrl+C)
+-- Add only the missing columns to posts table
+ALTER TABLE posts
+  ADD COLUMN IF NOT EXISTS primary_keyword TEXT,
+  ADD COLUMN IF NOT EXISTS secondary_keywords TEXT[];
 
-### Step 3: Paste and Execute
+-- Create indexes for keyword search performance
+CREATE INDEX IF NOT EXISTS idx_posts_primary_keyword ON posts(primary_keyword);
+CREATE INDEX IF NOT EXISTS idx_posts_secondary_keywords ON posts USING GIN(secondary_keywords);
 
-1. Paste the SQL into the SQL Editor
-2. Click **"RUN"** button (or Ctrl+Enter)
-3. Wait 30-60 seconds for execution
+-- Add comments
+COMMENT ON COLUMN posts.primary_keyword IS 'Primary SEO keyword for this post';
+COMMENT ON COLUMN posts.secondary_keywords IS 'Array of secondary SEO keywords for this post';
 
-### Step 4: Verify Success
+## Step 3: Click "RUN"
 
 You should see: **"Success. No rows returned"**
+
+## Step 4: Verify Columns Were Added
 
 Run this verification query in a NEW query tab:
 
 ```sql
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public'
-  AND table_name IN (
-    'business_brains',
-    'brain_facts',
-    'brand_rules',
-    'brand_assets',
-    'onboarding_sessions',
-    'knowledge_sources',
-    'posts_brain_facts'
-  )
-ORDER BY table_name;
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'posts'
+  AND column_name IN ('primary_keyword', 'secondary_keywords')
+ORDER BY column_name;
 ```
 
-Expected result: **7 tables**
+Expected result: **2 rows** (primary_keyword, secondary_keywords)
 
 ---
 
-## If You Get Errors
+## What This Migration Does
 
-### Error: "extension vector does not exist"
+✅ Adds `primary_keyword` column (TEXT) - for primary SEO keyword targeting
+✅ Adds `secondary_keywords` column (TEXT[]) - for secondary keyword array
+✅ Creates performance indexes on both columns for fast searches
+✅ Safe to run multiple times (uses IF NOT EXISTS)
 
-Run this first:
-```sql
-CREATE EXTENSION IF NOT EXISTS vector;
-```
+## Existing Columns (No Changes)
 
-Then re-run the full migration.
-
-### Error: "table posts does not exist"
-
-Comment out lines that extend the posts table:
-
-Find this section (around line 373):
-```sql
-ALTER TABLE posts
-  ADD COLUMN IF NOT EXISTS brain_id UUID REFERENCES business_brains(id),
-  ...
-```
-
-Add `--` to comment it out:
-```sql
--- ALTER TABLE posts
---   ADD COLUMN IF NOT EXISTS brain_id UUID REFERENCES business_brains(id),
---   ...
-```
-
-### Any Other Errors
-
-Check:
-- pgvector extension is enabled
-- You're using the service_role key (not anon key)
-- Your Supabase project is not in paused state
+These columns already exist in your posts table and won't be modified:
+- `brain_id` - Business Brain reference (UUID)
+- `meta_title` - SEO meta title
+- `meta_description` - SEO meta description
+- `slug` - URL slug (unique)
+- `status` - Post status (draft/published)
+- `scheduled_date` - Publishing schedule timestamp
+- `word_count` - Article word count
+- `ai_generated` - AI generation flag (boolean)
+- `editor_notes` - Editorial notes (text)
 
 ---
 
 ## After Migration Success
 
-Come back and tell me "migration complete" so we can continue with:
+The next automated steps will be:
 
-1. ✅ Deploy Netlify functions
-2. ✅ Test function endpoints
-3. ✅ Create frontend API client
-4. ✅ Build Business Brain Manager UI
-5. ✅ Build AI Content Writer UI
+1. ✅ **Deploy to Production** - Push code to master for Netlify auto-deploy
+2. ✅ **Test Netlify Functions** - Verify brain-auto-initialize, brain-enhance, brain-content-generate
+3. ✅ **End-to-End Testing** - Test full workflow from brain init to content generation
+4. 🔒 **Security Fixes** - Move AI API keys server-side
 
 ---
 
-**Ready?** Open the SQL Editor and apply the migration now!
+**Ready?** Copy the SQL above and run it in Supabase SQL Editor now!

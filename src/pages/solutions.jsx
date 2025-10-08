@@ -103,13 +103,13 @@ export default function Solutions() {
       // Rotate around the fixed pivot point
       gsap.fromTo(handRef.current,
         {
-          rotation: 0 // Starting angle
+          rotation: 10 // Starting angle (more clockwise)
         },
         {
-          rotation: -25, // Ending angle (25 degree travel)
+          rotation: -15, // Ending angle (25 degree travel)
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "center center",
+            start: "top center",
             end: "bottom center",
             scrub: 1,
           },

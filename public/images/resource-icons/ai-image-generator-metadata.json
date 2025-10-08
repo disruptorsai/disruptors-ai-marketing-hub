@@ -2,9 +2,14 @@
   "title": "AI Image Generator",
   "name": "ai-image-generator",
   "category": "AI Tools",
-  "style": "advanced-gradient",
-  "prompt": "Professional app store icon, 1024x1024px square, centered.\n\nAdvanced mesh gradient style. A magical artist's palette with vibrant paint swatches transforming into glowing particles and flowing into abstract artistic shapes.\n\nColor palette: Vibrant orange #ff6b35 blending to purple #9333ea flowing to cyan #06b6d4 in smooth mesh gradient, creative and energetic. Gold sparkle accents #d4af37.\n\nModern creative aesthetic. Flowing brush strokes, abstract art elements, seamless gradient transitions. Centered with padding.",
+  "style": "ANACHRON",
+  "concept": "Ancient painter's palette with mosaic pixel array",
+  "materials": "Terracotta palette, gold leaf paint swatches, mosaic tesserae as pixels",
+  "symbology": "Greek muse symbol with flowing digital paint streams",
+  "primaryColor": "#C96F4C",
+  "accentColor": "#C9A53B",
+  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient artisan tools merged with holographic technology.\n\nSubject: An ancient terracotta painter's palette (#C96F4C) with gold leaf paint swatches transforming into glowing mosaic tesserae that float and arrange themselves into abstract pixel art. Greek symbol for \"creation\" carved into the palette edge.\n\nMaterials: Fired terracotta with authentic clay texture and firing marks, gold leaf (#C9A53B) on paint swatches, small marble mosaic tiles with subtle glow.\n\nLighting: Warm Mediterranean light from top-left, soft cyan-gold glow (#2C6BAA + #C9A53B) from floating mosaic pixels, light reflecting off gold leaf.\n\nColor palette: Terracotta red #C96F4C base, lapis blue #2C6BAA holographic glow, verdigris green #3C7A6A accent tiles, muted gold #C9A53B details.\n\nFinish: Painterly fresco aesthetic with flaking pigment texture, weathered edges, academic composition. Tech elements feel crafted from ancient materials.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-07T19:27:50.047Z",
+  "timestamp": "2025-10-08T03:12:35.398Z",
   "filepath": "/images/resource-icons/ai-image-generator.png"
 }
