@@ -356,7 +356,7 @@ const MarketingImageBatchGenerator = ({ customPlan = null }) => {
             <Button
               onClick={generateImages}
               disabled={isGenerating}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+              className="bg-gradient-to-r from-cyan-0 to-blue-600 hover:from-cyan-0 hover:to-blue-700"
               size="lg"
             >
               {isGenerating ? (

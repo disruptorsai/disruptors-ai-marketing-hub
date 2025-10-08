@@ -222,7 +222,7 @@ Respond with valid JSON only:
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-purple-600" />
+            <Brain className="w-5 h-5 text-cyan-0" />
             AI Batch Planner
           </CardTitle>
           <CardDescription>
@@ -245,7 +245,7 @@ Respond with valid JSON only:
             <Button
               onClick={generateBatchPlan}
               disabled={!planningPrompt.trim() || isAnalyzing}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+              className="bg-gradient-to-r from-cyan-0 to-blue-600 hover:from-cyan-0 hover:to-blue-700"
             >
               {isAnalyzing ? (
                 <>

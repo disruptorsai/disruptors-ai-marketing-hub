@@ -19,8 +19,8 @@ const statusConfig = {
   },
   preparing: {
     icon: Zap,
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-50',
+    color: 'text-cyan-0',
+    bgColor: 'bg-cyan-50',
     label: 'Preparing Request'
   },
   generating: {

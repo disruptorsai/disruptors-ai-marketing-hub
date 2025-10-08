@@ -49,14 +49,14 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       label: 'Blog Manager',
       icon: FileText,
       description: 'AI-powered blog content management system',
-      color: 'from-indigo-500 to-purple-500'
+      color: 'from-indigo-500 to-cyan-0'
     },
     {
       id: 'media',
       label: 'Intelligent Media Studio',
       icon: Image,
       description: 'AI-powered media generation with context awareness',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-cyan-0 to-pink-500'
     },
     {
       id: 'seo',

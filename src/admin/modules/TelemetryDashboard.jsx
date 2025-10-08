@@ -201,8 +201,8 @@ export default function TelemetryDashboard() {
 
         <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
           <div className="flex items-center justify-between mb-3">
-            <div className="p-2 bg-purple-500/10 rounded-lg">
-              <Zap size={20} className="text-purple-400" />
+            <div className="p-2 bg-cyan-500/10 rounded-lg">
+              <Zap size={20} className="text-cyan-400" />
             </div>
             <div className="text-xs text-slate-500 font-medium">AGENT RUNS</div>
           </div>
@@ -254,7 +254,7 @@ export default function TelemetryDashboard() {
                 onClick={() => setFilters({ ...filters, type })}
                 className={`px-3 py-1 rounded-lg text-xs font-medium capitalize transition-all ${
                   filters.type === type
-                    ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
                     : 'bg-slate-800/50 text-slate-400 border border-slate-700/50 hover:border-slate-600/50'
                 }`}
               >

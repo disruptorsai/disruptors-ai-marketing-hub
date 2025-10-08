@@ -739,7 +739,7 @@ export default function AdminBlogManager() {
             <Button
               onClick={handleWriteArticles}
               disabled={isLoading || isGeneratingArticles}
-              className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white border-0"
+              className="bg-gradient-to-r from-indigo-500 to-cyan-0 hover:from-indigo-600 hover:to-cyan-0 text-white border-0"
             >
               <PenTool className="w-4 h-4 mr-2" />
               {isGeneratingArticles
@@ -750,7 +750,7 @@ export default function AdminBlogManager() {
             <Button
               onClick={handleAutoFillPosts}
               disabled={isLoading}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0"
+              className="bg-gradient-to-r from-cyan-0 to-pink-500 hover:from-cyan-0 hover:to-pink-600 text-white border-0"
             >
               <Sparkles className="w-4 h-4 mr-2" />
               AUTO-FILL
@@ -779,7 +779,7 @@ export default function AdminBlogManager() {
             <Button
               onClick={handleTestConnection}
               disabled={isLoading}
-              className="border-purple-400 text-purple-400 hover:bg-purple-400/20"
+              className="border-cyan-0 text-cyan-0 hover:bg-cyan-0/20"
               variant="outline"
             >
               <TestTube className="w-4 h-4 mr-2" />
@@ -994,7 +994,7 @@ export default function AdminBlogManager() {
                     size="sm"
                     variant="ghost"
                     onClick={() => handleEnrichFields(row.id)}
-                    className="p-1 h-7 w-7 text-purple-400 hover:bg-purple-400/20"
+                    className="p-1 h-7 w-7 text-cyan-0 hover:bg-cyan-0/20"
                     title="Auto-Enrich Fields"
                   >
                     <Sparkles className="w-3 h-3" />

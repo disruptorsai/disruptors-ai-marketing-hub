@@ -152,8 +152,9 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
             >
               {/* Glassmorphism Card */}
               <div className="relative overflow-hidden rounded-3xl">
-                {/* Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-500/20 to-blue-700/20" />
+                {/* Gradient Background - Disruptors Brand */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-slate-900/90" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 via-transparent to-[#FFA500]/10" />
 
                 {/* Glass Effect */}
                 <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl">

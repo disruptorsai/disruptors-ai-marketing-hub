@@ -32,7 +32,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'The Future of AI-Powered Marketing',
     description: 'You\'ve just joined an elite group of businesses using the most advanced AI marketing platform ever built.',
     icon: Sparkles,
-    gradient: 'from-blue-500 to-cyan-500'
+    gradient: 'from-slate-800 via-blue-900 to-slate-800'
   },
   {
     id: 'brain-intro',
@@ -40,7 +40,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'AI That Knows Your Business Like You Do',
     description: 'Every company is unique. That\'s why we built Business Brain—an AI system that learns everything about YOUR business, industry, customers, and goals.',
     icon: Brain,
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-blue-900 via-slate-800 to-blue-900'
   },
   {
     id: 'unique-value',
@@ -48,7 +48,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'No One Else Is Doing This',
     description: 'Generic AI gives generic results. Business Brain delivers content, strategies, and insights specifically tailored to YOUR company. It\'s like having an AI team member who knows your business inside and out.',
     icon: Zap,
-    gradient: 'from-blue-600 to-blue-700'
+    gradient: 'from-[#FFD700]/20 via-slate-900 to-[#FFA500]/20'
   },
   {
     id: 'business-info',
@@ -56,7 +56,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Help Your Business Brain Learn About You',
     description: 'We\'ll use this information to personalize your AI experience.',
     icon: Target,
-    gradient: 'from-blue-700 to-cyan-600',
+    gradient: 'from-slate-900 via-blue-900 to-slate-900',
     isForm: true
   },
   {
@@ -65,7 +65,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Define Your Brand Style (Optional)',
     description: 'Help us understand your brand\'s visual identity and voice. You can skip this and configure it later.',
     icon: Sparkles,
-    gradient: 'from-cyan-600 to-blue-500',
+    gradient: 'from-blue-900 via-slate-800 to-blue-900',
     isForm: true,
     canSkip: true
   },
@@ -75,7 +75,7 @@ const ONBOARDING_STEPS = [
     subtitle: 'Your Business Brain Is Being Created',
     description: 'We\'re setting up your personalized AI system right now. In seconds, you\'ll have access to AI tools that understand your business better than any other platform on the market.',
     icon: Rocket,
-    gradient: 'from-blue-500 to-cyan-400'
+    gradient: 'from-[#FFD700]/20 via-blue-900 to-[#FFA500]/20'
   }
 ];
 

@@ -115,8 +115,8 @@ export default function DashboardOverview() {
 
         <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
           <div className="flex items-center justify-between mb-3">
-            <div className="p-2 bg-purple-500/10 rounded-lg">
-              <ImageIcon size={20} className="text-purple-400" />
+            <div className="p-2 bg-cyan-500/10 rounded-lg">
+              <ImageIcon size={20} className="text-cyan-400" />
             </div>
             <div className="text-xs text-slate-500 font-medium">MEDIA</div>
           </div>
@@ -175,9 +175,9 @@ export default function DashboardOverview() {
           </a>
           <button
             onClick={() => alert('Content generation coming soon!')}
-            className="p-4 bg-slate-950/50 border border-slate-800/50 hover:border-purple-500/30 hover:bg-slate-950/80 transition-all rounded-lg text-center group"
+            className="p-4 bg-slate-950/50 border border-slate-800/50 hover:border-cyan-500/30 hover:bg-slate-950/80 transition-all rounded-lg text-center group"
           >
-            <FileText size={24} className="mx-auto text-purple-400 mb-2 group-hover:scale-110 transition-transform" />
+            <FileText size={24} className="mx-auto text-cyan-400 mb-2 group-hover:scale-110 transition-transform" />
             <div className="text-slate-300 text-sm font-medium">Generate Content</div>
           </button>
         </div>

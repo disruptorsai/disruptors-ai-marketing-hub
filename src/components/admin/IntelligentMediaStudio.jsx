@@ -451,7 +451,7 @@ Return JSON only in this format:
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <Badge className="bg-purple-400/20 text-purple-400 border-purple-400 mb-2">
+                      <Badge className="bg-cyan-0/20 text-cyan-0 border-cyan-0 mb-2">
                         {prompt.style}
                       </Badge>
                       <p className="text-sm text-green-400/60 font-mono">
@@ -516,7 +516,7 @@ Return JSON only in this format:
                   <img src={image.url} alt={image.style} className="w-full h-auto" />
                   <div className="p-4 space-y-3">
                     <div className="flex items-center justify-between">
-                      <Badge className="bg-purple-400/20 text-purple-400 border-purple-400">
+                      <Badge className="bg-cyan-0/20 text-cyan-0 border-cyan-0">
                         {image.style}
                       </Badge>
                       <Badge className="bg-blue-400/20 text-blue-400 border-blue-400">
