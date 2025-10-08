@@ -16,8 +16,42 @@ export default function AboutValuesMarquee() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef(null);
 
-  // Drag to scroll functionality
+  // Automatic slow scroll animation
+  useEffect(() => {
+    const slider = scrollContainerRef.current;
+    if (!slider) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame (slower = smoother)
+
+    const animate = () => {
+      if (!isPaused && !isDragging) {
+        scrollPosition += scrollSpeed;
+        slider.scrollLeft = scrollPosition;
+
+        // Reset scroll position when we've scrolled through one set
+        const maxScroll = slider.scrollWidth / 3; // We have 3 sets of items
+        if (scrollPosition >= maxScroll) {
+          scrollPosition = 0;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isDragging]);
+
+  // Drag to scroll functionality (pauses auto-scroll while dragging)
   useEffect(() => {
     const slider = scrollContainerRef.current;
     if (!slider) return;
@@ -124,10 +158,12 @@ export default function AboutValuesMarquee() {
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-100 via-gray-100/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-100 via-gray-100/80 to-transparent z-10 pointer-events-none" />
 
-        {/* Draggable scrollable container */}
+        {/* Auto-scrolling container (drag to pause/control) */}
         <div
           ref={scrollContainerRef}
           className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
           <div className="flex gap-8 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
             {marqueeItems.map((item, index) => {
