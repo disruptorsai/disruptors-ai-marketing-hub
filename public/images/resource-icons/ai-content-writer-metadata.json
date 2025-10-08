@@ -1,15 +1,13 @@
 {
   "title": "AI Content Writer",
   "name": "ai-content-writer",
-  "category": "Content Creation",
-  "style": "ANACHRON",
-  "concept": "Ancient stylus meets holographic papyrus",
-  "materials": "Bronze stylus with verdigris patina, marble scroll with glowing inscriptions",
-  "symbology": "Egyptian hieroglyph for \"scribe\" transforming into circuit traces",
-  "primaryColor": "#2C6BAA",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient Greco-Roman aesthetic fused with diegetic future technology.\n\nSubject: An ancient bronze stylus with verdigris patina (#3C7A6A) hovering above a marble scroll that glows with soft blue holographic inscriptions. Egyptian hieroglyph symbols for \"scribe\" carved into the marble base, transitioning into golden circuit traces (#C9A53B).\n\nMaterials: Weathered bronze with authentic verdigris oxidation, warm beige marble with natural veining and chips, gold leaf detailing on circuit patterns.\n\nLighting: Soft golden hour side light creating warm shadows, subtle cyan glow (#2C6BAA) emanating from holographic text, tech glow interacting with marble surface.\n\nColor palette: Lapis blue #2C6BAA for holographic elements, bronze with verdigris #3C7A6A, warm marble beige, muted gold accents #C9A53B.\n\nFinish: Academic oil painting aesthetic with subtle craquelure, painterly brushwork, neoclassical composition. Diegetic technology using ancient materials.\n\nCentered with padding, 1:1 aspect ratio, professional app store quality.",
+  "category": "AI Tools",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco painting in the style of Michelangelo, dramatic scene with a divine\n    hand reaching from golden clouds to touch an ancient scroll with glowing text. Golden quill writing with\n    divine light. Dramatic chiaroscuro lighting with warm ochre, sienna, and umber earth tones. Soft blue sky\n    background. Cracked aged fresco texture throughout. Classical Renaissance composition, sfumato technique,\n    divine inspiration theme. Square format, centered composition, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:12:26.610Z",
+  "timestamp": "2025-10-08T15:55:59.331Z",
   "filepath": "/images/resource-icons/ai-content-writer.png"
 }

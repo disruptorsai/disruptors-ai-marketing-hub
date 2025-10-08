@@ -172,6 +172,86 @@ Extensive integration with 23+ MCP servers across:
 - Performance optimization and usage analytics
 - Security auditing and configuration validation
 
+### User Authentication & App Integration System
+
+**Complete Authentication System**:
+- **Glassmorphism login modal** with animated gradient background (`src/components/auth/LoginModal.jsx`)
+- **Dual authentication**: Google OAuth and email/password via Supabase
+- **Protected routes**: All `/app/*` routes require authentication
+- **Session persistence**: Automatic session management with localStorage
+- **6-step onboarding flow**: Welcome → Brain intro → Value prop → Business info → Brand DNA → Complete
+
+**App Integration** (`/app/*` routes):
+- **AI Content Writer** (`/app/content-writer`): AI-powered content generation with Business Brain context
+- **Business Brain Manager** (`/app/business-brain`): Full brain management dashboard
+- **Resources Page Integration**: Tools marked `isLive: true` show green "LIVE" badge and navigate to apps
+- **Protected Route wrapper**: Automatically shows login modal if not authenticated
+- **Business Brain auto-loading**: Apps automatically load user's brain on mount
+
+**Authentication Components** (`src/components/auth/`):
+- **LoginModal.jsx** (320 lines): Premium login UI with OAuth and email/password
+- **OnboardingFlow.jsx** (540+ lines): 6-step wizard collecting business info and creating Business Brain
+- **ProtectedRoute.jsx** (90 lines): Auth guard that wraps all app routes
+- **auth-callback.jsx** (75 lines): OAuth redirect handler for Google authentication
+
+**Business Brain Creation on Signup**:
+```javascript
+// Automatically created during onboarding
+const brainData = {
+  user_id: user.id,
+  business_name: businessInfo.businessName,
+  primary_website: businessInfo.website,
+  industry: businessInfo.industry,
+  business_description: businessInfo.description,
+  slug: slug,
+  onboarding_completed: true,
+  brain_level: 'starter',
+  confidence_score: 0.3,
+  brand_colors: { primary, secondary }
+};
+const brain = await BrainAPI.createBrain(brainData);
+
+// Optional: Trigger website scraping for auto-initialization
+if (businessInfo.website) {
+  await BrainAPI.autoInitializeBrain(brain.id, {
+    website_url: businessInfo.website
+  });
+}
+```
+
+**Database Schema**:
+- `business_brains` table: 51 columns including business intelligence, brand identity, and brain metrics
+- **Core fields**: id, name, business_name, slug, created_by, primary_website, industry
+- **Brand identity**: brand_colors, typography, logo_urls, design_style, brand_voice, tone_attributes
+- **Business intelligence**: ideal_customer_profile, core_offerings, unique_value_propositions, competitor_urls
+- **Brain metrics**: brain_level (starter/enhanced/expert), confidence_score (0.0-1.0), total_facts
+- **Status flags**: onboarding_completed, auto_initialized, web_scrape_completed
+
+**BrainAPI Methods** (`src/lib/brain-api.js`):
+- `createBrain(brainData)`: Direct database insert for brain creation
+- `autoInitializeBrain(brainId, options)`: Trigger website scraping
+- `getBrainByUser(userId)`: Load user's brain
+- `getBrainById(brainId)`: Load specific brain
+- `initializeBrain(userId, websiteUrl, businessName, options)`: Full initialization flow
+
+**Security**:
+- Row Level Security (RLS) on business_brains table
+- Users can only access their own brains
+- Service role for admin operations
+- JWT-based authentication via Supabase
+- Session expiration and auto-refresh
+
+**Testing**:
+- Test user: `testuser1@example.com` / `TestPass123!`
+- Create test users: `node scripts/create-test-user.js <email> <password> <business> <website> <industry>`
+- Schema verification: `node scripts/check-brain-schema.js`
+
+**Documentation**:
+- Complete guide: `docs/AUTHENTICATION_SYSTEM.md`
+- App integration: `docs/APP_INTEGRATION_GUIDE.md`
+- User guide: `docs/BUSINESS_BRAIN_USER_GUIDE.md`
+- Test credentials: `TEST_USER_CREDENTIALS.md`
+
 ### Admin Access System
 
 **Secret Access Pattern**:
