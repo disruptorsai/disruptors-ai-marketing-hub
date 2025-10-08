@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/shared/LoadingScreen";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import CascadeScrambleText from "@/components/shared/CascadeScrambleText";
+import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -230,7 +231,11 @@ export default function Layout({ children, currentPageName }) {
                   ))}
                 </nav>
 
-                <div className="hidden lg:flex items-center">
+                <div className="hidden lg:flex items-center gap-4">
+                   {/* User Profile Dropdown */}
+                   <UserProfileDropdown />
+
+                   {/* CTA Button */}
                    <Link
                      to={createPageUrl('book-strategy-session')}
                      className="font-sans group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-sm font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
@@ -249,14 +254,22 @@ export default function Layout({ children, currentPageName }) {
                    </Link>
                 </div>
 
-                <button
-                  className="lg:hidden p-3 -m-1 text-white touch-manipulation"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                  aria-expanded={mobileMenuOpen}
-                >
-                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                </button>
+                <div className="lg:hidden flex items-center gap-2">
+                  {/* Mobile User Profile */}
+                  <div className="block lg:hidden">
+                    <UserProfileDropdown />
+                  </div>
+
+                  {/* Mobile Menu Button */}
+                  <button
+                    className="p-3 -m-1 text-white touch-manipulation"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={mobileMenuOpen}
+                  >
+                    {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  </button>
+                </div>
               </div>
             </div>
 

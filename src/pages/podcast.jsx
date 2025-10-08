@@ -131,7 +131,7 @@ export default function Podcast() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              className="relative lg:scale-125"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
                 <img
@@ -443,15 +443,16 @@ export default function Podcast() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Image Gallery */}
-            <div className="relative">
+            <div className="relative lg:col-span-2">
               <motion.div
                 key={activeImage}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="aspect-video rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl"
+                className="w-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl"
+                style={{ minHeight: '600px' }}
               >
                 <img
                   src={studioImages[activeImage]}
@@ -460,15 +461,15 @@ export default function Podcast() {
                 />
               </motion.div>
 
-              <div className="grid grid-cols-4 gap-3 mt-6">
+              <div className="grid grid-cols-4 gap-6 mt-8 max-w-4xl mx-auto">
                 {studioImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveImage(index)}
-                    className={`aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`aspect-video rounded-xl overflow-hidden border-3 transition-all ${
                       activeImage === index
-                        ? 'border-yellow-500 shadow-lg shadow-yellow-500/50'
-                        : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50'
+                        ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-105'
+                        : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-105'
                     }`}
                   >
                     <img src={image} alt={`Studio ${index + 1}`} className="w-full h-full object-cover" />
@@ -478,17 +479,17 @@ export default function Podcast() {
             </div>
 
             {/* Features */}
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:col-span-2 mt-12">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-yellow-500/30 transition-all duration-300 group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-500/20 transition-colors">
-                    <Video className="w-6 h-6 text-yellow-500" />
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
+                    <Video className="w-8 h-8 text-yellow-500" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Professional Video Production</h3>
@@ -498,15 +499,15 @@ export default function Podcast() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-yellow-500/30 transition-all duration-300 group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-500/20 transition-colors">
-                    <Headphones className="w-6 h-6 text-yellow-500" />
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
+                    <Headphones className="w-8 h-8 text-yellow-500" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Broadcast-Quality Audio</h3>
@@ -516,15 +517,15 @@ export default function Podcast() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
                 className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-yellow-500/30 transition-all duration-300 group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-500/20 transition-colors">
-                    <Sparkles className="w-6 h-6 text-yellow-500" />
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
+                    <Sparkles className="w-8 h-8 text-yellow-500" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Complete Post-Production</h3>
