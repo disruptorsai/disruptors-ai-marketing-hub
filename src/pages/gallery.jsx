@@ -48,7 +48,7 @@ export default function Gallery() {
 
       {/* Content */}
       <div className="relative z-10 py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -94,28 +94,35 @@ export default function Gallery() {
             })}
           </motion.div>
 
-          {/* Masonry Grid */}
+          {/* Bento Grid */}
           <motion.div
             layout
-            className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8 auto-rows-[200px] w-full"
+            style={{ gridAutoFlow: 'dense' }}
           >
             <AnimatePresence mode="popLayout">
-              {filteredAssets.map((asset, index) => (
-                <motion.div
-                  key={asset.publicId}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, delay: index * 0.02 }}
-                  className="break-inside-avoid mb-4"
-                >
-                  <GalleryItem
-                    asset={asset}
-                    onClick={() => setSelectedIndex(index)}
-                  />
-                </motion.div>
-              ))}
+              {filteredAssets.map((asset, index) => {
+                // Vary card spans for bento effect
+                const rowSpans = ['row-span-1', 'row-span-2', 'row-span-1', 'row-span-3', 'row-span-2', 'row-span-1'];
+                const rowSpan = rowSpans[index % rowSpans.length];
+
+                return (
+                  <motion.div
+                    key={asset.publicId}
+                    layout
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.4, delay: index * 0.02 }}
+                    className={rowSpan}
+                  >
+                    <GalleryItem
+                      asset={asset}
+                      onClick={() => setSelectedIndex(index)}
+                    />
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
           </motion.div>
 
@@ -196,20 +203,19 @@ function GalleryItem({ asset, onClick }) {
   return (
     <motion.div
       ref={itemRef}
-      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-gray-800"
+      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-gray-800 h-full w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
-      style={{ minHeight: '200px' }} // Prevent layout shift
     >
       {/* Asset - Only render when visible */}
       {isVisible && asset.type === 'image' ? (
         <img
           src={optimizedUrl}
           alt="Portfolio item"
-          className={`w-full h-auto transition-opacity duration-300 ${
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setIsLoaded(true)}
@@ -220,7 +226,7 @@ function GalleryItem({ asset, onClick }) {
         <img
           src={optimizedUrl}
           alt="Video thumbnail"
-          className={`w-full h-auto transition-opacity duration-300 ${
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setIsLoaded(true)}

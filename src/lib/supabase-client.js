@@ -91,6 +91,7 @@ export const supabaseAdmin = supabaseServiceKey
         autoRefreshToken: false,
         persistSession: false,
         detectSessionInUrl: false,
+        storageKey: 'disruptors-ai-admin-auth', // Separate storage key to avoid GoTrueClient conflicts
       },
       db: {
         schema: 'public',

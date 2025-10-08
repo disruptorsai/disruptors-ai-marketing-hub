@@ -44,7 +44,7 @@ export default function Work() {
         {/* Bento Grid Portfolio */}
         <BlurSection blurAmount={4}>
           <section className="py-8 sm:py-12 overflow-x-hidden">
-            <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
               <BentoGrid items={caseStudies} />
             </div>
           </section>
