@@ -116,7 +116,7 @@ const BentoCard = ({ item, index, onExpand }) => {
             <img
               src={item.logo}
               alt={item.client}
-              className="h-20 w-auto object-contain filter brightness-0 invert"
+              className="h-20 w-auto object-contain"
             />
           </div>
         )}
@@ -214,7 +214,7 @@ const ExpandedCard = ({ item, onClose }) => {
               <img
                 src={item.logo}
                 alt={item.client}
-                className="h-16 w-auto mb-4 filter brightness-0 invert"
+                className="h-16 w-auto mb-4"
               />
             )}
             <h2 className="text-4xl font-bold text-white">{item.title || item.client}</h2>
