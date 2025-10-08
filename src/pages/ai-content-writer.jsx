@@ -21,7 +21,6 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { toast } from 'sonner';
 import { Loader2, Sparkles, FileText, Edit3, Library, Bot, User, Calendar, Trash2, Search } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,12 +32,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
 import { BrainAPI } from '@/lib/brain-api';
-
-// Initialize Supabase client
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { supabase } from '@/lib/supabase-client';
 
 // ReactQuill modules configuration
 const quillModules = {
