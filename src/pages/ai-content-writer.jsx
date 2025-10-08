@@ -20,7 +20,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { toast } from 'sonner';
-import { Loader2, Sparkles, FileText, Edit3, Library, Bot, User, Calendar, Trash2, Search } from 'lucide-react';
+import { Loader2, Sparkles, FileText, Edit3, Library, Bot, User, Calendar, Trash2, Search, Settings } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,6 +33,10 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { BrainAPI } from '@/lib/brain-api';
 import { supabase } from '@/lib/supabase-client';
+
+// Import new components
+import CalendarView from '@/components/blog/CalendarView';
+import ContentSettings from '@/components/blog/ContentSettings';
 
 // ReactQuill modules configuration
 const quillModules = {
@@ -177,22 +181,36 @@ export default function AIContentWriter() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="titles" className="flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
-            Generate Titles
+            <span className="hidden sm:inline">Generate Titles</span>
+            <span className="sm:hidden">Titles</span>
           </TabsTrigger>
           <TabsTrigger value="article" className="flex items-center gap-2">
             <FileText className="w-4 h-4" />
-            Write Article
+            <span className="hidden sm:inline">Write Article</span>
+            <span className="sm:hidden">Article</span>
           </TabsTrigger>
           <TabsTrigger value="editor" className="flex items-center gap-2">
             <Edit3 className="w-4 h-4" />
-            Edit & Publish
+            <span className="hidden sm:inline">Edit & Publish</span>
+            <span className="sm:hidden">Edit</span>
           </TabsTrigger>
           <TabsTrigger value="library" className="flex items-center gap-2">
             <Library className="w-4 h-4" />
-            Content Library
+            <span className="hidden sm:inline">Library</span>
+            <span className="sm:hidden">Library</span>
+          </TabsTrigger>
+          <TabsTrigger value="calendar" className="flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            <span className="hidden sm:inline">Calendar</span>
+            <span className="sm:hidden">Cal</span>
+          </TabsTrigger>
+          <TabsTrigger value="settings" className="flex items-center gap-2">
+            <Settings className="w-4 h-4" />
+            <span className="hidden sm:inline">Settings</span>
+            <span className="sm:hidden">Set</span>
           </TabsTrigger>
         </TabsList>
 
@@ -211,9 +229,66 @@ export default function AIContentWriter() {
         <TabsContent value="library" className="mt-6">
           <ContentLibrary brainId={userBrain.id} onEditPost={() => setActiveTab('editor')} />
         </TabsContent>
+
+        <TabsContent value="calendar" className="mt-6">
+          <ContentCalendar brainId={userBrain.id} onPostSelect={() => setActiveTab('editor')} />
+        </TabsContent>
+
+        <TabsContent value="settings" className="mt-6">
+          <ContentSettings brainId={userBrain.id} />
+        </TabsContent>
       </Tabs>
     </div>
   );
+}
+
+/**
+ * Content Calendar Component - Wrapper for CalendarView
+ */
+function ContentCalendar({ brainId, onPostSelect }) {
+  const [scheduledPosts, setScheduledPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadScheduledPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [brainId]);
+
+  const loadScheduledPosts = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('brain_id', brainId)
+        .not('scheduled_date', 'is', null)
+        .order('scheduled_date', { ascending: true });
+
+      if (error) throw error;
+      setScheduledPosts(data || []);
+    } catch (error) {
+      console.error('Error loading scheduled posts:', error);
+      toast.error('Failed to load scheduled posts');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePostSelect = (post) => {
+    // Store post ID for editor
+    localStorage.setItem('editPostId', post.id);
+    onPostSelect();
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-12">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  return <CalendarView posts={scheduledPosts} onPostSelect={handlePostSelect} />;
 }
 
 /**
@@ -478,7 +553,7 @@ function ArticleGenerator({ brainId, onArticleSaved }) {
         <CardHeader>
           <CardTitle>Article Generator</CardTitle>
           <CardDescription>
-            Generate comprehensive SEO-optimized blog articles (1500-3000 words)
+            Generate comprehensive SEO-optimized blog articles (1500-3000 words) with FAQ section
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -605,6 +680,7 @@ function PostEditor({ brainId }) {
   const [metaDescription, setMetaDescription] = useState('');
   const [slug, setSlug] = useState('');
   const [scheduledDate, setScheduledDate] = useState('');
+  const [editorNotes, setEditorNotes] = useState('');
   const [loading, setLoading] = useState(false);
   const [converting, setConverting] = useState(false);
 
@@ -650,6 +726,7 @@ function PostEditor({ brainId }) {
     setMetaDescription(post.meta_description || '');
     setSlug(post.slug || '');
     setScheduledDate(post.scheduled_date || '');
+    setEditorNotes(post.editor_notes || '');
   };
 
   const convertMarkdownToHTML = async (markdown) => {
@@ -697,6 +774,7 @@ function PostEditor({ brainId }) {
           meta_description: metaDescription || null,
           slug: slug || null,
           scheduled_date: scheduledDate || null,
+          editor_notes: editorNotes || null,
           updated_at: new Date().toISOString()
         })
         .eq('id', selectedPost.id);
@@ -876,6 +954,21 @@ function PostEditor({ brainId }) {
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="editorNotes">Editor Notes (Internal)</Label>
+                <Textarea
+                  id="editorNotes"
+                  placeholder="Internal notes, feedback, or reminders for your team..."
+                  value={editorNotes}
+                  onChange={(e) => setEditorNotes(e.target.value)}
+                  rows={4}
+                  className="resize-none"
+                />
+                <p className="text-xs text-muted-foreground">
+                  These notes are for internal use only and won't be published
+                </p>
               </div>
 
               <div className="flex gap-3 pt-4">

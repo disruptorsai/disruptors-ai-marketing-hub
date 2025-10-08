@@ -19,21 +19,21 @@ export default function Work() {
 
           {/* Header Section */}
           <BlurSection>
-            <section className="py-8 sm:py-12 text-center">
+            <section className="py-6 sm:py-10 text-center">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
+                  className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-white/40"
                 >
-                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-3">
                   Real Clients. Real Results.
                 </h1>
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-700 mb-4">
                   Growth Systems That Speak for Themselves
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
                   We don't just create campaigns—we build growth infrastructure that delivers measurable results. Here's how we've helped real businesses simplify, scale, and succeed using the power of strategy + automation.
                 </p>
               </motion.div>
