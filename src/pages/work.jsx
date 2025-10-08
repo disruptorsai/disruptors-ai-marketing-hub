@@ -12,21 +12,22 @@ import { caseStudies } from '@/data/caseStudies';
 
 export default function Work() {
   return (
-    <DynamicBackground pageContext="work" intensity={0.8}>
-      <div>
-        {/* Page Title */}
-        <PageTitle title="WORK" />
+    <div className="min-h-screen bg-gray-50">
+      <DynamicBackground pageContext="work" intensity={0.8}>
+        <div>
+          {/* Page Title */}
+          <PageTitle title="WORK" />
 
-        {/* Header Section */}
-        <BlurSection>
-          <section className="py-8 sm:py-12 text-center">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
-              >
+          {/* Header Section */}
+          <BlurSection>
+            <section className="py-8 sm:py-12 text-center">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
+                >
                 <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                   Real Clients. Real Results.
                 </h1>
@@ -84,7 +85,8 @@ export default function Work() {
         <section className="bg-gray-900 text-white relative z-10">
           <DualCTABlock />
         </section>
-      </div>
-    </DynamicBackground>
+        </div>
+      </DynamicBackground>
+    </div>
   );
 }

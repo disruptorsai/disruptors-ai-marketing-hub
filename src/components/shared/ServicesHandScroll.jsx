@@ -125,9 +125,9 @@ const ServicesHandScroll = ({
     // Main scroll trigger with improved scrub for 3D performance
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: container,
-      start: "top 20%", // Start later - when top of container is 20% from top of viewport
-      end: "bottom 40%", // End later - when bottom of container is 40% from top of viewport
-      scrub: 3, // Increased from 2 to 3 for even smoother, slower animation
+      start: "top 30%", // Start earlier
+      end: "top -30%", // End much earlier - shorter scroll distance
+      scrub: 0.5, // Even more responsive
       anticipatePin: 1,
       onUpdate: (self) => {
         const progress = self.progress;
@@ -138,7 +138,7 @@ const ServicesHandScroll = ({
             // Animate hand - smooth rotation only (even slower rotation)
             if (handObject && initialRotations.hand) {
               gsap.to(handObject.rotation, {
-                z: initialRotations.hand.z + (progress * Math.PI * 0.08), // Reduced from 0.15 to 0.08 for slower rotation
+                z: initialRotations.hand.z + (progress * Math.PI * 0.6), // Much faster rotation - 0.6 radians = ~108 degrees
                 duration: 0.1,
                 ease: "none",
                 overwrite: true
@@ -183,9 +183,9 @@ const ServicesHandScroll = ({
       }
     });
 
-    // Increased scrub on mobile for better performance
+    // Adjusted scrub on mobile for better performance
     if (isMobile) {
-      scrollTriggerRef.current.vars.scrub = 4;
+      scrollTriggerRef.current.vars.scrub = 1;
     }
 
   }, [isMobile]);

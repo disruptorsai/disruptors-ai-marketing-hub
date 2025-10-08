@@ -3,24 +3,29 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { useParallax } from '@/hooks/useParallax';
 
-export default function TwoColumnLayout({ 
+export default function TwoColumnLayout({
   kicker,
   headline,
   body,
   leftContent,
-  rightContent, 
+  rightContent,
   reversed = false,
   className = "",
   cta
 }) {
+  const textRef = useParallax({ speed: 0.15, direction: 'up' });
+  const mediaRef = useParallax({ speed: 0.25, direction: reversed ? 'left' : 'right' });
+
   return (
     <section className={`py-20 sm:py-28 overflow-hidden ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reversed ? 'lg:grid-flow-col-dense' : ''}`}>
-          
-          {/* Text Content */}
-          <motion.div 
+
+          {/* Text Content with Parallax */}
+          <motion.div
+            ref={textRef}
             className={`${reversed ? 'lg:col-start-2' : ''}`}
             initial={{ opacity: 0, x: reversed ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -37,8 +42,9 @@ export default function TwoColumnLayout({
             )}
           </motion.div>
 
-          {/* Media Content */}
-          <motion.div 
+          {/* Media Content with Parallax */}
+          <motion.div
+            ref={mediaRef}
             className={`relative ${reversed ? 'lg:col-start-1' : ''}`}
             initial={{ opacity: 0, x: reversed ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}

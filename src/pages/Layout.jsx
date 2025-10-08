@@ -241,7 +241,7 @@ export default function Layout({ children, currentPageName }) {
                      }}
                    >
                       <CascadeScrambleText
-                        text="Book a Call"
+                        text="Let's Talk"
                         as="span"
                         enableRandomGlitch={true}
                       />
@@ -284,7 +284,7 @@ export default function Layout({ children, currentPageName }) {
                      <Button asChild className="w-full mt-4 bg-white text-black hover:bg-gray-200 h-12 text-base touch-manipulation">
                         <Link to={createPageUrl('book-strategy-session')}>
                           <CascadeScrambleText
-                            text="Book a Call"
+                            text="Let's Talk"
                             enableRandomGlitch={true}
                           />
                         </Link>
@@ -332,7 +332,7 @@ export default function Layout({ children, currentPageName }) {
                   className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation"
                 >
                   <CascadeScrambleText
-                    text="Book a call"
+                    text="Let's Talk"
                     className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
                     as="span"
                     enableRandomGlitch={true}

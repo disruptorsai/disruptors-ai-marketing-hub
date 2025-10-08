@@ -100,22 +100,18 @@ export default function Solutions() {
         transformOrigin: "100% 50%" // Pivot from right edge, middle of hand
       });
 
-      // Rotate around the fixed pivot point
-      gsap.fromTo(handRef.current,
-        {
-          rotation: 10 // Starting angle (more clockwise)
+      // Rotate around the fixed pivot point - faster rotation
+      gsap.to(handRef.current, {
+        rotation: -40, // Rotate counter-clockwise by 40 degrees
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom", // Start when section enters viewport
+          end: "bottom top", // End when section leaves viewport
+          scrub: 0.5,
+          markers: true // Debug markers enabled
         },
-        {
-          rotation: -15, // Ending angle (25 degree travel)
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: 1,
-          },
-          ease: "none"
-        }
-      );
+        ease: "none"
+      });
     });
 
     return () => ctx.revert();

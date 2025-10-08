@@ -28,6 +28,14 @@ const Contact = lazy(() => import('./contact.jsx'));
 const Privacy = lazy(() => import('./privacy.jsx'));
 const Terms = lazy(() => import('./terms.jsx'));
 
+// Dev pages for comparison - lazy loaded
+import HomeDev from "./Home-dev.jsx";
+const AboutDev = lazy(() => import('./about-dev.jsx'));
+const SolutionsDev = lazy(() => import('./solutions-dev.jsx'));
+const WorkDev = lazy(() => import('./work-dev.jsx'));
+const ResourcesDev = lazy(() => import('./resources-dev.jsx'));
+const ContactDev = lazy(() => import('./contact-dev.jsx'));
+
 // Blog system - lazy loaded
 const Blog = lazy(() => import('./blog.jsx'));
 const BlogDetail = lazy(() => import('./blog-detail.jsx'));
@@ -78,6 +86,7 @@ const FullAnimationDemo = lazy(() => import('./full-animation-demo.jsx'));
 const SplineDemo = lazy(() => import('./spline-demo.jsx'));
 const SplineHandPreview = lazy(() => import('./spline-hand-preview.jsx'));
 const VideoScrubDemo = lazy(() => import('./video-scrub-demo.jsx'));
+const TextGlitchDemo = lazy(() => import('./TextGlitchDemo.jsx'));
 
 // Landing page demos - lazy loaded
 const DemosIndex = lazy(() => import('./demos/index.jsx'));
@@ -103,22 +112,30 @@ const PAGES = {
     assessment: Assessment,
 
     calculator: Calculator,
-    
+
     "404": NotFound,
-    
+
     "work-saas-content-engine": WorkSaasContentEngine,
-    
+
     "resources-ai-suitcase-terms-decoded": ResourcesAiSuitcaseTermsDecoded,
-    
+
     solutions: Solutions,
-    
+
     work: Work,
-    
+
     about: About,
-    
+
     resources: Resources,
-    
+
     contact: Contact,
+
+    // Dev pages for comparison
+    "Home-dev": HomeDev,
+    "about-dev": AboutDev,
+    "solutions-dev": SolutionsDev,
+    "work-dev": WorkDev,
+    "resources-dev": ResourcesDev,
+    "contact-dev": ContactDev,
     
     privacy: Privacy,
     
@@ -188,6 +205,8 @@ const PAGES = {
 
     "video-scrub-demo": VideoScrubDemo,
 
+    "text-glitch-demo": TextGlitchDemo,
+
     // Landing page demos
     "demos": DemosIndex,
     "demos-hero-focus": DemoHeroFocus,
@@ -254,9 +273,17 @@ function PagesContent() {
                 <Route path="/resources" element={<Resources />} />
                 
                 <Route path="/contact" element={<Contact />} />
-                
+
+                {/* Dev pages for comparison */}
+                <Route path="/Home-dev" element={<HomeDev />} />
+                <Route path="/about-dev" element={<AboutDev />} />
+                <Route path="/solutions-dev" element={<SolutionsDev />} />
+                <Route path="/work-dev" element={<WorkDev />} />
+                <Route path="/resources-dev" element={<ResourcesDev />} />
+                <Route path="/contact-dev" element={<ContactDev />} />
+
                 <Route path="/privacy" element={<Privacy />} />
-                
+
                 <Route path="/terms" element={<Terms />} />
                 
                 <Route path="/blog" element={<Blog />} />
@@ -328,6 +355,8 @@ function PagesContent() {
                 <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
 
                 <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
+                <Route path="/text-glitch-demo" element={<TextGlitchDemo />} />
+
 
                 {/* Landing page demos */}
                 <Route path="/demos" element={<DemosIndex />} />

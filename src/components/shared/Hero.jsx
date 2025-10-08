@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { customClient } from '@/lib/custom-sdk';
+import { useImageParallax, useParallax } from '@/hooks/useParallax';
 
 // Fallback hardcoded media (used if database fetch fails)
 const FALLBACK_MEDIA = {
@@ -24,6 +25,10 @@ export default function Hero({
 }) {
   const [media, setMedia] = useState(FALLBACK_MEDIA);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Parallax refs
+  const bgImageRef = useImageParallax({ speed: 0.3, scaleFrom: 1.2, scaleTo: 1 });
+  const videoRef = useParallax({ speed: 0.2, direction: 'up' });
 
   useEffect(() => {
     loadMedia();
@@ -84,13 +89,14 @@ export default function Hero({
   }
   return (
     <section className="relative min-h-[100svh] overflow-hidden flex items-center justify-center bg-transparent py-8 sm:py-12 md:py-16">
-      {/* Background Image Layer */}
+      {/* Background Image Layer with Parallax */}
       {media.background.url && (
         <div className="absolute inset-0 z-0 opacity-15">
           <img
+            ref={bgImageRef}
             src={media.background.url}
             alt={media.background.alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-110"
             loading="lazy"
           />
         </div>
@@ -98,8 +104,9 @@ export default function Hero({
 
       {/* Content Container - Constrained Width */}
       <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">
-        {/* Video Container with Centered Logo and Irregular Shape */}
+        {/* Video Container with Centered Logo and Parallax */}
         <motion.div
+          ref={videoRef}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
