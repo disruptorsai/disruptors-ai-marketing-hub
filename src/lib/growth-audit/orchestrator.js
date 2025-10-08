@@ -1,7 +1,7 @@
 import { FirecrawlScraper } from './scrapers/firecrawl.js';
 import { PlaywrightScraper } from './scrapers/playwright.js';
 import { BrandDetector } from './scrapers/brand-detect.js';
-import { PageSpeedInsights } from './scrapers/pagespeed.js';
+import { PageSpeedInsights } from './audits/pagespeed.js';
 import { analyzeBusinessProfile } from './ai/analyzer.js';
 import { detectOpportunities, calculateReadinessScore } from './ai/opportunities.js';
 

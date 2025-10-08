@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Users, TrendingUp, Zap, Target, Award } from 'lucide-react';
+import { ArrowRight, Sparkles, Users, TrendingUp, Zap, Target, Award, Scan } from 'lucide-react';
 
 export default function DemosIndex() {
   const demos = [
@@ -59,6 +59,16 @@ export default function DemosIndex() {
       bgColor: 'bg-indigo-500/10',
       features: ['All-in-one', 'Best practices', 'Production ready'],
       recommended: true
+    },
+    {
+      id: 'growth-audit',
+      title: 'AI Growth Audit',
+      description: 'AI-powered website analysis that identifies 8-15 growth opportunities. Enter any URL and get instant insights.',
+      icon: Scan,
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'bg-blue-500/10',
+      features: ['Brand detection', 'SEO analysis', 'AI opportunities'],
+      isNew: true
     }
   ];
 
@@ -90,7 +100,7 @@ export default function DemosIndex() {
               <span className="text-[#FFD700]">Demo Gallery</span>
             </h1>
             <p className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto">
-              Explore 6 different landing page concepts. Each designed for specific conversion goals.
+              Explore 7 different demos including AI-powered tools. Each designed for specific conversion goals.
             </p>
           </motion.div>
 
@@ -107,11 +117,17 @@ export default function DemosIndex() {
                   className="relative group"
                 >
                   <Link to={`/demos/${demo.id}`}>
-                    <div className={`relative bg-[#1A1A1A]/50 backdrop-blur-xl rounded-3xl p-8 border border-[#2A2A2A] hover:border-[#FFD700]/50 transition-all duration-300 hover:transform hover:scale-105 ${demo.recommended ? 'ring-2 ring-yellow-500' : ''}`}>
+                    <div className={`relative bg-[#1A1A1A]/50 backdrop-blur-xl rounded-3xl p-8 border border-[#2A2A2A] hover:border-[#FFD700]/50 transition-all duration-300 hover:transform hover:scale-105 ${demo.recommended ? 'ring-2 ring-yellow-500' : ''} ${demo.isNew ? 'ring-2 ring-blue-500' : ''}`}>
                       {/* Recommended Badge */}
                       {demo.recommended && (
                         <div className="absolute -top-3 -right-3 bg-[#FFD700] text-black px-4 py-1 rounded-full text-sm font-bold">
                           Recommended
+                        </div>
+                      )}
+                      {/* New Badge */}
+                      {demo.isNew && (
+                        <div className="absolute -top-3 -right-3 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                          NEW
                         </div>
                       )}
 
@@ -184,7 +200,7 @@ export default function DemosIndex() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Choosing the Right Demo
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
               <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
                 For Visual Brands
@@ -207,6 +223,14 @@ export default function DemosIndex() {
               </h3>
               <p className="text-[#C7C7C7]">
                 Choose <strong>Conversion Optimized</strong> if your primary goal is capturing as many leads as possible.
+              </p>
+            </div>
+            <div className="bg-[#1A1A1A]/30 rounded-2xl p-6 border border-blue-500/30">
+              <h3 className="text-xl font-bold mb-3 text-blue-400">
+                For AI Analysis
+              </h3>
+              <p className="text-[#C7C7C7]">
+                Try <strong>AI Growth Audit</strong> to analyze any website and get instant AI-powered growth opportunities.
               </p>
             </div>
           </div>

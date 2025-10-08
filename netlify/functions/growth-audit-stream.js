@@ -1,8 +1,10 @@
 import { GrowthAuditOrchestrator } from '../../src/lib/growth-audit/orchestrator.js';
-
-// Shared job storage (same as ingest function)
-// Note: In production, use a persistent store like Redis
-const jobs = new Map();
+import {
+  getJob,
+  updateJobStatus,
+  setJobResult,
+  setJobError,
+} from './shared/job-storage.js';
 
 /**
  * Netlify function for streaming growth audit progress via Server-Sent Events
@@ -34,7 +36,7 @@ export async function handler(event) {
     };
   }
 
-  const job = jobs.get(jobId);
+  const job = getJob(jobId);
   if (!job) {
     return {
       statusCode: 404,
@@ -79,7 +81,7 @@ export async function handler(event) {
 
   try {
     // Update job status
-    job.status = 'running';
+    updateJobStatus(jobId, 'running');
 
     // Collect all events
     const events = [];
@@ -94,9 +96,7 @@ export async function handler(event) {
     const result = await orchestrator.runAudit(job.url, sendEvent);
 
     // Store result
-    job.status = 'completed';
-    job.result = result;
-    job.events = events;
+    setJobResult(jobId, result, events);
 
     // Return complete result with all events
     return {
@@ -113,8 +113,7 @@ export async function handler(event) {
   } catch (error) {
     console.error('Stream error:', error);
 
-    job.status = 'failed';
-    job.error = error.message;
+    setJobError(jobId, error.message);
 
     return {
       statusCode: 500,
@@ -128,6 +127,3 @@ export async function handler(event) {
     };
   }
 }
-
-// Export jobs Map
-export { jobs };

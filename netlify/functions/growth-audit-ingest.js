@@ -1,8 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-// In-memory job storage (in production, consider using Redis or a database)
-// Note: This will reset when the function cold-starts, but is fine for demo purposes
-const jobs = new Map();
+import { createJob } from './shared/job-storage.js';
 
 /**
  * Validate and normalize URL
@@ -70,19 +67,15 @@ export async function handler(event) {
 
     // Create job
     const jobId = uuidv4();
-    jobs.set(jobId, {
-      url: urlValidation.normalized,
-      status: 'queued',
-      createdAt: new Date().toISOString(),
-    });
+    const job = createJob(jobId, urlValidation.normalized);
 
     // Return job ID immediately
     return {
       statusCode: 200,
       body: JSON.stringify({
         jobId,
-        url: urlValidation.normalized,
-        status: 'queued',
+        url: job.url,
+        status: job.status,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -99,6 +92,3 @@ export async function handler(event) {
     };
   }
 }
-
-// Export jobs Map so it can be accessed by the stream function
-export { jobs };
