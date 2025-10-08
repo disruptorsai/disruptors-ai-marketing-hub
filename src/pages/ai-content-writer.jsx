@@ -178,92 +178,215 @@ export default function AIContentWriter() {
 
   return (
     <BrainThemedLayout>
-      <div className="container mx-auto px-4 py-8">
-        {/* Branded header */}
-        <div className="mb-8">
-          <BrandedHeading level={1} className="text-4xl mb-2">
+      <div className="container mx-auto px-8 py-12 max-w-7xl">
+        {/* Premium header with refined typography */}
+        <div className="mb-12">
+          <h1
+            className="text-[2rem] font-semibold mb-3 tracking-tight"
+            style={{ color: 'var(--text-primary)' }}
+          >
             AI Content Writer
-          </BrandedHeading>
-          <p className="text-muted-foreground">
+          </h1>
+          <p className="text-base" style={{ color: 'var(--text-secondary)' }}>
             Generate SEO-optimized blog content for{' '}
-            <span className="font-semibold text-[var(--brand-primary)]">
+            <span className="font-semibold" style={{ color: 'var(--brand-primary)' }}>
               {userBrain.business_name}
             </span>
           </p>
         </div>
 
-        {/* Brand info cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-[var(--brand-primary)]/10 to-[var(--brand-primary)]/5 border-2 border-[var(--brand-primary)]/20 rounded-lg p-6 hover:border-[var(--brand-primary)]/40 transition-colors">
-            <div className="flex items-center gap-3 mb-2">
-              <Bot className="w-5 h-5 text-[var(--brand-primary)]" />
-              <h3 className="text-lg font-semibold text-[var(--brand-primary)]">
+        {/* Premium stat cards with subtle brand accents */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div
+            className="bg-white rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 group"
+            style={{
+              border: '1px solid var(--border-default)',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+            }}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                style={{ backgroundColor: 'rgba(var(--brand-primary-rgb), 0.1)' }}
+              >
+                <Bot className="w-5 h-5" style={{ color: 'var(--brand-primary)' }} />
+              </div>
+              <h3 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
                 Brand Voice Active
               </h3>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               All content matches your unique brand voice and tone
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[var(--brand-secondary)]/10 to-[var(--brand-secondary)]/5 border-2 border-[var(--brand-secondary)]/20 rounded-lg p-6 hover:border-[var(--brand-secondary)]/40 transition-colors">
-            <div className="flex items-center gap-3 mb-2">
-              <Sparkles className="w-5 h-5 text-[var(--brand-secondary)]" />
-              <h3 className="text-lg font-semibold text-[var(--brand-secondary)]">
+          <div
+            className="bg-white rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 group"
+            style={{
+              border: '1px solid var(--border-default)',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+            }}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                style={{ backgroundColor: 'rgba(var(--brand-primary-rgb), 0.1)' }}
+              >
+                <Sparkles className="w-5 h-5" style={{ color: 'var(--brand-primary)' }} />
+              </div>
+              <h3 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
                 SEO Optimized
               </h3>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               Automatically optimized for search engines and rankings
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[var(--brand-accent)]/10 to-[var(--brand-accent)]/5 border-2 border-[var(--brand-accent)]/20 rounded-lg p-6 hover:border-[var(--brand-accent)]/40 transition-colors">
-            <div className="flex items-center gap-3 mb-2">
-              <FileText className="w-5 h-5 text-[var(--brand-accent)]" />
-              <h3 className="text-lg font-semibold text-[var(--brand-accent)]">
+          <div
+            className="bg-white rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 group"
+            style={{
+              border: '1px solid var(--border-default)',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+            }}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                style={{ backgroundColor: 'rgba(var(--brand-primary-rgb), 0.1)' }}
+              >
+                <FileText className="w-5 h-5" style={{ color: 'var(--brand-primary)' }} />
+              </div>
+              <h3 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
                 AI Powered
               </h3>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               Claude Sonnet 4.5 generates high-quality, engaging content
             </p>
           </div>
         </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="titles" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+        {/* Premium pill-style tabs */}
+        <div
+          className="inline-flex p-1 rounded-xl mb-8 gap-1"
+          style={{
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-default)',
+          }}
+        >
+          <button
+            onClick={() => setActiveTab('titles')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              activeTab === 'titles' ? '' : ''
+            }`}
+            style={{
+              backgroundColor: activeTab === 'titles' ? 'white' : 'transparent',
+              color: activeTab === 'titles' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'titles' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'titles' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'titles' ? 600 : 500,
+            }}
+          >
             <Sparkles className="w-4 h-4" />
             <span className="hidden sm:inline">Generate Titles</span>
             <span className="sm:hidden">Titles</span>
-          </TabsTrigger>
-          <TabsTrigger value="article" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+          </button>
+          <button
+            onClick={() => setActiveTab('article')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200`}
+            style={{
+              backgroundColor: activeTab === 'article' ? 'white' : 'transparent',
+              color: activeTab === 'article' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'article' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'article' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'article' ? 600 : 500,
+            }}
+          >
             <FileText className="w-4 h-4" />
             <span className="hidden sm:inline">Write Article</span>
             <span className="sm:hidden">Article</span>
-          </TabsTrigger>
-          <TabsTrigger value="editor" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+          </button>
+          <button
+            onClick={() => setActiveTab('editor')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200`}
+            style={{
+              backgroundColor: activeTab === 'editor' ? 'white' : 'transparent',
+              color: activeTab === 'editor' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'editor' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'editor' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'editor' ? 600 : 500,
+            }}
+          >
             <Edit3 className="w-4 h-4" />
             <span className="hidden sm:inline">Edit & Publish</span>
             <span className="sm:hidden">Edit</span>
-          </TabsTrigger>
-          <TabsTrigger value="library" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+          </button>
+          <button
+            onClick={() => setActiveTab('library')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200`}
+            style={{
+              backgroundColor: activeTab === 'library' ? 'white' : 'transparent',
+              color: activeTab === 'library' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'library' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'library' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'library' ? 600 : 500,
+            }}
+          >
             <Library className="w-4 h-4" />
             <span className="hidden sm:inline">Library</span>
             <span className="sm:hidden">Library</span>
-          </TabsTrigger>
-          <TabsTrigger value="calendar" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+          </button>
+          <button
+            onClick={() => setActiveTab('calendar')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200`}
+            style={{
+              backgroundColor: activeTab === 'calendar' ? 'white' : 'transparent',
+              color: activeTab === 'calendar' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'calendar' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'calendar' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'calendar' ? 600 : 500,
+            }}
+          >
             <Calendar className="w-4 h-4" />
             <span className="hidden sm:inline">Calendar</span>
             <span className="sm:hidden">Cal</span>
-          </TabsTrigger>
-          <TabsTrigger value="settings" className="flex items-center gap-2 data-[state=active]:bg-[var(--brand-primary)] data-[state=active]:text-white">
+          </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200`}
+            style={{
+              backgroundColor: activeTab === 'settings' ? 'white' : 'transparent',
+              color: activeTab === 'settings' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              boxShadow: activeTab === 'settings' ? 'var(--shadow-sm)' : 'none',
+              borderLeft: activeTab === 'settings' ? '3px solid var(--brand-primary)' : '3px solid transparent',
+              fontWeight: activeTab === 'settings' ? 600 : 500,
+            }}
+          >
             <Settings className="w-4 h-4" />
             <span className="hidden sm:inline">Settings</span>
             <span className="sm:hidden">Set</span>
-          </TabsTrigger>
-        </TabsList>
+          </button>
+        </div>
 
         <TabsContent value="titles" className="mt-6">
           <TitleGenerator brainId={userBrain.id} onTitleSelected={() => setActiveTab('article')} />

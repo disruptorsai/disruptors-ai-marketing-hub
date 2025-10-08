@@ -74,16 +74,50 @@ const parseLogoUrl = (logoUrls) => {
 };
 
 /**
+ * Helper: Convert hex to RGB values
+ */
+const hexToRgb = (hex) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+    : '0, 0, 0';
+};
+
+/**
  * Inject CSS custom properties into document root
  */
 const injectTheme = (theme) => {
   const root = document.documentElement;
 
-  // Inject color variables
+  // Inject brand color variables (for accents only)
   root.style.setProperty('--brand-primary', theme.colors.primary);
+  root.style.setProperty('--brand-primary-rgb', hexToRgb(theme.colors.primary));
   root.style.setProperty('--brand-secondary', theme.colors.secondary);
+  root.style.setProperty('--brand-secondary-rgb', hexToRgb(theme.colors.secondary));
   root.style.setProperty('--brand-accent', theme.colors.accent);
+  root.style.setProperty('--brand-accent-rgb', hexToRgb(theme.colors.accent));
   root.style.setProperty('--brand-neutral', theme.colors.neutral);
+  root.style.setProperty('--brand-neutral-rgb', hexToRgb(theme.colors.neutral));
+
+  // Inject base palette (professional slate colors - consistent across all users)
+  root.style.setProperty('--text-primary', '#0F172A');     // slate-900
+  root.style.setProperty('--text-secondary', '#64748B');   // slate-500
+  root.style.setProperty('--text-tertiary', '#94A3B8');    // slate-400
+  root.style.setProperty('--bg-base', '#FFFFFF');          // white
+  root.style.setProperty('--bg-surface', '#F8FAFC');       // slate-50
+  root.style.setProperty('--bg-muted', '#F1F5F9');         // slate-100
+  root.style.setProperty('--border-default', '#E2E8F0');   // slate-200
+  root.style.setProperty('--border-light', '#F1F5F9');     // slate-100
+
+  // Inject shadow variables
+  root.style.setProperty('--shadow-sm', '0 1px 3px rgba(0,0,0,0.04)');
+  root.style.setProperty('--shadow-md', '0 4px 12px rgba(0,0,0,0.08)');
+  root.style.setProperty('--shadow-lg', '0 8px 24px rgba(0,0,0,0.12)');
+
+  // Inject transition variables
+  root.style.setProperty('--transition-fast', '150ms cubic-bezier(0.4, 0, 0.2, 1)');
+  root.style.setProperty('--transition-medium', '250ms cubic-bezier(0.4, 0, 0.2, 1)');
+  root.style.setProperty('--transition-slow', '400ms cubic-bezier(0.4, 0, 0.2, 1)');
 
   // Inject typography variables
   root.style.setProperty('--font-heading', theme.typography.heading);
@@ -102,10 +136,37 @@ const injectTheme = (theme) => {
 const removeTheme = () => {
   const root = document.documentElement;
 
+  // Remove brand colors
   root.style.removeProperty('--brand-primary');
+  root.style.removeProperty('--brand-primary-rgb');
   root.style.removeProperty('--brand-secondary');
+  root.style.removeProperty('--brand-secondary-rgb');
   root.style.removeProperty('--brand-accent');
+  root.style.removeProperty('--brand-accent-rgb');
   root.style.removeProperty('--brand-neutral');
+  root.style.removeProperty('--brand-neutral-rgb');
+
+  // Remove base palette
+  root.style.removeProperty('--text-primary');
+  root.style.removeProperty('--text-secondary');
+  root.style.removeProperty('--text-tertiary');
+  root.style.removeProperty('--bg-base');
+  root.style.removeProperty('--bg-surface');
+  root.style.removeProperty('--bg-muted');
+  root.style.removeProperty('--border-default');
+  root.style.removeProperty('--border-light');
+
+  // Remove shadows
+  root.style.removeProperty('--shadow-sm');
+  root.style.removeProperty('--shadow-md');
+  root.style.removeProperty('--shadow-lg');
+
+  // Remove transitions
+  root.style.removeProperty('--transition-fast');
+  root.style.removeProperty('--transition-medium');
+  root.style.removeProperty('--transition-slow');
+
+  // Remove typography
   root.style.removeProperty('--font-heading');
   root.style.removeProperty('--font-body');
   root.style.removeProperty('--font-accent');
