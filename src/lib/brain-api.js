@@ -11,6 +11,63 @@ import { supabase } from './supabase-client.js';
 
 export class BrainAPI {
   /**
+   * Create a new Business Brain (direct database insert)
+   *
+   * @param {Object} brainData - Brain data object
+   * @returns {Promise<Object>} Created brain
+   */
+  static async createBrain(brainData) {
+    const { data, error } = await supabase
+      .from('business_brains')
+      .insert({
+        business_name: brainData.business_name || brainData.businessName,
+        website_url: brainData.website_url || brainData.websiteUrl,
+        industry: brainData.industry,
+        business_description: brainData.business_description || brainData.businessDescription,
+        slug: brainData.slug,
+        created_by: brainData.user_id || brainData.userId,
+        onboarding_completed: brainData.onboarding_completed || false,
+        brain_level: brainData.brain_level || 'starter',
+        confidence_score: brainData.confidence_score || 0.3,
+        brand_colors: brainData.brand_colors || null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('[BrainAPI] Create brain error:', error);
+      throw error;
+    }
+
+    return data;
+  }
+
+  /**
+   * Auto-initialize brain by scraping website
+   *
+   * @param {string} brainId - Brain ID
+   * @param {Object} options - Options including website_url
+   * @returns {Promise<Object>} Initialization result
+   */
+  static async autoInitializeBrain(brainId, options = {}) {
+    // Get brain data
+    const brain = await this.getBrainById(brainId);
+
+    // Call initialize with brain data
+    return await this.initializeBrain(
+      brain.created_by,
+      options.website_url || brain.website_url,
+      brain.business_name,
+      {
+        industry: brain.industry,
+        brainId: brainId,
+      }
+    );
+  }
+
+  /**
    * Initialize a new Business Brain for an organization or user
    *
    * @param {string} userId - User ID or organization ID
