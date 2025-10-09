@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
-import ReviewsCarousel from '../components/shared/ReviewsCarousel';
+import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 
 export default function Home() {
@@ -537,8 +537,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reviews - Modern Horizontal Auto-Scroll Carousel */}
-      <ReviewsCarousel />
+      {/* Google Reviews Section */}
+      <GoogleReviewsSection />
     </div>
   );
 }
