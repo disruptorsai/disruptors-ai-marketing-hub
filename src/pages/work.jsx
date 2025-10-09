@@ -11,7 +11,7 @@ import { caseStudies } from '@/data/caseStudies';
 
 export default function Work() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <DynamicBackground pageContext="work" intensity={0.8}>
         <div>
           {/* Page Title */}
@@ -25,7 +25,7 @@ export default function Work() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-white/40"
+                  className="backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20"
                 >
                 <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-3">
                   Real Clients. Real Results.
@@ -59,7 +59,7 @@ export default function Work() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
+                className="backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/20"
               >
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                   Wondering What This Could Look Like for Your Business?
@@ -72,7 +72,7 @@ export default function Work() {
                     <Link to={createPageUrl("book-strategy-session")}>Book a Free Strategy Session</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("free-business-audit")}>Get a Free Business Audit</Link>
+                    <Link to={createPageUrl("marketing-audit")}>Get a Free Marketing Audit</Link>
                   </Button>
                 </div>
               </motion.div>

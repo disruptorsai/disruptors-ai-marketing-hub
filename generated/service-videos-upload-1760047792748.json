@@ -1,0 +1,97 @@
+{
+  "results": [
+    {
+      "id": "ai-automation",
+      "title": "AI Automation",
+      "filename": "ai-automation.mp4",
+      "slug": "solutions-ai-automation",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046504/dmsite/services/ai-automation.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/ai-automation.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/ai-automation"
+    },
+    {
+      "id": "social-media-marketing",
+      "title": "Social Media Marketing",
+      "filename": "social-media-marketing.mp4.mp4",
+      "slug": "solutions-social-media",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046507/dmsite/services/social-media-marketing.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/social-media-marketing.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/social-media-marketing"
+    },
+    {
+      "id": "seo-geo",
+      "title": "SEO & GEO",
+      "filename": "seo-geo.mp4.mp4",
+      "slug": "solutions-seo-geo",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046511/dmsite/services/seo-geo.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/seo-geo"
+    },
+    {
+      "id": "lead-generation",
+      "title": "Lead Generation",
+      "filename": "lead-generation.mp4",
+      "slug": "solutions-lead-generation",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046515/dmsite/services/lead-generation.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/lead-generation"
+    },
+    {
+      "id": "paid-advertising",
+      "title": "Paid Advertising",
+      "filename": "paid-advertising.mp4.mp4",
+      "slug": "solutions-paid-advertising",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046518/dmsite/services/paid-advertising.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/paid-advertising.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/paid-advertising"
+    },
+    {
+      "id": "podcasting",
+      "title": "Podcasting",
+      "filename": "podcasting.mp4.mp4",
+      "slug": "solutions-podcasting",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046521/dmsite/services/podcasting.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/podcasting.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/podcasting"
+    },
+    {
+      "id": "custom-apps",
+      "title": "Custom Apps",
+      "filename": "custom-apps.mp4.mp4",
+      "slug": "solutions-custom-apps",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046524/dmsite/services/custom-apps.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/custom-apps"
+    },
+    {
+      "id": "crm-management",
+      "title": "CRM Management",
+      "filename": "crm-management.mp4.mp4",
+      "slug": "solutions-crm-management",
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046527/dmsite/services/crm-management.mp4",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/crm-management.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/crm-management"
+    },
+    {
+      "id": "fractional-cmo",
+      "title": "Fractional CMO",
+      "filename": "fractional-cmo.png",
+      "slug": "solutions-fractional-cmo",
+      "isImage": true,
+      "success": true,
+      "videoUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760046529/dmsite/services/fractional-cmo.png",
+      "imageUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg?_a=BAMAK+eC0",
+      "publicId": "dmsite/services/fractional-cmo"
+    }
+  ],
+  "successful": 9,
+  "failed": 0
+}

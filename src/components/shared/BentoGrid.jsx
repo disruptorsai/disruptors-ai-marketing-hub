@@ -67,10 +67,9 @@ const BentoCard = ({ item, index, onExpand }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`group relative ${rowSpan} cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[350px]`}
+      className={`group relative ${rowSpan} overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[350px]`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => onExpand(item)}
     >
       {/* Background Image/Video */}
       <div className="absolute inset-0">
@@ -130,25 +129,6 @@ const BentoCard = ({ item, index, onExpand }) => {
         <p className="text-gray-300 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {item.overview}
         </p>
-
-        {/* Metrics Preview */}
-        {item.results && item.results.length > 0 && (
-          <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {item.results.slice(0, 2).map((result, i) => (
-              <div key={i} className="text-center">
-                <p className="text-yellow-400 font-bold text-lg">{result.value}</p>
-                <p className="text-gray-400 text-xs">{result.label}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Hover Indicator */}
-        <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-yellow-400 text-black rounded-full p-2">
-            <ExternalLink className="w-4 h-4" />
-          </div>
-        </div>
       </div>
 
       {/* Border Animation */}
@@ -312,13 +292,10 @@ const ExpandedCard = ({ item, onClose }) => {
 export default function BentoGrid({ items }) {
   const [expandedItem, setExpandedItem] = useState(null);
 
-  // Repeat items to fill the viewport and overflow
-  const repeatedItems = [...items, ...items, ...items];
-
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8 auto-rows-[200px] w-full overflow-x-visible" style={{ gridAutoFlow: 'dense' }}>
-        {repeatedItems.map((item, index) => (
+        {items.map((item, index) => (
           <BentoCard
             key={`${item.name}-${index}` || index}
             item={item}

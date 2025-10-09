@@ -60,7 +60,7 @@ export default function Home() {
       kicker: "PARTNERSHIP",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black"
@@ -135,8 +135,8 @@ export default function Home() {
           >
             <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
           </video>
-          {/* Black overlay with 75% opacity */}
-          <div className="absolute inset-0 bg-black/75" />
+          {/* Black overlay with 85% opacity */}
+          <div className="absolute inset-0 bg-black/85" />
         </div>
 
         {/* Yellow accent line at top */}
@@ -504,7 +504,7 @@ export default function Home() {
               Get a free, comprehensive marketing audit and discover untapped opportunities in your business.
             </p>
             <Link
-              to={createPageUrl('book-strategy-session')}
+              to={createPageUrl('marketing-audit')}
               className="font-sans group relative inline-flex items-center justify-center h-16 px-10 xl:px-12 text-lg font-bold text-[#FFD700] uppercase bg-black hover:bg-gray-900 border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
               style={{
                 clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',

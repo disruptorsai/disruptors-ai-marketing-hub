@@ -239,8 +239,8 @@ export default function Resources() {
           className="w-full h-full object-cover"
           src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759352555/airis_lk5i30.mp4"
         />
-        {/* Black overlay with 80% opacity (20% transparency) */}
-        <div className="absolute inset-0 bg-black/80"></div>
+        {/* Black overlay with 85% opacity (15% transparency) */}
+        <div className="absolute inset-0 bg-black/85"></div>
       </div>
 
       {/* Content */}

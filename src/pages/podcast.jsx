@@ -131,7 +131,7 @@ export default function Podcast() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative lg:scale-125"
+              className="relative lg:scale-150 xl:scale-[1.75]"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
                 <img
@@ -452,7 +452,7 @@ export default function Podcast() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="w-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl"
-                style={{ minHeight: '600px' }}
+                style={{ minHeight: '800px' }}
               >
                 <img
                   src={studioImages[activeImage]}
@@ -461,15 +461,15 @@ export default function Podcast() {
                 />
               </motion.div>
 
-              <div className="grid grid-cols-4 gap-6 mt-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-4 gap-8 mt-12 max-w-6xl mx-auto">
                 {studioImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveImage(index)}
-                    className={`aspect-video rounded-xl overflow-hidden border-3 transition-all ${
+                    className={`aspect-video rounded-2xl overflow-hidden border-4 transition-all ${
                       activeImage === index
-                        ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-105'
-                        : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-105'
+                        ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-110'
+                        : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-110'
                     }`}
                   >
                     <img src={image} alt={`Studio ${index + 1}`} className="w-full h-full object-cover" />

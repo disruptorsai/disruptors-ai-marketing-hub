@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/shared/LoadingScreen";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import CascadeScrambleText from "@/components/shared/CascadeScrambleText";
+import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
 import gsap from "gsap";
@@ -223,9 +224,8 @@ export default function Layout({ children, currentPageName }) {
                       to={createPageUrl(item.path)}
                       className="font-sans text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
                     >
-                      <CascadeScrambleText
+                      <GsapScrambleText
                         text={item.name}
-                        enableRandomGlitch={true}
                       />
                     </Link>
                   ))}
@@ -245,10 +245,9 @@ export default function Layout({ children, currentPageName }) {
                        boxShadow: '0 0 15px rgba(255, 215, 0, 0.3)'
                      }}
                    >
-                      <CascadeScrambleText
+                      <GsapScrambleText
                         text="Let's Talk"
                         as="span"
-                        enableRandomGlitch={true}
                       />
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                    </Link>
@@ -288,17 +287,15 @@ export default function Layout({ children, currentPageName }) {
                         to={createPageUrl(item.path)}
                         className="font-sans block text-base font-medium text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
                       >
-                        <CascadeScrambleText
+                        <GsapScrambleText
                           text={item.name}
-                          enableRandomGlitch={true}
                         />
                       </Link>
                     ))}
                      <Button asChild className="w-full mt-4 bg-white text-black hover:bg-gray-200 h-12 text-base touch-manipulation">
                         <Link to={createPageUrl('book-strategy-session')}>
-                          <CascadeScrambleText
+                          <GsapScrambleText
                             text="Let's Talk"
-                            enableRandomGlitch={true}
                           />
                         </Link>
                      </Button>
@@ -344,11 +341,10 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl('book-strategy-session')}
                   className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation"
                 >
-                  <CascadeScrambleText
+                  <GsapScrambleText
                     text="Let's Talk"
                     className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
                     as="span"
-                    enableRandomGlitch={true}
                   />
                   <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
                 </Link>
@@ -362,9 +358,8 @@ export default function Layout({ children, currentPageName }) {
                     to={createPageUrl(link.path)}
                     className="font-supply text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation leading-[28px]"
                   >
-                    <CascadeScrambleText
+                    <GsapScrambleText
                       text={link.name}
-                      enableRandomGlitch={true}
                     />
                   </Link>
                 ))}
@@ -375,16 +370,13 @@ export default function Layout({ children, currentPageName }) {
                 {/* Left: Copyright & address */}
                 <div className="font-supply text-center md:text-left order-2 md:order-1">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
-                    <CascadeScrambleText
+                    <GsapScrambleText
                       text={`©${new Date().getFullYear()} Disruptors Media inc.`}
-                      enableRandomGlitch={true}
                     />
                   </p>
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
-                    <CascadeScrambleText
+                    <GsapScrambleText
                       text="650 N Main St, North Salt Lake, UT 84054"
-                      wordDelay={35}
-                      enableRandomGlitch={true}
                     />
                   </p>
                 </div>
@@ -410,17 +402,13 @@ export default function Layout({ children, currentPageName }) {
                 {/* Right: Coordinates & load address */}
                 <div className="font-supply text-center md:text-right order-3 hidden sm:block">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
-                    <CascadeScrambleText
+                    <GsapScrambleText
                       text="40.853400, -111.911790"
-                      wordDelay={35}
-                      enableRandomGlitch={true}
                     />
                   </p>
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
-                    <CascadeScrambleText
+                    <GsapScrambleText
                       text="Load Address: 034526-01, IScxx compressed"
-                      wordDelay={30}
-                      enableRandomGlitch={true}
                     />
                   </p>
                 </div>

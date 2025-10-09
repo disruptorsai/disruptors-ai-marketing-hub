@@ -19,6 +19,7 @@ import Home from "./Home.jsx";
 // Core pages - lazy loaded
 const Assessment = lazy(() => import('./assessment.jsx'));
 const Calculator = lazy(() => import('./calculator.jsx'));
+const MarketingAudit = lazy(() => import('./marketing-audit.jsx'));
 const NotFound = lazy(() => import('./404.jsx'));
 const Solutions = lazy(() => import('./solutions.jsx'));
 const Work = lazy(() => import('./work.jsx'));
@@ -113,6 +114,8 @@ const PAGES = {
     assessment: Assessment,
 
     calculator: Calculator,
+
+    "marketing-audit": MarketingAudit,
 
     "404": NotFound,
 
@@ -258,9 +261,11 @@ function PagesContent() {
                 <Route path="/tools" element={<Tools />} />
 
                 <Route path="/assessment" element={<Assessment />} />
-                
+
                 <Route path="/calculator" element={<Calculator />} />
-                
+
+                <Route path="/marketing-audit" element={<MarketingAudit />} />
+
                 <Route path="/404" element={<NotFound />} />
                 
                 <Route path="/work-saas-content-engine" element={<WorkSaasContentEngine />} />

@@ -4,61 +4,61 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
 
-// Service data with new Cloudinary images
+// Service data with first frames from uploaded videos
 const SERVICES = [
   {
     title: "AI Automation",
     description: "Transform your business operations with cutting-edge AI automation. We build intelligent systems that handle repetitive tasks, streamline workflows, and free your team to focus on high-value work. From chatbots to process automation, we deploy AI that works 24/7.",
     slug: "solutions-ai-automation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258611/AI_Girls_VR_Headsets_giiykw.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/ai-automation.jpg"
   },
   {
     title: "Social Media Marketing",
     description: "Build a thriving online community that drives real business results. We create scroll-stopping content, engage your audience authentically, and turn followers into loyal customers. From strategy to execution, we handle it all across every major platform.",
     slug: "solutions-social-media",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258611/AI_girl_hoverboards_nisxz4.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/social-media-marketing.jpg"
   },
   {
     title: "SEO & GEO",
     description: "Dominate search results and get found by customers actively looking for your services. Our SEO strategies combine technical excellence with compelling content, while our GEO (AI-optimized search) tactics position you for the future of search. More visibility means more revenue.",
     slug: "solutions-seo-geo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258611/scope-of-work_hoqqrj.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg"
   },
   {
     title: "Lead Generation",
     description: "Fill your pipeline with high-quality prospects ready to buy. We deploy multi-channel lead generation systems that attract, capture, and nurture your ideal customers. From landing pages to email sequences, we build conversion machines that deliver consistent, predictable growth.",
     slug: "solutions-lead-generation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258610/AI_Blimp_tmy95m.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg"
   },
   {
     title: "Paid Advertising",
     description: "Turn ad spend into profit with data-driven campaigns across Google, Facebook, Instagram, and beyond. We optimize every dollar for maximum ROI, using advanced targeting and creative testing to reach your perfect customer. Scale what works, kill what doesn't.",
     slug: "solutions-paid-advertising",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258610/discovery-call_sier9m.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/paid-advertising.jpg"
   },
   {
     title: "Podcasting",
     description: "Establish yourself as the go-to authority in your industry with a professional podcast. We handle everything from strategy and production to distribution and promotion. Build trust at scale, reach new audiences, and create content that works for you long after you hit publish.",
     slug: "solutions-podcasting",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258610/Static_AI_Image_-_Copy_atjtoj.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/podcasting.jpg"
   },
   {
     title: "Custom Apps",
     description: "Get software built specifically for your business needs. Whether it's a customer portal, internal tool, or unique business application, we design and develop custom solutions that give you a competitive edge. Your business is unique—your software should be too.",
     slug: "solutions-custom-apps",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258609/send-proposal_eptrcp.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg"
   },
   {
     title: "CRM Management",
     description: "Turn chaotic customer data into organized, actionable insights. We set up and optimize CRM systems that track every interaction, automate follow-ups, and ensure no lead falls through the cracks. Better relationships mean better retention and more referrals.",
     slug: "solutions-crm-management",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258609/website-design-optimization_a0vafx.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/crm-management.jpg"
   },
   {
     title: "Fractional CMO",
     description: "Get C-level marketing strategy without the C-level salary. Our fractional CMOs bring years of experience to guide your marketing vision, optimize your spend, and drive measurable growth. Strategic leadership when you need it, flexibility when you don't.",
     slug: "solutions-fractional-cmo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759270223/u4455988764_Epic_Renaissance-style_painting_in_the_manner_of__3c22e647-38af-495f-8292-d023c0447081_3_wd6alm.png"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg"
   }
 ];
 
