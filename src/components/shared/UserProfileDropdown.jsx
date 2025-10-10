@@ -116,6 +116,15 @@ export default function UserProfileDropdown() {
     }
   ];
 
+  const handleMenuClick = (item) => {
+    console.log('👤 [USER_PROFILE_DROPDOWN] Menu item clicked:', {
+      label: item.label,
+      path: item.path,
+      fullPath: createPageUrl(item.path)
+    });
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Profile Button */}
@@ -195,7 +204,7 @@ export default function UserProfileDropdown() {
                   <Link
                     key={item.path}
                     to={createPageUrl(item.path)}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleMenuClick(item)}
                     className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 transition-colors group"
                   >
                     <Icon className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors flex-shrink-0 mt-0.5" />

@@ -54,17 +54,27 @@ export default function BusinessBrainManager() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log('🧠 [BUSINESS_BRAIN_MANAGER] Component mounted - timestamp:', new Date().toISOString());
     loadBrain();
   }, []);
 
   const loadBrain = async () => {
     try {
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Starting brain load process...');
       setLoading(true);
       setError(null);
 
       // Get authenticated user
-      const { data: { user } } = await supabase.auth.getUser();
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Checking user authentication...');
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      
+      if (userError) {
+        console.error('🧠 [BUSINESS_BRAIN_MANAGER] User auth error:', userError);
+        throw new Error(`Authentication error: ${userError.message}`);
+      }
+      
       if (!user) {
+        console.warn('🧠 [BUSINESS_BRAIN_MANAGER] No authenticated user found');
         setError('Please sign in to access Business Brain Manager');
         toast({
           title: 'Authentication Required',
@@ -74,10 +84,31 @@ export default function BusinessBrainManager() {
         return;
       }
 
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] User authenticated:', {
+        id: user.id,
+        email: user.email,
+        metadata: user.user_metadata
+      });
+
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Calling BrainAPI.getBrainByUser...');
       const brainData = await BrainAPI.getBrainByUser(user.id);
+      
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Brain data received:', {
+        brainId: brainData?.id,
+        businessName: brainData?.business_name,
+        hasData: !!brainData,
+        dataKeys: brainData ? Object.keys(brainData) : []
+      });
+      
       setBrain(brainData);
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Brain state updated successfully');
     } catch (err) {
-      console.error('Failed to load brain:', err);
+      console.error('🧠 [BUSINESS_BRAIN_MANAGER] Failed to load brain:', {
+        error: err,
+        message: err.message,
+        stack: err.stack,
+        name: err.name
+      });
       setError(err.message);
       toast({
         title: 'Error',
@@ -86,6 +117,7 @@ export default function BusinessBrainManager() {
       });
     } finally {
       setLoading(false);
+      console.log('🧠 [BUSINESS_BRAIN_MANAGER] Brain load process completed');
     }
   };
 

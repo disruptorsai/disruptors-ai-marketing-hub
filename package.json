@@ -72,11 +72,19 @@
     "perf:monitor": "node scripts/lighthouse-monitor.js",
     "perf:monitor:watch": "node scripts/lighthouse-monitor.js --watch",
     "perf:monitor:ci": "node scripts/lighthouse-monitor.js --ci",
-    "perf:baseline": "node scripts/lighthouse-monitor.js --update-baseline"
+    "perf:baseline": "node scripts/lighthouse-monitor.js --update-baseline",
+    "claude:start": "npx @anthropic-ai/claude-code --mcp-config mcp-claude.json",
+    "claude:interactive": "npx @anthropic-ai/claude-code --ide",
+    "claude:chat": "npx @anthropic-ai/claude-code --print",
+    "claude:help": "npx @anthropic-ai/claude-code --help",
+    "claude:version": "npx @anthropic-ai/claude-code --version",
+    "claude:setup": "node scripts/claude-code-integration.js setup",
+    "claude:status": "node scripts/claude-code-integration.js status"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.23",
     "@ai-sdk/openai": "^2.0.42",
+    "@anthropic-ai/claude-code": "^2.0.14",
     "@anthropic-ai/sdk": "^0.65.0",
     "@base44/sdk": "^0.1.2",
     "@google/genai": "^1.21.0",

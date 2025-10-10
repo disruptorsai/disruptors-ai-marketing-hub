@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "local-project": {
+      "command": "npx",
+      "args": ["@anthropic-ai/claude-code"],
+      "env": {
+        "ANTHROPIC_API_KEY": "your-api-key-here"
+      }
+    }
+  },
+  "settings": {
+    "verbose": true,
+    "permissionMode": "acceptEdits",
+    "allowedTools": [
+      "Bash",
+      "Edit", 
+      "Read",
+      "Write",
+      "Delete",
+      "Search",
+      "Create",
+      "Update"
+    ],
+    "model": "claude-3-5-sonnet-20241022",
+    "debug": false
+  }
+}

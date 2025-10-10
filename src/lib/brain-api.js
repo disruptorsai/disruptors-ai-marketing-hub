@@ -109,18 +109,47 @@ export class BrainAPI {
    * @returns {Promise<Object|null>} Brain data or null if not found
    */
   static async getBrainByUser(userId) {
-    const { data, error } = await supabase
-      .from('business_brains')
-      .select('*')
-      .eq('created_by', userId)
-      .maybeSingle(); // Use maybeSingle() instead of single() to handle no results gracefully
+    console.log('🧠 [BRAIN_API] getBrainByUser called with userId:', userId);
+    
+    try {
+      const { data, error } = await supabase
+        .from('business_brains')
+        .select('*')
+        .eq('created_by', userId)
+        .maybeSingle(); // Use maybeSingle() instead of single() to handle no results gracefully
 
-    if (error) {
-      console.error('[BrainAPI] Get brain error:', error);
-      throw error;
+      console.log('🧠 [BRAIN_API] Supabase query result:', {
+        hasData: !!data,
+        hasError: !!error,
+        dataKeys: data ? Object.keys(data) : null,
+        errorMessage: error?.message,
+        errorCode: error?.code
+      });
+
+      if (error) {
+        console.error('🧠 [BRAIN_API] Get brain error:', error);
+        // Check if table doesn't exist
+        if (error.message && error.message.includes('relation "business_brains" does not exist')) {
+          console.error('❌ CRITICAL: business_brains table does not exist!');
+          console.error('📋 Solution: Apply Business Brain migration:');
+          console.error('   1. Review: supabase/migrations/20250107_business_brain_infrastructure.sql');
+          console.error('   2. Run: node scripts/apply-business-brain-migration.js');
+          console.error('   3. Verify: node scripts/verify-business-brain-tables.cjs');
+          console.error('📖 See: APPLY_MIGRATION_NOW.md for complete instructions');
+        }
+        throw error;
+      }
+
+      console.log('🧠 [BRAIN_API] Returning data:', data);
+      return data; // Returns null if no brain found
+    } catch (err) {
+      console.error('🧠 [BRAIN_API] Exception in getBrainByUser:', {
+        error: err,
+        message: err.message,
+        stack: err.stack
+      });
+      throw err;
     }
-
-    return data; // Returns null if no brain found
   }
 
   /**
