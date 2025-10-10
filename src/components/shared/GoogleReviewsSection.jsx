@@ -45,12 +45,19 @@ export default function GoogleReviewsSection() {
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const checkScrollPosition = () => {
     if (!scrollContainerRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
     setCanScrollLeft(scrollLeft > 0);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    // Calculate current index based on scroll position
+    const cardWidth = 340 + 16; // card width + gap
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    setCurrentIndex(newIndex);
   };
 
   const scroll = (direction) => {
@@ -64,6 +71,36 @@ export default function GoogleReviewsSection() {
     setTimeout(checkScrollPosition, 300);
   };
 
+  const scrollToIndex = (index) => {
+    if (!scrollContainerRef.current) return;
+    const cardWidth = 340 + 16; // card width + gap
+    scrollContainerRef.current.scrollTo({
+      left: index * cardWidth,
+      behavior: 'smooth'
+    });
+    setCurrentIndex(index);
+  };
+
+  const scrollNext = () => {
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < reviews.length) {
+      scrollToIndex(nextIndex);
+    } else {
+      scrollToIndex(0); // Loop back to start
+    }
+  };
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      scrollNext();
+    }, 5000); // Auto-scroll every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isPaused]);
+
   // Check scroll position on mount and window resize
   useEffect(() => {
     checkScrollPosition();
@@ -71,7 +108,7 @@ export default function GoogleReviewsSection() {
     return () => window.removeEventListener('resize', checkScrollPosition);
   }, []);
 
-  const averageRating = 4.9;
+  const averageRating = 5.0;
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -178,6 +215,8 @@ export default function GoogleReviewsSection() {
             <div
               ref={scrollContainerRef}
               onScroll={checkScrollPosition}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               className="overflow-x-auto scrollbar-hide scroll-smooth pb-4"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
@@ -230,6 +269,24 @@ export default function GoogleReviewsSection() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToIndex(index)}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'bg-[#2C6BAA] w-8'
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>

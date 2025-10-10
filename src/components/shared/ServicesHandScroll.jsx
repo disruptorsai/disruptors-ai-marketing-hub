@@ -135,10 +135,19 @@ const ServicesHandScroll = ({
         // Use requestAnimationFrame for smoother updates
         requestAnimationFrame(() => {
           try {
-            // Animate hand - smooth rotation only (even slower rotation)
-            if (handObject && initialRotations.hand) {
+            // Animate hand - smooth rotation with pivot point adjusted to the right
+            if (handObject && initialRotations.hand && initialPositions.hand) {
+              // Apply rotation
               gsap.to(handObject.rotation, {
                 z: initialRotations.hand.z + (progress * Math.PI * 0.6), // Much faster rotation - 0.6 radians = ~108 degrees
+                duration: 0.1,
+                ease: "none",
+                overwrite: true
+              });
+
+              // Offset pivot point by moving the hand slightly to the right during rotation
+              gsap.to(handObject.position, {
+                x: initialPositions.hand.x + (progress * 30), // Move 30 units to the right as it rotates
                 duration: 0.1,
                 ease: "none",
                 overwrite: true

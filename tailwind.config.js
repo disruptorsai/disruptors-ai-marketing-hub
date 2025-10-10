@@ -5,7 +5,8 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+  			'sans': ['"PP Neue Montreal"', 'system-ui', '-apple-system', 'sans-serif'],
+  			'montreal': ['"PP Neue Montreal"', 'system-ui', '-apple-system', 'sans-serif'],
   			'supply': ['"PP Supply Mono"', 'monospace'],
   			'mono': ['"PP Supply Mono"', 'monospace'],
   		},

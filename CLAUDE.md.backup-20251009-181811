@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Lint**: `npm run lint` - Runs ESLint on the codebase
 - **Preview**: `npm run preview` - Preview production build locally
 
-**Note**: Use `npm run dev:netlify` when working with Growth Audit, Marketing Audit, Business Brain, or any features that require Netlify functions. Regular `npm run dev` only serves the frontend and will result in 404 errors for function endpoints.
+**Note**: Use `npm run dev:netlify` when working with Growth Audit, Business Brain, or any features that require Netlify functions. Regular `npm run dev` only serves the frontend and will result in 404 errors for function endpoints.
 
 ### AI Image Generation
 - **Generate service images**: `npm run generate:service-images` - Generate AI service images
@@ -61,7 +61,7 @@ This is a React SPA built with Vite serving as a marketing website for Disruptor
 
 The application implements a distinctive routing architecture managed in `src/pages/index.jsx`:
 
-- **70 page components** centrally imported and mapped in a `PAGES` object
+- **39 page components** centrally imported and mapped in a `PAGES` object
 - **URL-to-component mapping** handled by `_getCurrentPage()` function
 - **Layout wrapper system** where `Layout.jsx` wraps all pages and receives `currentPageName` prop
 - **Dual routing definition** with both custom mapping and React Router `<Routes>`
@@ -69,9 +69,9 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Lazy loading strategy**: All pages except Home are lazy-loaded using React.lazy() with Suspense
 - **Demo pages** (3D/animation heavy) are lazy-loaded to defer ~2MB physics bundle until needed
 
-### Component Architecture (50 UI + 37 Shared + Domain-Specific)
+### Component Architecture (49 UI + 15 Shared + Domain-Specific)
 
-- **UI Components** (`src/components/ui/`): 50 Radix UI-based design system components following shadcn/ui patterns
+- **UI Components** (`src/components/ui/`): 49 Radix UI-based design system components following shadcn/ui patterns
 - **Shared Components** (`src/components/shared/`): Reusable business components including:
   - Hero, ServiceScroller, AIMediaGenerator for content
   - AlternatingLayout, VideoScrollScrub for layouts
@@ -140,14 +140,6 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Demo Pages**: `/demos/growth-audit` (landing) and `/demos/growth-audit/:jobId` (results)
 - **Architecture**: Serverless job queue → Data collection → AI analysis → SSE streaming → Results page
 - **See**: `docs/GROWTH_AUDIT_INTEGRATION_REPORT.md`, `docs/GROWTH_AUDIT_QUICK_REFERENCE.md` for complete documentation
-
-**Marketing Audit System** (`netlify/functions/marketing-audit-analyze.js`, `src/pages/marketing-audit.jsx`):
-- **AI-Powered Marketing Analysis**: Strategic marketing audits using Claude Sonnet 4.5
-- **Public Audit Tool**: `/marketing-audit` page - accessible to all visitors
-- **Component Integration**: Works with AuditProvenGrowth and StopWastingBudget components
-- **AI Analysis**: Comprehensive marketing strategy evaluation and recommendations
-- **Netlify Function**: `marketing-audit-analyze.js` - Claude-powered analysis endpoint
-- **Use Cases**: Lead generation, marketing diagnostics, conversion optimization insights
 
 **Business Brain System** (`src/admin/modules/BusinessBrainBuilder.jsx`, Netlify functions):
 - **AI-Powered Knowledge Base**: Central intelligence layer for all AI-generated content
@@ -577,15 +569,13 @@ SELECT reset_monthly_module_quotas(); -- Reset monthly counters
 
 **Migration Status**:
 - ⚠️ **Database migration READY but NOT YET APPLIED**
-- **Last Updated**: October 9, 2025 (Phase 1 Complete)
-- **Status Verified**: See `PHASE_1_COMPLETE.md` for detailed completion report
 - Migration file: `supabase/migrations/20251010_modules_infrastructure.sql`
 - Application script: `scripts/apply-modules-migration.js`
 - Verification script: `scripts/verify-modules-migration.js`
 - Seed script: `scripts/seed-modules.js`
 - **To apply**: See `APPLY_MODULES_MIGRATION.md` for step-by-step instructions
 
-**Current Phase**: Phase 1 Complete (Infrastructure) → Phase 2 Ready to Start (Refactor Features)
+**Current Phase**: Phase 1 Complete (Infrastructure) → Phase 2 Starting (Refactor Features)
 
 **Phase 2 Goals**:
 1. Refactor Keyword Research into first proper module
@@ -614,13 +604,11 @@ SELECT reset_monthly_module_quotas(); -- Reset monthly counters
 
 ### File Organization & Patterns
 
-**Page Structure** (70 total pages):
+**Page Structure** (39 total pages):
 - Core: Home, About, Contact, Work, Solutions, Blog system
-- Case Studies: Work pages (`work-[client].jsx`)
-- Solutions: Solution pages (`solutions-[service].jsx`)
-- Demo Pages: Growth Audit, Marketing Audit
-- App Pages: AI Content Writer, Business Brain Manager
-- Utility: Assessment, Calculator, Gallery, Podcast, Privacy, Terms, and more
+- Case Studies: 9 work pages (`work-[client].jsx`)
+- Solutions: 8 solution pages (`solutions-[service].jsx`)
+- Utility: Assessment, Calculator, Gallery, Podcast, Privacy, Terms
 
 **Component Patterns**:
 - Functional components with hooks
@@ -699,12 +687,10 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ### Netlify Serverless Functions
 
-**11 Background Functions** (`netlify/functions/`):
+**10 Background Functions** (`netlify/functions/`):
 - **Growth Audit System** (2 functions):
   - `growth-audit-ingest.js` - Website crawling, brand detection, PageSpeed analysis
   - `growth-audit-stream.js` - Server-Sent Events streaming for real-time results
-- **Marketing Audit System** (1 function):
-  - `marketing-audit-analyze.js` - AI-powered marketing strategy analysis with Claude
 - **Business Brain System** (3 functions):
   - `brain-auto-initialize.ts` - Auto-scrape website to create starter brain
   - `brain-enhance.ts` - AI onboarding conversation engine with Claude
@@ -775,9 +761,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ### Business Brain Migration Status
 
-**Database Migration Status**: ⚠️ **Check with database admin for current status**
-
-The Business Brain infrastructure migration files are available but application status needs verification:
+**Database Migration**: The Business Brain infrastructure migration is **ready but not yet applied** to production database.
 
 **Migration Files**:
 - `supabase/migrations/20250107_business_brain_infrastructure.sql` - Complete schema with 7 new tables
@@ -792,13 +776,7 @@ The Business Brain infrastructure migration files are available but application 
 - Functions: search_brain_facts (FTS), calculate_brain_health (metrics)
 - Views: brain_health_summary (aggregated metrics)
 
-**Verification**:
-To check if migration is already applied, run:
-```bash
-node scripts/verify-business-brain-tables.cjs
-```
-
-**If Not Applied**:
+**Before Using Business Brain Features**:
 1. Review migration SQL: `supabase/migrations/20250107_business_brain_infrastructure.sql`
 2. Apply migration: `node scripts/apply-business-brain-migration.js`
 3. Verify tables: `node scripts/verify-business-brain-tables.cjs`
@@ -816,30 +794,21 @@ node scripts/verify-business-brain-tables.cjs
 7. Client polls `growth-audit-stream.js` via Server-Sent Events
 8. Results displayed on `/demos/growth-audit/:jobId`
 
-**Marketing Audit Workflow**:
-1. User visits `/marketing-audit` page
-2. Submits marketing information via form
-3. `marketing-audit-analyze.js` function processes with Claude Sonnet 4.5
-4. AI analyzes marketing strategy and provides recommendations
-5. Results displayed with actionable insights
-6. Lead capture for follow-up consultation
-
 **Business Brain Onboarding Flow**:
-1. User creates account via login modal (Google OAuth or email/password)
-2. 6-step onboarding wizard collects business information
-3. Auto-initialize function scrapes website with Firecrawl
-4. AI extracts 20-50 facts with confidence scores (0.3-0.5 = Level 1 Starter)
-5. Optional: AI onboarding conversation enhances brain to Level 2 (0.6-0.8)
-6. Optional: Manual brand guidelines upload achieves Level 3 Expert (0.9-1.0)
-7. Brain facts used as context in all AI content generation
+1. Admin creates brain via Business Brain Builder module
+2. Auto-initialize function scrapes website with Firecrawl
+3. AI extracts facts (20-50) with confidence scores (0.3-0.5 = Level 1 Starter)
+4. Optional: AI onboarding conversation enhances brain to Level 2 (0.6-0.8)
+5. Optional: Manual brand guidelines upload achieves Level 3 Expert (0.9-1.0)
+6. Brain facts used as context in all AI content generation (blog posts, copy, etc.)
 
-**Admin Access Flow** (Internal Staff Only):
-1. Click logo 5 times in 3 seconds OR press Ctrl+Shift+D
-2. Matrix-style login appears (secret access pattern)
-3. Authenticate with admin credentials (session-based, 24-hour expiry)
-4. Access admin dashboard at `/admin/secret` with 11 modules
-5. Lazy-loaded modules for zero impact on public site
-6. Emergency exit: Ctrl+Shift+Escape
+**Admin Access Flow**:
+1. Public site: Click logo 5 times in 3 seconds OR press Ctrl+Shift+D
+2. Matrix-style login appears (secret access pattern activated)
+3. Authenticate with email/password (session-based, 24-hour expiry)
+4. Redirect to `/admin/secret` with 11 modules
+5. Lazy-load modules on demand (zero impact on public site)
+6. Emergency exit: Ctrl+Shift+Escape clears session
 
 ### Testing and Quality Assurance
 - **No test framework** is configured - verify functionality through manual browser testing

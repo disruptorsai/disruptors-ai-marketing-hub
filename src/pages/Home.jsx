@@ -63,7 +63,8 @@ export default function Home() {
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
-      textColor: "text-black"
+      textColor: "text-black",
+      videoStyle: { transform: "scale(0.8)" }
     }
   ];
 
@@ -142,7 +143,8 @@ export default function Home() {
         {/* Yellow accent line at top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        {/* Large Stationary Header */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,14 +152,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="inline-block mb-4">
-              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-              What We Bring to the Table
+            <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 mb-6 tracking-tight">
+              AI POWERED MARKETING
             </h2>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Marketing expertise meets AI automation—a powerful combination that drives real results
@@ -176,7 +172,7 @@ export default function Home() {
             className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pb-4 select-none"
           >
             <div className="flex gap-12 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
-              {/* Marketing - Expert Digital Marketing */}
+              {/* Expert Digital Marketing */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -200,11 +196,6 @@ export default function Home() {
 
                   {/* Content */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
-                    </div>
-
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Multi-channel</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -218,7 +209,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* AI - AI Automation */}
+              {/* AI Automation */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -241,11 +232,6 @@ export default function Home() {
 
                   {/* Content */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
-                    </div>
-
                     <div className="space-y-3">
                       <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">10x faster</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -279,10 +265,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">300% ROI</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -316,10 +298,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Smart insights</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -353,10 +331,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Live data</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -390,10 +364,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -427,10 +397,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Qualified leads</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -464,10 +430,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
-                    </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">20+ hrs saved</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
@@ -488,7 +450,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
 
-      {/* Free Marketing Audit CTA */}
+      {/* Free Marketing Consultation CTA */}
       <section className="relative py-16 sm:py-20 lg:py-24 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -501,7 +463,7 @@ export default function Home() {
               Ready to Accelerate Your Growth?
             </h2>
             <p className="font-sans text-lg sm:text-xl text-black mb-10 max-w-2xl mx-auto">
-              Get a free, comprehensive marketing audit and discover untapped opportunities in your business.
+              Get a free, comprehensive marketing consultation and discover untapped opportunities in your business.
             </p>
             <Link
               to={createPageUrl('marketing-audit')}
@@ -512,7 +474,7 @@ export default function Home() {
                 boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
               }}
             >
-              <span>Free Marketing Audit</span>
+              <span>Free Marketing Consultation</span>
               <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
@@ -523,7 +485,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4"
             autoPlay
             loop
             muted

@@ -36,6 +36,7 @@ function ParallaxSection({ section, textOnLeft }) {
             ref={imageRef}
             src={section.video}
             className="w-full h-full object-cover scale-110"
+            style={section.videoStyle}
             autoPlay
             muted
             loop

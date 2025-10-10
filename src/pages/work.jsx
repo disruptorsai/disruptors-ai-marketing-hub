@@ -14,32 +14,93 @@ export default function Work() {
     <div className="min-h-screen">
       <DynamicBackground pageContext="work" intensity={0.8}>
         <div>
-          {/* Page Title */}
-          <PageTitle title="WORK" />
+          {/* Premium Hero Section */}
+          <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            </div>
 
-          {/* Header Section */}
-          <BlurSection>
-            <section className="py-6 sm:py-10 text-center">
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Gold Accent Lines */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* Kicker */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-block mb-6"
+                >
+                  <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                    <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Portfolio</span>
+                  </div>
+                </motion.div>
+
+                {/* Main Headline */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 tracking-tight"
+                >
+                  <span className="text-white">Real Clients.</span>
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500">
+                    Real Results.
+                  </span>
+                </motion.h1>
+
+                {/* Subheadline */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+                >
+                  Growth systems that speak for themselves. See how we've helped businesses simplify, scale, and succeed with AI-powered marketing.
+                </motion.p>
+
+                {/* Stats Row */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20"
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="flex flex-wrap justify-center gap-8 sm:gap-12"
                 >
-                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-3">
-                  Real Clients. Real Results.
-                </h1>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-700 mb-4">
-                  Growth Systems That Speak for Themselves
-                </h2>
-                <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                  We don't just create campaigns—we build growth infrastructure that delivers measurable results. Here's how we've helped real businesses simplify, scale, and succeed using the power of strategy + automation.
-                </p>
+                  <div className="text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">50+</div>
+                    <div className="text-sm text-gray-400 uppercase tracking-wider">Projects Delivered</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">10M+</div>
+                    <div className="text-sm text-gray-400 uppercase tracking-wider">In Client Revenue</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">300%</div>
+                    <div className="text-sm text-gray-400 uppercase tracking-wider">Avg ROI</div>
+                  </div>
+                </motion.div>
               </motion.div>
             </div>
+
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-70 hover:opacity-100 transition-opacity">
+              <div className="flex flex-col items-center space-y-2 text-yellow-500">
+                <span className="text-xs font-medium tracking-wide uppercase">Scroll to explore</span>
+                <div className="w-px h-12 bg-yellow-500/50 animate-pulse"></div>
+              </div>
+            </div>
           </section>
-        </BlurSection>
 
         {/* Bento Grid Portfolio */}
         <BlurSection blurAmount={4}>
@@ -72,7 +133,7 @@ export default function Work() {
                     <Link to={createPageUrl("book-strategy-session")}>Book a Free Strategy Session</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("marketing-audit")}>Get a Free Marketing Audit</Link>
+                    <Link to={createPageUrl("marketing-audit")}>Get a Free Marketing Consultation</Link>
                   </Button>
                 </div>
               </motion.div>
