@@ -2,9 +2,36 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc' // Using SWC for faster builds (2025 best practice)
 import path from 'path'
 
+// Custom plugin to ensure vendor-react loads BEFORE vendor-ui
+function prioritizeReactChunk() {
+  return {
+    name: 'prioritize-react-chunk',
+    enforce: 'post',
+    transformIndexHtml(html) {
+      // Move vendor-react modulepreload to FIRST position
+      // This ensures React is available before any Radix UI components load
+      const reactPreloadRegex = /<link rel="modulepreload"[^>]*vendor-react[^>]*>/;
+      const reactPreloadMatch = html.match(reactPreloadRegex);
+
+      if (reactPreloadMatch) {
+        const reactPreload = reactPreloadMatch[0];
+        // Remove vendor-react from current position
+        html = html.replace(reactPreload, '');
+        // Insert it as FIRST modulepreload (right after main script tag)
+        html = html.replace(
+          /(<script type="module"[^>]*><\/script>)/,
+          `$1\n    ${reactPreload}`
+        );
+      }
+
+      return html;
+    }
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), prioritizeReactChunk()],
   server: {
     allowedHosts: true
   },
@@ -51,12 +78,18 @@ export default defineConfig({
 
         // Advanced route-based code splitting for optimal performance
         manualChunks(id) {
-          // CRITICAL: Keep React in main bundle to prevent dependency ordering issues
-          // React/ReactDOM must load before any components that use them
-          // Splitting them out causes "Cannot read properties of undefined (reading 'forwardRef')" errors
+          // CRITICAL FIX: React MUST be in its own chunk that loads FIRST
+          // This ensures React/ReactDOM are available before vendor-ui (Radix UI) loads
+          // The issue was modulepreload causing vendor-ui to execute before main bundle
+          if (id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/react-router-dom/') ||
+              id.includes('node_modules/scheduler/')) {
+            return 'vendor-react';
+          }
 
           // Radix UI components - used across site
-          // NOTE: These depend on React, so React MUST be in main bundle
+          // NOTE: These depend on React, so vendor-react MUST load first
           if (id.includes('node_modules/@radix-ui')) {
             return 'vendor-ui';
           }
