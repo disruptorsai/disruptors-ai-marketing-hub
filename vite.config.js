@@ -38,6 +38,13 @@ export default defineConfig({
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: true, // Split CSS by route for better caching
     sourcemap: false, // Disable source maps in production for smaller builds
+
+    // CRITICAL FIX: Disable modulePreload
+    // modulePreload causes vendor chunks to load in PARALLEL with main bundle
+    // This means vendor-ui (Radix components) executes BEFORE React is available
+    // Disabling forces SEQUENTIAL loading: main bundle first, then vendor chunks
+    modulePreload: false,
+
     rollupOptions: {
       external: () => {
         // Don't externalize these in the browser build
