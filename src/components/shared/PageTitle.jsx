@@ -19,7 +19,7 @@ export default function PageTitle({ title, light = false }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black ${light ? 'text-white' : 'text-black'} tracking-tight text-center uppercase`}
+          className={`text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-medium ${light ? 'text-white' : 'text-black'} tracking-tight text-center uppercase`}
         >
           {title}
         </motion.h1>

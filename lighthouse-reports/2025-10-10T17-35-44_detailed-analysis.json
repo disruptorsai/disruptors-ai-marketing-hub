@@ -1,0 +1,4125 @@
+{
+  "analysis": {
+    "about": {
+      "desktop": {
+        "scores": {
+          "performance": 63,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 12,010 KiB",
+            "savings": null,
+            "numericValue": 12298658,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4",
+                  "totalBytes": 3584528
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758490491/ChatGPT_Image_Sep_21_2025_03_33_57_PM_xrteo4.png",
+                  "totalBytes": 1621062
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758490868/ChatGPT_Image_Sep_21_2025_03_32_34_PM_mgrkp3.png",
+                  "totalBytes": 1519743
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758490867/ChatGPT_Image_Sep_21_2025_03_33_46_PM_skmkuo.png",
+                  "totalBytes": 1502734
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758490868/ChatGPT_Image_Sep_21_2025_03_33_49_PM_sudbsq.png",
+                  "totalBytes": 1287061
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555677
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+                  "totalBytes": 518871
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758490868/ChatGPT_Image_Sep_21_2025_03_33_51_PM_zssdph.png",
+                  "totalBytes": 213621
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 627 KiB",
+            "savings": {
+              "ms": 500,
+              "bytes": 642122
+            },
+            "numericValue": 500,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555575,
+                  "wastedBytes": 417283,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 121901,
+                  "wastedBytes": 84378,
+                  "wastedPercent": 69.21832381962908
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63468,
+                  "wastedBytes": 32073,
+                  "wastedPercent": 50.534192965989114
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 31651,
+                  "wastedBytes": 27701,
+                  "wastedPercent": 87.51988765143503
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 28224,
+                  "wastedBytes": 21091,
+                  "wastedPercent": 74.72569594173734
+                }
+              ],
+              "overallSavingsMs": 500,
+              "overallSavingsBytes": 642122,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 520,
+                  "LCP": 500
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 15 KiB",
+            "savings": {
+              "ms": 40,
+              "bytes": 15599
+            },
+            "numericValue": 40,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 15599,
+                  "wastedPercent": 85.56949778125504,
+                  "totalBytes": 18230
+                }
+              ],
+              "overallSavingsMs": 40,
+              "overallSavingsBytes": 15599,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 80,
+                  "LCP": 40
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0.56,
+            "value": "2.2 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.27,
+            "value": "0.386",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": 1,
+            "impact": 1,
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-H2",
+                  "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,1,DIV,0,MAIN,0,DIV,9,SECTION,1,DIV,0,DIV,0,DIV,0,H2",
+                  "selector": "div.text-white > div.max-w-4xl > div > h2.font-sans",
+                  "boundingRect": {
+                    "top": 5087,
+                    "bottom": 5087,
+                    "left": 537,
+                    "right": 1369,
+                    "width": 832,
+                    "height": 0
+                  },
+                  "snippet": "<h2 class=\"font-sans text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 sm:mb-8 px-2\">",
+                  "nodeLabel": "div.text-white > div.max-w-4xl > div > h2.font-sans",
+                  "explanation": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+                }
+              }
+            ]
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555677,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126835,
+              "sizeKB": 124,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69261,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67728,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56188,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35844,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32418,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14223,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/about-CHMVkD3n.js",
+              "size": 6430,
+              "sizeKB": 6,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/about-dev-DEZMLdY6.js",
+              "size": 5247,
+              "sizeKB": 5,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/award-BkovNYFV.js",
+              "size": 561,
+              "sizeKB": 1,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22504,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12399,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 949,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "1.3 s",
+          "LCP": "2.2 s",
+          "TBT": "0 ms",
+          "CLS": "0.386",
+          "SI": "2.3 s",
+          "TTI": "2.2 s"
+        }
+      },
+      "mobile": {
+        "scores": {
+          "performance": 33,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 17,339 KiB",
+            "savings": null,
+            "numericValue": 17754645,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4",
+                  "totalBytes": 8227988
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4",
+                  "totalBytes": 3502563
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+                  "totalBytes": 3339504
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+                  "totalBytes": 633087
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 556345
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126222
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/footer/logo-emboss.png",
+                  "totalBytes": 89431
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 69261
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 640 KiB",
+            "savings": {
+              "ms": 3530,
+              "bytes": 654999
+            },
+            "numericValue": 3530,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555575,
+                  "wastedBytes": 417283,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 87218,
+                  "wastedPercent": 69.21832381962908
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 69173,
+                  "wastedBytes": 63355,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 67573,
+                  "wastedBytes": 34758,
+                  "wastedPercent": 51.43742274333605
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 35756,
+                  "wastedBytes": 31294,
+                  "wastedPercent": 87.51988765143503
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 28224,
+                  "wastedBytes": 21091,
+                  "wastedPercent": 74.72569594173734
+                }
+              ],
+              "overallSavingsMs": 3530,
+              "overallSavingsBytes": 654999,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 3300,
+                  "LCP": 3530
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 19 KiB",
+            "savings": {
+              "ms": 150,
+              "bytes": 19747
+            },
+            "numericValue": 150,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 19747,
+                  "wastedPercent": 88.41235808094984,
+                  "totalBytes": 22335
+                }
+              ],
+              "overallSavingsMs": 150,
+              "overallSavingsBytes": 19747,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 300,
+                  "LCP": 150
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0,
+            "value": "11.3 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.03,
+            "value": "0.88",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": 1,
+            "impact": 1,
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-H2",
+                  "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,1,DIV,0,MAIN,0,DIV,9,SECTION,1,DIV,0,DIV,0,DIV,0,H2",
+                  "selector": "div.text-white > div.max-w-4xl > div > h2.font-sans",
+                  "boundingRect": {
+                    "top": 5322,
+                    "bottom": 5322,
+                    "left": 12,
+                    "right": 363,
+                    "width": 351,
+                    "height": 0
+                  },
+                  "snippet": "<h2 class=\"font-sans text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 sm:mb-8 px-2\">",
+                  "nodeLabel": "div.text-white > div.max-w-4xl > div > h2.font-sans",
+                  "explanation": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+                }
+              }
+            ]
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 556345,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126222,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69261,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67661,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56188,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35845,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32417,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14206,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/about-CHMVkD3n.js",
+              "size": 6477,
+              "sizeKB": 6,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/about-dev-DEZMLdY6.js",
+              "size": 5252,
+              "sizeKB": 5,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/award-BkovNYFV.js",
+              "size": 535,
+              "sizeKB": 1,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22505,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12423,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 948,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "7.2 s",
+          "LCP": "11.3 s",
+          "TBT": "60 ms",
+          "CLS": "0.88",
+          "SI": "8.3 s",
+          "TTI": "11.4 s"
+        }
+      }
+    },
+    "blog": {
+      "desktop": {
+        "scores": {
+          "performance": 56,
+          "accessibility": 98,
+          "bestPractices": 100,
+          "seo": 75
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 8,353 KiB",
+            "savings": null,
+            "numericValue": 8553808,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4",
+                  "totalBytes": 6143049
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555678
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2274&auto=format&fit=crop",
+                  "totalBytes": 226689
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2340&auto=format&fit=crop",
+                  "totalBytes": 210676
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+                  "totalBytes": 128344
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126165
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/footer/logo-emboss.png",
+                  "totalBytes": 89434
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 69992
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 603 KiB",
+            "savings": {
+              "ms": 600,
+              "bytes": 617619
+            },
+            "numericValue": 600,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 551470,
+                  "wastedBytes": 414200,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 88387,
+                  "wastedPercent": 70.1463402781012
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 35756,
+                  "wastedBytes": 31294,
+                  "wastedPercent": 87.51988765143503
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 32329,
+                  "wastedBytes": 24142,
+                  "wastedPercent": 74.6761854566943
+                }
+              ],
+              "overallSavingsMs": 600,
+              "overallSavingsBytes": 617619,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 480,
+                  "LCP": 600
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 20 KiB",
+            "savings": {
+              "ms": 40,
+              "bytes": 20294
+            },
+            "numericValue": 40,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 20294,
+                  "wastedPercent": 90.86223475098096,
+                  "totalBytes": 22335
+                }
+              ],
+              "overallSavingsMs": 40,
+              "overallSavingsBytes": 20294,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 80,
+                  "LCP": 40
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0.37,
+            "value": "2.9 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.2,
+            "value": "0.453",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements are not in a sequentially-descending order",
+            "score": 0,
+            "impact": 1,
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-H3",
+                  "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,1,DIV,0,MAIN,0,DIV,1,SECTION,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,H3",
+                  "selector": "div.bg-white/80 > div.p-8 > div > h3.font-bold",
+                  "boundingRect": {
+                    "top": 662,
+                    "bottom": 770,
+                    "left": 985,
+                    "right": 1528,
+                    "width": 543,
+                    "height": 108
+                  },
+                  "snippet": "<h3 class=\"font-bold text-black mb-4 text-3xl\">",
+                  "nodeLabel": "The Hidden ROI of Content Creation Services That Fortune 500 Companies Don't Wa…",
+                  "explanation": "Fix any of the following:\n  Heading order invalid"
+                }
+              }
+            ]
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "link-text",
+            "title": "Links do not have descriptive text",
+            "score": 0,
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555678,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126165,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69992,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67661,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56243,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35847,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32429,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14206,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/blog-CdVa0Pj3.js",
+              "size": 2799,
+              "sizeKB": 3,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22440,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12400,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 939,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "1.3 s",
+          "LCP": "2.9 s",
+          "TBT": "0 ms",
+          "CLS": "0.453",
+          "SI": "2.4 s",
+          "TTI": "2.9 s"
+        }
+      },
+      "mobile": {
+        "scores": {
+          "performance": 32,
+          "accessibility": 98,
+          "bestPractices": 100,
+          "seo": 75
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 10,406 KiB",
+            "savings": null,
+            "numericValue": 10655723,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4",
+                  "totalBytes": 7262707
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2274&auto=format&fit=crop",
+                  "totalBytes": 868264
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555690
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2340&auto=format&fit=crop",
+                  "totalBytes": 517537
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+                  "totalBytes": 128609
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126168
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/footer/logo-emboss.png",
+                  "totalBytes": 89414
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4",
+                  "totalBytes": 82544
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 635 KiB",
+            "savings": {
+              "ms": 3420,
+              "bytes": 650690
+            },
+            "numericValue": 3420,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 551470,
+                  "wastedBytes": 414200,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 88376,
+                  "wastedPercent": 70.13763316317336
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63468,
+                  "wastedBytes": 33075,
+                  "wastedPercent": 52.112408766611786
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 35756,
+                  "wastedBytes": 31294,
+                  "wastedPercent": 87.51988765143503
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 32338,
+                  "wastedBytes": 24149,
+                  "wastedPercent": 74.6761854566943
+                }
+              ],
+              "overallSavingsMs": 3420,
+              "overallSavingsBytes": 650690,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 3300,
+                  "LCP": 3420
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 17 KiB",
+            "savings": {
+              "ms": 150,
+              "bytes": 16954
+            },
+            "numericValue": 150,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 16954,
+                  "wastedPercent": 93.00094961089843,
+                  "totalBytes": 18230
+                }
+              ],
+              "overallSavingsMs": 150,
+              "overallSavingsBytes": 16954,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 300,
+                  "LCP": 150
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0,
+            "value": "11.0 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.03,
+            "value": "0.88",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements are not in a sequentially-descending order",
+            "score": 0,
+            "impact": 1,
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-H3",
+                  "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,1,DIV,0,MAIN,0,DIV,1,SECTION,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,H3",
+                  "selector": "div.bg-white/80 > div.p-8 > div > h3.font-bold",
+                  "boundingRect": {
+                    "top": 1097,
+                    "bottom": 1313,
+                    "left": 49,
+                    "right": 326,
+                    "width": 277,
+                    "height": 216
+                  },
+                  "snippet": "<h3 class=\"font-bold text-black mb-4 text-3xl\">",
+                  "nodeLabel": "The Hidden ROI of Content Creation Services That Fortune 500 Companies Don't Wa…",
+                  "explanation": "Fix any of the following:\n  Heading order invalid"
+                }
+              }
+            ]
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "link-text",
+            "title": "Links do not have descriptive text",
+            "score": 0,
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555690,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126168,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69317,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67660,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56188,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35844,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32426,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14205,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/blog-CdVa0Pj3.js",
+              "size": 2833,
+              "sizeKB": 3,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22458,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12400,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 939,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "7.2 s",
+          "LCP": "11.0 s",
+          "TBT": "30 ms",
+          "CLS": "0.88",
+          "SI": "8.7 s",
+          "TTI": "12.1 s"
+        }
+      }
+    },
+    "home": {
+      "desktop": {
+        "scores": {
+          "performance": 57,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 13,795 KiB",
+            "savings": null,
+            "numericValue": 14125810,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+                  "totalBytes": 5669347
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
+                  "totalBytes": 3207764
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+                  "totalBytes": 1254209
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555677
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg",
+                  "totalBytes": 320444
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png",
+                  "totalBytes": 288564
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4",
+                  "totalBytes": 274285
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg",
+                  "totalBytes": 155213
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 619 KiB",
+            "savings": {
+              "ms": 520,
+              "bytes": 633838
+            },
+            "numericValue": 520,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 551470,
+                  "wastedBytes": 414419,
+                  "wastedPercent": 75.14813842573612
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 80394,
+                  "wastedPercent": 63.80270082555599
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63566,
+                  "wastedBytes": 29413,
+                  "wastedPercent": 46.271933198951615
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 31651,
+                  "wastedBytes": 28006,
+                  "wastedPercent": 88.48338325615295
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 28224,
+                  "wastedBytes": 22010,
+                  "wastedPercent": 77.98220816763292
+                }
+              ],
+              "overallSavingsMs": 520,
+              "overallSavingsBytes": 633838,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 520,
+                  "LCP": 520
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 15 KiB",
+            "savings": {
+              "ms": 40,
+              "bytes": 15628
+            },
+            "numericValue": 40,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 15628,
+                  "wastedPercent": 85.72836350388503,
+                  "totalBytes": 18230
+                }
+              ],
+              "overallSavingsMs": 40,
+              "overallSavingsBytes": 15628,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 40,
+                  "LCP": 40
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0.57,
+            "value": "2.2 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.08,
+            "value": "0.682",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555677,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126187,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69261,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67660,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56188,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35814,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32417,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14206,
+              "sizeKB": 14,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22441,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 13067,
+              "sizeKB": 13
+            }
+          ],
+          "totalJS": 936,
+          "totalCSS": 23,
+          "totalFonts": 60
+        },
+        "metrics": {
+          "FCP": "1.5 s",
+          "LCP": "2.2 s",
+          "TBT": "0 ms",
+          "CLS": "0.682",
+          "SI": "2.3 s",
+          "TTI": "2.2 s"
+        }
+      },
+      "mobile": {
+        "scores": {
+          "performance": 29,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 14,399 KiB",
+            "savings": null,
+            "numericValue": 14745002,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
+                  "totalBytes": 5913642
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4",
+                  "totalBytes": 3844383
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+                  "totalBytes": 1123066
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 556110
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395097
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg",
+                  "totalBytes": 320445
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png",
+                  "totalBytes": 288564
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238737
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+                  "totalBytes": 180903
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg",
+                  "totalBytes": 155213
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 626 KiB",
+            "savings": {
+              "ms": 3140,
+              "bytes": 641146
+            },
+            "numericValue": 3140,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 554783,
+                  "wastedBytes": 416909,
+                  "wastedPercent": 75.14813842573612
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 125097,
+                  "wastedBytes": 79813,
+                  "wastedPercent": 63.800878406152485
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 68249,
+                  "wastedBytes": 62509,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 66440,
+                  "wastedBytes": 30673,
+                  "wastedPercent": 46.16678719988511
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 30329,
+                  "wastedBytes": 26837,
+                  "wastedPercent": 88.48338325615295
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 31295,
+                  "wastedBytes": 24405,
+                  "wastedPercent": 77.98220816763292
+                }
+              ],
+              "overallSavingsMs": 3140,
+              "overallSavingsBytes": 641146,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 3210,
+                  "LCP": 3140
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 19 KiB",
+            "savings": {
+              "ms": 190,
+              "bytes": 19378
+            },
+            "numericValue": 190,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 19378,
+                  "wastedPercent": 88.295299127433,
+                  "totalBytes": 21947
+                }
+              ],
+              "overallSavingsMs": 190,
+              "overallSavingsBytes": 19378,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 380,
+                  "LCP": 190
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0,
+            "value": "13.0 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.01,
+            "value": "1.165",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 556110,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126285,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69345,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67709,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56182,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35892,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32421,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14218,
+              "sizeKB": 14,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22498,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1350,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12399,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 936,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "7.3 s",
+          "LCP": "13.0 s",
+          "TBT": "190 ms",
+          "CLS": "1.165",
+          "SI": "9.2 s",
+          "TTI": "13.0 s"
+        }
+      }
+    },
+    "solutions": {
+      "desktop": {
+        "scores": {
+          "performance": 50,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 10,305 KiB",
+            "savings": null,
+            "numericValue": 10552211,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
+                  "totalBytes": 3643190
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+                  "totalBytes": 3459519
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555677
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg",
+                  "totalBytes": 320444
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png",
+                  "totalBytes": 253635
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg",
+                  "totalBytes": 155213
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg",
+                  "totalBytes": 142175
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg",
+                  "totalBytes": 139963
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 628 KiB",
+            "savings": {
+              "ms": 520,
+              "bytes": 642629
+            },
+            "numericValue": 520,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555575,
+                  "wastedBytes": 417283,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 87152,
+                  "wastedPercent": 69.16608113006203
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63468,
+                  "wastedBytes": 27833,
+                  "wastedPercent": 43.854088127734435
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 31651,
+                  "wastedBytes": 25554,
+                  "wastedPercent": 80.73542090714355
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 32329,
+                  "wastedBytes": 25211,
+                  "wastedPercent": 77.98220816763292
+                }
+              ],
+              "overallSavingsMs": 520,
+              "overallSavingsBytes": 642629,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 520,
+                  "LCP": 520
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 19 KiB",
+            "savings": {
+              "ms": 40,
+              "bytes": 19894
+            },
+            "numericValue": 40,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 19894,
+                  "wastedPercent": 89.07111331426148,
+                  "totalBytes": 22335
+                }
+              ],
+              "overallSavingsMs": 40,
+              "overallSavingsBytes": 19894,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 80,
+                  "LCP": 40
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0.05,
+            "value": "5.6 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.27,
+            "value": "0.386",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555677,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126222,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69873,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67781,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56187,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35860,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32418,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14206,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/solutions-nAOCLu8E.js",
+              "size": 2045,
+              "sizeKB": 2,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/accordion-cxfiN6j7.js",
+              "size": 660,
+              "sizeKB": 1,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22440,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12449,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 939,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "1.3 s",
+          "LCP": "5.6 s",
+          "TBT": "0 ms",
+          "CLS": "0.386",
+          "SI": "2.3 s",
+          "TTI": "5.6 s"
+        }
+      },
+      "mobile": {
+        "scores": {
+          "performance": 32,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 10,332 KiB",
+            "savings": null,
+            "numericValue": 10579626,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
+                  "totalBytes": 3643188
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+                  "totalBytes": 3387870
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555715
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg",
+                  "totalBytes": 320444
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png",
+                  "totalBytes": 253636
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg",
+                  "totalBytes": 155213
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg",
+                  "totalBytes": 142175
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg",
+                  "totalBytes": 139963
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 625 KiB",
+            "savings": {
+              "ms": 3600,
+              "bytes": 639984
+            },
+            "numericValue": 3600,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 551479,
+                  "wastedBytes": 414207,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 87148,
+                  "wastedPercent": 69.16263878229985
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63468,
+                  "wastedBytes": 28268,
+                  "wastedPercent": 44.538819389948046
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 31651,
+                  "wastedBytes": 25554,
+                  "wastedPercent": 80.73542090714355
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 32329,
+                  "wastedBytes": 25211,
+                  "wastedPercent": 77.98220816763292
+                }
+              ],
+              "overallSavingsMs": 3600,
+              "overallSavingsBytes": 639984,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 3300,
+                  "LCP": 3600
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 20 KiB",
+            "savings": {
+              "ms": 300,
+              "bytes": 20520
+            },
+            "numericValue": 300,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 20520,
+                  "wastedPercent": 91.87515304263694,
+                  "totalBytes": 22335
+                }
+              ],
+              "overallSavingsMs": 300,
+              "overallSavingsBytes": 20520,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 300,
+                  "LCP": 300
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0,
+            "value": "13.5 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.03,
+            "value": "0.88",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555715,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126169,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69261,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67675,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56188,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35863,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32443,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14206,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/solutions-nAOCLu8E.js",
+              "size": 2045,
+              "sizeKB": 2,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/accordion-cxfiN6j7.js",
+              "size": 620,
+              "sizeKB": 1,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22440,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12399,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 939,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "7.2 s",
+          "LCP": "13.5 s",
+          "TBT": "100 ms",
+          "CLS": "0.88",
+          "SI": "8.5 s",
+          "TTI": "13.6 s"
+        }
+      }
+    },
+    "work": {
+      "desktop": {
+        "scores": {
+          "performance": 64,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 3,457 KiB",
+            "savings": null,
+            "numericValue": 3539484,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555702
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 353609
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 291633
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 289961
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 168738
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126169
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+                  "totalBytes": 123756
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 120100
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 633 KiB",
+            "savings": {
+              "ms": 520,
+              "bytes": 648032
+            },
+            "numericValue": 520,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 551479,
+                  "wastedBytes": 414207,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 88544,
+                  "wastedPercent": 70.27066977962899
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 65068,
+                  "wastedBytes": 59596,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 67573,
+                  "wastedBytes": 32773,
+                  "wastedPercent": 48.499489657224046
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 31651,
+                  "wastedBytes": 27701,
+                  "wastedPercent": 87.51988765143503
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+                  "totalBytes": 32329,
+                  "wastedBytes": 25211,
+                  "wastedPercent": 77.98220816763292
+                }
+              ],
+              "overallSavingsMs": 520,
+              "overallSavingsBytes": 648032,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 480,
+                  "LCP": 520
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 16 KiB",
+            "savings": {
+              "ms": 40,
+              "bytes": 16225
+            },
+            "numericValue": 40,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 16225,
+                  "wastedPercent": 89.00123628588663,
+                  "totalBytes": 18230
+                }
+              ],
+              "overallSavingsMs": 40,
+              "overallSavingsBytes": 16225,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 40,
+                  "LCP": 40
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0.61,
+            "value": "2.0 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.27,
+            "value": "0.386",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555702,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126169,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69288,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67661,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56855,
+              "sizeKB": 56,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35845,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32418,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14231,
+              "sizeKB": 14,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/work-dev-DnhQOHWh.js",
+              "size": 7377,
+              "sizeKB": 7,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/work-auto-trim-utah-BigXDRul.js",
+              "size": 5508,
+              "sizeKB": 5,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/hero-focus-6NBnFsWo.js",
+              "size": 2287,
+              "sizeKB": 2,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/external-link-DT9DkbT0.js",
+              "size": 541,
+              "sizeKB": 1,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/dollar-sign-Buu4CwJp.js",
+              "size": 511,
+              "sizeKB": 0,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/pause-BCnA4Nus.js",
+              "size": 475,
+              "sizeKB": 0,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22440,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12425,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 952,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "1.2 s",
+          "LCP": "2.0 s",
+          "TBT": "0 ms",
+          "CLS": "0.386",
+          "SI": "2.4 s",
+          "TTI": "2.0 s"
+        }
+      },
+      "mobile": {
+        "scores": {
+          "performance": 32,
+          "accessibility": 100,
+          "bestPractices": 100,
+          "seo": 83
+        },
+        "performanceOpportunities": [
+          {
+            "id": "total-byte-weight",
+            "title": "Avoid enormous network payloads",
+            "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+            "score": 0.5,
+            "displayValue": "Total size was 3,458 KiB",
+            "savings": null,
+            "numericValue": 3540522,
+            "details": {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 555696
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+                  "totalBytes": 395096
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 353595
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 291610
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 290026
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg",
+                  "totalBytes": 238736
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 168765
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126237
+                },
+                {
+                  "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+                  "totalBytes": 123756
+                },
+                {
+                  "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2070&auto=format&fit=crop",
+                  "totalBytes": 120100
+                }
+              ],
+              "sortedBy": [
+                "totalBytes"
+              ]
+            }
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+            "score": 0,
+            "displayValue": "Est savings of 611 KiB",
+            "savings": {
+              "ms": 3420,
+              "bytes": 625747
+            },
+            "numericValue": 3420,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "subItemsHeading": {
+                    "key": "source",
+                    "valueType": "code"
+                  },
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceBytes"
+                  },
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "subItemsHeading": {
+                    "key": "sourceWastedBytes"
+                  },
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+                  "totalBytes": 547461,
+                  "wastedBytes": 411189,
+                  "wastedPercent": 75.10832023265623
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+                  "totalBytes": 126004,
+                  "wastedBytes": 88540,
+                  "wastedPercent": 70.26722743186683
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+                  "totalBytes": 69173,
+                  "wastedBytes": 63355,
+                  "wastedPercent": 91.58960365645679
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+                  "totalBytes": 63468,
+                  "wastedBytes": 31369,
+                  "wastedPercent": 49.42477444900932
+                },
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+                  "totalBytes": 35756,
+                  "wastedBytes": 31294,
+                  "wastedPercent": 87.51988765143503
+                }
+              ],
+              "overallSavingsMs": 3420,
+              "overallSavingsBytes": 625747,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 3150,
+                  "LCP": 3420
+                }
+              }
+            }
+          },
+          {
+            "id": "unused-css-rules",
+            "title": "Reduce unused CSS",
+            "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+            "score": 0,
+            "displayValue": "Est savings of 16 KiB",
+            "savings": {
+              "ms": 150,
+              "bytes": 16673
+            },
+            "numericValue": 150,
+            "details": {
+              "type": "opportunity",
+              "headings": [
+                {
+                  "key": "url",
+                  "valueType": "url",
+                  "label": "URL"
+                },
+                {
+                  "key": "totalBytes",
+                  "valueType": "bytes",
+                  "label": "Transfer Size"
+                },
+                {
+                  "key": "wastedBytes",
+                  "valueType": "bytes",
+                  "label": "Est Savings"
+                }
+              ],
+              "items": [
+                {
+                  "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+                  "wastedBytes": 16673,
+                  "wastedPercent": 91.46126602841666,
+                  "totalBytes": 18230
+                }
+              ],
+              "overallSavingsMs": 150,
+              "overallSavingsBytes": 16673,
+              "sortedBy": [
+                "wastedBytes"
+              ],
+              "debugData": {
+                "type": "debugdata",
+                "metricSavings": {
+                  "FCP": 300,
+                  "LCP": 150
+                }
+              }
+            }
+          }
+        ],
+        "coreWebVitalsIssues": [
+          {
+            "vital": "LCP",
+            "score": 0,
+            "value": "11.5 s",
+            "element": "Unknown",
+            "phase": null
+          },
+          {
+            "vital": "CLS",
+            "score": 0.03,
+            "value": "0.88",
+            "culprits": []
+          }
+        ],
+        "accessibilityIssues": [
+          {
+            "id": "color-contrast",
+            "title": "Background and foreground colors have a sufficient contrast ratio",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "empty-heading",
+            "title": "All heading elements contain content.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "form-field-multiple-labels",
+            "title": "No form fields have multiple labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "heading-order",
+            "title": "Heading elements appear in a sequentially-descending order",
+            "score": 1,
+            "impact": 0,
+            "items": []
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels have matching accessible names.",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "label",
+            "title": "Form elements have associated labels",
+            "score": null,
+            "impact": 0
+          },
+          {
+            "id": "custom-controls-labels",
+            "title": "Custom controls have associated labels",
+            "score": null,
+            "impact": 0
+          }
+        ],
+        "seoIssues": [
+          {
+            "id": "meta-description",
+            "title": "Document does not have a meta description",
+            "score": 0,
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/)."
+          },
+          {
+            "id": "robots-txt",
+            "title": "robots.txt is not valid",
+            "score": 0,
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/)."
+          }
+        ],
+        "bundles": {
+          "javascript": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-3d-NBVhydDA.js",
+              "size": 555696,
+              "sizeKB": 543,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-CGEkzHOy.js",
+              "size": 126237,
+              "sizeKB": 123,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ai-C3QfUiqi.js",
+              "size": 69260,
+              "sizeKB": 68,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-animation-DIiy_E5L.js",
+              "size": 67724,
+              "sizeKB": 66,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-react-DLtCZoUm.js",
+              "size": 56187,
+              "sizeKB": 55,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-ui-aZ7PeSFG.js",
+              "size": 35845,
+              "sizeKB": 35,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-database-C3-9xkgo.js",
+              "size": 32422,
+              "sizeKB": 32,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/vendor-utils-DLVht5ZK.js",
+              "size": 14868,
+              "sizeKB": 15,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/work-dev-DnhQOHWh.js",
+              "size": 8029,
+              "sizeKB": 8,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/work-auto-trim-utah-BigXDRul.js",
+              "size": 5570,
+              "sizeKB": 5,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/hero-focus-6NBnFsWo.js",
+              "size": 2315,
+              "sizeKB": 2,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/pause-BCnA4Nus.js",
+              "size": 575,
+              "sizeKB": 1,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/external-link-DT9DkbT0.js",
+              "size": 520,
+              "sizeKB": 1,
+              "duration": null
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/assets/dollar-sign-Buu4CwJp.js",
+              "size": 483,
+              "sizeKB": 0,
+              "duration": null
+            }
+          ],
+          "css": [
+            {
+              "url": "https://dm4.wjwelsh.com/assets/index-BSouhjWL.css",
+              "size": 22441,
+              "sizeKB": 22
+            },
+            {
+              "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+              "size": 1002,
+              "sizeKB": 1
+            }
+          ],
+          "fonts": [
+            {
+              "url": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+              "size": 48464,
+              "sizeKB": 47
+            },
+            {
+              "url": "https://dm4.wjwelsh.com/fonts/PPSupplyMono-Regular.woff2",
+              "size": 12399,
+              "sizeKB": 12
+            }
+          ],
+          "totalJS": 954,
+          "totalCSS": 23,
+          "totalFonts": 59
+        },
+        "metrics": {
+          "FCP": "7.2 s",
+          "LCP": "11.5 s",
+          "TBT": "20 ms",
+          "CLS": "0.88",
+          "SI": "9.1 s",
+          "TTI": "12.5 s"
+        }
+      }
+    }
+  },
+  "recommendations": {
+    "critical": [
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+        "affectedPages": 5,
+        "affectedMobile": true,
+        "avgSavingsMs": 1977,
+        "priority": "critical"
+      }
+    ],
+    "high": [],
+    "medium": [],
+    "low": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).",
+        "affectedPages": 5,
+        "affectedMobile": true,
+        "avgSavingsMs": 114,
+        "priority": "low"
+      },
+      {
+        "id": "total-byte-weight",
+        "title": "Avoid enormous network payloads",
+        "description": "Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).",
+        "affectedPages": 5,
+        "affectedMobile": true,
+        "avgSavingsMs": 0,
+        "priority": "low"
+      }
+    ]
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "id": "growth-audit",
+  "slug": "growth-audit",
+  "name": "Growth Audit",
+  "description": "AI-powered instant growth audit that analyzes websites and identifies 8-15 prioritized opportunities across SEO, content, performance, CRO, local, social, paid, email/CRM, data tracking, and AI automation. Includes business profile extraction, service package mapping, and 30/60/90 day execution plans.",
+  "category": "analytics",
+  "status": "approved",
+  "version": "1.0.0",
+
+  "audience": ["internal", "public"],
+  "requires_brain": false,
+  "requires_auth": false,
+
+  "runtime_preference": "node-heavy",
+  "entry_point": "src/modules/growth-audit/index.jsx",
+  "function_endpoint": "/.netlify/functions/module-growth-audit",
+  "component_path": "src/modules/growth-audit/GrowthAuditUI.jsx",
+
+  "icon_url": "/generated/anachron-lite/growth-audit-icon-anachron-lite.png",
+  "color": "#10B981",
+  "tags": ["analytics", "seo", "audit", "opportunities", "growth", "website-analysis", "ai-powered"],
+
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "website_url": {
+        "type": "string",
+        "format": "uri",
+        "minLength": 1,
+        "maxLength": 500,
+        "description": "Website URL to audit (must be a valid HTTP/HTTPS URL)"
+      },
+      "business_name": {
+        "type": "string",
+        "maxLength": 100,
+        "description": "Optional business name for personalization"
+      },
+      "industry": {
+        "type": "string",
+        "maxLength": 100,
+        "description": "Optional industry/vertical for context"
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "maxLength": 200,
+        "description": "Optional email address to send report"
+      },
+      "create_brain": {
+        "type": "boolean",
+        "default": false,
+        "description": "Offer to auto-create Business Brain from audit results"
+      },
+      "business_type": {
+        "type": "string",
+        "enum": ["B2B", "B2C"],
+        "description": "Business type for tailored recommendations"
+      },
+      "primary_goal": {
+        "type": "string",
+        "enum": ["Leads", "Sales", "Bookings"],
+        "description": "Primary business goal"
+      }
+    },
+    "required": ["website_url"]
+  },
+
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "job_id": {
+        "type": "string",
+        "description": "Job ID for polling results"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["queued", "crawling", "enriching", "analyzing", "ready", "error"],
+        "description": "Current processing status"
+      },
+      "progress": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "business_profile": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "tagline": { "type": "string" },
+              "logoUrl": { "type": "string" },
+              "palette": {
+                "type": "object",
+                "properties": {
+                  "primary": { "type": "string" },
+                  "secondary": { "type": "string" },
+                  "neutrals": { "type": "array", "items": { "type": "string" } },
+                  "oklch": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "fonts": { "type": "array", "items": { "type": "string" } },
+              "toneKeywords": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "offerings": {
+            "type": "object",
+            "properties": {
+              "products": { "type": "array", "items": { "type": "string" } },
+              "services": { "type": "array", "items": { "type": "string" } },
+              "pricingNotes": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "icp": { "type": "array", "items": { "type": "string" } },
+          "locations": { "type": "array", "items": { "type": "string" } },
+          "social": {
+            "type": "object",
+            "properties": {
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "platform": { "type": "string" },
+                    "url": { "type": "string" },
+                    "followers": { "type": "number" },
+                    "postingFrequency": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "tech": {
+            "type": "object",
+            "properties": {
+              "cms": { "type": "string" },
+              "framework": { "type": "string" },
+              "analytics": { "type": "array", "items": { "type": "string" } },
+              "hosting": { "type": "string" }
+            }
+          }
+        },
+        "description": "Extracted business profile"
+      },
+      "opportunities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "category": {
+              "type": "string",
+              "enum": ["SEO", "Content", "Performance", "CRO", "Local", "Social", "Paid", "EmailCRM", "DataTracking", "AI"]
+            },
+            "title": { "type": "string" },
+            "whyItMatters": { "type": "string" },
+            "impactBand": {
+              "type": "object",
+              "properties": {
+                "conservative": { "type": "number", "minimum": 1, "maximum": 10 },
+                "likely": { "type": "number", "minimum": 1, "maximum": 10 },
+                "aggressive": { "type": "number", "minimum": 1, "maximum": 10 }
+              }
+            },
+            "effort": {
+              "type": "string",
+              "enum": ["low", "med", "high"]
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "steps": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1,
+              "maxItems": 6
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string" },
+                  "note": { "type": "string" }
+                }
+              }
+            },
+            "affectedUrls": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "minItems": 8,
+        "maxItems": 15,
+        "description": "Prioritized growth opportunities"
+      },
+      "service_packages": {
+        "type": "object",
+        "properties": {
+          "packages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": ["Starter", "Core", "Scale"]
+                },
+                "monthlyRangeUsd": {
+                  "type": "array",
+                  "items": { "type": "number" },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "lineItems": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": { "type": "string" },
+                      "opIds": { "type": "array", "items": { "type": "string" } },
+                      "deliverables": { "type": "array", "items": { "type": "string" } }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "plan30_60_90": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": { "type": "string" },
+                "milestones": { "type": "array", "items": { "type": "string" } },
+                "risks": { "type": "array", "items": { "type": "string" } },
+                "requiredInputs": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "description": "Service packages with 30/60/90 day plan"
+      },
+      "execution_time_seconds": {
+        "type": "number",
+        "description": "Total processing time in seconds"
+      },
+      "data_sources": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["firecrawl", "playwright", "brandfetch", "vibrant", "pagespeed", "claude"]
+        },
+        "description": "Data sources used in analysis"
+      },
+      "readiness_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
+        "description": "Overall digital readiness score"
+      },
+      "sales_copy": {
+        "type": "object",
+        "properties": {
+          "elevatorPitch": { "type": "string" },
+          "benefitLines": { "type": "array", "items": { "type": "string" } },
+          "emailBody": { "type": "string" }
+        },
+        "description": "AI-generated sales copy"
+      }
+    }
+  },
+
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "include_pagespeed": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include PageSpeed Insights performance analysis"
+      },
+      "include_brandfetch": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include Brandfetch brand detection (fallback: Vibrant)"
+      },
+      "max_opportunities": {
+        "type": "number",
+        "minimum": 8,
+        "maximum": 20,
+        "default": 15,
+        "description": "Maximum number of opportunities to return"
+      },
+      "package_recommendations": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include service package recommendations"
+      },
+      "generate_sales_copy": {
+        "type": "boolean",
+        "default": true,
+        "description": "Generate sales copy and email templates"
+      },
+      "crawl_depth": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 3,
+        "description": "Number of pages to crawl (Firecrawl only)"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "minimum": 30,
+        "maximum": 120,
+        "default": 60,
+        "description": "Maximum execution time per stage"
+      },
+      "enable_streaming": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable real-time progress streaming"
+      },
+      "fallback_to_playwright": {
+        "type": "boolean",
+        "default": true,
+        "description": "Use Playwright if Firecrawl fails"
+      },
+      "send_email_report": {
+        "type": "boolean",
+        "default": false,
+        "description": "Send completed audit via email"
+      }
+    }
+  },
+
+  "wordpress_compatible": true,
+  "wordpress_shortcode": "[disruptors_growth_audit]",
+  "wordpress_block": "disruptors/growth-audit",
+  "wordpress_embed_type": "iframe",
+
+  "supports_batch": false,
+  "supports_streaming": true,
+  "has_preview": true,
+  "is_experimental": false,
+
+  "default_daily_limit": 5,
+  "default_monthly_limit": 50,
+  "default_cost_per_run": 0.25,
+
+  "estimated_duration_seconds": 60,
+  "max_duration_seconds": 120,
+
+  "documentation_url": "https://docs.disruptorsmedia.com/modules/growth-audit",
+  "changelog": "v1.0.0 - Initial release with multi-source data collection (Firecrawl, Playwright, Brandfetch, PageSpeed), Claude Sonnet 4.5 AI analysis, 10-category opportunity detection, service package mapping, and 30/60/90 day execution plans"
+}

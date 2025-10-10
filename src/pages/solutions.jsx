@@ -107,8 +107,7 @@ export default function Solutions() {
           trigger: sectionRef.current,
           start: "top bottom", // Start when section enters viewport
           end: "bottom top", // End when section leaves viewport
-          scrub: 0.5,
-          markers: true // Debug markers enabled
+          scrub: 0.5
         },
         ease: "none"
       });

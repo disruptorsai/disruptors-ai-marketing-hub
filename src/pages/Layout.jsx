@@ -222,7 +222,7 @@ export default function Layout({ children, currentPageName }) {
                     <Link
                       key={item.name}
                       to={createPageUrl(item.path)}
-                      className="font-sans text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
+                      className="font-supply text-base font-normal uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
                     >
                       <GsapScrambleText
                         text={item.name}
@@ -238,7 +238,7 @@ export default function Layout({ children, currentPageName }) {
                    {/* CTA Button */}
                    <Link
                      to={createPageUrl('book-strategy-session')}
-                     className="font-sans group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-sm font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+                     className="font-supply group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-base font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
                      style={{
                        clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                        animation: 'goldPulse 3s ease-in-out infinite',
@@ -285,7 +285,7 @@ export default function Layout({ children, currentPageName }) {
                       <Link
                         key={item.name}
                         to={createPageUrl(item.path)}
-                        className="font-sans block text-base font-medium text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
+                        className="font-supply block text-base font-normal text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
                       >
                         <GsapScrambleText
                           text={item.name}
@@ -343,7 +343,7 @@ export default function Layout({ children, currentPageName }) {
                 >
                   <GsapScrambleText
                     text="Let's Talk"
-                    className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
+                    className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
                     as="span"
                   />
                   <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
@@ -356,7 +356,7 @@ export default function Layout({ children, currentPageName }) {
                   <Link
                     key={link.name}
                     to={createPageUrl(link.path)}
-                    className="font-supply text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation leading-[28px]"
+                    className="font-sans text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation leading-[28px]"
                   >
                     <GsapScrambleText
                       text={link.name}
@@ -368,7 +368,7 @@ export default function Layout({ children, currentPageName }) {
               {/* Bottom section with social icons and info */}
               <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10 mb-20">
                 {/* Left: Copyright & address */}
-                <div className="font-supply text-center md:text-left order-2 md:order-1">
+                <div className="font-sans text-center md:text-left order-2 md:order-1">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
                     <GsapScrambleText
                       text={`©${new Date().getFullYear()} Disruptors Media inc.`}

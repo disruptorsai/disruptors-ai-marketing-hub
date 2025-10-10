@@ -51,7 +51,7 @@ export default function Work() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 tracking-tight"
+                  className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-medium mb-6 tracking-tight"
                 >
                   <span className="text-white">Real Clients.</span>
                   <br />

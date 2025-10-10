@@ -101,6 +101,7 @@ const DemoBestOfAll = lazy(() => import('./demos/best-of-all.jsx'));
 const GrowthAuditDemo = lazy(() => import('./demos/growth-audit.jsx'));
 const GrowthAuditResults = lazy(() => import('./demos/growth-audit-results.jsx'));
 const KeywordResearchDemo = lazy(() => import('./demos/keyword-research-demo.jsx'));
+const AIContentWriterDemo = lazy(() => import('./demos/ai-content-writer-demo.jsx'));
 
 // Hidden utility pages - lazy loaded
 const GraveyardArchive = lazy(() => import('./GraveyardArchive.jsx'));
@@ -225,6 +226,7 @@ const PAGES = {
     "demos-growth-audit": GrowthAuditDemo,
     "demos-growth-audit-results": GrowthAuditResults,
     "demos-keyword-research": KeywordResearchDemo,
+    "demos-ai-content-writer": AIContentWriterDemo,
 
     // Hidden utility pages
     "graveyard-archive": GraveyardArchive,
@@ -382,6 +384,7 @@ function PagesContent() {
                 <Route path="/demos/growth-audit" element={<GrowthAuditDemo />} />
                 <Route path="/demos/growth-audit/:jobId" element={<GrowthAuditResults />} />
                 <Route path="/demos/keyword-research" element={<KeywordResearchDemo />} />
+                <Route path="/demos/ai-content-writer" element={<AIContentWriterDemo />} />
 
                 {/* Hidden utility pages */}
                 <Route path="/graveyard-archive" element={<GraveyardArchive />} />

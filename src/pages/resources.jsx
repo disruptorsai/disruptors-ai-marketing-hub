@@ -253,7 +253,7 @@ export default function Resources() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-medium mb-6 tracking-tight">
                 AI Marketing Tools
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">

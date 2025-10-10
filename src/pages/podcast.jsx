@@ -578,28 +578,28 @@ export default function Podcast() {
                 name: "Korina Flint",
                 title: "Health & Wellness Professional",
                 initial: "K",
-                gradient: "from-yellow-400 to-orange-500",
+                gradient: "from-yellow-400 to-yellow-600",
                 quote: "I am thoroughly impressed with Disruptors Media. They are super talented and knowledgeable, but what impressed me even more is their dedication to their mission. They truly want to help others spread the message of health and wellness. My experience shooting a podcast with them was amazing."
               },
               {
                 name: "Sydney Osmun",
                 title: "Podcast Guest",
                 initial: "S",
-                gradient: "from-blue-400 to-purple-500",
+                gradient: "from-gray-400 to-gray-600",
                 quote: "I've been blown away by every detail from my entire experience. Their studio is top notch with different settings, high-class equipment, incredible host, and fast turnaround."
               },
               {
                 name: "Mariah Tyler Moore",
                 title: "Content Creator",
                 initial: "M",
-                gradient: "from-green-400 to-teal-500",
+                gradient: "from-yellow-500 to-yellow-700",
                 quote: "Working with Kyle to record the podcast was such a fun and invigorating experience! The discussion was incredible and the studio atmosphere is fantastic."
               },
               {
                 name: "Portia Louder",
                 title: "Industry Expert",
                 initial: "P",
-                gradient: "from-pink-400 to-red-500",
+                gradient: "from-gray-300 to-gray-500",
                 quote: "I had a great experience recording a podcast. The host was well spoken and understood the topic. The studio is incredible."
               }
             ].map((testimonial, index) => (

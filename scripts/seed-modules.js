@@ -173,8 +173,8 @@ const modules = [
     slug: 'ai-content-writer',
     name: 'AI Content Writer',
     version: '1.0.0',
-    description: 'Generate SEO-optimized blog posts and web content powered by Claude AI. Automatically uses your Business Brain for brand-consistent, personalized content.',
-    category: 'content',
+    description: 'AI-powered content generation for blogs, social media, emails, product descriptions, and ad copy. Uses Claude Sonnet 4.5 with Business Brain context for brand-consistent, SEO-optimized content.',
+    category: 'content_creation',
     status: 'approved',
     audience: ['internal', 'client'],
     requires_brain: true,
@@ -183,50 +183,79 @@ const modules = [
     entry_point: 'src/modules/ai-content-writer/index.jsx',
     function_endpoint: '/.netlify/functions/module-ai-content-writer',
     component_path: 'src/modules/ai-content-writer/AIContentWriterUI.jsx',
-    icon_url: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1/disruptors-media/icons/content-icon.svg',
-    color: '#8B5CF6',
-    tags: ['content', 'writing', 'ai', 'claude', 'seo', 'blog'],
+    icon_url: '/generated/anachron-lite/ai-content-writer-icon-anachron-lite.png',
+    color: '#C96F4C',
+    tags: ['content', 'ai', 'writing', 'blog', 'social', 'email', 'seo', 'claude'],
     input_schema: {
       type: 'object',
       properties: {
-        topic: { type: 'string', minLength: 3, maxLength: 200 },
-        primary_keyword: { type: 'string' },
-        secondary_keywords: { type: 'array', items: { type: 'string' } },
-        tone: { type: 'string', enum: ['professional', 'casual', 'technical', 'conversational'] },
-        word_count: { type: 'number', minimum: 300, maximum: 3000, default: 1200 }
+        content_type: {
+          type: 'string',
+          enum: ['blog', 'social', 'email', 'product_description', 'ad_copy'],
+          description: 'Type of content to generate'
+        },
+        topic: { type: 'string', minLength: 1, maxLength: 200, description: 'Content topic or subject' },
+        primary_keyword: { type: 'string', maxLength: 100, description: 'Primary SEO keyword to target' },
+        secondary_keywords: { type: 'array', items: { type: 'string' }, maxItems: 5, description: 'Additional keywords to include' },
+        tone: { type: 'string', enum: ['professional', 'casual', 'technical', 'friendly', 'bold'], default: 'professional' },
+        length: { type: 'string', enum: ['short', 'medium', 'long'], default: 'medium' },
+        target_audience: { type: 'string', maxLength: 200, description: 'Intended audience' },
+        include_meta: { type: 'boolean', default: true, description: 'Include title and meta description' },
+        use_brain_context: { type: 'boolean', default: true, description: 'Use Business Brain for brand context' }
       },
-      required: ['topic']
+      required: ['content_type', 'topic']
     },
     output_schema: {
       type: 'object',
       properties: {
-        title: { type: 'string' },
-        content: { type: 'string' },
-        meta_description: { type: 'string' },
-        excerpt: { type: 'string' },
-        slug: { type: 'string' }
+        content: { type: 'string', description: 'Generated content body' },
+        title: { type: 'string', description: 'Generated title' },
+        meta_description: { type: 'string', description: 'SEO meta description' },
+        word_count: { type: 'number', description: 'Total word count' },
+        business_context: {
+          type: 'object',
+          properties: {
+            brain_level: { type: 'string' },
+            confidence_score: { type: 'number' },
+            industry: { type: 'string' },
+            brand_voice: { type: 'string' }
+          }
+        },
+        generation_model: { type: 'string' },
+        tokens_used: { type: 'number' }
       }
     },
     config_schema: {
       type: 'object',
       properties: {
         default_tone: { type: 'string', default: 'professional' },
-        default_word_count: { type: 'number', default: 1200 },
-        include_faq: { type: 'boolean', default: true }
+        default_length: { type: 'string', default: 'medium' },
+        use_brain_context: { type: 'boolean', default: true },
+        auto_save_to_posts: { type: 'boolean', default: false },
+        include_meta_by_default: { type: 'boolean', default: true },
+        model_preference: { type: 'string', default: 'claude-sonnet-4.5' },
+        word_count_targets: {
+          type: 'object',
+          properties: {
+            short: { type: 'number', default: 300 },
+            medium: { type: 'number', default: 800 },
+            long: { type: 'number', default: 1500 }
+          }
+        }
       }
     },
     wordpress_compatible: true,
     wordpress_shortcode: '[disruptors_content_writer]',
     wordpress_block: 'disruptors/content-writer',
-    wordpress_embed_type: 'rest-api',
+    wordpress_embed_type: 'iframe',
     supports_batch: true,
     has_preview: true,
     is_experimental: false,
     default_daily_limit: 20,
     default_monthly_limit: 200,
     default_cost_per_run: 0.15,
-    documentation_url: 'https://docs.disruptors.ai/modules/ai-content-writer',
-    changelog: '1.0.0 - Initial release with Claude Sonnet 4.5 integration'
+    documentation_url: 'https://docs.disruptorsmedia.com/modules/ai-content-writer',
+    changelog: 'v1.0.0 - Initial release with Claude Sonnet 4.5, Business Brain context, and multi-format content generation'
   },
   {
     slug: 'growth-audit',

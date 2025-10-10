@@ -186,8 +186,7 @@ export default function About() {
         {/* Yellow accent line at top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10" />
 
-        {/* Large Stationary Header */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -195,11 +194,17 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 mb-6 tracking-tight">
-              AI POWERED MARKETING
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+              What We Bring to the Table
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Marketing expertise meets AI automation—a powerful combination that drives real results
+            <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 max-w-3xl mx-auto">
+              AI Powered Marketing
             </p>
           </motion.div>
         </div>
@@ -239,11 +244,6 @@ export default function About() {
 
                   {/* Content */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 group-hover:from-yellow-500/70 to-transparent transition-all duration-500" />
-                      <span className="text-white group-hover:text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">Marketing</span>
-                    </div>
-
                     <div className="space-y-3">
                       <p className="text-white/70 group-hover:text-yellow-500 text-sm font-semibold tracking-wide uppercase transition-colors duration-300">Multi-channel</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 group-hover:drop-shadow-[0_0_20px_rgba(234,179,8,0.6)] transition-all duration-300">
@@ -280,11 +280,6 @@ export default function About() {
 
                   {/* Content */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 group-hover:from-yellow-500/70 to-transparent transition-all duration-500" />
-                      <span className="text-white group-hover:text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">AI Powered</span>
-                    </div>
-
                     <div className="space-y-3">
                       <p className="text-white/70 group-hover:text-yellow-500 text-sm font-semibold tracking-wide uppercase transition-colors duration-300">10x faster</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 group-hover:drop-shadow-[0_0_20px_rgba(234,179,8,0.6)] transition-all duration-300">

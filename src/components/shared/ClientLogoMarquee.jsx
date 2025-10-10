@@ -21,11 +21,11 @@ export default function ClientLogoMarquee({
   title = "Trusted by Industry Leaders"
 }) {
   return (
-    <section className="py-2 overflow-hidden bg-white">
+    <section className="py-2 overflow-hidden bg-[#191919]">
       <Marquee
         speed={80}
         gradient={true}
-        gradientColor="rgb(255, 255, 255)"
+        gradientColor="rgb(25, 25, 25)"
         gradientWidth={100}
         pauseOnHover={true}
         pauseOnClick={true}

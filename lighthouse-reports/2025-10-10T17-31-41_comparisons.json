@@ -1,0 +1,347 @@
+[
+  {
+    "page": "home",
+    "scores": {
+      "performance": {
+        "mobile": 29,
+        "desktop": 57,
+        "diff": 28
+      },
+      "accessibility": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 83,
+        "desktop": 83,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "13.0 s",
+        "desktop": "2.2 s"
+      },
+      "FID": {
+        "mobile": "150 ms",
+        "desktop": "40 ms"
+      },
+      "CLS": {
+        "mobile": "1.165",
+        "desktop": "0.682"
+      },
+      "FCP": {
+        "mobile": "7.3 s",
+        "desktop": "1.5 s"
+      },
+      "TTI": {
+        "mobile": "13.0 s",
+        "desktop": "2.2 s"
+      },
+      "TBT": {
+        "mobile": "190 ms",
+        "desktop": "0 ms"
+      },
+      "SI": {
+        "mobile": "9.2 s",
+        "desktop": "2.3 s"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "Total size was 14,399 KiB",
+        "desktop": "Total size was 13,795 KiB"
+      },
+      "requests": {
+        "mobile": 45,
+        "desktop": 48
+      },
+      "mainThreadWork": {
+        "mobile": "3.3 s",
+        "desktop": "0.9 s"
+      }
+    }
+  },
+  {
+    "page": "about",
+    "scores": {
+      "performance": {
+        "mobile": 33,
+        "desktop": 63,
+        "diff": 30
+      },
+      "accessibility": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 83,
+        "desktop": 83,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "11.3 s",
+        "desktop": "2.2 s"
+      },
+      "FID": {
+        "mobile": "90 ms",
+        "desktop": "30 ms"
+      },
+      "CLS": {
+        "mobile": "0.88",
+        "desktop": "0.386"
+      },
+      "FCP": {
+        "mobile": "7.2 s",
+        "desktop": "1.3 s"
+      },
+      "TTI": {
+        "mobile": "11.4 s",
+        "desktop": "2.2 s"
+      },
+      "TBT": {
+        "mobile": "60 ms",
+        "desktop": "0 ms"
+      },
+      "SI": {
+        "mobile": "8.3 s",
+        "desktop": "2.3 s"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "Total size was 17,339 KiB",
+        "desktop": "Total size was 12,010 KiB"
+      },
+      "requests": {
+        "mobile": 48,
+        "desktop": 48
+      },
+      "mainThreadWork": {
+        "mobile": "2.9 s",
+        "desktop": "0.9 s"
+      }
+    }
+  },
+  {
+    "page": "work",
+    "scores": {
+      "performance": {
+        "mobile": 32,
+        "desktop": 64,
+        "diff": 32
+      },
+      "accessibility": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 83,
+        "desktop": 83,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "11.5 s",
+        "desktop": "2.0 s"
+      },
+      "FID": {
+        "mobile": "80 ms",
+        "desktop": "20 ms"
+      },
+      "CLS": {
+        "mobile": "0.88",
+        "desktop": "0.386"
+      },
+      "FCP": {
+        "mobile": "7.2 s",
+        "desktop": "1.2 s"
+      },
+      "TTI": {
+        "mobile": "12.5 s",
+        "desktop": "2.0 s"
+      },
+      "TBT": {
+        "mobile": "20 ms",
+        "desktop": "0 ms"
+      },
+      "SI": {
+        "mobile": "9.1 s",
+        "desktop": "2.4 s"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "Total size was 3,458 KiB",
+        "desktop": "Total size was 3,457 KiB"
+      },
+      "requests": {
+        "mobile": 44,
+        "desktop": 44
+      },
+      "mainThreadWork": {
+        "mobile": "2.1 s",
+        "desktop": "0.6 s"
+      }
+    }
+  },
+  {
+    "page": "solutions",
+    "scores": {
+      "performance": {
+        "mobile": 32,
+        "desktop": 50,
+        "diff": 18
+      },
+      "accessibility": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 83,
+        "desktop": 83,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "13.5 s",
+        "desktop": "5.6 s"
+      },
+      "FID": {
+        "mobile": "130 ms",
+        "desktop": "40 ms"
+      },
+      "CLS": {
+        "mobile": "0.88",
+        "desktop": "0.386"
+      },
+      "FCP": {
+        "mobile": "7.2 s",
+        "desktop": "1.3 s"
+      },
+      "TTI": {
+        "mobile": "13.6 s",
+        "desktop": "5.6 s"
+      },
+      "TBT": {
+        "mobile": "100 ms",
+        "desktop": "0 ms"
+      },
+      "SI": {
+        "mobile": "8.5 s",
+        "desktop": "2.3 s"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "Total size was 10,332 KiB",
+        "desktop": "Total size was 10,305 KiB"
+      },
+      "requests": {
+        "mobile": 36,
+        "desktop": 36
+      },
+      "mainThreadWork": {
+        "mobile": "2.5 s",
+        "desktop": "0.8 s"
+      }
+    }
+  },
+  {
+    "page": "blog",
+    "scores": {
+      "performance": {
+        "mobile": 32,
+        "desktop": 56,
+        "diff": 24
+      },
+      "accessibility": {
+        "mobile": 98,
+        "desktop": 98,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 100,
+        "desktop": 100,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 75,
+        "desktop": 75,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "11.0 s",
+        "desktop": "2.9 s"
+      },
+      "FID": {
+        "mobile": "90 ms",
+        "desktop": "20 ms"
+      },
+      "CLS": {
+        "mobile": "0.88",
+        "desktop": "0.453"
+      },
+      "FCP": {
+        "mobile": "7.2 s",
+        "desktop": "1.3 s"
+      },
+      "TTI": {
+        "mobile": "12.1 s",
+        "desktop": "2.9 s"
+      },
+      "TBT": {
+        "mobile": "30 ms",
+        "desktop": "0 ms"
+      },
+      "SI": {
+        "mobile": "8.7 s",
+        "desktop": "2.4 s"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "Total size was 10,406 KiB",
+        "desktop": "Total size was 8,353 KiB"
+      },
+      "requests": {
+        "mobile": 29,
+        "desktop": 29
+      },
+      "mainThreadWork": {
+        "mobile": "1.8 s",
+        "desktop": "0.6 s"
+      }
+    }
+  }
+]

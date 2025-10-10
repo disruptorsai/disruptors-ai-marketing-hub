@@ -126,7 +126,7 @@ export default function Blog() {
               <p className="text-base font-bold uppercase tracking-widest text-black">
                 INSIGHTS
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-black">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium leading-tight tracking-tight text-black">
                 The Disruptors Blog
               </h1>
               <p className="text-xl sm:text-2xl leading-relaxed text-black">
