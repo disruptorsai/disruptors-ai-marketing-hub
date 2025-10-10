@@ -40,6 +40,7 @@ export default function ClientLogoMarquee({
                   alt={logo.alt}
                   loading="lazy"
                   className="max-h-40 max-w-60 w-auto h-auto object-contain opacity-100 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
+                  style={logo.alt === "Sound Corrections" ? { transform: "scale(1.3)" } : {}}
                   draggable="false"
                 />
               ) : (

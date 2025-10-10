@@ -15,7 +15,7 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
     viewport={{ once: true }}
     onMouseEnter={onHover}
     onMouseLeave={onLeave}
-    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer"
+    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer flex flex-col items-center"
   >
     <motion.div
       animate={{
@@ -23,7 +23,7 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
         opacity: isOtherHovered ? 0.4 : 1,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg"
+      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
       style={{
         filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
       }}
@@ -501,9 +501,6 @@ export default function About() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
 
-      {/* Partnership Section */}
-      <AlternatingLayout sections={partnershipData} />
-
       {/* Section 3: Meet the Team (Unchanged) */}
       <section className="py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -597,6 +594,9 @@ export default function About() {
           )}
         </div>
       </section>
+
+      {/* Partnership Section */}
+      <AlternatingLayout sections={partnershipData} />
 
       {/* Call to Action */}
        <section className="bg-gray-900 text-white py-8">

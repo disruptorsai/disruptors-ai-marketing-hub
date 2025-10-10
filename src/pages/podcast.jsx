@@ -139,7 +139,7 @@ export default function Podcast() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046521/dmsite/services/podcasting.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/80" />
         </div>
@@ -567,7 +567,7 @@ export default function Podcast() {
                 name: "Sydney Osmun",
                 title: "Podcast Guest",
                 initial: "S",
-                gradient: "from-gray-400 to-gray-600",
+                gradient: "from-yellow-400 to-yellow-600",
                 quote: "I've been blown away by every detail from my entire experience. Their studio is top notch with different settings, high-class equipment, incredible host, and fast turnaround."
               },
               {
@@ -581,7 +581,7 @@ export default function Podcast() {
                 name: "Portia Louder",
                 title: "Industry Expert",
                 initial: "P",
-                gradient: "from-gray-300 to-gray-500",
+                gradient: "from-yellow-400 to-yellow-600",
                 quote: "I had a great experience recording a podcast. The host was well spoken and understood the topic. The studio is incredible."
               }
             ].map((testimonial, index) => (
