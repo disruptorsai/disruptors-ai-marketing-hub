@@ -29,9 +29,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- CRITICAL: Load React vendor bundle FIRST before any other chunks -->
-    <!-- This prevents "Cannot read properties of undefined (reading 'forwardRef')" errors -->
-    <!-- Vite will inject additional modulepreload hints, but React loads synchronously first -->
+    <!--
+      NOTE: modulePreload is disabled in vite.config.js to prevent chunk loading race conditions.
+      This ensures vendor-react loads and initializes BEFORE vendor-ui (Radix UI) executes.
+      Without this fix: "Cannot read properties of undefined (reading 'forwardRef')" errors occur.
+    -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

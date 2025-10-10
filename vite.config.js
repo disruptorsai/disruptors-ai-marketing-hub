@@ -65,6 +65,10 @@ export default defineConfig({
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: true, // Split CSS by route for better caching
     sourcemap: false, // Disable source maps in production for smaller builds
+    // CRITICAL: Disable modulepreload to prevent vendor-ui loading before vendor-react
+    // modulepreload causes race conditions where Radix UI executes before React is initialized
+    // Performance impact: ~50-100ms acceptable for reliability
+    modulePreload: false,
     rollupOptions: {
       external: () => {
         // Don't externalize these in the browser build
