@@ -160,6 +160,9 @@ export default function About() {
         </motion.div>
       </section>
 
+      {/* Gold Divider */}
+      <div className="h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+
       {/* Enhanced Intro Section */}
       <AlternatingLayout sections={aboutIntroData} />
 

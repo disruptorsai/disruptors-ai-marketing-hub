@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase-client';
 import { BrainAPI } from '@/lib/brain-api';
 import { toast } from 'sonner';
@@ -13,6 +14,7 @@ import LoginModal from './LoginModal';
 import OnboardingFlow from './OnboardingFlow';
 
 export default function ProtectedRoute({ children }) {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
@@ -103,6 +105,14 @@ export default function ProtectedRoute({ children }) {
     setIsNewUser(false);
   };
 
+  const handleLoginClose = () => {
+    // User closed login modal without authenticating
+    // Redirect to home page
+    setShowLogin(false);
+    navigate('/');
+    toast.info('Login required to access this page');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -120,7 +130,7 @@ export default function ProtectedRoute({ children }) {
 
       <LoginModal
         isOpen={showLogin && !user}
-        onClose={() => {}} // Can't close without logging in
+        onClose={handleLoginClose}
         onAuthSuccess={handleAuthSuccess}
       />
 

@@ -33,10 +33,7 @@ export default function Layout({ children, currentPageName }) {
     handleLogoClick,
     handleLoginSuccess,
     handleLogout,
-    handleCloseMatrix,
-    clickCount,
-    isTimerActive,
-    REQUIRED_CLICKS
+    handleCloseMatrix
   } = useSecretAccess();
 
   const navItems = [
@@ -198,22 +195,14 @@ export default function Layout({ children, currentPageName }) {
                     <img
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
+                      width="512"
+                      height="512"
                       className={`object-contain w-auto transition-all duration-500 ease-in-out ${
                         isHomePage
                           ? `${scrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-12'}`
                           : 'h-8 sm:h-10'
-                      } ${isTimerActive ? 'animate-pulse' : ''}`}
+                      }`}
                     />
-
-                    {/* Secret Access Progress Indicator */}
-                    {isTimerActive && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gray-600 rounded">
-                        <div
-                          className="h-full bg-green-400 rounded transition-all duration-200"
-                          style={{ width: `${(clickCount / REQUIRED_CLICKS) * 100}%` }}
-                        />
-                      </div>
-                    )}
                   </div>
                 </Link>
 
@@ -416,7 +405,7 @@ export default function Layout({ children, currentPageName }) {
 
               {/* Logo emboss watermark - positioned at bottom, half cut off */}
               <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] opacity-100 pointer-events-none z-0">
-                <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
+                <img src="/assets/footer/logo-emboss.png" alt="" width="800" height="400" className="w-full h-auto" />
               </div>
 
             </div>

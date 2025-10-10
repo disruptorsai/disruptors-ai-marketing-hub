@@ -69,43 +69,41 @@ export default function Podcast() {
       {/* Page Title */}
       <PageTitle title="PODCAST PRODUCTION" />
 
-      {/* Full-Screen Hero with Video Background */}
-      <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E]">
-        {/* Background Video */}
+      {/* Full-Screen Hero with Full-Width Image */}
+      <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
+        {/* Full-Width Background Image */}
         <div className="absolute inset-0 z-0">
-          <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto/disruptors-media/videos/main_banner_video.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
+          <img
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
+            alt="Podcast Studio"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
+          {/* Gradient Overlay - Dark to transparent from left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Hero Content - Positioned on Left Side */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <div className="inline-block mb-4">
-                <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20 backdrop-blur-sm">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
                   <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Broadcast Quality</span>
                 </div>
               </div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight text-white">
                 Build Authority
                 <br />
                 <span className="text-[#FFD700]">With Audio.</span>
               </h1>
 
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-gray-200 mb-8 leading-relaxed">
                 From concept to distribution, we create professional podcast content that positions you as an industry leader and drives real business growth.
               </p>
 
@@ -121,25 +119,9 @@ export default function Podcast() {
                   <span>Start Your Podcast</span>
                   <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Button variant="outline" size="lg" className="border-white/40 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
+                <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
                   View Our Work
                 </Button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative lg:scale-150 xl:scale-[1.75]"
-            >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
-                <img
-                  src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
-                  alt="Podcast Studio"
-                  className="w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
             </motion.div>
           </div>

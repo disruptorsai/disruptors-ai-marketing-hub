@@ -96,6 +96,8 @@ export default function Home() {
             <motion.img
               src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Disruptors AI"
+              width="800"
+              height="200"
               className="h-24 sm:h-32 lg:h-40 mx-auto mb-8"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
