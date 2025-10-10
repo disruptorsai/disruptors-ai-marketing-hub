@@ -51,14 +51,12 @@ export default defineConfig({
 
         // Advanced route-based code splitting for optimal performance
         manualChunks(id) {
-          // Core React bundle - always needed
-          if (id.includes('node_modules/react') ||
-              id.includes('node_modules/react-dom') ||
-              id.includes('node_modules/react-router-dom')) {
-            return 'vendor-react';
-          }
+          // CRITICAL: Keep React in main bundle to prevent dependency ordering issues
+          // React/ReactDOM must load before any components that use them
+          // Splitting them out causes "Cannot read properties of undefined (reading 'forwardRef')" errors
 
           // Radix UI components - used across site
+          // NOTE: These depend on React, so React MUST be in main bundle
           if (id.includes('node_modules/@radix-ui')) {
             return 'vendor-ui';
           }
