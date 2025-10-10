@@ -19,6 +19,22 @@ export default function AuthCallback() {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
+    // Fix malformed URL if present (e.g., http://https//domain.com)
+    const currentUrl = window.location.href;
+    if (currentUrl.includes('http://https//') || currentUrl.includes('https://https//')) {
+      console.warn('Detected malformed redirect URL, fixing...');
+
+      // Extract the hash (contains access_token, etc.)
+      const hash = window.location.hash;
+
+      // Construct correct URL
+      const correctUrl = `https://dm4.wjwelsh.com/auth/callback${hash}`;
+
+      // Replace current URL with correct one
+      window.location.replace(correctUrl);
+      return; // Stop execution, browser will reload with correct URL
+    }
+
     handleOAuthCallback();
   }, []);
 
