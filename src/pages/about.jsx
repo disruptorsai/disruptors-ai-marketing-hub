@@ -94,7 +94,7 @@ export default function About() {
     {
       headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760119644/social_u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient__bd502eac-3dd6-4f2a-b2dc-ccd6df5fbfc3_0_csbcry.mp4",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760122863/social_u4455988764_wide_landscape_scene_in_an_ancient_GreekRoman_for_d1743cde-0bcd-4c10-8d24-bbd35b21bed2_0_krsrsm.mp4",
       imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-transparent backdrop-blur-md",
       textColor: "text-black"

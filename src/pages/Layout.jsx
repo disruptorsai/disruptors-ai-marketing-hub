@@ -67,7 +67,7 @@ export default function Layout({ children, currentPageName }) {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -197,7 +197,7 @@ export default function Layout({ children, currentPageName }) {
                       alt="Disruptors Media Logo"
                       className={`object-contain h-auto transition-all duration-500 ease-in-out ${
                         isHomePage
-                          ? `${scrolled ? 'w-24 sm:w-32' : 'w-32 sm:w-40'}`
+                          ? `${scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'}`
                           : 'w-24 sm:w-32'
                       }`}
                     />
