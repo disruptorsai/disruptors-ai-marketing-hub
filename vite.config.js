@@ -2,36 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc' // Using SWC for faster builds (2025 best practice)
 import path from 'path'
 
-// Custom plugin to ensure vendor-react loads BEFORE vendor-ui
-function prioritizeReactChunk() {
-  return {
-    name: 'prioritize-react-chunk',
-    enforce: 'post',
-    transformIndexHtml(html) {
-      // Move vendor-react modulepreload to FIRST position
-      // This ensures React is available before any Radix UI components load
-      const reactPreloadRegex = /<link rel="modulepreload"[^>]*vendor-react[^>]*>/;
-      const reactPreloadMatch = html.match(reactPreloadRegex);
-
-      if (reactPreloadMatch) {
-        const reactPreload = reactPreloadMatch[0];
-        // Remove vendor-react from current position
-        html = html.replace(reactPreload, '');
-        // Insert it as FIRST modulepreload (right after main script tag)
-        html = html.replace(
-          /(<script type="module"[^>]*><\/script>)/,
-          `$1\n    ${reactPreload}`
-        );
-      }
-
-      return html;
-    }
-  };
-}
-
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), prioritizeReactChunk()],
+  plugins: [react()],
   server: {
     allowedHosts: true
   },
@@ -65,10 +38,6 @@ export default defineConfig({
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: true, // Split CSS by route for better caching
     sourcemap: false, // Disable source maps in production for smaller builds
-    // CRITICAL: Disable modulepreload to prevent vendor-ui loading before vendor-react
-    // modulepreload causes race conditions where Radix UI executes before React is initialized
-    // Performance impact: ~50-100ms acceptable for reliability
-    modulePreload: false,
     rollupOptions: {
       external: () => {
         // Don't externalize these in the browser build
@@ -82,18 +51,14 @@ export default defineConfig({
 
         // Advanced route-based code splitting for optimal performance
         manualChunks(id) {
-          // CRITICAL FIX: React MUST be in its own chunk that loads FIRST
-          // This ensures React/ReactDOM are available before vendor-ui (Radix UI) loads
-          // The issue was modulepreload causing vendor-ui to execute before main bundle
-          if (id.includes('node_modules/react/') ||
-              id.includes('node_modules/react-dom/') ||
-              id.includes('node_modules/react-router-dom/') ||
-              id.includes('node_modules/scheduler/')) {
-            return 'vendor-react';
-          }
+          // CRITICAL: React MUST stay in main bundle (NOT split into vendor chunk)
+          // Splitting React causes "Cannot read properties of undefined (reading 'forwardRef')" errors
+          // because vendor-ui (Radix UI) executes before React is initialized, even with proper imports
+          // Root cause: ES module parallel loading means import order != execution order
+          // Solution: Keep React in main bundle for synchronous availability
 
           // Radix UI components - used across site
-          // NOTE: These depend on React, so vendor-react MUST load first
+          // NOTE: These depend on React, which is in the main bundle
           if (id.includes('node_modules/@radix-ui')) {
             return 'vendor-ui';
           }
