@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import Marquee from 'react-fast-marquee';
 
 const clientLogos = [
@@ -28,22 +26,20 @@ export default function ClientLogoMarquee({
         gradientColor="rgb(25, 25, 25)"
         gradientWidth={100}
         pauseOnHover={true}
-        pauseOnClick={true}
         className="py-2"
       >
         {logos.map((logo, index) => (
-          <Link
+          <div
             key={index}
-            to={createPageUrl(logo.slug)}
-            className="mx-20 group inline-block"
+            className="mx-20 inline-block"
           >
-            <div className="flex items-center justify-center h-32 w-64">
+            <div className="flex items-center justify-center h-48 w-64">
               {logo.src ? (
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="max-h-28 w-auto object-contain opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
+                  className="max-h-40 max-w-60 w-auto h-auto object-contain opacity-100 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
                   draggable="false"
                 />
               ) : (
@@ -52,7 +48,7 @@ export default function ClientLogoMarquee({
                 </div>
               )}
             </div>
-          </Link>
+          </div>
         ))}
       </Marquee>
     </section>

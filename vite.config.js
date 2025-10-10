@@ -34,65 +34,115 @@ export default defineConfig({
   build: {
     // Performance: Set chunk size warning limit to 250 KB
     chunkSizeWarningLimit: 250,
+    // Ensure proper cache busting with hash-based filenames
+    assetsInlineLimit: 4096, // 4kb - inline small assets as base64
+    cssCodeSplit: true, // Split CSS by route for better caching
+    sourcemap: false, // Disable source maps in production for smaller builds
     rollupOptions: {
       external: () => {
         // Don't externalize these in the browser build
         return false;
       },
       output: {
-        // Manual chunk splitting for optimal performance
-        manualChunks: {
-          // Core React bundle
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+        // Ensure hash-based filenames for cache busting
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
 
-          // UI component library (Radix UI)
-          'vendor-ui': [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox',
-            '@radix-ui/react-collapsible',
-            '@radix-ui/react-context-menu',
-            '@radix-ui/react-hover-card',
-            '@radix-ui/react-label',
-            '@radix-ui/react-menubar',
-            '@radix-ui/react-navigation-menu',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-progress',
-            '@radix-ui/react-radio-group',
-            '@radix-ui/react-scroll-area',
-            '@radix-ui/react-select',
-            '@radix-ui/react-separator',
-            '@radix-ui/react-slider',
-            '@radix-ui/react-switch',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-toggle',
-            '@radix-ui/react-tooltip'
-          ],
+        // Advanced route-based code splitting for optimal performance
+        manualChunks(id) {
+          // Core React bundle - always needed
+          if (id.includes('node_modules/react') ||
+              id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react-router-dom')) {
+            return 'vendor-react';
+          }
 
-          // Animation libraries
-          'vendor-animation': ['framer-motion', 'gsap'],
+          // Radix UI components - used across site
+          if (id.includes('node_modules/@radix-ui')) {
+            return 'vendor-ui';
+          }
 
-          // 3D graphics (Spline) - Only loaded when needed
-          'vendor-3d': ['@splinetool/react-spline', '@splinetool/runtime'],
+          // Animation libraries - common across site
+          if (id.includes('node_modules/framer-motion') || id.includes('node_modules/gsap')) {
+            return 'vendor-animation';
+          }
 
-          // AI generation libraries
-          'vendor-ai': ['openai', '@google/generative-ai', '@google/genai', 'replicate'],
+          // Utility libraries - common utilities
+          if (id.includes('node_modules/clsx') ||
+              id.includes('node_modules/tailwind-merge') ||
+              id.includes('node_modules/class-variance-authority') ||
+              id.includes('node_modules/date-fns') ||
+              id.includes('node_modules/zod') ||
+              id.includes('node_modules/react-hook-form')) {
+            return 'vendor-utils';
+          }
 
-          // Database client
-          'vendor-database': ['@supabase/supabase-js', '@base44/sdk'],
+          // Database client - used across app
+          if (id.includes('node_modules/@supabase/supabase-js') ||
+              id.includes('node_modules/@base44/sdk')) {
+            return 'vendor-database';
+          }
 
-          // Utility libraries
-          'vendor-utils': [
-            'clsx',
-            'tailwind-merge',
-            'class-variance-authority',
-            'date-fns',
-            'zod',
-            'react-hook-form'
-          ]
+          // 3D graphics (Spline) - Only for demo pages (already lazy-loaded)
+          if (id.includes('node_modules/@splinetool')) {
+            return 'vendor-3d';
+          }
+
+          // Admin-only chunks (large modules that should only load in admin)
+          if (id.includes('/src/admin/') || id.includes('/src/components/admin/')) {
+            if (id.includes('TelemetryDashboard')) {
+              return 'admin-telemetry'; // 384 KB - admin only
+            }
+            if (id.includes('BusinessBrainBuilder') || id.includes('BrainThemedLayout')) {
+              return 'admin-brain'; // Brain management
+            }
+            return 'admin-modules'; // Other admin modules
+          }
+
+          // App-only chunks (authenticated user features)
+          if (id.includes('/src/pages/ai-content-writer') ||
+              id.includes('/src/modules/ai-content-writer')) {
+            return 'app-content-writer'; // 266 KB - app route only
+          }
+
+          if (id.includes('/src/pages/business-brain-manager')) {
+            return 'app-business-brain';
+          }
+
+          if (id.includes('/src/modules/keyword-research')) {
+            return 'app-keyword-research';
+          }
+
+          // AI libraries - Only load when AI features are used
+          if (id.includes('node_modules/openai') ||
+              id.includes('node_modules/@google/generative-ai') ||
+              id.includes('node_modules/@google/genai') ||
+              id.includes('node_modules/replicate')) {
+            return 'vendor-ai'; // 366 KB - only for AI pages
+          }
+
+          // Growth audit - separate chunk
+          if (id.includes('/src/lib/growth-audit/') ||
+              id.includes('/src/pages/demos/growth-audit')) {
+            return 'feature-growth-audit';
+          }
+
+          // Marketing audit - separate chunk
+          if (id.includes('/src/pages/marketing-audit')) {
+            return 'feature-marketing-audit';
+          }
+
+          // Large third-party libraries that should be separated
+          if (id.includes('node_modules/chart.js')) {
+            return 'vendor-charts';
+          }
+
+          if (id.includes('node_modules/howler')) {
+            return 'vendor-audio';
+          }
+
+          // Default: let Vite handle automatic chunking for everything else
         },
 
         // Improve chunk distribution

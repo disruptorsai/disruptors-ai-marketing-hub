@@ -4,7 +4,6 @@ import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import DualCTABlock from '../components/shared/DualCTABlock';
-import PageTitle from '../components/shared/PageTitle';
 import BentoGrid from '../components/shared/BentoGrid';
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
@@ -65,47 +64,18 @@ export default function Work() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
-                  className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+                  className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 >
                   Growth systems that speak for themselves. See how we've helped businesses simplify, scale, and succeed with AI-powered marketing.
                 </motion.p>
-
-                {/* Stats Row */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="flex flex-wrap justify-center gap-8 sm:gap-12"
-                >
-                  <div className="text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">50+</div>
-                    <div className="text-sm text-gray-400 uppercase tracking-wider">Projects Delivered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">10M+</div>
-                    <div className="text-sm text-gray-400 uppercase tracking-wider">In Client Revenue</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-yellow-500 mb-2">300%</div>
-                    <div className="text-sm text-gray-400 uppercase tracking-wider">Avg ROI</div>
-                  </div>
-                </motion.div>
               </motion.div>
-            </div>
-
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-70 hover:opacity-100 transition-opacity">
-              <div className="flex flex-col items-center space-y-2 text-yellow-500">
-                <span className="text-xs font-medium tracking-wide uppercase">Scroll to explore</span>
-                <div className="w-px h-12 bg-yellow-500/50 animate-pulse"></div>
-              </div>
             </div>
           </section>
 
         {/* Bento Grid Portfolio */}
         <BlurSection blurAmount={4}>
           <section className="py-8 sm:py-12 overflow-x-hidden">
-            <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
               <BentoGrid items={caseStudies} />
             </div>
           </section>

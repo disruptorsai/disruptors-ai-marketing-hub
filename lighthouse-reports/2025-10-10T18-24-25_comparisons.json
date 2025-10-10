@@ -1,0 +1,347 @@
+[
+  {
+    "page": "home",
+    "scores": {
+      "performance": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "accessibility": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FID": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "CLS": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TTI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TBT": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "SI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "requests": {
+        "mobile": 0,
+        "desktop": 0
+      },
+      "mainThreadWork": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    }
+  },
+  {
+    "page": "about",
+    "scores": {
+      "performance": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "accessibility": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FID": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "CLS": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TTI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TBT": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "SI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "requests": {
+        "mobile": 0,
+        "desktop": 0
+      },
+      "mainThreadWork": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    }
+  },
+  {
+    "page": "work",
+    "scores": {
+      "performance": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "accessibility": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FID": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "CLS": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TTI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TBT": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "SI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "requests": {
+        "mobile": 0,
+        "desktop": 0
+      },
+      "mainThreadWork": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    }
+  },
+  {
+    "page": "solutions",
+    "scores": {
+      "performance": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "accessibility": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FID": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "CLS": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TTI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TBT": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "SI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "requests": {
+        "mobile": 0,
+        "desktop": 0
+      },
+      "mainThreadWork": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    }
+  },
+  {
+    "page": "blog",
+    "scores": {
+      "performance": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "accessibility": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "best-practices": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      },
+      "seo": {
+        "mobile": 0,
+        "desktop": 0,
+        "diff": 0
+      }
+    },
+    "webVitals": {
+      "LCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FID": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "CLS": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "FCP": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TTI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "TBT": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "SI": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    },
+    "performance": {
+      "totalSize": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      },
+      "requests": {
+        "mobile": 0,
+        "desktop": 0
+      },
+      "mainThreadWork": {
+        "mobile": "N/A",
+        "desktop": "N/A"
+      }
+    }
+  }
+]

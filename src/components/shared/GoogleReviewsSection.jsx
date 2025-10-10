@@ -173,13 +173,13 @@ export default function GoogleReviewsSection() {
   const averageRating = 5.0;
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
           <h2 className="text-5xl font-bold">
             <span className="text-gray-900">Google </span>
-            <span className="text-[#2C6BAA]">Reviews</span>
+            <span className="text-gray-900">Reviews</span>
           </h2>
         </div>
 
@@ -227,7 +227,7 @@ export default function GoogleReviewsSection() {
                   href="https://share.google/D1q2PMgFUnQJrfgn8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#2C6BAA] hover:bg-[#234f88] text-white font-semibold rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#C9A53B] hover:bg-[#a88a2f] text-white font-semibold rounded-lg transition-colors duration-200"
                 >
                   <span>See all reviews</span>
                 </a>
@@ -235,7 +235,7 @@ export default function GoogleReviewsSection() {
                   href="https://share.google/D1q2PMgFUnQJrfgn8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#2C6BAA] text-[#2C6BAA] hover:bg-[#2C6BAA] hover:text-white font-semibold rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#C9A53B] text-[#C9A53B] hover:bg-[#C9A53B] hover:text-white font-semibold rounded-lg transition-colors duration-200"
                 >
                   <span>review us on</span>
                   <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -250,7 +250,7 @@ export default function GoogleReviewsSection() {
           </div>
 
           {/* Right - Scrolling Review Cards */}
-          <div className="flex-1 relative">
+          <div className="flex-1 relative min-w-0">
             {/* Left Arrow */}
             {canScrollLeft && (
               <button
@@ -349,7 +349,7 @@ export default function GoogleReviewsSection() {
                   onMouseLeave={() => setIsPaused(false)}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? 'bg-[#2C6BAA] w-8'
+                      ? 'bg-[#C9A53B] w-8'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to review ${index + 1}`}

@@ -57,7 +57,7 @@ export default function Home() {
 
   const alternatingData = [
     {
-      kicker: "PARTNERSHIP",
+      kicker: "",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
@@ -96,9 +96,7 @@ export default function Home() {
             <motion.img
               src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Disruptors AI"
-              width="800"
-              height="200"
-              className="h-24 sm:h-32 lg:h-40 mx-auto mb-8"
+              className="h-24 sm:h-32 lg:h-40 w-auto mx-auto mb-8 object-contain"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -118,8 +116,14 @@ export default function Home() {
       </section>
 
       {/* Client Logos Marquee */}
-      <div className="bg-gray-900 overflow-hidden">
+      <div className="relative bg-gray-900 overflow-hidden">
+        {/* Gold divider top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent z-10" />
+
         <ClientLogoMarquee />
+
+        {/* Gold divider bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent z-10" />
       </div>
 
       {/* PARTNERSHIP Section */}
@@ -204,11 +208,11 @@ export default function Home() {
                   {/* Content */}
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Multi-channel</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">Multi-channel</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Expert Digital Marketing
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         Proven strategies across SEO, social media, paid ads, and content to drive qualified traffic
                       </p>
                     </div>
@@ -240,11 +244,11 @@ export default function Home() {
                   {/* Content */}
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">10x faster</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">10x faster</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         AI Automation
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         Deploy intelligent systems that work 24/7, processing tasks in milliseconds instead of hours
                       </p>
                     </div>
@@ -273,11 +277,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">300% ROI</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">300% ROI</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Conversion Optimization
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         Data-driven campaigns designed to turn visitors into customers and maximize ROI
                       </p>
                     </div>
@@ -306,11 +310,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Smart insights</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">Smart insights</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Predictive Analytics
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         AI-powered insights that predict customer behavior and optimize your marketing spend
                       </p>
                     </div>
@@ -339,11 +343,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Live data</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">Live data</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Performance Tracking
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         Real-time dashboards showing exactly what's working and what needs adjustment
                       </p>
                     </div>
@@ -372,11 +376,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">100+ pieces/day</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Content at Scale
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         AI generates high-quality marketing content that converts, from ads to blog posts
                       </p>
                     </div>
@@ -405,11 +409,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Qualified leads</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">Qualified leads</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Lead Generation
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         Systematic approach to filling your pipeline with qualified prospects ready to buy
                       </p>
                     </div>
@@ -438,11 +442,11 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">20+ hrs saved</p>
+                      <p className="text-white text-sm font-semibold tracking-wide uppercase group-hover:text-yellow-500 transition-colors duration-300">20+ hrs saved</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Marketing Automation
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
+                      <p className="text-white text-base leading-relaxed">
                         AI handles repetitive tasks, freeing your team to focus on strategy and relationships
                       </p>
                     </div>
@@ -492,7 +496,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4"
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170550/gallery-bg_e0bwdz.mp4"
             autoPlay
             loop
             muted

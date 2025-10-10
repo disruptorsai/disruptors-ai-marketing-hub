@@ -74,8 +74,8 @@ function ParallaxSection({ section, textOnLeft }) {
         className="absolute inset-0 w-full h-full"
         style={{
           background: textOnLeft
-            ? 'linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%)'
-            : 'linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%)'
+            ? 'linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 25%, rgba(0, 0, 0, 0.3) 50%)'
+            : 'linear-gradient(to left, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 25%, rgba(0, 0, 0, 0.3) 50%)'
         }}
       />
 

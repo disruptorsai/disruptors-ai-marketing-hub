@@ -195,12 +195,10 @@ export default function Layout({ children, currentPageName }) {
                     <img
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
-                      width="512"
-                      height="512"
-                      className={`object-contain w-auto transition-all duration-500 ease-in-out ${
+                      className={`object-contain h-auto transition-all duration-500 ease-in-out ${
                         isHomePage
-                          ? `${scrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-12'}`
-                          : 'h-8 sm:h-10'
+                          ? `${scrolled ? 'w-24 sm:w-32' : 'w-32 sm:w-40'}`
+                          : 'w-24 sm:w-32'
                       }`}
                     />
                   </div>
@@ -227,7 +225,7 @@ export default function Layout({ children, currentPageName }) {
                    {/* CTA Button */}
                    <Link
                      to={createPageUrl('book-strategy-session')}
-                     className="font-supply group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-base font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+                     className="font-supply group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-base font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300 whitespace-nowrap"
                      style={{
                        clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                        animation: 'goldPulse 3s ease-in-out infinite',
@@ -237,8 +235,9 @@ export default function Layout({ children, currentPageName }) {
                       <GsapScrambleText
                         text="Let's Talk"
                         as="span"
+                        className="whitespace-nowrap"
                       />
-                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1 flex-shrink-0" />
                    </Link>
                 </div>
 
@@ -282,9 +281,10 @@ export default function Layout({ children, currentPageName }) {
                       </Link>
                     ))}
                      <Button asChild className="w-full mt-4 bg-white text-black hover:bg-gray-200 h-12 text-base touch-manipulation">
-                        <Link to={createPageUrl('book-strategy-session')}>
+                        <Link to={createPageUrl('book-strategy-session')} className="whitespace-nowrap">
                           <GsapScrambleText
                             text="Let's Talk"
+                            className="whitespace-nowrap"
                           />
                         </Link>
                      </Button>
@@ -328,11 +328,11 @@ export default function Layout({ children, currentPageName }) {
                 {/* Book a call button */}
                 <Link
                   to={createPageUrl('book-strategy-session')}
-                  className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation"
+                  className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation whitespace-nowrap"
                 >
                   <GsapScrambleText
                     text="Let's Talk"
-                    className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight"
+                    className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight whitespace-nowrap"
                     as="span"
                   />
                   <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />

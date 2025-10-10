@@ -31,7 +31,7 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
       <img
         src={member.headshot}
         alt={member.name}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-center"
       />
     </motion.div>
     <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
@@ -94,7 +94,7 @@ export default function About() {
     {
       headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760119644/social_u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient__bd502eac-3dd6-4f2a-b2dc-ccd6df5fbfc3_0_csbcry.mp4",
       imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-transparent backdrop-blur-md",
       textColor: "text-black"
@@ -151,9 +151,9 @@ export default function About() {
               loop
               playsInline
               controls
-              poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg"
+              poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/v1758170556/dm-abt_ypkipj.jpg"
             >
-              <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170556/dm-abt_ypkipj.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

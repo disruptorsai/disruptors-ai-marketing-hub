@@ -1,0 +1,11 @@
+Page,Device,Performance,Accessibility,Best Practices,SEO,LCP,FID,CLS,FCP,TTI,TBT,Total Size,Requests
+home,mobile,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+home,desktop,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+about,mobile,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+about,desktop,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+work,mobile,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+work,desktop,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+solutions,mobile,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+solutions,desktop,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+blog,mobile,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
+blog,desktop,0,0,0,0,N/A,N/A,N/A,N/A,N/A,N/A,N/A,0
