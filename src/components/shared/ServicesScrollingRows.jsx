@@ -74,7 +74,7 @@ function ServiceCard({ service, isDragging }) {
 
   return (
     <div
-      className="relative block flex-shrink-0 w-[300px] sm:w-[390px] lg:w-[480px] h-[270px] sm:h-[330px] lg:h-[390px] rounded-2xl overflow-hidden mx-3 sm:mx-4 shadow-xl hover:shadow-2xl transition-shadow duration-500"
+      className="relative block flex-shrink-0 w-[300px] sm:w-[390px] lg:w-[480px] h-[300px] sm:h-[390px] lg:h-[480px] rounded-2xl overflow-hidden mx-3 sm:mx-4 shadow-xl hover:shadow-2xl transition-shadow duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

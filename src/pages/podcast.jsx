@@ -3,12 +3,51 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
-import { Play, Mic, Headphones, Video, ArrowRight, Radio, Users, Sparkles } from 'lucide-react';
+import { Play, Mic, Headphones, Video, ArrowRight, Radio, Users, Sparkles, ExternalLink } from 'lucide-react';
 import PageTitle from '../components/shared/PageTitle';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// Podcast episodes data - placeholder for actual content from old site
+const episodes = [
+  {
+    id: 1,
+    title: "Episode Title Placeholder",
+    guest: "Guest Name",
+    date: "Date TBD",
+    description: "Episode description would go here. Professional podcast content that positions you as an industry leader.",
+    duration: "45 min",
+    platforms: {
+      spotify: "#",
+      apple: "#",
+      youtube: "#"
+    }
+  },
+  {
+    id: 2,
+    title: "Episode Title Placeholder",
+    guest: "Guest Name",
+    date: "Date TBD",
+    description: "Episode description would go here. Professional podcast content that positions you as an industry leader.",
+    duration: "52 min",
+    platforms: {
+      spotify: "#",
+      apple: "#",
+      youtube: "#"
+    }
+  },
+  {
+    id: 3,
+    title: "Episode Title Placeholder",
+    guest: "Guest Name",
+    date: "Date TBD",
+    description: "Episode description would go here. Professional podcast content that positions you as an industry leader.",
+    duration: "38 min",
+    platforms: {
+      spotify: "#",
+      apple: "#",
+      youtube: "#"
+    }
+  }
+];
 
 const studioImages = [
   "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712352/disruptors-media/content/studio/gl3a0022.jpg",
@@ -65,337 +104,154 @@ export default function Podcast() {
   }, [isDragging, startX, scrollLeft]);
 
   return (
-    <div className="text-white">
+    <div className="bg-[#0E0E0E] text-[#F1EDE9]">
       {/* Page Title */}
-      <PageTitle title="PODCAST PRODUCTION" />
+      <PageTitle title="PODCAST" />
 
-      {/* Full-Screen Hero with Full-Width Image */}
-      <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
-        {/* Full-Width Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
-            alt="Podcast Studio"
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Gradient Overlay - Dark to transparent from left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-        </div>
-
-        {/* Hero Content - Positioned on Left Side */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="inline-block mb-4">
-                <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20 backdrop-blur-sm">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                  <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Broadcast Quality</span>
-                </div>
-              </div>
-
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight text-white">
-                Build Authority
-                <br />
-                <span className="text-[#FFD700]">With Audio.</span>
-              </h1>
-
-              <p className="text-xl sm:text-2xl text-gray-200 mb-8 leading-relaxed">
-                From concept to distribution, we create professional podcast content that positions you as an industry leader and drives real business growth.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to={createPageUrl('book-strategy-session')}
-                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-[#FFD700] hover:bg-[#FFD700]/90 transition-all duration-300"
-                  style={{
-                    clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
-                    boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
-                  }}
-                >
-                  <span>Start Your Podcast</span>
-                  <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
-                  View Our Work
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Production Services Horizontal Scroller */}
-      <section className="relative bg-black py-12 overflow-hidden">
-        {/* Background Video */}
+      {/* Hero Section - Minimalist Brutalist Style */}
+      <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+        {/* Background with subtle grid overlay */}
         <div className="absolute inset-0">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046521/dmsite/services/podcasting.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black/80" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNDEsMjM3LDIzMywwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40"></div>
         </div>
 
-        {/* Yellow accent line at top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-block mb-4">
-              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Full Production Service</span>
-              </div>
+            {/* Uppercase Monospace Label */}
+            <div className="mb-8">
+              <span className="font-mono text-sm tracking-[0.3em] uppercase opacity-60">
+                Production Studio
+              </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Everything You Need to Launch
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Professional audio, video, editing, and distribution—all handled by our expert team
+
+            {/* Main Heading - Bold, Minimal */}
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 tracking-tight uppercase leading-none">
+              PODCAST
+            </h1>
+
+            {/* Subheading */}
+            <p className="font-mono text-base sm:text-lg max-w-3xl mx-auto mb-12 tracking-wide uppercase opacity-80 leading-relaxed">
+              Professional audio & video production / Multi-camera recording / Full post-production / Distribution across all platforms
             </p>
+
+            {/* Minimalist CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to={createPageUrl('book-strategy-session')}
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-[#F1EDE9] hover:bg-[#F1EDE9] hover:text-black transition-all duration-300"
+              >
+                <span className="font-mono text-sm tracking-[0.2em] uppercase">Book Session</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to={createPageUrl('contact')}
+                className="font-mono text-sm tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition-opacity"
+              >
+                Learn More →
+              </Link>
+            </div>
           </motion.div>
         </div>
 
-        <div className="relative">
-          {/* Gradient fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F1EDE9]/30 to-transparent"></div>
+      </section>
 
-          {/* Scrollable container */}
-          <div
-            ref={scrollContainerRef}
-            className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pb-4 select-none"
+      {/* Episodes Section - Brutalist Grid */}
+      <section className="relative bg-black py-24 border-t border-[#F1EDE9]/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
           >
-            <div className="flex gap-12 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
-              {/* Multi-Camera Production */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
-              >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Video className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Production</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Professional</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Multi-Camera Setup
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Dynamic angles with seamless switching for engaging visual storytelling that keeps viewers watching
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+            <span className="font-mono text-sm tracking-[0.3em] uppercase opacity-60 mb-4 block">
+              Recent Episodes
+            </span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold uppercase">
+              LATEST
+            </h2>
+          </motion.div>
 
-              {/* Crystal Clear Audio */}
+          <div className="space-y-px">
+            {episodes.map((episode, index) => (
               <motion.div
+                key={episode.id}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
+                className="group border border-[#F1EDE9]/10 hover:border-[#F1EDE9]/30 transition-all duration-300 bg-black/50"
               >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-white/10 rounded-2xl blur-xl group-hover:bg-white/20 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Headphones className="w-12 h-12 text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
-                      </div>
+                <div className="p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="font-mono text-xs tracking-[0.2em] uppercase opacity-40">
+                        EP {String(episode.id).padStart(3, '0')}
+                      </span>
+                      <span className="font-mono text-xs tracking-[0.2em] uppercase opacity-40">
+                        {episode.duration}
+                      </span>
                     </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 uppercase group-hover:opacity-70 transition-opacity">
+                      {episode.title}
+                    </h3>
+                    <p className="font-mono text-sm opacity-60 mb-4 uppercase tracking-wide">
+                      with {episode.guest} · {episode.date}
+                    </p>
+                    <p className="text-sm opacity-80 max-w-2xl">
+                      {episode.description}
+                    </p>
                   </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Audio</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Broadcast Quality</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Crystal Clear Audio
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Professional microphones and acoustic treatment for pristine sound that rivals major podcasts
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
 
-              {/* Post-Production */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
-              >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Sparkles className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Editing</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Fast Turnaround</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Full Post-Production
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Professional editing, color grading, sound mixing, and graphics to make every episode shine
-                      </p>
-                    </div>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={episode.platforms.spotify}
+                      className="font-mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
+                    >
+                      Spotify <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a
+                      href={episode.platforms.apple}
+                      className="font-mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
+                    >
+                      Apple <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a
+                      href={episode.platforms.youtube}
+                      className="font-mono text-xs tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
+                    >
+                      YouTube <ExternalLink className="w-3 h-3" />
+                    </a>
                   </div>
                 </div>
               </motion.div>
-
-              {/* Distribution */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
-              >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-white/10 rounded-2xl blur-xl group-hover:bg-white/20 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Radio className="w-12 h-12 text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Distribution</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">All Platforms</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Multi-Platform Publishing
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Apple Podcasts, Spotify, YouTube, and all major platforms with optimized metadata and artwork
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Guest Management */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
-              >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Users className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Guests</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Done for you</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Guest Outreach & Booking
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Research, outreach, and scheduling with ideal guests who attract your target audience
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Content Repurposing */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-80 group"
-              >
-                <div className="relative">
-                  <div className="mb-8">
-                    <div className="w-20 h-20 relative">
-                      <div className="absolute inset-0 bg-white/10 rounded-2xl blur-xl group-hover:bg-white/20 transition-all duration-500" />
-                      <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Play className="w-12 h-12 text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-gradient-to-r from-white/30 to-transparent" />
-                      <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Content</span>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Maximum ROI</p>
-                      <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
-                        Content Repurposing
-                      </h3>
-                      <p className="text-gray-400 text-base leading-relaxed">
-                        Turn episodes into blog posts, social clips, audiograms, and graphics that multiply your reach
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+            ))}
           </div>
-        </div>
 
-        {/* Bottom yellow accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+          {/* View All Link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <a
+              href="#"
+              className="inline-flex items-center gap-3 font-mono text-sm tracking-[0.2em] uppercase opacity-60 hover:opacity-100 transition-opacity"
+            >
+              View All Episodes <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
       </section>
 
       {/* Studio Showcase with Glassmorphic Cards */}

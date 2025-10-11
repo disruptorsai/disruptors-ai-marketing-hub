@@ -7,25 +7,40 @@ import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 
-const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
+const TeamMemberCard = ({ member, delay, isActive, isOtherActive, onClick }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    onMouseEnter={onHover}
-    onMouseLeave={onLeave}
-    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer flex flex-col items-center"
+    onClick={onClick}
+    className="relative bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border-2 cursor-pointer flex flex-col items-center transition-all duration-300"
+    style={{
+      borderColor: isActive ? '#eab308' : 'rgba(255, 255, 255, 0.2)',
+      backgroundColor: isActive ? 'rgba(234, 179, 8, 0.1)' : 'rgba(255, 255, 255, 0.2)',
+    }}
   >
+    {/* Active indicator with layoutId for smooth transitions */}
+    {isActive && (
+      <motion.div
+        layoutId="activeTeamMember"
+        className="absolute -inset-1 bg-gradient-to-b from-yellow-500/40 via-yellow-500/20 to-transparent rounded-3xl -z-10"
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      />
+    )}
+
     <motion.div
       animate={{
-        scale: isHovered ? 1.2 : 1,
-        opacity: isOtherHovered ? 0.4 : 1,
+        scale: isActive ? 1.1 : 1,
+        opacity: isOtherActive ? 0.5 : 1,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
+      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center"
       style={{
-        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
+        filter: isOtherActive ? "blur(2px)" : "blur(0px)",
+        borderWidth: '4px',
+        borderStyle: 'solid',
+        borderColor: isActive ? '#eab308' : '#ffffff',
       }}
     >
       <img
@@ -42,7 +57,7 @@ const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onL
 export default function About() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredMember, setHoveredMember] = useState(null);
+  const [activeMember, setActiveMember] = useState(null);
 
   // Horizontal scroll capabilities section
   const scrollContainerRef = useRef(null);
@@ -120,7 +135,21 @@ export default function About() {
         const members = await TeamMember.list('display_order');
         // Filter only active members
         const activeMembers = members.filter(member => member.is_active);
+
+        // Sort members to get Josh first
+        const sortedMembers = [...activeMembers].sort((a, b) => {
+          if (a.name.toLowerCase().includes('josh')) return -1;
+          if (b.name.toLowerCase().includes('josh')) return 1;
+          if (a.name.toLowerCase().includes('kyle') || a.name.toLowerCase().includes('tyler')) return -1;
+          if (b.name.toLowerCase().includes('kyle') || b.name.toLowerCase().includes('tyler')) return 1;
+          return 0;
+        });
+
         setTeam(activeMembers);
+        // Set first member (Josh) as default active member
+        if (sortedMembers.length > 0) {
+          setActiveMember(sortedMembers[0]);
+        }
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {
@@ -543,46 +572,73 @@ export default function About() {
                       key={member.id}
                       member={member}
                       delay={index * 0.1}
-                      isHovered={hoveredMember?.id === member.id}
-                      isOtherHovered={hoveredMember !== null && hoveredMember?.id !== member.id}
-                      onHover={() => setHoveredMember(member)}
-                      onLeave={() => setHoveredMember(null)}
+                      isActive={activeMember?.id === member.id}
+                      isOtherActive={activeMember !== null && activeMember?.id !== member.id}
+                      onClick={() => setActiveMember(activeMember?.id === member.id ? null : member)}
                     />
                   ))}
               </div>
 
-              {/* Full-width description box below team grid */}
+              {/* Full-width description box below team grid with visual connector */}
               <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-12">
+                {/* Visual connector line from active card to description */}
+                {activeMember && (
+                  <motion.div
+                    layoutId="teamConnector"
+                    className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-yellow-500 to-yellow-500/50"
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    animate={{ opacity: 1, scaleY: 1 }}
+                    exit={{ opacity: 0, scaleY: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{
-                    opacity: hoveredMember ? 1 : 0,
-                    y: hoveredMember ? 0 : 20,
+                    opacity: activeMember ? 1 : 0,
+                    y: activeMember ? 0 : 20,
+                    height: activeMember ? 'auto' : 0,
                   }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="px-4 sm:px-6 lg:px-8"
-                  style={{ minHeight: hoveredMember ? 'auto' : '150px' }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="px-4 sm:px-6 lg:px-8 overflow-hidden"
                 >
-                  {hoveredMember && (
-                    <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-white/30 max-w-7xl mx-auto">
-                      <h3 className="text-3xl font-bold text-black mb-4 text-center">{hoveredMember.name}</h3>
-                      <p className="text-black text-base leading-relaxed text-center">
-                        {hoveredMember.bio}
+                  {activeMember && (
+                    <motion.div
+                      key={activeMember.id}
+                      layoutId={`description-${activeMember.id}`}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-xl rounded-3xl p-10 border-2 border-yellow-500/30 max-w-7xl mx-auto shadow-2xl"
+                    >
+                      {/* Decorative top border accent */}
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent rounded-full" />
+
+                      <h3 className="text-4xl font-bold text-black mb-2 text-center">
+                        {activeMember.name}
+                      </h3>
+                      <p className="text-xl font-semibold text-yellow-600 mb-6 text-center">
+                        {activeMember.title}
                       </p>
-                      {hoveredMember.social_links?.linkedin && (
-                        <div className="mt-6 flex justify-center">
+                      <p className="text-black text-lg leading-relaxed text-center max-w-5xl mx-auto">
+                        {activeMember.bio}
+                      </p>
+                      {activeMember.social_links?.linkedin && (
+                        <div className="mt-8 flex justify-center">
                           <a
-                            href={hoveredMember.social_links.linkedin}
+                            href={activeMember.social_links.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
+                            className="inline-flex items-center gap-3 px-6 py-3 bg-yellow-500/20 hover:bg-yellow-500/30 text-black font-semibold rounded-xl border-2 border-yellow-500/40 hover:border-yellow-500/60 transition-all duration-300 hover:scale-105"
                           >
                             <Linkedin className="w-6 h-6" />
-                            <span className="font-semibold">Connect on LinkedIn</span>
+                            <span>Connect on LinkedIn</span>
                           </a>
                         </div>
                       )}
-                    </div>
+                    </motion.div>
                   )}
                 </motion.div>
               </div>

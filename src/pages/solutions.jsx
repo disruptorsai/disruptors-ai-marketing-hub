@@ -137,6 +137,13 @@ export default function Solutions() {
         />
       </section>
 
+      {/* Gold Divider */}
+      <div className="flex items-center justify-center py-8 bg-[#cac1b8]">
+        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
+        <div className="mx-4 w-2 h-2 bg-yellow-600 rounded-full"></div>
+        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
+      </div>
+
       {/* Services Horizontal Scrolling Carousel */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
