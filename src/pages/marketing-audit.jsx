@@ -167,7 +167,7 @@ export default function MarketingAudit() {
           <Loader2 className="w-16 h-16 text-[#2C6BAA] animate-spin mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Analyzing Your Marketing...</h2>
           <p className="text-gray-600 max-w-md">
-            Our AI is analyzing your responses to create a comprehensive marketing audit with personalized recommendations.
+            Our AI is analyzing your responses to create a comprehensive marketing assessment with personalized recommendations.
           </p>
         </div>
       </div>
@@ -181,7 +181,7 @@ export default function MarketingAudit() {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4">
             <span className="text-gray-900">Free AI-Powered </span>
-            <span className="text-[#2C6BAA]">Marketing Audit</span>
+            <span className="text-[#2C6BAA]">Marketing Assessment</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Get a comprehensive analysis of your marketing strategy with actionable recommendations in minutes.
@@ -754,7 +754,7 @@ function ResultsPage({ results, formData }) {
           </motion.div>
 
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Your Marketing Audit Results
+            Your Marketing Assessment Results
           </h1>
           <p className="text-xl text-gray-600">
             Marketing Maturity Level: <span className="font-semibold text-[#2C6BAA]">{results.maturityLevel}</span>
@@ -852,13 +852,13 @@ function ResultsPage({ results, formData }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="px-8 py-4 bg-white text-[#2C6BAA] rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="px-8 py-4 bg-yellow-500 text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
             >
               Schedule Strategy Call
             </a>
             <button
               onClick={() => window.print()}
-              className="px-8 py-4 bg-[#234f88] text-white rounded-lg font-semibold hover:bg-[#1a3d6b] transition-colors"
+              className="px-8 py-4 bg-yellow-500 text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
             >
               Download Report
             </button>

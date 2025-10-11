@@ -24,7 +24,7 @@ const NotFound = lazy(() => import('./404.jsx'));
 const Solutions = lazy(() => import('./solutions.jsx'));
 const Work = lazy(() => import('./work.jsx'));
 const About = lazy(() => import('./about.jsx'));
-const Resources = lazy(() => import('./resources.jsx'));
+const AITools = lazy(() => import('./ai-tools.jsx'));
 const Contact = lazy(() => import('./contact.jsx'));
 const Privacy = lazy(() => import('./privacy.jsx'));
 const Terms = lazy(() => import('./terms.jsx'));
@@ -131,7 +131,7 @@ const PAGES = {
 
     about: About,
 
-    resources: Resources,
+    "ai-tools": AITools,
 
     contact: Contact,
 
@@ -281,9 +281,12 @@ function PagesContent() {
                 <Route path="/work" element={<Work />} />
                 
                 <Route path="/about" element={<About />} />
-                
-                <Route path="/resources" element={<Resources />} />
-                
+
+                <Route path="/ai-tools" element={<AITools />} />
+
+                {/* Redirect old resources route to new ai-tools route */}
+                <Route path="/resources" element={<AITools />} />
+
                 <Route path="/contact" element={<Contact />} />
 
                 {/* Dev pages for comparison */}

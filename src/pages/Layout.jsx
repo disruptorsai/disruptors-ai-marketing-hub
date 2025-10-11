@@ -3,15 +3,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Menu, X, ArrowRight, Twitter, Youtube, Instagram } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/shared/LoadingScreen";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
-import CascadeScrambleText from "@/components/shared/CascadeScrambleText";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
+import Footer from "@/components/shared/Footer";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -42,17 +42,9 @@ export default function Layout({ children, currentPageName }) {
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },
     { name: "Blog", path: "blog" },
-    { name: "Resources", path: "resources" },
+    { name: "AI Tools", path: "ai-tools" },
     { name: "Gallery", path: "gallery" }
   ];
-
-  const footerLinks = [
-      ...navItems,
-      { name: "FAQ", path: "faq" },
-      { name: "Contact", path: "contact" },
-      { name: "Privacy Policy", path: "privacy"},
-      { name: "Terms and Conditions", path: "terms" }
-  ]
 
   const handleLoadingComplete = () => {
     setShowLoading(false);
@@ -72,60 +64,6 @@ export default function Layout({ children, currentPageName }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Animate footer separator lines with scroll-mapped GSAP
-  React.useEffect(() => {
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      const footerContainer = document.getElementById('footer-lines-container');
-      if (!footerContainer) {
-        console.warn('Footer lines container not found');
-        return;
-      }
-
-      // Line heights and spacing
-      const gaps = [98, 82, 65, 46, 24, 0]; // Spacing from bottom
-
-      // Animate all lines from stacked position to spread positions
-      gaps.forEach((gap, index) => {
-        const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
-        if (!line) {
-          console.warn(`Line ${index + 1} not found`);
-          return;
-        }
-
-        // Individual ScrollTrigger for each line
-        gsap.fromTo(
-          line,
-          {
-            y: 0,
-            force3D: true
-          },
-          {
-            y: -gap,
-            ease: "none",
-            force3D: true,
-            scrollTrigger: {
-              trigger: footerContainer,
-              start: "top 90%", // Start when footer top hits 90% down the viewport
-              end: "top 30%", // End when footer top hits 30% down the viewport
-              scrub: 1,
-              markers: false, // Debug mode off
-            }
-          }
-        );
-      });
-
-      // Refresh ScrollTrigger
-      ScrollTrigger.refresh();
-    }, 100);
-
-    // Cleanup
-    return () => {
-      clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
-  }, [location]);
 
   React.useEffect(() => {
     const hasLoadedBefore = sessionStorage.getItem('hasLoaded');
@@ -310,106 +248,7 @@ export default function Layout({ children, currentPageName }) {
             </AnimatePresence>
           </div>
 
-          <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div className="w-[90%] mx-auto relative">
-
-              {/* Animated lines + Book a call CTA */}
-              <div className="relative mb-12 sm:mb-16" id="footer-lines-container">
-                {/* Animated horizontal lines */}
-                <div className="relative h-[100px] sm:h-[110px] md:h-[120px] mb-0">
-                  <div className="sep-line sep-line-1"></div>
-                  <div className="sep-line sep-line-2"></div>
-                  <div className="sep-line sep-line-3"></div>
-                  <div className="sep-line sep-line-4"></div>
-                  <div className="sep-line sep-line-5"></div>
-                  <div className="sep-line sep-line-6"></div>
-                </div>
-
-                {/* Book a call button */}
-                <Link
-                  to={createPageUrl('book-strategy-session')}
-                  className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation whitespace-nowrap"
-                >
-                  <GsapScrambleText
-                    text="Let's Talk"
-                    className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight whitespace-nowrap"
-                    as="span"
-                  />
-                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
-                </Link>
-              </div>
-
-              {/* Footer navigation */}
-              <nav className="relative flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 mb-12 sm:mb-16">
-                {footerLinks.map(link => (
-                  <Link
-                    key={link.name}
-                    to={createPageUrl(link.path)}
-                    className="font-sans text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation leading-[28px]"
-                  >
-                    <GsapScrambleText
-                      text={link.name}
-                    />
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Bottom section with social icons and info */}
-              <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10 mb-20">
-                {/* Left: Copyright & address */}
-                <div className="font-sans text-center md:text-left order-2 md:order-1">
-                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
-                    <GsapScrambleText
-                      text={`©${new Date().getFullYear()} Disruptors Media inc.`}
-                    />
-                  </p>
-                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
-                    <GsapScrambleText
-                      text="650 N Main St, North Salt Lake, UT 84054"
-                    />
-                  </p>
-                </div>
-
-                {/* Center: Social icons */}
-                <div className="flex items-center gap-6 sm:gap-8 order-1 md:order-2">
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Twitter">
-                    <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
-                  </a>
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="TikTok">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="YouTube">
-                    <Youtube className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
-                  </a>
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Instagram">
-                    <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
-                  </a>
-                </div>
-
-                {/* Right: Coordinates & load address */}
-                <div className="font-supply text-center md:text-right order-3 hidden sm:block">
-                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
-                    <GsapScrambleText
-                      text="40.853400, -111.911790"
-                    />
-                  </p>
-                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
-                    <GsapScrambleText
-                      text="Load Address: 034526-01, IScxx compressed"
-                    />
-                  </p>
-                </div>
-              </div>
-
-              {/* Logo emboss watermark - positioned at bottom, half cut off */}
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] opacity-100 pointer-events-none z-0">
-                <img src="/assets/footer/logo-emboss.png" alt="" width="800" height="400" className="w-full h-auto" />
-              </div>
-
-            </div>
-          </footer>
+          <Footer />
             </>
           )}
         </div>

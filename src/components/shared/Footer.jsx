@@ -1,0 +1,379 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import GsapScrambleText from '@/components/shared/GsapScrambleText';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState('');
+
+  // Animate footer separator lines with scroll-mapped GSAP
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      const footerContainer = document.getElementById('footer-lines-container');
+      if (!footerContainer) return;
+
+      const gaps = [98, 82, 65, 46, 24, 0];
+
+      gaps.forEach((gap, index) => {
+        const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
+        if (!line) return;
+
+        gsap.fromTo(
+          line,
+          { y: 0, force3D: true },
+          {
+            y: -gap,
+            ease: "none",
+            force3D: true,
+            scrollTrigger: {
+              trigger: footerContainer,
+              start: "top 90%",
+              end: "top 30%",
+              scrub: 1,
+              markers: false,
+            }
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
+  }, []);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setSubscribeStatus('subscribing');
+
+    // TODO: Integrate with your newsletter service
+    setTimeout(() => {
+      setSubscribeStatus('success');
+      setEmail('');
+      setTimeout(() => setSubscribeStatus(''), 3000);
+    }, 1000);
+  };
+
+  const solutions = [
+    { name: 'AI Automation', path: 'solutions-ai-automation' },
+    { name: 'Social Media', path: 'solutions-social-media' },
+    { name: 'SEO & Local SEO', path: 'solutions-seo-geo' },
+    { name: 'Lead Generation', path: 'solutions-lead-generation' },
+    { name: 'Paid Advertising', path: 'solutions-paid-advertising' },
+    { name: 'Podcasting', path: 'solutions-podcasting' },
+    { name: 'Custom Apps', path: 'solutions-custom-apps' },
+    { name: 'CRM Management', path: 'solutions-crm-management' },
+    { name: 'Fractional CMO', path: 'solutions-fractional-cmo' },
+  ];
+
+  const company = [
+    { name: 'About Us', path: 'about' },
+    { name: 'Our Work', path: 'work' },
+    { name: 'Blog', path: 'blog' },
+    { name: 'Podcast', path: 'podcast' },
+    { name: 'AI Tools', path: 'ai-tools' },
+    { name: 'Gallery', path: 'gallery' },
+    { name: 'FAQ', path: 'faq' },
+  ];
+
+  const tools = [
+    { name: 'AI Content Writer', path: 'ai-content-writer' },
+    { name: 'Keyword Research', path: 'keyword-research' },
+    { name: 'Marketing Audit', path: 'marketing-audit' },
+    { name: 'Business Brain', path: 'business-brain-manager' },
+  ];
+
+  const socialLinks = [
+    {
+      name: 'Twitter',
+      icon: '/assets/footer/twitter.webp',
+      url: 'https://twitter.com/disruptorsmedia'
+    },
+    {
+      name: 'Instagram',
+      icon: '/assets/footer/instagram.svg',
+      url: 'https://instagram.com/disruptorsmedia'
+    },
+    {
+      name: 'Facebook',
+      icon: '/assets/footer/facebook.png',
+      url: 'https://facebook.com/disruptorsmedia'
+    },
+  ];
+
+  return (
+    <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 overflow-hidden bg-gradient-to-b from-[#0E0E0E] to-black">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20"
+          src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
+      </div>
+
+      {/* Gold accent line at top */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FFD700] to-transparent z-20" />
+
+      <div className="relative z-10 w-[90%] mx-auto">
+
+        {/* Animated lines + Book a call CTA */}
+        <div className="relative mb-16 sm:mb-20" id="footer-lines-container">
+          {/* Animated horizontal lines */}
+          <div className="relative h-[100px] sm:h-[110px] md:h-[120px] mb-0">
+            <div className="sep-line sep-line-1" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-2" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-3" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-4" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-5" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-6" style={{ background: '#FFD700' }}></div>
+          </div>
+
+          {/* Book a call button */}
+          <Link
+            to={createPageUrl('book-strategy-session')}
+            className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-white text-black hover:bg-white/90 transition-all duration-300 min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation whitespace-nowrap"
+            style={{
+              boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)',
+            }}
+          >
+            <span className="font-montreal text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight">
+              Let's Talk
+            </span>
+            <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
+          </Link>
+        </div>
+
+        {/* Main Footer Content - Multi-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16 sm:mb-20">
+
+          {/* Column 1: Brand & Newsletter - Spans 4 cols */}
+          <div className="lg:col-span-4">
+            <Link to={createPageUrl('')} className="inline-block mb-6">
+              <img
+                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+                alt="Disruptors Media"
+                className="h-16 w-auto"
+              />
+            </Link>
+            <p className="font-montreal text-sm text-[#C7C7C7] mb-6 leading-relaxed">
+              AI-first marketing agency disrupting the industry with data-driven strategies and cutting-edge automation.
+            </p>
+
+            {/* Newsletter Signup */}
+            <div className="mb-8">
+              <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-4">
+                Stay Updated
+              </h3>
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  disabled={subscribeStatus === 'subscribing'}
+                  className="flex-1 bg-white/5 border-white/20 text-white placeholder:text-white/40 h-12 text-sm focus:border-[#FFD700] focus:ring-[#FFD700]"
+                />
+                <Button
+                  type="submit"
+                  disabled={subscribeStatus === 'subscribing'}
+                  className="bg-[#FFD700] text-black hover:bg-[#FFD700]/90 h-12 px-6 font-semibold"
+                >
+                  {subscribeStatus === 'subscribing' ? '...' : subscribeStatus === 'success' ? '✓' : 'Subscribe'}
+                </Button>
+              </form>
+              {subscribeStatus === 'success' && (
+                <p className="text-xs text-[#FFD700] mt-2">Thanks for subscribing!</p>
+              )}
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#FFD700]/20 border border-white/10 hover:border-[#FFD700] transition-all duration-300 rounded"
+                  aria-label={social.name}
+                >
+                  <img
+                    src={social.icon}
+                    alt={social.name}
+                    className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 2: Solutions - Spans 3 cols */}
+          <div className="lg:col-span-3">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+              Solutions
+            </h3>
+            <ul className="space-y-3">
+              {solutions.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={createPageUrl(item.path)}
+                    className="font-montreal text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors inline-block group"
+                  >
+                    <span className="relative">
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FFD700] group-hover:w-full transition-all duration-300"></span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Company - Spans 2 cols */}
+          <div className="lg:col-span-2">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+              Company
+            </h3>
+            <ul className="space-y-3">
+              {company.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={createPageUrl(item.path)}
+                    className="font-montreal text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors inline-block group"
+                  >
+                    <span className="relative">
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FFD700] group-hover:w-full transition-all duration-300"></span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact & Tools - Spans 3 cols */}
+          <div className="lg:col-span-3">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+              Get In Touch
+            </h3>
+            <ul className="space-y-4 mb-8">
+              <li>
+                <a
+                  href="tel:+18015551234"
+                  className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
+                >
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
+                  <span>(801) 555-1234</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:hello@disruptorsmedia.com"
+                  className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
+                >
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
+                  <span>hello@disruptorsmedia.com</span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 text-sm text-[#C7C7C7]">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#FFD700]" />
+                  <span>650 N Main St<br />North Salt Lake, UT 84054</span>
+                </div>
+              </li>
+            </ul>
+
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-4">
+              AI Tools
+            </h3>
+            <ul className="space-y-3">
+              {tools.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={createPageUrl(item.path)}
+                    className="font-montreal text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors inline-block group"
+                  >
+                    <span className="relative">
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#FFD700] group-hover:w-full transition-all duration-300"></span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="relative border-t border-white/10 pt-8 pb-24">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+
+            {/* Copyright */}
+            <div className="text-center md:text-left order-2 md:order-1">
+              <p className="font-montreal text-xs sm:text-sm text-[#C7C7C7]">
+                © {new Date().getFullYear()} Disruptors Media Inc. All rights reserved.
+              </p>
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex items-center gap-6 order-1 md:order-2">
+              <Link
+                to={createPageUrl('privacy')}
+                className="font-montreal text-xs sm:text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to={createPageUrl('terms')}
+                className="font-montreal text-xs sm:text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors"
+              >
+                Terms & Conditions
+              </Link>
+            </div>
+
+            {/* Coordinates */}
+            <div className="hidden lg:block text-right order-3">
+              <p className="font-supply text-xs text-[#FFD700]/60">
+                40.853400, -111.911790
+              </p>
+              <p className="font-supply text-xs text-[#FFD700]/40 mt-1">
+                Load Address: 034526-01
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Logo emboss watermark - positioned at bottom, half cut off */}
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] opacity-10 pointer-events-none z-0">
+          <img
+            src="/assets/footer/logo-emboss.png"
+            alt=""
+            width="800"
+            height="400"
+            className="w-full h-auto"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
+        </div>
+
+      </div>
+    </footer>
+  );
+}

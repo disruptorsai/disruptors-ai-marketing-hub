@@ -136,7 +136,7 @@ function ParallaxSection({ section, textOnLeft }) {
                 <Button
                   asChild
                   size="lg"
-                  className="font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto"
+                  className="font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-black"
                 >
                   <Link to={createPageUrl(section.cta.link)}>
                     {section.cta.label}

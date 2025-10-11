@@ -137,13 +137,6 @@ export default function Solutions() {
         />
       </section>
 
-      {/* Gold Divider */}
-      <div className="flex items-center justify-center py-8 bg-[#cac1b8]">
-        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
-        <div className="mx-4 w-2 h-2 bg-yellow-600 rounded-full"></div>
-        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent"></div>
-      </div>
-
       {/* Services Horizontal Scrolling Carousel */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -177,9 +170,16 @@ export default function Solutions() {
               <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-8 leading-tight">
                 WHAT WE DO
               </h2>
-              <p className="text-xl text-gray-800 leading-relaxed font-mono">
+              <p className="text-xl text-gray-800 leading-relaxed font-mono mb-8">
                 Call us traditional, but we believe in the old-fashioned way of connection. And no, we don't mean Myspace. You can have a killer product or service, but that's not what sets you apart. It's how people feel after each interaction.
               </p>
+              <Link
+                to={createPageUrl('marketing-audit')}
+                className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black text-base font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <span>Start Your Assessment</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
 
             {/* Right Column - Accordion */}
@@ -194,7 +194,7 @@ export default function Solutions() {
                   <AccordionTrigger className="text-left hover:no-underline group py-6">
                     <div className="flex flex-col items-start w-full pr-4">
                       <span className="text-sm font-mono text-gray-600 mb-2">01</span>
-                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors">
                         CREATIVE & STRATEGY
                       </h3>
                     </div>
@@ -208,13 +208,13 @@ export default function Solutions() {
                   <AccordionTrigger className="text-left hover:no-underline group py-6">
                     <div className="flex flex-col items-start w-full pr-4">
                       <span className="text-sm font-mono text-gray-600 mb-2">02</span>
-                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors">
                         DIGITAL MARKETING & PRESENCE
                       </h3>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-lg text-gray-800 leading-relaxed pb-6 font-mono">
-                    Elevate your digital presence with our comprehensive strategies. We ensure your brand stands out, driving traffic and enhancing visibility. <Link to="/contact" className="text-blue-700 underline hover:text-blue-800">Contact us</Link> to disrupt your industry.
+                    Elevate your digital presence with our comprehensive strategies. We ensure your brand stands out, driving traffic and enhancing visibility. <Link to="/contact" className="text-yellow-600 underline hover:text-yellow-700">Contact us</Link> to disrupt your industry.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -222,13 +222,13 @@ export default function Solutions() {
                   <AccordionTrigger className="text-left hover:no-underline group py-6">
                     <div className="flex flex-col items-start w-full pr-4">
                       <span className="text-sm font-mono text-gray-600 mb-2">03</span>
-                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                      <h3 className="text-3xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors">
                         OPTIMIZATION & ANALYTICS
                       </h3>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="text-lg text-gray-800 leading-relaxed pb-6 font-mono">
-                    Refine your strategy with our AI-powered tools and data insights for peak performance. We turn data into actionable intelligence. <Link to="/contact" className="text-blue-700 underline hover:text-blue-800">Contact us</Link> to optimize your marketing efforts.
+                    Refine your strategy with our AI-powered tools and data insights for peak performance. We turn data into actionable intelligence. <Link to="/contact" className="text-yellow-600 underline hover:text-yellow-700">Contact us</Link> to optimize your marketing efforts.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -238,8 +238,23 @@ export default function Solutions() {
       </section>
 
       {/* CTA Block */}
-      <section className="relative bg-gray-800 text-white">
-         <DualCTABlock />
+      <section className="relative overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 z-[1] bg-black/70"></div>
+        <div className="relative z-10 text-white">
+          <DualCTABlock />
+        </div>
       </section>
     </div>
   );

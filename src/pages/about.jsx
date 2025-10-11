@@ -1,46 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TeamMember } from '@/api/entities';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 
-const TeamMemberCard = ({ member, delay, isActive, isOtherActive, onClick }) => (
+const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    onClick={onClick}
-    className="relative bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border-2 cursor-pointer flex flex-col items-center transition-all duration-300"
-    style={{
-      borderColor: isActive ? '#eab308' : 'rgba(255, 255, 255, 0.2)',
-      backgroundColor: isActive ? 'rgba(234, 179, 8, 0.1)' : 'rgba(255, 255, 255, 0.2)',
-    }}
+    onMouseEnter={onHover}
+    onMouseLeave={onLeave}
+    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer flex flex-col items-center"
   >
-    {/* Active indicator with layoutId for smooth transitions */}
-    {isActive && (
-      <motion.div
-        layoutId="activeTeamMember"
-        className="absolute -inset-1 bg-gradient-to-b from-yellow-500/40 via-yellow-500/20 to-transparent rounded-3xl -z-10"
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      />
-    )}
-
     <motion.div
       animate={{
-        scale: isActive ? 1.1 : 1,
-        opacity: isOtherActive ? 0.5 : 1,
+        scale: isHovered ? 1.2 : 1,
+        opacity: isOtherHovered ? 0.4 : 1,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center"
+      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
       style={{
-        filter: isOtherActive ? "blur(2px)" : "blur(0px)",
-        borderWidth: '4px',
-        borderStyle: 'solid',
-        borderColor: isActive ? '#eab308' : '#ffffff',
+        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
       }}
     >
       <img
@@ -57,7 +44,7 @@ const TeamMemberCard = ({ member, delay, isActive, isOtherActive, onClick }) => 
 export default function About() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeMember, setActiveMember] = useState(null);
+  const [hoveredMember, setHoveredMember] = useState(null);
 
   // Horizontal scroll capabilities section
   const scrollContainerRef = useRef(null);
@@ -112,7 +99,11 @@ export default function About() {
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760122863/social_u4455988764_wide_landscape_scene_in_an_ancient_GreekRoman_for_d1743cde-0bcd-4c10-8d24-bbd35b21bed2_0_krsrsm.mp4",
       imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-transparent backdrop-blur-md",
-      textColor: "text-black"
+      textColor: "text-black",
+      cta: {
+        label: "Get Started Today",
+        link: "book-strategy-session"
+      }
     }
   ];
 
@@ -123,7 +114,11 @@ export default function About() {
       image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png",
       imageAlt: "Partnership and collaboration visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
-      textColor: "text-black"
+      textColor: "text-black",
+      cta: {
+        label: "Schedule a Consultation",
+        link: "book-strategy-session"
+      }
     }
   ];
 
@@ -135,21 +130,7 @@ export default function About() {
         const members = await TeamMember.list('display_order');
         // Filter only active members
         const activeMembers = members.filter(member => member.is_active);
-
-        // Sort members to get Josh first
-        const sortedMembers = [...activeMembers].sort((a, b) => {
-          if (a.name.toLowerCase().includes('josh')) return -1;
-          if (b.name.toLowerCase().includes('josh')) return 1;
-          if (a.name.toLowerCase().includes('kyle') || a.name.toLowerCase().includes('tyler')) return -1;
-          if (b.name.toLowerCase().includes('kyle') || b.name.toLowerCase().includes('tyler')) return 1;
-          return 0;
-        });
-
         setTeam(activeMembers);
-        // Set first member (Josh) as default active member
-        if (sortedMembers.length > 0) {
-          setActiveMember(sortedMembers[0]);
-        }
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {
@@ -187,16 +168,12 @@ export default function About() {
             </video>
           </div>
         </motion.div>
+        {/* Golden section divider */}
+        <div className="w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
-
-      {/* Gold Divider */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
 
       {/* Enhanced Intro Section */}
       <AlternatingLayout sections={aboutIntroData} />
-
-      {/* Gold Divider */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
 
       {/* Capabilities Horizontal Scroller - Premium Design */}
       <section className="relative bg-black py-12 overflow-hidden">
@@ -526,6 +503,24 @@ export default function About() {
           </div>
         </div>
 
+        {/* CTA Button */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Link
+              to={createPageUrl('marketing-audit')}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black text-lg font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
+            >
+              <span>Discover Your Growth Potential</span>
+              <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </div>
+
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
@@ -572,73 +567,46 @@ export default function About() {
                       key={member.id}
                       member={member}
                       delay={index * 0.1}
-                      isActive={activeMember?.id === member.id}
-                      isOtherActive={activeMember !== null && activeMember?.id !== member.id}
-                      onClick={() => setActiveMember(activeMember?.id === member.id ? null : member)}
+                      isHovered={hoveredMember?.id === member.id}
+                      isOtherHovered={hoveredMember !== null && hoveredMember?.id !== member.id}
+                      onHover={() => setHoveredMember(member)}
+                      onLeave={() => setHoveredMember(null)}
                     />
                   ))}
               </div>
 
-              {/* Full-width description box below team grid with visual connector */}
+              {/* Full-width description box below team grid */}
               <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-12">
-                {/* Visual connector line from active card to description */}
-                {activeMember && (
-                  <motion.div
-                    layoutId="teamConnector"
-                    className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-yellow-500 to-yellow-500/50"
-                    initial={{ opacity: 0, scaleY: 0 }}
-                    animate={{ opacity: 1, scaleY: 1 }}
-                    exit={{ opacity: 0, scaleY: 0 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{
-                    opacity: activeMember ? 1 : 0,
-                    y: activeMember ? 0 : 20,
-                    height: activeMember ? 'auto' : 0,
+                    opacity: hoveredMember ? 1 : 0,
+                    y: hoveredMember ? 0 : 20,
                   }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="px-4 sm:px-6 lg:px-8 overflow-hidden"
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="px-4 sm:px-6 lg:px-8"
+                  style={{ minHeight: hoveredMember ? 'auto' : '150px' }}
                 >
-                  {activeMember && (
-                    <motion.div
-                      key={activeMember.id}
-                      layoutId={`description-${activeMember.id}`}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-xl rounded-3xl p-10 border-2 border-yellow-500/30 max-w-7xl mx-auto shadow-2xl"
-                    >
-                      {/* Decorative top border accent */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent rounded-full" />
-
-                      <h3 className="text-4xl font-bold text-black mb-2 text-center">
-                        {activeMember.name}
-                      </h3>
-                      <p className="text-xl font-semibold text-yellow-600 mb-6 text-center">
-                        {activeMember.title}
+                  {hoveredMember && (
+                    <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-white/30 max-w-7xl mx-auto">
+                      <h3 className="text-3xl font-bold text-black mb-4 text-center">{hoveredMember.name}</h3>
+                      <p className="text-black text-base leading-relaxed text-center">
+                        {hoveredMember.bio}
                       </p>
-                      <p className="text-black text-lg leading-relaxed text-center max-w-5xl mx-auto">
-                        {activeMember.bio}
-                      </p>
-                      {activeMember.social_links?.linkedin && (
-                        <div className="mt-8 flex justify-center">
+                      {hoveredMember.social_links?.linkedin && (
+                        <div className="mt-6 flex justify-center">
                           <a
-                            href={activeMember.social_links.linkedin}
+                            href={hoveredMember.social_links.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 px-6 py-3 bg-yellow-500/20 hover:bg-yellow-500/30 text-black font-semibold rounded-xl border-2 border-yellow-500/40 hover:border-yellow-500/60 transition-all duration-300 hover:scale-105"
+                            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
                           >
                             <Linkedin className="w-6 h-6" />
-                            <span>Connect on LinkedIn</span>
+                            <span className="font-semibold">Connect on LinkedIn</span>
                           </a>
                         </div>
                       )}
-                    </motion.div>
+                    </div>
                   )}
                 </motion.div>
               </div>

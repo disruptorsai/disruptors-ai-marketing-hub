@@ -64,7 +64,11 @@ export default function Home() {
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
-      videoStyle: { transform: "scale(0.8)" }
+      videoStyle: { transform: "scale(0.8)" },
+      cta: {
+        label: "Partner With Us",
+        link: "book-strategy-session"
+      }
     }
   ];
 
@@ -117,13 +121,7 @@ export default function Home() {
 
       {/* Client Logos Marquee */}
       <div className="relative bg-gray-900 overflow-hidden">
-        {/* Gold divider top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent z-10" />
-
         <ClientLogoMarquee />
-
-        {/* Gold divider bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent z-10" />
       </div>
 
       {/* PARTNERSHIP Section */}
@@ -455,6 +453,24 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Link
+              to={createPageUrl('marketing-audit')}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black text-lg font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
+            >
+              <span>See How AI Can Transform Your Business</span>
+              <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Bottom yellow accent line */}

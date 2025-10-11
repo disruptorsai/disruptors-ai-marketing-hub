@@ -1,0 +1,221 @@
+{
+  "mcpServers": {
+    "firecrawl": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "${VITE_FIRECRAWL_API_KEY}"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--caps=pdf"
+      ]
+    },
+    "dataforseo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "dataforseo-mcp-server"
+      ],
+      "env": {
+        "DATAFORSEO_USERNAME": "${DATAFORSEO_LOGIN}",
+        "DATAFORSEO_PASSWORD": "${DATAFORSEO_PASSWORD}"
+      }
+    },
+    "n8n-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "n8n-mcp-server@latest"
+      ],
+      "env": {
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "error",
+        "MCP_MODE": "stdio",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "${N8N_API_URL}",
+        "N8N_API_KEY": "${N8N_API_KEY}"
+      }
+    },
+    "gohighlevel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "gohighlevel-mcp@latest"
+      ],
+      "env": {
+        "GHL_API_KEY": "${GHL_API_KEY}",
+        "GHL_BASE_URL": "https://services.leadconnectorhq.com",
+        "GHL_LOCATION_ID": "${GHL_LOCATION_ID}",
+        "NODE_ENV": "production"
+      }
+    },
+    "cloudinary": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@felores/cloudinary-mcp-server@latest"
+      ],
+      "env": {
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
+      }
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory@latest"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem@latest",
+        "C:\\Users\\Will\\OneDrive\\Documents\\Projects"
+      ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch@latest"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github@latest"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking@latest"
+      ]
+    },
+    "netlify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@netlify/mcp@latest"
+      ],
+      "env": {
+        "NETLIFY_AUTH_TOKEN": "${NETLIFY_AUTH_TOKEN}"
+      }
+    },
+    "digitalocean": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@digitalocean/mcp",
+        "--services",
+        "apps,databases,droplets"
+      ],
+      "env": {
+        "DIGITALOCEAN_API_TOKEN": "${DIGITALOCEAN_API_TOKEN}"
+      }
+    },
+    "nano-banana": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "nano-banana-mcp"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${VITE_GEMINI_API_KEY}"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "puppeteer-mcp-claude"
+      ]
+    },
+    "figma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=${FIGMA_API_KEY}",
+        "--stdio"
+      ]
+    },
+    "airtable": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "airtable-mcp-server"
+      ],
+      "env": {
+        "AIRTABLE_API_KEY": "${AIRTABLE_API_KEY}"
+      }
+    },
+    "replicate": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "replicate-mcp"
+      ],
+      "env": {
+        "REPLICATE_API_TOKEN": "${VITE_REPLICATE_API_TOKEN}"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref=ubqxflzuvxowigbjmqfb"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      }
+    },
+    "railway": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@railway/mcp-server"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "gsap-master": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "bruzethegreat-gsap-master-mcp-server@latest"
+      ]
+    },
+    "spline": {
+      "command": "node",
+      "args": [
+        "spline-mcp-server/bin/cli.js",
+        "--mode",
+        "mcp",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "SPLINE_API_KEY": ""
+      }
+    }
+  }
+}

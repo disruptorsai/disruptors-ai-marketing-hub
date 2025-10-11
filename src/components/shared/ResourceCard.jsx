@@ -39,6 +39,8 @@ export default function ResourceCard({
             <img
               src={image}
               alt={title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain rounded-3xl opacity-60 group-hover:opacity-85 group-hover:scale-110 transition-all duration-300"
               style={{
                 filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5))'

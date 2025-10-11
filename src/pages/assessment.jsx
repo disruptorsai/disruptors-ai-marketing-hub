@@ -64,7 +64,7 @@ export default function Assessment() {
           <CheckCircle className="w-16 h-16 text-[#FFD700] mx-auto mb-6" />
           <h1 className="text-3xl font-bold mb-4">Here’s your 90-day pilot plan.</h1>
           <p className="text-[#C7C7C7] text-lg mb-8">We’ve emailed a PDF to <span className="text-white font-semibold">{answers.contact}</span> with details, including your KPI tree, review gates, and recommended prompts.</p>
-          <Button size="lg" className="bg-white text-[#0E0E0E] font-semibold hover:bg-[#EAEAEA] rounded-xl">Book a 30-minute review</Button>
+          <Button size="lg" className="bg-yellow-500 text-black font-semibold hover:bg-yellow-400 rounded-xl">Book a 30-minute review</Button>
         </motion.div>
       </div>
     );
@@ -136,7 +136,7 @@ export default function Assessment() {
                       Next <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   ) : (
-                    <Button type="submit" className="bg-white text-[#0E0E0E] font-semibold hover:bg-[#EAEAEA]" disabled={isSubmitting || !answers[currentQ.id]}>
+                    <Button type="submit" className="bg-yellow-500 text-black font-semibold hover:bg-yellow-400" disabled={isSubmitting || !answers[currentQ.id]}>
                       {isSubmitting ? <Loader className="w-4 h-4 animate-spin" /> : "Get My Plan"}
                     </Button>
                   )}

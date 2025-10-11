@@ -196,7 +196,7 @@ export default function ServiceScroller({
 
                   {/* Content */}
                   <div className="text-center">
-                    <h3 className="text-lg sm:text-xl font-black text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2 tracking-tight">
+                    <h3 className="text-lg sm:text-xl font-black text-gray-900 group-hover:text-yellow-600 transition-colors duration-300 mb-2 tracking-tight">
                       {service.title}
                     </h3>
 
@@ -206,8 +206,8 @@ export default function ServiceScroller({
                   </div>
 
                   {/* Hover arrow indicator */}
-                  <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-yellow-500/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <svg className="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

@@ -73,7 +73,7 @@ export default function StopWastingBudget() {
               to={createPageUrl('marketing-audit')}
               className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#C96F4C] hover:bg-[#B35D3A] text-white text-lg font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-2xl group"
             >
-              <span>Get Your Free Marketing Audit</span>
+              <span>Get Your Free Marketing Assessment</span>
               <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2" />
             </Link>
 

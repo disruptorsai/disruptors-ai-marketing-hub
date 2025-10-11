@@ -75,7 +75,7 @@ export default function AuditProvenGrowth() {
 
             <div className="space-y-6 text-white/90 text-lg leading-relaxed">
               <p>
-                Our free marketing audit reveals exactly where your money's being wasted and which opportunities you're missing.
+                Our free marketing assessment reveals exactly where your money's being wasted and which opportunities you're missing.
               </p>
 
               <p>
