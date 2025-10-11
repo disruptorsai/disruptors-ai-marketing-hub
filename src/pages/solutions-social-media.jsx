@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Social Media Content - Smarter With AI',
   overview: 'We help businesses create systems to consistently share their message in the places it matters most through short-form and long-form video, newsletters, carousels, written content, and more. Our team handles the strategy, creation, and distribution so your voice shows up consistently across every platform. The result is content that does not just get seen, but builds trust, momentum, and growth.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/phone.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/c_scale,w_1536,q_auto,f_webp/disruptors-ai/services/social-media-marketing-v2.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/social-media-marketing.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/social-media-marketing.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/social-media-marketing.mp4',
   outcomes: [
     {
       title: 'Consistent Brand Presence',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Sarah Martinez',
-      company: 'Fitness Studio Owner',
-      quote: 'Our social media presence went from inconsistent posts to a professionally managed brand. Engagement tripled in 3 months and we are booking clients directly from Instagram now.'
+      name: 'Jason Painter',
+      company: 'Healthcare Professional',
+      quote: 'I have been so impressed — they\'ve gotten me millions of views on my social media, and I\'ve seen a large uptick in new patients in my office. The strategy and support they\'ve given is significantly better than the 5 or so other marketing companies I\'ve worked with.'
     },
     {
-      name: 'James Wilson',
-      company: 'Real Estate Agent',
-      quote: 'The team creates amazing video content that showcases properties and my expertise. My social following grew 400% and I am getting 2-3 qualified leads per week from social alone.'
+      name: 'Mitchell Halvorsen',
+      company: 'Google Review',
+      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
     }
   ],
   cta_label: 'Book a Strategy Session',

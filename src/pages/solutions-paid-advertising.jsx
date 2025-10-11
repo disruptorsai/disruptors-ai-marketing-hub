@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Paid Campaigns that Convert on Search & Social',
   overview: 'Our team has managed millions in ad spend across search and social platforms, giving us the experience to know what works, and what does not. We study proven ads from successful competitors, elevate their ad creative to a higher level, then rapidly test countless variations until we uncover the winner. With the speed and efficiency of AI behind every step, we scale campaigns that book calls on your calendar and generate sales for your business.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-2.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/paid-advertising.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/paid-advertising.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/paid-advertising.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/paid-advertising.mp4',
   outcomes: [
     {
       title: 'Maximum ROI',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'David Kim',
-      company: 'SaaS Founder',
-      quote: 'We scaled from $5K to $50K monthly ad spend profitably in 4 months. Their testing methodology finds winners fast and their creative team produces ads that actually convert. ROI has been consistently 3-5x.'
+      name: 'Mitchell Halvorsen',
+      company: 'Google Review',
+      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
     },
     {
-      name: 'Lisa Rodriguez',
-      company: 'E-commerce Brand',
-      quote: 'The team\'s approach to creative testing is unlike anything I have seen. They find winning angles competitors miss and scale them aggressively. We have tripled revenue while maintaining healthy profit margins.'
+      name: 'Gabriel Costa e Silva',
+      company: 'Google Review',
+      quote: 'All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.'
     }
   ],
   cta_label: 'Book a Strategy Session',

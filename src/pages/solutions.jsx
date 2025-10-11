@@ -94,9 +94,10 @@ export default function Solutions() {
 
     const ctx = gsap.context(() => {
       // Set fixed position at the pivot point (35% down, far right)
+      // Moved further right to hide back of hand during rotation
       gsap.set(handRef.current, {
         top: "35%",
-        right: "0%",
+        right: "-15%", // Moved further right to prevent back visibility
         transformOrigin: "100% 50%" // Pivot from right edge, middle of hand
       });
 
@@ -136,6 +137,11 @@ export default function Solutions() {
           className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
         />
       </section>
+
+      {/* Golden Divider Line */}
+      <div className="w-full flex justify-center py-0">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      </div>
 
       {/* Services Horizontal Scrolling Carousel */}
       <section className="relative overflow-hidden">

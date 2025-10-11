@@ -49,7 +49,6 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
   const mousePos = useRef({ x: 0.5, y: 0.5 }); // Normalized 0-1
   const targetPos = useRef({ x: 0.5, y: 0.5 });
   const animationRef = useRef(null);
-  const [isMounted, setIsMounted] = useState(false);
 
   const { scrollYProgress } = useScroll();
 
@@ -57,10 +56,6 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
   const blurValue = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 10, 10, 20]);
   const blur = useTransform(blurValue, (value) => `blur(${value}px)`);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 0.8, 0.8, 0.6]);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -185,17 +180,15 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
 
   return (
     <div className="relative min-h-screen">
-      {/* Canvas Background - only render when mounted */}
-      {isMounted && (
-        <motion.canvas
-          ref={canvasRef}
-          className="fixed inset-0 pointer-events-none -z-10"
-          style={{
-            filter: blur,
-            opacity: opacity,
-          }}
-        />
-      )}
+      {/* Canvas Background - renders immediately */}
+      <motion.canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none -z-10"
+        style={{
+          filter: blur,
+          opacity: opacity,
+        }}
+      />
 
       {/* Content - always render */}
       <div className="relative z-10">{children}</div>

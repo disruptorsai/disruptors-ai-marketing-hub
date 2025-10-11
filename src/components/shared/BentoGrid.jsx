@@ -16,6 +16,8 @@ import { createPageUrl } from '@/utils';
 const BentoCard = ({ item, index, onExpand }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const videoRef = useRef(null);
 
   const handleVideoToggle = (e) => {
@@ -63,12 +65,11 @@ const BentoCard = ({ item, index, onExpand }) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0.3, scale: 0.95 }}
+      initial={{ opacity: 0.9, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3, delay: index * 0.03 }}
+      transition={{ duration: 0.2, delay: index * 0.02 }}
       className={`group relative ${rowSpan} overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[350px]`}
-      style={{ opacity: 1 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -97,18 +98,37 @@ const BentoCard = ({ item, index, onExpand }) => {
             </button>
           </>
         ) : (
-          <img
-            src={item.heroImage || item.logo}
-            alt={item.client}
-            className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
-          />
+          <>
+            {/* Loading skeleton */}
+            {!imageLoaded && !imageError && (
+              <div className="w-full h-full bg-gray-800 animate-pulse" />
+            )}
+            {/* Error fallback */}
+            {imageError && (
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                <div className="text-gray-600 text-sm">Image unavailable</div>
+              </div>
+            )}
+            {/* Actual image */}
+            <img
+              src={item.heroImage || item.logo}
+              alt={item.client}
+              className={`w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 ${!imageLoaded ? 'invisible' : ''}`}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => {
+                setImageError(true);
+                setImageLoaded(true);
+              }}
+              loading="eager"
+            />
+          </>
         )}
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
       </div>
 
-      {/* Content */}
+      {/* Content - Always visible */}
       <div className="relative h-full flex flex-col justify-end p-6 z-10">
         {/* Logo */}
         {item.logo && (
@@ -116,18 +136,23 @@ const BentoCard = ({ item, index, onExpand }) => {
             <img
               src={item.logo}
               alt={item.client}
-              className="h-20 w-auto object-contain"
+              className="h-20 w-auto object-contain filter drop-shadow-lg"
+              loading="eager"
+              onError={(e) => {
+                // Hide logo if it fails to load
+                e.target.style.display = 'none';
+              }}
             />
           </div>
         )}
 
-        {/* Title */}
-        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+        {/* Title - Always visible */}
+        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300 drop-shadow-lg">
           {item.client}
         </h3>
 
         {/* Subtitle */}
-        <p className="text-gray-300 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <p className="text-gray-300 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">
           {item.overview}
         </p>
       </div>
@@ -292,6 +317,20 @@ const ExpandedCard = ({ item, onClose }) => {
 
 export default function BentoGrid({ items }) {
   const [expandedItem, setExpandedItem] = useState(null);
+
+  // Preload images for better performance
+  React.useEffect(() => {
+    items.forEach((item) => {
+      if (item.heroImage) {
+        const img = new Image();
+        img.src = item.heroImage;
+      }
+      if (item.logo) {
+        const logo = new Image();
+        logo.src = item.logo;
+      }
+    });
+  }, [items]);
 
   return (
     <>

@@ -14,6 +14,39 @@ export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef(null);
+
+  // Auto-scroll animation
+  useEffect(() => {
+    const slider = scrollContainerRef.current;
+    if (!slider) return;
+
+    let scrollPosition = slider.scrollLeft || 0;
+    const scrollSpeed = 0.3; // pixels per frame (slow scroll)
+
+    const animate = () => {
+      if (!isPaused && !isDragging) {
+        scrollPosition += scrollSpeed;
+        slider.scrollLeft = scrollPosition;
+
+        // Loop back to start when reaching the end
+        if (scrollPosition >= slider.scrollWidth - slider.clientWidth) {
+          scrollPosition = 0;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isDragging]);
 
   // Drag to scroll functionality
   useEffect(() => {
@@ -179,6 +212,8 @@ export default function Home() {
           <div
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pb-4 select-none"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <div className="flex gap-12 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
               {/* Expert Digital Marketing */}

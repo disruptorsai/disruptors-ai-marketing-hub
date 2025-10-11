@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Streamline. Automate. Scale.',
   overview: 'Our AI automation services help businesses streamline operations, generate leads, and scale with efficiency by integrating advanced tools like GoHighLevel, n8n, and custom AI systems. We design tailored solutions that eliminate repetitive tasks, enhance customer engagement, and drive measurable ROI. Whether you need automated marketing, CRM workflows, or AI-powered content systems, we create scalable infrastructure that grows with your business.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-human.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/c_scale,w_1536,q_auto,f_webp/disruptors-ai/services/ai-automation-v2.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/ai-automation.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/ai-automation.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/ai-automation.mp4',
   outcomes: [
     {
       title: 'Eliminate Repetitive Tasks',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Blunt Honest Reviews',
-      company: 'Business Owner',
-      quote: 'If there was a 10-star option, I would use it! These guys are brilliant! They found ways to streamline my company and automate processes I didn\'t even realize could be automated.'
+      name: 'Alde Nguyen',
+      company: 'Google Review',
+      quote: 'Disruptors are a brilliant full-suite marketing and product agency. They handled entire operations for our rollouts and campaigns, producing phenomenal creative assets and positioning our brand competitively. They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.'
     },
     {
-      name: 'Jay Webb',
-      company: 'Entrepreneur',
-      quote: 'Tyler is a master at helping busy entrepreneurs develop systems and outreach that result in leads.'
+      name: 'Chris',
+      company: 'Google Review',
+      quote: 'Professional, well organized, and knowledgeable. If you\'re looking for a company that can drive revenue and expand your business success, this is the right place for you.'
     }
   ],
   cta_label: 'Book a Strategy Session',

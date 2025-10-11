@@ -51,6 +51,39 @@ export default function About() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef(null);
+
+  // Auto-scroll animation
+  useEffect(() => {
+    const slider = scrollContainerRef.current;
+    if (!slider) return;
+
+    let scrollPosition = slider.scrollLeft || 0;
+    const scrollSpeed = 0.3; // pixels per frame (slow scroll)
+
+    const animate = () => {
+      if (!isPaused && !isDragging) {
+        scrollPosition += scrollSpeed;
+        slider.scrollLeft = scrollPosition;
+
+        // Loop back to start when reaching the end
+        if (scrollPosition >= slider.scrollWidth - slider.clientWidth) {
+          scrollPosition = 0;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isDragging]);
 
   // Drag to scroll functionality
   useEffect(() => {
@@ -109,8 +142,8 @@ export default function About() {
 
   const partnershipData = [
     {
-      headline: "Local Salt Lake City Expertise, National Impact",
-      body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
+      headline: "Utah-Based. Nationwide Reach. In-Person When It Matters.",
+      body: "Being based in Salt Lake City means Utah clients get something special: face-to-face strategy sessions, on-site collaboration, and the responsiveness that comes from working in the same market. We understand local nuances because we live them. But our AI-powered systems and proven frameworks serve ambitious brands nationwide—giving you enterprise-level marketing capability whether you're down the street or across the country. Local roots. National impact.",
       image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png",
       imageAlt: "Partnership and collaboration visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
@@ -227,6 +260,8 @@ export default function About() {
           <div
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pb-4 select-none"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <div className="flex gap-12 px-4 sm:px-6 lg:px-8" style={{ width: 'max-content' }}>
               {/* Marketing - Expert Digital Marketing */}

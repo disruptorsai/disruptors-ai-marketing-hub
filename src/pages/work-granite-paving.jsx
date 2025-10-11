@@ -25,21 +25,63 @@ const caseData = {
   ],
   testimonial: "Our business has grown exponentially since launching the new platform. The project showcases are incredible.",
   clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
-  heroImage: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2070&auto=format&fit=crop"
+  heroImage: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop"
 };
 
 export default function WorkGranitePaving() {
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}
-      <div className="relative bg-transparent py-24 sm:py-32 -mt-20">
-        <img src={caseData.heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center relative pt-20">
-          <motion.div initial={{ opacity: 0, y:20 }} animate={{ opacity: 1, y:0 }} transition={{ duration: 0.6 }}>
-            <img src={caseData.clientLogo} alt={caseData.client} className="h-16 mx-auto mb-6 filter brightness-0 invert" />
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">{caseData.title}</h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300 max-w-3xl mx-auto">{caseData.overview}</p>
+      <div className="relative bg-transparent py-24 sm:py-32 -mt-20 overflow-hidden">
+        <img src={caseData.heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black/90 to-black/70"></div>
+
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        <div className="mx-auto max-w-5xl px-6 lg:px-8 relative pt-20">
+          <motion.div initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{ duration: 0.8 }} className="text-center">
+            {/* Industry Tags */}
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <span className="px-4 py-1.5 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-semibold">
+                {caseData.meta.industry}
+              </span>
+              <span className="px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-gray-300 text-sm">
+                Case Study
+              </span>
+            </div>
+
+            {/* Logo */}
+            <motion.img
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              src={caseData.clientLogo}
+              alt={caseData.client}
+              className="h-20 mx-auto mb-8 filter brightness-0 invert drop-shadow-lg"
+            />
+
+            {/* Title */}
+            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl mb-6 leading-tight">
+              {caseData.title}
+            </h1>
+
+            {/* Services */}
+            <div className="flex items-center justify-center gap-2 mb-6 flex-wrap">
+              {caseData.meta.services.split(', ').map((service, i) => (
+                <span key={i} className="text-gray-400 text-sm">
+                  {service}{i < caseData.meta.services.split(', ').length - 1 && ' •'}
+                </span>
+              ))}
+            </div>
+
+            {/* Overview */}
+            <p className="text-xl leading-relaxed text-gray-200 max-w-3xl mx-auto font-light">
+              {caseData.overview}
+            </p>
           </motion.div>
         </div>
       </div>

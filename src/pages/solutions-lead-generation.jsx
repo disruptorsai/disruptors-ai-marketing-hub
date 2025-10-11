@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Cold Outbound Systems That Convert',
   overview: 'We send millions of cold emails and social media DMs every month, which means we have mastered the art of starting conversations that turn into opportunities. If you are in the B2B space, cold outbound is the fastest and most affordable way to fill your pipeline with qualified prospects. We handle everything-targeting, copywriting, and automation-so you can focus on closing deals while we keep the conversations flowing.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-1.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/c_scale,w_1536,q_auto,f_webp/disruptors-ai/services/lead-generation-v2.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/lead-generation.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/lead-generation.mp4',
   outcomes: [
     {
       title: 'Qualified Prospects',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Robert Taylor',
-      company: 'B2B SaaS Founder',
-      quote: 'We went from zero outbound to 25 qualified demos per month in 60 days. The targeting was surgical and the messaging actually started conversations. Best ROI of any marketing channel we have tested.'
+      name: 'Jason Painter',
+      company: 'Healthcare Professional - Google Review',
+      quote: 'I have been so impressed — they\'ve gotten me millions of views on my social media, and I\'ve seen a large uptick in new patients in my office. The strategy and support they\'ve given is significantly better than the 5 or so other marketing companies I\'ve worked with.'
     },
     {
-      name: 'Amanda Foster',
-      company: 'Agency Owner',
-      quote: 'Cold outbound seemed intimidating but the team made it simple. They handle everything from lists to messaging to booking. We now have a predictable pipeline that fills our calendar every month.'
+      name: 'Chris',
+      company: 'Google Review',
+      quote: 'Professional, well organized, and knowledgeable. If you\'re looking for a company that can drive revenue and expand your business success, this is the right place for you.'
     }
   ],
   cta_label: 'Book a Strategy Session',

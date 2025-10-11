@@ -6,10 +6,10 @@ import { CheckCircle, TrendingUp, Clock, Users, ArrowRight, Target, Globe, Zap }
 import { motion } from 'framer-motion';
 
 const caseData = {
-  title: "SegPro Marketing Automation Suite",
-  client: "SegPro",
+  title: "SegPro Solutions Marketing Automation Suite",
+  client: "SegPro Solutions",
   meta: { industry: "Marketing Technology", services: "AI Strategy, Content Production, Digital Transformation" },
-  overview: "Developed a comprehensive marketing automation platform that enables SegPro to deliver personalized campaigns at scale with AI-driven insights.",
+  overview: "Developed a comprehensive marketing automation platform that enables SegPro Solutions to deliver personalized campaigns at scale with AI-driven insights.",
   challenge: "Fragmented marketing tools, manual campaign management, and inability to personalize at scale were limiting growth potential and efficiency.",
   approach: "Built an integrated marketing automation suite with AI-powered segmentation, automated content delivery, and comprehensive analytics dashboard.",
   results: [
@@ -25,7 +25,7 @@ const caseData = {
   ],
   testimonial: "The automation suite has been a game-changer. Our campaigns are more targeted and effective than ever.",
   clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png",
-  heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+  heroImage: "https://images.unsplash.com/photo-1554224311-beee460c201a?q=80&w=2070&auto=format&fit=crop"
 };
 
 export default function WorkSegPro() {

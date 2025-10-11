@@ -1,14 +1,16 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import PlaceholderAnimation from '../shared/PlaceholderAnimation';
 import DualCTABlock from '../shared/DualCTABlock';
-import { CheckCircle, Quote, ArrowRight, HelpCircle } from 'lucide-react';
+import { CheckCircle, Quote, ArrowRight, HelpCircle, ChevronDown } from 'lucide-react';
 
 export default function SolutionPageLayout({ service }) {
+    const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
     if (!service) {
         return <div>Loading service details...</div>;
     }
@@ -20,14 +22,21 @@ export default function SolutionPageLayout({ service }) {
         overview,
         image,
         heroImage,
+        heroVideo,
+        cardVideo,
         outcomes = [],
         process = [],
         features = [],
+        featuresTitle,
         faqs = [],
         testimonials = [],
         cta_label = 'Book a Strategy Session',
         cta_link = 'book-strategy-session'
     } = service;
+
+    const toggleFaq = (index) => {
+        setOpenFaqIndex(openFaqIndex === index ? null : index);
+    };
 
     return (
         <div className="text-white">
@@ -48,15 +57,26 @@ export default function SolutionPageLayout({ service }) {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
+                            className="rounded-3xl overflow-hidden shadow-2xl"
                         >
-                            {heroImage ? (
+                            {heroVideo ? (
+                                <video
+                                    src={heroVideo}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full h-auto object-cover"
+                                    poster={heroImage}
+                                />
+                            ) : heroImage ? (
                                 <img
                                     src={heroImage}
                                     alt={`${title} hero`}
-                                    className="w-full h-auto object-cover rounded-3xl shadow-2xl"
+                                    className="w-full h-auto object-cover"
                                 />
                             ) : (
-                                <div className="flex gap-4 justify-center">
+                                <div className="flex gap-4 justify-center p-8">
                                     <PlaceholderAnimation type="funnel" />
                                     <PlaceholderAnimation type="fingers" />
                                 </div>
@@ -68,35 +88,20 @@ export default function SolutionPageLayout({ service }) {
 
             {/* Main Content Layout */}
             <section className="py-20 sm:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.7 }}
-                            viewport={{ once: true }}
-                            className="bg-gray-900/90 backdrop-blur-md rounded-3xl p-8 border border-gray-700"
-                        >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">{descriptivePhrase}</h2>
-                            <p className="text-lg text-gray-100 leading-relaxed mb-8">{overview}</p>
-                            <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold">
-                                <Link to={createPageUrl(cta_link)}>{cta_label}</Link>
-                            </Button>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.7 }}
-                            viewport={{ once: true }}
-                        >
-                            <img 
-                                src={image} 
-                                alt={title} 
-                                className="w-full h-auto object-cover rounded-3xl shadow-2xl"
-                            />
-                        </motion.div>
-                    </div>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true }}
+                        className="bg-gray-900/90 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-gray-700 text-center"
+                    >
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">{descriptivePhrase}</h2>
+                        <p className="text-lg text-gray-100 leading-relaxed mb-8">{overview}</p>
+                        <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold">
+                            <Link to={createPageUrl(cta_link)}>{cta_label}</Link>
+                        </Button>
+                    </motion.div>
                 </div>
             </section>
             
@@ -104,7 +109,7 @@ export default function SolutionPageLayout({ service }) {
             {outcomes.length > 0 && (
                 <section className="py-16 sm:py-24">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                        <h2 className="text-3xl font-bold mb-12 text-white">Expected Outcomes</h2>
+                        <h2 className="text-3xl font-bold mb-12 text-black">Expected Outcomes</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {outcomes.map((outcome, i) => (
                                 <motion.div
@@ -182,13 +187,15 @@ export default function SolutionPageLayout({ service }) {
                             viewport={{ once: true }}
                             className="text-center mb-12"
                         >
-                            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">What You Get</h2>
-                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-black">
+                                {featuresTitle || 'What You Get'}
+                            </h2>
+                            <p className="text-xl text-black max-w-2xl mx-auto">
                                 Comprehensive solutions tailored to your needs
                             </p>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className={`grid grid-cols-1 gap-6 ${features.length === 4 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
                             {features.map((feature, index) => (
                                 <motion.div
                                     key={index}
@@ -196,13 +203,14 @@ export default function SolutionPageLayout({ service }) {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.05 }}
                                     viewport={{ once: true }}
-                                    className="bg-gray-900/90 backdrop-blur-md p-6 rounded-2xl border border-gray-700 flex items-start gap-4"
+                                    whileHover={{ scale: 1.02 }}
+                                    className="bg-gray-900/90 backdrop-blur-md p-6 rounded-2xl border border-gray-700 flex items-start gap-4 transition-colors duration-300 hover:border-yellow-400/50 group cursor-pointer"
                                 >
-                                    <CheckCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                                    <CheckCircle className="w-6 h-6 text-white flex-shrink-0 mt-1 transition-colors duration-300 group-hover:text-yellow-400" />
                                     <div>
-                                        <h3 className="font-semibold text-white mb-1">{feature.title}</h3>
+                                        <h3 className="font-semibold text-white mb-1 transition-colors duration-300 group-hover:text-yellow-400">{feature.title}</h3>
                                         {feature.description && (
-                                            <p className="text-gray-400 text-sm">{feature.description}</p>
+                                            <p className="text-gray-400 text-sm transition-colors duration-300 group-hover:text-gray-200">{feature.description}</p>
                                         )}
                                     </div>
                                 </motion.div>
@@ -229,25 +237,50 @@ export default function SolutionPageLayout({ service }) {
                             </p>
                         </motion.div>
 
-                        <div className="space-y-6">
-                            {faqs.map((faq, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <HelpCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
-                                        <div>
-                                            <h3 className="font-bold text-lg text-white mb-2">{faq.question}</h3>
-                                            <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                        <div className="space-y-4">
+                            {faqs.map((faq, index) => {
+                                const isOpen = openFaqIndex === index;
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        viewport={{ once: true }}
+                                        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleFaq(index)}
+                                            className="w-full p-6 flex items-center justify-between gap-4 text-left hover:bg-white/5 transition-colors"
+                                        >
+                                            <div className="flex items-start gap-4 flex-1">
+                                                <HelpCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                                                <h3 className="font-bold text-lg text-white">{faq.question}</h3>
+                                            </div>
+                                            <ChevronDown
+                                                className={`w-6 h-6 text-yellow-400 flex-shrink-0 transition-transform duration-300 ${
+                                                    isOpen ? 'rotate-180' : ''
+                                                }`}
+                                            />
+                                        </button>
+                                        <AnimatePresence>
+                                            {isOpen && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <div className="px-6 pb-6 pl-16">
+                                                        <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
@@ -285,7 +318,7 @@ export default function SolutionPageLayout({ service }) {
                                         "{testimonial.quote}"
                                     </blockquote>
                                     <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-xl">
                                             {testimonial.name.charAt(0)}
                                         </div>
                                         <div>

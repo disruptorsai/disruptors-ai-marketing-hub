@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides essential guidance for Claude Code when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Development Commands
 
@@ -42,6 +42,13 @@ This file provides essential guidance for Claude Code when working with code in 
 - **Rollback**: `npm run deploy:rollback <id>`
 - **Watch mode**: `npm run deploy:watch`
 - **Sync env**: `npm run deploy:sync-env`
+
+### Performance & Testing
+- **Screenshot capture**: `npm run screenshot:capture` - Single page screenshot
+- **Batch screenshots**: `npm run screenshot:all` - All pages across viewports
+- **Lighthouse audit**: `npm run perf:audit` - Performance audit
+- **Monitor performance**: `npm run perf:monitor` - Continuous monitoring
+- **Update baseline**: `npm run perf:baseline` - Set new performance baseline
 
 ### Database & Migration Management
 - **Setup database**: `npm run db:setup`
@@ -86,11 +93,13 @@ import { supabase, supabaseAdmin } from '@/lib/supabase-client'
 
 ### Routing System
 
-Custom routing in `src/pages/index.jsx`:
-- 70+ page components centrally imported and mapped in `PAGES` object
-- URL-to-component mapping via `_getCurrentPage()` function
-- Layout wrapper system where `Layout.jsx` wraps all pages
-- Lazy loading: All pages except Home use React.lazy() with Suspense
+React Router DOM v7.2.0 with custom lazy loading in `src/pages/index.jsx`:
+- 70+ page components with Routes-based routing
+- Home page loaded immediately, all others lazy-loaded with React.lazy()
+- Layout wrapper system where `Layout.jsx` wraps all pages via Suspense boundaries
+- Custom PageLoader component for loading states
+
+**Important**: All pages must be wrapped in `<Suspense fallback={<PageLoader />}>` for lazy loading.
 
 See `docs/architecture/ROUTING_SYSTEM.md` for details.
 
@@ -107,6 +116,24 @@ See `docs/architecture/ROUTING_SYSTEM.md` for details.
 - **GSAP 3.13.0** - Scroll-triggered animations, timelines, complex sequences
 - **Spline 3D** - 3D interactive content with GSAP integration via `splineAnimations.js`
 - **Performance**: Monitor 3D with `useSplinePerformance` hook
+
+### Netlify Functions Architecture
+
+**Location**: `netlify/functions/` - 11 serverless functions for AI processing
+
+**Key Functions**:
+- `module-keyword-research.js` - DataForSEO integration
+- `module-ai-content-writer.js` - Claude Sonnet content generation
+- `module-growth-audit.js` - Multi-API growth audit orchestration
+- `growth-audit-stream.js` - SSE streaming for real-time audit updates
+- `dataforseo-keywords.js` - Keyword research API wrapper
+- `marketing-audit-analyze.js` - Marketing analysis engine
+
+**Configuration** (`netlify.toml`):
+- esbuild bundler for fast builds
+- External modules: AI SDKs, Playwright, Firecrawl to reduce bundle size
+- Node.js 18 runtime
+- Shared utilities in `netlify/functions/shared/`
 
 ## Environment Variables
 
@@ -191,23 +218,42 @@ See `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md` for complete guide.
 - **ESLint**: Always run `npm run lint` before commits
 - **No test framework**: Verify functionality through manual browser testing
 - **Component patterns**: Follow Radix UI patterns from `src/components/ui/`
-- **TypeScript adoption**: Use for utilities (`src/utils/index.ts`)
-- **Performance**: Lazy loading and efficient routing
+- **TypeScript adoption**: Gradual adoption - use for new utilities
+- **Performance**: Lazy loading, code splitting, and efficient routing
+- **Vite Build**: `modulePreload: false` to ensure sequential chunk loading (prevents React undefined errors)
+
+### Build Configuration
+
+**Critical Vite Settings** (`vite.config.js`):
+- `modulePreload: false` - Forces sequential chunk loading to prevent React initialization errors
+- SWC plugin for faster builds
+- Automatic chunk splitting (no manual chunks)
+- Path alias `@/` maps to `src/`
+
+**Why modulePreload is disabled**: Parallel loading caused vendor-ui chunks to execute before React was available, causing "Cannot read properties of undefined (reading 'forwardRef')" errors.
 
 ### Git Workflow
 
-- **Main branch**: `master` (not main)
+- **Main branch**: `master` (not `main`)
+- **Current branch**: `v8` (active development branch)
 - **Auto-commit**: Enabled via `npm run dev:auto`
 - **Commit patterns**: Semantic messages with intelligent change detection
+- **Push commands**: `npm run push` for standard push, `npm run push:force` for force-with-lease
 
 ## Technology Stack
 
-- **Framework**: React 18, Vite, React Router DOM v7.2.0
-- **Styling**: Tailwind CSS, Radix UI primitives (20+ packages)
-- **Animation**: Framer Motion, GSAP 3.13.0, Spline 3D
-- **Database**: Supabase with custom SDK wrapper
-- **AI Services**: Claude Sonnet 4.5, OpenAI gpt-image-1, Gemini 2.5 Flash, Replicate
-- **Deployment**: Netlify with SPA routing, CSP headers, Node.js 18
+- **Framework**: React 18, Vite 6.1.0, React Router DOM v7.2.0
+- **Build Tool**: Vite with SWC plugin for faster compilation
+- **Styling**: Tailwind CSS 3.4.17, Radix UI primitives (20+ packages)
+- **Animation**: Framer Motion 12.4.7, GSAP 3.13.0, Spline 3D (@splinetool/react-spline 4.1.0)
+- **Database**: Supabase (PostgreSQL) with custom SDK wrapper for Base44 compatibility
+- **AI Services**:
+  - Claude Sonnet 4.5 (@anthropic-ai/sdk 0.65.0)
+  - OpenAI gpt-image-1 (openai 5.23.0)
+  - Google Gemini 2.5 Flash (@google/generative-ai 0.24.1)
+  - Replicate (replicate 1.2.0)
+- **Serverless**: Netlify Functions with esbuild bundler (Node.js 18)
+- **Deployment**: Netlify with SPA routing, CSP headers, immutable asset caching
 
 See `docs/TECHNOLOGY_STACK.md` for complete stack details.
 

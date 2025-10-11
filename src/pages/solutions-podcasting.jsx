@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Broadcast-Quality Podcasts That Grow Your Brand',
   overview: 'From concept to distribution, we handle every aspect of podcast production. Our team creates professional, high-quality audio and video content that positions you as an industry leader, builds a loyal audience, and drives real business growth. We manage the strategy, recording, editing, and promotion, so you can focus on sharing your expertise.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg-1.jpg',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/podcasting.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/podcasting.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/podcasting.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/podcasting.mp4',
   outcomes: [
     {
       title: 'Industry Authority',
@@ -42,38 +44,23 @@ const service = {
   ],
   features: [
     {
-      title: 'Full Audio & Video Production',
-      description: 'Broadcast-quality recording and editing for audio and video formats'
+      title: 'Camera Setup',
+      description: 'Professional multi-camera video recording with cinematic lighting and studio-quality production'
     },
     {
-      title: 'Professional Studio Recording',
-      description: 'In-studio recording with cinematic lighting and multi-camera setup'
+      title: 'Crystal-Clear Audio',
+      description: 'Broadcast-quality audio engineering with professional equipment and expert sound mixing'
     },
     {
-      title: 'Remote Interview Production',
-      description: 'High-quality remote recording setup for guest interviews'
+      title: 'Full Post-Production',
+      description: 'Complete editing, color grading, show notes, timestamps, and platform optimization'
     },
     {
-      title: 'Show Notes & Transcripts',
-      description: 'SEO-optimized show notes, timestamps, and full transcripts'
-    },
-    {
-      title: 'Multi-Platform Distribution',
-      description: 'Publishing to Apple Podcasts, Spotify, YouTube, and all major platforms'
-    },
-    {
-      title: 'Content Repurposing',
-      description: 'Convert episodes into blog posts, social clips, audiograms, and graphics'
-    },
-    {
-      title: 'Guest Outreach & Booking',
-      description: 'Research and book ideal guests that attract your target audience'
-    },
-    {
-      title: 'Analytics & Growth Strategy',
-      description: 'Track performance and implement strategies to grow your listener base'
+      title: 'Content Coaching',
+      description: 'Expert guidance on messaging, storytelling, and audience engagement strategies'
     }
   ],
+  featuresTitle: 'Everything You Need to Launch',
   faqs: [
     {
       question: 'Do I need my own equipment to start a podcast?',

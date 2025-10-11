@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Turn Your CRM into a Powerful Asset',
   overview: 'We are experts in CRM design and builds, creating systems that actually work the way you do. Our team can integrate your CRM with the software, tools, and AI systems you rely on, turning it into a seamless and effective part of your business. The result is a streamlined hub that keeps your data, workflows, and communication aligned-so your CRM becomes an asset, not a headache.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-3.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/crm-management.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/crm-management.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/crm-management.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/crm-management.mp4',
   outcomes: [
     {
       title: 'Unified Data',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Thomas Anderson',
-      company: 'Construction Company Owner',
-      quote: 'We were drowning in spreadsheets and missed follow-ups. The team implemented HubSpot and automated our entire sales process. Our close rate improved 40% and we have not missed a follow-up since implementation.'
+      name: 'Alde Nguyen',
+      company: 'Google Review',
+      quote: 'Disruptors are a brilliant full-suite marketing and product agency. They handled entire operations for our rollouts and campaigns, producing phenomenal creative assets and positioning our brand competitively.'
     },
     {
-      name: 'Rachel Green',
-      company: 'Professional Services Firm',
-      quote: 'They migrated years of client data, connected all our tools, and trained our team perfectly. Our CRM finally works the way we work. The time savings alone paid for the project in 3 months.'
+      name: 'Gabriel Costa e Silva',
+      company: 'Google Review',
+      quote: 'All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.'
     }
   ],
   cta_label: 'Book a Strategy Session',

@@ -27,24 +27,9 @@ export default function Gallery() {
   }, [filter]);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-transparent">
       {/* Page Title */}
-      <PageTitle title="GALLERY" light />
-
-      {/* Background */}
-      <div className="fixed inset-0 z-0">
-        <img
-          src={optimizeCloudinaryImage(
-            "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg",
-            { width: 1920, quality: 'auto:low', crop: 'fill' }
-          )}
-          alt="Background"
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </div>
-      <div className="fixed inset-0 z-[1] bg-black/60"></div>
+      <PageTitle title="GALLERY" />
 
       {/* Content */}
       <div className="relative z-10 py-8 sm:py-12">
@@ -65,13 +50,13 @@ export default function Gallery() {
                   onClick={() => setFilter(option.id)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/50 scale-105'
-                      : 'bg-white/10 backdrop-blur-md text-white hover:bg-white/20 border border-white/20'
+                      ? 'bg-[#FFD700] text-black shadow-lg shadow-[#FFD700]/50 scale-105'
+                      : 'bg-white/10 backdrop-blur-md text-black hover:bg-white/20 border border-white/20'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
                   <span>{option.label}</span>
-                  <span className={`text-sm ${isActive ? 'text-blue-200' : 'text-gray-400'}`}>
+                  <span className={`text-sm ${isActive ? 'text-black/80' : 'text-black/60'}`}>
                     ({option.count})
                   </span>
                 </button>
@@ -118,7 +103,7 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <p className="text-gray-400 text-lg">No assets found for this filter.</p>
+              <p className="text-black text-lg">No assets found for this filter.</p>
             </motion.div>
           )}
         </div>
@@ -139,6 +124,7 @@ function GalleryItem({ asset, onClick, index }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const itemRef = useRef(null);
+  const videoRef = useRef(null);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -165,6 +151,20 @@ function GalleryItem({ asset, onClick, index }) {
       }
     };
   }, []);
+
+  // Handle video play/pause on hover
+  useEffect(() => {
+    if (videoRef.current && asset.type === 'video') {
+      if (isHovered) {
+        videoRef.current.play().catch(err => {
+          console.log('Video play failed:', err);
+        });
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0; // Reset to start
+      }
+    }
+  }, [isHovered, asset.type]);
 
   // Optimize asset URL based on type
   const optimizedUrl = useMemo(() => {
@@ -210,24 +210,39 @@ function GalleryItem({ asset, onClick, index }) {
           decoding="async"
         />
       ) : isVisible && asset.type === 'video' ? (
-        <motion.img
-          layoutId={`gallery-asset-${asset.publicId}`}
-          src={optimizedUrl}
-          alt="Video thumbnail"
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setIsLoaded(true)}
-          loading="lazy"
-          decoding="async"
-        />
+        <>
+          {/* Video thumbnail - shown when not hovered */}
+          <motion.img
+            layoutId={`gallery-asset-${asset.publicId}`}
+            src={optimizedUrl}
+            alt="Video thumbnail"
+            className={`w-full h-full object-cover transition-opacity duration-300 ${
+              isLoaded ? 'opacity-100' : 'opacity-0'
+            } ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            onLoad={() => setIsLoaded(true)}
+            loading="lazy"
+            decoding="async"
+          />
+          {/* Actual video - plays on hover */}
+          <video
+            ref={videoRef}
+            src={optimizeCloudinaryVideo(asset.url, { quality: 'auto:good', width: 800 })}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </>
       ) : null}
 
       {/* Loading Placeholder */}
       {(!isLoaded || !isVisible) && (
         <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
           {isVisible && (
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-[#FFD700] border-t-transparent rounded-full animate-spin"></div>
           )}
         </div>
       )}
@@ -242,14 +257,14 @@ function GalleryItem({ asset, onClick, index }) {
           <div className="flex items-center gap-2">
             {asset.type === 'video' ? (
               <>
-                <Play className="w-5 h-5" />
+                <Play className="w-5 h-5 text-[#FFD700]" />
                 <span className="text-sm font-semibold">
                   {asset.duration?.toFixed(1)}s
                 </span>
               </>
             ) : (
               <>
-                <ImageIcon className="w-5 h-5" />
+                <ImageIcon className="w-5 h-5 text-[#FFD700]" />
                 <span className="text-sm font-semibold">
                   {asset.width} × {asset.height}
                 </span>
@@ -368,7 +383,7 @@ function Lightbox({ assets, selectedIndex, onClose }) {
             e.stopPropagation();
             setIsScreensaver(true);
           }}
-          className="absolute top-4 right-20 p-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-blue-500/50 z-50 shadow-lg shadow-blue-600/50"
+          className="absolute top-4 right-20 p-3 bg-[#FFD700] hover:bg-[#FFD700]/90 rounded-full text-black transition-all duration-200 backdrop-blur-sm border border-[#FFD700]/50 z-50 shadow-lg shadow-[#FFD700]/50"
           style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
           title="Start Screensaver"
         >
@@ -385,9 +400,9 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         >
           <div className="flex items-center gap-3">
             {asset.type === 'video' ? (
-              <VideoIcon className="w-6 h-6 text-blue-400" />
+              <VideoIcon className="w-6 h-6 text-[#FFD700]" />
             ) : (
-              <ImageIcon className="w-6 h-6 text-blue-400" />
+              <ImageIcon className="w-6 h-6 text-[#FFD700]" />
             )}
             <div>
               <p className="font-semibold">

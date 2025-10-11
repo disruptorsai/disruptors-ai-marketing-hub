@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
@@ -13,20 +13,31 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribeStatus, setSubscribeStatus] = useState('');
+  const location = useLocation();
 
   // Animate footer separator lines with scroll-mapped GSAP
   React.useEffect(() => {
+    // Store references to this footer's ScrollTriggers
+    const scrollTriggers = [];
+
     const timer = setTimeout(() => {
       const footerContainer = document.getElementById('footer-lines-container');
-      if (!footerContainer) return;
+      if (!footerContainer) {
+        console.warn('Footer lines container not found');
+        return;
+      }
 
       const gaps = [98, 82, 65, 46, 24, 0];
 
       gaps.forEach((gap, index) => {
         const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
-        if (!line) return;
+        if (!line) {
+          console.warn(`Footer line ${index + 1} not found`);
+          return;
+        }
 
-        gsap.fromTo(
+        // Create the animation and store the ScrollTrigger reference
+        const animation = gsap.fromTo(
           line,
           { y: 0, force3D: true },
           {
@@ -39,19 +50,36 @@ export default function Footer() {
               end: "top 30%",
               scrub: 1,
               markers: false,
+              id: `footer-line-${index + 1}`, // Add ID for debugging
             }
           }
         );
+
+        // Store the ScrollTrigger for cleanup
+        if (animation.scrollTrigger) {
+          scrollTriggers.push(animation.scrollTrigger);
+        }
       });
 
+      // Refresh after all animations are created
       ScrollTrigger.refresh();
-    }, 100);
+    }, 300); // Increased delay for lazy-loaded pages
 
     return () => {
       clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      // Only kill THIS footer's ScrollTriggers, not all of them
+      scrollTriggers.forEach(st => st.kill());
     };
   }, []);
+
+  // Refresh ScrollTrigger when route changes (for navigation between pages)
+  React.useEffect(() => {
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500); // Refresh after page transition completes
+
+    return () => clearTimeout(refreshTimer);
+  }, [location.pathname]);
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
@@ -286,11 +314,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@disruptorsmedia.com"
+                  href="mailto:tyler@disruptorsmedia.com"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
-                  <span>hello@disruptorsmedia.com</span>
+                  <span>tyler@disruptorsmedia.com</span>
                 </a>
               </li>
               <li>

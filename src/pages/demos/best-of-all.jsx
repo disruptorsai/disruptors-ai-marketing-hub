@@ -62,7 +62,7 @@ export default function BestOfAllDemo() {
       metric: "500+"
     },
     {
-      company: "SegPro Construction",
+      company: "SegPro Solutions",
       result: "$2M in contracts",
       quote: "Never had this level of consistency in our pipeline.",
       metric: "$2M+"

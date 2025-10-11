@@ -7,10 +7,10 @@ import { ArrowRight, Target, Globe, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const caseData = {
-  title: "Timber View Financial Growth Platform",
-  client: "Timber View Financial",
+  title: "Timberview Capital Growth Platform",
+  client: "Timberview Capital",
   meta: { industry: "Financial Services", services: "AI Strategy, Web Development, Content" },
-  overview: "Built a comprehensive digital platform that elevated Timber View Financial's client experience and significantly expanded their market reach.",
+  overview: "Built a comprehensive digital platform that elevated Timberview Capital's client experience and significantly expanded their market reach.",
   challenge: "Traditional financial advisory firm needed to modernize their client onboarding and expand digital presence to compete with fintech solutions.",
   approach: "Developed an AI-enhanced client portal with automated risk assessment, personalized content delivery, and streamlined onboarding workflows.",
   results: [

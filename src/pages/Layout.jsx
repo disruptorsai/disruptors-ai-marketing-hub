@@ -42,7 +42,6 @@ export default function Layout({ children, currentPageName }) {
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },
     { name: "Blog", path: "blog" },
-    { name: "AI Tools", path: "ai-tools" },
     { name: "Gallery", path: "gallery" }
   ];
 
@@ -114,16 +113,12 @@ export default function Layout({ children, currentPageName }) {
           {!isAdminAuthenticated && (
             <>
               <header className="fixed top-0 left-0 right-0 z-50">
-            <div className={`w-full text-white ${
-            isHomePage
-              ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
-              : 'bg-black/70 backdrop-blur-md'
-          }`}>
+            <div className={`w-full text-white transition-all duration-500 ease-in-out ${
+              scrolled ? 'bg-black/70 backdrop-blur-md' : isHomePage ? 'bg-black/30 backdrop-blur-sm' : 'bg-black/70 backdrop-blur-md'
+            }`}>
             <div className="px-3 sm:px-4 md:px-6 lg:px-8">
-              <div className={`flex justify-between items-center ${
-                isHomePage
-                  ? `transition-all duration-500 ease-in-out ${scrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24 md:h-28 lg:h-32'}`
-                  : 'h-16 sm:h-20'
+              <div className={`flex justify-between items-center transition-all duration-500 ease-in-out ${
+                scrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24 md:h-28 lg:h-32'
               }`}>
                 <Link to={createPageUrl('')} className="flex-shrink-0">
                   <div
@@ -134,9 +129,7 @@ export default function Layout({ children, currentPageName }) {
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
                       className={`object-contain h-auto transition-all duration-500 ease-in-out ${
-                        isHomePage
-                          ? `${scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'}`
-                          : 'w-24 sm:w-32'
+                        scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'
                       }`}
                     />
                   </div>

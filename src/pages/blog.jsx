@@ -123,9 +123,6 @@ export default function Blog() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <p className="text-base font-bold uppercase tracking-widest text-black">
-                INSIGHTS
-              </p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium leading-tight tracking-tight text-black">
                 The Disruptors Blog
               </h1>

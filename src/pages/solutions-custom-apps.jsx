@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Create Custom Software & Applications',
   overview: 'With AI, turning ideas into tools has never been faster-we can take a concept, workflow, or software idea and bring it to life quickly and effectively. From custom calculators to AI-powered content machines, and even fully functional games, we have already built tools that solve real problems. Whatever your business needs, we can create a custom app or system that makes your work easier, smarter, and more scalable.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/after-phone-sec.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/custom-apps.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/custom-apps.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/custom-apps.mp4',
   outcomes: [
     {
       title: 'Faster Development',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Marcus Johnson',
-      company: 'Manufacturing Business',
-      quote: 'We needed a custom quote calculator that integrated with our CRM. The team built exactly what we needed in 6 weeks. It has generated over 500 leads in the first 3 months and the ROI is incredible.'
+      name: 'Mitchell Halvorsen',
+      company: 'Google Review',
+      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
     },
     {
-      name: 'Emily Patterson',
-      company: 'Healthcare Startup',
-      quote: 'They took our complex patient management workflow and turned it into an elegant web application. What would have cost $150K with traditional dev shops, they delivered for a fraction of the price and in half the time.'
+      name: 'Chris',
+      company: 'Google Review',
+      quote: 'Professional, well organized, and knowledgeable. If you\'re looking for a company that can drive revenue and expand your business success, this is the right place for you.'
     }
   ],
   cta_label: 'Book a Strategy Session',

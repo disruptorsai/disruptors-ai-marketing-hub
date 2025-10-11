@@ -32,19 +32,6 @@ export default function Work() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                {/* Kicker */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="inline-block mb-6"
-                >
-                  <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                    <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Portfolio</span>
-                  </div>
-                </motion.div>
-
                 {/* Main Headline */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}

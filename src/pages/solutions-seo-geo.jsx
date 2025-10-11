@@ -7,7 +7,9 @@ const service = {
   descriptivePhrase: 'Search Engine and Generative Engine Optimization',
   overview: 'The game of getting seen online has changed-AI is reshaping how people search, discover, and choose businesses. It is no longer just about ranking on Google, but about showing up in AI platforms and conversations that shape decisions. We build strategies that position your brand where attention is moving, making sure you are visible, trusted, and chosen in the new search era.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/c_scale,w_1536,q_auto,f_webp/disruptors-ai/services/seo-geo-v2.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/seo-geo.jpg',
+  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/seo-geo.mp4',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/seo-geo.mp4',
   outcomes: [
     {
       title: 'AI-Era Visibility',
@@ -98,14 +100,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Michael Chen',
-      company: 'Local Service Business',
-      quote: 'Our website went from page 3 to ranking in the top 3 for our main keywords. Organic leads increased 300% in 8 months and we reduced ad spend by 60% while maintaining lead volume.'
+      name: 'Jason Painter',
+      company: 'Healthcare Professional - Google Review',
+      quote: 'I have been so impressed — they\'ve gotten me millions of views on my social media, and I\'ve seen a large uptick in new patients in my office. The strategy and support they\'ve given is significantly better than the 5 or so other marketing companies I\'ve worked with.'
     },
     {
-      name: 'Jennifer Davis',
-      company: 'E-commerce Store Owner',
-      quote: 'The team\'s GEO strategy got us featured in ChatGPT and Perplexity recommendations. We\'re seeing a new source of highly qualified traffic we didn\'t even know existed before.'
+      name: 'Mitchell Halvorsen',
+      company: 'Google Review',
+      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
     }
   ],
   cta_label: 'Book a Strategy Session',

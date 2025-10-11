@@ -25,7 +25,7 @@ const caseData = {
   ],
   testimonial: "The AI platform has completely transformed our business. We can now serve 10x more clients with better quality.",
   clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg",
-  heroImage: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2070&auto=format&fit=crop"
+  heroImage: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2070&auto=format&fit=crop"
 };
 
 export default function WorkSoundCorrections() {

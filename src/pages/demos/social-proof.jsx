@@ -29,8 +29,8 @@ export default function SocialProofDemo() {
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop&q=80"
     },
     {
-      company: "SegPro Construction",
-      industry: "Construction",
+      company: "SegPro Solutions",
+      industry: "Industrial Safety",
       result: "$2M in new contracts secured",
       metric1: { label: "Revenue", value: "$2M+" },
       metric2: { label: "Lead Quality", value: "92%" },
@@ -64,7 +64,7 @@ export default function SocialProofDemo() {
     {
       text: "We secured $2M in new contracts in the first 6 months. The AI knows our ideal customer better than we do - 92% of our leads are now qualified, and our close rate jumped to 45%. Best investment we've ever made.",
       author: "Mike Johnson",
-      company: "SegPro Construction",
+      company: "SegPro Solutions",
       rating: 5
     },
     {

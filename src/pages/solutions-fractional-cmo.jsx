@@ -7,7 +7,8 @@ const service = {
   descriptivePhrase: 'Executive Level Marketing, at a Fraction of the Cost',
   overview: 'Get the benefit of a seasoned Chief Marketing Officer without the full-time executive salary. Our Fractional CMO service provides the high-level strategy, team leadership, and data-driven insights you need to scale your marketing efforts effectively. We work as an extension of your team to guide your marketing vision, manage execution, and ensure every initiative is aligned with your business objectives.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/services-img.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/fractional-cmo.png',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg',
+  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/q_auto:good/v1/dmsite/services/fractional-cmo.jpg',
   outcomes: [
     {
       title: 'Strategic Direction',
@@ -98,14 +99,14 @@ const service = {
   ],
   testimonials: [
     {
-      name: 'Christopher Moore',
-      company: 'Tech Startup CEO',
-      quote: 'Hiring a Fractional CMO was the best decision we made. We got experienced strategic leadership without the full-time cost. Our marketing transformed from scattered tactics to a cohesive growth engine. Revenue grew 200% in 10 months.'
+      name: 'Alde Nguyen',
+      company: 'Google Review',
+      quote: 'Disruptors are a brilliant full-suite marketing and product agency. They handled entire operations for our rollouts and campaigns, producing phenomenal creative assets and positioning our brand competitively. They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.'
     },
     {
-      name: 'Victoria Nelson',
-      company: 'Manufacturing Company President',
-      quote: 'We needed someone who could develop strategy, manage our team, and hold agencies accountable. The Fractional CMO brought structure, accountability, and results. Our lead volume doubled and cost per lead dropped 35%.'
+      name: 'Gabriel Costa e Silva',
+      company: 'Google Review',
+      quote: 'All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.'
     }
   ],
   cta_label: 'Book a Strategy Session',
