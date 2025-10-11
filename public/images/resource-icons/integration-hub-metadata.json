@@ -1,15 +1,13 @@
 {
   "title": "Integration Hub",
   "name": "integration-hub",
-  "category": "Automation & Workflow",
-  "style": "ANACHRON",
-  "concept": "Ancient mosaic mandala with connection nodes",
-  "materials": "Mosaic tesserae, marble base, bronze connectors, gold traces",
-  "symbology": "Roman road network map with glowing integration paths",
-  "primaryColor": "#2C6BAA",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Roman road network meets API integration hub.\n\nSubject: A circular mosaic mandala pattern with central bronze hub and radiating paths made of small marble and terracotta tesserae. Bronze connection points with verdigris (#3C7A6A) at path intersections. Gold leaf (#C9A53B) traces connecting nodes, with lapis blue (#2C6BAA) holographic data flowing between connection points.\n\nMaterials: Small mosaic tiles in brand colors, marble base with carved border, bronze connectors with authentic patina, gold leaf circuit traces, holographic flow.\n\nLighting: Overhead soft light, multi-color glow from connection points, golden trace highlights, mosaic shadow depth.\n\nColor palette: Lapis blue #2C6BAA holographic data, verdigris #3C7A6A bronze nodes, terracotta #C96F4C mosaic tiles, muted gold #C9A53B traces.\n\nFinish: Detailed mosaic tesserae rendering, academic composition, subtle grout texture, tech glow integrated with ancient tilework.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "category": "Automation",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco in Michelangelo style. Multiple ornate keys and scrolls reaching\n    toward a central divine light source, connected by golden threads forming sacred geometric pattern.\n    Warm earth tones, ochre, sienna, umber with lapis blue. Cracked fresco surface, dramatic chiaroscuro,\n    sfumato technique. Unity and connection theme. Divine harmony. All parts connected to divine whole.\n    Square composition, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:13:52.080Z",
+  "timestamp": "2025-10-08T15:57:47.935Z",
   "filepath": "/images/resource-icons/integration-hub.png"
 }

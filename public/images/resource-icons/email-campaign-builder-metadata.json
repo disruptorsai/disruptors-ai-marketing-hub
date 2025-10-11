@@ -1,15 +1,13 @@
 {
   "title": "Email Campaign Builder",
   "name": "email-campaign-builder",
-  "category": "Marketing & Growth",
-  "style": "ANACHRON",
-  "concept": "Ancient wax tablet with glowing message seal",
-  "materials": "Wood frame, beeswax writing surface, bronze stylus, gold seal",
-  "symbology": "Epistolary scroll with holographic delivery tracking",
-  "primaryColor": "#2C6BAA",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient correspondence meets modern email campaigns.\n\nSubject: An elegant wax tablet (diptych) with wooden frame and beeswax surface showing carved text. Bronze stylus with verdigris (#3C7A6A) resting beside it. Golden seal (#C9A53B) on tablet glowing with holographic lapis blue (#2C6BAA) message streams flowing outward like sent emails.\n\nMaterials: Aged olive wood frame with natural grain, authentic beeswax surface (warm honey tone), bronze stylus with oxidation, gold leaf seal, holographic projections.\n\nLighting: Warm Mediterranean light, soft cyan glow from holographic messages, golden seal highlight, natural wood grain shadows.\n\nColor palette: Lapis blue #2C6BAA holographic email streams, warm wood and beeswax tones, verdigris #3C7A6A stylus, muted gold #C9A53B seal.\n\nFinish: Painterly rendering of wood grain and wax texture, academic style, subtle material wear, tech glow naturally integrated.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "category": "Marketing",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco in Michelangelo style. Sealed scrolls with golden wax seals\n    descending from heavenly clouds, divine messenger doves carrying letters. Sistine Chapel aesthetic\n    with dramatic wings, seals glowing with divine light. Warm ochre, sienna, umber tones with lapis blue\n    sky. Cracked fresco surface, sfumato technique, chiaroscuro lighting. Divine messenger theme.\n    Square composition, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:13:34.596Z",
+  "timestamp": "2025-10-08T15:56:53.121Z",
   "filepath": "/images/resource-icons/email-campaign-builder.png"
 }

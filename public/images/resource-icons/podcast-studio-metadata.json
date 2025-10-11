@@ -1,15 +1,13 @@
 {
   "title": "Podcast Studio",
   "name": "podcast-studio",
-  "category": "Content Creation",
-  "style": "ANACHRON",
-  "concept": "Ancient amphitheater with holographic sound waves",
-  "materials": "Marble theater acoustics, bronze speaking trumpet, gold sound patterns",
-  "symbology": "Greek theater mask with emanating audio visualization",
-  "primaryColor": "#C96F4C",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient acoustic design meets modern podcasting.\n\nSubject: A miniature marble amphitheater or theater mask with perfect acoustic geometry. Bronze speaking trumpet with verdigris (#3C7A6A) positioned at center. Gold leaf (#C9A53B) sound wave patterns carved into marble radiating outward. Holographic terracotta (#C96F4C) and lapis blue (#2C6BAA) audio waveforms flowing from the trumpet.\n\nMaterials: Carved marble with classical theater geometry, bronze trumpet with authentic patina, gold leaf acoustic patterns, holographic sound visualization.\n\nLighting: Warm stage lighting from below, multi-color audio glow, golden wave pattern highlights, marble shadow depth.\n\nColor palette: Terracotta #C96F4C holographic audio, lapis blue #2C6BAA waveforms, verdigris #3C7A6A bronze trumpet, muted gold #C9A53B patterns.\n\nFinish: Neoclassical architectural rendering, acoustic detail precision, painterly marble texture, tech glow as natural emanation.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
+  "category": "Content",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nMichelangelo Renaissance fresco. An ornate microphone or horn with divine sound\n    waves (rendered as golden musical notation and sacred geometry) emanating outward in concentric circles\n    toward clouds. Sistine Chapel aesthetic with warm ochre, sienna, umber and lapis blue. Cracked fresco\n    texture, dramatic lighting, sfumato technique. Divine speech and wisdom theme. Voice as divine instrument.\n    Square format, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:14:16.827Z",
+  "timestamp": "2025-10-08T15:57:54.691Z",
   "filepath": "/images/resource-icons/podcast-studio.png"
 }
