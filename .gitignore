@@ -33,4 +33,5 @@ dist-ssr
 
 # MCP configuration files (may contain secrets)
 mcp.json
+mcp-claude.json
 mcp_secrets
