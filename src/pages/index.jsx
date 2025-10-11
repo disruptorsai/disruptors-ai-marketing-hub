@@ -4,10 +4,10 @@ import Layout from "./Layout.jsx";
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black">
     <div className="text-center">
-      <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <p className="text-gray-600">Loading...</p>
+      <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-white font-medium">Loading...</p>
     </div>
   </div>
 );

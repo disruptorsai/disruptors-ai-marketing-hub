@@ -12,7 +12,7 @@ export default function Work() {
   return (
     <div className="min-h-screen">
       <DynamicBackground pageContext="work" intensity={0.8}>
-        <div>
+        <div className="min-h-screen">
           {/* Premium Hero Section */}
           <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
             {/* Animated Background Elements */}
