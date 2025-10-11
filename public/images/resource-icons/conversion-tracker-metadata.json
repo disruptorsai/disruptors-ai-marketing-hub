@@ -1,15 +1,13 @@
 {
   "title": "Conversion Tracker",
   "name": "conversion-tracker",
-  "category": "Analytics & Insights",
-  "style": "ANACHRON",
-  "concept": "Ancient target with holographic impact analysis",
-  "materials": "Bronze target rings, marble center, gold leaf scoring",
-  "symbology": "Archery target with glowing conversion paths",
-  "primaryColor": "#C96F4C",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient archery precision meets conversion tracking.\n\nSubject: A classical bronze target with concentric rings showing verdigris patina (#3C7A6A). Marble center with carved goal symbol, surrounded by gold leaf (#C9A53B) scoring markers. Holographic terracotta (#C96F4C) and lapis blue (#2C6BAA) paths showing conversion journeys converging on center.\n\nMaterials: Weathered bronze with authentic oxidation, polished marble bullseye with chips, gold leaf accents, holographic path projections.\n\nLighting: Dramatic side light, warm glow from center, cyan-terracotta holographic paths, golden highlights on scoring rings.\n\nColor palette: Terracotta #C96F4C holographic paths, lapis blue #2C6BAA data streams, verdigris #3C7A6A bronze rings, muted gold #C9A53B scoring.\n\nFinish: Academic painting style, metallic patina detail, marble texture, cohesive glow integration with ancient materials.\n\nCentered with padding, 1:1 aspect ratio, professional app quality.",
+  "category": "Analytics",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco inspired by Michelangelo. Base metal transforming into pure\n    gold through divine alchemy, golden particles flowing in luminous streams. Mystical transformation\n    theme. Warm ochre, sienna, umber earth tones with metallic gold accents. Cracked fresco surface,\n    dramatic chiaroscuro lighting, sfumato technique. Divine transmutation energy. Philosophical stone\n    symbolism. Square composition, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:13:26.048Z",
+  "timestamp": "2025-10-08T15:57:06.996Z",
   "filepath": "/images/resource-icons/conversion-tracker.png"
 }

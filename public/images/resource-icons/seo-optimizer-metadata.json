@@ -1,15 +1,13 @@
 {
   "title": "SEO Optimizer",
   "name": "seo-optimizer",
-  "category": "Marketing & Growth",
-  "style": "ANACHRON",
-  "concept": "Ancient magnifying lens with holographic search rankings",
-  "materials": "Rock crystal lens, bronze frame, marble keyword stone, gold rankings",
-  "symbology": "Observatory lens revealing search visibility patterns",
-  "primaryColor": "#3C7A6A",
-  "accentColor": "#C9A53B",
-  "prompt": "Professional app icon, 1024x1024px square, centered composition.\n\nANACHRON style: Ancient optical instruments meet search optimization.\n\nSubject: A large polished rock crystal magnifying lens in ornate bronze frame with verdigris (#3C7A6A). Lens reveals holographic search ranking graphs trending upward in verdigris and lapis blue (#2C6BAA). Marble base inscribed with \"keyword\" in ancient script, gold leaf (#C9A53B) ranking positions (1, 2, 3) floating around lens.\n\nMaterials: Clear rock crystal with natural inclusions, weathered bronze frame with authentic patina, carved marble base, gold leaf rankings, holographic search data.\n\nLighting: Soft diffuse light through crystal, cyan-green glow from holographic rankings, golden number highlights, bronze rim light.\n\nColor palette: Verdigris green #3C7A6A primary color and bronze, lapis blue #2C6BAA holographic data, muted gold #C9A53B rankings, ivory marble.\n\nFinish: Academic oil painting, crystal refraction rendering, metallic detail, marble carving, tech glow naturally emanating through lens.\n\nCentered with padding, 1:1 aspect ratio, professional quality.",
+  "category": "Marketing",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco inspired by Michelangelo. Ancient texts and scrolls with divine\n    light beams highlighting specific glowing golden words. Books float in organized patterns. Sistine ceiling\n    aesthetic with warm ochre, sienna, umber earth tones and lapis blue. Cracked fresco surface, sfumato\n    technique, dramatic lighting. Knowledge illuminated by divine wisdom. Classical Renaissance composition.\n    Square format, centered, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
   "model": "black-forest-labs/flux-1.1-pro",
-  "timestamp": "2025-10-08T03:14:33.861Z",
+  "timestamp": "2025-10-08T15:56:39.823Z",
   "filepath": "/images/resource-icons/seo-optimizer.png"
 }

@@ -1,105 +1,124 @@
 {
   "style": "Michelangelo Renaissance Fresco",
-  "timestamp": "2025-10-08T15:53:25.821Z",
+  "timestamp": "2025-10-08T15:58:08.560Z",
   "totalIcons": 19,
-  "successful": 0,
-  "failed": 19,
-  "totalTimeSeconds": 119,
+  "successful": 19,
+  "failed": 0,
+  "totalTimeSeconds": 136,
   "results": [
     {
-      "success": false,
+      "success": true,
       "icon": "AI Content Writer",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/ai-content-writer.png",
+      "size": 2054
     },
     {
-      "success": false,
+      "success": true,
       "icon": "AI Image Generator",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/ai-image-generator.png",
+      "size": 2021
     },
     {
-      "success": false,
+      "success": true,
       "icon": "AI Chatbot Builder",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/chatbot-builder.png",
+      "size": 2045
     },
     {
-      "success": false,
+      "success": true,
       "icon": "AI Video Generator",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/video-generator.png",
+      "size": 2221
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Growth Audit Tool",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/growth-audit-tool.png",
+      "size": 2210
     },
     {
-      "success": false,
+      "success": true,
       "icon": "SEO Optimizer",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/seo-optimizer.png",
+      "size": 2184
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Social Media Manager",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/social-media-manager.png",
+      "size": 2296
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Email Campaign Builder",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/email-campaign-builder.png",
+      "size": 2141
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Analytics Dashboard",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/analytics-dashboard.png",
+      "size": 2609
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Conversion Tracker",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/conversion-tracker.png",
+      "size": 2401
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Performance Monitor",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/performance-monitor.png",
+      "size": 2327
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Audience Intelligence",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/audience-intelligence.png",
+      "size": 2534
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Workflow Automation",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/workflow-automation.png",
+      "size": 2261
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Lead Scoring Engine",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/lead-scoring-engine.png",
+      "size": 2424
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Content Calendar",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/content-calendar.png",
+      "size": 2528
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Integration Hub",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/integration-hub.png",
+      "size": 2484
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Podcast Studio",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/podcast-studio.png",
+      "size": 2294
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Report Generator",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/report-generator.png",
+      "size": 2178
     },
     {
-      "success": false,
+      "success": true,
       "icon": "Brand Asset Library",
-      "error": ""
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/brand-asset-library.png",
+      "size": 2220
     }
   ]
 }
