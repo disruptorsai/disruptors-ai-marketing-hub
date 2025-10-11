@@ -320,6 +320,8 @@ export default function BentoGrid({ items }) {
 
   // Preload images for better performance
   React.useEffect(() => {
+    if (!items || items.length === 0) return;
+
     items.forEach((item) => {
       if (item.heroImage) {
         const img = new Image();
@@ -331,6 +333,14 @@ export default function BentoGrid({ items }) {
       }
     });
   }, [items]);
+
+  if (!items || items.length === 0) {
+    return (
+      <div className="text-center text-white py-20">
+        <p className="text-xl">No portfolio items available</p>
+      </div>
+    );
+  }
 
   return (
     <>

@@ -236,7 +236,7 @@ export default function Layout({ children, currentPageName }) {
                 transition={{ duration: 0.3 }}
                 className="flex-1"
               >
-                {!showLoading && children}
+                {children}
               </motion.main>
             </AnimatePresence>
           </div>
