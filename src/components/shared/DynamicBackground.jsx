@@ -23,9 +23,9 @@ const COLOR_SCHEMES = {
     accent: 'rgba(44, 107, 170, 0.12)', // Lapis Blue
   },
   work: {
-    primary: 'rgba(44, 107, 170, 0.18)', // Lapis Blue
-    secondary: 'rgba(255, 215, 0, 0.12)', // Gold
-    accent: 'rgba(60, 122, 106, 0.1)', // Verdigris Green
+    primary: 'rgba(44, 107, 170, 0.12)', // Lapis Blue (reduced)
+    secondary: 'rgba(60, 122, 106, 0.08)', // Verdigris Green (subtle)
+    accent: 'rgba(44, 107, 170, 0.06)', // Lapis Blue accent (very subtle)
   },
   solutions: {
     primary: 'rgba(201, 111, 76, 0.15)', // Terracotta
