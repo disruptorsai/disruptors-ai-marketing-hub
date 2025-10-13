@@ -1,0 +1,459 @@
+PRD — “SEO Autopilot” (Keyword → Page → Rank)
+0) Goal & guardrails
+
+Goal: Maximize qualified organic traffic from business owners searching for practical ways to use or integrate AI in their business—while being genuinely helpful and compliant with Google guidelines (avoid doorway/near-duplicate pages; every page must deliver unique value). Use explicit question phrasing and strong buyer-intent modifiers, plus geo variants when it adds value. Google’s doorway guidance means pages must be integral to UX, unique, and useful—not thin template swaps. 
+Google for Developers
+
+1) System overview (what this backend page does)
+
+Entry points
+
+Manual trigger: “Run research now” button on the backend page.
+
+Scheduled: cron (e.g., nightly/weekly) with configurable frequency and per-run budget caps.
+
+Pipeline
+
+Source keywords via DataForSEO endpoints (Ideas, Suggestions, Keywords for Site, Ranked Keywords, Trends; optional SERP Live to sniff features). 
+DataForSEO
++4
+DataForSEO
++4
+DataForSEO
++4
+
+Normalize & enrich with difficulty, intent, historical trend, regional interest. 
+DataForSEO
++2
+DataForSEO
++2
+
+Score & select N keywords (e.g., 10, 50, 100).
+
+Plan page (content brief + schema + internal links).
+
+Generate page (LLM or DataForSEO’s Content Generation API; your call). 
+DataForSEO
+
+Publish to CMS (draft → quality gate → publish).
+
+Track rankings and iterate using DataForSEO Labs Ranked Keywords / SERP data. 
+DataForSEO
++1
+
+Tech you already have: Your repo includes the DataForSEO API & MCP. This spec assumes HTTP calls (works with MCP wrappers too).
+
+2) DataForSEO: exactly how we’ll use it (endpoints & filters)
+
+All calls use location_code/location_name + language_code/language_name so metrics are country-specific. Use .../locations_and_languages to list supported values. 
+DataForSEO
+
+A) Seed discovery
+
+Keyword Suggestions (Labs): Expand from seeds like ai for {industry}, how to use ai for {job-to-be-done}, etc.
+Endpoint: POST /v3/dataforseo_labs/google/keyword_suggestions/live
+Question filter for high-intent phrasing: "filters": ["keyword", "like", "%how%"] (also what/why/where/who/when/which). Limit up to 1000. 
+DataForSEO
+
+Keyword Ideas (Labs): Category-driven expansion from up to 200 seed terms; returns SV, trend, CPC, competition, etc. Use for breadth. 
+DataForSEO
++1
+
+Keywords For Site (Labs): Reverse-engineer relevant ideas from your site or competitor domains (alternative to Google Ads “Keywords for Site”). Endpoint: .../google/keywords_for_site/live. 
+DataForSEO
+
+Related Keywords (Labs): “Searches related to” graph; depth parameter can yield thousands of semantically related ideas. 
+DataForSEO
+
+Top Searches (Labs): Pull top search terms for a location; supports pagination via offset_token. Useful to cross-check rising generic intents. 
+DataForSEO
+
+Trends API: “Explore” + “Subregion Interests” + “Demography” for time-series rise and regional hotspots of candidate terms. 
+DataForSEO
+
+B) Enrichment / prioritization data
+
+Keyword Difficulty (Labs): 0–100 ranking difficulty; available standalone (bulk) or embedded when including SERP info; newer responses expose difficulty under keyword_properties. Use to filter out unwinnable heads. 
+DataForSEO
++1
+
+(Docs also describe the calculation at a high level and that difficulty is location-specific.) 
+DataForSEO
+
+Keyword Overview & Historical Keyword Data (Labs): Actual metrics + explicit search intent; and multi-year SV/CPC/history for seasonality & growth. 
+DataForSEO
+
+Ranked Keywords (Labs): See what you or competitors already rank for (including AI Overview references via item_types). Useful for gap analysis & quick wins. 
+DataForSEO
++1
+
+SERP Google Organic Live Advanced (SERP API): Inspect current top-100, featured snippets, local packs, AI overview, etc., for a short-list to validate feasibility and identify SERP features to target. 
+DataForSEO
+
+3) Keyword research logic (step-by-step)
+
+Inputs
+
+Industries: e.g., Construction, HVAC, Roofing, Real Estate, Accounting, Legal, Dental, Landscaping, Electrical, Plumbing, Cleaning, Auto repair, Restaurants, Retail, e-commerce.
+
+Jobs-to-be-done intents: “get leads”, “estimate/proposal”, “invoice”, “customer follow-up”, “train staff”, “content marketing”, “SOPs”, “automation”, “CRM”, “chatbot”.
+
+Phrasing templates (mix & match):
+
+“how to use ai for {industry} {task}”
+
+“{industry} ai {task}”
+
+“integrate ai into my {industry}”
+
+“chatgpt for {industry} {task}”
+
+“ai tools for {industry} in {city}”
+
+Generation
+
+Build seed list programmatically from industry × task × phrasing.
+
+Call Keyword Suggestions with question filters and Keyword Ideas with the 200-seed batching. 
+DataForSEO
++1
+
+Augment with Keywords for Site on your domain and 3–5 named competitors. 
+DataForSEO
+
+Expand semantically via Related Keywords (depth 1–2 for quality). 
+DataForSEO
+
+Use Trends Explore/Subregion to tag rising terms and hotspot regions (e.g., “Phoenix” vs “Dallas”). 
+DataForSEO
+
+For top 500–2,000 candidates: fetch Keyword Overview, Historical Keyword Data, and Keyword Difficulty (bulk). 
+DataForSEO
++1
+
+Scoring (0–100 composite)
+Weights are tunable; start:
+
+Intent score (0–25): question words, “for {industry}”, “for small business”, “near me”, “services”, “consultant”. Bonus for {industry} + {task} combos.
+
+Opportunity score (0–35): volume (log-scaled), growth (Trends slope), competition (lower is better), CPC (proxy for commercial value). 
+DataForSEO
+
+Difficulty score (0–20, inverted): 100 − KD. Clamp if KD > 70. 
+DataForSEO
+
+SERP win factors (0–20): if SERP shows featured snippet/People Also Ask/local pack/AI overview with weak content, boost. (Derived from Live SERP inspection.) 
+DataForSEO
+
+Selection
+
+Cut by KD & min volume (e.g., KD ≤ 55; SV ≥ 20 if high intent; SV ≥ 10 if geo).
+
+Take top N overall and also ensure coverage buckets: each industry gets ≥X winners; each high-value task ≥Y.
+
+4) Page strategy per keyword (what the generator must produce)
+
+Each landing page must:
+
+Mirror the exact query in <title>, <h1>, and intro (“answer first”).
+
+Provide an actionable solution: 3–7 steps, a mini-tool/checklist/template, plus industry-specific examples.
+
+Include a soft CTA (“If you’d like help implementing this, here’s how we work with {industry} teams.”).
+
+Internal links to 2–3 relevant hub pages & 2 cross-industry case studies.
+
+Geo variation (if geo term present): local proof points, regulations, examples, and a different CTA snippet (hours, service area, contact).
+
+Unique value: At least two concrete, industry-specific examples and one downloadable/interactive element to avoid doorway/thin content risks. 
+Google for Developers
+
+Schema: FAQPage (2–4 Qs), HowTo if steps apply, Article, and Breadcrumb.
+
+Metadata: meta title/description, OG tags, canonical, noindex until quality gate passes.
+
+Content source options
+
+Your LLM (Claude/GPT) or DataForSEO Content Generation API for text + meta tags + subtopics; both support structured prompts and meta tag generation. 
+DataForSEO
+
+5) Backend page UX (for your team)
+
+Controls
+
+Seed set editor (industries, tasks, phrasing).
+
+Location/language picker (default: US/en).
+
+Limits: max new keywords per run; max new pages to draft/publish; per-run API spend cap.
+
+Sliders for scoring weights; KD & volume thresholds.
+
+Toggles: “Run SERP validation,” “Create geo variants,” “Use Content Generation API vs LLM,” “Publish immediately vs Draft → Review”.
+
+Run log
+
+Timestamp, inputs, counts, spend estimates, selected keyword list, draft URLs.
+
+Error/reporting area with failed tasks and rate-limit retries.
+
+6) Architecture & components
+
+Jobs (state machine)
+
+keyword_research_job: seeds → API calls → normalized candidates (queued).
+
+scoring_job: fetch metrics → compute scores → pick top N.
+
+content_job: build briefs → generate content → quality checks (duplication, length, headings, links, schema).
+
+publish_job: create/update CMS entries, sitemap ping, indexation toggle.
+
+monitor_job: weekly rank tracking + refresh.
+
+Tables (minimal schema)
+
+keyword_candidates(id, phrase, lang, location, source, intent_flags, sv, cpc, competition, kd, trend_score, serp_flags, last_seen_at)
+
+keyword_scores(keyword_id, run_id, composite, details_json)
+
+pages(id, keyword_id, slug, status[draft|published|noindex], geo, industry, task, score_at_publish, canonical_url)
+
+page_content(page_id, version, json_doc, wordcount, checksum, created_at)
+
+serp_positions(page_id, keyword_id, date, position, serp_features_json)
+
+runs(id, started_at, params_json, costs_json, summary)
+
+Rate limits, retries & costs
+
+Batch calls where supported (e.g., Ideas up to 200 seeds, Ranked/Overview/Historical up to hundreds). Use exponential backoff and per-run caps. (Trends and Content Generation publish rough per-task token pricing publicly; confirm in your account before production budgeting.) 
+DataForSEO
++1
+
+7) Endpoint call patterns (concrete)
+7.1 Keyword Suggestions (questions only)
+POST /v3/dataforseo_labs/google/keyword_suggestions/live
+[
+  {
+    "keyword": "ai for roofing leads",
+    "language_name": "English",
+    "location_code": 2840,
+    "filters": ["keyword","like","%how%"],
+    "limit": 500
+  }
+]
+
+
+Returns long-tail, question-shaped ideas. 
+DataForSEO
+
+7.2 Keyword Ideas (category-relevant expansion)
+POST /v3/dataforseo_labs/google/keyword_ideas/live
+[
+  {
+    "language_code": "en",
+    "location_code": 2840,
+    "keywords": ["ai for roofing estimates","ai for contractor crm"],
+    "include_clickstream_data": false,
+    "limit": 1000
+  }
+]
+
+
+Use for breadth; up to 200 seeds allowed. 
+DataForSEO
+
+7.3 Keywords For Site (you + competitors)
+POST /v3/dataforseo_labs/google/keywords_for_site/live
+[
+  { "target":"disruptorsmedia.com", "language_name":"English", "location_code":2840 }
+]
+
+
+Relevance to domain; replaces deprecated Google Ads feature. 
+DataForSEO
+
+7.4 Historical + Overview + Difficulty (bulk enrich)
+POST /v3/dataforseo_labs/google/keyword_overview/live
+POST /v3/dataforseo_labs/google/historical_keyword_data/live
+POST /v3/dataforseo_labs/google/bulk_keyword_difficulty/live
+
+
+Pull current metrics, intent, multi-year history, and KD. 
+DataForSEO
++1
+
+7.5 Trends Explore + Subregion (growth & geo heat)
+POST /v3/dataforseo_trends/google/explore/live
+POST /v3/dataforseo_trends/google/subregion_interests/live
+
+
+Assess trending rise and regional hotspots. 
+DataForSEO
+
+7.6 SERP validation (optional spot checks)
+POST /v3/serp/google/organic/live/advanced
+{ "keyword":"how to use ai for roofing leads", "location_code":2840, "language_name":"English" }
+
+
+Look for snippet/PAA/local pack/AI Overview opportunities. 
+DataForSEO
+
+7.7 Rank tracking & AI Overviews visibility
+POST /v3/dataforseo_labs/google/ranked_keywords/live
+{ "target": "yourdomain.com", "item_types": ["ai_overview_reference"], ... }
+
+
+Monitor gains, including AI Overview references. 
+DataForSEO
+
+8) Content generation (prompt & structure)
+
+Generator output contract (JSON)
+
+{
+  "slug": "ai-roofing-leads-how-to-automate-follow-up-dallas",
+  "metaTitle": "...",
+  "metaDescription": "...",
+  "h1": "How to Use AI to Get More Roofing Leads in Dallas",
+  "intro": "Direct, 2–3 sentences answering the query.",
+  "steps": [
+    {"title":"Map your funnel","detail":"..."},
+    {"title":"Set up lead capture with AI","detail":"..."}
+  ],
+  "toolIdea": {"type":"checklist|calculator|template", "spec":"..."},
+  "industryExamples": [
+    {"companyType":"Roofing","example":"..."},
+    {"companyType":"Roofing","example":"..."}
+  ],
+  "faq": [{"q":"...", "a":"..."},{"q":"...","a":"..."}],
+  "cta": {"headline":"Want this done for you?","body":"...","link":"/services/ai-for-roofing"},
+  "schema": {"article":{...},"faq":{...},"howto":{...}}
+}
+
+
+If using DataForSEO Content Generation API
+
+Use Generate Text for the body; Generate Meta Tags for title/description; Generate Subtopics to outline; Check Grammar for QC. 
+DataForSEO
+
+Quality gate
+
+Uniqueness: embedding similarity < 0.90 vs. existing pages.
+
+Length: ≥ 900–1500 words; headings every ~150–250 words.
+
+Links: ≥ 2 internal hubs, ≥ 1 external authoritative source (non-competitor).
+
+Schema valid; noindex cleared only after pass.
+
+Doorway safety
+
+Geo pages include local specifics (codes, climate, vendors, case details)—not just city tokens. If not, block generation for that variant. 
+Google for Developers
+
+9) Publishing & SEO plumbing
+
+Create draft → human spot check (optional) → publish.
+
+Auto-add to sitemap; ping search engines; structured data inline JSON-LD; set canonical; compress images; lazy-load.
+
+Internal link map updates: add links from relevant hubs to the new page.
+
+10) Monitoring & iteration
+
+Weekly monitor job: pull ranked_keywords for your domain; store position deltas; flag pages stuck beyond pos 30 after 30–45 days → auto-revise title/meta/intro or merge into stronger pages. 
+DataForSEO
+
+A/B tests: page titles & meta descriptions (two variants per page; rotate for 14–28 days).
+
+Refresh cadence: re-pull Trends monthly; re-score. Add net-new pages; update declining pages. 
+DataForSEO
+
+11) Backend implementation notes (Node/TS or Python)
+
+Config: .env for DataForSEO creds; per-run budget caps.
+
+HTTP client: retry with jitter; 429/5xx handling; queue with concurrency (e.g., p-queue / BullMQ).
+
+Storage: Postgres (schemas above); Redis for queues; S3 for JSON versions.
+
+MCP integration: expose “dataforseo.*” tools that map 1:1 to endpoints; the backend page issues MCP tool calls with the payloads above.
+
+CMS adapter: implement a lightweight interface (createDraft(dto), publish(id), update(id, dto)).
+
+12) Developer acceptance checklist
+
+ Manual run works with seed set; jobs flow end-to-end.
+
+ Scheduled run respects caps & rate limits.
+
+ Keyword selection screen shows inputs, scores, reasons.
+
+ Generated pages pass quality gate; schema validates.
+
+ Sitemap & canonical set; indexation toggles honored.
+
+ Monitoring writes daily/weekly position rows; alerts on drops.
+
+ Rollback: one click unpublish + 301 to nearest canonical.
+
+13) Example run (concrete)
+
+Seeds: ai for roofing, how to use ai for hvac estimates, chatgpt for contractors, etc.
+Suggestions (questions) with filters=["keyword","like","%how%"] return ideas like “how to use ai to follow up roofing leads”, “how to integrate ai into hvac dispatch”. 
+DataForSEO
+
+Ideas (category) broadens the set with related commercial terms; Overview/Historical confirm current SV and seasonality; Difficulty trims out KD>70; Trends highlights Dallas & Phoenix; SERP Live shows a weak snippet → prioritize that keyword. 
+DataForSEO
++4
+DataForSEO
++4
+DataForSEO
++4
+
+Output: 50 selected keywords → 50 briefs → 50 drafts → QC → publish 35, hold 15 (needs more unique content).
+
+14) Risks & mitigations
+
+Doorway/duplicate risk: enforce uniqueness and local specificity; block thin geo variants. 
+Google for Developers
+
+API costs: per-run caps; bulk endpoints; paging with offset_token for Top Searches. 
+DataForSEO
+
+Ranking difficulty: cap KD; target long-tail questions first; prioritize SERP features you can win. 
+DataForSEO
++1
+
+Index bloat: noindex until QC; consolidate poor performers (301s).
+
+15) What to build first (MVP in one sprint)
+
+Backend page with Manual Run and Seeds/Locations editor.
+
+Implement Suggestions + Ideas + Overview + KD calls; basic scoring; export CSV of top N with proposed slugs. 
+DataForSEO
++3
+DataForSEO
++3
+DataForSEO
++3
+
+One page template with JSON contract; LLM generation + QC; draft to CMS.
+
+Simple rank monitor using Ranked Keywords weekly. 
+DataForSEO
+
+If you want, I can also drop in:
+
+Postgres schemas and TypeScript interfaces,
+
+Example scoring function,
+
+The exact generation prompt (structured, with variables),
+
+A sample “page JSON → HTML/MDX” renderer.
+
+Just say the word and I’ll include those next.

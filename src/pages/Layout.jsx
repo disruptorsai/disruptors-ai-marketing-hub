@@ -235,6 +235,11 @@ export default function Layout({ children, currentPageName }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className="flex-1"
+                style={{ minHeight: '50vh' }}
+                onAnimationComplete={() => {
+                  // Ensure opacity is set after animation completes
+                  console.log('✅ [LAYOUT] Page animation complete for:', currentPageName);
+                }}
               >
                 {children}
               </motion.main>

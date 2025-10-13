@@ -39,8 +39,8 @@ const Solutions = lazyWithRetry(() => {
     return import('./solutions.jsx');
 });
 const Work = lazyWithRetry(() => {
-    console.log('🔄 [LAZY LOAD] Loading work-simple.jsx (TEMPORARY TEST VERSION)...');
-    return import('./work-simple.jsx');
+    console.log('🔄 [LAZY LOAD] Loading work.jsx...');
+    return import('./work.jsx');
 });
 const About = lazyWithRetry(() => {
     console.log('🔄 [LAZY LOAD] Loading about.jsx...');

@@ -51,7 +51,13 @@
       "Bash(find:*)",
       "Bash(npm run lint:*)",
       "Bash(dir:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(npm run experiments:watch:*)",
+      "Bash(npm run experiments:status)",
+      "Bash(ps aux | grep watch-experiments:*)",
+      "Bash(pkill -f ''watch-experiments.js'':*)",
+      "Read(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)",
+      "Write(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)"
     ],
     "deny": [],
     "ask": []
