@@ -18,17 +18,50 @@ const PageLoader = () => (
 import Home from "./Home.jsx";
 
 // Core pages - lazy loaded with retry logic to handle deployments
-const Assessment = lazyWithRetry(() => import('./assessment.jsx'));
-const Calculator = lazyWithRetry(() => import('./calculator.jsx'));
-const MarketingAudit = lazyWithRetry(() => import('./marketing-audit.jsx'));
-const NotFound = lazyWithRetry(() => import('./404.jsx'));
-const Solutions = lazyWithRetry(() => import('./solutions.jsx'));
-const Work = lazyWithRetry(() => import('./work.jsx'));
-const About = lazyWithRetry(() => import('./about.jsx'));
-const AITools = lazyWithRetry(() => import('./ai-tools.jsx'));
-const Contact = lazyWithRetry(() => import('./contact.jsx'));
-const Privacy = lazyWithRetry(() => import('./privacy.jsx'));
-const Terms = lazyWithRetry(() => import('./terms.jsx'));
+const Assessment = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading assessment.jsx...');
+    return import('./assessment.jsx');
+});
+const Calculator = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading calculator.jsx...');
+    return import('./calculator.jsx');
+});
+const MarketingAudit = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading marketing-audit.jsx...');
+    return import('./marketing-audit.jsx');
+});
+const NotFound = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading 404.jsx...');
+    return import('./404.jsx');
+});
+const Solutions = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading solutions.jsx...');
+    return import('./solutions.jsx');
+});
+const Work = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading work.jsx...');
+    return import('./work.jsx');
+});
+const About = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading about.jsx...');
+    return import('./about.jsx');
+});
+const AITools = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading ai-tools.jsx...');
+    return import('./ai-tools.jsx');
+});
+const Contact = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading contact.jsx...');
+    return import('./contact.jsx');
+});
+const Privacy = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading privacy.jsx...');
+    return import('./privacy.jsx');
+});
+const Terms = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading terms.jsx...');
+    return import('./terms.jsx');
+});
 
 // Dev pages for comparison - lazy loaded with retry
 import HomeDev from "./Home-dev.jsx";
@@ -252,6 +285,11 @@ function _getCurrentPage(url) {
 function PagesContent() {
     const location = useLocation();
     const currentPage = _getCurrentPage(location.pathname);
+
+    // DEBUG: Log route changes
+    console.log('🔍 [ROUTING] Current location:', location.pathname);
+    console.log('🔍 [ROUTING] Matched page:', currentPage);
+    console.log('🔍 [ROUTING] Available pages:', Object.keys(PAGES));
 
     return (
         <Layout currentPageName={currentPage}>
