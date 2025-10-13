@@ -15,11 +15,16 @@ import { caseStudies } from '@/data/caseStudies';
  * Rebuilt from scratch for reliable lazy loading
  */
 export default function Work() {
-  return (
-    <DynamicBackground pageContext="work" intensity={0.8}>
-      <div className="min-h-screen">
-        {/* Page Title */}
-        <PageTitle title="WORK" />
+  console.log('🎨 [WORK] Component rendering...');
+  console.log('🎨 [WORK] caseStudies:', caseStudies);
+  console.log('🎨 [WORK] caseStudies length:', caseStudies?.length);
+
+  try {
+    return (
+      <DynamicBackground pageContext="work" intensity={0.8}>
+        <div className="min-h-screen">
+          {/* Page Title */}
+          <PageTitle title="WORK" />
 
         {/* Hero Section */}
         <BlurSection>
@@ -90,5 +95,23 @@ export default function Work() {
         </section>
       </div>
     </DynamicBackground>
-  );
+    );
+  } catch (error) {
+    console.error('❌ [WORK] Render error:', error);
+    console.error('❌ [WORK] Error stack:', error.stack);
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+        <div className="text-center p-8">
+          <h1 className="text-4xl font-bold mb-4">Error Loading Work Page</h1>
+          <p className="text-xl text-gray-400">{error.message}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-8 px-6 py-3 bg-yellow-500 text-black font-bold rounded"
+          >
+            Reload Page
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
