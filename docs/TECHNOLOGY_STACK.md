@@ -32,8 +32,9 @@
 ### Radix UI
 - **Version**: 20+ packages (`^1.x`)
 - **Purpose**: Headless UI components
-- **Components**: Dialog, Dropdown, Select, Toast, etc.
-- **Pattern**: shadcn/ui implementation
+- **Components**: 50+ UI components in `src/components/ui/`
+- **Pattern**: shadcn/ui implementation patterns
+- **Key Components**: Dialog, Dropdown, Select, Toast, Accordion, Card, Tabs, Form, etc.
 - **Documentation**: https://radix-ui.com
 
 ## Animation
@@ -139,11 +140,14 @@
 - **Purpose**: Hosting and serverless functions
 - **Features**:
   - Automatic Git deployment
-  - Serverless functions (11 total)
+  - Serverless functions (9 functions in `netlify/functions/`)
   - Environment variables
-  - CDN
+  - CDN with immutable asset caching
   - SSL certificates
+  - esbuild bundler with external node modules for AI SDKs
+- **Node Version**: 18
 - **MCP Integration**: `@netlify/mcp@latest`
+- **Configuration**: `netlify.toml` with CSP headers, cache control
 - **Documentation**: https://docs.netlify.com
 
 ### Cloudinary
@@ -241,9 +245,10 @@ See `docs/integrations/MCP_ECOSYSTEM.md` for details.
 - **Scripts**: See `package.json`
 
 ### Dependencies
-- **Total**: 80+ packages
-- **Dev Dependencies**: 20+ packages
+- **Total**: 82 packages (production dependencies)
+- **Dev Dependencies**: 15 packages
 - **Peer Dependencies**: Managed automatically
+- **Key Libraries**: React 18.2.0, React Router DOM 7.2.0, Vite 6.1.0
 
 ## Build Tools
 
@@ -319,10 +324,11 @@ No automated testing framework configured.
 ## Documentation
 
 ### In-Repository
-- **docs/**: 150+ markdown files
+- **docs/**: 174 markdown files across multiple subdirectories
 - **README.md**: Project overview
-- **CLAUDE.md**: Development guidance
+- **CLAUDE.md**: Development guidance and instructions
 - **CHANGELOG.md**: Version history
+- **Subdirectories**: architecture/, agents/, brand/, guides/, implementation/, integrations/, mcp-servers/, reports/, systems/, workflows/
 
 ### External
 - **Component Storybook**: Not implemented

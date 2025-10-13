@@ -6,12 +6,13 @@ The application implements a distinctive custom routing architecture managed in 
 
 ## Key Features
 
-- **70+ page components** centrally imported and mapped in a `PAGES` object
+- **74+ page components** centrally imported and mapped in a `PAGES` object
 - **URL-to-component mapping** handled by `_getCurrentPage()` function
 - **Layout wrapper system** where `Layout.jsx` wraps all pages and receives `currentPageName` prop
-- **Dual routing definition** with both custom mapping and React Router `<Routes>`
-- **Lazy loading strategy**: All pages except Home are lazy-loaded using React.lazy() with Suspense
+- **Dual routing definition** with both custom mapping and React Router `<Routes>` (75 routes)
+- **Lazy loading strategy**: All pages except Home are lazy-loaded using React.lazy() with Suspense (71 lazy imports)
 - **Demo pages** (3D/animation heavy) are lazy-loaded to defer ~2MB physics bundle until needed
+- **Retry logic**: Uses `lazyWithRetry()` utility to handle chunk loading failures during deployments
 
 ## Page Patterns
 
@@ -50,49 +51,67 @@ Pattern: `solutions-[service].jsx`
 
 ```javascript
 // src/pages/index.jsx
-const _getCurrentPage = () => {
-  const path = window.location.pathname
+function _getCurrentPage(url) {
+    if (url.endsWith('/')) {
+        url = url.slice(0, -1);
+    }
+    let urlLastPart = url.split('/').pop();
+    if (urlLastPart.includes('?')) {
+        urlLastPart = urlLastPart.split('?')[0];
+    }
 
-  // Home page
-  if (path === '/' || path === '') return 'Home'
-
-  // Remove leading slash and get first segment
-  const segment = path.substring(1).split('/')[0]
-
-  // Map to page component
-  const pageName = Object.keys(PAGES).find(key =>
-    key.toLowerCase() === segment.toLowerCase()
-  )
-
-  return pageName || 'NotFound'
+    const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
+    return pageName || Object.keys(PAGES)[0]; // Returns first page (Home) if not found
 }
 ```
 
 ### PAGES Object
 
 ```javascript
+// Home page loaded immediately for faster initial render
+import Home from "./Home.jsx";
+
+// All other pages lazy loaded with retry logic
+const Assessment = lazyWithRetry(() => import('./assessment.jsx'));
+const Calculator = lazyWithRetry(() => import('./calculator.jsx'));
+// ... 71+ lazy loaded pages
+
 const PAGES = {
-  Home: HomePage,
-  About: lazy(() => import('./about')),
-  Contact: lazy(() => import('./contact')),
-  Work: lazy(() => import('./work')),
-  // ... 70+ pages
+  Home: Home,
+  tools: Tools,
+  assessment: Assessment,
+  calculator: Calculator,
+  "marketing-audit": MarketingAudit,
+  // ... 74+ total pages
 }
 ```
 
 ### Layout Integration
 
 ```javascript
-// Layout wrapper receives current page name
-const currentPageName = _getCurrentPage()
+// PagesContent wrapper uses useLocation inside Router context
+function PagesContent() {
+    const location = useLocation();
+    const currentPage = _getCurrentPage(location.pathname);
 
-return (
-  <Layout currentPageName={currentPageName}>
-    <Suspense fallback={<LoadingSpinner />}>
-      {PAGES[currentPageName]}
-    </Suspense>
-  </Layout>
-)
+    return (
+        <Layout currentPageName={currentPage}>
+            <Suspense fallback={<PageLoader />}>
+                <Routes>
+                    {/* Routes defined here */}
+                </Routes>
+            </Suspense>
+        </Layout>
+    );
+}
+
+export default function Pages() {
+    return (
+        <Router>
+            <PagesContent />
+        </Router>
+    );
+}
 ```
 
 ### React Router Integration
@@ -114,17 +133,20 @@ The application uses both custom routing AND React Router for compatibility:
 Only the Home page is loaded immediately to optimize initial bundle size.
 
 ```javascript
-import HomePage from './home'
+import Home from "./Home.jsx";
 ```
 
-### Lazy Loaded Pages
-All other pages use React.lazy() for code splitting:
+### Lazy Loaded Pages with Retry Logic
+All other pages use `lazyWithRetry()` utility for code splitting with automatic retry on chunk load failure:
 
 ```javascript
-const About = lazy(() => import('./about'))
-const Contact = lazy(() => import('./contact'))
-// etc.
+const Assessment = lazyWithRetry(() => import('./assessment.jsx'));
+const Calculator = lazyWithRetry(() => import('./calculator.jsx'));
+const About = lazyWithRetry(() => import('./about.jsx'));
+// etc. (71 lazy loaded components)
 ```
+
+The `lazyWithRetry()` utility from `@/utils/lazyWithRetry` automatically retries failed chunk loads, handling deployment scenarios where old chunks are no longer available.
 
 ### Heavy Pages (3D/Animation)
 Demo pages with heavy dependencies (Spline, GSAP, physics) are especially important to lazy load:
@@ -155,6 +177,7 @@ When adding a new page:
 
 ## Related Files
 
-- `src/pages/index.jsx` - Central routing configuration (70+ pages)
-- `src/components/layout/Layout.jsx` - Layout wrapper component
+- `src/pages/index.jsx` - Central routing configuration (74+ pages, 75 routes, 71 lazy imports)
+- `src/utils/lazyWithRetry.js` - Lazy loading utility with automatic retry logic
+- `src/pages/Layout.jsx` - Layout wrapper component
 - `src/components/shared/Navigation.jsx` - Navigation component

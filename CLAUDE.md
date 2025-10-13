@@ -75,7 +75,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a React SPA built with Vite serving as a marketing website and AI-powered platform for Disruptors AI. It features a sophisticated architecture combining:
 
-- **Custom Routing System**: 70+ pages with centralized mapping in `src/pages/index.jsx`
+- **Custom Routing System**: 74+ pages with centralized mapping in `src/pages/index.jsx` (75 routes, 71 lazy imports)
 - **Dual API Integration**: Custom SDK wrapper over Supabase with Base44 compatibility
 - **AI-First Modules System**: Self-contained micro-tools with three-level access (internal/client/public)
 - **Multi-Provider AI Services**: OpenAI gpt-image-1, Google Gemini, Replicate, Claude Sonnet 4.5
@@ -86,7 +86,7 @@ This is a React SPA built with Vite serving as a marketing website and AI-powere
 - **Authentication**: Supabase Auth with Google OAuth + email/password
 - **Admin Console**: Secret-access admin panel at `/admin/secret` (internal staff only)
 - **Modules**: Keyword Research, AI Content Writer, Growth Audit (all production-ready)
-- **Serverless Functions**: 11 Netlify functions for AI processing, audits, and brain management
+- **Serverless Functions**: 9 Netlify functions for AI processing, audits, and brain management
 
 ## Critical Architecture Patterns
 

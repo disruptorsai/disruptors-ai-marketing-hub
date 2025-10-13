@@ -37,6 +37,8 @@
     "integrate:service-images": "node scripts/integration-example.js",
     "setup:deployment": "node scripts/setup-deployment.js",
     "db:setup": "node scripts/setup-deployment.js",
+    "db:health": "node scripts/database-health-check.js",
+    "db:migrations": "node scripts/check-database-migrations.js",
     "migrate:content-writer": "node scripts/apply-ai-content-writer-migration.js",
     "mcp:start": "node scripts/mcp-orchestrator.js start",
     "mcp:status": "node scripts/mcp-orchestrator.js status",

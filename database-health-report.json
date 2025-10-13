@@ -1,0 +1,148 @@
+{
+  "timestamp": "2025-10-13T19:45:18.082Z",
+  "database": "https://ubqxflzuvxowigbjmqfb.supabase.co",
+  "overallHealth": "CRITICAL",
+  "tables": {
+    "total": 0,
+    "existing": 0,
+    "missing": [],
+    "unexpected": []
+  },
+  "rls": {
+    "enabled": 0,
+    "disabled": 10,
+    "issues": [
+      {
+        "table": "users",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "business_brains",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "brain_assets",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "brain_themes",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "posts",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "services",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "modules",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "module_executions",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "module_usage_analytics",
+        "issue": "RLS might be disabled or overly permissive"
+      },
+      {
+        "table": "user_module_quotas",
+        "issue": "RLS might be disabled or overly permissive"
+      }
+    ]
+  },
+  "indexes": {
+    "total": 0,
+    "recommendations": [
+      {
+        "table": "users",
+        "column": "email",
+        "reason": "Frequent lookups by email"
+      },
+      {
+        "table": "business_brains",
+        "column": "user_id",
+        "reason": "FK relationship and filtering"
+      },
+      {
+        "table": "module_executions",
+        "column": "user_id",
+        "reason": "User quota tracking"
+      },
+      {
+        "table": "module_executions",
+        "column": "module_slug",
+        "reason": "Module analytics"
+      },
+      {
+        "table": "module_executions",
+        "column": "created_at",
+        "reason": "Time-based queries"
+      },
+      {
+        "table": "posts",
+        "column": "slug",
+        "reason": "URL lookups"
+      },
+      {
+        "table": "posts",
+        "column": "status",
+        "reason": "Published content filtering"
+      }
+    ]
+  },
+  "performance": {
+    "slowQueries": [],
+    "recommendations": []
+  },
+  "security": {
+    "issues": [
+      "Table enumeration failed: supabase.rpc(...).catch is not a function"
+    ],
+    "warnings": [
+      "Service role key should only be used server-side (Netlify functions)"
+    ]
+  },
+  "dataIntegrity": {
+    "orphanedRecords": [],
+    "missingRelations": [
+      {
+        "table": "business_brains",
+        "missingColumns": [
+          "user_id"
+        ]
+      },
+      {
+        "table": "modules",
+        "missingColumns": [
+          "access_level"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "recommendation": "Review and enable RLS on 10 tables"
+    },
+    {
+      "priority": "MEDIUM",
+      "recommendation": "Consider adding 7 indexes for performance"
+    },
+    {
+      "priority": "MEDIUM",
+      "recommendation": "Review security configuration and key exposure"
+    },
+    {
+      "priority": "LOW",
+      "recommendation": "Schedule regular database maintenance and vacuum operations"
+    },
+    {
+      "priority": "LOW",
+      "recommendation": "Implement connection pooling if not already configured"
+    }
+  ]
+}
