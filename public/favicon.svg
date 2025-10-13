@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
-  <!-- Golden globe favicon with transparent background -->
-  <ellipse cx="512" cy="512" rx="450" ry="280" fill="#C9A961"/>
+  <!-- Black globe favicon with transparent background -->
+  <ellipse cx="512" cy="512" rx="450" ry="280" fill="#000000"/>
 
-  <!-- Top curved sections -->
+  <!-- Top curved sections (white cutouts) -->
   <path d="M150,380 Q150,340 180,340 L280,340 Q310,340 310,380 Z" fill="white"/>
   <path d="M330,360 Q330,320 360,320 L460,320 Q490,320 490,360 Z" fill="white"/>
   <path d="M510,360 Q510,320 540,320 L640,320 Q670,320 670,360 Z" fill="white"/>
   <path d="M690,380 Q690,340 720,340 L820,340 Q850,340 850,380 Z" fill="white"/>
 
-  <!-- Upper middle rectangles -->
+  <!-- Upper middle rectangles (white cutouts) -->
   <rect x="200" y="420" width="120" height="90" rx="8" fill="white"/>
   <rect x="360" y="420" width="120" height="90" rx="8" fill="white"/>
   <rect x="520" y="420" width="120" height="90" rx="8" fill="white"/>
   <rect x="680" y="420" width="120" height="90" rx="8" fill="white"/>
 
-  <!-- Middle rectangles -->
+  <!-- Middle rectangles (white cutouts) -->
   <rect x="200" y="530" width="120" height="90" rx="8" fill="white"/>
   <rect x="360" y="530" width="120" height="90" rx="8" fill="white"/>
   <rect x="520" y="530" width="120" height="90" rx="8" fill="white"/>
   <rect x="680" y="530" width="120" height="90" rx="8" fill="white"/>
 
-  <!-- Bottom curved sections -->
+  <!-- Bottom curved sections (white cutouts) -->
   <path d="M150,640 L150,680 Q150,720 180,720 L280,720 Q310,720 310,680 L310,640 Z" fill="white"/>
   <path d="M330,640 L330,680 Q330,720 360,720 L460,720 Q490,720 490,680 L490,640 Z" fill="white"/>
   <path d="M510,640 L510,680 Q510,720 540,720 L640,720 Q670,720 670,680 L670,640 Z" fill="white"/>
