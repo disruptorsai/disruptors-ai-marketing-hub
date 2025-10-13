@@ -116,10 +116,10 @@ export default function Footer() {
   ];
 
   const tools = [
-    { name: 'AI Content Writer', path: 'ai-content-writer' },
-    { name: 'Keyword Research', path: 'keyword-research' },
+    { name: 'AI Content Writer', path: '/app/content-writer' },
+    { name: 'Keyword Research', path: '/app/keyword-research' },
     { name: 'Marketing Audit', path: 'marketing-audit' },
-    { name: 'Business Brain', path: 'business-brain-manager' },
+    { name: 'Business Brain', path: '/app/business-brain' },
   ];
 
   const socialLinks = [

@@ -13,7 +13,7 @@ export default function Tools() {
       title: 'Business Brain Manager',
       description: 'View, edit, and train your AI business knowledge base. Manage facts, brand voice, and integrations.',
       icon: Brain,
-      path: '/business-brain-manager',
+      path: '/app/business-brain',
       color: 'from-blue-500 to-blue-600',
       features: [
         'Dashboard & Health Metrics',
@@ -29,7 +29,7 @@ export default function Tools() {
       title: 'AI Content Writer',
       description: 'Generate SEO-optimized blog articles and titles powered by your Business Brain.',
       icon: FileText,
-      path: '/ai-content-writer',
+      path: '/app/content-writer',
       color: 'from-purple-500 to-purple-600',
       features: [
         'AI Title Generator',

@@ -166,7 +166,7 @@ export default function AIContentWriter() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <BrandedButton variant="primary" onClick={() => window.location.href = '/business-brain-manager'}>
+              <BrandedButton variant="primary" onClick={() => window.location.href = '/app/business-brain'}>
                 Create Business Brain
               </BrandedButton>
             </CardContent>
@@ -414,7 +414,7 @@ export default function AIContentWriter() {
               </div>
             </div>
             <Button
-              onClick={() => window.location.href = '/keyword-research'}
+              onClick={() => window.location.href = '/app/keyword-research'}
               className="px-6 py-3 rounded-lg font-semibold text-white flex items-center gap-2"
               style={{
                 backgroundColor: 'var(--brand-primary)',

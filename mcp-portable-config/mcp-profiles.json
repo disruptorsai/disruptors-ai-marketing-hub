@@ -1,0 +1,137 @@
+{
+  "profiles": {
+    "minimal": {
+      "description": "Essential MCP functionality only (3 servers)",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking"
+      ],
+      "useCase": "Quick edits, low resource usage, basic coding"
+    },
+    "dev": {
+      "description": "Development-focused workflow (7 servers)",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "github",
+        "netlify",
+        "vercel",
+        "digitalocean"
+      ],
+      "useCase": "Active development, deployments, version control"
+    },
+    "full": {
+      "description": "Complete MCP ecosystem (22 servers)",
+      "servers": "all",
+      "useCase": "Maximum functionality, complex workflows"
+    },
+    "frontend": {
+      "description": "Frontend development focus",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "github",
+        "netlify",
+        "vercel",
+        "cloudinary",
+        "figma-developer"
+      ],
+      "useCase": "Frontend dev with design and media tools"
+    },
+    "backend": {
+      "description": "Backend development focus",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "github",
+        "railway",
+        "digitalocean",
+        "airtable",
+        "fetch"
+      ],
+      "useCase": "Backend dev with database and API tools"
+    },
+    "content": {
+      "description": "Content creation and research",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "nano-banana",
+        "firecrawl",
+        "dataforseo",
+        "fetch"
+      ],
+      "useCase": "Writing, research, SEO, content generation"
+    },
+    "automation": {
+      "description": "Workflow automation focus",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "n8n-mcp",
+        "gohighlevel",
+        "puppeteer",
+        "airtable"
+      ],
+      "useCase": "Building workflows, CRM integration, automation"
+    }
+  },
+  "categories": {
+    "core": {
+      "description": "Essential MCP servers required for basic functionality",
+      "servers": ["memory", "filesystem", "sequential-thinking"]
+    },
+    "vcs": {
+      "description": "Version control systems",
+      "servers": ["github"]
+    },
+    "cloud": {
+      "description": "Cloud deployment platforms",
+      "servers": ["vercel", "netlify", "railway", "digitalocean"]
+    },
+    "design": {
+      "description": "Design and prototyping tools",
+      "servers": ["figma-developer", "cursor-talk-to-figma"]
+    },
+    "web": {
+      "description": "Web scraping and automation",
+      "servers": ["firecrawl", "fetch", "puppeteer", "apify-modern"]
+    },
+    "ai": {
+      "description": "AI and machine learning services",
+      "servers": ["nano-banana", "replicate"]
+    },
+    "media": {
+      "description": "Image and video management",
+      "servers": ["cloudinary"]
+    },
+    "data": {
+      "description": "Database and data management",
+      "servers": ["airtable"]
+    },
+    "automation": {
+      "description": "Workflow automation and CRM",
+      "servers": ["n8n-mcp", "gohighlevel"]
+    },
+    "seo": {
+      "description": "SEO and keyword research",
+      "servers": ["dataforseo"]
+    },
+    "infrastructure": {
+      "description": "Infrastructure and container management",
+      "servers": ["MCP_DOCKER"]
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-13",
+    "totalServers": 22,
+    "author": "Disruptors AI"
+  }
+}

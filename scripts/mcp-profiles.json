@@ -1,0 +1,76 @@
+{
+  "profiles": {
+    "minimal": {
+      "name": "Minimal",
+      "description": "3 essential servers only - Memory, Filesystem, Sequential Thinking",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking"
+      ]
+    },
+    "dev": {
+      "name": "Development",
+      "description": "7 development-focused servers - Code repositories, deployment, design tools",
+      "servers": [
+        "memory",
+        "filesystem",
+        "sequential-thinking",
+        "github",
+        "netlify",
+        "vercel",
+        "digitalocean"
+      ]
+    },
+    "full": {
+      "name": "Full Stack",
+      "description": "All 22 MCP servers enabled",
+      "servers": [
+        "vercel",
+        "MCP_DOCKER",
+        "firecrawl",
+        "dataforseo",
+        "n8n-mcp",
+        "gohighlevel",
+        "cloudinary",
+        "memory",
+        "filesystem",
+        "fetch",
+        "github",
+        "sequential-thinking",
+        "netlify",
+        "digitalocean",
+        "apify-modern",
+        "nano-banana",
+        "puppeteer",
+        "figma-developer",
+        "cursor-talk-to-figma",
+        "railway",
+        "airtable",
+        "replicate"
+      ]
+    }
+  },
+  "categories": {
+    "core": {
+      "name": "Core Services",
+      "description": "Essential MCP services",
+      "servers": ["memory", "filesystem", "sequential-thinking"]
+    },
+    "development": {
+      "name": "Development Tools",
+      "description": "Code repositories, CI/CD, design tools",
+      "servers": ["github", "netlify", "vercel", "digitalocean", "railway", "figma-developer", "cursor-talk-to-figma"]
+    },
+    "web": {
+      "name": "Web & Content",
+      "description": "Web scraping, browser automation, SEO tools",
+      "servers": ["firecrawl", "fetch", "puppeteer", "dataforseo", "nano-banana"]
+    },
+    "integrations": {
+      "name": "Integrations & APIs",
+      "description": "Third-party service integrations",
+      "servers": ["cloudinary", "replicate", "airtable", "n8n-mcp", "gohighlevel", "apify-modern", "MCP_DOCKER"]
+    }
+  }
+}

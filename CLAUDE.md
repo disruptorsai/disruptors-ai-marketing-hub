@@ -21,12 +21,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Integration examples**: `npm run integrate:service-images`
 
 ### MCP Server Management
+- **List all servers**: `npm run mcp:list` - Show all 22 MCP servers and their status
+- **Show current config**: `npm run mcp:toggle` - Display current configuration and active profile
+- **Enable servers**: `npm run mcp:enable -- <server...>` - Enable specific servers
+- **Disable servers**: `npm run mcp:disable -- <server...>` - Disable specific servers
+- **Minimal profile**: `npm run mcp:profile:minimal` - 3 essential servers only
+- **Dev profile**: `npm run mcp:profile:dev` - 7 development servers
+- **Full profile**: `npm run mcp:profile:full` - All 22 servers enabled
 - **Start orchestrator**: `npm run mcp:start`
 - **Check status**: `npm run mcp:status`
 - **Health check**: `npm run mcp:health`
 - **Monitor**: `npm run mcp:monitor`
 - **Optimize**: `npm run mcp:optimize`
 - **Security audit**: `npm run mcp:security`
+- **Export config**: `npm run mcp:export` - Export for cross-computer sync
+- **Import config**: `npm run mcp:import` - Apply synced config
+- **Push to GitHub**: `npm run mcp:push` - Cloud backup
+- **Pull from GitHub**: `npm run mcp:pull` - Sync from cloud
+- **Two-way sync**: `npm run mcp:sync` - Bidirectional sync
+- **Validate credentials**: `npm run mcp:validate` - Check .env completeness
 
 ### Changelog Management
 - **Add entry**: `npm run changelog:add`
@@ -281,6 +294,12 @@ See `docs/TECHNOLOGY_STACK.md` for complete stack details.
 
 ### Integrations
 - `docs/integrations/MCP_ECOSYSTEM.md` - Model Context Protocol servers
+- `docs/MCP_SERVER_MANAGEMENT.md` - MCP server toggle/profile management
+- `docs/MCP_QUICK_REFERENCE.md` - Quick reference for MCP commands
+- `mcp-portable-config/README.md` - Portable MCP configuration system (NEW)
+- `mcp-portable-config/QUICK_START.md` - 5-minute portable setup guide (NEW)
+- `mcp-portable-config/GITHUB_SETUP.md` - Cloud sync setup (NEW)
+- `mcp-portable-config/credentials.md` - API key sources (NEW)
 - `docs/GSAP_MASTER_SETUP_GUIDE.md` - GSAP Master MCP server
 - `docs/mcp-servers/spline-mcp-server.md` - Spline MCP server
 - `docs/mcp-servers/supabase-mcp-server.md` - Supabase MCP server

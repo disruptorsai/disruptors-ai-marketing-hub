@@ -1,0 +1,173 @@
+═══════════════════════════════════════════════════════════════════
+  DNS RECORDS TO ADD IN NETLIFY - DISRUPTORSMEDIA.COM
+═══════════════════════════════════════════════════════════════════
+
+Copy these records one by one into Netlify DNS dashboard:
+https://app.netlify.com → Domain management → DNS records
+
+
+──────────────────────────────────────────────────────────────────
+  SECTION A: ROOT DOMAIN (@) - GOOGLE WORKSPACE
+──────────────────────────────────────────────────────────────────
+
+Record 1: MX (Google Workspace)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:     MX
+Host:     @
+Value:    smtp.google.com
+Priority: 1
+TTL:      3600
+
+
+Record 2: TXT (SPF - Combined Google + Mailgun)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  TXT
+Host:  @
+Value: v=spf1 include:_spf.google.com include:mailgun.org ~all
+TTL:   3600
+
+⚠️  IMPORTANT: Only ONE SPF record should exist!
+   Delete any old SPF records before adding this one.
+
+
+Record 3: TXT (Google DKIM)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  TXT
+Host:  google._domainkey
+Value: [GET THIS FROM GOOGLE ADMIN CONSOLE - See instructions below]
+TTL:   3600
+
+📋 To get Google DKIM key:
+   1. Go to: https://admin.google.com
+   2. Navigate to: Apps → Google Workspace → Gmail → Authenticate email
+   3. Click "Generate new record" for disruptorsmedia.com
+   4. Copy the TXT record value (starts with "v=DKIM1; k=rsa; p=...")
+   5. Paste it as the Value above
+
+
+Record 4: TXT (DMARC)
+━━━━━━━━━━━━━━━━━━━━
+Type:  TXT
+Host:  _dmarc
+Value: v=DMARC1; p=none; rua=mailto:dmarc@disruptorsmedia.com; fo=1; pct=100
+TTL:   3600
+
+
+──────────────────────────────────────────────────────────────────
+  SECTION B: SUBDOMAIN (mg) - GOHIGHLEVEL/MAILGUN
+──────────────────────────────────────────────────────────────────
+
+Record 5: TXT (SPF for subdomain)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  TXT
+Host:  mg
+Value: v=spf1 include:mailgun.org ~all
+TTL:   3600
+
+
+Record 6: CNAME (Mailgun DKIM 1)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  CNAME
+Host:  pdk1._domainkey.mg
+Value: [GET THIS FROM GOHIGHLEVEL - See instructions below]
+TTL:   3600
+
+📋 To get Mailgun DKIM values:
+   1. Log into GoHighLevel: https://app.gohighlevel.com
+   2. Go to: Settings → Email Services → Sending Domains
+   3. Click "Add Sending Domain"
+   4. Enter: mg.disruptorsmedia.com
+   5. Copy the exact CNAME values shown for pdk1 and pdk2
+   6. They'll look like: pdk1._domainkey.ABC123.dkim1.mailgun.com
+
+
+Record 7: CNAME (Mailgun DKIM 2)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  CNAME
+Host:  pdk2._domainkey.mg
+Value: [GET THIS FROM GOHIGHLEVEL - Same as Record 6]
+TTL:   3600
+
+
+Record 8: CNAME (Email Tracking)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  CNAME
+Host:  email.mg
+Value: mailgun.org
+TTL:   3600
+
+
+Record 9: MX (Mailgun A)
+━━━━━━━━━━━━━━━━━━━━━━
+Type:     MX
+Host:     mg
+Value:    mxa.mailgun.org
+Priority: 10
+TTL:      3600
+
+
+Record 10: MX (Mailgun B)
+━━━━━━━━━━━━━━━━━━━━━━━
+Type:     MX
+Host:     mg
+Value:    mxb.mailgun.org
+Priority: 10
+TTL:      3600
+
+
+──────────────────────────────────────────────────────────────────
+  SECTION C: OPTIONAL - GHL FUNNEL/SITE HOSTING (go.disruptorsmedia.com)
+──────────────────────────────────────────────────────────────────
+
+Record 11: CNAME (GHL Site)
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  CNAME
+Host:  go
+Value: sites.ludicrous.cloud
+TTL:   3600
+
+OR (if CNAME doesn't work)
+
+Record 11: A (GHL Site - Alternative)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:  A
+Host:  go
+Value: 162.159.140.166
+TTL:   3600
+
+
+═══════════════════════════════════════════════════════════════════
+  VERIFICATION CHECKLIST
+═══════════════════════════════════════════════════════════════════
+
+After adding all records:
+
+1. Wait 15-30 minutes for DNS propagation
+
+2. Run verification script:
+   cd /Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub
+   node temp/verify-dns-records.js
+
+3. Check online tools:
+   MXToolbox: https://mxtoolbox.com/SuperTool.aspx
+   Enter domain: disruptorsmedia.com
+
+4. Verify in GoHighLevel:
+   Settings → Email Services → Sending Domains
+   mg.disruptorsmedia.com should show "✅ Verified"
+
+5. Test email sending from GHL
+
+
+═══════════════════════════════════════════════════════════════════
+  NOTES
+═══════════════════════════════════════════════════════════════════
+
+• DNS changes can take 1-48 hours to fully propagate (usually <1 hour)
+• Only ONE SPF record should exist per domain/subdomain
+• Make sure to delete old Google MX records (aspmx.l.google.com, etc.)
+• The @ symbol represents your root domain (disruptorsmedia.com)
+• The mg subdomain keeps Mailgun separate from Google Workspace
+• All "Host" values are relative to disruptorsmedia.com
+
+═══════════════════════════════════════════════════════════════════

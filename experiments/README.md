@@ -126,7 +126,35 @@ experiments/
 
 ## Quick Start
 
-### Submitting a New Experiment
+### 🚀 Automatic Mode (Recommended)
+
+**Step 1**: Start the file watcher
+```bash
+npm run experiments:watch
+```
+
+**Step 2**: Submit an experiment
+```bash
+# Create a new experiment file
+cp experiments/templates/concept-template.md experiments/submissions/my-experiment.md
+
+# Or just drop your raw idea
+echo "Your experiment idea here" > experiments/ideas/my-idea.txt
+```
+
+**Step 3**: Watch it happen automatically!
+- Watcher detects new file within 3 seconds
+- Agent analyzes concept automatically
+- Implementation plan created automatically
+- You review and approve in admin panel
+
+**That's it!** The watcher + agent handle everything else.
+
+See [AUTO-WATCH.md](./AUTO-WATCH.md) for complete documentation.
+
+---
+
+### 📝 Manual Mode (Alternative)
 
 1. **Copy the Template**:
    ```bash
@@ -141,7 +169,7 @@ experiments/
 
 3. **Submit**:
    - Save the file to `experiments/submissions/`
-   - The orchestrator agent will automatically detect and process it
+   - Manually trigger the orchestrator agent
 
 4. **Agent Analysis**:
    - Agent reads and analyzes the concept
