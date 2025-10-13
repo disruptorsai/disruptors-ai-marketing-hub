@@ -7,12 +7,28 @@ import { caseStudies } from '@/data/caseStudies';
 /**
  * SIMPLIFIED Work Page for debugging
  * Removes DynamicBackground, BlurSection, and other complex wrappers
+ * DIAGNOSTIC VERSION: Forces opacity and logs mount status
  */
 export default function WorkSimple() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log('🎨 [WORK-SIMPLE] Component mounted in DOM');
+    setMounted(true);
+  }, []);
+
   console.log('🎨 [WORK-SIMPLE] Rendering with', caseStudies.length, 'case studies');
+  console.log('🎨 [WORK-SIMPLE] Mounted state:', mounted);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div
+      className="min-h-screen bg-black text-white"
+      style={{
+        opacity: 1,
+        visibility: 'visible',
+        position: 'relative',
+        zIndex: 1
+      }}>
       {/* Simple Header */}
       <div className="py-20 text-center bg-gradient-to-b from-yellow-500/20 to-transparent">
         <h1 className="text-6xl font-bold mb-4">
