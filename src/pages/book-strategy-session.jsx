@@ -21,6 +21,7 @@ export default function BookStrategySession() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingUrl, setBookingUrl] = useState("");
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -29,16 +30,34 @@ export default function BookStrategySession() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // TODO: Integrate with GHL webhook + Calendar
-      // await functions.submitStrategySession(formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Submit to GHL Calendar Booking function
+      const response = await fetch('/.netlify/functions/ghl-calendar-booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit booking request');
+      }
+
+      const data = await response.json();
+      console.log('✅ Booking submitted:', data);
+
+      // Store the booking URL for the iframe/redirect
+      if (data.bookingUrl) {
+        setBookingUrl(data.bookingUrl);
+      }
+
       setIsSubmitted(true);
     } catch (error) {
       console.error('Failed to submit form:', error);
+      alert('Sorry, there was an error submitting your request. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -79,12 +98,28 @@ export default function BookStrategySession() {
                   </ul>
                 </div>
                 
-                {/* TODO: Embed calendar widget here */}
-                <div className="mt-8 bg-gray-100 border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center">
-                  <p className="text-xs font-mono text-gray-500">
-                    [CALENDAR EMBED: GHL Integration]
-                  </p>
-                </div>
+                {/* GoHighLevel Calendar Widget */}
+                {bookingUrl && (
+                  <div className="mt-8">
+                    <h4 className="text-center font-semibold text-gray-900 mb-4">
+                      Select Your Preferred Time
+                    </h4>
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden" style={{ minHeight: '600px' }}>
+                      <iframe
+                        src={bookingUrl}
+                        width="100%"
+                        height="600"
+                        frameBorder="0"
+                        scrolling="yes"
+                        title="Book Strategy Session Calendar"
+                        className="w-full"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-4 text-center">
+                      Can't see the calendar? <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Click here to book in a new window</a>
+                    </p>
+                  </div>
+                )}
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8" id="strategy-session-form">
