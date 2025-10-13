@@ -25,9 +25,14 @@ export function lazyWithRetry(importFunc, maxRetries = 1) {
     const pageLoadKey = 'page-load-attempt';
     const hasRefreshed = sessionStorage.getItem(pageLoadKey);
 
+    console.log('🔵 [lazyWithRetry] Starting import...');
+    console.log('🔵 [lazyWithRetry] hasRefreshed:', hasRefreshed);
+
     try {
       // Try to import the component
+      console.log('🔵 [lazyWithRetry] Calling importFunc()...');
       const component = await importFunc();
+      console.log('✅ [lazyWithRetry] Import successful!', component);
 
       // Success! Clear the refresh flag
       sessionStorage.removeItem(pageLoadKey);
