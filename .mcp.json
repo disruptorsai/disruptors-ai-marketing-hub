@@ -1,0 +1,159 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory@latest"]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem@latest",
+        "${FILESYSTEM_PATH:-/Users/${USER}/Documents/DM4}"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github@latest"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "netlify": {
+      "command": "npx",
+      "args": ["-y", "@netlify/mcp@latest"],
+      "env": {
+        "NETLIFY_AUTH_TOKEN": "${NETLIFY_AUTH_TOKEN}"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-supabase@latest"],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}",
+        "SUPABASE_PROJECT_REF": "${SUPABASE_PROJECT_REF}"
+      }
+    },
+    "cloudinary": {
+      "command": "npx",
+      "args": ["-y", "@felores/cloudinary-mcp-server@latest"],
+      "env": {
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME:-dvcvxhzmt}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "puppeteer-mcp-claude"]
+    },
+    "figma-developer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=${FIGMA_API_KEY}",
+        "--stdio"
+      ]
+    },
+    "dataforseo": {
+      "command": "npx",
+      "args": ["-y", "dataforseo-mcp-server"],
+      "env": {
+        "DATAFORSEO_USERNAME": "${DATAFORSEO_USERNAME:-will@disruptorsmedia.com}",
+        "DATAFORSEO_PASSWORD": "${DATAFORSEO_PASSWORD}"
+      }
+    },
+    "n8n-mcp": {
+      "command": "node",
+      "args": ["/Users/${USER}/n8n-mcp/dist/mcp/index.js"],
+      "env": {
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "error",
+        "MCP_MODE": "stdio",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "${N8N_API_URL:-https://willdisrupt.app.n8n.cloud/api/v1}",
+        "N8N_API_KEY": "${N8N_API_KEY}"
+      }
+    },
+    "gohighlevel": {
+      "command": "node",
+      "args": ["/Users/${USER}/gohighlevel-mcp-repo/dist/server.js"],
+      "env": {
+        "GHL_API_KEY": "${GHL_API_KEY}",
+        "GHL_BASE_URL": "${GHL_BASE_URL:-https://services.leadconnectorhq.com}",
+        "GHL_LOCATION_ID": "${GHL_LOCATION_ID:-1DrJ590uuFroxuiy2iME}",
+        "NODE_ENV": "production"
+      }
+    },
+    "vercel": {
+      "url": "https://mcp.vercel.com/will-4496s-projects/public"
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
+    "digitalocean": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@digitalocean/mcp",
+        "--services",
+        "apps,databases,droplets"
+      ],
+      "env": {
+        "DIGITALOCEAN_API_TOKEN": "${DIGITALOCEAN_API_TOKEN}"
+      }
+    },
+    "railway": {
+      "command": "npx",
+      "args": ["-y", "@railway/mcp-server"],
+      "env": {
+        "NODE_ENV": "production",
+        "RAILWAY_API_TOKEN": "${RAILWAY_API_TOKEN}"
+      }
+    },
+    "airtable": {
+      "command": "npx",
+      "args": ["-y", "airtable-mcp-server"],
+      "env": {
+        "AIRTABLE_API_KEY": "${AIRTABLE_API_KEY}"
+      }
+    },
+    "replicate": {
+      "command": "npx",
+      "args": ["-y", "replicate-mcp"],
+      "env": {
+        "REPLICATE_API_TOKEN": "${REPLICATE_API_TOKEN}"
+      }
+    },
+    "nano-banana": {
+      "command": "npx",
+      "args": ["-y", "nano-banana-mcp"],
+      "env": {
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+      }
+    },
+    "cursor-talk-to-figma": {
+      "command": "/Users/${USER}/.bun/bin/bunx",
+      "args": ["cursor-talk-to-figma-mcp@latest"]
+    },
+    "apify-modern": {
+      "url": "https://mcp.apify.com"
+    },
+    "MCP_DOCKER": {
+      "command": "docker",
+      "args": ["mcp", "gateway", "run"]
+    }
+  }
+}
