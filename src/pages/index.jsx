@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from "./Layout.jsx";
+import { lazyWithRetry } from '@/utils/lazyWithRetry';
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
@@ -12,100 +13,100 @@ const PageLoader = () => (
   </div>
 );
 
-// Lazy load all pages for optimal performance
+// Lazy load all pages for optimal performance with automatic retry on chunk load failure
 // Home page loaded immediately for faster initial render
 import Home from "./Home.jsx";
 
-// Core pages - lazy loaded
-const Assessment = lazy(() => import('./assessment.jsx'));
-const Calculator = lazy(() => import('./calculator.jsx'));
-const MarketingAudit = lazy(() => import('./marketing-audit.jsx'));
-const NotFound = lazy(() => import('./404.jsx'));
-const Solutions = lazy(() => import('./solutions.jsx'));
-const Work = lazy(() => import('./work.jsx'));
-const About = lazy(() => import('./about.jsx'));
-const AITools = lazy(() => import('./ai-tools.jsx'));
-const Contact = lazy(() => import('./contact.jsx'));
-const Privacy = lazy(() => import('./privacy.jsx'));
-const Terms = lazy(() => import('./terms.jsx'));
+// Core pages - lazy loaded with retry logic to handle deployments
+const Assessment = lazyWithRetry(() => import('./assessment.jsx'));
+const Calculator = lazyWithRetry(() => import('./calculator.jsx'));
+const MarketingAudit = lazyWithRetry(() => import('./marketing-audit.jsx'));
+const NotFound = lazyWithRetry(() => import('./404.jsx'));
+const Solutions = lazyWithRetry(() => import('./solutions.jsx'));
+const Work = lazyWithRetry(() => import('./work.jsx'));
+const About = lazyWithRetry(() => import('./about.jsx'));
+const AITools = lazyWithRetry(() => import('./ai-tools.jsx'));
+const Contact = lazyWithRetry(() => import('./contact.jsx'));
+const Privacy = lazyWithRetry(() => import('./privacy.jsx'));
+const Terms = lazyWithRetry(() => import('./terms.jsx'));
 
-// Dev pages for comparison - lazy loaded
+// Dev pages for comparison - lazy loaded with retry
 import HomeDev from "./Home-dev.jsx";
-const AboutDev = lazy(() => import('./about-dev.jsx'));
-const SolutionsDev = lazy(() => import('./solutions-dev.jsx'));
-const WorkDev = lazy(() => import('./work-dev.jsx'));
-const ResourcesDev = lazy(() => import('./resources-dev.jsx'));
-const ContactDev = lazy(() => import('./contact-dev.jsx'));
+const AboutDev = lazyWithRetry(() => import('./about-dev.jsx'));
+const SolutionsDev = lazyWithRetry(() => import('./solutions-dev.jsx'));
+const WorkDev = lazyWithRetry(() => import('./work-dev.jsx'));
+const ResourcesDev = lazyWithRetry(() => import('./resources-dev.jsx'));
+const ContactDev = lazyWithRetry(() => import('./contact-dev.jsx'));
 
-// Blog system - lazy loaded
-const Blog = lazy(() => import('./blog.jsx'));
-const BlogDetail = lazy(() => import('./blog-detail.jsx'));
-const BlogManagement = lazy(() => import('./blog-management.jsx'));
+// Blog system - lazy loaded with retry
+const Blog = lazyWithRetry(() => import('./blog.jsx'));
+const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
+const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
 
-// Business Brain system - lazy loaded
-const BusinessBrainManager = lazy(() => import('./business-brain-manager.jsx'));
-const AIContentWriter = lazy(() => import('./ai-content-writer.jsx'));
-const KeywordResearch = lazy(() => import('./keyword-research.jsx'));
-const Tools = lazy(() => import('./tools.jsx'));
+// Business Brain system - lazy loaded with retry
+const BusinessBrainManager = lazyWithRetry(() => import('./business-brain-manager.jsx'));
+const AIContentWriter = lazyWithRetry(() => import('./ai-content-writer.jsx'));
+const KeywordResearch = lazyWithRetry(() => import('./keyword-research.jsx'));
+const Tools = lazyWithRetry(() => import('./tools.jsx'));
 
 // Auth system
-const AuthCallback = lazy(() => import('./auth-callback.jsx'));
+const AuthCallback = lazyWithRetry(() => import('./auth-callback.jsx'));
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
-// Work case studies - lazy loaded
-const WorkSaasContentEngine = lazy(() => import('./work-saas-content-engine.jsx'));
-const WorkTradeworxUsa = lazy(() => import('./work-tradeworx-usa.jsx'));
-const WorkTimberViewFinancial = lazy(() => import('./work-timber-view-financial.jsx'));
-const WorkTheWellnessWay = lazy(() => import('./work-the-wellness-way.jsx'));
-const WorkSoundCorrections = lazy(() => import('./work-sound-corrections.jsx'));
-const WorkSegpro = lazy(() => import('./work-segpro.jsx'));
-const WorkNeuroMastery = lazy(() => import('./work-neuro-mastery.jsx'));
-const WorkMuscleWorks = lazy(() => import('./work-muscle-works.jsx'));
-const WorkGranitePaving = lazy(() => import('./work-granite-paving.jsx'));
-const WorkAutoTrimUtah = lazy(() => import('./work-auto-trim-utah.jsx'));
+// Work case studies - lazy loaded with retry
+const WorkSaasContentEngine = lazyWithRetry(() => import('./work-saas-content-engine.jsx'));
+const WorkTradeworxUsa = lazyWithRetry(() => import('./work-tradeworx-usa.jsx'));
+const WorkTimberViewFinancial = lazyWithRetry(() => import('./work-timber-view-financial.jsx'));
+const WorkTheWellnessWay = lazyWithRetry(() => import('./work-the-wellness-way.jsx'));
+const WorkSoundCorrections = lazyWithRetry(() => import('./work-sound-corrections.jsx'));
+const WorkSegpro = lazyWithRetry(() => import('./work-segpro.jsx'));
+const WorkNeuroMastery = lazyWithRetry(() => import('./work-neuro-mastery.jsx'));
+const WorkMuscleWorks = lazyWithRetry(() => import('./work-muscle-works.jsx'));
+const WorkGranitePaving = lazyWithRetry(() => import('./work-granite-paving.jsx'));
+const WorkAutoTrimUtah = lazyWithRetry(() => import('./work-auto-trim-utah.jsx'));
 
-// Solutions pages - lazy loaded
-const SolutionsAiAutomation = lazy(() => import('./solutions-ai-automation.jsx'));
-const SolutionsSocialMedia = lazy(() => import('./solutions-social-media.jsx'));
-const SolutionsSeoGeo = lazy(() => import('./solutions-seo-geo.jsx'));
-const SolutionsLeadGeneration = lazy(() => import('./solutions-lead-generation.jsx'));
-const SolutionsPaidAdvertising = lazy(() => import('./solutions-paid-advertising.jsx'));
-const SolutionsPodcasting = lazy(() => import('./solutions-podcasting.jsx'));
-const SolutionsCustomApps = lazy(() => import('./solutions-custom-apps.jsx'));
-const SolutionsCrmManagement = lazy(() => import('./solutions-crm-management.jsx'));
-const SolutionsFractionalCmo = lazy(() => import('./solutions-fractional-cmo.jsx'));
+// Solutions pages - lazy loaded with retry
+const SolutionsAiAutomation = lazyWithRetry(() => import('./solutions-ai-automation.jsx'));
+const SolutionsSocialMedia = lazyWithRetry(() => import('./solutions-social-media.jsx'));
+const SolutionsSeoGeo = lazyWithRetry(() => import('./solutions-seo-geo.jsx'));
+const SolutionsLeadGeneration = lazyWithRetry(() => import('./solutions-lead-generation.jsx'));
+const SolutionsPaidAdvertising = lazyWithRetry(() => import('./solutions-paid-advertising.jsx'));
+const SolutionsPodcasting = lazyWithRetry(() => import('./solutions-podcasting.jsx'));
+const SolutionsCustomApps = lazyWithRetry(() => import('./solutions-custom-apps.jsx'));
+const SolutionsCrmManagement = lazyWithRetry(() => import('./solutions-crm-management.jsx'));
+const SolutionsFractionalCmo = lazyWithRetry(() => import('./solutions-fractional-cmo.jsx'));
 
-// Additional pages - lazy loaded
-const BookStrategySession = lazy(() => import('./book-strategy-session.jsx'));
-const Podcast = lazy(() => import('./podcast.jsx'));
-const Gallery = lazy(() => import('./gallery.jsx'));
-const Faq = lazy(() => import('./faq.jsx'));
-const ResourcesAiSuitcaseTermsDecoded = lazy(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
+// Additional pages - lazy loaded with retry
+const BookStrategySession = lazyWithRetry(() => import('./book-strategy-session.jsx'));
+const Podcast = lazyWithRetry(() => import('./podcast.jsx'));
+const Gallery = lazyWithRetry(() => import('./gallery.jsx'));
+const Faq = lazyWithRetry(() => import('./faq.jsx'));
+const ResourcesAiSuitcaseTermsDecoded = lazyWithRetry(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
 
-// Demo pages with 3D/animations - lazy loaded (saves 1.98 MB physics bundle)
-const ScrollAnimationDemo = lazy(() => import('../components/examples/ScrollAnimationExamples.jsx'));
-const FullAnimationDemo = lazy(() => import('./full-animation-demo.jsx'));
-const SplineDemo = lazy(() => import('./spline-demo.jsx'));
-const SplineHandPreview = lazy(() => import('./spline-hand-preview.jsx'));
-const VideoScrubDemo = lazy(() => import('./video-scrub-demo.jsx'));
-const TextGlitchDemo = lazy(() => import('./TextGlitchDemo.jsx'));
+// Demo pages with 3D/animations - lazy loaded with retry (saves 1.98 MB physics bundle)
+const ScrollAnimationDemo = lazyWithRetry(() => import('../components/examples/ScrollAnimationExamples.jsx'));
+const FullAnimationDemo = lazyWithRetry(() => import('./full-animation-demo.jsx'));
+const SplineDemo = lazyWithRetry(() => import('./spline-demo.jsx'));
+const SplineHandPreview = lazyWithRetry(() => import('./spline-hand-preview.jsx'));
+const VideoScrubDemo = lazyWithRetry(() => import('./video-scrub-demo.jsx'));
+const TextGlitchDemo = lazyWithRetry(() => import('./TextGlitchDemo.jsx'));
 
-// Landing page demos - lazy loaded
-const DemosIndex = lazy(() => import('./demos/index.jsx'));
-const DemoHeroFocus = lazy(() => import('./demos/hero-focus.jsx'));
-const DemoBenefitsDriven = lazy(() => import('./demos/benefits-driven.jsx'));
-const DemoSocialProof = lazy(() => import('./demos/social-proof.jsx'));
-const DemoInteractive = lazy(() => import('./demos/interactive.jsx'));
-const DemoConversion = lazy(() => import('./demos/conversion.jsx'));
-const DemoBestOfAll = lazy(() => import('./demos/best-of-all.jsx'));
-const GrowthAuditDemo = lazy(() => import('./demos/growth-audit.jsx'));
-const GrowthAuditResults = lazy(() => import('./demos/growth-audit-results.jsx'));
-const KeywordResearchDemo = lazy(() => import('./demos/keyword-research-demo.jsx'));
-const AIContentWriterDemo = lazy(() => import('./demos/ai-content-writer-demo.jsx'));
+// Landing page demos - lazy loaded with retry
+const DemosIndex = lazyWithRetry(() => import('./demos/index.jsx'));
+const DemoHeroFocus = lazyWithRetry(() => import('./demos/hero-focus.jsx'));
+const DemoBenefitsDriven = lazyWithRetry(() => import('./demos/benefits-driven.jsx'));
+const DemoSocialProof = lazyWithRetry(() => import('./demos/social-proof.jsx'));
+const DemoInteractive = lazyWithRetry(() => import('./demos/interactive.jsx'));
+const DemoConversion = lazyWithRetry(() => import('./demos/conversion.jsx'));
+const DemoBestOfAll = lazyWithRetry(() => import('./demos/best-of-all.jsx'));
+const GrowthAuditDemo = lazyWithRetry(() => import('./demos/growth-audit.jsx'));
+const GrowthAuditResults = lazyWithRetry(() => import('./demos/growth-audit-results.jsx'));
+const KeywordResearchDemo = lazyWithRetry(() => import('./demos/keyword-research-demo.jsx'));
+const AIContentWriterDemo = lazyWithRetry(() => import('./demos/ai-content-writer-demo.jsx'));
 
-// Hidden utility pages - lazy loaded
-const GraveyardArchive = lazy(() => import('./GraveyardArchive.jsx'));
-const ScreenshotManager = lazy(() => import('./ScreenshotManager.jsx'));
+// Hidden utility pages - lazy loaded with retry
+const GraveyardArchive = lazyWithRetry(() => import('./GraveyardArchive.jsx'));
+const ScreenshotManager = lazyWithRetry(() => import('./ScreenshotManager.jsx'));
 
 const PAGES = {
 
