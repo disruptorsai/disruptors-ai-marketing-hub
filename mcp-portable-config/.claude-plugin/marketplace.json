@@ -1,0 +1,45 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "disruptors-ai-marketplace",
+  "version": "1.0.0",
+  "description": "Official Disruptors AI plugin marketplace for Claude Code MCP servers and development tools",
+  "owner": {
+    "name": "Disruptors AI",
+    "email": "will@disruptorsmedia.com",
+    "url": "https://github.com/TechIntegrationLabs"
+  },
+  "plugins": [
+    {
+      "name": "disruptors-mcp-suite",
+      "version": "1.0.0",
+      "description": "Complete MCP server suite: 22 pre-configured servers for development, AI services, cloud platforms, and automation",
+      "author": {
+        "name": "Disruptors AI",
+        "email": "will@disruptorsmedia.com"
+      },
+      "source": ".",
+      "category": "development",
+      "keywords": [
+        "mcp",
+        "development",
+        "ai",
+        "automation",
+        "deployment"
+      ],
+      "features": [
+        "22 pre-configured MCP servers",
+        "3 profile modes: minimal, dev, full",
+        "Environment variable templating",
+        "GitHub, Netlify, Supabase integration",
+        "AI services: Gemini, Replicate",
+        "Marketing automation: n8n, GoHighLevel",
+        "Design tools: Figma integration",
+        "Web automation: Firecrawl, Puppeteer"
+      ],
+      "requirements": {
+        "claudeCode": ">=2.0.0",
+        "node": ">=18.0.0"
+      }
+    }
+  ]
+}

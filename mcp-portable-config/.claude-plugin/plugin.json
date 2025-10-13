@@ -1,0 +1,43 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "disruptors-mcp-suite",
+  "version": "1.0.0",
+  "description": "Complete MCP server suite for Disruptors AI development: 22 pre-configured servers for development, AI services, cloud platforms, and automation",
+  "author": {
+    "name": "Disruptors AI",
+    "email": "will@disruptorsmedia.com",
+    "url": "https://github.com/TechIntegrationLabs"
+  },
+  "homepage": "https://github.com/TechIntegrationLabs/mcp-config",
+  "repository": "https://github.com/TechIntegrationLabs/mcp-config",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "development",
+    "ai",
+    "automation",
+    "cloud",
+    "deployment",
+    "github",
+    "netlify",
+    "supabase",
+    "figma",
+    "n8n",
+    "gohighlevel"
+  ],
+  "mcpServers": "./.mcp.json",
+  "profiles": {
+    "minimal": {
+      "description": "3 essential servers for basic development",
+      "servers": ["memory", "filesystem", "sequential-thinking"]
+    },
+    "dev": {
+      "description": "7 servers for full-stack development",
+      "servers": ["memory", "filesystem", "github", "netlify", "supabase", "cloudinary", "sequential-thinking"]
+    },
+    "full": {
+      "description": "All 22 servers enabled",
+      "servers": "*"
+    }
+  }
+}
