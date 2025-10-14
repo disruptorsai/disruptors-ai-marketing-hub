@@ -213,8 +213,8 @@ export default function AboutDev() {
           <div className="absolute inset-0 bg-black/90" />
         </div>
 
-        {/* Yellow accent line at top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10" />
+        {/* White accent line at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent z-10" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <motion.div
@@ -561,7 +561,7 @@ export default function AboutDev() {
         </div>
 
         {/* Bottom yellow accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
       </section>
 
       {/* Partnership Section */}
