@@ -98,7 +98,11 @@
     "claude:help": "npx @anthropic-ai/claude-code --help",
     "claude:version": "npx @anthropic-ai/claude-code --version",
     "claude:setup": "node scripts/claude-code-integration.js setup",
-    "claude:status": "node scripts/claude-code-integration.js status"
+    "claude:status": "node scripts/claude-code-integration.js status",
+    "provision:db": "node scripts/auto-provision-database.js",
+    "provision:neon": "node scripts/auto-provision-database.js --provider=neon",
+    "provision:supabase": "node scripts/auto-provision-database.js --provider=supabase",
+    "provision:docker": "node scripts/auto-provision-database.js --provider=docker"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.23",

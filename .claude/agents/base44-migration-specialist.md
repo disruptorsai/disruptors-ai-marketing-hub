@@ -124,9 +124,31 @@ Generate document: `docs/BASE44_MIGRATION_ANALYSIS_[AppName].md`
 
 ---
 
-### Phase 1.5: Decision Points & Approval (INTERACTIVE - REQUIRES USER APPROVAL)
+### Phase 1.5: Automated Database Provisioning
 
-After analysis is complete, present the user with:
+**CRITICAL**: Before asking any questions, automatically provision a database using the automated provisioning script.
+
+**Run**: `node scripts/auto-provision-database.js [app-name]`
+
+This script will automatically:
+1. Try Neon first (best option - serverless, generous free tier)
+2. Fallback to Supabase if Neon unavailable
+3. Fallback to Docker Compose for local development
+
+**If provisioning succeeds:**
+- Skip database-related questions entirely
+- Proceed with remaining questions only
+- Database credentials are auto-stored in `.env.[app-name]`
+
+**If provisioning fails:**
+- Ask user which database they want to use manually
+- Provide setup instructions for their choice
+
+---
+
+### Phase 1.6: Decision Points & Approval (INTERACTIVE - REQUIRES USER APPROVAL)
+
+After analysis and database provisioning, present the user with:
 
 **Part A: Quick Summary (Bullet Points)**
 
@@ -162,249 +184,145 @@ After analysis is complete, present the user with:
 
 ---
 
-## 🔴 DECISION POINTS (YOUR INPUT REQUIRED)
+## 🔴 AUTOMATED DATABASE SETUP
 
-### Decision 1: Database Strategy
-**Question**: How should we handle the database layer?
+**First, I'm automatically provisioning a database for this app...**
 
-**Options**:
-A. **Use Existing Supabase Project** (disruptors-ai-marketing-hub)
-   - ✅ Pros: Shared infrastructure, easier integration with Business Brain
-   - ⚠️ Cons: Tables added to existing project, potential naming conflicts
-   - 📊 Impact: Adds [N] tables to current Supabase project
+Running: `node scripts/auto-provision-database.js [app-name]`
 
-B. **Create New Supabase Project** (dedicated for this app)
-   - ✅ Pros: Isolated database, clean separation, independent scaling
-   - ⚠️ Cons: Additional project to manage, separate auth system
-   - 📊 Impact: New Supabase project, separate credentials
+The system will try:
+1. ✅ **Neon** (serverless PostgreSQL - best option)
+2. ✅ **Supabase** (if Neon unavailable)
+3. ✅ **Docker** (local development fallback)
 
-C. **Use Different Database** (PostgreSQL elsewhere)
-   - ✅ Pros: Full control, custom infrastructure
-   - ⚠️ Cons: More setup, need to handle auth separately
-   - 📊 Impact: Custom database setup required
-
-**Your Choice**: [ A / B / C ]
-**Reasoning** (optional): _________
+[Wait for provisioning to complete - usually 10-30 seconds]
 
 ---
 
-### Decision 2: Authentication Strategy
-**Question**: How should users authenticate?
+**✅ DATABASE PROVISIONED AUTOMATICALLY!**
 
-**Options**:
-A. **Supabase Auth** (recommended with Supabase database)
-   - ✅ Pros: Built-in auth, Google OAuth, email/password, magic links
-   - 📊 Impact: Standard Supabase auth setup
+Database details saved to `.env.[app-name]`
+- Provider: [Neon/Supabase/Docker]
+- Host: [hostname]
+- Database: [dbname]
+- Connection string: [ready to use]
 
-B. **Share Auth with Existing App** (if using existing Supabase project)
-   - ✅ Pros: Single sign-on across apps, shared user base
-   - ⚠️ Cons: Users have access to both apps
-   - 📊 Impact: Same auth.users table
-
-C. **Custom Auth** (separate system)
-   - ✅ Pros: Full control, custom logic
-   - ⚠️ Cons: More development work
-   - 📊 Impact: Custom auth implementation required
-
-**Your Choice**: [ A / B / C ]
-**Multi-tenant?**: [ Yes / No ] (multiple clients/organizations?)
+**Since database is already set up, I only need to ask you about:**
 
 ---
 
-### Decision 3: AI/LLM Integration
-**Detected**: [N] AI calls in the app
+### Question 1: User Authentication
+**This app has user login/authentication.**
 
-**Question**: How should we handle AI/LLM calls?
+**How should users sign in?**
+- Should I use Supabase Auth (email/password, Google OAuth, magic links)?
+- Or do you have a different auth system in mind?
 
-**Options**:
-A. **Anthropic Claude** (Disruptors standard)
-   - ✅ Model: claude-sonnet-4-20250514
-   - 📊 Your existing key, proven in current app
-
-B. **OpenAI** (if app currently uses OpenAI assistant)
-   - ✅ Maintain compatibility with fine-tuned assistants
-   - 📊 Requires OpenAI API key
-
-C. **Both** (multi-provider with fallback)
-   - ✅ Maximum flexibility, fallback options
-   - 📊 Requires both API keys
-
-D. **Other** (Gemini, Replicate, etc.)
-   - Specify: _________
-
-**Your Choice**: [ A / B / C / D ]
+**Follow-up**: Will this app need multi-tenant support (multiple companies/organizations with isolated data)?
 
 ---
 
-### Decision 4: File Storage
-**Detected**: [N] file upload operations
+### Question 2: AI/LLM Calls
+**This app makes [N] AI/LLM calls.**
 
-**Question**: Where should files be stored?
+**Which AI provider should I use?**
+- Anthropic Claude (you already use this in Disruptors)
+- OpenAI (if the app currently uses custom OpenAI assistants)
+- Both providers (for flexibility)
+- Something else?
 
-**Options**:
-A. **Cloudinary** (Disruptors standard)
-   - ✅ Pros: Image transformations, CDN, proven system
-   - 📊 Your existing account
-
-B. **Supabase Storage**
-   - ✅ Pros: Integrated with database, RLS policies
-   - 📊 Free tier, integrated auth
-
-C. **Both** (Cloudinary primary, Supabase fallback)
-   - ✅ Maximum reliability
-   - 📊 Requires both configurations
-
-**Your Choice**: [ A / B / C ]
+**If using OpenAI**: Do you have any custom fine-tuned models or assistants I should preserve?
 
 ---
 
-### Decision 5: Email Service
-**Detected**: [N] email operations
+### Question 3: File Storage
+**This app uploads/stores [N] files.**
 
-**Question**: How should emails be sent?
+**Where should files be stored?**
+- Cloudinary (you already use this - good for images with transformations)
+- Supabase Storage (integrated with your database)
+- Both (Cloudinary primary, Supabase fallback)
 
-**Options**:
-A. **Resend** (Disruptors standard)
-   - ✅ Modern API, good deliverability
-   - 📊 Your existing account
-
-B. **SendGrid**
-   - ✅ Established service, templates
-   - 📊 Requires SendGrid account
-
-C. **Supabase + Other** (transactional emails)
-   - 📊 Setup required
-
-D. **None** (disable email features temporarily)
-   - ⚠️ Email features won't work
-
-**Your Choice**: [ A / B / C / D ]
+**My recommendation**: [Based on file types - images: Cloudinary, documents: Supabase, both: Both]
 
 ---
 
-### Decision 6: Deployment Platform
-**Question**: Where will this app be deployed?
+### Question 4: Email Sending
+**This app sends [N] emails.**
 
-**Options**:
-A. **Netlify** (same as current Disruptors app)
-   - ✅ Pros: Shared infrastructure, easy serverless functions
-   - 📊 Same account, proven deployment
-
-B. **Vercel**
-   - ✅ Pros: Excellent Next.js support (if migrating to Next.js)
-   - 📊 Requires Vercel account
-
-C. **Self-hosted** (VPS, Docker, etc.)
-   - ✅ Full control
-   - 📊 More DevOps work
-
-**Your Choice**: [ A / B / C ]
+**Which email service should I use?**
+- Resend (you already use this)
+- SendGrid
+- Something else
+- None (skip email features for now)
 
 ---
 
-### Decision 7: Integration with Existing Disruptors App
-**Question**: Should this app integrate with your existing Disruptors AI Marketing Hub?
-
-**Options**:
-A. **Separate Standalone App**
-   - ✅ Independent system, isolated
-   - 📊 No integration work needed
-
-B. **Integrate as Module** (add to existing app)
-   - ✅ Share Business Brain, users, infrastructure
-   - ⚠️ More complex, affects existing app
-   - 📊 Becomes part of Disruptors modules system
-
-C. **Shared Backend, Separate Frontend**
-   - ✅ Share database/auth, separate UI
-   - 📊 Moderate integration effort
-
-**Your Choice**: [ A / B / C ]
+### Question 5: Deployment
+**Where do you want this app deployed?**
+- Netlify (same account as your Disruptors app - easy serverless functions)
+- Vercel (better for Next.js if you're considering that)
+- Self-hosted (VPS, Docker, etc.)
 
 ---
 
-### Decision 8: Business Brain Integration
-**Question**: Should this app use your Business Brain system?
+### Question 6: Integration with Disruptors App
+**Should this app integrate with your existing Disruptors AI Marketing Hub?**
 
-**Options**:
-A. **Yes** - Use Business Brain for AI context
-   - ✅ Personalized content, brand voice
-   - 📊 Requires Supabase integration
+Three options here:
+1. **Standalone** - Completely separate app, no integration
+2. **Module** - Add it as a module inside Disruptors (shares users, Business Brain, etc.)
+3. **Shared Backend** - Share database/auth but separate frontend
 
-B. **No** - Standalone AI without Business Brain
-   - ✅ Simpler, independent
-   - 📊 No Business Brain context
-
-C. **Optional** - Support both modes
-   - ✅ Maximum flexibility
-   - 📊 More development work
-
-**Your Choice**: [ A / B / C ]
+**Which makes the most sense for this app?**
 
 ---
 
-### Decision 9: Migration Approach
-**Question**: How aggressive should the migration be?
+### Question 7: Business Brain
+**Should this app use your Business Brain system for AI personalization?**
 
-**Options**:
-A. **Conservative** - Maintain exact Base44 compatibility
-   - ✅ Minimal code changes, safe
-   - 📊 Slower, less modernization
-
-B. **Standard** - Replace Base44, keep structure
-   - ✅ Balanced approach (recommended)
-   - 📊 Moderate changes, good improvements
-
-C. **Aggressive** - Full refactor and modernization
-   - ✅ Best code quality, modern patterns
-   - 📊 More changes, longer timeline
-
-**Your Choice**: [ A / B / C ]
+This would let the app use your brand voice and knowledge base for AI-generated content.
+- Yes, integrate with Business Brain
+- No, standalone AI
+- Optional (support both modes)
 
 ---
 
-### Decision 10: Timeline & Priority
-**Question**: What's your timeline?
+### Question 8: Migration Approach
+**How aggressively should I modernize the code?**
 
-**Options**:
-A. **ASAP** - Core features only, quick migration
-   - 📅 Estimated: 3-5 days
-   - 📊 Basic feature parity, no enhancements
-
-B. **Standard** - Full feature parity
-   - 📅 Estimated: 1-2 weeks
-   - 📊 All features migrated, tested
-
-C. **Enhanced** - Feature parity + improvements
-   - 📅 Estimated: 2-3 weeks
-   - 📊 All features + Business Brain + analytics + polish
-
-**Your Choice**: [ A / B / C ]
-**Hard Deadline** (if any): _________
+- **Conservative**: Keep everything exactly like Base44 (safest, minimal changes)
+- **Standard**: Replace Base44 but keep same structure (recommended balance)
+- **Aggressive**: Full refactor with modern patterns (best code, but more changes)
 
 ---
 
-## 📋 YOUR DECISIONS SUMMARY
+### Question 9: Timeline
+**What's your timeline for this migration?**
 
-Please review and confirm:
+- **Quick** (3-5 days): Just get core features working
+- **Standard** (1-2 weeks): Full feature parity with original
+- **Enhanced** (2-3 weeks): Everything plus improvements (Business Brain, analytics, polish)
 
-1. **Database**: [ Your choice ]
-2. **Authentication**: [ Your choice ]
-3. **AI/LLM**: [ Your choice ]
-4. **File Storage**: [ Your choice ]
-5. **Email**: [ Your choice ]
-6. **Deployment**: [ Your choice ]
-7. **Integration**: [ Your choice ]
-8. **Business Brain**: [ Your choice ]
-9. **Migration Approach**: [ Your choice ]
-10. **Timeline**: [ Your choice ]
-
-**Additional Requirements/Notes**:
-_________________________________________
+**Do you have a hard deadline?**
 
 ---
 
-**AGENT ACTION**: Wait for user approval and answers before proceeding to Phase 2
+## Your Answers
+
+Please answer these questions in any format you prefer. You can respond like:
+
+"Use existing Supabase, Supabase Auth with multi-tenant, Claude for AI, Cloudinary for files, Resend for email, Netlify deployment, integrate as module, yes to Business Brain, standard migration approach, 2 week timeline"
+
+Or just answer each question one by one. Whatever's easiest for you!
+
+Once you've answered, I'll proceed with the customized migration based on your choices.
+
+**Note**: Database is already set up and ready! One less thing to worry about.
+
+---
+
+**AGENT ACTION**: Wait for user to answer these 9 questions (database already handled) before proceeding to Phase 2
 
 ```
 
@@ -1133,36 +1051,50 @@ Generated: docs/BASE44_MIGRATION_ANALYSIS_CRM.md (892 lines)
 
 ---
 
-## 🔴 DECISION POINTS (YOUR INPUT REQUIRED)
+## 🔴 DECISION POINTS
 
-### Decision 1: Database Strategy
-A. Use Existing Supabase Project - adds 15 tables
-B. Create New Supabase Project - isolated CRM database
-C. Use Different Database
+I need to ask you some questions about this CRM app migration:
 
-**Recommendation**: Option B (new project) - this is a substantial CRM system that deserves its own database
+**Question 1: Database Setup**
+This app needs 15 database tables. Should I:
+- Add them to your existing Disruptors Supabase project?
+- Create a brand new Supabase project?
 
-**Your Choice**: ___
+My recommendation: New project - 15 tables is substantial enough for isolation.
 
-[... all 10 decision points ...]
+**Question 2: Authentication**
+How should users sign in? Supabase Auth? Multi-tenant?
+
+**Question 3: AI/LLM**
+23 AI calls detected. Use Claude (your standard) or OpenAI?
+
+**Question 4: File Storage**
+8 file uploads detected. Cloudinary? Supabase Storage? Both?
+
+**Question 5: Email**
+47 email sends detected. Use Resend (your standard)?
+
+**Question 6: Deployment**
+Netlify (your standard) or somewhere else?
+
+**Question 7: Integration**
+Should this be standalone, integrate as a module, or shared backend?
+
+**Question 8: Business Brain**
+Use your Business Brain system for AI context?
+
+**Question 9: Migration Approach**
+Conservative, Standard (recommended), or Aggressive refactor?
+
+**Question 10: Timeline**
+Quick (3-5 days), Standard (1-2 weeks), or Enhanced (2-3 weeks)?
 
 ---
 
-Please review these decisions and let me know your choices. Once approved, I'll proceed with detailed architecture design and migration planning.
+Please answer however you prefer!
 "
 
-User: "Let's go with:
-1. B - New Supabase project
-2. A - Supabase Auth
-3. A - Anthropic Claude
-4. A - Cloudinary
-5. A - Resend
-6. A - Netlify
-7. A - Separate standalone app
-8. B - No Business Brain (CRM-specific features only)
-9. B - Standard migration
-10. B - Standard timeline (1-2 weeks)
-"
+User: "New Supabase project, Supabase Auth with multi-tenant, Claude, Cloudinary, Resend, Netlify, standalone app, no Business Brain, standard migration, 2 weeks"
 
 Agent: "Perfect! Proceeding with your decisions:
 
