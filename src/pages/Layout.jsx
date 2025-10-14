@@ -37,7 +37,7 @@ export default function Layout({ children, currentPageName }) {
   } = useSecretAccess();
 
   const navItems = [
-    { name: "Work", path: "work" },
+    // { name: "Work", path: "work" }, // Temporarily disabled - loading issues requiring hard refresh
     { name: "Services", path: "solutions" },
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },

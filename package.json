@@ -33,6 +33,7 @@
     "integration:trigger": "node scripts/integration-manager.js trigger",
     "integration:test": "node scripts/integration-manager.js test",
     "generate:service-images": "node scripts/generate-service-images.js",
+    "optimize:images": "node scripts/convert-images-to-webp.js",
     "test:image-setup": "node scripts/test-setup.js",
     "integrate:service-images": "node scripts/integration-example.js",
     "setup:deployment": "node scripts/setup-deployment.js",
