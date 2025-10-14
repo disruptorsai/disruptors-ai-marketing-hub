@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -88,9 +88,26 @@ const ServiceCard = ({ service, index }) => {
 export default function Solutions() {
   const handRef = useRef(null);
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Detect mobile device on mount and resize
   useEffect(() => {
-    if (!handRef.current || !sectionRef.current) return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Hide hand on screens smaller than 768px (tablet/mobile)
+    };
+
+    // Check on mount
+    checkMobile();
+
+    // Check on window resize
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // GSAP animation - only runs on desktop
+  useEffect(() => {
+    if (isMobile || !handRef.current || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       // Set fixed position at the pivot point (35% down, far right)
@@ -115,7 +132,7 @@ export default function Solutions() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <div>
@@ -129,18 +146,20 @@ export default function Solutions() {
           alt="Our approach is simple yet impactful"
           className="w-full h-auto"
         />
-        {/* Scroll-Animated Hand */}
-        <img
-          ref={handRef}
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
-          alt="Pointing hand"
-          className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
-        />
+        {/* Scroll-Animated Hand - Hidden on mobile devices */}
+        {!isMobile && (
+          <img
+            ref={handRef}
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
+            alt="Pointing hand"
+            className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
+          />
+        )}
       </section>
 
       {/* Golden Divider Line */}
       <div className="w-full flex justify-center py-0">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white to-transparent"></div>
       </div>
 
       {/* Services Horizontal Scrolling Carousel */}

@@ -107,10 +107,10 @@ export default function Footer() {
 
   const company = [
     { name: 'About Us', path: 'about' },
-    { name: 'Our Work', path: 'work' },
+    // { name: 'Our Work', path: 'work' }, // Temporarily disabled - loading issues
     { name: 'Blog', path: 'blog' },
     { name: 'Podcast', path: 'podcast' },
-    { name: 'AI Tools', path: 'ai-tools' },
+    // { name: 'AI Tools', path: 'ai-tools' }, // Temporarily disabled
     { name: 'Gallery', path: 'gallery' },
     { name: 'FAQ', path: 'faq' },
   ];
@@ -305,11 +305,11 @@ export default function Footer() {
             <ul className="space-y-4 mb-8">
               <li>
                 <a
-                  href="tel:+18015551234"
+                  href="tel:+18019180223"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
-                  <span>(801) 555-1234</span>
+                  <span>(801) 918-0223</span>
                 </a>
               </li>
               <li>
@@ -329,6 +329,7 @@ export default function Footer() {
               </li>
             </ul>
 
+            {/* AI Tools section - Temporarily disabled
             <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-4">
               AI Tools
             </h3>
@@ -347,6 +348,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            */}
           </div>
         </div>
 
