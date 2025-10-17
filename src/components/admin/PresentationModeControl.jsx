@@ -224,18 +224,21 @@ const PresentationModeControl = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Header Card */}
-      <Card className="bg-black/70 border-green-400/30">
-        <CardHeader className="p-4">
+      <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+        <CardHeader className="p-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-white" />
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-fuchsia-500 rounded-xl blur opacity-50" />
+                <div className="relative p-3 rounded-xl bg-gradient-to-br from-purple-500 via-violet-500 to-fuchsia-500">
+                  <Smartphone className="w-6 h-6 text-white" />
+                </div>
               </div>
               <div>
-                <CardTitle className="text-green-400 text-base">Presentation Mode Control</CardTitle>
-                <CardDescription className="text-green-400/80 text-sm">
+                <CardTitle className="text-white text-lg">Presentation Mode Control</CardTitle>
+                <CardDescription className="text-white/60">
                   Download and activate PWA for offline tablet presentations
                 </CardDescription>
               </div>
@@ -246,8 +249,8 @@ const PresentationModeControl = () => {
               variant="outline"
               className={`${
                 isPresentationActive
-                  ? 'border-green-400 text-green-400'
-                  : 'border-yellow-400 text-yellow-400'
+                  ? 'border-emerald-400/50 text-emerald-400 bg-emerald-400/10'
+                  : 'border-amber-400/50 text-amber-400 bg-amber-400/10'
               }`}
             >
               {isPresentationActive ? 'ACTIVE' : 'INACTIVE'}
@@ -260,52 +263,52 @@ const PresentationModeControl = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
         {/* Service Worker Status */}
-        <Card className="bg-black/70 border-green-400/30">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-green-400 text-sm font-mono">Service Worker</span>
+        <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white/70 text-sm font-medium">Service Worker</span>
               {swStatus === 'active' ? (
-                <CheckCircle2 className="w-5 h-5 text-green-400" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
               ) : (
                 <XCircle className="w-5 h-5 text-red-400" />
               )}
             </div>
-            <div className="text-2xl font-bold text-green-400">
+            <div className="text-3xl font-bold text-white mb-1">
               {swStatus === 'active' ? 'Active' : swStatus === 'inactive' ? 'Inactive' : 'Unsupported'}
             </div>
-            <p className="text-xs text-green-400/80 mt-1">
+            <p className="text-sm text-white/50">
               {swStatus === 'active' ? 'Ready for caching' : 'Not available'}
             </p>
           </CardContent>
         </Card>
 
         {/* Cache Status */}
-        <Card className="bg-black/70 border-green-400/30">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-green-400 text-sm font-mono">Cache Status</span>
-              <HardDrive className="w-5 h-5 text-green-400" />
+        <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white/70 text-sm font-medium">Cache Status</span>
+              <HardDrive className="w-5 h-5 text-cyan-400" />
             </div>
-            <div className="text-2xl font-bold text-green-400">
+            <div className="text-3xl font-bold text-white mb-1">
               {cacheStatus?.itemCount || 0} items
             </div>
-            <p className="text-xs text-green-400/80 mt-1">
+            <p className="text-sm text-white/50">
               {cacheStatus?.exists ? `Version ${cacheStatus.version}` : 'No cache'}
             </p>
           </CardContent>
         </Card>
 
         {/* Storage Usage */}
-        <Card className="bg-black/70 border-green-400/30">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-green-400 text-sm font-mono">Storage Used</span>
-              <Globe className="w-5 h-5 text-green-400" />
+        <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white/70 text-sm font-medium">Storage Used</span>
+              <Globe className="w-5 h-5 text-purple-400" />
             </div>
-            <div className="text-2xl font-bold text-green-400">
+            <div className="text-3xl font-bold text-white mb-1">
               {storageEstimate?.usage || '0'} MB
             </div>
-            <p className="text-xs text-green-400/80 mt-1">
+            <p className="text-sm text-white/50">
               {storageEstimate?.percent || '0'}% of quota
             </p>
           </CardContent>
@@ -314,37 +317,38 @@ const PresentationModeControl = () => {
 
       {/* Download Progress */}
       {isDownloading && (
-        <Card className="bg-black/70 border-green-400/30">
-          <CardContent className="p-4">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-green-400 font-mono">Downloading assets...</span>
-                <span className="text-green-400 font-bold">{downloadProgress}%</span>
+        <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-white font-medium">Downloading assets...</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">{downloadProgress}%</span>
               </div>
-              <Progress value={downloadProgress} className="h-2" />
+              <Progress value={downloadProgress} className="h-2 bg-white/10" />
+              <p className="text-sm text-white/50">This may take a few moments...</p>
             </div>
           </CardContent>
         </Card>
       )}
 
       {/* Main Actions */}
-      <Card className="bg-black/70 border-green-400/30">
-        <CardHeader className="p-4">
-          <CardTitle className="text-green-400 text-base">Actions</CardTitle>
+      <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+        <CardHeader className="p-6">
+          <CardTitle className="text-white text-lg">Actions</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 pt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <CardContent className="p-6 pt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
             {/* Download PWA Assets */}
             <Button
               onClick={downloadPWAAssets}
               disabled={isDownloading || swStatus !== 'active'}
-              className="w-full bg-blue-500/20 border border-blue-400 text-blue-400 hover:bg-blue-500/30 h-auto py-4 flex flex-col items-center space-y-2"
+              className="w-full bg-gradient-to-br from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white h-auto py-6 flex flex-col items-center space-y-3 shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
-              <Download className="w-6 h-6" />
+              <Download className="w-7 h-7" />
               <div>
-                <div className="font-bold">Download Latest Assets</div>
-                <div className="text-xs opacity-80">Cache site for offline use</div>
+                <div className="font-bold text-base">Download Latest Assets</div>
+                <div className="text-xs opacity-90">Cache site for offline use</div>
               </div>
             </Button>
 
@@ -352,18 +356,18 @@ const PresentationModeControl = () => {
             <Button
               onClick={isPresentationActive ? deactivatePresentationMode : activatePresentationMode}
               disabled={!cacheStatus?.exists}
-              className={`w-full h-auto py-4 flex flex-col items-center space-y-2 ${
+              className={`w-full h-auto py-6 flex flex-col items-center space-y-3 shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                 isPresentationActive
-                  ? 'bg-red-500/20 border border-red-400 text-red-400 hover:bg-red-500/30'
-                  : 'bg-green-500/20 border border-green-400 text-green-400 hover:bg-green-500/30'
-              }`}
+                  ? 'bg-gradient-to-br from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 shadow-red-500/20'
+                  : 'bg-gradient-to-br from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-emerald-500/20'
+              } text-white`}
             >
-              <Play className="w-6 h-6" />
+              <Play className="w-7 h-7" />
               <div>
-                <div className="font-bold">
+                <div className="font-bold text-base">
                   {isPresentationActive ? 'Deactivate' : 'Activate'} Presentation Mode
                 </div>
-                <div className="text-xs opacity-80">
+                <div className="text-xs opacity-90">
                   {isPresentationActive ? 'Exit tablet mode' : 'Optimize for tablet'}
                 </div>
               </div>
@@ -374,7 +378,7 @@ const PresentationModeControl = () => {
               onClick={clearCache}
               disabled={!cacheStatus?.exists}
               variant="outline"
-              className="w-full border-yellow-400 text-yellow-400 hover:bg-yellow-400/20"
+              className="w-full border-amber-400/50 text-amber-400 hover:bg-amber-400/10 hover:border-amber-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Trash2 className="w-4 h-4 mr-2" />
               Clear Cache
@@ -385,7 +389,7 @@ const PresentationModeControl = () => {
               onClick={forceUpdate}
               disabled={swStatus !== 'active'}
               variant="outline"
-              className="w-full border-purple-400 text-purple-400 hover:bg-purple-400/20"
+              className="w-full border-purple-400/50 text-purple-400 hover:bg-purple-400/10 hover:border-purple-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Force Update
@@ -395,35 +399,47 @@ const PresentationModeControl = () => {
       </Card>
 
       {/* Info Panel */}
-      <Card className="bg-black/70 border-green-400/30">
-        <CardHeader className="p-4">
-          <CardTitle className="text-green-400 text-base">Information</CardTitle>
+      <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+        <CardHeader className="p-6">
+          <CardTitle className="text-white text-lg">Information</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 pt-0">
-          <div className="space-y-3 text-sm text-green-400 font-mono">
-            <div className="flex items-start space-x-2">
-              <WifiOff className="w-4 h-4 mt-0.5 flex-shrink-0" />
+        <CardContent className="p-6 pt-0">
+          <div className="space-y-4 text-sm text-white/80">
+            <div className="flex items-start space-x-3">
+              <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <WifiOff className="w-4 h-4 text-blue-400" />
+              </div>
               <div>
-                <strong>Offline Capability:</strong> Once downloaded, the site will work without internet connection
+                <div className="font-medium text-white mb-1">Offline Capability</div>
+                <div className="text-white/60">Once downloaded, the site will work without internet connection</div>
               </div>
             </div>
-            <div className="flex items-start space-x-2">
-              <Smartphone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <div className="flex items-start space-x-3">
+              <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                <Smartphone className="w-4 h-4 text-purple-400" />
+              </div>
               <div>
-                <strong>Tablet Optimized:</strong> Presentation Mode adjusts UI for large touchscreen displays
+                <div className="font-medium text-white mb-1">Tablet Optimized</div>
+                <div className="text-white/60">Presentation Mode adjusts UI for large touchscreen displays</div>
               </div>
             </div>
-            <div className="flex items-start space-x-2">
-              <RefreshCw className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <div className="flex items-start space-x-3">
+              <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                <RefreshCw className="w-4 h-4 text-cyan-400" />
+              </div>
               <div>
-                <strong>Auto-Update:</strong> Service Worker checks for updates on page load
+                <div className="font-medium text-white mb-1">Auto-Update</div>
+                <div className="text-white/60">Service Worker checks for updates on page load</div>
               </div>
             </div>
             {lastUpdate && (
-              <div className="flex items-start space-x-2">
-                <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start space-x-3">
+                <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                </div>
                 <div>
-                  <strong>Last Updated:</strong> {lastUpdate.toLocaleString()}
+                  <div className="font-medium text-white mb-1">Last Updated</div>
+                  <div className="text-white/60">{lastUpdate.toLocaleString()}</div>
                 </div>
               </div>
             )}
@@ -433,12 +449,12 @@ const PresentationModeControl = () => {
 
       {/* Debug Info */}
       {cacheStatus && (
-        <Card className="bg-black/70 border-green-400/30">
-          <CardHeader className="p-4">
-            <CardTitle className="text-green-400 text-base">Debug Information</CardTitle>
+        <Card className="bg-slate-900/50 border-white/10 backdrop-blur-sm">
+          <CardHeader className="p-6">
+            <CardTitle className="text-white text-lg">Debug Information</CardTitle>
           </CardHeader>
-          <CardContent className="p-4 pt-0">
-            <pre className="text-xs text-green-400 font-mono bg-black/50 p-3 rounded overflow-x-auto">
+          <CardContent className="p-6 pt-0">
+            <pre className="text-xs text-white/70 font-supply bg-slate-950/50 p-4 rounded-lg overflow-x-auto border border-white/5">
               {JSON.stringify({
                 serviceWorker: swStatus,
                 cache: cacheStatus,
