@@ -87,6 +87,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Apply Modules migration**: `node scripts/apply-modules-migration.js`
 - **Verify Modules tables**: `node scripts/verify-modules-migration.js`
 - **Seed Modules**: `node scripts/seed-modules.js`
+- **Apply Lead Magnet Tracking migration**: `npm run migrate:lead-magnets`
+- **Verify Lead Magnet Tracking**: `npm run verify:lead-magnets`
+- **Test Lead Magnet Tracking**: `node scripts/test-lead-magnet-tracking.js`
 
 ### Telemetry & Analytics
 - **Check telemetry status**: `npm run telemetry:status` - Shows current data and system health

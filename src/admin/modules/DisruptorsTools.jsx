@@ -3,14 +3,24 @@
  * Internal tools and utilities for Disruptors AI team
  */
 
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Wrench,
   Presentation,
-  ExternalLink
+  ExternalLink,
+  Download,
+  Grid3x3
 } from 'lucide-react'
+import PresentationMode from '@/components/shared/PresentationMode'
 
 export default function DisruptorsTools() {
+  const [activeTab, setActiveTab] = useState('presenter')
+
+  const tabs = [
+    { id: 'presenter', label: 'Presenter', icon: Download },
+    { id: 'tools', label: 'External Tools', icon: Grid3x3 }
+  ]
+
   const tools = [
     {
       id: 'ai-pitch-deck',
@@ -62,7 +72,107 @@ export default function DisruptorsTools() {
         </div>
       </div>
 
-      {/* Bento Grid */}
+      {/* Tabs */}
+      <div className="border-b border-slate-800">
+        <nav className="flex gap-2">
+          {tabs.map((tab) => {
+            const Icon = tab.icon
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors border-b-2 ${
+                  activeTab === tab.id
+                    ? 'border-blue-500 text-blue-400'
+                    : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-700'
+                }`}
+              >
+                <Icon size={16} />
+                {tab.label}
+              </button>
+            )
+          })}
+        </nav>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === 'presenter' && (
+        <div className="space-y-6">
+          {/* Presenter Info */}
+          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl p-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-blue-500/20 border border-blue-500/30">
+                <Download className="text-blue-400" size={24} />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-white font-bold text-lg mb-2">
+                  LG StandbyME Go Presentation Mode
+                </h2>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                  Optimize your site for the LG StandbyME Go 27LX5 briefcase presenter.
+                  Download all content once for instant offline presentations with 4-5 hour battery life.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Instant loading (0.2s)
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Works 100% offline
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    4-5 hour battery life
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Presentation Mode Component */}
+          <PresentationMode isOpen={true} onClose={() => {}} embedded={true} />
+
+          {/* Quick Tips */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+              <h3 className="text-white font-semibold text-sm mb-2">📱 Setup Guide</h3>
+              <ul className="text-slate-400 text-xs space-y-1.5">
+                <li>• Open browser on LG StandbyME Go</li>
+                <li>• Visit dm4.wjwelsh.com</li>
+                <li>• Click "Download All Content"</li>
+                <li>• Wait 5 minutes (one time)</li>
+                <li>• Present offline forever!</li>
+              </ul>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+              <h3 className="text-white font-semibold text-sm mb-2">🔋 Battery Tips</h3>
+              <ul className="text-slate-400 text-xs space-y-1.5">
+                <li>• Disconnect WiFi when presenting</li>
+                <li>• Set brightness to 70%</li>
+                <li>• Enable eco mode</li>
+                <li>• Close background apps</li>
+                <li>• Get 4-5 hours battery!</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Documentation Link */}
+          <div className="bg-slate-900/30 border border-slate-800/30 p-4 rounded-xl">
+            <p className="text-slate-400 text-sm">
+              <strong className="text-slate-300">Complete Guide:</strong> See{' '}
+              <code className="text-blue-400 bg-slate-800 px-1.5 py-0.5 rounded">
+                docs/LG_STANDBYME_GO_OPTIMIZATION.md
+              </code>{' '}
+              for full setup, battery optimization, and troubleshooting.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'tools' && (
+        <>
+          {/* Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[200px]">
         {tools.map((tool) => {
           const Icon = tool.icon
@@ -116,13 +226,15 @@ export default function DisruptorsTools() {
         })}
       </div>
 
-      {/* Info Footer */}
-      <div className="bg-slate-900/30 border border-slate-800/30 p-4 rounded-xl">
-        <p className="text-slate-400 text-xs">
-          <strong className="text-slate-300">Note:</strong> These tools are for internal use only.
-          External links will open in a new tab.
-        </p>
-      </div>
+          {/* Info Footer */}
+          <div className="bg-slate-900/30 border border-slate-800/30 p-4 rounded-xl">
+            <p className="text-slate-400 text-xs">
+              <strong className="text-slate-300">Note:</strong> These tools are for internal use only.
+              External links will open in a new tab.
+            </p>
+          </div>
+        </>
+      )}
     </div>
   )
 }

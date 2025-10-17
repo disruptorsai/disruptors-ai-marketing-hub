@@ -14,13 +14,13 @@ import React, { useState, useEffect } from 'react';
 import { Download, Check, X, Trash2, Wifi, WifiOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function PresentationMode() {
+export default function PresentationMode({ embedded = false, isOpen = false, onClose = () => {} }) {
   const [isInstalled, setIsInstalled] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadStatus, setDownloadStatus] = useState('');
   const [cacheStatus, setCacheStatus] = useState(null);
-  const [showPanel, setShowPanel] = useState(false);
+  const [showPanel, setShowPanel] = useState(embedded || isOpen);
   const [serviceWorkerReady, setServiceWorkerReady] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
@@ -171,6 +171,147 @@ export default function PresentationMode() {
     return null; // Don't show until service worker is ready
   }
 
+  // Embedded mode - render directly without floating button
+  if (embedded) {
+    return (
+      <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+        {/* Header */}
+        <div className="mb-4">
+          <h3 className="text-lg font-bold text-white flex items-center">
+            <Download className="w-5 h-5 mr-2 text-blue-400" />
+            Download Controls
+          </h3>
+          <p className="text-sm text-slate-400 mt-1">
+            Cache all assets for offline presentations
+          </p>
+        </div>
+
+        {/* Status indicators */}
+        <div className="space-y-3 mb-4">
+          {/* Online/Offline */}
+          <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded">
+            <span className="text-sm text-slate-300">Connection</span>
+            <div className="flex items-center">
+              {isOnline ? (
+                <>
+                  <Wifi className="w-4 h-4 text-green-400 mr-2" />
+                  <span className="text-sm text-green-400">Online</span>
+                </>
+              ) : (
+                <>
+                  <WifiOff className="w-4 h-4 text-orange-400 mr-2" />
+                  <span className="text-sm text-orange-400">Offline</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Cache status */}
+          {cacheStatus && (
+            <div className="p-3 bg-slate-800/50 rounded space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-slate-300">Cached Assets</span>
+                <span className="text-sm text-white font-mono">
+                  {cacheStatus.total}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-xs">
+                <div className="text-center">
+                  <div className="text-slate-400">Videos</div>
+                  <div className="text-white font-mono">{cacheStatus.videos || 0}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-slate-400">Images</div>
+                  <div className="text-white font-mono">{cacheStatus.images || 0}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-slate-400">Pages</div>
+                  <div className="text-white font-mono">{cacheStatus.pages || 0}</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Ready indicator */}
+          {cacheStatus?.ready && (
+            <div className="p-3 bg-green-900/30 border border-green-500/50 rounded">
+              <div className="flex items-center">
+                <Check className="w-5 h-5 text-green-400 mr-2" />
+                <span className="text-sm text-green-300 font-medium">
+                  ✅ Ready for offline presentations
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Download button */}
+        <div className="space-y-3">
+          <Button
+            onClick={downloadPresentationAssets}
+            disabled={isDownloading}
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-700"
+          >
+            {isDownloading ? (
+              <>
+                <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
+                Downloading...
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4 mr-2" />
+                {cacheStatus?.ready ? 'Re-download All Content' : 'Download All Content (~500MB)'}
+              </>
+            )}
+          </Button>
+
+          {/* Progress bar */}
+          {isDownloading && downloadProgress > 0 && (
+            <div className="space-y-1">
+              <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all duration-300"
+                  style={{ width: `${downloadProgress * 100}%` }}
+                />
+              </div>
+              <p className="text-xs text-slate-400 text-center">
+                {Math.round(downloadProgress * 100)}%
+              </p>
+            </div>
+          )}
+
+          {/* Status message */}
+          {downloadStatus && (
+            <p className="text-xs text-center text-slate-300">
+              {downloadStatus}
+            </p>
+          )}
+
+          {/* Clear cache button */}
+          {cacheStatus && cacheStatus.total > 0 && (
+            <Button
+              onClick={clearCache}
+              variant="outline"
+              size="sm"
+              className="w-full border-slate-600 text-slate-300 hover:bg-slate-800"
+            >
+              <Trash2 className="w-4 h-4 mr-2" />
+              Clear Cache
+            </Button>
+          )}
+        </div>
+
+        {/* Help text */}
+        <div className="mt-4 p-3 bg-blue-900/20 border border-blue-500/30 rounded">
+          <p className="text-xs text-blue-200">
+            💡 <strong>LG StandbyME Go Tip:</strong> Disconnect WiFi after downloading to save battery (extends from 3h to 4-5h).
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Modal/Floating mode (original behavior)
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {/* Floating button */}
@@ -203,7 +344,7 @@ export default function PresentationMode() {
               </p>
             </div>
             <button
-              onClick={() => setShowPanel(false)}
+              onClick={() => { setShowPanel(false); onClose(); }}
               className="text-gray-400 hover:text-white"
             >
               <X className="w-5 h-5" />
