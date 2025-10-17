@@ -71,6 +71,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Verify Modules tables**: `node scripts/verify-modules-migration.js`
 - **Seed Modules**: `node scripts/seed-modules.js`
 
+### Telemetry & Analytics
+- **Check telemetry status**: `npm run telemetry:status` - Shows current data and system health
+- **Generate test data**: `npm run telemetry:generate` - Populates dashboard with test data
+
+### Admin User Management
+- **List all users**: `npm run admin:list-users` - Shows all Supabase Auth users and admin status
+- **Grant admin role**: `npm run admin:setup-role <email>` - Add admin role to existing user
+
 ## Project Overview
 
 This is a React SPA built with Vite serving as a marketing website and AI-powered platform for Disruptors AI. It features a sophisticated architecture combining:

@@ -82,6 +82,12 @@ const AIContentWriter = lazyWithRetry(() => import('./ai-content-writer.jsx'));
 const KeywordResearch = lazyWithRetry(() => import('./keyword-research.jsx'));
 const Tools = lazyWithRetry(() => import('./tools.jsx'));
 
+// SEO Audit Tool - lazy loaded with retry
+const ToolsSEOAudit = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading tools-seo-audit.jsx...');
+    return import('./tools-seo-audit.jsx');
+});
+
 // Auth system
 const AuthCallback = lazyWithRetry(() => import('./auth-callback.jsx'));
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
@@ -192,6 +198,8 @@ const PAGES = {
     "ai-content-writer": AIContentWriter,
 
     "keyword-research": KeywordResearch,
+
+    "tools-seo-audit": ToolsSEOAudit,
 
     "work-tradeworx-usa": WorkTradeworxUsa,
     

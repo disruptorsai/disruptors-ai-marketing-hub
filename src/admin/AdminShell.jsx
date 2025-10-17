@@ -19,7 +19,9 @@ import {
   Activity,
   LogOut,
   Menu,
-  X
+  X,
+  Target,
+  BarChart3
 } from 'lucide-react'
 
 export default function AdminShell() {
@@ -30,6 +32,8 @@ export default function AdminShell() {
   const navigation = [
     { name: 'Overview', href: '/admin/secret/overview', icon: LayoutDashboard },
     { name: 'Content', href: '/admin/secret/content', icon: FileText },
+    { name: 'SEO Suite', href: '/admin/secret/seo-suite', icon: Target },
+    { name: 'SEO Audit Tool', href: '/admin/secret/seo-audit-tool', icon: BarChart3 },
     { name: 'Team', href: '/admin/secret/team', icon: Users },
     { name: 'Media', href: '/admin/secret/media', icon: Image },
     { name: 'Business Brain', href: '/admin/secret/business-brain', icon: Brain },
