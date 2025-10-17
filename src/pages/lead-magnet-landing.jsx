@@ -41,14 +41,8 @@ export default function LeadMagnetLanding() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
-  const leadMagnet = LEAD_MAGNETS[slug] || {
-    title: 'Exclusive Resource',
-    description: 'Get instant access to this premium resource',
-    benefits: ['Instant download', 'No credit card required', 'Lifetime access'],
-    icon: '🎁',
-    estimatedValue: 'FREE'
-  };
+  const [leadMagnet, setLeadMagnet] = useState(null);
+  const [isLoadingResource, setIsLoadingResource] = useState(true);
 
   // Preserve UTM parameters
   const utmParams = {
@@ -59,10 +53,49 @@ export default function LeadMagnetLanding() {
     utm_term: searchParams.get('utm_term'),
   };
 
+  // Load resource from database
+  useEffect(() => {
+    loadResource();
+  }, [slug]);
+
   // Check if user is already authenticated
   useEffect(() => {
     checkAuthStatus();
   }, []);
+
+  async function loadResource() {
+    try {
+      setIsLoadingResource(true);
+
+      // Fetch resource from database
+      const { data, error } = await leadMagnetAPI.getResourceBySlug(slug);
+
+      if (error) throw error;
+
+      if (data) {
+        // Track view
+        await leadMagnetAPI.trackResourceView(slug);
+
+        // Transform database resource to lead magnet format
+        setLeadMagnet({
+          title: data.title,
+          description: data.subtitle || data.description,
+          benefits: data.whats_inside || [],
+          icon: '🎁', // Default icon (could map icon_name to emoji if needed)
+          estimatedValue: 'FREE',
+          ...data, // Include all other fields
+        });
+      } else {
+        // Resource not found, use fallback
+        setLeadMagnet(FALLBACK_LEAD_MAGNET);
+      }
+    } catch (error) {
+      console.error('Error loading resource:', error);
+      setLeadMagnet(FALLBACK_LEAD_MAGNET);
+    } finally {
+      setIsLoadingResource(false);
+    }
+  }
 
   async function checkAuthStatus() {
     try {
@@ -163,8 +196,8 @@ export default function LeadMagnetLanding() {
     }
   }
 
-  // Loading state while checking auth
-  if (isCheckingAuth) {
+  // Loading state while checking auth or loading resource
+  if (isCheckingAuth || isLoadingResource || !leadMagnet) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
