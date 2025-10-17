@@ -17,6 +17,7 @@ import {
   Workflow,
   Plug,
   Activity,
+  Wrench,
   LogOut,
   Menu,
   X,
@@ -42,6 +43,7 @@ export default function AdminShell() {
     { name: 'Workflows', href: '/admin/secret/workflows', icon: Workflow },
     { name: 'Integrations', href: '/admin/secret/integrations', icon: Plug },
     { name: 'Telemetry', href: '/admin/secret/telemetry', icon: Activity },
+    { name: 'Disruptors Tools', href: '/admin/secret/tools', icon: Wrench },
   ]
 
   const handleLogout = async () => {

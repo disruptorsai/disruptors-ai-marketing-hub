@@ -22,6 +22,7 @@ const IntegrationsHub = React.lazy(() => import('./modules/IntegrationsHub'))
 const TelemetryDashboard = React.lazy(() => import('./modules/TelemetryDashboard'))
 const SEOSuite = React.lazy(() => import('./modules/SEOSuite'))
 const SEOAuditTool = React.lazy(() => import('./modules/SEOAuditTool'))
+const DisruptorsTools = React.lazy(() => import('./modules/DisruptorsTools'))
 
 export default function AdminRoutes() {
   return (
@@ -51,6 +52,7 @@ export default function AdminRoutes() {
             <Route path="telemetry" element={<TelemetryDashboard />} />
             <Route path="seo-suite" element={<SEOSuite />} />
             <Route path="seo-audit-tool" element={<SEOAuditTool />} />
+            <Route path="tools" element={<DisruptorsTools />} />
           </Route>
         </Routes>
       </React.Suspense>
