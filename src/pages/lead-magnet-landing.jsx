@@ -22,46 +22,16 @@ import { supabase } from '@/lib/supabase-client';
 import { toast } from 'sonner';
 import GoogleOneTap, { cancelOneTap } from '@/components/auth/GoogleOneTap';
 import LoginModal from '@/components/auth/LoginModal';
+import * as leadMagnetAPI from '@/lib/lead-magnet-api';
 
-// Lead magnet content configuration
-const LEAD_MAGNETS = {
-  'ai-email-swipes': {
-    title: '50 AI-Powered Email Swipes',
-    description: 'Copy-paste email templates that convert cold leads into hot prospects',
-    benefits: [
-      '50 proven email templates',
-      'AI-powered personalization',
-      'Industry-specific variations',
-      'Ready to use in minutes'
-    ],
-    icon: '📧',
-    estimatedValue: '$297'
-  },
-  'content-calendar': {
-    title: '90-Day AI Content Calendar',
-    description: 'Never run out of content ideas with our AI-generated content calendar',
-    benefits: [
-      '90 days of content ideas',
-      'Platform-specific formats',
-      'Engagement-optimized topics',
-      'One-click AI generation'
-    ],
-    icon: '📅',
-    estimatedValue: '$197'
-  },
-  'lead-magnet-templates': {
-    title: '25 High-Converting Lead Magnets',
-    description: 'Proven lead magnet templates that build your email list on autopilot',
-    benefits: [
-      '25 tested lead magnet templates',
-      'Landing page copy included',
-      'Design guidelines',
-      'Conversion optimization tips'
-    ],
-    icon: '🧲',
-    estimatedValue: '$247'
-  },
-  // Add more lead magnets here
+// Fallback lead magnet configuration (used if database query fails or resource not found)
+const FALLBACK_LEAD_MAGNET = {
+  title: 'Exclusive Resource',
+  description: 'Get instant access to this premium resource',
+  benefits: ['Instant download', 'No credit card required', 'Lifetime access'],
+  icon: '🎁',
+  estimatedValue: 'FREE',
+  whats_inside: [],
 };
 
 export default function LeadMagnetLanding() {

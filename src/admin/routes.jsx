@@ -23,6 +23,7 @@ const TelemetryDashboard = React.lazy(() => import('./modules/TelemetryDashboard
 const SEOSuite = React.lazy(() => import('./modules/SEOSuite'))
 const SEOAuditTool = React.lazy(() => import('./modules/SEOAuditTool'))
 const DisruptorsTools = React.lazy(() => import('./modules/DisruptorsTools'))
+const LeadMagnetManager = React.lazy(() => import('./modules/LeadMagnetManager'))
 
 export default function AdminRoutes() {
   return (
@@ -53,6 +54,7 @@ export default function AdminRoutes() {
             <Route path="seo-suite" element={<SEOSuite />} />
             <Route path="seo-audit-tool" element={<SEOAuditTool />} />
             <Route path="tools" element={<DisruptorsTools />} />
+            <Route path="lead-magnets" element={<LeadMagnetManager />} />
           </Route>
         </Routes>
       </React.Suspense>
