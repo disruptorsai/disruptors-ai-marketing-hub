@@ -11,12 +11,14 @@ import {
   Zap,
   LogOut,
   User,
-  FileText
+  FileText,
+  Smartphone
 } from 'lucide-react';
 import DataManager from './DataManager';
 import IntelligentMediaStudio from './IntelligentMediaStudio';
 import SEOKeywordResearch from './SEOKeywordResearch';
 import AdminBlogManager from './AdminBlogManager';
+import PresentationModeControl from './PresentationModeControl';
 
 const DisruptorsAdmin = ({ username, onLogout }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -64,6 +66,13 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       icon: Zap,
       description: 'Keyword research with DataForSEO',
       color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      id: 'presentation',
+      label: 'Presentation Mode',
+      icon: Smartphone,
+      description: 'PWA download and tablet optimization',
+      color: 'from-purple-500 to-pink-500'
     },
     {
       id: 'analytics',
@@ -188,7 +197,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         <Tabs defaultValue="database" className="w-full">
 
           {/* Compact Tab Navigation */}
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1 bg-black/70 border border-green-400/30 mb-3 p-1">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 gap-1 bg-black/70 border border-green-400/30 mb-3 p-1">
             {adminTabs.map((tab) => {
               const IconComponent = tab.icon;
               return (
@@ -224,12 +233,17 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
             <SEOKeywordResearch />
           </TabsContent>
 
+          {/* Presentation Mode Tab */}
+          <TabsContent value="presentation" className="space-y-3">
+            <PresentationModeControl />
+          </TabsContent>
+
           {/* Analytics Tab */}
           <TabsContent value="analytics" className="space-y-3">
             <Card className="bg-black/70 border-green-400/30">
               <CardHeader className="p-3">
                 <div className="flex items-center space-x-2">
-                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[3].color} flex items-center justify-center`}>
+                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[5].color} flex items-center justify-center`}>
                     <Activity className="w-3 h-3 text-white" />
                   </div>
                   <div>
@@ -255,7 +269,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
             <Card className="bg-black/70 border-green-400/30">
               <CardHeader className="p-3">
                 <div className="flex items-center space-x-2">
-                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[4].color} flex items-center justify-center`}>
+                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[6].color} flex items-center justify-center`}>
                     <Terminal className="w-3 h-3 text-white" />
                   </div>
                   <div>

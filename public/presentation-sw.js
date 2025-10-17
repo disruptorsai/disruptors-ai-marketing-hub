@@ -113,9 +113,9 @@ self.addEventListener('fetch', (event) => {
 
 // Message event - handle commands from the app
 self.addEventListener('message', (event) => {
-  if (event.data.type === 'DOWNLOAD_PRESENTATION_ASSETS') {
+  if (event.data.type === 'DOWNLOAD_PRESENTATION_ASSETS' || event.data.type === 'CACHE_ASSETS') {
     console.log('[Service Worker] Downloading presentation assets...');
-    downloadPresentationAssets(event.ports[0]);
+    downloadPresentationAssets(event.ports[0], event.data.timestamp);
   }
 
   if (event.data.type === 'GET_CACHE_STATUS') {
@@ -130,7 +130,7 @@ self.addEventListener('message', (event) => {
 /**
  * Download all presentation assets
  */
-async function downloadPresentationAssets(port) {
+async function downloadPresentationAssets(port, timestamp) {
   try {
     const cache = await caches.open(CACHE_NAME);
     const total = PRESENTATION_VIDEOS.length + PRESENTATION_IMAGES.length;
@@ -138,9 +138,10 @@ async function downloadPresentationAssets(port) {
 
     // Send progress update
     const sendProgress = () => {
+      const percent = Math.round((downloaded / total) * 100);
       port.postMessage({
-        type: 'DOWNLOAD_PROGRESS',
-        progress: downloaded / total,
+        type: 'CACHE_PROGRESS',
+        progress: percent,
         downloaded,
         total
       });
@@ -203,17 +204,32 @@ async function downloadPresentationAssets(port) {
       }
     }
 
+    // Save cache metadata
+    const metadata = {
+      timestamp: timestamp || Date.now(),
+      version: CACHE_VERSION,
+      itemCount: downloaded
+    };
+
+    await cache.put(
+      '/cache-metadata.json',
+      new Response(JSON.stringify(metadata), {
+        headers: { 'Content-Type': 'application/json' }
+      })
+    );
+
     port.postMessage({
-      type: 'DOWNLOAD_COMPLETE',
+      type: 'CACHE_COMPLETE',
       success: true,
-      cached: downloaded
+      cached: downloaded,
+      metadata
     });
 
     console.log('[Service Worker] Presentation assets download complete');
   } catch (error) {
     console.error('[Service Worker] Download failed:', error);
     port.postMessage({
-      type: 'DOWNLOAD_COMPLETE',
+      type: 'CACHE_ERROR',
       success: false,
       error: error.message
     });
