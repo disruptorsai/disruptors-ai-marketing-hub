@@ -12,6 +12,7 @@ import { BrainAPI } from '@/lib/brain-api';
 import { toast } from 'sonner';
 import LoginModal from './LoginModal';
 import OnboardingFlow from './OnboardingFlow';
+import QuickBrainPrompt from './QuickBrainPrompt';
 
 export default function ProtectedRoute({ children }) {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showQuickPrompt, setShowQuickPrompt] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
 
   useEffect(() => {
@@ -103,6 +105,19 @@ export default function ProtectedRoute({ children }) {
   const checkIfNewUser = async (userId) => {
     try {
       console.log('🔒 [PROTECTED_ROUTE] Checking if user has brain for userId:', userId);
+
+      // Check if user signed up via One Tap (lead magnet flow)
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      const signupSource = currentUser?.user_metadata?.signup_source;
+      const onboardingCompleted = currentUser?.user_metadata?.onboarding_completed;
+      const brainPromptShown = currentUser?.user_metadata?.brain_prompt_shown;
+
+      console.log('🔒 [PROTECTED_ROUTE] User metadata:', {
+        signupSource,
+        onboardingCompleted,
+        brainPromptShown
+      });
+
       // Try to get user's business brain
       const brain = await BrainAPI.getBrainByUser(userId);
       console.log('🔒 [PROTECTED_ROUTE] Brain API response:', {
@@ -110,7 +125,32 @@ export default function ProtectedRoute({ children }) {
         brainId: brain?.id,
         businessName: brain?.business_name
       });
-      return brain === null; // null = new user needs onboarding
+
+      // If user has a brain, no onboarding needed
+      if (brain) {
+        return false;
+      }
+
+      // User has no brain - check if they're a one-tap user
+      if (signupSource === 'one_tap' && onboardingCompleted === false) {
+        // One-tap user without brain
+        // Check if we've shown them the quick prompt this session
+        const promptSeenThisSession = sessionStorage.getItem('brain_prompt_seen');
+
+        if (!brainPromptShown && !promptSeenThisSession) {
+          // First time seeing AI tool - show quick brain explainer
+          console.log('🔒 [PROTECTED_ROUTE] One Tap user - showing Quick Brain Prompt');
+          setShowQuickPrompt(true);
+          return false; // Don't force full onboarding yet
+        } else {
+          // They've seen the prompt before and skipped - let them use tool without brain
+          console.log('🔒 [PROTECTED_ROUTE] One Tap user already saw prompt - allowing access');
+          return false;
+        }
+      }
+
+      // Regular signup (not one-tap) without brain - show full onboarding
+      return true;
     } catch (error) {
       // Error fetching brain - assume new user needs onboarding
       console.error('🔒 [PROTECTED_ROUTE] Error checking user brain:', error);
@@ -136,6 +176,27 @@ export default function ProtectedRoute({ children }) {
     }
   };
 
+
+  const handleQuickPromptSetup = () => {
+    // User chose to set up their Brain now
+    console.log('🔒 [PROTECTED_ROUTE] User chose to set up Brain from quick prompt');
+    setShowQuickPrompt(false);
+    setShowOnboarding(true);
+    setIsNewUser(true);
+  };
+
+  const handleQuickPromptSkip = () => {
+    // User chose to skip Brain setup for now
+    console.log('🔒 [PROTECTED_ROUTE] User skipped Brain setup');
+    setShowQuickPrompt(false);
+    // Let them use the tool without a brain (generic AI)
+    toast.info('You can set up your Business Brain anytime from your dashboard');
+  };
+
+  const handleQuickPromptClose = () => {
+    // User closed the prompt (same as skip)
+    handleQuickPromptSkip();
+  };
   const handleOnboardingClose = () => {
     setShowOnboarding(false);
     setIsNewUser(false);
@@ -183,6 +244,13 @@ export default function ProtectedRoute({ children }) {
         isOpen={showOnboarding}
         onClose={handleOnboardingClose}
         user={user}
+      />
+
+      <QuickBrainPrompt
+        isOpen={showQuickPrompt}
+        onSetupNow={handleQuickPromptSetup}
+        onSkip={handleQuickPromptSkip}
+        onClose={handleQuickPromptClose}
       />
     </>
   );

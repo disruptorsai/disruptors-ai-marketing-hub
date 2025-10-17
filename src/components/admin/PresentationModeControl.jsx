@@ -231,8 +231,8 @@ const PresentationModeControl = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-fuchsia-500 rounded-xl blur opacity-50" />
-                <div className="relative p-3 rounded-xl bg-gradient-to-br from-purple-500 via-violet-500 to-fuchsia-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-xl blur opacity-50" />
+                <div className="relative p-3 rounded-xl bg-gradient-to-br from-amber-500 via-orange-500 to-yellow-500">
                   <Smartphone className="w-6 h-6 text-white" />
                 </div>
               </div>
@@ -303,7 +303,7 @@ const PresentationModeControl = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-3">
               <span className="text-white/70 text-sm font-medium">Storage Used</span>
-              <Globe className="w-5 h-5 text-purple-400" />
+              <Globe className="w-5 h-5 text-amber-400" />
             </div>
             <div className="text-3xl font-bold text-white mb-1">
               {storageEstimate?.usage || '0'} MB
@@ -322,7 +322,7 @@ const PresentationModeControl = () => {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-white font-medium">Downloading assets...</span>
-                <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">{downloadProgress}%</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">{downloadProgress}%</span>
               </div>
               <Progress value={downloadProgress} className="h-2 bg-white/10" />
               <p className="text-sm text-white/50">This may take a few moments...</p>
@@ -389,7 +389,7 @@ const PresentationModeControl = () => {
               onClick={forceUpdate}
               disabled={swStatus !== 'active'}
               variant="outline"
-              className="w-full border-purple-400/50 text-purple-400 hover:bg-purple-400/10 hover:border-purple-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Force Update
@@ -415,8 +415,8 @@ const PresentationModeControl = () => {
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                <Smartphone className="w-4 h-4 text-purple-400" />
+              <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <Smartphone className="w-4 h-4 text-amber-400" />
               </div>
               <div>
                 <div className="font-medium text-white mb-1">Tablet Optimized</div>

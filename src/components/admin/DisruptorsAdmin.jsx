@@ -54,7 +54,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       label: 'Blog Manager',
       icon: FileText,
       description: 'AI-powered content creation and publishing',
-      gradient: 'from-blue-500 via-indigo-500 to-purple-500'
+      gradient: 'from-blue-500 via-sky-500 to-cyan-500'
     },
     {
       id: 'media',
@@ -75,7 +75,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       label: 'Presentation',
       icon: Smartphone,
       description: 'PWA and tablet optimization',
-      gradient: 'from-purple-500 via-violet-500 to-fuchsia-500'
+      gradient: 'from-amber-500 via-orange-500 to-yellow-500'
     },
     {
       id: 'analytics',
@@ -110,7 +110,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       {/* Ambient Glow Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-amber-500/5 via-transparent to-transparent rounded-full blur-3xl" />
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-500/5 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-orange-500/5 via-transparent to-transparent rounded-full blur-3xl" />
       </div>
 
       {/* Header */}
