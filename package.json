@@ -45,6 +45,7 @@
     "verify:lead-magnets": "node scripts/apply-lead-magnet-tracking-migration.js",
     "telemetry:status": "node scripts/check-telemetry-status.js",
     "telemetry:generate": "node scripts/generate-test-telemetry.js",
+    "test:dataforseo": "node scripts/test-dataforseo-integration.js",
     "admin:list-users": "node scripts/list-admin-users.js",
     "admin:setup-role": "node scripts/setup-admin-role.js",
     "mcp:start": "node scripts/mcp-orchestrator.js start",
