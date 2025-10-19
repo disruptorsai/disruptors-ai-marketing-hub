@@ -2,6 +2,8 @@ import { FirecrawlScraper } from './scrapers/firecrawl.js';
 import { PlaywrightScraper } from './scrapers/playwright.js';
 import { BrandDetector } from './scrapers/brand-detect.js';
 import { PageSpeedInsights } from './audits/pagespeed.js';
+import { BacklinksAnalyzer } from './audits/backlinks.js';
+import { DomainMetricsAnalyzer } from './audits/domain-metrics.js';
 import { analyzeBusinessProfile } from './ai/analyzer.js';
 import { detectOpportunities, calculateReadinessScore } from './ai/opportunities.js';
 
@@ -25,6 +27,8 @@ export class GrowthAuditOrchestrator {
     this.playwright = new PlaywrightScraper();
     this.brandDetector = new BrandDetector();
     this.pagespeed = new PageSpeedInsights();
+    this.backlinks = new BacklinksAnalyzer();
+    this.domainMetrics = new DomainMetricsAnalyzer();
   }
 
   /**
@@ -87,7 +91,31 @@ export class GrowthAuditOrchestrator {
         payload: { schema: schemaTypes, og: playwrightData.metadata.ogTags },
       });
 
-      // Step 5: AI Analysis
+      // Step 5: Backlink Analysis
+      onStream?.({ type: 'progress', tileId: 'backlinks', status: 'pending', message: 'Analyzing backlink profile...' });
+
+      const backlinkData = await this.backlinks.analyze(url);
+
+      onStream?.({
+        type: 'tile',
+        tileId: 'backlinks',
+        status: 'ready',
+        payload: backlinkData,
+      });
+
+      // Step 6: Domain Metrics
+      onStream?.({ type: 'progress', tileId: 'domain-metrics', status: 'pending', message: 'Analyzing domain metrics...' });
+
+      const domainMetricsData = await this.domainMetrics.analyze(url);
+
+      onStream?.({
+        type: 'tile',
+        tileId: 'domain-metrics',
+        status: 'ready',
+        payload: domainMetricsData,
+      });
+
+      // Step 7: AI Analysis
       onStream?.({ type: 'progress', tileId: 'analysis', status: 'pending', message: 'AI analyzing business profile...' });
 
       const profile = await analyzeBusinessProfile({
@@ -111,6 +139,10 @@ export class GrowthAuditOrchestrator {
         palette: brandData?.palette,
       };
 
+      // Attach backlinks and domain metrics to profile
+      profile.backlinks = backlinkData;
+      profile.domainMetrics = domainMetricsData;
+
       onStream?.({
         type: 'tile',
         tileId: 'profile',
@@ -118,7 +150,7 @@ export class GrowthAuditOrchestrator {
         payload: profile,
       });
 
-      // Step 6: Detect Opportunities
+      // Step 8: Detect Opportunities
       onStream?.({ type: 'progress', tileId: 'opportunities', status: 'pending', message: 'Identifying growth opportunities...' });
 
       const readinessScore = calculateReadinessScore(profile);
@@ -136,7 +168,7 @@ export class GrowthAuditOrchestrator {
         },
       });
 
-      // Step 7: Complete
+      // Step 9: Complete
       onStream?.({ type: 'complete', tileId: 'all', status: 'ready', message: 'Analysis complete!' });
 
       await this.playwright.close();

@@ -13,6 +13,8 @@ import {
   TrendingUp,
   Zap,
   Target,
+  Link2,
+  BarChart3,
 } from 'lucide-react';
 import { effortToLabel, impactToLabel, scoreToColor } from '@/lib/growth-audit/utils';
 
@@ -268,6 +270,149 @@ export default function GrowthAuditResults() {
                     <p className="text-gray-600 dark:text-gray-400">
                       {profile.seo.jsonLdTypes?.length || 0} types detected
                     </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Backlinks Profile */}
+          {profile.backlinks && (
+            <Card className="mb-6">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Link2 className="w-5 h-5 text-blue-600" />
+                  <CardTitle>Backlink Profile</CardTitle>
+                </div>
+                <CardDescription>Domain authority and link building analysis</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Domain Rating</h3>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-bold text-blue-600">
+                        {profile.backlinks.domain_rating}
+                      </span>
+                      <span className="text-gray-500">/100</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Total Backlinks</h3>
+                    <p className="text-2xl font-bold">{profile.backlinks.total_backlinks.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Referring Domains</h3>
+                    <p className="text-2xl font-bold">{profile.backlinks.referring_domains.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Link Quality</h3>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-bold">{profile.backlinks.link_quality.score}</span>
+                      <Badge variant={profile.backlinks.link_quality.score >= 60 ? 'default' : 'secondary'}>
+                        {profile.backlinks.link_quality.label}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h3 className="font-semibold mb-2">Link Distribution</h3>
+                    <div className="space-y-1 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Dofollow:</span>
+                        <span className="font-medium">{profile.backlinks.dofollow_percentage.toFixed(1)}%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Nofollow:</span>
+                        <span className="font-medium">{profile.backlinks.nofollow_percentage.toFixed(1)}%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">.edu/.gov:</span>
+                        <span className="font-medium">{profile.backlinks.edu_links + profile.backlinks.gov_links}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Top Referring Domains</h3>
+                    <div className="space-y-1 text-sm">
+                      {profile.backlinks.top_referring_domains.slice(0, 5).map((ref, idx) => (
+                        <div key={idx} className="flex justify-between text-xs">
+                          <span className="text-gray-600 truncate max-w-[200px]">{ref.domain}</span>
+                          <span className="font-medium">{ref.backlinks} links</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Domain Metrics */}
+          {profile.domainMetrics && (
+            <Card className="mb-6">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-green-600" />
+                  <CardTitle>Domain Metrics</CardTitle>
+                </div>
+                <CardDescription>Organic traffic and keyword performance</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Visibility Score</h3>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-bold text-green-600">
+                        {profile.domainMetrics.visibility_score}
+                      </span>
+                      <span className="text-gray-500">/100</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Est. Monthly Traffic</h3>
+                    <p className="text-2xl font-bold">{profile.domainMetrics.organic_traffic_estimate.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Organic Keywords</h3>
+                    <p className="text-2xl font-bold">{profile.domainMetrics.organic_keywords_count.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Traffic Quality</h3>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-bold">{profile.domainMetrics.traffic_quality.score}</span>
+                      <Badge variant={profile.domainMetrics.traffic_quality.score >= 60 ? 'default' : 'secondary'}>
+                        {profile.domainMetrics.traffic_quality.label}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h3 className="font-semibold mb-2">Top Ranking Keywords</h3>
+                    <div className="space-y-1 text-sm">
+                      {profile.domainMetrics.top_keywords.slice(0, 5).map((kw, idx) => (
+                        <div key={idx} className="flex justify-between items-center text-xs">
+                          <span className="text-gray-600 truncate max-w-[180px]">{kw.keyword}</span>
+                          <div className="flex gap-2">
+                            <Badge variant="outline" className="text-xs">#{kw.position}</Badge>
+                            <span className="text-gray-500">{kw.search_volume.toLocaleString()}/mo</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Top Competitors</h3>
+                    <div className="space-y-1 text-sm">
+                      {profile.domainMetrics.top_competitors.slice(0, 5).map((comp, idx) => (
+                        <div key={idx} className="flex justify-between text-xs">
+                          <span className="text-gray-600 truncate max-w-[200px]">{comp.domain}</span>
+                          <span className="text-gray-500">Avg pos: {comp.avg_position}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </CardContent>
