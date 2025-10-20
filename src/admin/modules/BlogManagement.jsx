@@ -307,24 +307,56 @@ export default function BlogManagement() {
   }
 
   const handleGenerateBatch = async (count = 3) => {
+    let generated = 0
+    let failed = 0
+
     try {
-      toast.info(`Generating ${count} new blogs...`)
+      toast.info(`Generating ${count} blog(s) one at a time...`)
 
-      const response = await fetch('/.netlify/functions/admin-blog-generator', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'generate_batch',
-          count
-        })
-      })
+      // Generate blogs ONE AT A TIME to avoid Netlify timeout
+      // Each blog takes 45-60s, so generating 3 at once = 135s+ = TIMEOUT
+      for (let i = 0; i < count; i++) {
+        try {
+          toast.info(`Generating blog ${i + 1} of ${count}...`, { duration: 60000 })
 
-      if (!response.ok) throw new Error('Batch generation failed')
+          const response = await fetch('/.netlify/functions/admin-blog-generator', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'generate_batch',
+              count: 1  // Generate ONE blog per request
+            })
+          })
 
-      const result = await response.json()
+          if (!response.ok) {
+            console.error(`Blog ${i + 1} failed:`, response.status, response.statusText)
+            failed++
+            continue
+          }
 
-      toast.success(`Generated ${result.generated} blog(s)!`)
-      await loadBlogs()
+          const result = await response.json()
+          if (result.success) {
+            generated++
+            toast.success(`Blog ${i + 1} generated! (${generated}/${count})`)
+          } else {
+            failed++
+          }
+
+        } catch (error) {
+          console.error(`Failed to generate blog ${i + 1}:`, error)
+          failed++
+        }
+      }
+
+      // Show final results
+      if (generated > 0) {
+        toast.success(`Successfully generated ${generated} blog(s)!`)
+        await loadBlogs()
+      }
+
+      if (failed > 0) {
+        toast.error(`${failed} blog(s) failed to generate`)
+      }
 
     } catch (error) {
       console.error('Failed to generate batch:', error)
