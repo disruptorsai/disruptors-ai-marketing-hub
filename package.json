@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:netlify": "netlify dev",
-    "dev:functions": "netlify dev",
+    "dev:netlify": "netlify dev --offline",
+    "dev:functions": "netlify dev --offline",
+    "dev:blog": "netlify dev --offline",
     "dev:auto": "concurrently \"npm run dev\" \"npm run auto-commit:watch\"",
     "dev:orchestrated": "concurrently \"npm run dev\" \"npm run orchestrator:watch\"",
     "dev:safe": "vite",
