@@ -57,6 +57,113 @@ node scripts/generate-20-comprehensive-blogs.js
 - Automatic Business Brain integration for brand voice
 - Meta descriptions (155 characters)
 - Internal linking suggestions
+- **2025 Formatting Standards** (research-backed for maximum readability)
+
+### 2025 Blog Formatting Requirements
+
+**Critical Formatting Rules (MUST FOLLOW):**
+
+1. **Paragraph Length:**
+   - Maximum 4 lines per paragraph (approximately 100 words)
+   - Break long paragraphs into shorter, scannable chunks
+   - Each paragraph = 1 main idea
+
+2. **Visual Breaks:**
+   - Insert visual element every 150-200 words
+   - Options: bullet lists, blockquotes, images, tables
+   - Prevents "wall of text" effect
+   - Improves scroll depth by 30%
+
+3. **Heading Structure:**
+   - Clear H2 section breaks every 300-400 words
+   - H3 subsections for detailed breakdowns
+   - Numbered H2 sections for guides (e.g., "1. First Major Point")
+   - All headings must be descriptive and keyword-rich
+
+4. **Blockquote Usage:**
+   - 2-3 blockquotes per blog post minimum
+   - Use `>` for key takeaways, statistics, or expert insights
+   - Example: `> **Quick Takeaway:** 60% of marketers see ROI within 30 days.`
+   - Helps break up content visually
+
+5. **List Formatting:**
+   - Use bullet lists for features, benefits, tips
+   - Use numbered lists for step-by-step processes
+   - Keep list items to 2-3 lines maximum
+   - Space between list sections
+
+6. **FAQ Section Formatting:**
+   - Use H3 for each question (`### How does X work?`)
+   - Answer in 3-5 short paragraphs (4 lines max each)
+   - Include data, examples, and actionable insights
+   - Optimize for featured snippets
+
+7. **Introduction Structure:**
+   - Hook: 1-2 sentences grabbing attention
+   - Problem: 2-3 sentences defining the issue
+   - Solution preview: 1-2 sentences teasing the content
+   - Quick Answer blockquote for featured snippets
+   - Total: 100-150 words, 2-3 paragraphs max
+
+**Example Optimized Structure:**
+```markdown
+# Main Title (H1)
+
+Brief hook paragraph introducing the topic (3-4 lines max).
+
+Problem statement paragraph explaining why this matters (3-4 lines max).
+
+> **Quick Takeaway:** Direct 2-3 sentence answer optimized for featured snippets.
+
+## 1. First Major Section (H2)
+
+Opening paragraph (4 lines max) introducing the section.
+
+### Key Points (H3)
+
+- **Point 1:** Explanation with specific benefit (2-3 lines)
+- **Point 2:** Example with data or statistic
+- **Point 3:** Actionable insight with clear outcome
+
+Visual break ensures readability.
+
+### Implementation Steps (H3)
+
+1. **Step 1: Action Item** - Clear explanation (2-3 lines)
+2. **Step 2: Next Action** - Specific details with examples
+3. **Step 3: Final Step** - Expected outcome
+
+> 💡 **Pro Tip:** Actionable insight in blockquote format.
+
+## 2. Second Major Section (H2)
+
+Continue with same pattern...
+
+## Frequently Asked Questions
+
+### How does [specific question work]?
+
+Answer in 3-5 short paragraphs (4 lines max each). Include specific examples, data points, and actionable insights. Optimize for featured snippet format.
+
+### What are the benefits of [topic]?
+
+Detailed answer with:
+- Benefit 1 with percentage increase
+- Benefit 2 with time saved
+- Benefit 3 with cost reduction
+
+## Conclusion
+
+Final thoughts (100 words max) with clear call-to-action linking to relevant Disruptors AI service.
+```
+
+**Readability Targets:**
+- Line length: 65-70 characters (optimal width: 680px)
+- Line height: 1.7 for body text
+- Font size: 17px body, 30px H2, 24px H3
+- White space: Generous margins and spacing
+- Table of Contents: Auto-generated for posts >1,500 words
+- Reading Progress: Visual indicator at top of page
 
 ### 2. Blog Publishing Management
 

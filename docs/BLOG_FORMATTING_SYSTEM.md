@@ -2,7 +2,18 @@
 
 ## Overview
 
-The blog detail page now uses **ReactMarkdown** with **GitHub Flavored Markdown (GFM)** support to render beautiful, professional blog content with comprehensive HTML formatting.
+The blog detail page uses **ReactMarkdown** with **GitHub Flavored Markdown (GFM)** support to render beautiful, professional blog content optimized for maximum readability based on 2025 best practices.
+
+## 2025 Enhancements (October 2025)
+
+### Research-Backed Improvements
+- **Optimal Content Width**: 680px (down from 896px) for 65-70 characters per line
+- **Line Height**: 1.7 (up from 1.625) for improved readability
+- **Reading Progress Bar**: Visual scroll indicator at top of page
+- **Table of Contents**: Auto-generated from H2/H3 headings for posts >1,500 words
+- **Enhanced Visual Hierarchy**: Increased section spacing, better H2 styling
+- **Mobile-First Design**: Collapsible TOC, responsive layout
+- **Improved Metadata Display**: Prominent read time badge
 
 ## Libraries Used
 
@@ -366,15 +377,17 @@ Code: 15px
 
 ### Line Length
 
-- Max width: None (uses container max-w-4xl)
-- Paragraph width: ~70 characters average
-- Optimal for reading comprehension
+- Max width: 680px (optimal for readability)
+- Paragraph width: 65-70 characters average (industry standard)
+- Research-backed: 45-75 characters per line ideal, 66 is perfect
+- Previous width (896px) was 30% too wide
 
 ### Line Height
 
 - Headings: Tight/Snug (1.25-1.375)
-- Body: Relaxed (1.625)
-- Lists: Relaxed (1.625)
+- Body: 1.7 (research-backed optimal, up from 1.625)
+- Lists: 1.7 for better line-to-line transition
+- Research shows 1.7 significantly improves readability
 
 ### Font Stack
 
@@ -455,18 +468,104 @@ Code: 15px
 - Check markdown table syntax is correct
 - Verify prose-table classes are applied
 
+## New Components (2025)
+
+### ReadingProgress Component
+
+**Location**: `src/components/blog/ReadingProgress.jsx`
+
+**Features**:
+- Fixed position at top of viewport
+- Smooth spring animation using Framer Motion
+- Gradient color (indigo → purple → pink)
+- Responds to scroll position
+- Shows reading completion percentage visually
+- Mobile-friendly (1px height, unobtrusive)
+
+**Implementation**:
+```jsx
+import ReadingProgress from '../components/blog/ReadingProgress';
+
+// In blog-detail.jsx
+<ReadingProgress />
+```
+
+### TableOfContents Component
+
+**Location**: `src/components/blog/TableOfContents.jsx`
+
+**Features**:
+- Auto-generates from H2 and H3 headings in markdown
+- Smooth scroll to sections with 80px offset
+- Active section highlighting based on scroll position
+- Sticky positioning on desktop (top: 24px)
+- Collapsible on mobile devices
+- Nested structure for H3 subsections
+- Only displays for posts >1,500 words
+- Gradient highlight for active section
+
+**Props**:
+- `content` (string, required): Raw markdown content
+- `wordCount` (number, optional): Total word count for display logic
+
+**Implementation**:
+```jsx
+import TableOfContents from '../components/blog/TableOfContents';
+
+// Desktop sidebar
+<aside className="hidden lg:block">
+  <TableOfContents content={post.content} wordCount={wordCount} />
+</aside>
+
+// Mobile version
+<div className="lg:hidden mb-8">
+  <TableOfContents content={post.content} wordCount={wordCount} />
+</div>
+```
+
+**Heading ID Generation**:
+The ReactMarkdown component now includes custom renderers for H2 and H3 that automatically add IDs:
+
+```jsx
+components={{
+  h2: ({ node, ...props }) => {
+    const text = props.children?.[0] || '';
+    const id = typeof text === 'string'
+      ? text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
+      : '';
+    return <h2 id={id} {...props} />;
+  },
+  h3: ({ node, ...props }) => {
+    const text = props.children?.[0] || '';
+    const id = typeof text === 'string'
+      ? text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
+      : '';
+    return <h3 id={id} {...props} />;
+  }
+}}
+```
+
 ## Future Enhancements
 
-### Potential Additions
+### Phase 2: Enhanced Features (Next Sprint)
 
-1. **Syntax Highlighting:** Add `rehype-highlight` for code blocks
-2. **Math Support:** Add `remark-math` for equations
-3. **Footnotes:** Already supported via GFM
-4. **Mermaid Diagrams:** Add diagram support
-5. **Table of Contents:** Auto-generate from headings
-6. **Reading Progress:** Scroll-based progress indicator
-7. **Copy Code Buttons:** One-click code copying
-8. **Image Lightbox:** Click to enlarge images
+1. ✅ **Table of Contents** - COMPLETED
+2. ✅ **Reading Progress** - COMPLETED
+3. ⏳ **Dark Mode Toggle** - User preference with localStorage
+4. ⏳ **Social Sharing Buttons** - Twitter, LinkedIn, Facebook, Copy Link
+5. ⏳ **Author Bio Section** - After content, before CTA
+6. ⏳ **Related Articles** - 3-4 related posts based on tags
+
+### Phase 3: Advanced Features
+
+1. 🔮 **Syntax Highlighting:** Add `rehype-highlight` for code blocks
+2. 🔮 **Copy Code Buttons:** One-click code copying
+3. 🔮 **Image Lightbox:** Click to enlarge images
+4. 🔮 **Comments System:** Integrate commenting
+5. 🔮 **Bookmark Functionality:** Save posts for later
+6. 🔮 **Reading History:** Track user reading progress
+7. 🔮 **Math Support:** Add `remark-math` for equations
+8. 🔮 **Mermaid Diagrams:** Add diagram support
 
 ---
 
