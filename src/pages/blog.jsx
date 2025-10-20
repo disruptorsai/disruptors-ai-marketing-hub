@@ -108,6 +108,26 @@ export default function Blog() {
     };
 
     fetchBlogPosts();
+
+    // Real-time subscription for instant updates when posts are published
+    import('@/lib/supabase-client').then(({ supabase }) => {
+      const subscription = supabase
+        .channel('public_blog_updates')
+        .on('postgres_changes', {
+          event: '*',
+          schema: 'public',
+          table: 'posts',
+          filter: 'is_published=eq.true'
+        }, () => {
+          console.log('🔄 Blog post updated, refreshing...');
+          fetchBlogPosts();
+        })
+        .subscribe();
+
+      return () => {
+        subscription.unsubscribe();
+      };
+    });
   }, []);
 
   return (
