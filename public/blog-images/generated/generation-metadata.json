@@ -1,0 +1,212 @@
+{
+  "generatedAt": "2025-10-20T06:05:12.520Z",
+  "totalImages": 10,
+  "successCount": 10,
+  "failCount": 0,
+  "model": "gpt-image-1",
+  "provider": "OpenAI",
+  "dimensions": "1536x1024",
+  "quality": "high",
+  "results": [
+    {
+      "id": 1,
+      "title": "AI Marketing Automation in 2025: Why 51% of Marketers Still Can't Measure ROI",
+      "slug": "ai-marketing-roi-2025",
+      "filename": "ai-marketing-roi-2025.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-marketing-roi-2025.png",
+      "prompt": "Professional business analytics dashboard showing AI marketing ROI metrics and performance graphs. Modern, clean design with blue and purple gradients. Charts showing 51% gap in measurement. High-tech futuristic style with holographic elements. Photorealistic 3D rendering. Corporate professional aesthetic.",
+      "keywords": [
+        "ROI",
+        "analytics",
+        "metrics",
+        "dashboard"
+      ],
+      "size": 2046494,
+      "generatedAt": "2025-10-20T05:54:40.308Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 2,
+      "title": "The Business Brain Revolution: How AI Knowledge Bases Are Replacing Generic Content",
+      "slug": "business-brain-revolution",
+      "filename": "business-brain-revolution.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/business-brain-revolution.png",
+      "prompt": "Glowing digital brain made of interconnected nodes and neural networks, floating above a sleek workspace. Vibrant cyan and purple energy flowing through synapses. Futuristic AI visualization with data streams and knowledge graphs. High-tech corporate aesthetic. Photorealistic with volumetric lighting. Represents centralized AI intelligence.",
+      "keywords": [
+        "brain",
+        "AI",
+        "knowledge",
+        "neural network"
+      ],
+      "size": 2320588,
+      "generatedAt": "2025-10-20T05:56:02.948Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 3,
+      "title": "From 37% to 60%: Inside the Daily AI Usage Explosion Among Marketing Teams",
+      "slug": "ai-usage-explosion-2025",
+      "filename": "ai-usage-explosion-2025.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-usage-explosion-2025.png",
+      "prompt": "Dynamic upward trending graph with explosive growth visualization from 37% to 60%. Marketing team silhouettes collaborating with AI holographic interfaces. Modern office environment with digital overlay. Electric blue and orange color scheme. Professional corporate style with motion blur effects suggesting rapid growth.",
+      "keywords": [
+        "growth",
+        "statistics",
+        "teamwork",
+        "explosion"
+      ],
+      "size": 2230116,
+      "generatedAt": "2025-10-20T05:57:11.220Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 4,
+      "title": "90% of Marketers Use AI for Content—But Only 29% Are 'Advanced'",
+      "slug": "ai-maturity-gap-explained",
+      "filename": "ai-maturity-gap-explained.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-maturity-gap-explained.png",
+      "prompt": "Split-screen composition showing novice vs expert AI users. Left side: basic chatbot interface with simple prompts. Right side: advanced multi-model AI orchestration dashboard with sophisticated workflows. Contrast between beginner and expert levels. Modern tech aesthetic with blue-purple gradient. Professional infographic style.",
+      "keywords": [
+        "maturity",
+        "expert",
+        "beginner",
+        "comparison"
+      ],
+      "size": 2143027,
+      "generatedAt": "2025-10-20T05:58:38.520Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 5,
+      "title": "Multi-Tier AI Content Systems: Why Your Marketing Needs Three Access Levels",
+      "slug": "multi-tier-ai-systems",
+      "filename": "multi-tier-ai-systems.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/multi-tier-ai-systems.png",
+      "prompt": "Three-tiered pyramid or platform architecture visualization showing internal, client, and public access levels. Each tier glowing with different color (gold/blue/green). Secure padlocks and access control symbols. Isometric 3D design. Professional enterprise architecture style. Clean modern corporate aesthetic.",
+      "keywords": [
+        "tiers",
+        "architecture",
+        "security",
+        "levels"
+      ],
+      "size": 1964767,
+      "generatedAt": "2025-10-20T05:59:36.516Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 6,
+      "title": "Hyper-Personalization Beyond ChatGPT: Building AI That Knows Your Brand Voice",
+      "slug": "brand-voice-personalization",
+      "filename": "brand-voice-personalization.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/brand-voice-personalization.png",
+      "prompt": "Anthropomorphic AI assistant wearing brand colors, surrounded by voice waveforms and personality traits floating in space. Microphone and sound wave visualizations. Vibrant brand elements like logos, colors, and typography orbiting the central figure. Warm professional lighting. Creative advertising style with personality.",
+      "keywords": [
+        "personalization",
+        "brand",
+        "voice",
+        "character"
+      ],
+      "size": 2654275,
+      "generatedAt": "2025-10-20T06:00:37.775Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 7,
+      "title": "The $47.32 Billion AI Marketing Opportunity: 10 Workflows That Drive Revenue",
+      "slug": "ai-marketing-opportunity-workflows",
+      "filename": "ai-marketing-opportunity-workflows.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-marketing-opportunity-workflows.png",
+      "prompt": "Flowing automation workflow diagram with ten connected nodes showing revenue generation paths. Dollar signs and upward revenue graphs integrated into design. Professional financial visualization with green and gold accents. Modern infographic style with 3D elements. Clean corporate aesthetic showing prosperity and growth.",
+      "keywords": [
+        "revenue",
+        "workflows",
+        "automation",
+        "money"
+      ],
+      "size": 2644998,
+      "generatedAt": "2025-10-20T06:01:35.349Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 8,
+      "title": "AI-Powered Growth Audits: Analyze Competitors, SEO, and Performance in 30 Seconds",
+      "slug": "ai-growth-audits-guide",
+      "filename": "ai-growth-audits-guide.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-growth-audits-guide.png",
+      "prompt": "High-speed scanning visualization showing website analysis, competitor comparison graphs, and SEO metrics being processed simultaneously. Stopwatch showing 30 seconds. Multiple browser windows and analytics dashboards in holographic display. Fast motion blur effects. Electric blue and cyan color palette. Tech-forward style.",
+      "keywords": [
+        "audit",
+        "speed",
+        "analysis",
+        "scanning"
+      ],
+      "size": 2104018,
+      "generatedAt": "2025-10-20T06:03:02.105Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 9,
+      "title": "Claude Sonnet 4.5 vs ChatGPT for Marketing: The 2025 Model Showdown",
+      "slug": "claude-vs-chatgpt-marketing-2025",
+      "filename": "claude-vs-chatgpt-marketing-2025.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/claude-vs-chatgpt-marketing-2025.png",
+      "prompt": "Side-by-side comparison of two advanced AI models represented as sophisticated robotic interfaces or digital entities facing each other. Left: Claude (purple/blue theme). Right: ChatGPT (green theme). Electric energy between them suggesting competition. Professional tech showdown aesthetic. Sleek corporate design with dramatic lighting.",
+      "keywords": [
+        "comparison",
+        "models",
+        "AI",
+        "competition"
+      ],
+      "size": 2395421,
+      "generatedAt": "2025-10-20T06:04:22.759Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    },
+    {
+      "id": 10,
+      "title": "Zero to Hero: Building an AI-First Marketing System in 30 Days",
+      "slug": "ai-marketing-system-30-days",
+      "filename": "ai-marketing-system-30-days.png",
+      "filepath": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/blog-images/generated/ai-marketing-system-30-days.png",
+      "prompt": "30-day calendar or timeline visualization showing progressive transformation from zero to hero. Starting point showing empty state, ending with fully functional AI marketing system. Rocket launch or growth metaphor. Inspirational corporate design with blue-to-green gradient suggesting growth. Modern professional style with achievement badges.",
+      "keywords": [
+        "timeline",
+        "transformation",
+        "growth",
+        "achievement"
+      ],
+      "size": 2809470,
+      "generatedAt": "2025-10-20T06:05:12.520Z",
+      "model": "gpt-image-1",
+      "dimensions": "1536x1024",
+      "quality": "high",
+      "success": true
+    }
+  ]
+}

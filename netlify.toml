@@ -11,6 +11,11 @@
 # Admin Nexus & Growth Audit Functions Configuration
 [functions]
   node_bundler = "esbuild"
+  # Increase timeout for AI content generation (local dev)
+  [functions."admin-blog-generator"]
+    timeout = 120
+  [functions."admin-image-generator"]
+    timeout = 60
   external_node_modules = [
     "@ai-sdk/openai",
     "@ai-sdk/anthropic",

@@ -1,0 +1,255 @@
+{
+  "blog_strategy": {
+    "overview": "20 comprehensive AI marketing blog posts for Disruptors AI ICP",
+    "target_audience": "B2B businesses needing AI marketing solutions, service businesses, digital agencies",
+    "publishing_schedule": {
+      "phase_1": "3x per week for 90 days (Mon/Wed/Fri)",
+      "phase_2": "2x per week after 90 days (Tue/Thu)",
+      "first_publish": "Today"
+    },
+    "set_1_original_10": [
+      {
+        "id": 1,
+        "title": "AI Marketing Automation in 2025: Why 51% of Marketers Still Can't Measure ROI (And How to Fix It)",
+        "slug": "ai-marketing-roi-2025",
+        "primary_keyword": "AI marketing ROI",
+        "secondary_keywords": ["marketing automation measurement", "AI analytics", "ROI tracking"],
+        "word_count": 2800,
+        "featured_image": "/blog-images/generated/ai-marketing-roi-2025.png",
+        "meta_description": "51% of marketers can't measure AI ROI. Learn the exact framework to track every AI marketing touchpoint and prove your $47B investment impact.",
+        "priority": "high",
+        "unique_angle": "Your telemetry system tracking every module run"
+      },
+      {
+        "id": 2,
+        "title": "The Business Brain Revolution: How AI Knowledge Bases Are Replacing Generic Content Generation",
+        "slug": "business-brain-revolution",
+        "primary_keyword": "AI knowledge base",
+        "secondary_keywords": ["business brain", "AI personalization", "brand voice AI"],
+        "word_count": 3000,
+        "featured_image": "/blog-images/generated/business-brain-revolution.png",
+        "meta_description": "Stop generic ChatGPT content. Build an AI Business Brain that learns 47+ facts about your business automatically and generates perfectly branded content.",
+        "priority": "critical",
+        "unique_angle": "Your proprietary Business Brain system"
+      },
+      {
+        "id": 3,
+        "title": "From 37% to 60%: Inside the Daily AI Usage Explosion Among Marketing Teams",
+        "slug": "ai-usage-explosion-2025",
+        "primary_keyword": "daily AI usage marketing",
+        "secondary_keywords": ["AI adoption 2025", "marketing team AI", "AI marketing trends"],
+        "word_count": 2400,
+        "featured_image": "/blog-images/generated/ai-usage-explosion-2025.png",
+        "meta_description": "Daily AI usage jumped from 37% to 60% in 12 months. Here's what changed, which tools are driving adoption, and how to implement AI in your team.",
+        "priority": "medium",
+        "unique_angle": "Connect to your 'coming soon' positioning"
+      },
+      {
+        "id": 4,
+        "title": "90% of Marketers Use AI for Content—But Only 29% Are 'Advanced': The Maturity Gap Explained",
+        "slug": "ai-maturity-gap-explained",
+        "primary_keyword": "AI marketing maturity",
+        "secondary_keywords": ["advanced AI marketing", "AI expertise", "marketing AI skills"],
+        "word_count": 2700,
+        "featured_image": "/blog-images/generated/ai-maturity-gap-explained.png",
+        "meta_description": "Most marketers use basic AI. Only 29% are 'advanced'. Learn the 3 maturity levels, avoid novice mistakes, and jump to expert status in 90 days.",
+        "priority": "high",
+        "unique_angle": "Your three-tier modules architecture demonstrates advanced thinking"
+      },
+      {
+        "id": 5,
+        "title": "Multi-Tier AI Content Systems: Why Your Marketing Needs Internal, Client, and Public AI Tools",
+        "slug": "multi-tier-ai-systems",
+        "primary_keyword": "multi-tier AI system",
+        "secondary_keywords": ["AI architecture", "tiered AI tools", "AI access levels"],
+        "word_count": 2600,
+        "featured_image": "/blog-images/generated/multi-tier-ai-systems.png",
+        "meta_description": "One-size-fits-all AI fails at scale. Build a three-tier system: unlimited internal power, quota-limited client access, and public lead magnets.",
+        "priority": "critical",
+        "unique_angle": "YOUR proprietary architecture - thought leadership gold"
+      },
+      {
+        "id": 6,
+        "title": "Hyper-Personalization Beyond ChatGPT: Building AI That Actually Knows Your Brand Voice",
+        "slug": "brand-voice-personalization",
+        "primary_keyword": "brand voice AI",
+        "secondary_keywords": ["personalized AI content", "custom AI", "brand AI training"],
+        "word_count": 2700,
+        "featured_image": "/blog-images/generated/brand-voice-personalization.png",
+        "meta_description": "ChatGPT can't match your brand voice. Here's how to train AI on your brand in 10 minutes with brand rules, lexicon, and taboos systems.",
+        "priority": "high",
+        "unique_angle": "Your AI Content Writer + Business Brain + Brand Rules integration"
+      },
+      {
+        "id": 7,
+        "title": "The $47.32 Billion AI Marketing Opportunity: 10 Automation Workflows That Actually Drive Revenue",
+        "slug": "ai-marketing-opportunity-workflows",
+        "primary_keyword": "AI marketing workflows",
+        "secondary_keywords": ["revenue automation", "AI ROI", "marketing automation"],
+        "word_count": 3200,
+        "featured_image": "/blog-images/generated/ai-marketing-opportunity-workflows.png",
+        "meta_description": "Turn the $47B AI market into YOUR bottom line. 10 high-ROI workflows with dollar impact estimates: from keyword research to sales outreach.",
+        "priority": "critical",
+        "unique_angle": "Connect your specific modules to revenue"
+      },
+      {
+        "id": 8,
+        "title": "AI-Powered Growth Audits: How to Analyze Competitors, SEO, and Performance in Under 30 Seconds",
+        "slug": "ai-growth-audits-guide",
+        "primary_keyword": "AI growth audit",
+        "secondary_keywords": ["competitor analysis AI", "SEO automation", "performance audit"],
+        "word_count": 2500,
+        "featured_image": "/blog-images/generated/ai-growth-audits-guide.png",
+        "meta_description": "Traditional audits take days. Multi-API AI orchestration analyzes competitors, SEO, and performance in 30 seconds. Here's the tech stack.",
+        "priority": "critical",
+        "unique_angle": "Deep dive into your Growth Audit module's technical superiority"
+      },
+      {
+        "id": 9,
+        "title": "Claude Sonnet 4.5 vs. ChatGPT for Marketing: The 2025 Model Showdown (33% Are Switching)",
+        "slug": "claude-vs-chatgpt-marketing-2025",
+        "primary_keyword": "Claude vs ChatGPT marketing",
+        "secondary_keywords": ["best AI for marketing", "LLM comparison", "Claude AI marketing"],
+        "word_count": 2900,
+        "featured_image": "/blog-images/generated/claude-vs-chatgpt-marketing-2025.png",
+        "meta_description": "33% of marketers are switching from ChatGPT. Here's why Claude Sonnet 4.5 outperforms for marketing tasks in 10 head-to-head tests.",
+        "priority": "high",
+        "unique_angle": "Justify your technical choices + show thought leadership"
+      },
+      {
+        "id": 10,
+        "title": "Zero to Hero: Building an AI-First Marketing System in 30 Days (Complete Implementation Blueprint)",
+        "slug": "ai-marketing-system-30-days",
+        "primary_keyword": "AI marketing system",
+        "secondary_keywords": ["AI implementation", "marketing automation setup", "30-day AI plan"],
+        "word_count": 3400,
+        "featured_image": "/blog-images/generated/ai-marketing-system-30-days.png",
+        "meta_description": "Transform from manual marketing to AI-first in 30 days. Week-by-week blueprint: Business Brain setup, content engine, growth system, automation.",
+        "priority": "critical",
+        "unique_angle": "Complete onboarding pathway using your platform"
+      }
+    ],
+    "set_2_additional_10_icp_focused": [
+      {
+        "id": 11,
+        "title": "How to Use AI for Local SEO: Rank Your Service Business in Google Maps Without an Agency",
+        "slug": "ai-local-seo-service-business",
+        "primary_keyword": "AI local SEO",
+        "secondary_keywords": ["local business AI", "Google Maps ranking", "service business SEO"],
+        "word_count": 2600,
+        "meta_description": "Service businesses pay $2K/month for local SEO. Use AI to automate Google Business Profile optimization, review generation, and local content creation.",
+        "priority": "high",
+        "target_icp": "Local service businesses (plumbers, HVAC, contractors)"
+      },
+      {
+        "id": 12,
+        "title": "AI-Powered Social Media Management: How to Create 90 Days of Content in 2 Hours",
+        "slug": "ai-social-media-content-calendar",
+        "primary_keyword": "AI social media management",
+        "secondary_keywords": ["social media automation", "content calendar AI", "social media AI tools"],
+        "word_count": 2500,
+        "meta_description": "Stop spending 15 hours/week on social media. AI-generated content calendars, automatic repurposing, and brand-consistent posts across all platforms.",
+        "priority": "high",
+        "target_icp": "Small business owners overwhelmed by social media"
+      },
+      {
+        "id": 13,
+        "title": "The AI Marketing Stack for Small Businesses: Free and Low-Cost Tools That Actually Work",
+        "slug": "ai-marketing-stack-small-business",
+        "primary_keyword": "AI marketing tools small business",
+        "secondary_keywords": ["affordable AI marketing", "small business automation", "free AI tools"],
+        "word_count": 2400,
+        "meta_description": "Enterprise AI for small business budgets. Build a complete marketing stack with free/low-cost tools: content, SEO, social, email, analytics.",
+        "priority": "medium",
+        "target_icp": "Budget-conscious small businesses"
+      },
+      {
+        "id": 14,
+        "title": "How to Train AI on Your Industry Jargon: Stop Generic Content That Scares Away Customers",
+        "slug": "train-ai-industry-terminology",
+        "primary_keyword": "AI industry jargon training",
+        "secondary_keywords": ["industry-specific AI", "technical content AI", "domain expertise AI"],
+        "word_count": 2700,
+        "meta_description": "Generic AI content uses wrong terminology and loses customers. Train AI on your industry's language, acronyms, and technical concepts in 20 minutes.",
+        "priority": "high",
+        "target_icp": "Technical/specialized industries (legal, medical, finance, engineering)"
+      },
+      {
+        "id": 15,
+        "title": "AI Lead Magnets That Convert: Create Interactive Tools That Generate 10x More Leads",
+        "slug": "ai-lead-magnets-interactive-tools",
+        "primary_keyword": "AI lead magnets",
+        "secondary_keywords": ["interactive lead generation", "AI tools for leads", "lead magnet automation"],
+        "word_count": 2600,
+        "meta_description": "PDFs get 2% conversion. AI-powered interactive calculators, audits, and assessments convert at 20%+. Build yours in 30 minutes.",
+        "priority": "critical",
+        "target_icp": "B2B companies struggling with lead generation"
+      },
+      {
+        "id": 16,
+        "title": "Email Marketing Automation with AI: Personalization at Scale Without Creepy Tracking",
+        "slug": "ai-email-marketing-personalization",
+        "primary_keyword": "AI email marketing",
+        "secondary_keywords": ["email personalization", "automated email campaigns", "AI email sequences"],
+        "word_count": 2500,
+        "meta_description": "Send 1,000 personalized emails that feel hand-written. AI analyzes customer data, generates custom content, and optimizes send times automatically.",
+        "priority": "high",
+        "target_icp": "E-commerce and B2B companies with email lists"
+      },
+      {
+        "id": 17,
+        "title": "Competitive Intelligence with AI: Track Every Move Your Competitors Make (Automatically)",
+        "slug": "ai-competitive-intelligence-monitoring",
+        "primary_keyword": "AI competitive intelligence",
+        "secondary_keywords": ["competitor monitoring AI", "competitive analysis automation", "market intelligence AI"],
+        "word_count": 2700,
+        "meta_description": "Stop manually checking competitor websites. AI monitors their content, SEO, pricing, features, and social media—then suggests your counter-moves.",
+        "priority": "medium",
+        "target_icp": "B2B SaaS and competitive industries"
+      },
+      {
+        "id": 18,
+        "title": "How AI Writes Better Landing Pages: Conversion-Optimized Copy in Minutes, Not Hours",
+        "slug": "ai-landing-page-copywriting",
+        "primary_keyword": "AI landing page copy",
+        "secondary_keywords": ["conversion copywriting AI", "landing page automation", "AI sales copy"],
+        "word_count": 2400,
+        "meta_description": "Copywriters charge $500-2K per landing page. AI generates A/B test variations, applies conversion psychology, and writes headlines that convert at 8%+.",
+        "priority": "high",
+        "target_icp": "Marketing agencies and e-commerce businesses"
+      },
+      {
+        "id": 19,
+        "title": "AI for Customer Service: Chatbots That Actually Solve Problems (Not Frustrate Customers)",
+        "slug": "ai-customer-service-chatbots",
+        "primary_keyword": "AI customer service",
+        "secondary_keywords": ["AI chatbots", "customer support automation", "intelligent chatbots"],
+        "word_count": 2600,
+        "meta_description": "Bad chatbots frustrate customers. Modern AI chatbots resolve 80% of issues, learn from conversations, and escalate smartly. Setup in 1 hour.",
+        "priority": "medium",
+        "target_icp": "Service businesses with high support volume"
+      },
+      {
+        "id": 20,
+        "title": "The AI Content Repurposing Engine: Turn One Blog Post into 50 Pieces of Content",
+        "slug": "ai-content-repurposing-system",
+        "primary_keyword": "AI content repurposing",
+        "secondary_keywords": ["content multiplication", "repurpose content AI", "multi-channel content"],
+        "word_count": 2500,
+        "meta_description": "One blog post becomes: 10 social posts, 5 emails, 3 videos, 2 infographics, podcast script, and more. AI repurposing system delivers 10x content ROI.",
+        "priority": "high",
+        "target_icp": "Content marketers and solopreneurs"
+      }
+    ],
+    "metadata": {
+      "total_blogs": 20,
+      "total_word_count_estimated": 53400,
+      "average_words_per_blog": 2670,
+      "all_include_faq_sections": true,
+      "all_include_actionable_steps": true,
+      "all_include_real_examples": true,
+      "seo_optimized": true,
+      "brand_voice": "Professional but conversational, data-driven, actionable"
+    }
+  }
+}

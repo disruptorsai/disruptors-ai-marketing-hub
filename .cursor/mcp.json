@@ -105,6 +105,16 @@
         "--figma-api-key=${FIGMA_API_KEY}",
         "--stdio"
       ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "archon": {
+      "url": "http://localhost:8051"
     }
   }
 }
