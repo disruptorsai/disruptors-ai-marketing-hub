@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react'
 import { BusinessBrains, BrainFacts, KnowledgeSources, Ingest } from '../../api/entities.ts'
 import { Plus, RefreshCw, Search, Trash2, Check } from 'lucide-react'
+import CompetitorMonitor from '../components/CompetitorMonitor.jsx'
 
 export default function BusinessBrainBuilder() {
   const [brain, setBrain] = useState(null)
@@ -126,6 +127,12 @@ export default function BusinessBrainBuilder() {
           </div>
         </div>
       )}
+
+      {/* Competitor Monitor */}
+      <CompetitorMonitor
+        brainId={brain?.id}
+        domain={brain?.domain || sources.find(s => s.config?.url)?.config?.url?.split('/')[2]}
+      />
 
       {/* Knowledge Sources */}
       <div className="bg-gray-900 border border-green-500/30 p-4">

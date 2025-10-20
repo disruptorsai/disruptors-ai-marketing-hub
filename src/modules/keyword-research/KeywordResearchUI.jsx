@@ -26,10 +26,12 @@ import {
   Zap,
   BarChart3,
   Lock,
-  Sparkles
+  Sparkles,
+  Eye
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { locationOptions } from './schema.js';
+import { SERPPreviewModal } from '@/components/keyword-research/SERPPreviewModal';
 
 /**
  * Keyword Research UI Component
@@ -68,6 +70,8 @@ const KeywordResearchUI = ({
     maxDifficulty: 100,
     minCPC: 0
   });
+  const [serpPreviewKeyword, setSerpPreviewKeyword] = useState(null);
+  const [isSerpModalOpen, setIsSerpModalOpen] = useState(false);
 
   // Access level checks
   const isInternal = audience === 'internal';
@@ -148,6 +152,22 @@ const KeywordResearchUI = ({
       setSortBy(column);
       setSortOrder('desc');
     }
+  };
+
+  /**
+   * Open SERP preview for a keyword
+   */
+  const handleViewSERP = (keyword) => {
+    setSerpPreviewKeyword(keyword);
+    setIsSerpModalOpen(true);
+  };
+
+  /**
+   * Close SERP preview modal
+   */
+  const handleCloseSERPModal = () => {
+    setIsSerpModalOpen(false);
+    setSerpPreviewKeyword(null);
   };
 
   /**
@@ -411,6 +431,7 @@ const KeywordResearchUI = ({
                           <ArrowUpDown className="w-3 h-3" />
                         </div>
                       </th>
+                      {!isPublic && <th className="p-4">Actions</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -454,6 +475,19 @@ const KeywordResearchUI = ({
                             {kw.opportunity_score}
                           </Badge>
                         </td>
+                        {!isPublic && (
+                          <td className="p-4">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleViewSERP(kw.keyword)}
+                              className="border-green-400/30 text-green-400 hover:bg-green-400/10"
+                            >
+                              <Eye className="w-4 h-4 mr-2" />
+                              SERP
+                            </Button>
+                          </td>
+                        )}
                       </motion.tr>
                     ))}
                   </tbody>
@@ -463,6 +497,13 @@ const KeywordResearchUI = ({
           </Card>
         </div>
       )}
+
+      {/* SERP Preview Modal */}
+      <SERPPreviewModal
+        keyword={serpPreviewKeyword}
+        isOpen={isSerpModalOpen}
+        onClose={handleCloseSERPModal}
+      />
 
       {/* Public Upgrade CTA */}
       {isPublic && filteredKeywords.length > 0 && (

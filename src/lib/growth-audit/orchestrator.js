@@ -2,8 +2,7 @@ import { FirecrawlScraper } from './scrapers/firecrawl.js';
 import { PlaywrightScraper } from './scrapers/playwright.js';
 import { BrandDetector } from './scrapers/brand-detect.js';
 import { PageSpeedInsights } from './audits/pagespeed.js';
-import { BacklinksAnalyzer } from './audits/backlinks.js';
-import { DomainMetricsAnalyzer } from './audits/domain-metrics.js';
+import { SERPVisibilityAnalyzer } from './audits/serp-visibility.js';
 import { analyzeBusinessProfile } from './ai/analyzer.js';
 import { detectOpportunities, calculateReadinessScore } from './ai/opportunities.js';
 
@@ -27,8 +26,7 @@ export class GrowthAuditOrchestrator {
     this.playwright = new PlaywrightScraper();
     this.brandDetector = new BrandDetector();
     this.pagespeed = new PageSpeedInsights();
-    this.backlinks = new BacklinksAnalyzer();
-    this.domainMetrics = new DomainMetricsAnalyzer();
+    this.serpVisibility = new SERPVisibilityAnalyzer();
   }
 
   /**
@@ -91,31 +89,19 @@ export class GrowthAuditOrchestrator {
         payload: { schema: schemaTypes, og: playwrightData.metadata.ogTags },
       });
 
-      // Step 5: Backlink Analysis
-      onStream?.({ type: 'progress', tileId: 'backlinks', status: 'pending', message: 'Analyzing backlink profile...' });
+      // Step 5: SERP Visibility Analysis
+      onStream?.({ type: 'progress', tileId: 'serp-visibility', status: 'pending', message: 'Analyzing SERP visibility & competitors...' });
 
-      const backlinkData = await this.backlinks.analyze(url);
-
-      onStream?.({
-        type: 'tile',
-        tileId: 'backlinks',
-        status: 'ready',
-        payload: backlinkData,
-      });
-
-      // Step 6: Domain Metrics
-      onStream?.({ type: 'progress', tileId: 'domain-metrics', status: 'pending', message: 'Analyzing domain metrics...' });
-
-      const domainMetricsData = await this.domainMetrics.analyze(url);
+      const serpData = await this.serpVisibility.analyze(url);
 
       onStream?.({
         type: 'tile',
-        tileId: 'domain-metrics',
+        tileId: 'serp-visibility',
         status: 'ready',
-        payload: domainMetricsData,
+        payload: serpData,
       });
 
-      // Step 7: AI Analysis
+      // Step 6: AI Analysis
       onStream?.({ type: 'progress', tileId: 'analysis', status: 'pending', message: 'AI analyzing business profile...' });
 
       const profile = await analyzeBusinessProfile({
@@ -139,9 +125,8 @@ export class GrowthAuditOrchestrator {
         palette: brandData?.palette,
       };
 
-      // Attach backlinks and domain metrics to profile
-      profile.backlinks = backlinkData;
-      profile.domainMetrics = domainMetricsData;
+      // Attach SERP visibility data to profile
+      profile.serpVisibility = serpData;
 
       onStream?.({
         type: 'tile',

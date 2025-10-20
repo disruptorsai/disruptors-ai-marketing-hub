@@ -276,145 +276,105 @@ export default function GrowthAuditResults() {
             </Card>
           )}
 
-          {/* Backlinks Profile */}
-          {profile.backlinks && (
+          {/* SERP Visibility & Competitive Analysis */}
+          {profile.serpVisibility && (
             <Card className="mb-6">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Link2 className="w-5 h-5 text-blue-600" />
-                  <CardTitle>Backlink Profile</CardTitle>
+                  <Target className="w-5 h-5 text-purple-600" />
+                  <CardTitle>SERP Visibility & Competitors</CardTitle>
                 </div>
-                <CardDescription>Domain authority and link building analysis</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                  <div>
-                    <h3 className="font-semibold text-sm mb-1">Domain Rating</h3>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-bold text-blue-600">
-                        {profile.backlinks.domain_rating}
-                      </span>
-                      <span className="text-gray-500">/100</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sm mb-1">Total Backlinks</h3>
-                    <p className="text-2xl font-bold">{profile.backlinks.total_backlinks.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sm mb-1">Referring Domains</h3>
-                    <p className="text-2xl font-bold">{profile.backlinks.referring_domains.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-sm mb-1">Link Quality</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl font-bold">{profile.backlinks.link_quality.score}</span>
-                      <Badge variant={profile.backlinks.link_quality.score >= 60 ? 'default' : 'secondary'}>
-                        {profile.backlinks.link_quality.label}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <h3 className="font-semibold mb-2">Link Distribution</h3>
-                    <div className="space-y-1 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Dofollow:</span>
-                        <span className="font-medium">{profile.backlinks.dofollow_percentage.toFixed(1)}%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Nofollow:</span>
-                        <span className="font-medium">{profile.backlinks.nofollow_percentage.toFixed(1)}%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">.edu/.gov:</span>
-                        <span className="font-medium">{profile.backlinks.edu_links + profile.backlinks.gov_links}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Top Referring Domains</h3>
-                    <div className="space-y-1 text-sm">
-                      {profile.backlinks.top_referring_domains.slice(0, 5).map((ref, idx) => (
-                        <div key={idx} className="flex justify-between text-xs">
-                          <span className="text-gray-600 truncate max-w-[200px]">{ref.domain}</span>
-                          <span className="font-medium">{ref.backlinks} links</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Domain Metrics */}
-          {profile.domainMetrics && (
-            <Card className="mb-6">
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-green-600" />
-                  <CardTitle>Domain Metrics</CardTitle>
-                </div>
-                <CardDescription>Organic traffic and keyword performance</CardDescription>
+                <CardDescription>Search engine rankings and competitive positioning</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Visibility Score</h3>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-bold text-green-600">
-                        {profile.domainMetrics.visibility_score}
+                      <span className="text-3xl font-bold text-purple-600">
+                        {profile.serpVisibility.visibility_score}
                       </span>
                       <span className="text-gray-500">/100</span>
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Est. Monthly Traffic</h3>
-                    <p className="text-2xl font-bold">{profile.domainMetrics.organic_traffic_estimate.toLocaleString()}</p>
+                    <h3 className="font-semibold text-sm mb-1">Ranking Keywords</h3>
+                    <p className="text-2xl font-bold">{profile.serpVisibility.ranking_keywords}</p>
+                    <p className="text-xs text-gray-500">of {profile.serpVisibility.total_keywords_analyzed} analyzed</p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Organic Keywords</h3>
-                    <p className="text-2xl font-bold">{profile.domainMetrics.organic_keywords_count.toLocaleString()}</p>
+                    <h3 className="font-semibold text-sm mb-1">Avg. Position</h3>
+                    <p className="text-2xl font-bold">
+                      {profile.serpVisibility.avg_position ? `#${profile.serpVisibility.avg_position}` : 'N/A'}
+                    </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Traffic Quality</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl font-bold">{profile.domainMetrics.traffic_quality.score}</span>
-                      <Badge variant={profile.domainMetrics.traffic_quality.score >= 60 ? 'default' : 'secondary'}>
-                        {profile.domainMetrics.traffic_quality.label}
-                      </Badge>
-                    </div>
+                    <h3 className="font-semibold text-sm mb-1">Competitors Found</h3>
+                    <p className="text-2xl font-bold">{profile.serpVisibility.competitors.length}</p>
                   </div>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <h3 className="font-semibold mb-2">Top Ranking Keywords</h3>
-                    <div className="space-y-1 text-sm">
-                      {profile.domainMetrics.top_keywords.slice(0, 5).map((kw, idx) => (
-                        <div key={idx} className="flex justify-between items-center text-xs">
-                          <span className="text-gray-600 truncate max-w-[180px]">{kw.keyword}</span>
-                          <div className="flex gap-2">
-                            <Badge variant="outline" className="text-xs">#{kw.position}</Badge>
-                            <span className="text-gray-500">{kw.search_volume.toLocaleString()}/mo</span>
+                  {/* Top Competitors */}
+                  {profile.serpVisibility.competitors.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2">Top Competitors</h3>
+                      <div className="space-y-1 text-sm">
+                        {profile.serpVisibility.competitors.slice(0, 5).map((comp, idx) => (
+                          <div key={idx} className="flex justify-between items-center text-xs">
+                            <span className="text-gray-600 truncate max-w-[180px]">{comp.domain}</span>
+                            <div className="flex gap-2 items-center">
+                              <Badge variant="outline" className="text-xs">{comp.appearances} keywords</Badge>
+                              <span className="text-gray-500">Avg #{comp.avg_position}</span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Top Competitors</h3>
-                    <div className="space-y-1 text-sm">
-                      {profile.domainMetrics.top_competitors.slice(0, 5).map((comp, idx) => (
-                        <div key={idx} className="flex justify-between text-xs">
-                          <span className="text-gray-600 truncate max-w-[200px]">{comp.domain}</span>
-                          <span className="text-gray-500">Avg pos: {comp.avg_position}</span>
-                        </div>
-                      ))}
+                  )}
+
+                  {/* Keyword Gaps */}
+                  {profile.serpVisibility.keyword_gaps && profile.serpVisibility.keyword_gaps.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2">Keyword Opportunities</h3>
+                      <div className="space-y-1 text-sm">
+                        {profile.serpVisibility.keyword_gaps.slice(0, 5).map((gap, idx) => (
+                          <div key={idx} className="text-xs">
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-600 truncate max-w-[180px]">{gap.keyword}</span>
+                              <Badge
+                                variant={gap.opportunity_level === 'high' ? 'default' : 'secondary'}
+                                className="text-xs"
+                              >
+                                {gap.opportunity_level}
+                              </Badge>
+                            </div>
+                            {gap.top_competitor && (
+                              <p className="text-gray-500 mt-0.5">
+                                {gap.top_competitor} ranks #{gap.top_competitor_position}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
+
+                {/* SERP Features */}
+                {profile.serpVisibility.serp_features && profile.serpVisibility.serp_features.length > 0 && (
+                  <div className="mt-4 pt-4 border-t">
+                    <h3 className="font-semibold mb-2">SERP Features Detected</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {profile.serpVisibility.serp_features.slice(0, 5).map((feature, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {feature.type.replace(/_/g, ' ')}
+                          {feature.count > 1 && ` (${feature.count})`}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}
