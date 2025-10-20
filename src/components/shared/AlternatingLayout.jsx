@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { useImageParallax } from '@/hooks/useParallax';
+import FastVideo from '@/components/shared/FastVideo';
 
 export default function AlternatingLayout({ sections = [] }) {
   return (
@@ -32,18 +33,22 @@ function ParallaxSection({ section, textOnLeft }) {
       {/* Full-width background image/video with parallax */}
       <div className="absolute inset-0 w-full h-full">
         {section.video ? (
-          <video
-            ref={imageRef}
-            src={section.video}
-            className="w-full h-full object-cover scale-110"
-            style={section.videoStyle}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-label={section.imageAlt || section.headline || 'Section video'}
-          />
+          <div ref={imageRef} className="w-full h-full scale-110" style={section.videoStyle}>
+            <FastVideo
+              src={section.video}
+              poster={section.image || undefined}
+              preset="fullscreen"
+              autoplay={true}
+              muted={true}
+              loop={true}
+              playsInline={true}
+              preload="metadata"
+              fetchpriority="high"
+              lazy={false}
+              className="w-full h-full"
+              aria-label={section.imageAlt || section.headline || 'Section video'}
+            />
+          </div>
         ) : section.image ? (
           <img
             ref={imageRef}
@@ -51,6 +56,7 @@ function ParallaxSection({ section, textOnLeft }) {
             alt={section.imageAlt || section.headline || 'Section image'}
             className="w-full h-full object-cover scale-110"
             loading="lazy"
+            fetchpriority="high"
           />
         ) : (
           <div

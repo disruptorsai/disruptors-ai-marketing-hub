@@ -32,4 +32,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </ChunkErrorBoundary>
 )
 
-console.log('✅ [MAIN.JSX] App rendered successfully!'); 
+console.log('✅ [MAIN.JSX] App rendered successfully!');
+
+// Register service worker for Presentation Mode
+import { registerServiceWorker } from '@/lib/register-sw';
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    registerServiceWorker().then((registered) => {
+      if (registered) {
+        console.log('📦 Presentation Mode available');
+      }
+    });
+  });
+} 

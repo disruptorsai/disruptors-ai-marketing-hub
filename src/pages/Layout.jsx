@@ -13,6 +13,8 @@ import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import Footer from "@/components/shared/Footer";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
+import { useSmartPreloading } from "@/hooks/useSmartPreloading";
+import { initResourcePriority } from "@/lib/resource-priority-manager";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -49,7 +51,15 @@ export default function Layout({ children, currentPageName }) {
     setShowLoading(false);
     setInitialLoad(false);
   };
-  
+
+  // Initialize performance optimizations
+  useSmartPreloading();
+
+  // Initialize resource priority manager
+  React.useEffect(() => {
+    initResourcePriority();
+  }, []);
+
   React.useEffect(() => {
     setMobileMenuOpen(false);
     // Scroll to top when page changes
@@ -128,6 +138,7 @@ export default function Layout({ children, currentPageName }) {
                     <img
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
+                      fetchpriority="high"
                       className={`object-contain h-auto transition-all duration-500 ease-in-out ${
                         scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'
                       }`}

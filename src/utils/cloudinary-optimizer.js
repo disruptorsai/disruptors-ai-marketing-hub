@@ -197,6 +197,62 @@ export function getVideoThumbnail(videoUrl, options = {}) {
 }
 
 /**
+ * Detect viewport size category
+ * @returns {string} - Viewport category
+ */
+export function getViewportCategory() {
+  const width = typeof window !== 'undefined' ? window.innerWidth : 1920;
+
+  if (width < 768) return 'mobile';
+  if (width < 1024) return 'tablet';
+  if (width < 1920) return 'desktop';
+  if (width < 2560) return 'large'; // 2K displays
+  return 'xlarge'; // 4K displays
+}
+
+/**
+ * Get optimal dimensions for current viewport
+ * @param {string} preset - Preset name
+ * @returns {Object} - Optimal dimensions
+ */
+export function getViewportOptimizedDimensions(preset = 'hero') {
+  const viewport = getViewportCategory();
+
+  const dimensionMap = {
+    hero: {
+      mobile: { width: 768, height: 432 },
+      tablet: { width: 1024, height: 576 },
+      desktop: { width: 1920, height: 1080 },
+      large: { width: 2560, height: 1440 }, // 2K
+      xlarge: { width: 3840, height: 2160 } // 4K
+    },
+    card: {
+      mobile: { width: 320, height: 200 },
+      tablet: { width: 640, height: 400 },
+      desktop: { width: 800, height: 500 },
+      large: { width: 1024, height: 640 },
+      xlarge: { width: 1280, height: 800 }
+    },
+    fullscreen: {
+      mobile: { width: 768, height: 432 },
+      tablet: { width: 1024, height: 576 },
+      desktop: { width: 1920, height: 1080 },
+      large: { width: 2560, height: 1440 },
+      xlarge: { width: 3840, height: 2160 }
+    },
+    video: {
+      mobile: { width: 640, height: 360 },
+      tablet: { width: 1024, height: 576 },
+      desktop: { width: 1280, height: 720 }, // 720p
+      large: { width: 1920, height: 1080 }, // 1080p for 2K
+      xlarge: { width: 2560, height: 1440 } // 1440p for 4K (not full 4K to save bandwidth)
+    }
+  };
+
+  return dimensionMap[preset]?.[viewport] || dimensionMap.hero[viewport];
+}
+
+/**
  * Presets for common use cases
  */
 export const CLOUDINARY_PRESETS = {
@@ -230,6 +286,21 @@ export const CLOUDINARY_PRESETS = {
     width: 2560,
     crop: 'fit',
     quality: 'auto:best',
+  },
+  // New presets for large displays
+  largeDisplay: {
+    width: 2560,
+    height: 1440,
+    crop: 'fill',
+    gravity: 'auto',
+    quality: 'auto:good', // Good quality, not best, to save bandwidth
+  },
+  xlargeDisplay: {
+    width: 3840,
+    height: 2160,
+    crop: 'fill',
+    gravity: 'auto',
+    quality: 'auto:good', // Good quality, not best
   },
 };
 

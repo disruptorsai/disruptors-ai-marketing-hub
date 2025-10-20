@@ -6,7 +6,26 @@
 import { useState, useEffect, useRef } from 'react';
 
 /**
+ * Get adaptive root margin based on viewport size
+ * Larger viewports need larger margins for smoother loading
+ * @returns {string} - Root margin value
+ */
+function getAdaptiveRootMargin() {
+  if (typeof window === 'undefined') return '100px';
+
+  const width = window.innerWidth;
+
+  // Large displays (2K/4K) need much larger margins
+  if (width >= 2560) return '600px'; // 4K displays
+  if (width >= 1920) return '400px'; // 2K displays
+  if (width >= 1024) return '200px'; // Desktop
+  if (width >= 768) return '150px';  // Tablet
+  return '100px'; // Mobile
+}
+
+/**
  * Hook for lazy loading images with Intersection Observer
+ * Automatically adjusts root margin based on viewport size
  * @param {Object} options - Intersection Observer options
  * @returns {Object} - { ref, isVisible, isLoaded }
  */
@@ -16,7 +35,7 @@ export function useLazyLoad(options = {}) {
   const ref = useRef(null);
 
   const {
-    rootMargin = '100px',
+    rootMargin = getAdaptiveRootMargin(), // Adaptive root margin
     threshold = 0.01,
     triggerOnce = true,
   } = options;

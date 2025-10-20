@@ -1,14 +1,32 @@
 # Deployment Configuration
 
-## Platform
+## Deployment Strategy
 
-**Netlify** with automatic Git deployment
+**Two-Tier Deployment System** - Dual Netlify projects for development preview and production deployment.
 
-## Site Information
+### Overview
 
+This project uses a **dev → production** deployment workflow:
+
+1. **Development deployments** automatically deploy to `dev.disruptorsmedia.com` for preview and approval
+2. **Production deployments** only deploy to `dm4.wjwelsh.com` after full approval from dev site
+3. Both Netlify projects connected to the same `disruptors-ai-marketing-hub` GitHub repository
+
+### Deployment Projects
+
+#### Development Project (Auto-Deploy)
+- **Site ID**: `62801e39-84b0-4586-a316-6c56a5e55718`
+- **Domain**: https://dev.disruptorsmedia.com
+- **Purpose**: Automatic preview deployments for testing and approval
+- **Trigger**: Every push to any branch
+- **Admin Dashboard**: https://app.netlify.com/sites/62801e39-84b0-4586-a316-6c56a5e55718
+
+#### Production Project (Manual Deploy)
 - **Site ID**: `cheerful-custard-2e6fc5`
 - **Primary Domain**: https://dm4.wjwelsh.com
 - **Netlify Domain**: https://master--cheerful-custard-2e6fc5.netlify.app
+- **Purpose**: Production deployment after approval
+- **Trigger**: Manual deployment only (after dev approval)
 - **Admin Dashboard**: https://app.netlify.com/projects/cheerful-custard-2e6fc5
 
 ## Build Configuration
@@ -61,41 +79,70 @@ Contains 11 serverless functions (see `docs/architecture/NETLIFY_FUNCTIONS.md`)
 
 ## Deployment Commands
 
-### Production Deployment
+### Development Deployment (Automatic)
 
 ```bash
-# Full-stack production deployment
+# Deploy to dev.disruptorsmedia.com (auto-triggered on push)
+npm run deploy:dev
+
+# Or manually trigger dev deployment
+git push origin <any-branch>
+
+# The deployment-validator agent automatically validates dev deployments
+```
+
+**Behavior**:
+- Every push to any branch auto-deploys to dev site
+- Deployment-validator agent runs comprehensive testing
+- Health checks validate critical paths and functionality
+- Results appear at https://dev.disruptorsmedia.com
+
+### Production Deployment (Manual Only)
+
+```bash
+# Deploy to dm4.wjwelsh.com (ONLY after dev approval)
 npm run deploy:prod
 
-# Or manually
-git push origin master
+# Manual production deployment workflow:
+# 1. Test thoroughly on dev.disruptorsmedia.com
+# 2. Get approval for production deployment
+# 3. Run production deploy command
+# 4. Deployment-validator agent validates production deployment
 ```
 
-### Preview Deployment
-
-```bash
-# Deploy preview (branch deployment)
-npm run deploy:netlify
-
-# Or
-git push origin feature-branch
-```
+**Important**: Production deployments should ONLY occur after:
+- Full testing on dev site
+- Approval from stakeholders
+- All automated tests passing
+- Manual verification complete
 
 ### Check Deployment Status
 
 ```bash
-# Show deployment status and history
+# Show status for both dev and production deployments
 npm run deploy:status
 
-# Or use Netlify CLI
-npx netlify deploys:list
+# Dev site status
+npx netlify api getSite --data='{"site_id": "62801e39-84b0-4586-a316-6c56a5e55718"}'
+
+# Production site status
+npx netlify api getSite --data='{"site_id": "cheerful-custard-2e6fc5"}'
+
+# List recent deploys for dev
+npx netlify deploys:list --site=62801e39-84b0-4586-a316-6c56a5e55718
+
+# List recent deploys for production
+npx netlify deploys:list --site=cheerful-custard-2e6fc5
 ```
 
 ### Rollback Deployment
 
 ```bash
-# Rollback to previous deployment
-npm run deploy:rollback <deployment-id>
+# Rollback dev deployment
+npm run deploy:rollback:dev <deployment-id>
+
+# Rollback production deployment
+npm run deploy:rollback:prod <deployment-id>
 
 # Or via Netlify dashboard
 ```
@@ -104,22 +151,64 @@ npm run deploy:rollback <deployment-id>
 
 ### Git Integration
 
-**Trigger**: Push to any branch
+**Development Site (Auto-Deploy)**:
+- **Trigger**: Push to ANY branch
+- **Domain**: https://dev.disruptorsmedia.com
+- **Site ID**: `62801e39-84b0-4586-a316-6c56a5e55718`
+- **Validation**: Automatic deployment-validator agent runs after each deploy
 
-**Production Branch**: `master`
-- Automatic deploy to production domain
-- https://dm4.wjwelsh.com
+**Production Site (Manual Only)**:
+- **Trigger**: Manual deployment command only
+- **Domain**: https://dm4.wjwelsh.com
+- **Site ID**: `cheerful-custard-2e6fc5`
+- **Validation**: Deployment-validator agent runs after manual deploy
+- **Requirement**: Must be approved on dev site first
 
-**Feature Branches**: Any other branch
-- Automatic deploy to preview URL
-- https://[branch]--cheerful-custard-2e6fc5.netlify.app
+### Deployment Workflow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Development Workflow                         │
+└─────────────────────────────────────────────────────────────────┘
+
+1. Code Changes → Git Push
+   └─► Automatic deploy to dev.disruptorsmedia.com
+
+2. Deployment-Validator Agent
+   └─► Runs comprehensive testing suite
+   └─► Health checks on critical paths
+   └─► Performance validation
+   └─► Functional testing
+
+3. Manual Review on Dev Site
+   └─► Test all features
+   └─► Verify functionality
+   └─► Get stakeholder approval
+
+4. Production Deployment (Manual)
+   └─► Run: npm run deploy:prod
+   └─► Deploys to dm4.wjwelsh.com
+   └─► Deployment-validator validates production
+
+5. Post-Production Validation
+   └─► Monitor production health
+   └─► Verify critical paths
+   └─► Check analytics
+```
 
 ### Build Notifications
 
-Notifications sent to:
-- Email (if configured)
-- Slack (if configured)
+**Development Deploys**:
+- Netlify build notifications
 - GitHub commit status
+- Deployment-validator agent reports
+
+**Production Deploys**:
+- Email notifications (if configured)
+- Slack notifications (if configured)
+- GitHub commit status
+- Deployment-validator comprehensive report
+- Manual verification required
 
 ## SPA Routing
 
@@ -390,33 +479,83 @@ Solutions:
 - Check git branch is correct
 - Verify build command runs locally
 
-## Pre-Deployment Checklist
+## Deployment Checklists
 
-Before deploying to production:
+### Pre-Development Deployment (Automatic)
 
-- [ ] All tests pass locally
-- [ ] `npm run lint` passes
-- [ ] `npm run build` succeeds
-- [ ] Environment variables configured
-- [ ] Database migrations applied
-- [ ] Feature tested in preview deployment
-- [ ] Performance tested (Lighthouse > 90)
-- [ ] Security headers configured
-- [ ] Error handling tested
-- [ ] Rollback plan ready
+Before pushing code (triggers auto-deploy to dev):
 
-## Post-Deployment Verification
+- [ ] `npm run lint` passes locally
+- [ ] `npm run build` succeeds locally
+- [ ] No console errors in dev environment
+- [ ] Code changes committed with descriptive message
 
-After deployment:
+**Note**: Dev deployment happens automatically on push. The deployment-validator agent will catch issues.
 
-- [ ] Visit production URL
-- [ ] Test critical paths
+### Development Site Verification
+
+After auto-deploy to dev.disruptorsmedia.com:
+
+- [ ] Build succeeded on Netlify
+- [ ] Deployment-validator agent passed all tests
+- [ ] Visit https://dev.disruptorsmedia.com
+- [ ] Test new features/changes
 - [ ] Check for console errors
 - [ ] Verify API calls succeed
-- [ ] Test authentication
-- [ ] Monitor function logs
-- [ ] Check performance metrics
+- [ ] Test authentication flows
+- [ ] Check Netlify function logs
+- [ ] Performance looks acceptable
+- [ ] Mobile responsiveness verified
+- [ ] Cross-browser testing (Chrome, Firefox, Safari)
+
+### Pre-Production Deployment (Manual)
+
+Before deploying to production (dm4.wjwelsh.com):
+
+- [ ] **REQUIRED**: Full approval from dev site testing
+- [ ] All dev deployment checks passed
+- [ ] Stakeholder approval received
+- [ ] Environment variables verified in production Netlify
+- [ ] Database migrations applied to production (if any)
+- [ ] Performance tested on dev (Lighthouse > 90)
+- [ ] Security headers verified
+- [ ] Error handling tested on dev
+- [ ] Critical user journeys tested on dev
+- [ ] Rollback plan prepared
+- [ ] Team notified of production deployment
+
+### Production Deployment Execution
+
+```bash
+# 1. Final verification
+npm run lint
+npm run build
+
+# 2. Deploy to production
+npm run deploy:prod
+
+# 3. Monitor deployment
+npm run deploy:watch
+```
+
+### Post-Production Verification
+
+After deployment to dm4.wjwelsh.com:
+
+- [ ] Build succeeded on Netlify
+- [ ] Deployment-validator agent passed all tests
+- [ ] Visit https://dm4.wjwelsh.com
+- [ ] Test critical paths (homepage, modules, auth)
+- [ ] Check for console errors
+- [ ] Verify API calls succeed
+- [ ] Test authentication flows
+- [ ] Monitor Netlify function logs for errors
+- [ ] Check performance metrics (Core Web Vitals)
 - [ ] Verify analytics tracking
+- [ ] Test form submissions
+- [ ] Verify AI modules functionality
+- [ ] Check Business Brain integration
+- [ ] Monitor error rates for 24 hours
 
 ## Related Documentation
 

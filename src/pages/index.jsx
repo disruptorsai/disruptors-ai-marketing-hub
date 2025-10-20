@@ -74,7 +74,8 @@ const ContactDev = lazyWithRetry(() => import('./contact-dev.jsx'));
 // Blog system - lazy loaded with retry
 const Blog = lazyWithRetry(() => import('./blog.jsx'));
 const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
-const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
+// BlogManagement moved to Admin Nexus for security - was publicly accessible without auth
+// const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
 
 // Business Brain system - lazy loaded with retry
 const BusinessBrainManager = lazyWithRetry(() => import('./business-brain-manager.jsx'));
@@ -192,7 +193,7 @@ const PAGES = {
 
     "blog-detail": BlogDetail,
 
-    "blog-management": BlogManagement,
+    // "blog-management": BlogManagement, // Moved to Admin Nexus for security
 
     "business-brain-manager": BusinessBrainManager,
 
@@ -335,6 +336,9 @@ function PagesContent() {
                 {/* Redirect old resources route to new ai-tools route */}
                 <Route path="/resources" element={<AITools />} />
 
+                {/* Free downloadable resources (lead magnets) */}
+                <Route path="/free-resources" element={<FreeResources />} />
+
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/free-resources" element={<FreeResources />} />
 
@@ -354,7 +358,8 @@ function PagesContent() {
 
                 <Route path="/blog-detail" element={<BlogDetail />} />
 
-                <Route path="/blog-management" element={<BlogManagement />} />
+                {/* Blog Management moved to Admin Nexus for security */}
+                {/* <Route path="/blog-management" element={<BlogManagement />} /> */}
 
                 {/* Auth Callback */}
                 <Route path="/auth/callback" element={<AuthCallback />} />

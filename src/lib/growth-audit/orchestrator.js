@@ -2,6 +2,7 @@ import { FirecrawlScraper } from './scrapers/firecrawl.js';
 import { PlaywrightScraper } from './scrapers/playwright.js';
 import { BrandDetector } from './scrapers/brand-detect.js';
 import { PageSpeedInsights } from './audits/pagespeed.js';
+import { SERPVisibilityAnalyzer } from './audits/serp-visibility.js';
 import { analyzeBusinessProfile } from './ai/analyzer.js';
 import { detectOpportunities, calculateReadinessScore } from './ai/opportunities.js';
 
@@ -25,6 +26,7 @@ export class GrowthAuditOrchestrator {
     this.playwright = new PlaywrightScraper();
     this.brandDetector = new BrandDetector();
     this.pagespeed = new PageSpeedInsights();
+    this.serpVisibility = new SERPVisibilityAnalyzer();
   }
 
   /**
@@ -87,7 +89,19 @@ export class GrowthAuditOrchestrator {
         payload: { schema: schemaTypes, og: playwrightData.metadata.ogTags },
       });
 
-      // Step 5: AI Analysis
+      // Step 5: SERP Visibility Analysis
+      onStream?.({ type: 'progress', tileId: 'serp-visibility', status: 'pending', message: 'Analyzing SERP visibility & competitors...' });
+
+      const serpData = await this.serpVisibility.analyze(url);
+
+      onStream?.({
+        type: 'tile',
+        tileId: 'serp-visibility',
+        status: 'ready',
+        payload: serpData,
+      });
+
+      // Step 6: AI Analysis
       onStream?.({ type: 'progress', tileId: 'analysis', status: 'pending', message: 'AI analyzing business profile...' });
 
       const profile = await analyzeBusinessProfile({
@@ -111,6 +125,9 @@ export class GrowthAuditOrchestrator {
         palette: brandData?.palette,
       };
 
+      // Attach SERP visibility data to profile
+      profile.serpVisibility = serpData;
+
       onStream?.({
         type: 'tile',
         tileId: 'profile',
@@ -118,7 +135,7 @@ export class GrowthAuditOrchestrator {
         payload: profile,
       });
 
-      // Step 6: Detect Opportunities
+      // Step 8: Detect Opportunities
       onStream?.({ type: 'progress', tileId: 'opportunities', status: 'pending', message: 'Identifying growth opportunities...' });
 
       const readinessScore = calculateReadinessScore(profile);
@@ -136,7 +153,7 @@ export class GrowthAuditOrchestrator {
         },
       });
 
-      // Step 7: Complete
+      // Step 9: Complete
       onStream?.({ type: 'complete', tileId: 'all', status: 'ready', message: 'Analysis complete!' });
 
       await this.playwright.close();
