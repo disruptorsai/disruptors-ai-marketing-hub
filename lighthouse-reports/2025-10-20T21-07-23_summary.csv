@@ -1,0 +1,11 @@
+Page,Device,Performance,Accessibility,Best Practices,SEO,LCP,FID,CLS,FCP,TTI,TBT,Total Size,Requests
+home,mobile,55,91,100,92,9.2 s,280 ms,0.016,3.5 s,9.3 s,330 ms,Total size was 3,065 KiB,50
+home,desktop,82,91,100,92,2.2 s,80 ms,0.004,0.6 s,2.3 s,30 ms,Total size was 16,831 KiB,52
+about,mobile,60,100,100,92,8.3 s,100 ms,0.118,3.2 s,8.4 s,100 ms,Total size was 41,030 KiB,49
+about,desktop,90,100,100,92,1.5 s,30 ms,0.001,0.7 s,1.6 s,0 ms,Total size was 48,422 KiB,50
+work,mobile,62,100,96,92,7.8 s,100 ms,0.13,3.1 s,7.8 s,90 ms,Total size was 14,154 KiB,61
+work,desktop,91,100,96,92,1.6 s,30 ms,0.001,0.7 s,1.7 s,0 ms,Total size was 14,259 KiB,69
+solutions,mobile,59,100,100,92,8.6 s,100 ms,0.07,3.1 s,8.7 s,120 ms,Total size was 26,180 KiB,47
+solutions,desktop,58,100,100,92,4.9 s,30 ms,0.343,0.7 s,5.0 s,0 ms,Total size was 26,928 KiB,52
+blog,mobile,76,98,100,83,4.3 s,100 ms,0.038,3.1 s,4.9 s,40 ms,Total size was 3,491 KiB,34
+blog,desktop,90,98,100,83,1.6 s,30 ms,0.02,0.6 s,1.6 s,0 ms,Total size was 3,521 KiB,35
