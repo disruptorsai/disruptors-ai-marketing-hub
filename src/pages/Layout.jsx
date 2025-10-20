@@ -12,6 +12,7 @@ import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import Footer from "@/components/shared/Footer";
+import EventPopup from "@/components/shared/EventPopup";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
 import { useSmartPreloading } from "@/hooks/useSmartPreloading";
 import { initResourcePriority } from "@/lib/resource-priority-manager";
@@ -122,6 +123,9 @@ export default function Layout({ children, currentPageName }) {
           {/* Only show normal site content if not in admin mode */}
           {!isAdminAuthenticated && (
             <>
+              {/* Event Popup */}
+              <EventPopup />
+
               <header className="fixed top-0 left-0 right-0 z-50">
             <div className={`w-full text-white transition-all duration-500 ease-in-out ${
               scrolled ? 'bg-black/70 backdrop-blur-md' : isHomePage ? 'bg-black/30 backdrop-blur-sm' : 'bg-black/70 backdrop-blur-md'
