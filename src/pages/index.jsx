@@ -62,6 +62,10 @@ const Terms = lazyWithRetry(() => {
     console.log('🔄 [LAZY LOAD] Loading terms.jsx...');
     return import('./terms.jsx');
 });
+const Pricing = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading Pricing.jsx...');
+    return import('./Pricing.jsx');
+});
 
 // Dev pages for comparison - lazy loaded with retry
 import HomeDev from "./Home-dev.jsx";
@@ -186,9 +190,11 @@ const PAGES = {
     "contact-dev": ContactDev,
     
     privacy: Privacy,
-    
+
     terms: Terms,
-    
+
+    pricing: Pricing,
+
     blog: Blog,
 
     "blog-detail": BlogDetail,
@@ -330,6 +336,8 @@ function PagesContent() {
                 <Route path="/work" element={<Work />} />
                 
                 <Route path="/about" element={<About />} />
+
+                <Route path="/pricing" element={<Pricing />} />
 
                 <Route path="/ai-tools" element={<AITools />} />
 
