@@ -22,6 +22,7 @@ import BlogPreviewModal from './BlogManagement/BlogPreviewModal'
 import BlogEditorModal from './BlogManagement/BlogEditorModal'
 import ImageSelectorModal from './BlogManagement/ImageSelectorModal'
 import KeywordFetchModal from './BlogManagement/KeywordFetchModal'
+import BlogSettingsModal from './BlogManagement/BlogSettingsModal'
 
 export default function BlogManagement() {
   // ============================================================================
@@ -38,6 +39,7 @@ export default function BlogManagement() {
   const [editorModal, setEditorModal] = useState({ open: false, blog: null })
   const [imageModal, setImageModal] = useState({ open: false, blog: null })
   const [keywordModal, setKeywordModal] = useState({ open: false })
+  const [settingsModal, setSettingsModal] = useState(false)
 
   // Stats
   const [stats, setStats] = useState({
@@ -432,6 +434,15 @@ export default function BlogManagement() {
 
           <div className="flex gap-2">
             <button
+              onClick={() => setSettingsModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-slate-500/20 border border-slate-500/50 text-slate-400 hover:bg-slate-500/30 transition-colors"
+              title="Blog Settings"
+            >
+              <Settings size={16} />
+              SETTINGS
+            </button>
+
+            <button
               onClick={() => setKeywordModal({ open: true })}
               className="flex items-center gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 transition-colors"
             >
@@ -594,6 +605,11 @@ export default function BlogManagement() {
           onKeywordsImported={loadBlogs}
         />
       )}
+
+      <BlogSettingsModal
+        isOpen={settingsModal}
+        onClose={() => setSettingsModal(false)}
+      />
     </div>
   )
 }
