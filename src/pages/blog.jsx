@@ -36,7 +36,6 @@ const PostCard = ({ post, isFeatured = false }) => {
       </div>
       <div className="p-8 flex flex-col justify-between flex-grow">
           <div>
-              <p className="text-sm font-semibold text-black mb-2">{post.category || 'Uncategorized'}</p>
               <h3 className={`font-bold text-black mb-4 ${isFeatured ? 'text-3xl' : 'text-xl'}`}>{post.title}</h3>
               <p className="text-black leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
           </div>
