@@ -1,0 +1,203 @@
+{
+  "HubSpot": {
+    "name": "HubSpot",
+    "url": "https://blog.hubspot.com/marketing/examples-of-blog-posts",
+    "category": "Marketing Authority",
+    "success": true,
+    "analysis": null
+  },
+  "Neil Patel": {
+    "name": "Neil Patel",
+    "url": "https://neilpatel.com/blog/content-marketing-made-easy/",
+    "category": "SEO/Marketing",
+    "success": true,
+    "analysis": {
+      "maxWidth": "none",
+      "padding": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "paragraph": {
+        "fontSize": "24px",
+        "lineHeight": "34px",
+        "marginBottom": "0px",
+        "color": "rgb(255, 255, 255)",
+        "fontFamily": "geo-wf, Helvetica, Arial"
+      },
+      "h1": {
+        "fontSize": "84px",
+        "lineHeight": "94px",
+        "marginTop": "0px",
+        "marginBottom": "0px",
+        "fontWeight": "600",
+        "color": "rgb(255, 255, 255)"
+      },
+      "h2": null,
+      "h3": null,
+      "list": {
+        "marginLeft": "0px",
+        "marginBottom": "0px",
+        "paddingLeft": "0px"
+      },
+      "features": {
+        "hasCalloutBoxes": false,
+        "hasTableOfContents": false,
+        "hasImages": 0,
+        "hasCodeBlocks": 0,
+        "paragraphCount": 4,
+        "headingCount": {
+          "h1": 1,
+          "h2": 0,
+          "h3": 0
+        }
+      }
+    }
+  },
+  "Backlinko": {
+    "name": "Backlinko",
+    "url": "https://backlinko.com/seo-techniques",
+    "category": "SEO",
+    "success": true,
+    "analysis": {
+      "maxWidth": "none",
+      "padding": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "paragraph": {
+        "fontSize": "13px",
+        "lineHeight": "16.9px",
+        "marginBottom": "0px",
+        "color": "rgb(255, 255, 255)",
+        "fontFamily": "Inter, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif"
+      },
+      "h1": {
+        "fontSize": "38px",
+        "lineHeight": "53.2px",
+        "marginTop": "0px",
+        "marginBottom": "30px",
+        "fontWeight": "800",
+        "color": "rgb(255, 255, 255)"
+      },
+      "h2": {
+        "fontSize": "32px",
+        "lineHeight": "44.8px",
+        "marginTop": "36px",
+        "marginBottom": "28px",
+        "fontWeight": "800",
+        "color": "rgb(0, 0, 0)"
+      },
+      "h3": null,
+      "list": {
+        "marginLeft": "0px",
+        "marginBottom": "0px",
+        "paddingLeft": "0px"
+      },
+      "features": {
+        "hasCalloutBoxes": false,
+        "hasTableOfContents": true,
+        "hasImages": 82,
+        "hasCodeBlocks": 0,
+        "paragraphCount": 282,
+        "headingCount": {
+          "h1": 1,
+          "h2": 20,
+          "h3": 0
+        }
+      }
+    }
+  },
+  "Content Marketing Institute": {
+    "name": "Content Marketing Institute",
+    "url": "https://contentmarketinginstitute.com/articles/content-marketing-strategy-examples/",
+    "category": "Content Marketing",
+    "success": true,
+    "analysis": null
+  },
+  "Moz": {
+    "name": "Moz",
+    "url": "https://moz.com/blog/seo-strategy",
+    "category": "SEO",
+    "success": true,
+    "analysis": {
+      "maxWidth": "100%",
+      "padding": "0px 10px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "paragraph": {
+        "fontSize": "22px",
+        "lineHeight": "37.4px",
+        "marginBottom": "20px",
+        "color": "rgb(96, 106, 124)",
+        "fontFamily": "Lato, \"Helvetica Neue\", helvetica, arial, sans-serif"
+      },
+      "h1": null,
+      "h2": {
+        "fontSize": "40px",
+        "lineHeight": "52px",
+        "marginTop": "60px",
+        "marginBottom": "16px",
+        "fontWeight": "700",
+        "color": "rgb(39, 39, 51)"
+      },
+      "h3": {
+        "fontSize": "30px",
+        "lineHeight": "39px",
+        "marginTop": "45px",
+        "marginBottom": "16px",
+        "fontWeight": "700",
+        "color": "rgb(39, 39, 51)"
+      },
+      "list": {
+        "marginLeft": "0px",
+        "marginBottom": "0px",
+        "paddingLeft": "0px"
+      },
+      "features": {
+        "hasCalloutBoxes": true,
+        "hasTableOfContents": true,
+        "hasImages": 13,
+        "hasCodeBlocks": 0,
+        "paragraphCount": 89,
+        "headingCount": {
+          "h1": 0,
+          "h2": 6,
+          "h3": 7
+        }
+      }
+    }
+  },
+  "Ahrefs": {
+    "name": "Ahrefs",
+    "url": "https://ahrefs.com/blog/seo-basics/",
+    "category": "SEO",
+    "success": true,
+    "analysis": {
+      "maxWidth": "none",
+      "padding": "0px 255px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "paragraph": {
+        "fontSize": "15px",
+        "lineHeight": "22px",
+        "marginBottom": "15px",
+        "color": "rgba(51, 51, 51, 0.7)",
+        "fontFamily": "\"IBM Plex Sans\""
+      },
+      "h1": null,
+      "h2": null,
+      "h3": null,
+      "list": {
+        "marginLeft": "0px",
+        "marginBottom": "0px",
+        "paddingLeft": "0px"
+      },
+      "features": {
+        "hasCalloutBoxes": true,
+        "hasTableOfContents": false,
+        "hasImages": 6,
+        "hasCodeBlocks": 0,
+        "paragraphCount": 5,
+        "headingCount": {
+          "h1": 0,
+          "h2": 0,
+          "h3": 0
+        }
+      }
+    }
+  }
+}

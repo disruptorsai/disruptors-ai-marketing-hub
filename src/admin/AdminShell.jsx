@@ -17,9 +17,14 @@ import {
   Workflow,
   Plug,
   Activity,
+  Wrench,
   LogOut,
   Menu,
-  X
+  X,
+  Target,
+  BarChart3,
+  Newspaper,
+  Download
 } from 'lucide-react'
 
 export default function AdminShell() {
@@ -29,7 +34,11 @@ export default function AdminShell() {
 
   const navigation = [
     { name: 'Overview', href: '/admin/secret/overview', icon: LayoutDashboard },
+    { name: 'Blog Management', href: '/admin/secret/blog-management', icon: Newspaper },
     { name: 'Content', href: '/admin/secret/content', icon: FileText },
+    { name: 'Lead Magnets', href: '/admin/secret/lead-magnets', icon: Download },
+    { name: 'SEO Suite', href: '/admin/secret/seo-suite', icon: Target },
+    { name: 'SEO Audit Tool', href: '/admin/secret/seo-audit-tool', icon: BarChart3 },
     { name: 'Team', href: '/admin/secret/team', icon: Users },
     { name: 'Media', href: '/admin/secret/media', icon: Image },
     { name: 'Business Brain', href: '/admin/secret/business-brain', icon: Brain },
@@ -38,6 +47,7 @@ export default function AdminShell() {
     { name: 'Workflows', href: '/admin/secret/workflows', icon: Workflow },
     { name: 'Integrations', href: '/admin/secret/integrations', icon: Plug },
     { name: 'Telemetry', href: '/admin/secret/telemetry', icon: Activity },
+    { name: 'Disruptors Tools', href: '/admin/secret/tools', icon: Wrench },
   ]
 
   const handleLogout = async () => {

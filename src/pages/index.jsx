@@ -74,13 +74,20 @@ const ContactDev = lazyWithRetry(() => import('./contact-dev.jsx'));
 // Blog system - lazy loaded with retry
 const Blog = lazyWithRetry(() => import('./blog.jsx'));
 const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
-const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
+// BlogManagement moved to Admin Nexus for security - was publicly accessible without auth
+// const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
 
 // Business Brain system - lazy loaded with retry
 const BusinessBrainManager = lazyWithRetry(() => import('./business-brain-manager.jsx'));
 const AIContentWriter = lazyWithRetry(() => import('./ai-content-writer.jsx'));
 const KeywordResearch = lazyWithRetry(() => import('./keyword-research.jsx'));
 const Tools = lazyWithRetry(() => import('./tools.jsx'));
+
+// SEO Audit Tool - lazy loaded with retry
+const ToolsSEOAudit = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading tools-seo-audit.jsx...');
+    return import('./tools-seo-audit.jsx');
+});
 
 // Auth system
 const AuthCallback = lazyWithRetry(() => import('./auth-callback.jsx'));
@@ -115,6 +122,7 @@ const Podcast = lazyWithRetry(() => import('./podcast.jsx'));
 const Gallery = lazyWithRetry(() => import('./gallery.jsx'));
 const Faq = lazyWithRetry(() => import('./faq.jsx'));
 const ResourcesAiSuitcaseTermsDecoded = lazyWithRetry(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
+const FreeResources = lazyWithRetry(() => import('./free-resources.jsx'));
 
 // Demo pages with 3D/animations - lazy loaded with retry (saves 1.98 MB physics bundle)
 const ScrollAnimationDemo = lazyWithRetry(() => import('../components/examples/ScrollAnimationExamples.jsx'));
@@ -185,13 +193,15 @@ const PAGES = {
 
     "blog-detail": BlogDetail,
 
-    "blog-management": BlogManagement,
+    // "blog-management": BlogManagement, // Moved to Admin Nexus for security
 
     "business-brain-manager": BusinessBrainManager,
 
     "ai-content-writer": AIContentWriter,
 
     "keyword-research": KeywordResearch,
+
+    "tools-seo-audit": ToolsSEOAudit,
 
     "work-tradeworx-usa": WorkTradeworxUsa,
     
@@ -326,7 +336,11 @@ function PagesContent() {
                 {/* Redirect old resources route to new ai-tools route */}
                 <Route path="/resources" element={<AITools />} />
 
+                {/* Free downloadable resources (lead magnets) */}
+                <Route path="/free-resources" element={<FreeResources />} />
+
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/free-resources" element={<FreeResources />} />
 
                 {/* Dev pages for comparison */}
                 <Route path="/Home-dev" element={<HomeDev />} />
@@ -344,7 +358,8 @@ function PagesContent() {
 
                 <Route path="/blog-detail" element={<BlogDetail />} />
 
-                <Route path="/blog-management" element={<BlogManagement />} />
+                {/* Blog Management moved to Admin Nexus for security */}
+                {/* <Route path="/blog-management" element={<BlogManagement />} /> */}
 
                 {/* Auth Callback */}
                 <Route path="/auth/callback" element={<AuthCallback />} />

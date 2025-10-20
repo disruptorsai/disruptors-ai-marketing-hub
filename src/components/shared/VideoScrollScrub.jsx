@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useAdaptiveVideo } from '@/hooks/useConnectionQuality';
+import { getViewportOptimizedDimensions } from '@/utils/cloudinary-optimizer';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -39,6 +41,15 @@ const VideoScrollScrub = ({
   const textRef = useRef(null);
   const scrollTriggerRef = useRef(null);
 
+  // Get adaptive video configuration based on connection quality
+  const videoDimensions = getViewportOptimizedDimensions('video');
+  const { url: optimizedVideoUrl, shouldLoad: shouldLoadVideo, quality } = useAdaptiveVideo(
+    videoSrc,
+    { width: videoDimensions.width }
+  );
+
+  const [showPosterFallback, setShowPosterFallback] = useState(!shouldLoadVideo);
+
   useEffect(() => {
     const video = videoRef.current;
     const container = containerRef.current;
@@ -46,12 +57,20 @@ const VideoScrollScrub = ({
 
     if (!video || !container) return;
 
+    // Don't load video if connection is poor
+    if (!shouldLoadVideo || showPosterFallback) {
+      console.log('⚠️ Video disabled due to poor connection - showing poster');
+      setShowPosterFallback(true);
+      return;
+    }
+
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
       // For users who prefer reduced motion, just show static poster
       video.style.display = 'none';
+      setShowPosterFallback(true);
       return;
     }
 
@@ -64,8 +83,10 @@ const VideoScrollScrub = ({
     const handleLoadedMetadata = () => {
       console.log('✅ Video metadata loaded:', {
         duration: video.duration,
-        videoSrc,
-        readyState: video.readyState
+        videoSrc: optimizedVideoUrl,
+        quality,
+        readyState: video.readyState,
+        dimensions: videoDimensions
       });
 
       // Set initial frame to first frame
@@ -137,9 +158,10 @@ const VideoScrollScrub = ({
 
     // Error handling for video loading
     const handleError = (e) => {
-      console.warn('Video failed to load:', e);
+      console.warn('⚠️ Video failed to load:', e);
+      console.log('Falling back to poster image');
       // Fallback to poster image
-      video.style.display = 'none';
+      setShowPosterFallback(true);
     };
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
@@ -165,7 +187,7 @@ const VideoScrollScrub = ({
         video.style.willChange = 'auto';
       }
     };
-  }, [videoSrc, scrollTriggerOptions]);
+  }, [optimizedVideoUrl, scrollTriggerOptions, shouldLoadVideo, showPosterFallback, quality, videoDimensions]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -186,22 +208,33 @@ const VideoScrollScrub = ({
     >
       {/* Video Container - constrained to 85% width */}
       <div className="relative w-[85%] h-full overflow-hidden">
-        {/* Video Element */}
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
-          poster={poster}
-          muted
-          playsInline
-          preload="metadata"
-          aria-label={title}
-        >
-          <source src={videoSrc} type="video/mp4" />
-          <p className="text-white text-center p-8">
-            Your browser does not support the video tag.
-            <img src={poster} alt={title} className="w-full h-full object-cover" />
-          </p>
-        </video>
+        {/* Poster Fallback for Poor Connections */}
+        {showPosterFallback && (
+          <img
+            src={poster}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+
+        {/* Video Element - Hidden on poor connections */}
+        {!showPosterFallback && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover"
+            poster={poster}
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={title}
+          >
+            <source src={optimizedVideoUrl} type="video/mp4" />
+            <p className="text-white text-center p-8">
+              Your browser does not support the video tag.
+              <img src={poster} alt={title} className="w-full h-full object-cover" />
+            </p>
+          </video>
+        )}
 
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />

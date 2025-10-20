@@ -11,6 +11,11 @@
 # Admin Nexus & Growth Audit Functions Configuration
 [functions]
   node_bundler = "esbuild"
+  # Increase timeout for AI content generation (local dev)
+  [functions."admin-blog-generator"]
+    timeout = 120
+  [functions."admin-image-generator"]
+    timeout = 60
   external_node_modules = [
     "@ai-sdk/openai",
     "@ai-sdk/anthropic",
@@ -35,22 +40,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-    # CSP for AI generation and Matrix video
-    Content-Security-Policy = '''
-      default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval';
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      font-src 'self' https://fonts.gstatic.com data:;
-      img-src 'self' data: blob: https: http:;
-      media-src 'self' blob: https: http:;
-      connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design https://api.firecrawl.dev https://www.googleapis.com https://api.brandfetch.com https://api.dataforseo.com https://fonts.gstatic.com https://services.leadconnectorhq.com https://api.leadconnectorhq.com https://*.gohighlevel.com wss://*.supabase.co;
-      frame-src 'self' https://www.youtube.com https://player.vimeo.com https://services.leadconnectorhq.com https://api.leadconnectorhq.com https://*.gohighlevel.com;
-      worker-src 'self' blob:;
-      object-src 'none';
-      base-uri 'self';
-      form-action 'self';
-    '''
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: http:; media-src 'self' blob: https: http:; connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://api.anthropic.com https://generativelanguage.googleapis.com https://sheets.googleapis.com https://res.cloudinary.com https://prod.spline.design https://api.firecrawl.dev https://www.googleapis.com https://api.brandfetch.com https://api.dataforseo.com https://fonts.gstatic.com https://services.leadconnectorhq.com https://api.leadconnectorhq.com https://*.gohighlevel.com wss://*.supabase.co; frame-src 'self' https://www.youtube.com https://player.vimeo.com https://services.leadconnectorhq.com https://api.leadconnectorhq.com https://*.gohighlevel.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';"
 
 [[headers]]
   for = "/index.html"

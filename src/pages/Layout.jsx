@@ -12,7 +12,10 @@ import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import Footer from "@/components/shared/Footer";
+import EventPopup from "@/components/shared/EventPopup";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
+import { useSmartPreloading } from "@/hooks/useSmartPreloading";
+import { initResourcePriority } from "@/lib/resource-priority-manager";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -49,7 +52,15 @@ export default function Layout({ children, currentPageName }) {
     setShowLoading(false);
     setInitialLoad(false);
   };
-  
+
+  // Initialize performance optimizations
+  useSmartPreloading();
+
+  // Initialize resource priority manager
+  React.useEffect(() => {
+    initResourcePriority();
+  }, []);
+
   React.useEffect(() => {
     setMobileMenuOpen(false);
     // Scroll to top when page changes
@@ -112,6 +123,9 @@ export default function Layout({ children, currentPageName }) {
           {/* Only show normal site content if not in admin mode */}
           {!isAdminAuthenticated && (
             <>
+              {/* Event Popup */}
+              <EventPopup />
+
               <header className="fixed top-0 left-0 right-0 z-50">
             <div className={`w-full text-white transition-all duration-500 ease-in-out ${
               scrolled ? 'bg-black/70 backdrop-blur-md' : isHomePage ? 'bg-black/30 backdrop-blur-sm' : 'bg-black/70 backdrop-blur-md'
@@ -128,6 +142,7 @@ export default function Layout({ children, currentPageName }) {
                     <img
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
+                      fetchpriority="high"
                       className={`object-contain h-auto transition-all duration-500 ease-in-out ${
                         scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'
                       }`}

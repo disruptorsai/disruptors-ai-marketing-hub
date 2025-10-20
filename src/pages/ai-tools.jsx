@@ -85,10 +85,21 @@ const TOOL_CATEGORIES = [
         isLive: true,
       },
       {
+        title: 'Free SEO Audit',
+        description: 'Get a comprehensive 20,000-word SEO analysis with keyword rankings, competitor research, and AI-powered recommendations.',
+        category: 'Marketing',
+        icon: Search,
+        image: '/images/resource-icons/seo-audit-tool.webp',
+        fallbackImage: '/images/resource-icons/seo-optimizer.png',
+        route: '/tools-seo-audit',
+        isLive: true,
+        badge: 'NEW'
+      },
+      {
         title: 'SEO Optimizer',
         description: 'Optimize your content for search engines with keyword research, on-page SEO, and competitive analysis.',
         category: 'Marketing',
-        icon: Search,
+        icon: BarChart3,
         image: '/images/resource-icons/seo-optimizer.webp',
         fallbackImage: '/images/resource-icons/seo-optimizer.png',
       },

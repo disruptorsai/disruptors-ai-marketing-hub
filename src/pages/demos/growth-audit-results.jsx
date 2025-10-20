@@ -13,6 +13,8 @@ import {
   TrendingUp,
   Zap,
   Target,
+  Link2,
+  BarChart3,
 } from 'lucide-react';
 import { effortToLabel, impactToLabel, scoreToColor } from '@/lib/growth-audit/utils';
 
@@ -270,6 +272,109 @@ export default function GrowthAuditResults() {
                     </p>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* SERP Visibility & Competitive Analysis */}
+          {profile.serpVisibility && (
+            <Card className="mb-6">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Target className="w-5 h-5 text-purple-600" />
+                  <CardTitle>SERP Visibility & Competitors</CardTitle>
+                </div>
+                <CardDescription>Search engine rankings and competitive positioning</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Visibility Score</h3>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-bold text-purple-600">
+                        {profile.serpVisibility.visibility_score}
+                      </span>
+                      <span className="text-gray-500">/100</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Ranking Keywords</h3>
+                    <p className="text-2xl font-bold">{profile.serpVisibility.ranking_keywords}</p>
+                    <p className="text-xs text-gray-500">of {profile.serpVisibility.total_keywords_analyzed} analyzed</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Avg. Position</h3>
+                    <p className="text-2xl font-bold">
+                      {profile.serpVisibility.avg_position ? `#${profile.serpVisibility.avg_position}` : 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">Competitors Found</h3>
+                    <p className="text-2xl font-bold">{profile.serpVisibility.competitors.length}</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Top Competitors */}
+                  {profile.serpVisibility.competitors.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2">Top Competitors</h3>
+                      <div className="space-y-1 text-sm">
+                        {profile.serpVisibility.competitors.slice(0, 5).map((comp, idx) => (
+                          <div key={idx} className="flex justify-between items-center text-xs">
+                            <span className="text-gray-600 truncate max-w-[180px]">{comp.domain}</span>
+                            <div className="flex gap-2 items-center">
+                              <Badge variant="outline" className="text-xs">{comp.appearances} keywords</Badge>
+                              <span className="text-gray-500">Avg #{comp.avg_position}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Keyword Gaps */}
+                  {profile.serpVisibility.keyword_gaps && profile.serpVisibility.keyword_gaps.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2">Keyword Opportunities</h3>
+                      <div className="space-y-1 text-sm">
+                        {profile.serpVisibility.keyword_gaps.slice(0, 5).map((gap, idx) => (
+                          <div key={idx} className="text-xs">
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-600 truncate max-w-[180px]">{gap.keyword}</span>
+                              <Badge
+                                variant={gap.opportunity_level === 'high' ? 'default' : 'secondary'}
+                                className="text-xs"
+                              >
+                                {gap.opportunity_level}
+                              </Badge>
+                            </div>
+                            {gap.top_competitor && (
+                              <p className="text-gray-500 mt-0.5">
+                                {gap.top_competitor} ranks #{gap.top_competitor_position}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* SERP Features */}
+                {profile.serpVisibility.serp_features && profile.serpVisibility.serp_features.length > 0 && (
+                  <div className="mt-4 pt-4 border-t">
+                    <h3 className="font-semibold mb-2">SERP Features Detected</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {profile.serpVisibility.serp_features.slice(0, 5).map((feature, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {feature.type.replace(/_/g, ' ')}
+                          {feature.count > 1 && ` (${feature.count})`}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}

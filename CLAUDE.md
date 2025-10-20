@@ -48,13 +48,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Status**: `npm run changelog:status`
 
 ### Deployment Management
-- **Deploy status**: `npm run deploy:status`
-- **Deploy Supabase**: `npm run deploy:supabase`
-- **Deploy Netlify**: `npm run deploy:netlify`
-- **Deploy production**: `npm run deploy:prod`
-- **Rollback**: `npm run deploy:rollback <id>`
-- **Watch mode**: `npm run deploy:watch`
-- **Sync env**: `npm run deploy:sync-env`
+
+**Two-Tier Deployment System**: Dev (auto) → Production (manual)
+
+#### Development Deployment (Automatic)
+- **Auto-deploy to dev**: Triggered on every `git push` to any branch
+- **Dev site**: https://dev.disruptorsmedia.com
+- **Dev site ID**: `62801e39-84b0-4586-a316-6c56a5e55718`
+- **Manual dev deploy**: `npm run deploy:dev` (if needed)
+
+#### Production Deployment (Manual Only)
+- **Deploy to production**: `npm run deploy:prod` (ONLY after dev approval)
+- **Production site**: https://dm4.wjwelsh.com
+- **Production site ID**: `cheerful-custard-2e6fc5`
+- **Requirement**: Must test and approve on dev site first
+
+#### Deployment Tools
+- **Check status**: `npm run deploy:status` - Both dev and production status
+- **Deploy Supabase**: `npm run deploy:supabase` - Database migrations
+- **Rollback dev**: `npm run deploy:rollback:dev <id>`
+- **Rollback production**: `npm run deploy:rollback:prod <id>`
+- **Watch deployments**: `npm run deploy:watch`
+- **Sync environment**: `npm run deploy:sync-env`
+
+**Important**: Production deployments require full testing and approval on dev site.
 
 ### Performance & Testing
 - **Screenshot capture**: `npm run screenshot:capture` - Single page screenshot
@@ -70,6 +87,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Apply Modules migration**: `node scripts/apply-modules-migration.js`
 - **Verify Modules tables**: `node scripts/verify-modules-migration.js`
 - **Seed Modules**: `node scripts/seed-modules.js`
+- **Apply Lead Magnet Tracking migration**: `npm run migrate:lead-magnets`
+- **Verify Lead Magnet Tracking**: `npm run verify:lead-magnets`
+- **Test Lead Magnet Tracking**: `node scripts/test-lead-magnet-tracking.js`
+
+### Telemetry & Analytics
+- **Check telemetry status**: `npm run telemetry:status` - Shows current data and system health
+- **Generate test data**: `npm run telemetry:generate` - Populates dashboard with test data
+
+### Admin User Management
+- **List all users**: `npm run admin:list-users` - Shows all Supabase Auth users and admin status
+- **Grant admin role**: `npm run admin:setup-role <email>` - Add admin role to existing user
 
 ## Project Overview
 

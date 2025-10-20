@@ -10,6 +10,7 @@ import ProtectedRoute from './auth/ProtectedRoute'
 // Lazy-load admin modules for code splitting
 const AdminShell = React.lazy(() => import('./AdminShell'))
 const DashboardOverview = React.lazy(() => import('./modules/DashboardOverview'))
+const BlogManagement = React.lazy(() => import('./modules/BlogManagement'))
 const ContentManagement = React.lazy(() => import('./modules/ContentManagement'))
 const TeamManagement = React.lazy(() => import('./modules/TeamManagement'))
 const MediaLibrary = React.lazy(() => import('./modules/MediaLibrary'))
@@ -20,6 +21,10 @@ const AgentChat = React.lazy(() => import('./modules/AgentChat'))
 const WorkflowManager = React.lazy(() => import('./modules/WorkflowManager'))
 const IntegrationsHub = React.lazy(() => import('./modules/IntegrationsHub'))
 const TelemetryDashboard = React.lazy(() => import('./modules/TelemetryDashboard'))
+const SEOSuite = React.lazy(() => import('./modules/SEOSuite'))
+const SEOAuditTool = React.lazy(() => import('./modules/SEOAuditTool'))
+const DisruptorsTools = React.lazy(() => import('./modules/DisruptorsTools'))
+const LeadMagnetManager = React.lazy(() => import('./modules/LeadMagnetManager'))
 
 export default function AdminRoutes() {
   return (
@@ -37,6 +42,7 @@ export default function AdminRoutes() {
           <Route path="/admin/secret" element={<AdminShell />}>
             <Route index element={<Navigate to="/admin/secret/overview" replace />} />
             <Route path="overview" element={<DashboardOverview />} />
+            <Route path="blog-management" element={<BlogManagement />} />
             <Route path="content" element={<ContentManagement />} />
             <Route path="team" element={<TeamManagement />} />
             <Route path="media" element={<MediaLibrary />} />
@@ -47,6 +53,10 @@ export default function AdminRoutes() {
             <Route path="workflows" element={<WorkflowManager />} />
             <Route path="integrations" element={<IntegrationsHub />} />
             <Route path="telemetry" element={<TelemetryDashboard />} />
+            <Route path="seo-suite" element={<SEOSuite />} />
+            <Route path="seo-audit-tool" element={<SEOAuditTool />} />
+            <Route path="tools" element={<DisruptorsTools />} />
+            <Route path="lead-magnets" element={<LeadMagnetManager />} />
           </Route>
         </Routes>
       </React.Suspense>

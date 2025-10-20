@@ -1,69 +1,87 @@
 /**
- * DataForSEO API Client
- * Comprehensive keyword research and SEO data integration
+ * DataForSEO Unified API Client
  *
- * API Documentation: https://docs.dataforseo.com/v3/
+ * Handles authentication and requests for all DataForSEO services:
+ * - Keywords Data API - Keyword research with search volume, difficulty, CPC
+ * - SERP API - Real-time search results and SERP features
+ * - Backlinks API - Backlink profiles and domain authority
+ * - On-Page API - Technical SEO crawling (replacement for Firecrawl)
+ * - Domain Analytics API - Domain metrics and traffic estimates
+ * - DataForSEO Labs API - Pre-processed datasets (competitors, ranked keywords)
+ * - Content Analysis API - Content quality scoring
  *
- * Features:
- * - Keyword research with search volume, difficulty, CPC
- * - Keyword suggestions and related keywords
- * - SERP analysis and competition data
- * - Trend data and seasonality
+ * @see https://dataforseo.com/apis
+ * @see docs/DATAFORSEO_STRATEGIC_INTEGRATION_ROADMAP.md
  */
+
+const DATAFORSEO_BASE = 'https://api.dataforseo.com/v3';
 
 class DataForSEOClient {
   constructor() {
-    this.username = import.meta.env.VITE_DATAFORSEO_USERNAME;
-    this.password = import.meta.env.VITE_DATAFORSEO_PASSWORD;
-    this.baseURL = 'https://api.dataforseo.com/v3';
+    // Support both old and new environment variable names
+    this.username = import.meta.env.DATAFORSEO_LOGIN ||
+                   import.meta.env.VITE_DATAFORSEO_LOGIN ||
+                   import.meta.env.VITE_DATAFORSEO_USERNAME;
+    this.password = import.meta.env.DATAFORSEO_PASSWORD ||
+                   import.meta.env.VITE_DATAFORSEO_PASSWORD;
 
     if (!this.username || !this.password) {
-      console.warn('DataForSEO credentials not configured. Keyword research features will be limited.');
+      console.warn('[DataForSEO] Credentials not configured. Features will be limited.');
     }
   }
 
   /**
    * Make authenticated request to DataForSEO API
+   * @param {string} endpoint - API endpoint
+   * @param {Array} data - Request data array
+   * @returns {Promise<Array>} API response
    */
-  async makeRequest(endpoint, method = 'POST', data = null) {
+  async request(endpoint, data = []) {
     const credentials = btoa(`${this.username}:${this.password}`);
 
-    const options = {
-      method,
-      headers: {
-        'Authorization': `Basic ${credentials}`,
-        'Content-Type': 'application/json'
-      }
-    };
-
-    if (data && method === 'POST') {
-      options.body = JSON.stringify(data);
-    }
-
     try {
-      const response = await fetch(`${this.baseURL}${endpoint}`, options);
+      const response = await fetch(`${DATAFORSEO_BASE}${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${credentials}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(`DataForSEO API Error: ${error.status_message || response.statusText}`);
+        throw new Error(`DataForSEO HTTP Error: ${response.status} ${response.statusText}`);
       }
 
       const result = await response.json();
 
-      // DataForSEO returns results in tasks array
-      if (result.tasks && result.tasks[0]) {
-        const task = result.tasks[0];
-        if (task.status_code !== 20000) {
-          throw new Error(`API Error: ${task.status_message}`);
-        }
-        return task.result;
+      // Check API response status
+      if (result.status_code !== 20000) {
+        throw new Error(`DataForSEO API Error: ${result.status_message || 'Unknown error'}`);
       }
 
-      return result;
+      // Return results from first task (most common pattern)
+      return result.tasks?.[0]?.result || [];
     } catch (error) {
-      console.error('DataForSEO API Error:', error);
+      console.error('[DataForSEO] API Error:', error);
       throw error;
     }
+  }
+
+  // ============================================================================
+  // LEGACY KEYWORD RESEARCH METHODS (Preserved for backward compatibility)
+  // ============================================================================
+
+  /**
+   * Make authenticated request (legacy method name)
+   * @deprecated Use request() instead
+   */
+  async makeRequest(endpoint, method = 'POST', data = null) {
+    // Wrap old format to new format
+    if (method !== 'POST') {
+      throw new Error('Only POST requests are supported');
+    }
+    return await this.request(endpoint, data || []);
   }
 
   /**
@@ -274,6 +292,349 @@ class DataForSEOClient {
       score: this.calculateKeywordScore(keyword),
       raw: keyword
     };
+  }
+
+  // ============================================================================
+  // SERP API - Real-time search engine results
+  // ============================================================================
+
+  /**
+   * Get live SERP results for a keyword
+   * @param {string} keyword - Search keyword
+   * @param {number} locationCode - DataForSEO location code (default: 2840 = US)
+   * @param {string} languageCode - Language code (default: 'en')
+   * @param {string} device - Device type (default: 'desktop')
+   * @returns {Promise<Array>} SERP results
+   */
+  async getSERP(keyword, locationCode = 2840, languageCode = 'en', device = 'desktop') {
+    return this.request('/serp/google/organic/live/advanced', [{
+      keyword,
+      location_code: locationCode,
+      language_code: languageCode,
+      device,
+      os: device === 'desktop' ? 'windows' : 'ios',
+      depth: 100 // Get top 100 results
+    }]);
+  }
+
+  /**
+   * Get SERP features for a keyword (Featured Snippets, PAA, etc.)
+   * @param {string} keyword - Search keyword
+   * @param {number} locationCode - Location code
+   * @returns {Promise<Object>} SERP features summary
+   */
+  async getSERPFeatures(keyword, locationCode = 2840) {
+    const results = await this.getSERP(keyword, locationCode);
+    const items = results[0]?.items || [];
+
+    const features = {
+      featured_snippet: items.some(i => i.type === 'featured_snippet'),
+      people_also_ask: items.some(i => i.type === 'people_also_ask'),
+      local_pack: items.some(i => i.type === 'local_pack'),
+      knowledge_graph: items.some(i => i.type === 'knowledge_graph'),
+      video_results: items.some(i => i.type === 'video'),
+      images: items.some(i => i.type === 'images'),
+      top_stories: items.some(i => i.type === 'top_stories')
+    };
+
+    return {
+      keyword,
+      features,
+      total_results: results[0]?.se_results_count || 0,
+      top_10: items.filter(i => i.type === 'organic').slice(0, 10).map(i => ({
+        url: i.url,
+        title: i.title,
+        rank: i.rank_absolute
+      }))
+    };
+  }
+
+  // ============================================================================
+  // Backlinks API - Backlink analysis
+  // ============================================================================
+
+  /**
+   * Get backlink summary for a domain/page
+   * @param {string} target - Domain or URL
+   * @param {string} mode - 'domain', 'subdomain', or 'page'
+   * @returns {Promise<Object>} Backlink summary
+   */
+  async getBacklinksSummary(target, mode = 'domain') {
+    const results = await this.request('/backlinks/summary/live', [{
+      target,
+      mode,
+      internal_list_limit: 10
+    }]);
+
+    return results[0] || null;
+  }
+
+  /**
+   * Get referring domains for a target
+   * @param {string} target - Domain or URL
+   * @param {string} mode - 'domain', 'subdomain', or 'page'
+   * @param {number} limit - Max referring domains to return
+   * @returns {Promise<Array>} Referring domains
+   */
+  async getReferringDomains(target, mode = 'domain', limit = 100) {
+    const results = await this.request('/backlinks/referring_domains/live', [{
+      target,
+      mode,
+      limit,
+      order_by: ['rank,desc']
+    }]);
+
+    return results || [];
+  }
+
+  /**
+   * Get detailed backlinks for analysis
+   * @param {string} target - Domain or URL
+   * @param {string} mode - 'domain', 'subdomain', or 'page'
+   * @param {number} limit - Max backlinks to return
+   * @returns {Promise<Array>} Backlinks with details
+   */
+  async getBacklinks(target, mode = 'domain', limit = 1000) {
+    const results = await this.request('/backlinks/backlinks/live', [{
+      target,
+      mode,
+      limit,
+      order_by: ['rank,desc']
+    }]);
+
+    return results || [];
+  }
+
+  /**
+   * Calculate estimated Domain Rating based on backlink metrics
+   * @param {Object} backlinkSummary - Result from getBacklinksSummary
+   * @returns {number} Estimated DR (0-100)
+   */
+  calculateDomainRating(backlinkSummary) {
+    if (!backlinkSummary) return 0;
+
+    const domains = backlinkSummary.referring_main_domains || 0;
+
+    // Simple DR estimation (approximation based on referring domains)
+    if (domains === 0) return 0;
+    if (domains < 10) return Math.min(20, domains * 2);
+    if (domains < 50) return 20 + Math.min(20, (domains - 10) / 2);
+    if (domains < 100) return 40 + Math.min(15, (domains - 50) / 3);
+    if (domains < 500) return 55 + Math.min(15, (domains - 100) / 25);
+    if (domains < 1000) return 70 + Math.min(10, (domains - 500) / 50);
+    return 80 + Math.min(20, (domains - 1000) / 100);
+  }
+
+  // ============================================================================
+  // On-Page API - Technical SEO crawler (Firecrawl replacement)
+  // ============================================================================
+
+  /**
+   * Create a crawl task for a website
+   * @param {string} target - Website URL
+   * @param {number} maxPages - Max pages to crawl
+   * @param {Object} options - Additional crawl options
+   * @returns {Promise<string>} Task ID
+   */
+  async createCrawlTask(target, maxPages = 100, options = {}) {
+    const results = await this.request('/on_page/task_post', [{
+      target,
+      max_crawl_pages: maxPages,
+      load_resources: options.loadResources !== false,
+      enable_javascript: options.enableJavascript || false,
+      enable_browser_rendering: options.enableBrowserRendering || false,
+      store_raw_html: options.storeRawHtml || false,
+      ...options
+    }]);
+
+    return results[0]?.id || null;
+  }
+
+  /**
+   * Get crawl task status
+   * @param {string} taskId - Task ID from createCrawlTask
+   * @returns {Promise<Object>} Task status
+   */
+  async getCrawlStatus(taskId) {
+    const results = await this.request(`/on_page/summary/${taskId}`, []);
+    return results[0] || null;
+  }
+
+  /**
+   * Get crawled pages from completed task
+   * @param {string} taskId - Task ID
+   * @param {number} limit - Max pages to return
+   * @returns {Promise<Array>} Crawled pages with SEO data
+   */
+  async getCrawledPages(taskId, limit = 100) {
+    const results = await this.request(`/on_page/pages/${taskId}`, [{
+      limit,
+      order_by: ['page_score,desc']
+    }]);
+
+    return results[0]?.items || [];
+  }
+
+  /**
+   * Crawl a website and wait for completion
+   * @param {string} target - Website URL
+   * @param {number} maxPages - Max pages to crawl
+   * @param {Object} options - Crawl options
+   * @returns {Promise<Array>} Crawled pages
+   */
+  async crawlSite(target, maxPages = 100, options = {}) {
+    // Create task
+    const taskId = await this.createCrawlTask(target, maxPages, options);
+    if (!taskId) {
+      throw new Error('Failed to create crawl task');
+    }
+
+    // Poll for completion (max 2 minutes)
+    const maxAttempts = 24; // 24 * 5s = 2 minutes
+    let attempts = 0;
+    let complete = false;
+
+    while (!complete && attempts < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5s
+
+      const status = await this.getCrawlStatus(taskId);
+      complete = status?.crawl_progress === 'finished';
+      attempts++;
+
+      if (status?.crawl_status?.error) {
+        throw new Error(`Crawl failed: ${status.crawl_status.error}`);
+      }
+    }
+
+    if (!complete) {
+      throw new Error('Crawl timeout - task did not complete in 2 minutes');
+    }
+
+    // Get results
+    return this.getCrawledPages(taskId, maxPages);
+  }
+
+  // ============================================================================
+  // Domain Analytics API - Domain metrics and traffic
+  // ============================================================================
+
+  /**
+   * Get domain overview metrics
+   * @param {string} target - Domain
+   * @returns {Promise<Object>} Domain metrics
+   */
+  async getDomainOverview(target) {
+    const results = await this.request('/domain_analytics/overview/live', [{
+      target
+    }]);
+
+    return results[0] || null;
+  }
+
+  /**
+   * Get organic keywords for a domain
+   * @param {string} target - Domain
+   * @param {number} limit - Max keywords to return
+   * @returns {Promise<Array>} Organic keywords
+   */
+  async getOrganicKeywords(target, limit = 100) {
+    const results = await this.request('/domain_analytics/keywords/live', [{
+      target,
+      limit,
+      order_by: ['ranked_serp_element.serp_item.rank_absolute,asc']
+    }]);
+
+    return results || [];
+  }
+
+  // ============================================================================
+  // DataForSEO Labs API - Pre-processed datasets
+  // ============================================================================
+
+  /**
+   * Get all ranked keywords for a domain
+   * @param {string} target - Domain
+   * @param {number} limit - Max keywords to return
+   * @returns {Promise<Array>} Ranked keywords with positions
+   */
+  async getRankedKeywords(target, limit = 1000) {
+    const results = await this.request('/dataforseo_labs/google/ranked_keywords/live', [{
+      target,
+      limit,
+      order_by: ['ranked_serp_element.serp_item.rank_absolute,asc']
+    }]);
+
+    return results[0]?.items || [];
+  }
+
+  /**
+   * Get competitor domains
+   * @param {string} target - Domain
+   * @param {number} limit - Max competitors to return
+   * @returns {Promise<Array>} Competitor domains
+   */
+  async getCompetitors(target, limit = 10) {
+    const results = await this.request('/dataforseo_labs/google/competitors_domain/live', [{
+      target,
+      limit,
+      order_by: ['avg_position,asc']
+    }]);
+
+    return results[0]?.items || [];
+  }
+
+  /**
+   * Find keyword gaps between domains
+   * @param {string} target - Your domain
+   * @param {string} competitor - Competitor domain
+   * @param {number} limit - Max keywords to return
+   * @returns {Promise<Array>} Keywords competitor ranks for but target doesn't
+   */
+  async getKeywordGaps(target, competitor, limit = 100) {
+    const results = await this.request('/dataforseo_labs/google/domain_intersection/live', [{
+      target1: competitor,
+      target2: target,
+      exclude_target2: true, // Only keywords competitor has
+      limit,
+      order_by: ['keyword_data.keyword_info.search_volume,desc']
+    }]);
+
+    return results[0]?.items || [];
+  }
+
+  // ============================================================================
+  // Content Analysis API - Content quality scoring
+  // ============================================================================
+
+  /**
+   * Analyze content quality for a URL
+   * @param {string} url - Page URL
+   * @returns {Promise<Object>} Content analysis
+   */
+  async analyzeContent(url) {
+    const results = await this.request('/content_analysis/summary/live', [{
+      target: url
+    }]);
+
+    return results[0] || null;
+  }
+
+  // ============================================================================
+  // Helper Methods
+  // ============================================================================
+
+  /**
+   * Extract domain from URL
+   * @param {string} url - Full URL
+   * @returns {string} Domain only
+   */
+  extractDomain(url) {
+    try {
+      const urlObj = new URL(url.match(/^https?:\/\//) ? url : `https://${url}`);
+      return urlObj.hostname.replace(/^www\./, '');
+    } catch {
+      return url;
+    }
   }
 }
 

@@ -193,6 +193,16 @@
       "env": {
         "REPLICATE_API_TOKEN": "${REPLICATE_API_TOKEN}"
       }
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "archon": {
+      "url": "http://localhost:8051"
     }
   },
   "_disabled": {}
