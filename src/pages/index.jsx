@@ -121,6 +121,7 @@ const Podcast = lazyWithRetry(() => import('./podcast.jsx'));
 const Gallery = lazyWithRetry(() => import('./gallery.jsx'));
 const Faq = lazyWithRetry(() => import('./faq.jsx'));
 const ResourcesAiSuitcaseTermsDecoded = lazyWithRetry(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
+const FreeResources = lazyWithRetry(() => import('./free-resources.jsx'));
 
 // Demo pages with 3D/animations - lazy loaded with retry (saves 1.98 MB physics bundle)
 const ScrollAnimationDemo = lazyWithRetry(() => import('../components/examples/ScrollAnimationExamples.jsx'));
@@ -335,6 +336,7 @@ function PagesContent() {
                 <Route path="/resources" element={<AITools />} />
 
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/free-resources" element={<FreeResources />} />
 
                 {/* Dev pages for comparison */}
                 <Route path="/Home-dev" element={<HomeDev />} />
