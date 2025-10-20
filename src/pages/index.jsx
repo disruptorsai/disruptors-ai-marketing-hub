@@ -340,6 +340,7 @@ function PagesContent() {
                 <Route path="/free-resources" element={<FreeResources />} />
 
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/free-resources" element={<FreeResources />} />
 
                 {/* Dev pages for comparison */}
                 <Route path="/Home-dev" element={<HomeDev />} />

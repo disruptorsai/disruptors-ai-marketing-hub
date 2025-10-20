@@ -36,3 +36,4 @@ dist-ssr
 mcp.json
 mcp-claude.json
 mcp_secrets
+spline-mcp-server/node_modules/
