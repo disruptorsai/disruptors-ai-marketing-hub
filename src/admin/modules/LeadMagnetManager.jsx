@@ -25,6 +25,7 @@ import {
   Zap,
 } from 'lucide-react'
 import * as adminAPI from '@/lib/admin/lead-magnet-api'
+import { AIWizardButton } from '@/components/admin/AIWizardButton'
 
 export default function LeadMagnetManager() {
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -615,9 +616,20 @@ function ResourceForm({ resource, onChange, onSave, onCancel, categories, tags }
   return (
     <div className="space-y-6">
       <div className="bg-black/30 border border-green-500/20 rounded-lg p-6">
-        <h2 className="text-lg font-bold text-green-400 mb-4">
-          {resource.id ? 'EDIT_RESOURCE' : 'CREATE_RESOURCE'}
-        </h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-bold text-green-400">
+            {resource.id ? 'EDIT_RESOURCE' : 'CREATE_RESOURCE'}
+          </h2>
+
+          <AIWizardButton
+            moduleType="lead_magnet"
+            currentFields={resource}
+            onPopulate={(fields) => {
+              onChange({ ...resource, ...fields })
+            }}
+            className="shadow-lg"
+          />
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
           {/* Basic Info */}
