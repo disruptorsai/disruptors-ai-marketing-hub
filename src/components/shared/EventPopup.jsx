@@ -6,11 +6,17 @@ const EventPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check if user has already seen the popup today
-    const popupLastShown = localStorage.getItem('disruptorsConnectPopupShown');
-    const today = new Date().toDateString();
+    // Track homepage visit count - show on 1st visit, then every 3rd visit (1, 4, 7, 10, etc.)
+    const visitCountKey = 'disruptorsConnectVisitCount';
+    const currentCount = parseInt(localStorage.getItem(visitCountKey) || '0', 10);
+    const newCount = currentCount + 1;
 
-    if (popupLastShown !== today) {
+    // Store the incremented count
+    localStorage.setItem(visitCountKey, newCount.toString());
+
+    // Show popup on 1st visit, then every 3rd visit after that
+    // (1, 4, 7, 10, 13... i.e., when count % 3 === 1)
+    if (newCount % 3 === 1) {
       // Show popup after 2 seconds
       const timer = setTimeout(() => {
         setIsVisible(true);
@@ -22,13 +28,9 @@ const EventPopup = () => {
 
   const handleClose = () => {
     setIsVisible(false);
-    // Remember that user closed it today
-    localStorage.setItem('disruptorsConnectPopupShown', new Date().toDateString());
   };
 
   const handleRSVP = () => {
-    // Mark as shown before redirecting
-    localStorage.setItem('disruptorsConnectPopupShown', new Date().toDateString());
     window.open('https://lp1.disruptorsmedia.com/', '_blank');
   };
 
