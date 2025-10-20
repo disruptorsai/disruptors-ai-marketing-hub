@@ -249,7 +249,8 @@ const EventPopup = () => {
               {/* Bottom accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
         </>
       )}
     </AnimatePresence>
