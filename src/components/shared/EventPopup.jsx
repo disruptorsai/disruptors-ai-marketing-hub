@@ -128,9 +128,9 @@ const EventPopup = () => {
                       {/* Glow behind logo */}
                       <div className="absolute inset-0 bg-amber-400/20 blur-2xl rounded-full scale-150" />
                       <img
-                        src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
+                        src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
                         alt="Disruptors Media"
-                        className="relative w-40 h-auto object-contain drop-shadow-2xl"
+                        className="relative w-auto h-16 object-contain drop-shadow-2xl"
                       />
                     </div>
                   </motion.div>
