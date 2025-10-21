@@ -146,32 +146,32 @@ export default function BlogDetail() {
                                     </div>
                                 )}
 
-                                {/* Post Body with Improved Typography */}
+                                {/* Post Body with Improved Typography & Spacing */}
                                 <div
                                     className="prose prose-lg prose-indigo max-w-none
                                         prose-headings:text-gray-900 prose-headings:font-bold prose-headings:scroll-mt-20
-                                        prose-h1:text-4xl prose-h1:mb-6 prose-h1:leading-tight
-                                        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:leading-tight prose-h2:border-b-2 prose-h2:border-indigo-100 prose-h2:pb-4
-                                        prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-5 prose-h3:leading-snug
-                                        prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-4
-                                        prose-p:text-gray-700 prose-p:leading-[1.7] prose-p:mb-6 prose-p:text-[17px]
+                                        prose-h1:text-4xl prose-h1:mb-8 prose-h1:leading-tight
+                                        prose-h2:text-3xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:leading-tight prose-h2:border-b-2 prose-h2:border-indigo-100 prose-h2:pb-5
+                                        prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:leading-snug
+                                        prose-h4:text-xl prose-h4:mt-10 prose-h4:mb-5
+                                        prose-p:text-gray-700 prose-p:leading-[1.7] prose-p:mb-8 prose-p:text-[17px]
                                         prose-a:text-indigo-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:text-indigo-700
                                         prose-strong:text-gray-900 prose-strong:font-bold
                                         prose-em:text-gray-700 prose-em:italic
-                                        prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:bg-indigo-50 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:italic prose-blockquote:text-gray-800 prose-blockquote:my-8 prose-blockquote:rounded-r-lg prose-blockquote:shadow-sm
+                                        prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:bg-indigo-50 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-5 prose-blockquote:italic prose-blockquote:text-gray-800 prose-blockquote:my-10 prose-blockquote:rounded-r-lg prose-blockquote:shadow-sm
                                         prose-code:bg-indigo-50 prose-code:text-indigo-700 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-[15px] prose-code:font-mono prose-code:font-medium
-                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-6 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:shadow-lg prose-pre:my-10
-                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-6 prose-ul:space-y-3
-                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-6 prose-ol:space-y-3
-                                        prose-li:text-gray-700 prose-li:leading-[1.7] prose-li:pl-2
-                                        prose-li>p:my-2
-                                        prose-img:rounded-xl prose-img:shadow-lg prose-img:my-12 prose-img:border prose-img:border-gray-200
-                                        prose-table:border-collapse prose-table:w-full prose-table:my-10 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden
+                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-6 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:shadow-lg prose-pre:my-12
+                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-8 prose-ul:space-y-4
+                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-8 prose-ol:space-y-4
+                                        prose-li:text-gray-700 prose-li:leading-[1.7] prose-li:pl-2 prose-li:mb-2
+                                        prose-li>p:my-3
+                                        prose-img:rounded-xl prose-img:shadow-lg prose-img:my-14 prose-img:border prose-img:border-gray-200
+                                        prose-table:border-collapse prose-table:w-full prose-table:my-12 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden
                                         prose-thead:bg-gray-100
                                         prose-th:bg-gray-100 prose-th:p-4 prose-th:text-left prose-th:font-bold prose-th:text-gray-900 prose-th:border-b-2 prose-th:border-gray-300
                                         prose-td:border prose-td:border-gray-200 prose-td:p-4 prose-td:text-gray-700
                                         prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-gray-50
-                                        prose-hr:my-16 prose-hr:border-gray-300"
+                                        prose-hr:my-20 prose-hr:border-gray-300"
                                 >
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
