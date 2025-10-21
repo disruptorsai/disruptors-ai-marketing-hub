@@ -213,17 +213,31 @@ node scripts/create-blog-content-strategy.js
 ### 4. Image Generation
 
 **Generate Blog Images:**
+
+🎉 **NOW FULLY AUTOMATED!** Images are auto-generated during blog creation.
+
 ```bash
-# Generate professional header images
-node scripts/generate-blog-post-images.js
+# Primary: Blog generation WITH automatic images (RECOMMENDED)
+node scripts/generate-20-comprehensive-blogs.js
+
+# Fallback: Generate any missing images
+node scripts/generate-all-missing-images.js
+
+# Audit: Check current image status
+node scripts/audit-blog-images.js
 ```
 
 **Image Specs:**
 - Provider: OpenAI gpt-image-1 (NOT DALL-E)
-- Dimensions: 1536x1024 (wide blog header format)
+- Dimensions: 1536x1024 (wide blog header format, 16:9)
 - Quality: High
+- Style: Professional corporate with vibrant gradients (blue, purple, gold)
+- Keywords: Auto-extracted from blog metadata
 - Output: `/public/blog-images/generated/`
 - Naming: `{slug}.png`
+- **Automation**: Images created automatically during blog generation!
+
+**Documentation**: See `docs/BLOG_IMAGE_AUTOMATION.md` for complete guide
 
 ### 5. Blog Import/Export
 

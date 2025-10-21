@@ -10,7 +10,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
  * Features:
  * - Smooth spring animation
  * - Fixed positioning at top
- * - Indigo gradient color
+ * - Golden gradient color with glow effect
  * - Responds to scroll events
  * - Mobile-friendly
  */
@@ -22,10 +22,47 @@ export default function ReadingProgress() {
     restDelta: 0.001
   });
 
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    return scrollYProgress.onChange((latest) => {
+      setProgress(Math.round(latest * 100));
+    });
+  }, [scrollYProgress]);
+
   return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transform-origin-left z-50"
-      style={{ scaleX }}
-    />
+    <>
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 transform-origin-left z-50 shadow-lg shadow-yellow-500/50"
+        style={{ scaleX }}
+      />
+
+      {/* Golden shimmer effect */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-white/40 to-transparent transform-origin-left z-[51] pointer-events-none"
+        style={{ scaleX }}
+        animate={{
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Progress Percentage Badge */}
+      {progress > 0 && (
+        <motion.div
+          className="fixed top-4 right-4 z-50 px-4 py-2 bg-gradient-to-br from-yellow-400 to-amber-600 text-gray-900 font-bold text-sm rounded-full shadow-xl shadow-yellow-500/30 border-2 border-yellow-300"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {progress}%
+        </motion.div>
+      )}
+    </>
   );
 }

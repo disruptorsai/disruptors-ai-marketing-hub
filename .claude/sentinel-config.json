@@ -1,0 +1,176 @@
+{
+  "version": "2.1.0",
+  "enabled": true,
+  "scope": "global",
+  "description": "Claude Code Documentation Sentinel - Global configuration for all repositories",
+
+  "global_settings": {
+    "shared_documentation": "~/.claude/documentation-sentinel/",
+    "global_cache": "~/.claude/documentation-sentinel/cache/",
+    "cross_repo_metrics": true,
+    "aggregate_reporting": true
+  },
+
+  "schedules": {
+    "daily_check": {
+      "enabled": true,
+      "time": "09:00",
+      "timezone": "America/Los_Angeles",
+      "description": "Daily documentation sync and quick health check"
+    },
+    "weekly_audit": {
+      "enabled": true,
+      "day": "Monday",
+      "time": "10:00",
+      "description": "Comprehensive best practices audit across all repos"
+    },
+    "monthly_deep_dive": {
+      "enabled": true,
+      "day": 1,
+      "time": "11:00",
+      "description": "Deep feature analysis and strategic recommendations"
+    },
+    "on_version_release": {
+      "enabled": true,
+      "description": "Immediate check when new Claude Code version detected"
+    }
+  },
+
+  "monitoring": {
+    "track_usage_patterns": true,
+    "measure_performance_impact": true,
+    "generate_metrics": true,
+    "security_scanning": true,
+    "cost_analysis": true,
+    "cross_repo_comparison": true,
+    "aggregate_analytics": true
+  },
+
+  "auto_update": {
+    "enabled": true,
+    "require_approval": false,
+    "create_prs": true,
+    "preserve_custom_sections": true,
+    "backup_before_update": true,
+    "update_strategy": "merge",
+    "conflict_resolution": "manual"
+  },
+
+  "notifications": {
+    "terminal": true,
+    "git_commits": true,
+    "webhooks": {
+      "slack": null,
+      "discord": null,
+      "custom": []
+    },
+    "email": {
+      "enabled": false,
+      "recipients": [],
+      "digest_frequency": "weekly"
+    },
+    "priority_levels": {
+      "critical": ["terminal", "webhook"],
+      "high": ["terminal", "git"],
+      "medium": ["git"],
+      "low": ["digest"]
+    }
+  },
+
+  "thresholds": {
+    "documentation_drift_warning": 10,
+    "documentation_drift_critical": 25,
+    "best_practices_minimum": 85,
+    "context_length_warning": 60,
+    "cost_optimization_threshold": 50,
+    "security_issue_severity": "medium"
+  },
+
+  "sources": {
+    "official_docs": "https://docs.claude.com/en/docs/claude-code/",
+    "github_repo": "https://github.com/anthropics/claude-code",
+    "anthropic_blog": "https://www.anthropic.com/engineering",
+    "community_resources": [
+      "https://claudelog.com/",
+      "https://www.builder.io/blog/claude-code",
+      "https://simonwillison.net/"
+    ],
+    "cache_duration": 3600
+  },
+
+  "integrations": {
+    "supabase_telemetry": true,
+    "github_issues": false,
+    "vscode_extension": false,
+    "slack": false,
+    "discord": false
+  },
+
+  "exclusions": {
+    "ignore_files": [
+      "**/*.test.js",
+      "**/*.spec.js",
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/.vite/**"
+    ],
+    "ignore_patterns": [
+      "// @sentinel-ignore",
+      "/* sentinel: skip */",
+      "# sentinel-ignore"
+    ],
+    "ignore_directories": [
+      "node_modules",
+      ".git",
+      "dist",
+      "build",
+      "coverage",
+      ".cache"
+    ]
+  },
+
+  "repositories": {
+    "disruptors-ai-marketing-hub": {
+      "enabled": true,
+      "priority": "high",
+      "custom_rules": [],
+      "notification_overrides": {}
+    }
+  },
+
+  "reporting": {
+    "daily_report_path": "temp/claude-code-health/",
+    "weekly_report_path": "docs/claude-code/",
+    "monthly_report_path": "docs/claude-code/",
+    "format": "markdown",
+    "include_metrics": true,
+    "include_code_examples": true,
+    "verbosity": "detailed"
+  },
+
+  "advanced": {
+    "parallel_execution": true,
+    "max_concurrent_checks": 5,
+    "cache_enabled": true,
+    "cache_ttl": 3600,
+    "rate_limiting": {
+      "enabled": false,
+      "max_requests_per_minute": 60
+    },
+    "experimental_features": {
+      "ml_pattern_recognition": false,
+      "predictive_alerts": false,
+      "ab_testing": false
+    }
+  },
+
+  "debug": {
+    "log_level": "info",
+    "log_file": "temp/sentinel-debug.log",
+    "verbose_errors": true,
+    "trace_api_calls": false
+  }
+}

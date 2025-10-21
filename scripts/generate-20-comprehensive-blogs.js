@@ -9,6 +9,7 @@
 
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
+import { openaiGenerate } from '../src/lib/openai-image.js'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -198,6 +199,64 @@ Write the complete blog post now in Markdown format.`
 }
 
 /**
+ * Generate featured image for blog post
+ */
+async function generateFeaturedImage(blog, postId) {
+  try {
+    console.log(`🎨 Generating featured image...`)
+
+    const category = blog.category || 'Marketing'
+    const keywords = [
+      blog.primary_keyword,
+      ...(blog.secondary_keywords || [])
+    ].filter(Boolean).slice(0, 4).join(', ')
+
+    // Create professional AI prompt
+    const prompt = `Professional blog header image for "${blog.title}". Modern corporate style with vibrant gradients (blue, purple, gold accents). Include abstract tech elements, AI circuits, data visualizations, and ${category.toLowerCase()} iconography. Keywords to visualize: ${keywords}. High-quality 3D rendering with depth and polish. Photorealistic. Corporate professional aesthetic. Wide format 16:9.`
+
+    console.log(`   Prompt: ${prompt.substring(0, 100)}...`)
+
+    // Generate image
+    const buffer = await openaiGenerate({
+      prompt: prompt,
+      size: '1536x1024',
+      quality: 'high'
+    })
+
+    // Save to disk
+    const outputDir = path.join(process.cwd(), 'public', 'blog-images', 'generated')
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true })
+    }
+
+    const filename = `${blog.slug}.png`
+    const filepath = path.join(outputDir, filename)
+    fs.writeFileSync(filepath, buffer)
+    console.log(`✅ Image saved: /blog-images/generated/${filename}`)
+
+    // Update database with correct path
+    const imagePath = `/blog-images/generated/${filename}`
+    const { error } = await supabase
+      .from('posts')
+      .update({ featured_image: imagePath })
+      .eq('id', postId)
+
+    if (error) {
+      console.error(`⚠️  Failed to update image path in database:`, error)
+      return { success: false, error }
+    }
+
+    console.log(`✅ Database updated with image path`)
+    return { success: true, path: imagePath }
+
+  } catch (error) {
+    console.error(`⚠️  Image generation failed:`, error.message)
+    console.log(`   Blog will use fallback gradient hero`)
+    return { success: false, error: error.message }
+  }
+}
+
+/**
  * Insert blog post into Supabase
  */
 async function insertBlogToSupabase(result, index) {
@@ -297,6 +356,14 @@ async function main() {
       // Insert to Supabase
       const insertResult = await insertBlogToSupabase(result, i)
       insertResults.push(insertResult)
+
+      // Generate featured image if insert was successful
+      if (insertResult.success && insertResult.postId) {
+        console.log('')
+        const imageResult = await generateFeaturedImage(result.blog, insertResult.postId)
+        insertResult.imageGenerated = imageResult.success
+        insertResult.imagePath = imageResult.path
+      }
     }
 
     // Rate limit: wait 3 seconds between requests
@@ -315,11 +382,13 @@ async function main() {
   const failCount = results.length - successCount
   const totalWords = results.filter(r => r.success).reduce((sum, r) => sum + r.wordCount, 0)
   const insertSuccessCount = insertResults.filter(r => r.success).length
+  const imagesGeneratedCount = insertResults.filter(r => r.imageGenerated).length
 
   console.log(`✅ Successfully generated: ${successCount}/${ALL_BLOGS.length}`)
   console.log(`❌ Failed: ${failCount}/${ALL_BLOGS.length}`)
   console.log(`📝 Total words written: ${totalWords.toLocaleString()}`)
   console.log(`📤 Inserted to Supabase: ${insertSuccessCount}/${successCount}`)
+  console.log(`🎨 Featured images generated: ${imagesGeneratedCount}/${insertSuccessCount}`)
   console.log(`💾 Backup location: temp/generated-blogs/`)
 
   console.log('\n📋 Blog Status:')
@@ -335,8 +404,12 @@ async function main() {
   console.log('\n🎯 NEXT STEPS:')
   console.log('1. Review all blogs in Admin Nexus → Blog Management')
   console.log('2. The first blog is pre-approved and ready to publish')
-  console.log('3. Approve remaining blogs to activate auto-scheduling')
-  console.log('4. Publishing schedule: 3x/week (Mon/Wed/Fri) for 90 days, then 2x/week')
+  console.log('3. Featured images have been automatically generated (OpenAI gpt-image-1)')
+  console.log('4. Approve remaining blogs to activate auto-scheduling')
+  console.log('5. Publishing schedule: 3x/week (Mon/Wed/Fri) for 90 days, then 2x/week')
+  console.log('')
+  console.log('📝 Note: If any images failed to generate, run:')
+  console.log('   node scripts/generate-all-missing-images.js')
 
   console.log('\n✨ Blog generation complete!')
 

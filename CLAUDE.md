@@ -21,13 +21,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Integration examples**: `npm run integrate:service-images`
 
 ### MCP Server Management
-- **List all servers**: `npm run mcp:list` - Show all 22 MCP servers and their status
+- **List all servers**: `npm run mcp:list` - Show all 27 MCP servers and their status
 - **Show current config**: `npm run mcp:toggle` - Display current configuration and active profile
 - **Enable servers**: `npm run mcp:enable -- <server...>` - Enable specific servers
 - **Disable servers**: `npm run mcp:disable -- <server...>` - Disable specific servers
 - **Minimal profile**: `npm run mcp:profile:minimal` - 3 essential servers only
 - **Dev profile**: `npm run mcp:profile:dev` - 7 development servers
-- **Full profile**: `npm run mcp:profile:full` - All 22 servers enabled
+- **Full profile**: `npm run mcp:profile:full` - All 27 servers enabled
 - **Start orchestrator**: `npm run mcp:start`
 - **Check status**: `npm run mcp:status`
 - **Health check**: `npm run mcp:health`
@@ -281,12 +281,179 @@ See `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md` for complete guide.
 - **Commit patterns**: Semantic messages with intelligent change detection
 - **Push commands**: `npm run push` for standard push, `npm run push:force` for force-with-lease
 
+### Claude Code Best Practices
+
+**Checkpoint & Rewind System** (Claude Code 2.0):
+- **Create checkpoint**: Before risky operations, complex refactors, or database migrations
+- **Rewind**: Press `Esc` twice for quick rewind, or use `/rewind <checkpoint-name>`
+- **Use cases**: Deployment scripts, schema changes, large refactorings
+- **Example workflow**:
+  ```
+  Before deployment:
+  1. Create checkpoint: /checkpoint pre-deploy
+  2. Run deployment
+  3. If issues: /rewind pre-deploy
+  4. If success: Continue from checkpoint
+  ```
+
+**Extended Thinking** (Sonnet 4.5):
+- **Basic**: Use "think" for complex logic requiring deeper analysis
+- **Moderate**: Use "think hard" for architectural decisions and multi-step workflows
+- **Advanced**: Use "think harder" for critical business logic and optimization problems
+- **Maximum**: Use "ultrathink" for complex system design and performance-critical code
+- **When to use**: Complex audits, multi-agent orchestration, business rule processing, optimization tasks
+
+**TodoWrite Usage**:
+- **Always use** for multi-step tasks (3+ steps)
+- **Track progress** on complex implementations
+- **Update status** as you complete each task (don't batch completions)
+- **One in_progress** task at a time for clarity
+- **Example**: Deployment pipelines, migration scripts, feature implementations
+
+**Parallel Tool Execution**:
+- **Independent operations**: Use multiple tool calls in single message
+- **File operations**: Read multiple files in parallel when no dependencies
+- **API calls**: Fetch data from multiple sources simultaneously
+- **Example**: `Promise.all()` for database queries, parallel file reads during analysis
+
+**Model Selection** (Cost Optimization):
+- **Use Sonnet 4.5**: Content generation, complex logic, creative tasks, business decisions
+- **Use Haiku 4.5**: Test data generation, structured CRUD, simple validation, formatting
+- **Savings**: Haiku is 3x cheaper ($1/M vs $3/M input) with 90% of Sonnet quality
+- **Test first**: Validate quality before migrating production workloads
+
+### Claude Code Plugins
+
+**What are Plugins?**: Installable collections of slash commands, subagents, MCP servers, and hooks
+
+**Using Plugins**:
+```bash
+# Add a marketplace
+/plugin marketplace add user-or-org/repo-name
+
+# Browse available plugins
+/plugin
+
+# Install a plugin
+# Follow prompts in /plugin menu
+
+# Restart Claude Code
+# Required after installing plugins
+```
+
+**Creating Your Own Plugin**:
+1. Create `.claude-plugin/` directory in your project or `~/.claude/plugins/your-plugin/`
+2. Add `plugin.json` with metadata:
+   ```json
+   {
+     "name": "my-deployment-plugin",
+     "description": "Automated deployment validation",
+     "version": "1.0.0",
+     "author": "Your Name"
+   }
+   ```
+3. Add commands in `commands/` directory (markdown files)
+4. Each command file includes description and instructions
+5. Share via git repository
+
+**Plugin Ideas for This Project**:
+- Deployment validator (pre/post-deploy checks)
+- Database migration helper (checkpoint + migrate + verify)
+- MCP server health check automation
+- Cost optimizer (scan for Haiku migration opportunities)
+
+**Official Resources**:
+- Docs: https://docs.claude.com/en/docs/claude-code/plugins
+- Announcement: https://www.anthropic.com/news/claude-code-plugins
+- Marketplace: Use `/plugin marketplace add` to browse
+
+### Claude Code MCP Management
+
+**Toggle MCP Servers**:
+
+**Via /mcp command** (Recommended):
+```bash
+# View all MCP servers
+/mcp
+
+# Interactive menu shows:
+# - All configured servers
+# - Current status (enabled/disabled)
+# - Toggle switches
+```
+
+**Via @mention** (Session-specific):
+```bash
+# Mention to activate for current session
+@supabase-mcp
+
+# Server becomes available for that conversation
+```
+
+**Via Configuration File** (`~/.claude.json`):
+```json
+{
+  "mcpServers": {
+    "supabase-mcp": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase"],
+      "env": {
+        "SUPABASE_URL": "https://...",
+        "SUPABASE_ANON_KEY": "..."
+      }
+    }
+  },
+  "_disabled_mcpServers": {
+    "expensive-mcp": {
+      "...": "server config here when disabled"
+    }
+  }
+}
+```
+
+**Project-Level MCP Scripts** (This Project):
+```bash
+# Enable specific MCP servers
+npm run mcp:enable -- supabase-mcp gsap-master
+
+# Disable specific servers
+npm run mcp:disable -- spline-mcp replicate-mcp
+
+# Use profiles for common configurations
+npm run mcp:profile:minimal  # Essential only (3 servers)
+npm run mcp:profile:dev      # Development (7 servers)
+npm run mcp:profile:full     # All servers (27 servers)
+
+# Check status
+npm run mcp:status
+npm run mcp:list
+
+# Sync across computers
+npm run mcp:export  # Save config
+npm run mcp:import  # Apply config
+npm run mcp:sync    # Two-way sync via GitHub
+```
+
+**Why Toggle MCPs?**:
+- **Context Window**: Each enabled MCP adds tool definitions to context
+- **Performance**: Fewer active servers = faster responses
+- **Cost**: Disabled servers don't consume tokens
+- **Testing**: Enable unstable servers only when debugging
+
+**Best Practices**:
+- Start with minimal profile (3 essential servers)
+- Enable additional servers only when needed
+- Use `/mcp` to see which servers are using context
+- Disable seasonal/project-specific servers when not in use
+- Use project-level scripts for team consistency
+
 ## Technology Stack
 
 - **Framework**: React 18, Vite 6.1.0, React Router DOM v7.2.0
 - **Build Tool**: Vite with SWC plugin for faster compilation
 - **Styling**: Tailwind CSS 3.4.17, Radix UI primitives (20+ packages)
 - **Animation**: Framer Motion 12.4.7, GSAP 3.13.0, Spline 3D (@splinetool/react-spline 4.1.0)
+- **3D Graphics**: React Three Fiber v8.x (three.js), @react-three/drei (helpers), Three.js latest
 - **Database**: Supabase (PostgreSQL) with custom SDK wrapper for Base44 compatibility
 - **AI Services**:
   - Claude Sonnet 4.5 (@anthropic-ai/sdk 0.65.0)
@@ -322,12 +489,14 @@ See `docs/TECHNOLOGY_STACK.md` for complete stack details.
 
 ### Integrations
 - `docs/integrations/MCP_ECOSYSTEM.md` - Model Context Protocol servers
+- `docs/integrations/REACT_THREE_FIBER_ECOSYSTEM.md` - React Three Fiber libraries and MCP servers (NEW)
+- `docs/GLOBAL_MCP_AND_AGENTS_SETUP.md` - Global MCP and agent configuration guide (NEW)
 - `docs/MCP_SERVER_MANAGEMENT.md` - MCP server toggle/profile management
 - `docs/MCP_QUICK_REFERENCE.md` - Quick reference for MCP commands
-- `mcp-portable-config/README.md` - Portable MCP configuration system (NEW)
-- `mcp-portable-config/QUICK_START.md` - 5-minute portable setup guide (NEW)
-- `mcp-portable-config/GITHUB_SETUP.md` - Cloud sync setup (NEW)
-- `mcp-portable-config/credentials.md` - API key sources (NEW)
+- `mcp-portable-config/README.md` - Portable MCP configuration system
+- `mcp-portable-config/QUICK_START.md` - 5-minute portable setup guide
+- `mcp-portable-config/GITHUB_SETUP.md` - Cloud sync setup
+- `mcp-portable-config/credentials.md` - API key sources
 - `docs/GSAP_MASTER_SETUP_GUIDE.md` - GSAP Master MCP server
 - `docs/mcp-servers/spline-mcp-server.md` - Spline MCP server
 - `docs/mcp-servers/supabase-mcp-server.md` - Supabase MCP server
