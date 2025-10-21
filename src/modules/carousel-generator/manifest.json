@@ -1,0 +1,245 @@
+{
+  "id": "carousel-generator",
+  "name": "Instagram Carousel Generator",
+  "version": "1.0.0",
+  "description": "AI-powered Instagram carousel generator with intelligent image sourcing, editing, and composition. Analyzes successful carousels to determine optimal image strategies.",
+  "icon": "📸",
+  "category": "content-creation",
+  "tags": ["instagram", "social-media", "carousel", "ai-images", "nano-banana", "content-marketing"],
+
+  "access_levels": {
+    "internal": {
+      "enabled": true,
+      "quota": {
+        "limit": -1,
+        "period": "unlimited",
+        "description": "Unlimited carousel generation for internal team"
+      }
+    },
+    "client": {
+      "enabled": true,
+      "quota": {
+        "limit": 10,
+        "period": "monthly",
+        "description": "10 carousel generations per month for authenticated clients"
+      }
+    },
+    "public": {
+      "enabled": false,
+      "quota": {
+        "limit": 0,
+        "period": "none",
+        "description": "Not available as public lead magnet"
+      }
+    }
+  },
+
+  "capabilities": [
+    "instagram-carousel-generation",
+    "intelligent-image-strategy",
+    "image-download-and-sourcing",
+    "nano-banana-editing",
+    "multi-image-composition",
+    "instagram-research-scraping",
+    "business-brain-integration",
+    "simple-and-advanced-modes",
+    "export-multiple-formats"
+  ],
+
+  "dependencies": {
+    "required": [
+      "business-brains",
+      "supabase-storage"
+    ],
+    "optional": [
+      "cloudinary"
+    ]
+  },
+
+  "api_requirements": {
+    "required": [
+      "VITE_ANTHROPIC_API_KEY",
+      "VITE_GEMINI_API_KEY",
+      "VITE_OPENAI_API_KEY",
+      "VITE_FIRECRAWL_API_KEY"
+    ],
+    "optional": [
+      "GOOGLE_CUSTOM_SEARCH_API_KEY",
+      "GOOGLE_CUSTOM_SEARCH_ENGINE_ID",
+      "UNSPLASH_ACCESS_KEY",
+      "PEXELS_API_KEY"
+    ]
+  },
+
+  "pricing": {
+    "base_cost": "$0.07",
+    "description": "Research + strategy generation",
+    "variable_costs": {
+      "generated_image": "$0.02-$0.19",
+      "downloaded_image": "$0.00",
+      "nano_banana_edit": "$0.039",
+      "nano_banana_compose": "$0.039"
+    },
+    "typical_carousel_cost": "$0.20-$0.30",
+    "notes": [
+      "Costs vary based on AI image strategy decisions",
+      "Advanced mode allows cost preview before generation",
+      "Intelligent sourcing minimizes generation costs"
+    ]
+  },
+
+  "features": [
+    {
+      "name": "Intelligent Image Strategy",
+      "description": "AI analyzes successful Instagram carousels to determine whether each slide should be generated, downloaded, edited, or composed from multiple sources",
+      "enabled": true
+    },
+    {
+      "name": "Instagram Research Engine",
+      "description": "Scrapes and analyzes top-performing carousels in user's industry using Firecrawl",
+      "enabled": true
+    },
+    {
+      "name": "Multi-Source Image Acquisition",
+      "description": "Downloads images from Google Image Search, Unsplash, Pexels, or user's brand assets",
+      "enabled": true
+    },
+    {
+      "name": "Nano Banana Editing",
+      "description": "Uses Google Gemini 2.5 Flash Image to edit downloaded photos with natural language instructions",
+      "enabled": true
+    },
+    {
+      "name": "Multi-Image Composition",
+      "description": "Combines multiple images (screenshots, brand templates, stock photos) into cohesive slides",
+      "enabled": true
+    },
+    {
+      "name": "Business Brain Personalization",
+      "description": "Injects brand voice, industry context, target audience, and key facts into all content",
+      "enabled": true
+    },
+    {
+      "name": "Simple/Advanced Modes",
+      "description": "Simple: fully automatic. Advanced: review/modify AI strategy before generation",
+      "enabled": true
+    },
+    {
+      "name": "Variable Slide Counts",
+      "description": "Generate 3-10 slide carousels (not fixed at 5)",
+      "enabled": true
+    },
+    {
+      "name": "Style Templates",
+      "description": "Educational, promotional, storytelling, or statistical carousel formats",
+      "enabled": true
+    },
+    {
+      "name": "Export Options",
+      "description": "Download individual PNGs, ZIP archive, Canva-compatible JSON",
+      "enabled": true
+    },
+    {
+      "name": "Slide Regeneration",
+      "description": "Regenerate individual slides without recreating entire carousel",
+      "enabled": true
+    },
+    {
+      "name": "Historical Library",
+      "description": "View past carousels, reuse successful templates",
+      "enabled": true
+    }
+  ],
+
+  "ui_config": {
+    "primary_color": "#E1306C",
+    "secondary_color": "#5851DB",
+    "accent_color": "#833AB4",
+    "layout": "wizard",
+    "steps": [
+      {
+        "id": "input",
+        "title": "Topic & Settings",
+        "description": "Enter carousel topic, slide count, and style"
+      },
+      {
+        "id": "outline",
+        "title": "Content Outline",
+        "description": "AI-generated carousel structure with image strategies"
+      },
+      {
+        "id": "generating",
+        "title": "Generating Slides",
+        "description": "Real-time progress as each slide is created"
+      },
+      {
+        "id": "complete",
+        "title": "Review & Export",
+        "description": "Preview carousel and download in multiple formats"
+      }
+    ]
+  },
+
+  "database_tables": [
+    "carousel_generations",
+    "carousel_research_cache"
+  ],
+
+  "storage_buckets": [
+    "carousel-images"
+  ],
+
+  "netlify_functions": [
+    "module-carousel-generator"
+  ],
+
+  "metadata": {
+    "author": "Disruptors AI",
+    "created_at": "2025-10-21",
+    "last_updated": "2025-10-21",
+    "documentation_url": "/modules/carousel-generator/README.md",
+    "video_tutorial_url": null,
+    "changelog_url": null
+  },
+
+  "telemetry": {
+    "track_events": [
+      "carousel_started",
+      "strategy_reviewed",
+      "strategy_modified",
+      "slide_generated",
+      "slide_regenerated",
+      "carousel_completed",
+      "carousel_exported",
+      "carousel_failed"
+    ],
+    "track_metrics": [
+      "generation_duration_ms",
+      "total_cost",
+      "user_approved_strategy",
+      "regeneration_count",
+      "research_carousels_analyzed"
+    ]
+  },
+
+  "example_use_cases": [
+    {
+      "industry": "Real Estate",
+      "topic": "5 AI Tools to Close More Deals",
+      "expected_strategy": "Slide 1: Download realtor headshot + dramatic edit. Slides 2-5: Mix of UI screenshots composed with brand overlays"
+    },
+    {
+      "industry": "SaaS",
+      "topic": "Why Your CRM is Costing You Money",
+      "expected_strategy": "Slide 1: Generate abstract illustration. Slides 2-4: Download competitor screenshots + edit. Slide 5: Generate call-to-action visual"
+    },
+    {
+      "industry": "Coaching",
+      "topic": "Transform Your Mindset in 30 Days",
+      "expected_strategy": "All slides: Download real transformation photos + Nano Banana edits for consistency and text overlays"
+    }
+  ],
+
+  "status": "active",
+  "maintenance_mode": false
+}
