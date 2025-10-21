@@ -9,6 +9,12 @@ import rehypeRaw from 'rehype-raw';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import ReadingProgress from '../components/blog/ReadingProgress';
 import TableOfContents from '../components/blog/TableOfContents';
+import CollapsibleSection from '../components/blog/CollapsibleSection';
+import HighlightBox from '../components/blog/HighlightBox';
+import PullQuote from '../components/blog/PullQuote';
+import CodeBlock from '../components/blog/CodeBlock';
+import StatsHighlight from '../components/blog/StatsHighlight';
+import SocialShare from '../components/blog/SocialShare';
 
 export default function BlogDetail() {
     const [post, setPost] = useState(null);
@@ -133,69 +139,158 @@ export default function BlogDetail() {
                                 <TableOfContents content={post.content} wordCount={wordCount} />
                             </div>
 
-                            <article className="bg-white/95 backdrop-blur-md text-gray-900 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl">
+                            <article className="bg-white/95 backdrop-blur-md text-gray-900 rounded-3xl p-6 sm:p-10 lg:p-16 shadow-2xl">
                                 {/* Tags */}
                                 {post.tags && post.tags.length > 0 && (
-                                    <div className="flex flex-wrap gap-2 mb-8 pb-6 border-b border-gray-200">
+                                    <div className="flex flex-wrap gap-2 mb-12 pb-8 border-b-2 border-gray-200">
                                         {post.tags.map((tag, i) => (
-                                            <span key={i} className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-50 text-indigo-700 text-sm font-medium rounded-full">
-                                                <Tag className="w-3 h-3" />
+                                            <span key={i} className="inline-flex items-center gap-1 px-4 py-2 bg-gradient-to-br from-indigo-50 to-purple-50 text-indigo-700 text-sm font-semibold rounded-full border border-indigo-200 shadow-sm">
+                                                <Tag className="w-4 h-4" />
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 )}
 
-                                {/* Post Body with Improved Typography & Spacing */}
+                                {/* Post Body with Magazine-Quality Typography */}
                                 <div
-                                    className="prose prose-lg prose-indigo max-w-none
-                                        prose-headings:text-gray-900 prose-headings:font-bold prose-headings:scroll-mt-20
-                                        prose-h1:text-4xl prose-h1:mb-8 prose-h1:leading-tight
-                                        prose-h2:text-3xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:leading-tight prose-h2:border-b-2 prose-h2:border-indigo-100 prose-h2:pb-5
-                                        prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:leading-snug
-                                        prose-h4:text-xl prose-h4:mt-10 prose-h4:mb-5
-                                        prose-p:text-gray-700 prose-p:leading-[1.7] prose-p:mb-8 prose-p:text-[17px]
-                                        prose-a:text-indigo-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:text-indigo-700
-                                        prose-strong:text-gray-900 prose-strong:font-bold
+                                    className="blog-content prose prose-xl prose-indigo max-w-none
+                                        prose-headings:text-gray-900 prose-headings:font-extrabold prose-headings:scroll-mt-24 prose-headings:tracking-tight
+                                        prose-h1:text-5xl prose-h1:mb-8 prose-h1:leading-[1.1] prose-h1:bg-gradient-to-r prose-h1:from-indigo-600 prose-h1:to-purple-600 prose-h1:bg-clip-text prose-h1:text-transparent
+                                        prose-h2:text-4xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:leading-[1.2] prose-h2:border-b-4 prose-h2:border-gradient-to-r prose-h2:from-indigo-500 prose-h2:to-purple-500 prose-h2:pb-6
+                                        prose-h3:text-3xl prose-h3:mt-16 prose-h3:mb-6 prose-h3:leading-[1.3] prose-h3:text-indigo-900
+                                        prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-5 prose-h4:text-gray-800
+                                        prose-h5:text-xl prose-h5:mt-8 prose-h5:mb-4 prose-h5:text-gray-700
+                                        prose-p:text-gray-700 prose-p:leading-[1.8] prose-p:mb-8 prose-p:text-[18px]
+                                        prose-p:first-of-type:text-[20px] prose-p:first-of-type:leading-[1.9] prose-p:first-of-type:font-medium prose-p:first-of-type:text-gray-800
+                                        prose-a:text-indigo-600 prose-a:font-semibold prose-a:no-underline prose-a:decoration-2 prose-a:underline-offset-4 hover:prose-a:underline hover:prose-a:text-indigo-700 prose-a:transition-all
+                                        prose-strong:text-gray-900 prose-strong:font-bold prose-strong:bg-yellow-100/50 prose-strong:px-1
                                         prose-em:text-gray-700 prose-em:italic
-                                        prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:bg-indigo-50 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-5 prose-blockquote:italic prose-blockquote:text-gray-800 prose-blockquote:my-10 prose-blockquote:rounded-r-lg prose-blockquote:shadow-sm
-                                        prose-code:bg-indigo-50 prose-code:text-indigo-700 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-[15px] prose-code:font-mono prose-code:font-medium
-                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-6 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:shadow-lg prose-pre:my-12
-                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-8 prose-ul:space-y-4
-                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-8 prose-ol:space-y-4
-                                        prose-li:text-gray-700 prose-li:leading-[1.7] prose-li:pl-2 prose-li:mb-2
-                                        prose-li>p:my-3
-                                        prose-img:rounded-xl prose-img:shadow-lg prose-img:my-14 prose-img:border prose-img:border-gray-200
-                                        prose-table:border-collapse prose-table:w-full prose-table:my-12 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden
-                                        prose-thead:bg-gray-100
-                                        prose-th:bg-gray-100 prose-th:p-4 prose-th:text-left prose-th:font-bold prose-th:text-gray-900 prose-th:border-b-2 prose-th:border-gray-300
-                                        prose-td:border prose-td:border-gray-200 prose-td:p-4 prose-td:text-gray-700
-                                        prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-gray-50
-                                        prose-hr:my-20 prose-hr:border-gray-300"
+                                        prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-500 prose-blockquote:bg-gradient-to-br prose-blockquote:from-indigo-50 prose-blockquote:to-purple-50 prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-6 prose-blockquote:italic prose-blockquote:text-gray-800 prose-blockquote:my-12 prose-blockquote:rounded-r-2xl prose-blockquote:shadow-xl prose-blockquote:text-lg
+                                        prose-code:bg-indigo-50 prose-code:text-indigo-700 prose-code:px-2.5 prose-code:py-1 prose-code:rounded-md prose-code:text-[16px] prose-code:font-mono prose-code:font-semibold prose-code:border prose-code:border-indigo-200
+                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-xl prose-pre:overflow-hidden prose-pre:shadow-2xl prose-pre:my-12 prose-pre:border prose-pre:border-gray-700
+                                        prose-ul:list-none prose-ul:ml-0 prose-ul:mb-8 prose-ul:space-y-4
+                                        prose-ol:ml-0 prose-ol:mb-8 prose-ol:space-y-4 prose-ol:counter-reset-[item]
+                                        prose-li:text-gray-700 prose-li:leading-[1.8] prose-li:pl-8 prose-li:relative prose-li:text-[18px]
+                                        prose-ul>li:before:content-['▸'] prose-ul>li:before:absolute prose-ul>li:before:left-0 prose-ul>li:before:text-indigo-600 prose-ul>li:before:font-bold prose-ul>li:before:text-xl
+                                        prose-ol>li:before:content-[counter(item)'.'] prose-ol>li:before:counter-increment-[item] prose-ol>li:before:absolute prose-ol>li:before:left-0 prose-ol>li:before:text-indigo-600 prose-ol>li:before:font-bold prose-ol>li:before:text-lg
+                                        prose-li>p:my-2
+                                        prose-img:rounded-2xl prose-img:shadow-2xl prose-img:my-16 prose-img:border-4 prose-img:border-white prose-img:ring-2 prose-img:ring-gray-200
+                                        prose-table:border-collapse prose-table:w-full prose-table:my-12 prose-table:shadow-xl prose-table:rounded-xl prose-table:overflow-hidden prose-table:border prose-table:border-gray-300
+                                        prose-thead:bg-gradient-to-r prose-thead:from-indigo-600 prose-thead:to-purple-600
+                                        prose-th:p-5 prose-th:text-left prose-th:font-bold prose-th:text-white prose-th:border-b-2 prose-th:border-white/20 prose-th:text-base
+                                        prose-td:border prose-td:border-gray-200 prose-td:p-5 prose-td:text-gray-700 prose-td:text-base
+                                        prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-indigo-50/30 prose-tr:transition-colors
+                                        prose-hr:my-20 prose-hr:border-0 prose-hr:h-1 prose-hr:bg-gradient-to-r prose-hr:from-transparent prose-hr:via-indigo-300 prose-hr:to-transparent"
                                 >
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
                                         rehypePlugins={[rehypeRaw]}
                                         components={{
+                                            h1: ({ node, ...props }) => {
+                                                const text = props.children?.[0] || '';
+                                                const id = typeof text === 'string'
+                                                    ? text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
+                                                    : '';
+                                                return (
+                                                    <motion.h1
+                                                        id={id}
+                                                        {...props}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        whileInView={{ opacity: 1, y: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.6 }}
+                                                    />
+                                                );
+                                            },
                                             h2: ({ node, ...props }) => {
                                                 const text = props.children?.[0] || '';
                                                 const id = typeof text === 'string'
                                                     ? text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
                                                     : '';
-                                                return <h2 id={id} {...props} />;
+                                                return (
+                                                    <motion.h2
+                                                        id={id}
+                                                        {...props}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.5 }}
+                                                    />
+                                                );
                                             },
                                             h3: ({ node, ...props }) => {
                                                 const text = props.children?.[0] || '';
                                                 const id = typeof text === 'string'
                                                     ? text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')
                                                     : '';
-                                                return <h3 id={id} {...props} />;
+
+                                                // Auto-detect FAQ sections
+                                                const isFAQ = typeof text === 'string' &&
+                                                    (text.toLowerCase().includes('faq') ||
+                                                     text.toLowerCase().includes('frequently asked') ||
+                                                     text.toLowerCase().includes('questions'));
+
+                                                return (
+                                                    <motion.h3
+                                                        id={id}
+                                                        {...props}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 0.5 }}
+                                                        className={isFAQ ? 'text-indigo-600' : ''}
+                                                    />
+                                                );
+                                            },
+                                            p: ({ node, children, ...props }) => {
+                                                const text = children?.toString() || '';
+
+                                                // Check if paragraph starts with special markers
+                                                if (text.startsWith('[TIP]') || text.startsWith('[KEY]')) {
+                                                    const content = text.replace(/^\[(TIP|KEY)\]\s*/, '');
+                                                    return <HighlightBox type="key">{content}</HighlightBox>;
+                                                }
+                                                if (text.startsWith('[WARNING]')) {
+                                                    const content = text.replace(/^\[WARNING\]\s*/, '');
+                                                    return <HighlightBox type="warning">{content}</HighlightBox>;
+                                                }
+                                                if (text.startsWith('[INFO]')) {
+                                                    const content = text.replace(/^\[INFO\]\s*/, '');
+                                                    return <HighlightBox type="info">{content}</HighlightBox>;
+                                                }
+
+                                                return <p {...props}>{children}</p>;
+                                            },
+                                            pre: ({ node, children, ...props }) => {
+                                                // Extract code from pre > code structure
+                                                const codeElement = children?.props;
+                                                const className = codeElement?.className || '';
+                                                const language = className.replace('language-', '') || 'plaintext';
+                                                const code = codeElement?.children || children;
+
+                                                return <CodeBlock language={language}>{code}</CodeBlock>;
+                                            },
+                                            blockquote: ({ node, children, ...props }) => {
+                                                // Check if blockquote has author attribution
+                                                const text = children?.toString() || '';
+                                                const hasAuthor = text.includes('—');
+
+                                                if (hasAuthor) {
+                                                    const [quote, author] = text.split('—').map(s => s.trim());
+                                                    return <PullQuote author={author}>{quote}</PullQuote>;
+                                                }
+
+                                                return <blockquote {...props}>{children}</blockquote>;
                                             }
                                         }}
                                     >
                                         {post.content}
                                     </ReactMarkdown>
                                 </div>
+
+                                {/* Social Share Section */}
+                                <SocialShare title={post.title} url={window.location.href} />
                             </article>
                         </div>
                     </div>
