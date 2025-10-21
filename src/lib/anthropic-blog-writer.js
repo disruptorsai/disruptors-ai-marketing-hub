@@ -40,7 +40,7 @@ Do not use first-person language unless specified.
 
 Do not use typical blog headings like "Introduction" or "Conclusion" - write natural, descriptive headings.
 
-Output Markdown only - no code fences (```), no backticks around the article, no preface text.
+Output Markdown only - no code fences (\`\`\`), no backticks around the article, no preface text.
 
 Do not include tables with long sentences - avoid tables unless truly necessary.
 
