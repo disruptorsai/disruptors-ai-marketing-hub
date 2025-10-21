@@ -170,7 +170,8 @@ async function downloadPresentationAssets(port, timestamp) {
         const highResUrl = imageUrl.replace('/f_auto,q_auto/', '/f_auto,q_100/');
         const response = await fetch(highResUrl);
         if (response.ok) {
-          await cache.put(imageUrl, response);
+          // Clone response before using it twice (response body can only be read once)
+          await cache.put(imageUrl, response.clone());
           await cache.put(highResUrl, response);
           downloaded++;
           sendProgress();
