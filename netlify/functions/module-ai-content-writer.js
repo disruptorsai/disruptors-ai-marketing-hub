@@ -336,9 +336,60 @@ async function incrementModuleUsage(moduleId, userId) {
  *
  * @param {Object} brain - Business Brain object
  * @param {string} audience - Audience level
+ * @param {string} contentType - Type of content being generated
  * @returns {string} System prompt
  */
-function buildSystemPrompt(brain, audience) {
+function buildSystemPrompt(brain, audience, contentType = 'blog') {
+  // Blog-specific prompt with comprehensive standards (aligned with BLOG_CONTENT_STANDARDS.md)
+  if (contentType === 'blog') {
+    let prompt = `You are a top-performing SEO strategist and educator. Write epic, original blog posts that are practical, easy to follow, and consistently optimized for search and generative engines.
+
+Core Output Requirements:
+- Write at least 1,200 words in narrative, skimmable, conversational style with H1/H2/H3 formatting
+- Output complete Markdown ONLY - no code fences, no backticks, no meta commentary. Start directly with the H1 title
+- Begin with one strong hook in the opening paragraph (story, problem, myth vs. reality, or quick scenario)
+- Paragraph Structure: Mostly 2-4 sentences with occasional shorter lines for rhythm
+- Tone: Bold, attention-grabbing, no fluff, occasionally contrarian
+- Audience: non-experts requiring step-by-step explanations
+- Use plain English and define jargon briefly on first use
+
+Hard Style Rules (must follow strictly):
+- Do not use em dashes (use commas or parentheses instead)
+- Use no more than two lists total (bulleted or numbered, each 3-7 items)
+- Do not use first-person language unless specified
+- Do not use typical blog headings like "Introduction" or "Conclusion" - write natural, descriptive headings
+- Output Markdown only - no code fences (\`\`\`), no backticks around the article, no preface text
+- Use bold/italics sparingly to emphasize key ideas - avoid over-formatting
+
+FAQ Requirements:
+- Include exactly 5 FAQs using ### heading level for each question
+- Questions based on real user search intent
+- Answers in 2-3 concise sentences
+- End with a short CTA line (one sentence) after the FAQ section`;
+
+    // Add Business Brain context for authenticated users
+    if (brain) {
+      prompt += `\n\n## Business Context`;
+      if (brain.business_name) prompt += `\nBusiness: ${brain.business_name}`;
+      if (brain.industry) prompt += `\nIndustry: ${brain.industry}`;
+      if (brain.brand_voice) prompt += `\nBrand Voice: ${brain.brand_voice}`;
+      if (brain.tone_attributes && Array.isArray(brain.tone_attributes)) {
+        prompt += `\nTone Attributes: ${brain.tone_attributes.join(', ')}`;
+      }
+      if (brain.core_offerings && Array.isArray(brain.core_offerings)) {
+        prompt += `\nCore Offerings: ${brain.core_offerings.join(', ')}`;
+      }
+    }
+
+    // Public users get reduced length
+    if (audience === 'public') {
+      prompt += `\n\n## Length Constraints\nFor public demo users, content must be capped at 300 words maximum (demonstration version).`;
+    }
+
+    return prompt;
+  }
+
+  // Default prompt for other content types (social, email, etc.)
   let prompt = `You are an expert AI content writer for Disruptors AI, specializing in creating compelling, SEO-optimized content.
 
 Your writing style is:
@@ -399,7 +450,8 @@ Your writing style is:
  * @returns {Promise<Object>} Generated content
  */
 async function generateContent(input, brain, audience, config) {
-  const systemPrompt = buildSystemPrompt(brain, audience);
+  const contentType = input.content_type || 'blog';
+  const systemPrompt = buildSystemPrompt(brain, audience, contentType);
 
   // Determine word count based on length and audience
   let targetWords;
@@ -408,19 +460,46 @@ async function generateContent(input, brain, audience, config) {
   } else {
     switch (input.length) {
       case 'short':
-        targetWords = 350;
+        targetWords = contentType === 'blog' ? 1200 : 350; // Blog minimum is always 1200+
         break;
       case 'long':
-        targetWords = 1200;
+        targetWords = contentType === 'blog' ? 2000 : 1200;
         break;
       case 'medium':
       default:
-        targetWords = 650;
+        targetWords = contentType === 'blog' ? 1500 : 650;
         break;
     }
   }
 
-  const userPrompt = `Write a ${input.content_type || 'blog post'} about: ${input.topic}
+  // Blog-specific user prompt with comprehensive requirements
+  let userPrompt;
+  if (contentType === 'blog') {
+    userPrompt = `Write a complete blog article about: ${input.topic}
+
+${input.primary_keyword ? `Primary Keyword: ${input.primary_keyword}` : ''}
+${input.secondary_keywords && input.secondary_keywords.length > 0 ? `Secondary Keywords: ${input.secondary_keywords.join(', ')}` : ''}
+Tone: ${input.tone || 'professional'}
+Target Length: ${targetWords} words minimum
+
+Requirements (must follow):
+- H1 title that naturally includes the primary keyword
+- Strong opening hook (story, problem, myth-busting, or data snapshot)
+- Primary keyword appears in first 150 words
+- Natural heading hierarchy (H2/H3 for sections)
+- 1-2 internal links with descriptive anchor text
+- 1-2 external links to authoritative sources
+- Exactly 5 FAQ questions using ### heading level
+- Short one-sentence CTA after FAQ section
+- No em dashes (use commas or parentheses)
+- Maximum 2 lists total (3-7 items each)
+- Paragraphs mostly 2-4 sentences
+- Output pure Markdown (no code fences, no backticks)
+
+${audience === 'public' ? 'IMPORTANT: Public demo limited to 300 words.' : ''}`;
+  } else {
+    // Default prompt for other content types
+    userPrompt = `Write a ${contentType || 'piece of content'} about: ${input.topic}
 
 Tone: ${input.tone || 'professional'}
 Target Length: ${targetWords} words
@@ -434,6 +513,7 @@ Requirements:
 - Strong conclusion with CTA
 
 ${audience === 'public' ? 'IMPORTANT: Keep under 300 words total.' : ''}`;
+  }
 
   try {
     const message = await anthropic.messages.create({
