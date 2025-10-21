@@ -70,7 +70,22 @@ The AutoBlog System is an AI-powered blog article generation system integrated i
 
 ## System Prompt
 
-The system uses a sophisticated prompt engineered for:
+The system uses a sophisticated prompt engineered for blog content generation following the official [Blog Content Standards](./BLOG_CONTENT_STANDARDS.md). All generated articles adhere to these standards:
+
+### Core Requirements (from Blog Content Standards)
+- **Minimum 1,200 words** in narrative, conversational style
+- **No em dashes** - use commas or parentheses instead
+- **Maximum 2 lists** total per article
+- **5 FAQ questions** with ### headings
+- **No generic headings** like "Introduction" or "Conclusion"
+- **Primary keyword** in H1 and first 150 words
+- **1-2 internal links** to relevant pages
+- **1-2 external links** to authoritative sources
+- **Markdown-only output** (no code fences)
+
+### Additional Optimizations
+
+The system prompt also includes these enhancements:
 
 ### SEO Optimization
 - **Primary keyword targeting**: Main keyword integrated throughout
@@ -647,10 +662,13 @@ const results = await batchGenerateArticles(
 ## Support and Resources
 
 ### Documentation
-- This document: `docs/AUTOBLOG_SYSTEM.md`
-- Blog management: `src/pages/blog-management.jsx`
-- AI writer: `src/lib/anthropic-blog-writer.js`
-- Custom SDK: `src/lib/custom-sdk.js`
+- **Content Standards**: `docs/BLOG_CONTENT_STANDARDS.md` - Official writing guidelines (NEW)
+- **This document**: `docs/AUTOBLOG_SYSTEM.md` - Technical implementation
+- **Blog management**: `src/pages/blog-management.jsx` - UI interface
+- **AI writer**: `src/lib/anthropic-blog-writer.js` - Generation logic
+- **Custom SDK**: `src/lib/custom-sdk.js` - Data layer
+- **Blog formatting**: `docs/BLOG_FORMATTING_GUIDE.md` - Visual styling
+- **Blog formatting system**: `docs/BLOG_FORMATTING_SYSTEM.md` - ReactMarkdown setup
 
 ### External Resources
 - [Anthropic API Docs](https://docs.anthropic.com/claude/reference)
