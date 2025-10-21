@@ -186,6 +186,7 @@
     "gsap": "^3.13.0",
     "input-otp": "^1.4.2",
     "jsdom": "^27.0.0",
+    "jszip": "^3.10.1",
     "leva": "^0.10.0",
     "lucide-react": "^0.475.0",
     "metascraper": "^5.49.4",

@@ -85,6 +85,7 @@ const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
 const BusinessBrainManager = lazyWithRetry(() => import('./business-brain-manager.jsx'));
 const AIContentWriter = lazyWithRetry(() => import('./ai-content-writer.jsx'));
 const KeywordResearch = lazyWithRetry(() => import('./keyword-research.jsx'));
+const CarouselGenerator = lazyWithRetry(() => import('../modules/carousel-generator/CarouselGeneratorUI.jsx'));
 const Tools = lazyWithRetry(() => import('./tools.jsx'));
 
 // SEO Audit Tool - lazy loaded with retry
@@ -206,6 +207,8 @@ const PAGES = {
     "ai-content-writer": AIContentWriter,
 
     "keyword-research": KeywordResearch,
+
+    "carousel-generator": CarouselGenerator,
 
     "tools-seo-audit": ToolsSEOAudit,
 
@@ -381,6 +384,9 @@ function PagesContent() {
 
                 <Route path="/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
                 <Route path="/app/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
+
+                <Route path="/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
+                <Route path="/app/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
 
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 
