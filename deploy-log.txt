@@ -1,0 +1,152 @@
+ »   Warning: --build is now the default and can safely be omitted.
+[96m[1m​[22m[39m
+[96m[1mNetlify Build                                                 [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+[36m[1m​[22m[39m
+[36m[1m❯ Version[22m[39m
+  @netlify/build 35.2.7
+[36m[1m​[22m[39m
+[36m[1m❯ Flags[22m[39m
+  accountId: 6720a5fe7c1001be4d8e0e0a
+[36m[1m​[22m[39m
+[36m[1m❯ Current directory[22m[39m
+  C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub
+[36m[1m​[22m[39m
+[36m[1m❯ Config file[22m[39m
+  C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub\netlify.toml
+[36m[1m​[22m[39m
+[36m[1m❯ Context[22m[39m
+  production
+[36m[1m​[22m[39m
+[36m[1m❯ Installing extensions[22m[39m
+   - neon
+[36m[1m​[22m[39m
+[36m[1m❯ Loading extensions[22m[39m
+   - neon
+[96m[1m​[22m[39m
+[96m[1mbuild.command from netlify.toml                               [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+​
+[36m$ npm run build[39m
+
+> disruptors-ai-marketing-hub@0.0.0 build
+> vite build
+
+[36mvite v6.3.6 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 1234 modules transformed.
+[31m✗[39m Build failed in 4.61s
+[31merror during build:
+[31m[vite:load-fallback] Could not load C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub\src/contexts/AuthContext (imported by src/modules/carousel-generator/CarouselGeneratorUI.jsx): ENOENT: no such file or directory, open 'C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub\src\contexts\AuthContext'[31m
+    at async open (node:internal/fs/promises:641:25)
+    at async Object.readFile (node:internal/fs/promises:1245:14)
+    at async Object.handler (file:///C:/Users/Will/OneDrive/Documents/Projects/dm4/disruptors-ai-marketing-hub/node_modules/vite/dist/node/chunks/dep-Bu492Fnd.js:45861:27)
+    at async PluginDriver.hookFirstAndGetPlugin (file:///C:/Users/Will/OneDrive/Documents/Projects/dm4/disruptors-ai-marketing-hub/node_modules/rollup/dist/es/shared/node-entry.js:22327:28)
+    at async file:///C:/Users/Will/OneDrive/Documents/Projects/dm4/disruptors-ai-marketing-hub/node_modules/rollup/dist/es/shared/node-entry.js:21327:33
+    at async Queue.work (file:///C:/Users/Will/OneDrive/Documents/Projects/dm4/disruptors-ai-marketing-hub/node_modules/rollup/dist/es/shared/node-entry.js:22555:32)[39m
+[91m[1m​[22m[39m
+[91m[1m"build.command" failed                                        [22m[39m
+[91m[1m────────────────────────────────────────────────────────────────[22m[39m
+​
+  [31m[1mError message[22m[39m
+  Command failed with exit code 1: npm run build
+​
+  [31m[1mError location[22m[39m
+  In build.command from netlify.toml:
+  npm run build
+​
+  [31m[1mResolved config[22m[39m
+  build:
+    command: npm run build
+    commandOrigin: config
+    environment:
+      - NODE_VERSION
+      - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+      - PLAYWRIGHT_BROWSERS_PATH
+    publish: C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub\dist
+    publishOrigin: config
+  functions:
+    "*":
+      node_bundler: esbuild
+    admin-blog-generator:
+      timeout: 120
+    admin-image-generator:
+      external_node_modules:
+        - "@ai-sdk/openai"
+        - "@ai-sdk/anthropic"
+        - chromium-bidi
+        - playwright-core
+        - playwright
+        - "@mendable/firecrawl-js"
+        - node-vibrant
+        - ai
+        - culori
+      timeout: 60
+  functionsDirectory: C:\Users\Will\OneDrive\Documents\Projects\dm4\disruptors-ai-marketing-hub\netlify\functions
+  headers:
+    - for: /*
+      values:
+        Content-Security-Policy: "default-src 'self'; script-src 'self' 'unsafe-inline'
+          'unsafe-eval'; style-src 'self' 'unsafe-inline'
+          https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com
+          data:; img-src 'self' data: blob: https: http:; media-src 'self' blob:
+          https: http:; connect-src 'self' https://*.supabase.co
+          https://api.openai.com https://api.replicate.com
+          https://api.elevenlabs.io https://api.anthropic.com
+          https://generativelanguage.googleapis.com https://sheets.googleapis.com
+          https://res.cloudinary.com https://prod.spline.design
+          https://api.firecrawl.dev https://www.googleapis.com
+          https://api.brandfetch.com https://api.dataforseo.com
+          https://fonts.gstatic.com https://services.leadconnectorhq.com
+          https://api.leadconnectorhq.com https://*.gohighlevel.com
+          wss://*.supabase.co; frame-src 'self' https://www.youtube.com
+          https://player.vimeo.com https://services.leadconnectorhq.com
+          https://api.leadconnectorhq.com https://*.gohighlevel.com; worker-src
+          'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';"
+        Referrer-Policy: strict-origin-when-cross-origin
+        X-Content-Type-Options: nosniff
+        X-Frame-Options: DENY
+        X-XSS-Protection: 1; mode=block
+    - for: /index.html
+      values:
+        Cache-Control: no-cache, no-store, must-revalidate
+        Expires: "0"
+        Pragma: no-cache
+    - for: /*.html
+      values:
+        Cache-Control: no-cache, no-store, must-revalidate
+        Expires: "0"
+        Pragma: no-cache
+    - for: /assets/*.js
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /assets/*.css
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /assets/*.png
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /assets/*.jpg
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /assets/*.jpeg
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /assets/*.svg
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /fonts/*
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /*.js
+      values:
+        Cache-Control: no-cache, no-store, must-revalidate
+    - for: /*.css
+      values:
+        Cache-Control: no-cache, no-store, must-revalidate
+  headersOrigin: config
+  redirects:
+    - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config

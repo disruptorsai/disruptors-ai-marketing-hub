@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase-client';
 import TopicInput from './components/TopicInput';
 import ProgressTracker from './components/ProgressTracker';
@@ -19,7 +18,7 @@ import { AlertCircle, ArrowLeft } from 'lucide-react';
  * Supports both Simple Mode (fully automatic) and Advanced Mode (review strategy)
  */
 export default function CarouselGeneratorUI() {
-  const { user } = useAuth();
+  const [user, setUser] = useState(null);
   const [step, setStep] = useState('input'); // 'input' | 'generating' | 'complete' | 'error'
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,22 +36,41 @@ export default function CarouselGeneratorUI() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
 
-  // Load Business Brain on mount
+  // Get current user and load Business Brain
   useEffect(() => {
-    if (user) {
-      loadBusinessBrain();
-    }
-  }, [user]);
+    const initializeUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setUser(session.user);
+        loadBusinessBrain(session.user.id);
+      }
+    };
+
+    initializeUser();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+        loadBusinessBrain(session.user.id);
+      } else {
+        setUser(null);
+        setBrainContext(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   /**
    * Load user's Business Brain
    */
-  const loadBusinessBrain = async () => {
+  const loadBusinessBrain = async (userId) => {
     try {
       const { data, error } = await supabase
         .from('business_brains')
         .select('*')
-        .eq('created_by', user.id)
+        .eq('created_by', userId)
         .single();
 
       if (!error && data) {
