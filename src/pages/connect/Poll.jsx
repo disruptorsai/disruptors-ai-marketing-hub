@@ -200,7 +200,7 @@ export default function ConnectPoll() {
     : true; // Text questions are optional
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] flex flex-col">
+    <div className="min-h-screen bg-[#0B0B0F] flex flex-col font-montreal">
       {/* Progress Bar */}
       <div className="bg-gray-900/50 border-b border-gray-800">
         <div className="h-2 bg-gray-800">

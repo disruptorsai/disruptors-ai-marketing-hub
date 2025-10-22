@@ -60,7 +60,7 @@ export default function ConnectSuccess() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] flex flex-col items-center justify-center p-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0B0B0F] flex flex-col items-center justify-center p-8 relative overflow-hidden font-montreal">
       {/* Animated background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl animate-pulse" />
