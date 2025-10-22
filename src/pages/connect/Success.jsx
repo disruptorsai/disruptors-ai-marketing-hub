@@ -80,7 +80,9 @@ export default function ConnectSuccess() {
           transition={{ type: 'spring', duration: 0.6, delay: 0.2 }}
           className="w-32 h-32 mx-auto bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center mb-8"
         >
-          <span className="text-6xl">🎉</span>
+          <svg className="w-20 h-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+          </svg>
         </motion.div>
 
         {/* Title */}

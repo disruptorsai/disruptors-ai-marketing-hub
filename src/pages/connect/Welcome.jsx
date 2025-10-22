@@ -111,19 +111,6 @@ export default function ConnectWelcome() {
                 North Salt Lake Event Hall
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="text-sm md:text-base text-gray-500"
-              >
-                {wakeLockActive && (
-                  <span className="inline-flex items-center gap-2 text-[#FFD700]">
-                    <span className="w-2 h-2 bg-[#FFD700] rounded-full animate-pulse" />
-                    Kiosk Mode Active
-                  </span>
-                )}
-              </motion.div>
             </div>
 
             {/* Wi-Fi Info */}
@@ -161,7 +148,6 @@ export default function ConnectWelcome() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 <div className="flex flex-col items-center gap-6 relative z-10">
-                  <span className="text-6xl md:text-7xl lg:text-8xl">👆</span>
                   <span className="drop-shadow-lg">Tap to Check In</span>
                 </div>
               </Button>

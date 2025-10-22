@@ -318,168 +318,169 @@ function PagesContent() {
     console.log('🔍 [ROUTING] Available pages:', Object.keys(PAGES));
 
     return (
-        <Layout currentPageName={currentPage}>
-            <Suspense fallback={<PageLoader />}>
-                <Routes>
-
-                        <Route path="/" element={<Home />} />
-
-
-                    <Route path="/Home" element={<Home />} />
-
-                <Route path="/tools" element={<Tools />} />
-
-                <Route path="/assessment" element={<Assessment />} />
-
-                <Route path="/calculator" element={<Calculator />} />
-
-                <Route path="/marketing-audit" element={<MarketingAudit />} />
-
-                <Route path="/404" element={<NotFound />} />
-                
-                <Route path="/work-saas-content-engine" element={<WorkSaasContentEngine />} />
-                
-                <Route path="/resources-ai-suitcase-terms-decoded" element={<ResourcesAiSuitcaseTermsDecoded />} />
-                
-                <Route path="/solutions" element={<Solutions />} />
-                
-                <Route path="/work" element={<Work />} />
-                
-                <Route path="/about" element={<About />} />
-
-                <Route path="/pricing" element={<Pricing />} />
-
-                <Route path="/ai-tools" element={<AITools />} />
-
-                {/* Redirect old resources route to new ai-tools route */}
-                <Route path="/resources" element={<AITools />} />
-
-                {/* Free downloadable resources (lead magnets) */}
-                <Route path="/free-resources" element={<FreeResources />} />
-
-                <Route path="/contact" element={<Contact />} />
-
-                {/* Disruptors Connect (Kiosk check-in system) */}
+        <Suspense fallback={<PageLoader />}>
+            <Routes>
+                {/* Disruptors Connect (Kiosk check-in system) - Standalone pages without header/footer */}
                 <Route path="/eventqr" element={<ConnectWelcome />} />
                 <Route path="/eventqr/checkin" element={<ConnectIntake />} />
                 <Route path="/eventqr/poll" element={<ConnectPoll />} />
                 <Route path="/eventqr/success" element={<ConnectSuccess />} />
                 <Route path="/eventqr/scan" element={<ConnectScanner />} />
 
-                {/* Dev pages for comparison */}
-                <Route path="/Home-dev" element={<HomeDev />} />
-                <Route path="/about-dev" element={<AboutDev />} />
-                <Route path="/solutions-dev" element={<SolutionsDev />} />
-                <Route path="/work-dev" element={<WorkDev />} />
-                <Route path="/resources-dev" element={<ResourcesDev />} />
-                <Route path="/contact-dev" element={<ContactDev />} />
+                {/* All other routes wrapped in Layout with header/footer */}
+                <Route path="*" element={
+                    <Layout currentPageName={currentPage}>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
 
-                <Route path="/privacy" element={<Privacy />} />
+                            <Route path="/Home" element={<Home />} />
 
-                <Route path="/terms" element={<Terms />} />
-                
-                <Route path="/blog" element={<Blog />} />
+                            <Route path="/tools" element={<Tools />} />
 
-                <Route path="/blog-detail" element={<BlogDetail />} />
+                            <Route path="/assessment" element={<Assessment />} />
 
-                {/* Blog Management moved to Admin Nexus for security */}
-                {/* <Route path="/blog-management" element={<BlogManagement />} /> */}
+                            <Route path="/calculator" element={<Calculator />} />
 
-                {/* Auth Callback */}
-                <Route path="/auth/callback" element={<AuthCallback />} />
+                            <Route path="/marketing-audit" element={<MarketingAudit />} />
 
-                {/* Protected App Routes */}
-                <Route path="/business-brain-manager" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
-                <Route path="/app/business-brain" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
+                            <Route path="/404" element={<NotFound />} />
 
-                <Route path="/ai-content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
-                <Route path="/app/content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
+                            <Route path="/work-saas-content-engine" element={<WorkSaasContentEngine />} />
 
-                <Route path="/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
-                <Route path="/app/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
+                            <Route path="/resources-ai-suitcase-terms-decoded" element={<ResourcesAiSuitcaseTermsDecoded />} />
 
-                <Route path="/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
-                <Route path="/app/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
+                            <Route path="/solutions" element={<Solutions />} />
 
-                <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
-                
-                <Route path="/work-timber-view-financial" element={<WorkTimberViewFinancial />} />
-                
-                <Route path="/work-the-wellness-way" element={<WorkTheWellnessWay />} />
-                
-                <Route path="/work-sound-corrections" element={<WorkSoundCorrections />} />
-                
-                <Route path="/work-segpro" element={<WorkSegpro />} />
-                
-                <Route path="/work-neuro-mastery" element={<WorkNeuroMastery />} />
-                
-                <Route path="/work-muscle-works" element={<WorkMuscleWorks />} />
-                
-                <Route path="/work-granite-paving" element={<WorkGranitePaving />} />
-                
-                <Route path="/work-auto-trim-utah" element={<WorkAutoTrimUtah />} />
-                
-                <Route path="/book-strategy-session" element={<BookStrategySession />} />
-                
-                <Route path="/solutions-ai-automation" element={<SolutionsAiAutomation />} />
-                
-                <Route path="/solutions-social-media" element={<SolutionsSocialMedia />} />
-                
-                <Route path="/solutions-seo-geo" element={<SolutionsSeoGeo />} />
-                
-                <Route path="/solutions-lead-generation" element={<SolutionsLeadGeneration />} />
-                
-                <Route path="/solutions-paid-advertising" element={<SolutionsPaidAdvertising />} />
-                
-                <Route path="/solutions-podcasting" element={<SolutionsPodcasting />} />
-                
-                <Route path="/solutions-custom-apps" element={<SolutionsCustomApps />} />
-                
-                <Route path="/solutions-crm-management" element={<SolutionsCrmManagement />} />
-                
-                <Route path="/solutions-fractional-cmo" element={<SolutionsFractionalCmo />} />
-                
-                <Route path="/podcast" element={<Podcast />} />
-                
-                <Route path="/gallery" element={<Gallery />} />
-                
-                <Route path="/faq" element={<Faq />} />
+                            <Route path="/work" element={<Work />} />
 
-                <Route path="/animations-demo" element={<ScrollAnimationDemo />} />
+                            <Route path="/about" element={<About />} />
 
-                <Route path="/full-animation" element={<FullAnimationDemo />} />
+                            <Route path="/pricing" element={<Pricing />} />
 
-                <Route path="/spline-demo" element={<SplineDemo />} />
+                            <Route path="/ai-tools" element={<AITools />} />
 
-                <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
+                            {/* Redirect old resources route to new ai-tools route */}
+                            <Route path="/resources" element={<AITools />} />
 
-                <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
-                <Route path="/text-glitch-demo" element={<TextGlitchDemo />} />
+                            {/* Free downloadable resources (lead magnets) */}
+                            <Route path="/free-resources" element={<FreeResources />} />
 
+                            <Route path="/contact" element={<Contact />} />
 
-                {/* Landing page demos */}
-                <Route path="/demos" element={<DemosIndex />} />
-                <Route path="/demos/hero-focus" element={<DemoHeroFocus />} />
-                <Route path="/demos/benefits-driven" element={<DemoBenefitsDriven />} />
-                <Route path="/demos/social-proof" element={<DemoSocialProof />} />
-                <Route path="/demos/interactive" element={<DemoInteractive />} />
-                <Route path="/demos/conversion" element={<DemoConversion />} />
-                <Route path="/demos/best-of-all" element={<DemoBestOfAll />} />
-                <Route path="/demos/growth-audit" element={<GrowthAuditDemo />} />
-                <Route path="/demos/growth-audit/:jobId" element={<GrowthAuditResults />} />
-                <Route path="/demos/keyword-research" element={<KeywordResearchDemo />} />
-                <Route path="/demos/ai-content-writer" element={<AIContentWriterDemo />} />
+                            {/* Dev pages for comparison */}
+                            <Route path="/Home-dev" element={<HomeDev />} />
+                            <Route path="/about-dev" element={<AboutDev />} />
+                            <Route path="/solutions-dev" element={<SolutionsDev />} />
+                            <Route path="/work-dev" element={<WorkDev />} />
+                            <Route path="/resources-dev" element={<ResourcesDev />} />
+                            <Route path="/contact-dev" element={<ContactDev />} />
 
-                {/* Hidden utility pages */}
-                <Route path="/graveyard-archive" element={<GraveyardArchive />} />
-                <Route path="/screenshot-manager" element={<ScreenshotManager />} />
+                            <Route path="/privacy" element={<Privacy />} />
 
-                {/* Catch-all route for 404 pages */}
-                <Route path="*" element={<NotFound />} />
+                            <Route path="/terms" element={<Terms />} />
 
+                            <Route path="/blog" element={<Blog />} />
+
+                            <Route path="/blog-detail" element={<BlogDetail />} />
+
+                            {/* Blog Management moved to Admin Nexus for security */}
+                            {/* <Route path="/blog-management" element={<BlogManagement />} /> */}
+
+                            {/* Auth Callback */}
+                            <Route path="/auth/callback" element={<AuthCallback />} />
+
+                            {/* Protected App Routes */}
+                            <Route path="/business-brain-manager" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
+                            <Route path="/app/business-brain" element={<ProtectedRoute><BusinessBrainManager /></ProtectedRoute>} />
+
+                            <Route path="/ai-content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
+                            <Route path="/app/content-writer" element={<ProtectedRoute><AIContentWriter /></ProtectedRoute>} />
+
+                            <Route path="/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
+                            <Route path="/app/keyword-research" element={<ProtectedRoute><KeywordResearch /></ProtectedRoute>} />
+
+                            <Route path="/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
+                            <Route path="/app/carousel-generator" element={<ProtectedRoute><CarouselGenerator /></ProtectedRoute>} />
+
+                            <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
+
+                            <Route path="/work-timber-view-financial" element={<WorkTimberViewFinancial />} />
+
+                            <Route path="/work-the-wellness-way" element={<WorkTheWellnessWay />} />
+
+                            <Route path="/work-sound-corrections" element={<WorkSoundCorrections />} />
+
+                            <Route path="/work-segpro" element={<WorkSegpro />} />
+
+                            <Route path="/work-neuro-mastery" element={<WorkNeuroMastery />} />
+
+                            <Route path="/work-muscle-works" element={<WorkMuscleWorks />} />
+
+                            <Route path="/work-granite-paving" element={<WorkGranitePaving />} />
+
+                            <Route path="/work-auto-trim-utah" element={<WorkAutoTrimUtah />} />
+
+                            <Route path="/book-strategy-session" element={<BookStrategySession />} />
+
+                            <Route path="/solutions-ai-automation" element={<SolutionsAiAutomation />} />
+
+                            <Route path="/solutions-social-media" element={<SolutionsSocialMedia />} />
+
+                            <Route path="/solutions-seo-geo" element={<SolutionsSeoGeo />} />
+
+                            <Route path="/solutions-lead-generation" element={<SolutionsLeadGeneration />} />
+
+                            <Route path="/solutions-paid-advertising" element={<SolutionsPaidAdvertising />} />
+
+                            <Route path="/solutions-podcasting" element={<SolutionsPodcasting />} />
+
+                            <Route path="/solutions-custom-apps" element={<SolutionsCustomApps />} />
+
+                            <Route path="/solutions-crm-management" element={<SolutionsCrmManagement />} />
+
+                            <Route path="/solutions-fractional-cmo" element={<SolutionsFractionalCmo />} />
+
+                            <Route path="/podcast" element={<Podcast />} />
+
+                            <Route path="/gallery" element={<Gallery />} />
+
+                            <Route path="/faq" element={<Faq />} />
+
+                            <Route path="/animations-demo" element={<ScrollAnimationDemo />} />
+
+                            <Route path="/full-animation" element={<FullAnimationDemo />} />
+
+                            <Route path="/spline-demo" element={<SplineDemo />} />
+
+                            <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
+
+                            <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
+                            <Route path="/text-glitch-demo" element={<TextGlitchDemo />} />
+
+                            {/* Landing page demos */}
+                            <Route path="/demos" element={<DemosIndex />} />
+                            <Route path="/demos/hero-focus" element={<DemoHeroFocus />} />
+                            <Route path="/demos/benefits-driven" element={<DemoBenefitsDriven />} />
+                            <Route path="/demos/social-proof" element={<DemoSocialProof />} />
+                            <Route path="/demos/interactive" element={<DemoInteractive />} />
+                            <Route path="/demos/conversion" element={<DemoConversion />} />
+                            <Route path="/demos/best-of-all" element={<DemoBestOfAll />} />
+                            <Route path="/demos/growth-audit" element={<GrowthAuditDemo />} />
+                            <Route path="/demos/growth-audit/:jobId" element={<GrowthAuditResults />} />
+                            <Route path="/demos/keyword-research" element={<KeywordResearchDemo />} />
+                            <Route path="/demos/ai-content-writer" element={<AIContentWriterDemo />} />
+
+                            {/* Hidden utility pages */}
+                            <Route path="/graveyard-archive" element={<GraveyardArchive />} />
+                            <Route path="/screenshot-manager" element={<ScreenshotManager />} />
+
+                            {/* Catch-all route for 404 pages */}
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </Layout>
+                } />
             </Routes>
-            </Suspense>
-        </Layout>
+        </Suspense>
     );
 }
 
