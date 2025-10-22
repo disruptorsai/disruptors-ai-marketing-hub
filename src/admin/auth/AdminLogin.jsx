@@ -8,6 +8,7 @@ import { supabase } from '../../lib/supabase-client'
 import AdminOnboarding from '../components/AdminOnboarding'
 
 const ADMIN_PASSWORD = 'nexus'
+const DISRUPTORS_TEAM_PASSWORD = 'dmAdmin' // Shared password for @disruptorsmedia.com
 
 export default function AdminLogin({ onSuccess }) {
   const [email, setEmail] = useState('')
@@ -24,7 +25,31 @@ export default function AdminLogin({ onSuccess }) {
     setLoading(true)
 
     try {
-      // Attempt Supabase login
+      // Check if this is a @disruptorsmedia.com email with shared password
+      if (email.toLowerCase().endsWith('@disruptorsmedia.com') && password === DISRUPTORS_TEAM_PASSWORD) {
+        // Grant immediate access without Supabase auth
+        const hasSeenOnboarding = localStorage.getItem(`admin-onboarding-${email}`)
+
+        setLoggedInEmail(email)
+
+        // Store email in session for personalization
+        sessionStorage.setItem('admin-user-email', email)
+        sessionStorage.setItem('admin-nexus-authenticated', 'true')
+
+        if (!hasSeenOnboarding) {
+          setShowOnboarding(true)
+        } else {
+          // Skip onboarding if already seen
+          setTimeout(() => {
+            onSuccess({ authenticated: true })
+          }, 500)
+        }
+
+        setLoading(false)
+        return
+      }
+
+      // Attempt Supabase login for non-Disruptors emails
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password
@@ -44,6 +69,8 @@ export default function AdminLogin({ onSuccess }) {
       const hasSeenOnboarding = localStorage.getItem(`admin-onboarding-${email}`)
 
       setLoggedInEmail(email)
+      sessionStorage.setItem('admin-user-email', email)
+
       if (!hasSeenOnboarding) {
         setShowOnboarding(true)
       }
@@ -80,13 +107,21 @@ export default function AdminLogin({ onSuccess }) {
     }
   }
 
+  const handleOnboardingClose = () => {
+    setShowOnboarding(false)
+    // Proceed to admin panel after onboarding
+    setTimeout(() => {
+      onSuccess({ authenticated: true })
+    }, 300)
+  }
+
   return (
     <>
       {/* Onboarding Modal */}
       {showOnboarding && (
         <AdminOnboarding
           userEmail={loggedInEmail}
-          onClose={() => setShowOnboarding(false)}
+          onClose={handleOnboardingClose}
         />
       )}
 
@@ -190,7 +225,10 @@ export default function AdminLogin({ onSuccess }) {
 
                 <div className="text-center">
                   <p className="text-slate-500 text-xs">
-                    Use your Supabase account credentials
+                    Disruptors team: Use "dmAdmin" as password
+                  </p>
+                  <p className="text-slate-600 text-xs mt-1">
+                    Other admins: Use Supabase credentials
                   </p>
                 </div>
               </form>
