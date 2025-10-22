@@ -98,6 +98,13 @@ const ToolsSEOAudit = lazyWithRetry(() => {
 const AuthCallback = lazyWithRetry(() => import('./auth-callback.jsx'));
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
+// Disruptors Connect (Kiosk check-in system) - lazy loaded with retry
+const ConnectWelcome = lazyWithRetry(() => import('./connect/Welcome.jsx'));
+const ConnectIntake = lazyWithRetry(() => import('./connect/Intake.jsx'));
+const ConnectPoll = lazyWithRetry(() => import('./connect/Poll.jsx'));
+const ConnectSuccess = lazyWithRetry(() => import('./connect/Success.jsx'));
+const ConnectScanner = lazyWithRetry(() => import('./connect/Scanner.jsx'));
+
 // Work case studies - lazy loaded with retry
 const WorkSaasContentEngine = lazyWithRetry(() => import('./work-saas-content-engine.jsx'));
 const WorkTradeworxUsa = lazyWithRetry(() => import('./work-tradeworx-usa.jsx'));
@@ -351,7 +358,13 @@ function PagesContent() {
                 <Route path="/free-resources" element={<FreeResources />} />
 
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/free-resources" element={<FreeResources />} />
+
+                {/* Disruptors Connect (Kiosk check-in system) */}
+                <Route path="/eventqr" element={<ConnectWelcome />} />
+                <Route path="/eventqr/checkin" element={<ConnectIntake />} />
+                <Route path="/eventqr/poll" element={<ConnectPoll />} />
+                <Route path="/eventqr/success" element={<ConnectSuccess />} />
+                <Route path="/eventqr/scan" element={<ConnectScanner />} />
 
                 {/* Dev pages for comparison */}
                 <Route path="/Home-dev" element={<HomeDev />} />

@@ -172,6 +172,7 @@
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
     "@vercel/kv": "^3.0.0",
+    "@zxing/browser": "^0.1.5",
     "ai": "^5.0.60",
     "chromium-bidi": "^9.2.1",
     "class-variance-authority": "^0.7.1",
@@ -184,6 +185,7 @@
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^12.4.7",
     "gsap": "^3.13.0",
+    "idb": "^8.0.3",
     "input-otp": "^1.4.2",
     "jsdom": "^27.0.0",
     "jszip": "^3.10.1",
@@ -199,6 +201,7 @@
     "node-vibrant": "^4.0.3",
     "openai": "^5.23.0",
     "playwright": "^1.55.1",
+    "qrcode": "^1.5.4",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
@@ -220,7 +223,10 @@
     "use-scramble": "^2.2.15",
     "uuid": "^13.0.0",
     "vaul": "^1.1.2",
-    "zod": "^3.24.2"
+    "vite-plugin-pwa": "^1.1.0",
+    "workbox-window": "^7.3.0",
+    "zod": "^3.24.2",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
