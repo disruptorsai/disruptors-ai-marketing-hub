@@ -23,10 +23,10 @@ export default function ConnectWelcome() {
     // Generate QR code for mobile handoff
     const mobileUrl = `${window.location.origin}/eventqr/checkin?source=mobile&kiosk=kiosk-001`;
     QRCode.toDataURL(mobileUrl, {
-      width: 400,
+      width: 600,
       margin: 2,
       color: {
-        dark: '#FFD700', // Gold
+        dark: '#FFFFFF', // White
         light: '#0E0E0E' // Dark background
       }
     }).then(setQrCodeUrl);
@@ -169,7 +169,7 @@ export default function ConnectWelcome() {
                     <motion.img
                       src={qrCodeUrl}
                       alt="Mobile Check-In QR Code"
-                      className="w-40 h-40 md:w-48 md:h-48 rounded-xl shadow-lg shadow-[#FFD700]/20 border-2 border-[#FFD700]/30"
+                      className="w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-xl shadow-lg shadow-white/10 border-2 border-white/20"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.5 }}
