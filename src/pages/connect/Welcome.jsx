@@ -139,13 +139,18 @@ export default function ConnectWelcome() {
             {/* Primary CTA: Tap to Check In */}
             <motion.div
               onClick={handleTapToCheckIn}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleTapToCheckIn();
+              }}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="w-full h-48 md:h-56 lg:h-64 text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FFD700] to-yellow-600 hover:from-yellow-600 hover:to-[#FFD700] text-black shadow-2xl shadow-[#FFD700]/40 rounded-3xl border-4 border-[#FFD700]/30 relative overflow-hidden group cursor-pointer flex flex-col items-center justify-center"
+              className="w-full h-48 md:h-56 lg:h-64 text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FFD700] to-yellow-600 hover:from-yellow-600 hover:to-[#FFD700] text-black shadow-2xl shadow-[#FFD700]/40 rounded-3xl border-4 border-[#FFD700]/30 relative overflow-hidden group cursor-pointer flex flex-col items-center justify-center touch-manipulation select-none"
+              style={{ touchAction: 'manipulation' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <div className="flex flex-col items-center gap-6 relative z-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+              <div className="flex flex-col items-center gap-6 relative z-10 pointer-events-none">
                 <span className="drop-shadow-lg">Tap to Check In</span>
               </div>
             </motion.div>
