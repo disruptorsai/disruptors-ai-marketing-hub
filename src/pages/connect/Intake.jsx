@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -114,26 +114,24 @@ export default function ConnectIntake() {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 bg-black/40 border-b border-[#FFD700]/20 p-6 backdrop-blur-sm">
+      <div className="relative z-10 bg-black/40 border-b border-[#FFD700]/20 p-4 md:p-6 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Button
             onClick={() => navigate('/eventqr')}
             variant="ghost"
-            className="text-gray-400 hover:text-[#FFD700] hover:bg-[#FFD700]/10 h-12 px-6 text-lg"
+            className="text-gray-400 hover:text-[#FFD700] hover:bg-[#FFD700]/10 h-12 px-4 md:px-6 text-base md:text-lg"
           >
-            <ArrowLeft className="mr-2 h-6 w-6" />
-            Back to Welcome
+            <ArrowLeft className="mr-2 h-5 w-5 md:h-6 md:w-6" />
+            <span className="hidden sm:inline">Back to Welcome</span>
+            <span className="sm:hidden">Back</span>
           </Button>
 
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-6 h-6 text-[#FFD700]" />
-            <span className="text-[#FFD700] text-lg font-semibold">Check-In</span>
-          </div>
+          <span className="text-[#FFD700] text-lg md:text-xl font-semibold">Check-In</span>
         </div>
       </div>
 
       {/* Form */}
-      <div className="flex-1 flex items-center justify-center p-8 md:p-16 relative z-10">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,12 +139,12 @@ export default function ConnectIntake() {
           className="w-full max-w-4xl"
         >
           {/* Title */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] mb-3 md:mb-4"
             >
               Welcome to Disruptors Connect
             </motion.h1>
@@ -154,33 +152,33 @@ export default function ConnectIntake() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-400 font-medium"
+              className="text-lg sm:text-xl md:text-2xl text-gray-400 font-medium"
             >
               Let's get you checked in
             </motion.p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
             {/* Name Fields */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <Label htmlFor="firstName" className="text-white text-xl mb-3 block">
+                <Label htmlFor="firstName" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   First Name *
                 </Label>
                 <Input
                   id="firstName"
                   value={formData.firstName}
                   onChange={(e) => handleChange('firstName', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="John"
                   autoFocus
                 />
                 {errors.firstName && (
-                  <p className="text-red-400 text-base mt-2">{errors.firstName}</p>
+                  <p className="text-red-400 text-sm md:text-base mt-2">{errors.firstName}</p>
                 )}
               </motion.div>
 
@@ -189,30 +187,30 @@ export default function ConnectIntake() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Label htmlFor="lastName" className="text-white text-xl mb-3 block">
+                <Label htmlFor="lastName" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   Last Name *
                 </Label>
                 <Input
                   id="lastName"
                   value={formData.lastName}
                   onChange={(e) => handleChange('lastName', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="Doe"
                 />
                 {errors.lastName && (
-                  <p className="text-red-400 text-base mt-2">{errors.lastName}</p>
+                  <p className="text-red-400 text-sm md:text-base mt-2">{errors.lastName}</p>
                 )}
               </motion.div>
             </div>
 
             {/* Contact Fields */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 }}
               >
-                <Label htmlFor="phone" className="text-white text-xl mb-3 block">
+                <Label htmlFor="phone" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   Phone Number *
                 </Label>
                 <Input
@@ -220,11 +218,11 @@ export default function ConnectIntake() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleChange('phone', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="(555) 123-4567"
                 />
                 {errors.phone && (
-                  <p className="text-red-400 text-base mt-2">{errors.phone}</p>
+                  <p className="text-red-400 text-sm md:text-base mt-2">{errors.phone}</p>
                 )}
               </motion.div>
 
@@ -233,7 +231,7 @@ export default function ConnectIntake() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 }}
               >
-                <Label htmlFor="email" className="text-white text-xl mb-3 block">
+                <Label htmlFor="email" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   Email (Optional)
                 </Label>
                 <Input
@@ -241,30 +239,30 @@ export default function ConnectIntake() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p className="text-red-400 text-base mt-2">{errors.email}</p>
+                  <p className="text-red-400 text-sm md:text-base mt-2">{errors.email}</p>
                 )}
               </motion.div>
             </div>
 
             {/* Company & Role */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.9 }}
               >
-                <Label htmlFor="company" className="text-white text-xl mb-3 block">
+                <Label htmlFor="company" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   Company (Optional)
                 </Label>
                 <Input
                   id="company"
                   value={formData.company}
                   onChange={(e) => handleChange('company', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="Acme Inc."
                 />
               </motion.div>
@@ -274,14 +272,14 @@ export default function ConnectIntake() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.0 }}
               >
-                <Label htmlFor="role" className="text-white text-xl mb-3 block">
+                <Label htmlFor="role" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
                   Role (Optional)
                 </Label>
                 <Input
                   id="role"
                   value={formData.role}
                   onChange={(e) => handleChange('role', e.target.value)}
-                  className="h-20 text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
+                  className="h-16 md:h-20 text-lg md:text-xl bg-black/60 border-2 border-[#FFD700]/30 text-white focus:border-[#FFD700] focus:ring-[#FFD700] rounded-xl backdrop-blur-sm"
                   placeholder="Founder, Developer, etc."
                 />
               </motion.div>
@@ -292,18 +290,18 @@ export default function ConnectIntake() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="bg-black/60 border-2 border-[#FFD700]/30 rounded-2xl p-8 backdrop-blur-sm"
+              className="bg-black/60 border-2 border-[#FFD700]/30 rounded-2xl p-5 md:p-8 backdrop-blur-sm"
             >
-              <div className="flex items-start gap-6">
+              <div className="flex items-start gap-4 md:gap-6">
                 <Checkbox
                   id="consent"
                   checked={formData.consentFeedback}
                   onCheckedChange={(checked) => handleChange('consentFeedback', checked)}
-                  className="mt-2 w-8 h-8 border-2 border-[#FFD700]/50 data-[state=checked]:bg-[#FFD700] data-[state=checked]:text-black"
+                  className="mt-1 md:mt-2 w-7 h-7 md:w-8 md:h-8 border-2 border-[#FFD700]/50 data-[state=checked]:bg-[#FFD700] data-[state=checked]:text-black flex-shrink-0"
                 />
-                <Label htmlFor="consent" className="text-white text-lg leading-relaxed cursor-pointer flex-1">
+                <Label htmlFor="consent" className="text-white text-base md:text-lg leading-relaxed cursor-pointer flex-1">
                   <span className="font-semibold text-[#FFD700]">Would you be open to giving us your honest feedback after the event?</span>
-                  <span className="block text-gray-400 text-base mt-3">
+                  <span className="block text-gray-400 text-sm md:text-base mt-2 md:mt-3">
                     By checking Yes, you agree to receive event reminders and a short feedback survey.
                     Msg & data rates may apply. Reply STOP to opt out.
                   </span>
@@ -316,7 +314,7 @@ export default function ConnectIntake() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-red-900/20 border-2 border-red-500/50 rounded-2xl p-6 text-red-400 text-center text-lg backdrop-blur-sm"
+                className="bg-red-900/20 border-2 border-red-500/50 rounded-2xl p-5 md:p-6 text-red-400 text-center text-base md:text-lg backdrop-blur-sm"
               >
                 {errors.submit}
               </motion.div>
@@ -331,19 +329,19 @@ export default function ConnectIntake() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-24 text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-yellow-600 hover:from-yellow-600 hover:to-[#FFD700] text-black shadow-2xl shadow-[#FFD700]/40 rounded-2xl relative overflow-hidden group"
+                className="w-full h-20 md:h-24 text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-yellow-600 hover:from-yellow-600 hover:to-[#FFD700] text-black shadow-2xl shadow-[#FFD700]/40 rounded-2xl relative overflow-hidden group touch-manipulation"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center justify-center gap-4">
+                <span className="relative z-10 flex items-center justify-center gap-3 md:gap-4">
                   {isSubmitting ? (
                     <>
-                      <div className="w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin" />
+                      <div className="w-7 h-7 md:w-8 md:h-8 border-4 border-black border-t-transparent rounded-full animate-spin" />
                       Checking In...
                     </>
                   ) : (
                     <>
                       Continue to Poll
-                      <ArrowRight className="h-10 w-10" />
+                      <ArrowRight className="h-8 w-8 md:h-10 md:w-10" />
                     </>
                   )}
                 </span>
