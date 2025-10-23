@@ -8,7 +8,7 @@ export async function handler(event) {
   const {
     eventId: eventSlug, // This is actually a slug like "connect-2025-10"
     sessionId,
-    kioskId,
+    kioskId: kioskLabel, // This is actually a label like "kiosk-001"
     contactPayload,
     consent,
     source = 'kiosk',
@@ -47,6 +47,42 @@ export async function handler(event) {
         throw eventError;
       }
       eventId = newEvent.id;
+    }
+
+    // Get or create kiosk from label
+    let kioskId;
+    const { data: existingKiosk } = await supabaseAdmin
+      .from('connect_kiosks')
+      .select('id')
+      .eq('device_label', kioskLabel)
+      .eq('event_id', eventId)
+      .maybeSingle();
+
+    if (existingKiosk) {
+      kioskId = existingKiosk.id;
+      // Update last_seen_at
+      await supabaseAdmin
+        .from('connect_kiosks')
+        .update({ last_seen_at: new Date().toISOString() })
+        .eq('id', kioskId);
+    } else {
+      // Create kiosk if it doesn't exist
+      const { data: newKiosk, error: kioskError } = await supabaseAdmin
+        .from('connect_kiosks')
+        .insert({
+          event_id: eventId,
+          device_label: kioskLabel,
+          is_active: true,
+          last_seen_at: new Date().toISOString()
+        })
+        .select('id')
+        .single();
+
+      if (kioskError) {
+        console.error('Kiosk creation error:', kioskError);
+        throw kioskError;
+      }
+      kioskId = newKiosk.id;
     }
 
     // Check idempotency
