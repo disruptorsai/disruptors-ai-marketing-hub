@@ -99,6 +99,21 @@ export default function ConnectSuccess() {
           You're In!
         </motion.h1>
 
+        {/* Honorary Disruptor Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, type: 'spring', duration: 0.8 }}
+          className="relative inline-block"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] opacity-20 blur-2xl rounded-full animate-pulse" />
+          <div className="relative bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] text-[#0B0B0F] px-8 py-4 rounded-2xl shadow-2xl border-2 border-yellow-300 animate-gradient-xy">
+            <p className="text-2xl md:text-3xl font-bold tracking-wide">
+              🏆 You're Now an Honorary Disruptor! 🏆
+            </p>
+          </div>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
