@@ -105,15 +105,15 @@ export default function ConnectPoll() {
       });
 
       if (response.ok) {
-        navigate('/connectqr/success');
+        navigate('/connectqr1/success');
       } else {
         console.error('Poll submission failed');
         // Still navigate to success (poll is optional)
-        navigate('/connectqr/success');
+        navigate('/connectqr1/success');
       }
     } catch (error) {
       console.error('Poll error:', error);
-      navigate('/connectqr/success');
+      navigate('/connectqr1/success');
     }
   };
 

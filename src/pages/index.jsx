@@ -322,12 +322,12 @@ function PagesContent() {
         <Suspense fallback={<PageLoader />}>
             <Routes>
                 {/* Disruptors Connect (Kiosk check-in system) - Standalone pages without header/footer */}
-                <Route path="/connectqr" element={<ConnectWelcome />} />
-                <Route path="/connectqr/checkin" element={<ConnectIntake />} />
-                <Route path="/connectqr/poll" element={<ConnectPoll />} />
-                <Route path="/connectqr/success" element={<ConnectSuccess />} />
-                <Route path="/connectqr/scan" element={<ConnectScanner />} />
-                <Route path="/connectqr/itinerary" element={<ConnectItinerary />} />
+                <Route path="/connectqr1" element={<ConnectWelcome />} />
+                <Route path="/connectqr1/checkin" element={<ConnectIntake />} />
+                <Route path="/connectqr1/poll" element={<ConnectPoll />} />
+                <Route path="/connectqr1/success" element={<ConnectSuccess />} />
+                <Route path="/connectqr1/scan" element={<ConnectScanner />} />
+                <Route path="/connectqr1/itinerary" element={<ConnectItinerary />} />
 
                 {/* All other routes wrapped in Layout with header/footer */}
                 <Route path="*" element={

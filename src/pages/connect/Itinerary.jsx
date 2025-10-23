@@ -75,7 +75,7 @@ export default function ConnectItinerary() {
       <div className="relative z-10 bg-black/40 border-b border-[#FFD700]/20 p-4 md:p-6 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Button
-            onClick={() => navigate('/connectqr')}
+            onClick={() => navigate('/connectqr1')}
             variant="ghost"
             className="text-gray-400 hover:text-[#FFD700] hover:bg-[#FFD700]/10 h-12 px-4 md:px-6 text-base md:text-lg"
           >
