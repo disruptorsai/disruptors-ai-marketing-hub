@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Smartphone, Wifi, Calendar } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Smartphone, Wifi } from 'lucide-react';
 import { useConnectStore } from '@/lib/connect/store';
 import { useWakeLock } from '@/hooks/connect/useWakeLock';
 
 export default function ConnectWelcome() {
-  const navigate = useNavigate();
-  const { setEventContext, startSession } = useConnectStore();
+  const { setEventContext } = useConnectStore();
   const { requestWakeLock } = useWakeLock();
 
   useEffect(() => {
@@ -18,11 +15,6 @@ export default function ConnectWelcome() {
     // Request wake lock to prevent screen sleep
     requestWakeLock();
   }, [setEventContext, requestWakeLock]);
-
-  const handleTapToCheckIn = () => {
-    startSession();
-    navigate('/eventqr/checkin');
-  };
 
   return (
     <div className="min-h-screen bg-[#0E0E0E] flex flex-col items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 relative overflow-hidden font-montreal">
@@ -98,68 +90,36 @@ export default function ConnectWelcome() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Action Cards */}
+          {/* Right Column: QR Code Display */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="space-y-5 md:space-y-6"
+            className="flex items-center justify-center"
           >
-            {/* Primary CTA: Tap to Check In */}
-            <motion.div
-              onClick={handleTapToCheckIn}
-              onTouchEnd={(e) => {
-                e.preventDefault();
-                handleTapToCheckIn();
-              }}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="w-full h-40 sm:h-44 md:h-56 lg:h-64 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FFD700] to-yellow-600 hover:from-yellow-600 hover:to-[#FFD700] text-black shadow-2xl shadow-[#FFD700]/40 rounded-3xl border-4 border-[#FFD700]/30 relative overflow-hidden group cursor-pointer flex flex-col items-center justify-center touch-manipulation select-none"
-              style={{ touchAction: 'manipulation' }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-              <div className="flex flex-col items-center gap-4 sm:gap-6 relative z-10 pointer-events-none">
-                <span className="drop-shadow-lg px-4">Tap to Check In</span>
-              </div>
-            </motion.div>
-
-            {/* Secondary: Mobile QR */}
+            {/* Mobile QR Code */}
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="bg-black/60 border-2 border-[#FFD700]/30 rounded-2xl p-6 sm:p-8 md:p-10 backdrop-blur-sm hover:border-[#FFD700]/60 transition-all duration-300"
+              className="bg-black/60 border-2 border-[#FFD700]/30 rounded-3xl p-8 sm:p-10 md:p-12 backdrop-blur-sm hover:border-[#FFD700]/60 transition-all duration-300 w-full max-w-2xl"
             >
-              <div className="flex flex-col items-center justify-center h-full gap-4 sm:gap-5 md:gap-6">
-                <Smartphone className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-[#FFD700]" />
-                <p className="text-white text-lg sm:text-xl md:text-2xl font-semibold text-center">
-                  Continue on<br/>Your Phone
+              <div className="flex flex-col items-center justify-center gap-6 md:gap-8">
+                <Smartphone className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-[#FFD700]" />
+                <p className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center">
+                  Scan to Check In
                 </p>
                 <motion.img
                   src="/assets/connect-qr-code.png"
                   alt="Mobile Check-In QR Code"
-                  className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-xl shadow-lg shadow-white/10 border-2 border-white/20"
+                  className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] rounded-2xl shadow-2xl shadow-white/20 border-4 border-white/30"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 />
+                <p className="text-gray-400 text-base sm:text-lg md:text-xl text-center max-w-md">
+                  Use your phone's camera to scan this QR code and complete your check-in
+                </p>
               </div>
-            </motion.div>
-
-            {/* View Itinerary Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              <Button
-                onClick={() => navigate('/eventqr/itinerary')}
-                variant="outline"
-                className="w-full h-16 md:h-20 text-lg md:text-xl font-semibold bg-black/40 border-2 border-[#FFD700]/40 hover:border-[#FFD700] hover:bg-[#FFD700]/10 text-white rounded-2xl backdrop-blur-sm flex items-center justify-center gap-3"
-              >
-                <Calendar className="w-6 h-6 md:w-7 md:h-7 text-[#FFD700]" />
-                View Event Schedule
-              </Button>
             </motion.div>
           </motion.div>
         </div>
