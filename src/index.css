@@ -88,6 +88,21 @@
   }
 }
 
+/* Animated Gradient Background */
+@keyframes gradient-xy {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 8s ease infinite;
+}
+
 /* Animated Separator Lines - Scroll-mapped */
 .sep-line {
   width: 100%;
