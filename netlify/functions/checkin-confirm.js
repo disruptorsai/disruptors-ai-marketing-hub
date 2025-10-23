@@ -6,7 +6,7 @@ export async function handler(event) {
   }
 
   const {
-    eventId,
+    eventId: eventSlug, // This is actually a slug like "connect-2025-10"
     sessionId,
     kioskId,
     contactPayload,
@@ -16,6 +16,39 @@ export async function handler(event) {
   } = JSON.parse(event.body);
 
   try {
+    // Get or create event from slug
+    let eventId;
+    const { data: existingEvent } = await supabaseAdmin
+      .from('connect_events')
+      .select('id')
+      .eq('slug', eventSlug)
+      .maybeSingle();
+
+    if (existingEvent) {
+      eventId = existingEvent.id;
+    } else {
+      // Create event if it doesn't exist
+      const { data: newEvent, error: eventError } = await supabaseAdmin
+        .from('connect_events')
+        .insert({
+          name: 'Disruptors Connect 2025',
+          slug: eventSlug,
+          starts_at: new Date('2025-10-24T18:00:00-06:00'),
+          venue: '650 N Main St, North Salt Lake, UT 84054',
+          wifi_ssid: 'DisruptorsEventHall',
+          wifi_password: 'Disrupt2025',
+          is_active: true
+        })
+        .select('id')
+        .single();
+
+      if (eventError) {
+        console.error('Event creation error:', eventError);
+        throw eventError;
+      }
+      eventId = newEvent.id;
+    }
+
     // Check idempotency
     const { data: existing } = await supabaseAdmin
       .from('connect_audit_logs')
