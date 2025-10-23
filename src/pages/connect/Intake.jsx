@@ -37,17 +37,17 @@ export default function ConnectIntake() {
   const validate = () => {
     const newErrors = {};
 
+    // Only first and last name are required
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
 
-    // Basic phone validation
+    // Phone validation (optional but must be valid if provided)
     const phoneRegex = /^[\d\s\-\+\(\)]+$/;
     if (formData.phone && !phoneRegex.test(formData.phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
-    // Basic email validation if provided
+    // Email validation (optional but must be valid if provided)
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
@@ -218,7 +218,7 @@ export default function ConnectIntake() {
                 transition={{ delay: 0.7 }}
               >
                 <Label htmlFor="phone" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
-                  Phone Number *
+                  Phone Number (Optional)
                 </Label>
                 <Input
                   id="phone"

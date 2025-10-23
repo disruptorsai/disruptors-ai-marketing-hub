@@ -67,7 +67,7 @@ export default function ConnectSuccess() {
       {/* Animated background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-magenta-400 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFD700] rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Content */}
@@ -132,6 +132,35 @@ export default function ConnectSuccess() {
           <p className="text-gray-400 mt-2">
             Your badge is being prepared at the front desk
           </p>
+        </motion.div>
+
+        {/* Survey Button (Optional) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          <Button
+            onClick={() => navigate('/connectqr1/poll')}
+            className="w-full px-8 py-6 text-lg bg-gradient-to-r from-[#FFD700] to-yellow-400 hover:from-[#FFD700] hover:to-yellow-300 text-[#0B0B0F] font-bold"
+          >
+            Take Our Quick Survey (Optional)
+          </Button>
+          <p className="text-gray-400 text-sm mt-2">Help us improve future events - only 2 minutes!</p>
+        </motion.div>
+
+        {/* Event Itinerary */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <Button
+            onClick={() => navigate('/connectqr1/itinerary')}
+            className="w-full px-8 py-6 text-lg bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-600 hover:to-cyan-500 text-white font-bold"
+          >
+            View Event Itinerary
+          </Button>
         </motion.div>
 
         {/* Match Suggestions */}
@@ -201,31 +230,31 @@ export default function ConnectSuccess() {
           <WebsiteCTA />
         </motion.div>
 
-        {/* AI Trivia Game */}
+        {/* AI Tools Section - Coming Soon */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
+          className="w-full"
         >
-          <AITrivia />
-        </motion.div>
+          <div className="bg-gradient-to-r from-[#FFD700]/10 to-cyan-400/10 border border-[#FFD700]/30 rounded-xl p-6 mb-8">
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-cyan-400 text-center mb-2">
+              AI Tools & Features
+            </h2>
+            <p className="text-gray-300 text-center text-lg font-semibold">
+              Coming Soon
+            </p>
+            <p className="text-gray-400 text-center text-sm mt-2">
+              Exciting AI-powered tools are on their way!
+            </p>
+          </div>
 
-        {/* AI News */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.2 }}
-        >
-          <AINews />
-        </motion.div>
-
-        {/* Coming Soon Tools */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.4 }}
-        >
-          <ComingSoon />
+          {/* AI Trivia Game */}
+          <div className="space-y-6">
+            <AITrivia />
+            <AINews />
+            <ComingSoon />
+          </div>
         </motion.div>
 
         {/* Return to Welcome */}
