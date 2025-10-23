@@ -33,30 +33,83 @@ export async function handler(event) {
 
     // Normalize phone
     const normalizedPhone = contactPayload.phone?.replace(/[^0-9+]/g, '');
+    const normalizedEmail = contactPayload.email?.toLowerCase();
 
-    // Create or update contact
-    const { data: contact, error: contactError } = await supabaseAdmin
-      .from('connect_contacts')
-      .upsert({
-        phone: normalizedPhone,
-        email: contactPayload.email?.toLowerCase(),
-        first_name: contactPayload.firstName,
-        last_name: contactPayload.lastName,
-        company: contactPayload.company,
-        role: contactPayload.role,
-        consent_feedback: consent.feedback,
-        consent_sms: consent.sms || false,
-        consent_photo: consent.photo || false
-      }, {
-        onConflict: normalizedPhone ? 'phone' : 'email',
-        ignoreDuplicates: false
-      })
-      .select()
-      .single();
+    // Check for existing contact (manual deduplication since we have partial indexes)
+    let contact = null;
 
-    if (contactError) {
-      console.error('Contact creation error:', contactError);
-      throw contactError;
+    if (normalizedPhone) {
+      const { data: existingByPhone } = await supabaseAdmin
+        .from('connect_contacts')
+        .select('*')
+        .eq('phone', normalizedPhone)
+        .maybeSingle();
+
+      if (existingByPhone) {
+        contact = existingByPhone;
+      }
+    }
+
+    if (!contact && normalizedEmail) {
+      const { data: existingByEmail } = await supabaseAdmin
+        .from('connect_contacts')
+        .select('*')
+        .eq('email', normalizedEmail)
+        .maybeSingle();
+
+      if (existingByEmail) {
+        contact = existingByEmail;
+      }
+    }
+
+    // Update existing contact or create new one
+    if (contact) {
+      // Update existing contact
+      const { data: updatedContact, error: updateError } = await supabaseAdmin
+        .from('connect_contacts')
+        .update({
+          phone: normalizedPhone || contact.phone,
+          email: normalizedEmail || contact.email,
+          first_name: contactPayload.firstName,
+          last_name: contactPayload.lastName,
+          company: contactPayload.company,
+          role: contactPayload.role,
+          consent_feedback: consent.feedback,
+          consent_sms: consent.sms || false,
+          consent_photo: consent.photo || false
+        })
+        .eq('id', contact.id)
+        .select()
+        .single();
+
+      if (updateError) {
+        console.error('Contact update error:', updateError);
+        throw updateError;
+      }
+      contact = updatedContact;
+    } else {
+      // Create new contact
+      const { data: newContact, error: createError } = await supabaseAdmin
+        .from('connect_contacts')
+        .insert({
+          phone: normalizedPhone,
+          email: normalizedEmail,
+          first_name: contactPayload.firstName,
+          last_name: contactPayload.lastName,
+          company: contactPayload.company,
+          role: contactPayload.role,
+          consent_feedback: consent.feedback,
+          consent_sms: consent.sms || false,
+          consent_photo: consent.photo || false
+        })
+        .select()
+        .single();
+
+      if (createError) {
+        console.error('Contact creation error:', createError);
+        throw createError;
+      }
+      contact = newContact;
     }
 
     // Create attendance
