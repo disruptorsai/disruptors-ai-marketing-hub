@@ -5,6 +5,10 @@ import { Users, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useConnectStore } from '@/lib/connect/store';
 import confetti from 'canvas-confetti';
+import AITrivia from '@/components/connect/AITrivia';
+import AINews from '@/components/connect/AINews';
+import ComingSoon from '@/components/connect/ComingSoon';
+import WebsiteCTA from '@/components/connect/WebsiteCTA';
 
 export default function ConnectSuccess() {
   const navigate = useNavigate();
@@ -179,11 +183,47 @@ export default function ConnectSuccess() {
           </p>
         </motion.div>
 
-        {/* Return to Welcome */}
+        {/* Website CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
+        >
+          <WebsiteCTA />
+        </motion.div>
+
+        {/* AI Trivia Game */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
+        >
+          <AITrivia />
+        </motion.div>
+
+        {/* AI News */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2 }}
+        >
+          <AINews />
+        </motion.div>
+
+        {/* Coming Soon Tools */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.4 }}
+        >
+          <ComingSoon />
+        </motion.div>
+
+        {/* Return to Welcome */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.6 }}
         >
           <Button
             onClick={handleDone}
