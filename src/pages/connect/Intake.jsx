@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -11,7 +11,7 @@ import { useIdleTimer } from '@/hooks/connect/useIdleTimer';
 
 export default function ConnectIntake() {
   const navigate = useNavigate();
-  const { sessionId, eventId, kioskId, setContact } = useConnectStore();
+  const { sessionId, eventId, kioskId, setContact, startSession } = useConnectStore();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,6 +23,13 @@ export default function ConnectIntake() {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Start session when component mounts
+  useEffect(() => {
+    if (!sessionId) {
+      startSession();
+    }
+  }, [sessionId, startSession]);
 
   // Auto-return to welcome after 20s of inactivity
   useIdleTimer(20000);
