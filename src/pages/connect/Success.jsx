@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Users, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useConnectStore } from '@/lib/connect/store';
 import confetti from 'canvas-confetti';
@@ -77,16 +76,13 @@ export default function ConnectSuccess() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative z-10 max-w-3xl mx-auto text-center space-y-8"
       >
-        {/* Success Icon */}
+        {/* Success Circle */}
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', duration: 0.6, delay: 0.2 }}
           className="w-32 h-32 mx-auto bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center mb-8"
         >
-          <svg className="w-20 h-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-          </svg>
         </motion.div>
 
         {/* Title */}
@@ -109,7 +105,7 @@ export default function ConnectSuccess() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] opacity-20 blur-2xl rounded-full animate-pulse" />
           <div className="relative bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] text-[#0B0B0F] px-8 py-4 rounded-2xl shadow-2xl border-2 border-yellow-300 animate-gradient-xy">
             <p className="text-2xl md:text-3xl font-bold tracking-wide">
-              🏆 You're Now an Honorary Disruptor! 🏆
+              You're Now an Honorary Disruptor!
             </p>
           </div>
         </motion.div>
@@ -131,7 +127,7 @@ export default function ConnectSuccess() {
           className="bg-gray-800/50 border border-gray-700 rounded-lg p-6"
         >
           <p className="text-green-400 font-semibold text-lg">
-            ✓ Check-in complete
+            Check-in complete
           </p>
           <p className="text-gray-400 mt-2">
             Your badge is being prepared at the front desk
@@ -147,7 +143,6 @@ export default function ConnectSuccess() {
             className="space-y-4"
           >
             <h2 className="text-2xl font-bold text-white flex items-center justify-center gap-2">
-              <Users className="w-6 h-6 text-cyan-400" />
               People You Should Meet Tonight
             </h2>
 
@@ -162,7 +157,6 @@ export default function ConnectSuccess() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-cyan-400/20 flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-cyan-400" />
                     </div>
                     <div className="flex-1">
                       <h4 className="text-white font-bold text-lg mb-1">
@@ -244,7 +238,6 @@ export default function ConnectSuccess() {
             onClick={handleDone}
             className="px-12 py-6 text-lg bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white"
           >
-            <Home className="mr-2 h-5 w-5" />
             Return to Welcome Screen
           </Button>
         </motion.div>
