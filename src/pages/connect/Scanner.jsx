@@ -23,7 +23,7 @@ export default function ConnectScanner() {
         console.log('[Scanner] Check-in URL detected:', { source, kioskId });
 
         startSession();
-        navigate('/eventqr/checkin', { state: { source, kioskId } });
+        navigate('/connectqr/checkin', { state: { source, kioskId } });
       }
       // If it's a ticket QR code, lookup the attendee
       else {
@@ -41,23 +41,23 @@ export default function ConnectScanner() {
 
         if (data.contactId) {
           // Found existing contact, go straight to success
-          navigate('/eventqr/success', { state: { contact: data.contact } });
+          navigate('/connectqr/success', { state: { contact: data.contact } });
         } else {
           // No match, proceed to intake
           startSession();
-          navigate('/eventqr/checkin');
+          navigate('/connectqr/checkin');
         }
       }
     } catch (error) {
       console.error('[Scanner] Error processing QR code:', error);
       // On error, just proceed to intake
       startSession();
-      navigate('/eventqr/checkin');
+      navigate('/connectqr/checkin');
     }
   };
 
   const handleClose = () => {
-    navigate('/eventqr');
+    navigate('/connectqr');
   };
 
   return scanning ? (

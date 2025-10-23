@@ -52,7 +52,7 @@ export default function ConnectSuccess() {
     // Auto-return to welcome after 30 seconds
     const timeout = setTimeout(() => {
       reset();
-      navigate('/eventqr');
+      navigate('/connectqr');
     }, 30000);
 
     return () => clearTimeout(timeout);
@@ -60,7 +60,7 @@ export default function ConnectSuccess() {
 
   const handleDone = () => {
     reset();
-    navigate('/eventqr');
+    navigate('/connectqr');
   };
 
   return (

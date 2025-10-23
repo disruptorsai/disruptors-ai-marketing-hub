@@ -86,7 +86,7 @@ export default function ConnectIntake() {
 
       if (response.ok) {
         setContact(data);
-        navigate('/eventqr/poll');
+        navigate('/connectqr/poll');
       } else {
         setErrors({ submit: data.error || 'Check-in failed. Please try again.' });
       }
@@ -117,7 +117,7 @@ export default function ConnectIntake() {
       <div className="relative z-10 bg-black/40 border-b border-[#FFD700]/20 p-4 md:p-6 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Button
-            onClick={() => navigate('/eventqr')}
+            onClick={() => navigate('/connectqr')}
             variant="ghost"
             className="text-gray-400 hover:text-[#FFD700] hover:bg-[#FFD700]/10 h-12 px-4 md:px-6 text-base md:text-lg"
           >
