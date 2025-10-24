@@ -11,9 +11,12 @@ import WebsiteCTA from '@/components/connect/WebsiteCTA';
 
 export default function ConnectSuccess() {
   const navigate = useNavigate();
-  const { contact, sessionId, reset } = useConnectStore();
+  const { contact, sessionId, pollAnswers, reset } = useConnectStore();
   const [matchSuggestions, setMatchSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Check if poll has been completed
+  const hasTakenPoll = Object.keys(pollAnswers || {}).length > 0;
 
   useEffect(() => {
     // Fire confetti
@@ -47,15 +50,7 @@ export default function ConnectSuccess() {
     } else {
       setLoading(false);
     }
-
-    // Auto-return to welcome after 30 seconds
-    const timeout = setTimeout(() => {
-      reset();
-      navigate('/connectqr1');
-    }, 30000);
-
-    return () => clearTimeout(timeout);
-  }, [contact, navigate, reset]);
+  }, [contact]);
 
   const handleDone = () => {
     reset();
@@ -134,20 +129,22 @@ export default function ConnectSuccess() {
           </p>
         </motion.div>
 
-        {/* Survey Button (Optional) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <Button
-            onClick={() => navigate('/connectqr1/poll')}
-            className="w-full px-8 py-6 text-lg bg-gradient-to-r from-[#FFD700] to-yellow-400 hover:from-[#FFD700] hover:to-yellow-300 text-[#0B0B0F] font-bold"
+        {/* Survey Button (Optional) - Only show if not already taken */}
+        {!hasTakenPoll && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
           >
-            Take Our Quick Survey (Optional)
-          </Button>
-          <p className="text-gray-400 text-sm mt-2">Help us improve future events - only 2 minutes!</p>
-        </motion.div>
+            <Button
+              onClick={() => navigate('/connectqr1/poll')}
+              className="w-full px-8 py-6 text-lg bg-gradient-to-r from-[#FFD700] to-yellow-400 hover:from-[#FFD700] hover:to-yellow-300 text-[#0B0B0F] font-bold"
+            >
+              Take Our Quick Survey (Optional)
+            </Button>
+            <p className="text-gray-400 text-sm mt-2">Help us improve future events - only 2 minutes!</p>
+          </motion.div>
+        )}
 
         {/* Event Itinerary */}
         <motion.div
@@ -270,10 +267,6 @@ export default function ConnectSuccess() {
             Return to Welcome Screen
           </Button>
         </motion.div>
-
-        <p className="text-gray-500 text-sm">
-          This screen will automatically return in 30 seconds
-        </p>
       </motion.div>
     </div>
   );
