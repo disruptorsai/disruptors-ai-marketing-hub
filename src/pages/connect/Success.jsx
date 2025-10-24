@@ -11,12 +11,10 @@ import WebsiteCTA from '@/components/connect/WebsiteCTA';
 
 export default function ConnectSuccess() {
   const navigate = useNavigate();
-  const { contact, sessionId, pollAnswers, reset } = useConnectStore();
+  const { contact, sessionId, pollAnswers, reset, setContact, updatePollAnswers } = useConnectStore();
   const [matchSuggestions, setMatchSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Check if poll has been completed
-  const hasTakenPoll = Object.keys(pollAnswers || {}).length > 0;
+  const [hasTakenPoll, setHasTakenPoll] = useState(false);
 
   useEffect(() => {
     // Fire confetti
@@ -27,13 +25,50 @@ export default function ConnectSuccess() {
       colors: ['#4FF0E8', '#F738A5', '#FFFFFF']
     });
 
+    // Check session completion status (server-side lookup)
+    const checkSessionStatus = async () => {
+      if (sessionId) {
+        try {
+          const response = await fetch(`/.netlify/functions/session-status?sessionId=${sessionId}&eventId=connect-2025-10`);
+          const data = await response.json();
+
+          console.log('[Success] Session status:', data);
+
+          // Update local state from server
+          if (data.contact) {
+            setContact(data.contact);
+          }
+
+          // Set poll completion status from server OR local state
+          const pollTaken = data.hasTakenPoll || Object.keys(pollAnswers || {}).length > 0;
+          setHasTakenPoll(pollTaken);
+
+          // If poll was taken on another device, sync it locally
+          if (data.hasTakenPoll && Object.keys(pollAnswers || {}).length === 0) {
+            console.log('[Success] Poll taken on another device - syncing local state');
+            updatePollAnswers({ _synced: true }); // Mark as synced
+          }
+        } catch (error) {
+          console.error('[Success] Failed to check session status:', error);
+          // Fallback to local state
+          setHasTakenPoll(Object.keys(pollAnswers || {}).length > 0);
+        }
+      } else {
+        // No session ID - fallback to local state
+        setHasTakenPoll(Object.keys(pollAnswers || {}).length > 0);
+      }
+    };
+
+    checkSessionStatus();
+
     // Fetch AI match suggestions
-    if (contact?.contactId) {
+    if (contact?.contactId || contact?.id) {
+      const contactId = contact.contactId || contact.id;
       fetch('/.netlify/functions/ai-match', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contactId: contact.contactId,
+          contactId,
           eventId: 'connect-2025-10'
         })
       })
@@ -50,7 +85,7 @@ export default function ConnectSuccess() {
     } else {
       setLoading(false);
     }
-  }, [contact]);
+  }, [contact, sessionId, pollAnswers, setContact, updatePollAnswers]);
 
   const handleDone = () => {
     reset();
@@ -254,19 +289,6 @@ export default function ConnectSuccess() {
           </div>
         </motion.div>
 
-        {/* Return to Welcome */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.6 }}
-        >
-          <Button
-            onClick={handleDone}
-            className="px-12 py-6 text-lg bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white"
-          >
-            Return to Welcome Screen
-          </Button>
-        </motion.div>
       </motion.div>
     </div>
   );

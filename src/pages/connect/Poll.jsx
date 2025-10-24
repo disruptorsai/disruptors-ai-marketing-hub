@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
@@ -62,13 +62,49 @@ const POLL_QUESTIONS = [
 
 export default function ConnectPoll() {
   const navigate = useNavigate();
-  const { sessionId, updatePollAnswers } = useConnectStore();
+  const { sessionId, updatePollAnswers, pollAnswers } = useConnectStore();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [alreadyCompleted, setAlreadyCompleted] = useState(false);
+  const [checkingStatus, setCheckingStatus] = useState(true);
 
   const totalQuestions = POLL_QUESTIONS.length + 2; // +2 for text questions
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+
+  // Check if poll already completed on mount
+  useEffect(() => {
+    const checkPollStatus = async () => {
+      // First check local state
+      if (Object.keys(pollAnswers || {}).length > 0 && !pollAnswers._synced) {
+        console.log('[Poll] Already completed (local state)');
+        setAlreadyCompleted(true);
+        setCheckingStatus(false);
+        return;
+      }
+
+      // Then check server if we have a session ID
+      if (sessionId) {
+        try {
+          const response = await fetch(`/.netlify/functions/session-status?sessionId=${sessionId}&eventId=connect-2025-10`);
+          const data = await response.json();
+
+          console.log('[Poll] Session status:', data);
+
+          if (data.hasTakenPoll) {
+            console.log('[Poll] Already completed (server)');
+            setAlreadyCompleted(true);
+          }
+        } catch (error) {
+          console.error('[Poll] Failed to check session status:', error);
+        }
+      }
+
+      setCheckingStatus(false);
+    };
+
+    checkPollStatus();
+  }, [sessionId, pollAnswers]);
 
   const handleAnswer = (questionId, value) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -198,6 +234,66 @@ export default function ConnectPoll() {
   const canProceed = currentQuestion < POLL_QUESTIONS.length
     ? answers[POLL_QUESTIONS[currentQuestion].id]
     : true; // Text questions are optional
+
+  // Show loading state while checking
+  if (checkingStatus) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center font-montreal">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400 text-xl">Checking poll status...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show "already completed" message if poll was taken
+  if (alreadyCompleted) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center p-8 font-montreal">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-2xl w-full text-center space-y-6"
+        >
+          <div className="w-24 h-24 mx-auto bg-cyan-400/20 rounded-full flex items-center justify-center mb-6">
+            <Check className="w-12 h-12 text-cyan-400" />
+          </div>
+
+          <h1 className="text-4xl font-bold text-white">
+            You've Already Completed This Survey
+          </h1>
+
+          <p className="text-xl text-gray-300">
+            Thank you for your feedback! We've recorded your responses.
+          </p>
+
+          <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+            <p className="text-gray-400">
+              You can only take this survey once per check-in session.
+            </p>
+          </div>
+
+          <div className="space-y-4 pt-6">
+            <Button
+              onClick={() => navigate('/connectqr1/success')}
+              className="w-full px-8 py-6 text-lg bg-gradient-to-r from-cyan-400 to-cyan-600 hover:from-cyan-500 hover:to-cyan-700 text-black font-bold"
+            >
+              Return to Success Page
+            </Button>
+
+            <Button
+              onClick={() => navigate('/connectqr1/itinerary')}
+              variant="outline"
+              className="w-full px-8 py-6 text-lg border-gray-700 text-gray-300"
+            >
+              View Event Itinerary
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0B0F] flex flex-col font-montreal">
