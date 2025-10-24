@@ -48,13 +48,13 @@ export async function handler(event) {
       .insert({
         event_id: eventId,
         session_id: sessionId,
-        q1_experience: answers.q1,
-        q2_goal: answers.q2,
-        q3_hesitation: answers.q3,
-        q4_confidence: answers.q4,
-        q5_impact_area: answers.q5,
-        q6_general_text: answers.q6 || null,
-        q7_automation_text: answers.q7 || null
+        q1_experience: answers.q1_experience,
+        q2_goal: answers.q2_goal,
+        q3_hesitation: answers.q3_hesitation,
+        q4_confidence: answers.q4_confidence,
+        q5_impact_area: answers.q5_impact_area,
+        q6_general_text: answers.q6_general_text || answers.q6 || null,
+        q7_automation_text: answers.q7_automation_text || answers.q7 || null
       })
       .select()
       .single();
