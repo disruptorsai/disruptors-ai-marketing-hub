@@ -126,7 +126,17 @@ export default function ConnectPoll() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+
+    console.log('[Poll] Submitting poll with answers:', answers);
+    console.log('[Poll] SessionId:', sessionId);
+
+    // Update store BEFORE submission
     updatePollAnswers(answers);
+
+    // Give Zustand a moment to persist to localStorage
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    console.log('[Poll] Store updated, proceeding with server submission');
 
     try {
       const response = await fetch('/.netlify/functions/poll-submit', {
@@ -140,15 +150,20 @@ export default function ConnectPoll() {
         })
       });
 
+      const data = await response.json();
+      console.log('[Poll] Server response:', data);
+
       if (response.ok) {
+        console.log('[Poll] Poll submitted successfully, navigating to success');
         navigate('/connectqr1/success');
       } else {
-        console.error('Poll submission failed');
+        console.error('[Poll] Poll submission failed:', data);
         // Still navigate to success (poll is optional)
         navigate('/connectqr1/success');
       }
     } catch (error) {
-      console.error('Poll error:', error);
+      console.error('[Poll] Poll submission error:', error);
+      // Still navigate to success
       navigate('/connectqr1/success');
     }
   };

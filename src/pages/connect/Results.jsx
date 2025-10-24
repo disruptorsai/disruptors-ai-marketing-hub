@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { RefreshCw, Users, MessageSquare, BarChart3 } from 'lucide-react';
+import { RefreshCw, Users, MessageSquare, BarChart3, AlertTriangle, Wifi, WifiOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -209,29 +209,96 @@ function OpenEndedTab({ results, presentationMode }) {
   );
 }
 
+// Fallback mock data in case API fails or database is empty
+const FALLBACK_DATA = {
+  totalResponses: 0,
+  multipleChoice: {
+    q1_experience: { A: 0, B: 0, C: 0, D: 0 },
+    q2_goal: { A: 0, B: 0, C: 0, D: 0 },
+    q3_hesitation: { A: 0, B: 0, C: 0, D: 0 },
+    q4_confidence: { A: 0, B: 0, C: 0, D: 0 },
+    q5_impact_area: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  openEnded: {
+    q6_general_text: [],
+    q7_automation_text: []
+  }
+};
+
 export default function ConnectResults() {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [presentationMode, setPresentationMode] = useState(false);
 
-  const fetchResults = async () => {
+  const fetchResults = async (isRetry = false) => {
     try {
+      setError(null);
       const response = await fetch('/.netlify/functions/poll-results?eventId=connect-2025-10');
+
       if (response.ok) {
         const data = await response.json();
         setResults(data);
         setLastUpdated(new Date());
+        setRetryCount(0); // Reset retry count on success
+
+        // Cache results to localStorage for offline fallback
+        try {
+          localStorage.setItem('connect-poll-results-cache', JSON.stringify({
+            data,
+            timestamp: new Date().toISOString()
+          }));
+        } catch (cacheError) {
+          console.warn('Failed to cache results:', cacheError);
+        }
+      } else {
+        throw new Error(`API returned ${response.status}: ${response.statusText}`);
       }
-    } catch (error) {
-      console.error('Failed to fetch results:', error);
+    } catch (err) {
+      console.error('Failed to fetch results:', err);
+      setError(err.message);
+
+      // Try to load from cache first
+      if (!isRetry && !results) {
+        try {
+          const cached = localStorage.getItem('connect-poll-results-cache');
+          if (cached) {
+            const { data, timestamp } = JSON.parse(cached);
+            console.log('Using cached data from', timestamp);
+            setResults(data);
+            setLastUpdated(new Date(timestamp));
+            return; // Exit early with cached data
+          }
+        } catch (cacheError) {
+          console.warn('Failed to load cached results:', cacheError);
+        }
+
+        // If no cache, use fallback
+        console.log('Using fallback data due to API error');
+        setResults(FALLBACK_DATA);
+      }
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    // Try to load cached data immediately for instant display
+    try {
+      const cached = localStorage.getItem('connect-poll-results-cache');
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        setResults(data);
+        setLastUpdated(new Date(timestamp));
+      }
+    } catch (cacheError) {
+      console.warn('Failed to load initial cache:', cacheError);
+    }
+
+    // Then fetch fresh data
     fetchResults();
   }, []);
 
@@ -266,7 +333,14 @@ export default function ConnectResults() {
 
   const handleRefresh = () => {
     setLoading(true);
-    fetchResults();
+    setRetryCount(prev => prev + 1);
+    fetchResults(true);
+  };
+
+  const handleRetry = () => {
+    setLoading(true);
+    setRetryCount(prev => prev + 1);
+    fetchResults(true);
   };
 
   if (loading && !results) {
@@ -372,6 +446,63 @@ export default function ConnectResults() {
             </div>
           </motion.div>
         </div>
+      )}
+
+      {/* Error Banner - Shows when API fails */}
+      {error && !presentationMode && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-yellow-500/10 border-t border-b border-yellow-500/30 backdrop-blur-lg sticky top-[73px] z-40"
+        >
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <AlertTriangle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                <div>
+                  <p className="text-yellow-500 font-semibold">
+                    {results?.totalResponses > 0 ? 'Connection Issue - Showing Cached Data' : 'Unable to Load Results'}
+                  </p>
+                  <p className="text-yellow-400/80 text-sm">
+                    {error} {retryCount > 0 && `(Retry ${retryCount})`}
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={handleRetry}
+                disabled={loading}
+                size="sm"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+              >
+                <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                Retry
+              </Button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* No Data Warning - Shows when database is empty */}
+      {results && results.totalResponses === 0 && !error && !presentationMode && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-blue-500/10 border-t border-b border-blue-500/30 backdrop-blur-lg sticky top-[73px] z-40"
+        >
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center gap-3">
+              <WifiOff className="w-5 h-5 text-blue-500 flex-shrink-0" />
+              <div>
+                <p className="text-blue-500 font-semibold">
+                  No Poll Responses Yet
+                </p>
+                <p className="text-blue-400/80 text-sm">
+                  Results will appear here as attendees submit their responses
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       )}
 
       {/* Content */}
