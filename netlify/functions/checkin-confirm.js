@@ -123,7 +123,7 @@ export async function handler(event) {
       const { data: existingByEmail } = await supabaseAdmin
         .from('connect_contacts')
         .select('*')
-        .eq('email', normalizedEmail)
+        .ilike('email', normalizedEmail)
         .maybeSingle();
 
       if (existingByEmail) {
