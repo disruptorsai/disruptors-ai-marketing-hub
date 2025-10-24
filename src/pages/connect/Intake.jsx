@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useConnectStore } from '@/lib/connect/store';
-import { useIdleTimer } from '@/hooks/connect/useIdleTimer';
 
 export default function ConnectIntake() {
   const navigate = useNavigate();
@@ -30,9 +29,6 @@ export default function ConnectIntake() {
       startSession();
     }
   }, [sessionId, startSession]);
-
-  // Auto-return to welcome after 20s of inactivity
-  useIdleTimer(20000);
 
   const validate = () => {
     const newErrors = {};
