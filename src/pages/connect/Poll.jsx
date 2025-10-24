@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useConnectStore } from '@/lib/connect/store';
 
-// Poll questions from PRD
+// Poll questions from PRD (IDs match database schema)
 const POLL_QUESTIONS = [
   {
-    id: 'q1',
+    id: 'q1_experience',
     question: 'How would you describe your current experience with AI?',
     options: [
       { value: 'A', label: 'I\'ve never used it and barely understand what it does' },
@@ -19,7 +19,7 @@ const POLL_QUESTIONS = [
     ]
   },
   {
-    id: 'q2',
+    id: 'q2_goal',
     question: 'What\'s your biggest goal for using AI in your business?',
     options: [
       { value: 'A', label: 'Save time and streamline repetitive work' },
@@ -29,7 +29,7 @@ const POLL_QUESTIONS = [
     ]
   },
   {
-    id: 'q3',
+    id: 'q3_hesitation',
     question: 'What\'s your biggest hesitation about AI?',
     options: [
       { value: 'A', label: 'It feels overwhelming or confusing' },
@@ -39,7 +39,7 @@ const POLL_QUESTIONS = [
     ]
   },
   {
-    id: 'q4',
+    id: 'q4_confidence',
     question: 'How confident are you that you can learn and utilize AI tools yourself?',
     options: [
       { value: 'A', label: 'Not confident — I\'ll need some help' },
@@ -49,7 +49,7 @@ const POLL_QUESTIONS = [
     ]
   },
   {
-    id: 'q5',
+    id: 'q5_impact_area',
     question: 'Which area of your business do you think AI could impact the most?',
     options: [
       { value: 'A', label: 'Marketing and content creation' },

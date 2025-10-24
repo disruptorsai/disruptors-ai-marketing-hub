@@ -22,51 +22,89 @@ const scrollbarStyles = `
   }
 `;
 
-// Question labels matching Poll.jsx
+// Question labels matching Poll.jsx EXACTLY
 const QUESTIONS = {
   q1_experience: {
     title: 'How would you describe your current experience with AI?',
     options: {
-      A: 'Never used it, barely understand it',
-      B: 'Tried ChatGPT casually',
-      C: 'Use AI in some business areas',
-      D: 'Actively use AI systems daily'
+      A: 'I\'ve never used it and barely understand what it does',
+      B: 'I\'ve tried tools like ChatGPT, but only casually',
+      C: 'I use AI in some areas of my business',
+      D: 'I actively use AI systems or automation in my daily work'
     }
   },
   q2_goal: {
     title: 'What\'s your biggest goal for using AI in your business?',
     options: {
-      A: 'Save time and streamline work',
-      B: 'Generate leads and content',
-      C: 'Improve communication/service',
-      D: 'Create new products/services'
+      A: 'Save time and streamline repetitive work',
+      B: 'Generate more leads and marketing content',
+      C: 'Improve communication or customer service',
+      D: 'Create entirely new products or services'
     }
   },
   q3_hesitation: {
     title: 'What\'s your biggest hesitation about AI?',
     options: {
-      A: 'Feels overwhelming/confusing',
-      B: 'Worried about job replacement',
-      C: 'Don\'t trust quality',
-      D: 'No time to learn'
+      A: 'It feels overwhelming or confusing',
+      B: 'I\'m worried it\'ll replace human jobs',
+      C: 'I don\'t trust it to produce quality work',
+      D: 'I don\'t have time to learn how to use it'
     }
   },
   q4_confidence: {
     title: 'How confident are you that you can learn and utilize AI tools yourself?',
     options: {
-      A: 'Not confident — need help',
-      B: 'Somewhat confident — need guidance',
-      C: 'Confident — need right tools',
-      D: 'Very confident — already using'
+      A: 'Not confident — I\'ll need some help',
+      B: 'Somewhat confident — I\'d need some guidance, but I\'m tech savvy',
+      C: 'Confident — I just need the right tools, I\'ve got this',
+      D: 'Very confident — I have already started using AI tools and I\'m good at it'
     }
   },
   q5_impact_area: {
     title: 'Which area of your business do you think AI could impact the most?',
     options: {
-      A: 'Marketing and content',
-      B: 'Operations and automation',
-      C: 'Sales and follow-up',
-      D: 'Data and analytics'
+      A: 'Marketing and content creation',
+      B: 'Operations and workflow automation',
+      C: 'Sales and customer follow-up',
+      D: 'Data, reporting, or analytics'
+    }
+  }
+};
+
+// National averages based on 2025 research (McKinsey, IBM, SBE Council surveys)
+// Sources: McKinsey State of AI 2025, IBM AI Adoption Index, SBE Council surveys
+const NATIONAL_AVERAGES = {
+  totalResponses: 'National Average (2025)',
+  multipleChoice: {
+    q1_experience: {
+      A: 3,   // Never used: 3% (94% have some familiarity)
+      B: 18,  // Casual use: 18%
+      C: 49,  // Business use: 49% (78% organizational adoption)
+      D: 30   // Daily use: 30% (62% of 35-44 age group high expertise)
+    },
+    q2_goal: {
+      A: 35,  // Save time: 35%
+      B: 30,  // Leads/marketing: 30% (78% adoption in marketing)
+      C: 20,  // Customer service: 20% (79% say crucial)
+      D: 15   // New products: 15%
+    },
+    q3_hesitation: {
+      A: 35,  // Overwhelming: 35% (33% lack expertise)
+      B: 10,  // Job replacement: 10%
+      C: 15,  // Trust quality: 15%
+      D: 40   // Security/privacy: 40% (38-46% data concerns)
+    },
+    q4_confidence: {
+      A: 10,  // Not confident: 10%
+      B: 26,  // Somewhat: 26%
+      C: 39,  // Confident: 39% (64% confident in productivity)
+      D: 25   // Very confident: 25% (76% positive sentiment)
+    },
+    q5_impact_area: {
+      A: 30,  // Marketing: 30% (78% adoption)
+      B: 15,  // Operations: 15%
+      C: 20,  // Sales: 20%
+      D: 35   // Customer service/Data: 35% (79% say crucial, 95% of interactions by 2025)
     }
   }
 };
@@ -233,6 +271,7 @@ export default function ConnectResults() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [presentationMode, setPresentationMode] = useState(false);
+  const [showNationalAverage, setShowNationalAverage] = useState(false);
 
   const fetchResults = async (isRetry = false) => {
     try {
@@ -399,6 +438,17 @@ export default function ConnectResults() {
 
               <div className="flex items-center gap-4">
                 <Button
+                  onClick={() => setShowNationalAverage(!showNationalAverage)}
+                  variant={showNationalAverage ? "default" : "outline"}
+                  className={showNationalAverage
+                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold"
+                    : "border-gray-700 text-gray-300"
+                  }
+                >
+                  {showNationalAverage ? '📊 National Average' : '👥 Your Attendees'}
+                </Button>
+
+                <Button
                   onClick={() => setAutoRefresh(!autoRefresh)}
                   variant={autoRefresh ? "default" : "outline"}
                   className={autoRefresh
@@ -517,10 +567,29 @@ export default function ConnectResults() {
             <div className="inline-flex items-center gap-4 bg-gray-900/50 border border-gray-800 rounded-full px-8 py-4">
               <Users className="w-8 h-8 text-cyan-400" />
               <span className="text-5xl font-bold text-white">
-                {results?.totalResponses || 0}
+                {showNationalAverage ? 'National Avg' : (results?.totalResponses || 0)}
               </span>
-              <span className="text-2xl text-gray-400">Total Responses</span>
+              <span className="text-2xl text-gray-400">{showNationalAverage ? '2025 Survey Data' : 'Total Responses'}</span>
             </div>
+          </motion.div>
+        )}
+
+        {/* National Average Indicator Banner */}
+        {showNationalAverage && !presentationMode && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8 bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/30 rounded-xl p-6 text-center"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
+              <p className="text-blue-400 font-bold text-lg">
+                📊 Viewing National Average Data (2025)
+              </p>
+            </div>
+            <p className="text-gray-400 text-sm mt-2">
+              Based on McKinsey, IBM, and SBE Council surveys of business AI adoption
+            </p>
           </motion.div>
         )}
 
@@ -543,21 +612,28 @@ export default function ConnectResults() {
           </TabsList>
 
           <TabsContent value="multiple-choice">
-            {results && (
+            {(showNationalAverage || results) && (
               <MultipleChoiceTab
-                results={results}
-                totalResponses={results.totalResponses}
+                results={showNationalAverage ? NATIONAL_AVERAGES : results}
+                totalResponses={showNationalAverage ? 100 : results?.totalResponses}
                 presentationMode={presentationMode}
               />
             )}
           </TabsContent>
 
           <TabsContent value="open-ended">
-            {results && (
+            {!showNationalAverage && results && (
               <OpenEndedTab
                 results={results}
                 presentationMode={presentationMode}
               />
+            )}
+            {showNationalAverage && (
+              <div className="text-center py-16 text-gray-400">
+                <MessageSquare className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                <p className="text-xl">Open-ended responses not available for national averages</p>
+                <p className="text-sm mt-2">Switch to "Your Attendees" to see text responses</p>
+              </div>
             )}
           </TabsContent>
         </Tabs>
