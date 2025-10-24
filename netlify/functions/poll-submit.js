@@ -5,9 +5,28 @@ export async function handler(event) {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
   }
 
-  const { eventId, sessionId, answers, requestId } = JSON.parse(event.body);
+  const { eventId: eventSlugOrId, sessionId, answers, requestId } = JSON.parse(event.body);
 
   try {
+    // Resolve event slug to UUID (handles both slugs like "connect-2025-10" and direct UUIDs)
+    let eventId = eventSlugOrId;
+
+    // Check if it's a slug (not a UUID format)
+    if (!eventSlugOrId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)) {
+      const { data: eventData, error: eventError } = await supabaseAdmin
+        .from('connect_events')
+        .select('id')
+        .eq('slug', eventSlugOrId)
+        .single();
+
+      if (eventError || !eventData) {
+        console.error('Event lookup error:', eventError);
+        throw new Error(`Event not found with slug: ${eventSlugOrId}`);
+      }
+
+      eventId = eventData.id;
+    }
+
     // Check idempotency
     const { data: existing } = await supabaseAdmin
       .from('connect_poll_responses')

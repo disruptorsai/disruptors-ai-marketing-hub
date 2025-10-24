@@ -6,7 +6,7 @@ export async function handler(event) {
   }
 
   const sessionId = event.queryStringParameters?.sessionId;
-  const eventId = event.queryStringParameters?.eventId || 'connect-2025-10';
+  const eventSlugOrId = event.queryStringParameters?.eventId || 'connect-2025-10';
 
   if (!sessionId) {
     return {
@@ -17,6 +17,25 @@ export async function handler(event) {
   }
 
   try {
+    // Resolve event slug to UUID (handles both slugs like "connect-2025-10" and direct UUIDs)
+    let eventId = eventSlugOrId;
+
+    // Check if it's a slug (not a UUID format)
+    if (!eventSlugOrId.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)) {
+      const { data: eventData, error: eventError } = await supabaseAdmin
+        .from('connect_events')
+        .select('id')
+        .eq('slug', eventSlugOrId)
+        .single();
+
+      if (eventError || !eventData) {
+        console.error('Event lookup error:', eventError);
+        throw new Error(`Event not found with slug: ${eventSlugOrId}`);
+      }
+
+      eventId = eventData.id;
+    }
+
     // Check if session has checked in (attendance record)
     const { data: attendance, error: attendanceError } = await supabaseAdmin
       .from('connect_attendances')

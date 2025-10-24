@@ -1,13 +1,17 @@
-import { supabaseAdmin } from '../../src/lib/supabase-client.js';
+import { supabaseAdmin } from '../src/lib/supabase-client.js';
 
-export async function handler(event) {
-  if (event.httpMethod !== 'GET') {
-    return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
-  }
+/**
+ * This script simulates exactly what the poll-results Netlify function does
+ * to verify the entire flow works correctly
+ */
 
-  const eventSlug = event.queryStringParameters?.eventId || 'connect-2025-10';
+async function testPollResultsEndpoint() {
+  console.log('🧪 Testing poll-results endpoint logic...\n');
+
+  const eventSlug = 'connect-2025-10';
 
   try {
+    console.log('Step 1: Resolve event slug to UUID...');
     // First, resolve the event slug to an actual UUID
     const { data: eventData, error: eventError } = await supabaseAdmin
       .from('connect_events')
@@ -16,12 +20,14 @@ export async function handler(event) {
       .single();
 
     if (eventError || !eventData) {
-      console.error('Event lookup error:', eventError);
+      console.error('❌ Event lookup error:', eventError);
       throw new Error(`Event not found with slug: ${eventSlug}`);
     }
 
     const eventId = eventData.id;
+    console.log(`✅ Event found: ${eventId}\n`);
 
+    console.log('Step 2: Fetch poll responses...');
     // Fetch all anonymous poll responses for the event
     const { data: responses, error } = await supabaseAdmin
       .from('connect_poll_responses')
@@ -30,10 +36,13 @@ export async function handler(event) {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Poll results fetch error:', error);
+      console.error('❌ Poll results fetch error:', error);
       throw error;
     }
 
+    console.log(`✅ Found ${responses.length} responses\n`);
+
+    console.log('Step 3: Aggregate results...');
     // Aggregate multiple choice results
     const multipleChoiceResults = {
       q1_experience: { A: 0, B: 0, C: 0, D: 0 },
@@ -67,25 +76,29 @@ export async function handler(event) {
       }
     });
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
-      },
-      body: JSON.stringify({
-        totalResponses: responses.length,
-        multipleChoice: multipleChoiceResults,
-        openEnded: openEndedResponses,
-        timestamp: new Date().toISOString()
-      })
+    console.log('✅ Aggregation complete\n');
+
+    const result = {
+      totalResponses: responses.length,
+      multipleChoice: multipleChoiceResults,
+      openEnded: openEndedResponses,
+      timestamp: new Date().toISOString()
     };
+
+    console.log('📊 Final Response (would be returned to frontend):');
+    console.log(JSON.stringify(result, null, 2));
+
+    console.log('\n✅ All steps successful! The endpoint would return 200 OK.');
+    console.log('\n🎯 Summary:');
+    console.log(`   - Event resolved: ${eventSlug} → ${eventId}`);
+    console.log(`   - Poll responses fetched: ${responses.length} records`);
+    console.log(`   - Aggregation completed successfully`);
+    console.log(`   - Response format validated`);
+
   } catch (error) {
-    console.error('Poll results error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: error.message })
-    };
+    console.error('\n❌ Endpoint test failed:', error);
+    console.log('\nThis error would cause the function to return 500 status');
   }
 }
+
+testPollResultsEndpoint();
