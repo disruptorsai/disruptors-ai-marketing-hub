@@ -105,6 +105,7 @@ const ConnectPoll = lazyWithRetry(() => import('./connect/Poll.jsx'));
 const ConnectSuccess = lazyWithRetry(() => import('./connect/Success.jsx'));
 const ConnectScanner = lazyWithRetry(() => import('./connect/Scanner.jsx'));
 const ConnectItinerary = lazyWithRetry(() => import('./connect/Itinerary.jsx'));
+const ConnectResults = lazyWithRetry(() => import('./connect/Results.jsx'));
 
 // Work case studies - lazy loaded with retry
 const WorkSaasContentEngine = lazyWithRetry(() => import('./work-saas-content-engine.jsx'));
@@ -328,6 +329,7 @@ function PagesContent() {
                 <Route path="/connectqr1/success" element={<ConnectSuccess />} />
                 <Route path="/connectqr1/scan" element={<ConnectScanner />} />
                 <Route path="/connectqr1/itinerary" element={<ConnectItinerary />} />
+                <Route path="/connectqr1/results" element={<ConnectResults />} />
 
                 {/* All other routes wrapped in Layout with header/footer */}
                 <Route path="*" element={
