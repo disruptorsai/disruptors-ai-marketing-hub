@@ -37,6 +37,12 @@ export default function ConnectIntake() {
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
 
+    // At least phone OR email is required (database constraint)
+    if (!formData.phone.trim() && !formData.email.trim()) {
+      newErrors.phone = 'Either phone or email is required';
+      newErrors.email = 'Either phone or email is required';
+    }
+
     // Phone validation (optional but must be valid if provided)
     const phoneRegex = /^[\d\s\-\+\(\)]+$/;
     if (formData.phone && !phoneRegex.test(formData.phone)) {
@@ -214,7 +220,7 @@ export default function ConnectIntake() {
                 transition={{ delay: 0.7 }}
               >
                 <Label htmlFor="phone" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
-                  Phone Number (Optional)
+                  Phone Number
                 </Label>
                 <Input
                   id="phone"
@@ -235,7 +241,7 @@ export default function ConnectIntake() {
                 transition={{ delay: 0.8 }}
               >
                 <Label htmlFor="email" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
-                  Email (Optional)
+                  Email
                 </Label>
                 <Input
                   id="email"
@@ -250,6 +256,11 @@ export default function ConnectIntake() {
                 )}
               </motion.div>
             </div>
+
+            {/* Help text for contact info */}
+            <p className="text-gray-400 text-sm md:text-base -mt-2 md:-mt-4 text-center">
+              * Please provide either a phone number or email address
+            </p>
 
             {/* Company & Role */}
             <div className="grid md:grid-cols-2 gap-4 md:gap-6">
