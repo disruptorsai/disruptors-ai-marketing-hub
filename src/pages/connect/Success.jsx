@@ -8,8 +8,7 @@ import WebsiteCTA from '@/components/connect/WebsiteCTA';
 import {
   Calendar,
   CheckCircle2,
-  ArrowRight,
-  BarChart3
+  ArrowRight
 } from 'lucide-react';
 
 export default function ConnectSuccess() {
@@ -151,60 +150,6 @@ export default function ConnectSuccess() {
               <span className="text-cyan-400 font-semibold text-xl">
                 your best idea is one conversation away.
               </span>
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Poll Results - Secondary CTA */}
-      <section className="relative py-16 bg-gradient-to-b from-gray-900 to-[#0B0B0F]">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-magenta-400/10 border border-magenta-400/30 rounded-full mb-4">
-              <BarChart3 className="w-5 h-5 text-magenta-400" />
-              <span className="text-magenta-400 font-semibold">Live Results</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              See How Others Voted
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Check out the live poll results and see how your peers are thinking about AI
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <Button
-              onClick={() => navigate('/connectqr1/results')}
-              className="w-full max-w-2xl mx-auto block px-12 py-8 text-xl bg-gradient-to-r from-magenta-500 to-magenta-400 hover:from-magenta-600 hover:to-magenta-500 text-white font-bold shadow-2xl hover:shadow-magenta-500/50 transition-all"
-            >
-              <div className="flex items-center justify-center gap-3">
-                <BarChart3 className="w-6 h-6" />
-                <span>View Live Poll Results</span>
-                <ArrowRight className="w-6 h-6" />
-              </div>
-            </Button>
-          </motion.div>
-
-          {/* Stats Preview */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-12 bg-magenta-400/10 border border-magenta-400/30 rounded-xl p-8 text-center max-w-3xl mx-auto"
-          >
-            <p className="text-white text-lg leading-relaxed">
-              See real-time results from tonight's attendees and discover what your community thinks about AI
             </p>
           </motion.div>
         </div>
