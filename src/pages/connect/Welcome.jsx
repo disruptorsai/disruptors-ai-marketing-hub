@@ -36,14 +36,14 @@ export default function ConnectWelcome() {
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-center xl:text-left space-y-6 md:space-y-8"
+            className="text-center space-y-6 md:space-y-8"
           >
             {/* Golden Eye Banner Logo */}
-            <div className="flex justify-center xl:justify-start">
+            <div className="flex justify-center">
               <motion.img
                 src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
                 alt="Disruptors AI"
-                className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto object-contain drop-shadow-2xl"
+                className="h-24 sm:h-28 md:h-36 lg:h-48 w-auto object-contain drop-shadow-2xl"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -79,13 +79,13 @@ export default function ConnectWelcome() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="inline-flex items-center gap-3 md:gap-4 bg-black/40 border border-[#FFD700]/20 rounded-2xl px-4 sm:px-6 py-3 md:py-4 backdrop-blur-sm"
+              className="inline-flex items-center gap-4 md:gap-6 bg-black/40 border-2 border-[#FFD700]/30 rounded-2xl px-6 sm:px-8 py-5 md:py-7 backdrop-blur-sm"
             >
-              <Wifi className="w-5 h-5 md:w-6 md:h-6 text-[#FFD700] flex-shrink-0" />
+              <Wifi className="w-10 h-10 md:w-12 md:h-12 text-[#FFD700] flex-shrink-0" />
               <div className="text-left">
-                <div className="text-xs text-gray-500 uppercase tracking-wider">Wi-Fi Network</div>
-                <div className="text-base md:text-lg font-semibold text-white">DisruptorsEventHall</div>
-                <div className="text-xs sm:text-sm text-gray-400">Password: <span className="text-[#FFD700]">Disrupt2025</span></div>
+                <div className="text-sm md:text-base text-gray-400 uppercase tracking-wider font-semibold">Wi-Fi Network</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">DisruptorsEventHall</div>
+                <div className="text-lg md:text-xl text-gray-300 mt-1">Password: <span className="text-[#FFD700] font-semibold">Disrupt2025</span></div>
               </div>
             </motion.div>
           </motion.div>

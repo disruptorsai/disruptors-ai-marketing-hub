@@ -108,6 +108,7 @@ const ConnectPoll = lazyWithRetry(() => import('./connect/Poll.jsx'));
 const ConnectSuccess = lazyWithRetry(() => import('./connect/Success.jsx'));
 const ConnectScanner = lazyWithRetry(() => import('./connect/Scanner.jsx'));
 const ConnectItinerary = lazyWithRetry(() => import('./connect/Itinerary.jsx'));
+const ConnectResults = lazyWithRetry(() => import('./connect/Results.jsx'));
 
 // Work case studies - lazy loaded with retry
 const WorkSaasContentEngine = lazyWithRetry(() => import('./work-saas-content-engine.jsx'));
@@ -327,12 +328,13 @@ function PagesContent() {
         <Suspense fallback={<PageLoader />}>
             <Routes>
                 {/* Disruptors Connect (Kiosk check-in system) - Standalone pages without header/footer */}
-                <Route path="/eventqr" element={<ConnectWelcome />} />
-                <Route path="/eventqr/checkin" element={<ConnectIntake />} />
-                <Route path="/eventqr/poll" element={<ConnectPoll />} />
-                <Route path="/eventqr/success" element={<ConnectSuccess />} />
-                <Route path="/eventqr/scan" element={<ConnectScanner />} />
-                <Route path="/eventqr/itinerary" element={<ConnectItinerary />} />
+                <Route path="/connectqr1" element={<ConnectWelcome />} />
+                <Route path="/connectqr1/checkin" element={<ConnectIntake />} />
+                <Route path="/connectqr1/poll" element={<ConnectPoll />} />
+                <Route path="/connectqr1/success" element={<ConnectSuccess />} />
+                <Route path="/connectqr1/scan" element={<ConnectScanner />} />
+                <Route path="/connectqr1/itinerary" element={<ConnectItinerary />} />
+                <Route path="/connectqr1/results" element={<ConnectResults />} />
 
                 {/* All other routes wrapped in Layout with header/footer */}
                 <Route path="*" element={

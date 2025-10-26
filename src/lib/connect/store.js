@@ -61,6 +61,10 @@ export const useConnectStore = create(
       partialize: (state) => ({
         eventId: state.eventId,
         kioskId: state.kioskId,
+        sessionId: state.sessionId,
+        contact: state.contact,
+        attendance: state.attendance,
+        pollAnswers: state.pollAnswers,
         pendingActions: state.pendingActions
       })
     }

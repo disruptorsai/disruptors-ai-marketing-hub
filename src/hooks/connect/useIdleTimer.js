@@ -21,7 +21,7 @@ export function useIdleTimer(timeout = 20000, onIdle) {
         onIdle();
       } else {
         // Default: return to welcome
-        navigate('/connect');
+        navigate('/connectqr1');
       }
     }, timeout);
   }, [timeout, onIdle, navigate]);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -7,11 +7,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useConnectStore } from '@/lib/connect/store';
-import { useIdleTimer } from '@/hooks/connect/useIdleTimer';
 
 export default function ConnectIntake() {
   const navigate = useNavigate();
-  const { sessionId, eventId, kioskId, setContact } = useConnectStore();
+  const { sessionId, eventId, kioskId, setContact, startSession } = useConnectStore();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,23 +23,33 @@ export default function ConnectIntake() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Auto-return to welcome after 20s of inactivity
-  useIdleTimer(20000);
+  // Start session when component mounts
+  useEffect(() => {
+    if (!sessionId) {
+      startSession();
+    }
+  }, [sessionId, startSession]);
 
   const validate = () => {
     const newErrors = {};
 
+    // Only first and last name are required
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
 
-    // Basic phone validation
+    // At least phone OR email is required (database constraint)
+    if (!formData.phone.trim() && !formData.email.trim()) {
+      newErrors.phone = 'Either phone or email is required';
+      newErrors.email = 'Either phone or email is required';
+    }
+
+    // Phone validation (optional but must be valid if provided)
     const phoneRegex = /^[\d\s\-\+\(\)]+$/;
     if (formData.phone && !phoneRegex.test(formData.phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
-    // Basic email validation if provided
+    // Email validation (optional but must be valid if provided)
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
@@ -86,7 +95,7 @@ export default function ConnectIntake() {
 
       if (response.ok) {
         setContact(data);
-        navigate('/eventqr/poll');
+        navigate('/connectqr1/poll');
       } else {
         setErrors({ submit: data.error || 'Check-in failed. Please try again.' });
       }
@@ -117,7 +126,7 @@ export default function ConnectIntake() {
       <div className="relative z-10 bg-black/40 border-b border-[#FFD700]/20 p-4 md:p-6 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Button
-            onClick={() => navigate('/eventqr')}
+            onClick={() => navigate('/connectqr1')}
             variant="ghost"
             className="text-gray-400 hover:text-[#FFD700] hover:bg-[#FFD700]/10 h-12 px-4 md:px-6 text-base md:text-lg"
           >
@@ -211,7 +220,7 @@ export default function ConnectIntake() {
                 transition={{ delay: 0.7 }}
               >
                 <Label htmlFor="phone" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
-                  Phone Number *
+                  Phone Number
                 </Label>
                 <Input
                   id="phone"
@@ -232,7 +241,7 @@ export default function ConnectIntake() {
                 transition={{ delay: 0.8 }}
               >
                 <Label htmlFor="email" className="text-white text-lg md:text-xl mb-2 md:mb-3 block">
-                  Email (Optional)
+                  Email
                 </Label>
                 <Input
                   id="email"
@@ -247,6 +256,11 @@ export default function ConnectIntake() {
                 )}
               </motion.div>
             </div>
+
+            {/* Help text for contact info */}
+            <p className="text-gray-400 text-sm md:text-base -mt-2 md:-mt-4 text-center">
+              * Please provide either a phone number or email address
+            </p>
 
             {/* Company & Role */}
             <div className="grid md:grid-cols-2 gap-4 md:gap-6">
