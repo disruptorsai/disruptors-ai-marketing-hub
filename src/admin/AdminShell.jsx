@@ -24,7 +24,9 @@ import {
   Target,
   BarChart3,
   Newspaper,
-  Download
+  Download,
+  Calendar,
+  Database
 } from 'lucide-react'
 
 export default function AdminShell() {
@@ -36,7 +38,9 @@ export default function AdminShell() {
     { name: 'Overview', href: '/admin/secret/overview', icon: LayoutDashboard },
     { name: 'Blog Management', href: '/admin/secret/blog-management', icon: Newspaper },
     { name: 'Content', href: '/admin/secret/content', icon: FileText },
+    { name: 'Data Manager', href: '/admin/secret/data-manager', icon: Database },
     { name: 'Lead Magnets', href: '/admin/secret/lead-magnets', icon: Download },
+    { name: 'Event Submissions', href: '/admin/secret/submissions', icon: Calendar },
     { name: 'SEO Suite', href: '/admin/secret/seo-suite', icon: Target },
     { name: 'SEO Audit Tool', href: '/admin/secret/seo-audit-tool', icon: BarChart3 },
     { name: 'Team', href: '/admin/secret/team', icon: Users },

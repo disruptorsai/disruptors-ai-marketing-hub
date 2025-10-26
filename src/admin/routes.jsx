@@ -25,6 +25,8 @@ const SEOSuite = React.lazy(() => import('./modules/SEOSuite'))
 const SEOAuditTool = React.lazy(() => import('./modules/SEOAuditTool'))
 const DisruptorsTools = React.lazy(() => import('./modules/DisruptorsTools'))
 const LeadMagnetManager = React.lazy(() => import('./modules/LeadMagnetManager'))
+const EventSubmissions = React.lazy(() => import('./modules/EventSubmissions'))
+const DataManager = React.lazy(() => import('./modules/DataManager'))
 
 export default function AdminRoutes() {
   return (
@@ -44,6 +46,7 @@ export default function AdminRoutes() {
             <Route path="overview" element={<DashboardOverview />} />
             <Route path="blog-management" element={<BlogManagement />} />
             <Route path="content" element={<ContentManagement />} />
+            <Route path="data-manager" element={<DataManager />} />
             <Route path="team" element={<TeamManagement />} />
             <Route path="media" element={<MediaLibrary />} />
             <Route path="business-brain" element={<BusinessBrainBuilder />} />
@@ -57,6 +60,7 @@ export default function AdminRoutes() {
             <Route path="seo-audit-tool" element={<SEOAuditTool />} />
             <Route path="tools" element={<DisruptorsTools />} />
             <Route path="lead-magnets" element={<LeadMagnetManager />} />
+            <Route path="submissions" element={<EventSubmissions />} />
           </Route>
         </Routes>
       </React.Suspense>
