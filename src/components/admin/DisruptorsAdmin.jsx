@@ -14,13 +14,17 @@ import {
   FileText,
   Smartphone,
   Shield,
-  TrendingUp
+  TrendingUp,
+  Users,
+  ClipboardList
 } from 'lucide-react';
 import DataManager from './DataManager';
 import IntelligentMediaStudio from './IntelligentMediaStudio';
 import SEOKeywordResearch from './SEOKeywordResearch';
 import AdminBlogManager from './AdminBlogManager';
 import PresentationModeControl from './PresentationModeControl';
+import SubmissionsManager from './SubmissionsManager';
+import ChangeRequestsManager from './ChangeRequestsManager';
 
 const DisruptorsAdmin = ({ username, onLogout }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -48,6 +52,20 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       icon: Database,
       description: 'Manage all database tables and records',
       gradient: 'from-emerald-500 via-teal-500 to-cyan-500'
+    },
+    {
+      id: 'submissions',
+      label: 'Submissions',
+      icon: Users,
+      description: 'View all event signups and form submissions',
+      gradient: 'from-violet-500 via-purple-500 to-fuchsia-500'
+    },
+    {
+      id: 'change-requests',
+      label: 'Change Requests',
+      icon: ClipboardList,
+      description: 'Track and manage website change requests',
+      gradient: 'from-indigo-500 via-blue-500 to-purple-500'
     },
     {
       id: 'blog',
@@ -229,7 +247,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         <Tabs defaultValue="database" className="w-full">
 
           {/* Tab Navigation */}
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 gap-2 bg-slate-900/50 border border-white/10 mb-6 p-2 backdrop-blur-sm">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-9 gap-2 bg-slate-900/50 border border-white/10 mb-6 p-2 backdrop-blur-sm">
             {adminTabs.map((tab) => {
               const IconComponent = tab.icon;
               return (
@@ -262,6 +280,16 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
             {/* Database Tab */}
             <TabsContent value="database" className="space-y-4">
               <DataManager />
+            </TabsContent>
+
+            {/* Submissions Manager Tab */}
+            <TabsContent value="submissions" className="space-y-4">
+              <SubmissionsManager />
+            </TabsContent>
+
+            {/* Change Requests Manager Tab */}
+            <TabsContent value="change-requests" className="space-y-4">
+              <ChangeRequestsManager />
             </TabsContent>
 
             {/* Blog Manager Tab */}

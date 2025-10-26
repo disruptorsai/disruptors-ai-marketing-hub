@@ -88,6 +88,9 @@ const KeywordResearch = lazyWithRetry(() => import('./keyword-research.jsx'));
 const CarouselGenerator = lazyWithRetry(() => import('../modules/carousel-generator/CarouselGeneratorUI.jsx'));
 const Tools = lazyWithRetry(() => import('./tools.jsx'));
 
+// Event check-in page - lazy loaded with retry
+const EventCheckin = lazyWithRetry(() => import('./event-checkin.jsx'));
+
 // SEO Audit Tool - lazy loaded with retry
 const ToolsSEOAudit = lazyWithRetry(() => {
     console.log('🔄 [LAZY LOAD] Loading tools-seo-audit.jsx...');
@@ -219,6 +222,8 @@ const PAGES = {
     "carousel-generator": CarouselGenerator,
 
     "tools-seo-audit": ToolsSEOAudit,
+
+    "event-checkin": EventCheckin,
 
     "work-tradeworx-usa": WorkTradeworxUsa,
     

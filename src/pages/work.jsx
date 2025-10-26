@@ -6,19 +6,21 @@ import { Button } from '@/components/ui/button';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 import BentoGrid from '../components/shared/BentoGrid';
+import CaseStudySection from '../components/shared/CaseStudySection';
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
 
 /**
- * Work Portfolio Page
+ * Work Portfolio Page - Rebuilt from scratch
  * Showcases client case studies in a Bento Grid layout
+ * Plus premium healthcare case studies section with detailed metrics
  */
 export default function Work() {
   return (
-      <DynamicBackground pageContext="work" intensity={0.8}>
-        <div className="min-h-screen">
-          {/* Page Title */}
-          <PageTitle title="WORK" />
+    <DynamicBackground pageContext="work" intensity={0.8}>
+      <div className="min-h-screen">
+        {/* Page Title */}
+        <PageTitle title="WORK" />
 
         {/* Hero Section */}
         <BlurSection>
@@ -44,13 +46,18 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* Portfolio Grid */}
+        {/* Portfolio Grid - Existing Case Studies */}
         <BlurSection blurAmount={4}>
           <section className="py-8 sm:py-12">
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <BentoGrid items={caseStudies} />
             </div>
           </section>
+        </BlurSection>
+
+        {/* Healthcare Case Studies Section - NEW */}
+        <BlurSection blurAmount={3}>
+          <CaseStudySection />
         </BlurSection>
 
         {/* CTA Section */}

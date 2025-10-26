@@ -2,15 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 
 const MatrixLogin = ({ onLogin, onClose }) => {
-  const [stage, setStage] = useState('loading'); // loading, username, password, success, denied
+  const [stage, setStage] = useState('loading'); // loading, username, success, denied
   const [currentText, setCurrentText] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [isMuted, setIsMuted] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const videoRef = useRef(null);
   const audioRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Allowed admin names
+  const ALLOWED_NAMES = ['josh', 'tyler', 'carson', 'will', 'kyle'];
 
   const digitalMarketingFacts = [
     'AI-powered chatbots handle 85% of customer interactions without human intervention',
@@ -90,39 +92,30 @@ const MatrixLogin = ({ onLogin, onClose }) => {
     }
   }, [stage]);
 
-  const handleUsernameSubmit = (e) => {
+  const handleUsernameSubmit = async (e) => {
     e.preventDefault();
-    if (username.trim()) {
-      setCurrentText(prev => prev + username + '\n\nACCESS VERIFICATION REQUIRED\nENTER AUTHORIZATION CODE:\n');
-      setStage('password');
-      setUsername(username.trim());
-      setTimeout(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
-      }, 100);
-    }
-  };
+    const enteredName = username.trim().toLowerCase();
 
-  const handlePasswordSubmit = async (e) => {
-    e.preventDefault();
-    if (password === 'DMadmin') {
-      setCurrentText(prev => prev + '•'.repeat(password.length) + '\n\nACCESS GRANTED\nCREATING SECURE SESSION...\n');
+    if (!enteredName) return;
+
+    // Check if name is in allowed list
+    if (ALLOWED_NAMES.includes(enteredName)) {
+      setCurrentText(prev => prev + username + '\n\nACCESS GRANTED\nIDENTITY VERIFIED\nCREATING SECURE SESSION...\n');
       setStage('success');
 
       try {
         // Create admin session in Supabase (dynamically import for code splitting)
         const { supabaseMediaStorage } = await import('@/lib/supabase-media-storage');
         const sessionData = await supabaseMediaStorage.createAdminSession(
-          username,
+          enteredName,
           null, // IP will be detected server-side
           navigator.userAgent
         );
 
-        setCurrentText(prev => prev + 'SESSION ESTABLISHED\nWELCOME TO THE SYSTEM, ' + username.toUpperCase() + '\nINITIALIZING ADMIN INTERFACE...\n');
+        setCurrentText(prev => prev + 'SESSION ESTABLISHED\nWELCOME TO THE SYSTEM, ' + enteredName.toUpperCase() + '\nINITIALIZING ADMIN INTERFACE...\n');
 
         setTimeout(() => {
-          onLogin(username, sessionData);
+          onLogin(enteredName, sessionData);
         }, 2000);
 
       } catch (error) {
@@ -130,28 +123,19 @@ const MatrixLogin = ({ onLogin, onClose }) => {
         setCurrentText(prev => prev + 'SESSION ERROR\nFALLBACK AUTHENTICATION ACTIVE\nINITIALIZING ADMIN INTERFACE...\n');
 
         setTimeout(() => {
-          onLogin(username, null); // Login without session
+          onLogin(enteredName, null); // Login without session
         }, 2000);
       }
-    } else if (password === 'nexus') {
-      // New Admin Nexus system access
-      setCurrentText(prev => prev + '•'.repeat(password.length) + '\n\nADMIN NEXUS ACCESS\nINITIATING NEURAL INTERFACE...\nREDIRECTING TO COMMAND CENTER...\n');
-      setStage('success');
-
-      // Store admin nexus session
-      sessionStorage.setItem('admin-nexus-authenticated', 'true');
-
-      setTimeout(() => {
-        window.location.href = '/admin/secret';
-      }, 1500);
     } else {
-      setCurrentText(prev => prev + '•'.repeat(password.length) + '\n\nACCESS DENIED\nINVALID AUTHORIZATION CODE\n\nCONNECTION TERMINATED\n');
+      // Name not in allowed list
+      setCurrentText(prev => prev + username + '\n\nACCESS DENIED\nIDENTITY NOT RECOGNIZED\nUNAUTHORIZED ACCESS ATTEMPT LOGGED\n\nCONNECTION TERMINATED\n');
       setStage('denied');
       setTimeout(() => {
         onClose();
       }, 3000);
     }
   };
+
 
   const handleKeyPress = (e) => {
     if (e.key === 'Escape') {
@@ -247,25 +231,6 @@ const MatrixLogin = ({ onLogin, onClose }) => {
                     autoComplete="off"
                     spellCheck="false"
                     maxLength={20}
-                  />
-                  {showCursor && <span className="text-blue-400 animate-pulse">█</span>}
-                </div>
-              </form>
-            )}
-
-            {stage === 'password' && (
-              <form onSubmit={handlePasswordSubmit} className="mt-4">
-                <div className="flex items-center">
-                  <span className="text-blue-400">{'>'} </span>
-                  <input
-                    ref={inputRef}
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="bg-transparent border-none outline-none text-white font-mono flex-1 ml-2 focus:ring-0"
-                    autoComplete="off"
-                    spellCheck="false"
-                    style={{ WebkitTextSecurity: 'disc' }}
                   />
                   {showCursor && <span className="text-blue-400 animate-pulse">█</span>}
                 </div>
