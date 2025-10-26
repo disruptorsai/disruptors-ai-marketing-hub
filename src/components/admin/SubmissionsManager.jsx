@@ -74,21 +74,66 @@ const SubmissionsManager = () => {
 
       if (accessesError) throw accessesError;
 
-      // Load event check-ins
+      // Load event check-ins (new survey system)
       const { data: checkins, error: checkinsError } = await supabaseAdmin
         .from('event_checkins')
         .select('*')
         .order('checked_in_at', { ascending: false });
 
       if (checkinsError && checkinsError.code !== 'PGRST116') {
-        // Ignore table not found error, just log it
         console.warn('Event check-ins table not found - migration may not be applied yet');
       }
+
+      // Load kiosk check-ins (existing Disruptors Connect data)
+      const { data: kioskCheckins, error: kioskError } = await supabaseAdmin
+        .from('connect_attendances')
+        .select(`
+          *,
+          connect_contacts (
+            id,
+            first_name,
+            last_name,
+            email,
+            phone,
+            company,
+            role,
+            consent_feedback,
+            consent_sms
+          )
+        `)
+        .order('checked_in_at', { ascending: false });
+
+      if (kioskError && kioskError.code !== 'PGRST116') {
+        console.warn('Kiosk check-ins table not found');
+      }
+
+      // Combine both datasets
+      const allCheckins = [
+        ...(checkins || []).map(c => ({ ...c, source: 'survey' })),
+        ...(kioskCheckins || []).map(k => ({
+          id: k.id,
+          full_name: k.connect_contacts ? `${k.connect_contacts.first_name} ${k.connect_contacts.last_name}` : 'N/A',
+          email: k.connect_contacts?.email || 'N/A',
+          company: k.connect_contacts?.company,
+          phone: k.connect_contacts?.phone,
+          job_title: k.connect_contacts?.role,
+          event_name: k.event_id,
+          checked_in_at: k.checked_in_at,
+          survey_responses: null,
+          referral_source: 'Kiosk',
+          notes: null,
+          created_at: k.created_at,
+          updated_at: k.updated_at,
+          source: 'kiosk',
+          consent_feedback: k.connect_contacts?.consent_feedback,
+          consent_sms: k.connect_contacts?.consent_sms
+        }))
+      ].sort((a, b) => new Date(b.checked_in_at) - new Date(a.checked_in_at));
 
       setLeadCaptures(captures || []);
       setContactSubmissions(contacts || []);
       setLeadAccesses(accesses || []);
-      setEventCheckins(checkins || []);
+      setEventCheckins(allCheckins);
 
       // Calculate stats
       const totalLeads = (captures || []).length;
@@ -99,7 +144,7 @@ const SubmissionsManager = () => {
         totalLeads,
         totalContacts: (contacts || []).length,
         totalAccesses,
-        totalEventCheckins: (checkins || []).length,
+        totalEventCheckins: allCheckins.length,
         conversionRate
       });
 
@@ -424,6 +469,7 @@ const SubmissionsManager = () => {
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-white/10">
+                <th className="text-left p-3 text-white/70 font-medium">Source</th>
                 <th className="text-left p-3 text-white/70 font-medium">Name</th>
                 <th className="text-left p-3 text-white/70 font-medium">Email</th>
                 <th className="text-left p-3 text-white/70 font-medium">Company</th>
@@ -438,6 +484,17 @@ const SubmissionsManager = () => {
             <tbody>
               {filteredData.map((checkin) => (
                 <tr key={checkin.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td className="p-3">
+                    <Badge
+                      variant="outline"
+                      className={checkin.source === 'kiosk'
+                        ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
+                        : "bg-green-500/10 text-green-400 border-green-500/30"
+                      }
+                    >
+                      {checkin.source === 'kiosk' ? 'Kiosk' : 'Survey'}
+                    </Badge>
+                  </td>
                   <td className="p-3">
                     <div className="flex items-center space-x-2">
                       <Users className="w-4 h-4 text-amber-400" />
