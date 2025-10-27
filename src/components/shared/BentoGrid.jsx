@@ -83,7 +83,7 @@ const BentoCard = ({ item, index, onExpand }) => {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+              className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500"
             />
             {/* Video Controls Overlay */}
             <button
@@ -113,7 +113,7 @@ const BentoCard = ({ item, index, onExpand }) => {
             <img
               src={item.heroImage || item.logo}
               alt={item.client}
-              className={`w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 ${!imageLoaded ? 'invisible' : ''}`}
+              className={`w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500 ${!imageLoaded ? 'invisible' : ''}`}
               onLoad={() => setImageLoaded(true)}
               onError={() => {
                 setImageError(true);
@@ -125,7 +125,7 @@ const BentoCard = ({ item, index, onExpand }) => {
         )}
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </div>
 
       {/* Content - Always visible */}

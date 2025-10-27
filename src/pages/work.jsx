@@ -46,18 +46,18 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* Portfolio Grid - Existing Case Studies */}
+        {/* Success Stories Section - Detailed Case Studies */}
+        <BlurSection blurAmount={3}>
+          <CaseStudySection />
+        </BlurSection>
+
+        {/* Portfolio Grid - Client Showcase */}
         <BlurSection blurAmount={4}>
           <section className="py-8 sm:py-12">
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <BentoGrid items={caseStudies} />
             </div>
           </section>
-        </BlurSection>
-
-        {/* Healthcare Case Studies Section - NEW */}
-        <BlurSection blurAmount={3}>
-          <CaseStudySection />
         </BlurSection>
 
         {/* CTA Section */}
