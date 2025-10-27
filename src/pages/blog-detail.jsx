@@ -324,36 +324,67 @@ export default function BlogDetail() {
                                     </motion.div>
                                 )}
 
-                                {/* Post Body with Luxury Magazine Typography */}
+                                {/* Post Body with Premium Typography - Optimized Vertical Rhythm */}
                                 <div
-                                    className="blog-content prose prose-xl max-w-none
-                                        prose-headings:text-gray-900 prose-headings:font-black prose-headings:scroll-mt-24 prose-headings:tracking-tight
-                                        prose-h1:text-5xl prose-h1:mb-10 prose-h1:leading-[1.1] prose-h1:bg-gradient-to-r prose-h1:from-yellow-600 prose-h1:via-amber-600 prose-h1:to-yellow-700 prose-h1:bg-clip-text prose-h1:text-transparent prose-h1:drop-shadow-sm
-                                        prose-h2:text-4xl prose-h2:mt-24 prose-h2:mb-10 prose-h2:leading-[1.2] prose-h2:border-b-4 prose-h2:border-yellow-400 prose-h2:pb-6 prose-h2:text-gray-900
-                                        prose-h3:text-3xl prose-h3:mt-20 prose-h3:mb-8 prose-h3:leading-[1.3] prose-h3:text-gray-800
-                                        prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-5 prose-h4:text-gray-800
-                                        prose-h5:text-xl prose-h5:mt-8 prose-h5:mb-4 prose-h5:text-gray-700
-                                        prose-p:text-gray-700 prose-p:leading-[1.8] prose-p:mb-8 prose-p:text-[18px]
-                                        prose-p:first-of-type:text-[20px] prose-p:first-of-type:leading-[1.9] prose-p:first-of-type:font-medium prose-p:first-of-type:text-gray-800
-                                        prose-a:text-amber-700 prose-a:font-bold prose-a:no-underline prose-a:decoration-2 prose-a:underline-offset-4 hover:prose-a:underline hover:prose-a:text-yellow-600 prose-a:transition-all
-                                        prose-strong:text-gray-900 prose-strong:font-black prose-strong:bg-yellow-100/70 prose-strong:px-1.5 prose-strong:rounded-sm
+                                    className="blog-content prose prose-lg max-w-none
+                                        antialiased
+
+                                        /* Headings - Clear Visual Hierarchy */
+                                        prose-headings:text-gray-900 prose-headings:font-bold prose-headings:scroll-mt-24 prose-headings:tracking-tight
+
+                                        /* H1 - Main Title (rarely used in content) */
+                                        prose-h1:text-4xl prose-h1:mb-10 prose-h1:mt-0 prose-h1:leading-[1.2] prose-h1:font-extrabold prose-h1:text-gray-900
+
+                                        /* H2 - Major Sections (2× paragraph spacing before) */
+                                        prose-h2:text-3xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:leading-[1.25] prose-h2:border-b-2 prose-h2:border-gray-200 prose-h2:pb-5 prose-h2:text-gray-900 prose-h2:font-extrabold
+
+                                        /* H3 - Subsections */
+                                        prose-h3:text-2xl prose-h3:mt-16 prose-h3:mb-6 prose-h3:leading-[1.3] prose-h3:text-gray-800 prose-h3:font-bold
+
+                                        /* H4 - Minor Sections */
+                                        prose-h4:text-xl prose-h4:mt-12 prose-h4:mb-4 prose-h4:leading-[1.35] prose-h4:text-gray-800 prose-h4:font-bold
+
+                                        /* H5 - Smallest Headings */
+                                        prose-h5:text-lg prose-h5:mt-10 prose-h5:mb-3 prose-h5:leading-[1.4] prose-h5:text-gray-700 prose-h5:font-semibold
+
+                                        /* Paragraphs - Optimal Reading Experience */
+                                        prose-p:text-gray-700 prose-p:leading-[1.65] prose-p:mb-7 prose-p:text-[19px] prose-p:max-w-[75ch]
+                                        prose-p:first-of-type:text-[21px] prose-p:first-of-type:leading-[1.65] prose-p:first-of-type:font-normal prose-p:first-of-type:text-gray-800
+
+                                        /* Links - Accessible & Clear */
+                                        prose-a:text-blue-600 prose-a:font-semibold prose-a:no-underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:underline hover:prose-a:text-blue-700 prose-a:transition-colors
+
+                                        /* Inline Elements */
+                                        prose-strong:text-gray-900 prose-strong:font-bold
                                         prose-em:text-gray-700 prose-em:italic
-                                        prose-blockquote:border-l-[6px] prose-blockquote:border-yellow-500 prose-blockquote:bg-gradient-to-br prose-blockquote:from-yellow-50/80 prose-blockquote:to-amber-50/80 prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-8 prose-blockquote:italic prose-blockquote:text-gray-800 prose-blockquote:my-14 prose-blockquote:rounded-r-2xl prose-blockquote:shadow-xl prose-blockquote:text-lg prose-blockquote:font-medium
-                                        prose-code:bg-amber-50 prose-code:text-amber-800 prose-code:px-3 prose-code:py-1 prose-code:rounded-md prose-code:text-[16px] prose-code:font-mono prose-code:font-bold prose-code:border prose-code:border-yellow-300/50
-                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-2xl prose-pre:overflow-hidden prose-pre:shadow-2xl prose-pre:my-14 prose-pre:border prose-pre:border-yellow-600/20 prose-pre:ring-2 prose-pre:ring-yellow-500/10
-                                        prose-ul:list-none prose-ul:ml-0 prose-ul:mb-10 prose-ul:space-y-5
-                                        prose-ol:ml-0 prose-ol:mb-10 prose-ol:space-y-5 prose-ol:counter-reset-[item]
-                                        prose-li:text-gray-700 prose-li:leading-[1.8] prose-li:pl-8 prose-li:relative prose-li:text-[18px]
-                                        prose-ul>li:before:content-['▸'] prose-ul>li:before:absolute prose-ul>li:before:left-0 prose-ul>li:before:text-yellow-600 prose-ul>li:before:font-black prose-ul>li:before:text-xl
-                                        prose-ol>li:before:content-[counter(item)'.'] prose-ol>li:before:counter-increment-[item] prose-ol>li:before:absolute prose-ol>li:before:left-0 prose-ol>li:before:text-yellow-600 prose-ol>li:before:font-black prose-ol>li:before:text-lg
+
+                                        /* Blockquotes - Clean & Elegant */
+                                        prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:bg-gray-50 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-5 prose-blockquote:italic prose-blockquote:text-gray-700 prose-blockquote:my-10 prose-blockquote:rounded-r-lg prose-blockquote:text-[19px] prose-blockquote:font-normal prose-blockquote:leading-[1.65]
+
+                                        /* Code - Inline */
+                                        prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[17px] prose-code:font-mono prose-code:font-normal prose-code:border prose-code:border-gray-200
+
+                                        /* Code Blocks */
+                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-hidden prose-pre:shadow-lg prose-pre:my-10 prose-pre:border prose-pre:border-gray-700
+
+                                        /* Lists - Clear & Readable */
+                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-7 prose-ul:space-y-3 prose-ul:max-w-[75ch]
+                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-7 prose-ol:space-y-3 prose-ol:max-w-[75ch]
+                                        prose-li:text-gray-700 prose-li:leading-[1.65] prose-li:text-[19px] prose-li:marker:text-blue-600
                                         prose-li>p:my-2
-                                        prose-img:rounded-2xl prose-img:shadow-2xl prose-img:my-20 prose-img:border-4 prose-img:border-white prose-img:ring-4 prose-img:ring-yellow-400/20
-                                        prose-table:border-collapse prose-table:w-full prose-table:my-14 prose-table:shadow-2xl prose-table:rounded-2xl prose-table:overflow-hidden prose-table:border prose-table:border-gray-300
-                                        prose-thead:bg-gradient-to-r prose-thead:from-yellow-500 prose-thead:via-amber-600 prose-thead:to-yellow-600
-                                        prose-th:p-5 prose-th:text-left prose-th:font-black prose-th:text-gray-900 prose-th:border-b-2 prose-th:border-yellow-400/30 prose-th:text-base prose-th:uppercase prose-th:tracking-wide
-                                        prose-td:border prose-td:border-gray-200 prose-td:p-5 prose-td:text-gray-700 prose-td:text-base
-                                        prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-yellow-50/40 prose-tr:transition-colors
-                                        prose-hr:my-24 prose-hr:border-0 prose-hr:h-1 prose-hr:bg-gradient-to-r prose-hr:from-transparent prose-hr:via-yellow-400 prose-hr:to-transparent prose-hr:rounded-full"
+
+                                        /* Images - Professional Presentation */
+                                        prose-img:rounded-lg prose-img:shadow-lg prose-img:my-14 prose-img:border prose-img:border-gray-200
+
+                                        /* Tables - Clean Data Display */
+                                        prose-table:border-collapse prose-table:w-full prose-table:my-10 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden prose-table:border prose-table:border-gray-300
+                                        prose-thead:bg-gray-100
+                                        prose-th:p-4 prose-th:text-left prose-th:font-bold prose-th:text-gray-900 prose-th:border-b prose-th:border-gray-300 prose-th:text-base prose-th:tracking-normal
+                                        prose-td:border prose-td:border-gray-200 prose-td:p-4 prose-td:text-gray-700 prose-td:text-base
+                                        prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-gray-50 prose-tr:transition-colors
+
+                                        /* Horizontal Rules - Section Dividers */
+                                        prose-hr:my-16 prose-hr:border-0 prose-hr:h-px prose-hr:bg-gray-300"
                                 >
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
