@@ -65,6 +65,9 @@ export function useNavigationPrefetch() {
     }
 
     const handleMouseEnter = (e) => {
+      // Safety check: ensure target is a valid Element before calling closest
+      if (!e.target || typeof e.target.closest !== 'function') return;
+
       const link = e.target.closest('a[href]');
       if (!link) return;
 
@@ -85,6 +88,9 @@ export function useNavigationPrefetch() {
     };
 
     const handleMouseLeave = (e) => {
+      // Safety check: ensure target is a valid Element before calling closest
+      if (!e.target || typeof e.target.closest !== 'function') return;
+
       const link = e.target.closest('a[href]');
       if (!link) return;
 
