@@ -655,9 +655,15 @@ function entityNameToTableName(entityName) {
   // Special mappings for entities that don't follow standard naming
   const specialMappings = {
     'TeamMember': 'team_members',
-    'CaseStudy': 'case_study',
+    'CaseStudy': 'case_studies',  // Fixed: was 'case_study' (singular)
     'Post': 'posts',  // Blog posts table is plural
     'Service': 'services',  // Services table is plural
+    'LeadInteraction': 'lead_interactions',
+    'Testimonial': 'testimonials',
+    'ContactSubmission': 'contact_submissions',
+    'Setting': 'settings',
+    'Profile': 'profiles',
+    'PageView': 'page_views',
     // Add other special mappings as needed
   };
 
