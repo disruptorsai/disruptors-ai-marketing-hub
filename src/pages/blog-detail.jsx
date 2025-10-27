@@ -326,7 +326,7 @@ export default function BlogDetail() {
 
                                 {/* Post Body with Premium Typography - Optimized Vertical Rhythm */}
                                 <div
-                                    className="blog-content prose prose-lg max-w-none
+                                    className="blog-content prose prose-lg max-w-4xl mx-auto
                                         antialiased
 
                                         /* Headings - Clear Visual Hierarchy */
@@ -348,7 +348,7 @@ export default function BlogDetail() {
                                         prose-h5:text-lg prose-h5:mt-10 prose-h5:mb-3 prose-h5:leading-[1.4] prose-h5:text-gray-700 prose-h5:font-semibold
 
                                         /* Paragraphs - Optimal Reading Experience */
-                                        prose-p:text-gray-700 prose-p:leading-[1.65] prose-p:mb-7 prose-p:text-[19px] prose-p:max-w-[75ch]
+                                        prose-p:text-gray-700 prose-p:leading-[1.65] prose-p:mb-7 prose-p:text-[19px]
                                         prose-p:first-of-type:text-[21px] prose-p:first-of-type:leading-[1.65] prose-p:first-of-type:font-normal prose-p:first-of-type:text-gray-800
 
                                         /* Links - Accessible & Clear */
@@ -368,8 +368,8 @@ export default function BlogDetail() {
                                         prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-hidden prose-pre:shadow-lg prose-pre:my-10 prose-pre:border prose-pre:border-gray-700
 
                                         /* Lists - Clear & Readable */
-                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-7 prose-ul:space-y-3 prose-ul:max-w-[75ch]
-                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-7 prose-ol:space-y-3 prose-ol:max-w-[75ch]
+                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-7 prose-ul:space-y-3
+                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-7 prose-ol:space-y-3
                                         prose-li:text-gray-700 prose-li:leading-[1.65] prose-li:text-[19px] prose-li:marker:text-blue-600
                                         prose-li>p:my-2
 
