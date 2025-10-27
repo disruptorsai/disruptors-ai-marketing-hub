@@ -48,65 +48,65 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
   // Display mode
   if (!isEditing) {
     const displayValue = (() => {
-      if (value === null || value === undefined) return <span className="text-green-400/60">—</span>;
+      if (value === null || value === undefined) return <span className="text-slate-400/60">—</span>;
 
       switch (type) {
         case 'boolean':
           return (
-            <Badge variant={value ? 'default' : 'outline'} className="text-xs bg-green-400/20 text-green-400 border-green-400">
+            <Badge variant={value ? 'default' : 'outline'} className="text-xs bg-blue-400/20 text-blue-400 border-blue-400">
               {value ? 'Yes' : 'No'}
             </Badge>
           );
         case 'array':
           return Array.isArray(value) && value.length > 0
-            ? <span className="text-xs text-green-400">{value.join(', ')}</span>
-            : <span className="text-green-400/60">—</span>;
+            ? <span className="text-xs text-slate-300">{value.join(', ')}</span>
+            : <span className="text-slate-400/60">—</span>;
         case 'date':
-          return value ? <span className="text-green-400">{new Date(value).toLocaleDateString()}</span> : <span className="text-green-400/60">—</span>;
+          return value ? <span className="text-slate-300">{new Date(value).toLocaleDateString()}</span> : <span className="text-slate-400/60">—</span>;
         case 'number':
-          return value !== null && value !== undefined ? <span className="text-green-400">{value}</span> : <span className="text-green-400/60">—</span>;
+          return value !== null && value !== undefined ? <span className="text-slate-300">{value}</span> : <span className="text-slate-400/60">—</span>;
         case 'textarea':
           const textValue = typeof value === 'string' ? value : String(value || '');
           return (
-            <div className="line-clamp-2 text-xs text-green-400">
-              {textValue.substring(0, 100) || <span className="text-green-400/60">—</span>}
+            <div className="line-clamp-2 text-xs text-slate-300">
+              {textValue.substring(0, 100) || <span className="text-slate-400/60">—</span>}
             </div>
           );
         case 'image':
           return value ? (
             <div className="flex items-center space-x-2">
               <img src={value} alt="" className="w-8 h-8 object-cover rounded" />
-              <span className="text-xs truncate max-w-[100px] text-green-400">{value}</span>
+              <span className="text-xs truncate max-w-[100px] text-slate-300">{value}</span>
             </div>
-          ) : <span className="text-green-400/60">—</span>;
+          ) : <span className="text-slate-400/60">—</span>;
         default:
           const stringValue = typeof value === 'string' ? value : String(value || '');
-          return <span className="truncate text-green-400">{stringValue}</span>;
+          return <span className="truncate text-slate-300">{stringValue}</span>;
       }
     })();
 
     return (
       <div
-        className="p-2 min-h-[40px] cursor-pointer hover:bg-green-400/20 rounded flex items-center justify-between group transition-colors"
+        className="p-2 min-h-[40px] cursor-pointer hover:bg-blue-400/10 rounded flex items-center justify-between group transition-colors"
         onClick={onStartEdit}
       >
         <div className="flex-1 min-w-0">{displayValue}</div>
-        <Edit2 className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-green-400" />
+        <Edit2 className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400" />
       </div>
     );
   }
 
   // Edit mode
   return (
-    <div className="p-1 border-2 border-green-400 rounded bg-black/50">
+    <div className="p-1 border-2 border-blue-400 rounded bg-slate-900/50">
       {type === 'select' && options ? (
         <Select value={editValue || ''} onValueChange={setEditValue}>
-          <SelectTrigger className="w-full bg-black border-green-400/30 text-green-400">
+          <SelectTrigger className="w-full bg-slate-900 border-slate-700 text-slate-200">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-black border-green-400/30">
+          <SelectContent className="bg-slate-900 border-slate-700">
             {options.map((option) => (
-              <SelectItem key={option} value={option} className="text-green-400">
+              <SelectItem key={option} value={option} className="text-slate-200">
                 {option}
               </SelectItem>
             ))}
@@ -117,17 +117,17 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
           value={editValue || ''}
           onChange={(e) => setEditValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="min-h-[100px] bg-black border-green-400/30 text-green-400 font-mono"
+          className="min-h-[100px] bg-slate-900 border-slate-700 text-slate-200 font-mono"
           autoFocus
         />
       ) : type === 'boolean' ? (
         <Select value={editValue?.toString() || 'false'} onValueChange={(val) => setEditValue(val === 'true')}>
-          <SelectTrigger className="w-full bg-black border-green-400/30 text-green-400">
+          <SelectTrigger className="w-full bg-slate-900 border-slate-700 text-slate-200">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-black border-green-400/30">
-            <SelectItem value="true" className="text-green-400">Yes</SelectItem>
-            <SelectItem value="false" className="text-green-400">No</SelectItem>
+          <SelectContent className="bg-slate-900 border-slate-700">
+            <SelectItem value="true" className="text-slate-200">Yes</SelectItem>
+            <SelectItem value="false" className="text-slate-200">No</SelectItem>
           </SelectContent>
         </Select>
       ) : type === 'date' ? (
@@ -136,7 +136,7 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
           value={editValue || ''}
           onChange={(e) => setEditValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="bg-black border-green-400/30 text-green-400 font-mono"
+          className="bg-slate-900 border-slate-700 text-slate-200 font-mono"
           autoFocus
         />
       ) : type === 'array' ? (
@@ -145,7 +145,7 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
           onChange={(e) => setEditValue(e.target.value.split(',').map(s => s.trim()).filter(Boolean))}
           onKeyDown={handleKeyDown}
           placeholder="Comma-separated values"
-          className="bg-black border-green-400/30 text-green-400 font-mono"
+          className="bg-slate-900 border-slate-700 text-slate-200 font-mono"
           autoFocus
         />
       ) : (
@@ -153,7 +153,7 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
           value={editValue || ''}
           onChange={(e) => setEditValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="bg-black border-green-400/30 text-green-400 font-mono"
+          className="bg-slate-900 border-slate-700 text-slate-200 font-mono"
           autoFocus
         />
       )}
@@ -161,7 +161,7 @@ const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, 
         <Button
           size="sm"
           onClick={handleSave}
-          className="bg-green-400 text-black hover:bg-green-300 h-7 px-2"
+          className="bg-blue-500 text-white hover:bg-blue-600 h-7 px-2"
         >
           <Check className="w-3 h-3" />
         </Button>
@@ -278,11 +278,11 @@ const SpreadsheetEditor = ({
   return (
     <div className="space-y-4">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 bg-black/50 border border-green-400/30 rounded-lg p-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-900/50 border border-slate-800/50 rounded-lg p-4">
         <div className="flex items-center space-x-2">
           <Button
             onClick={handleAddRow}
-            className="bg-green-400 text-black hover:bg-green-300"
+            className="bg-blue-500 text-white hover:bg-blue-600"
             size="sm"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -305,17 +305,17 @@ const SpreadsheetEditor = ({
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-64 bg-black border-green-400/30 text-green-400 font-mono"
+            className="w-64 bg-slate-900 border-slate-700 text-slate-200 font-mono"
           />
-          <Badge variant="outline" className="text-green-400 border-green-400">
+          <Badge variant="outline" className="text-slate-300 border-slate-700">
             {sortedRows.length} rows
           </Badge>
         </div>
       </div>
 
       {/* Column Visibility Toggle */}
-      <details className="bg-black/50 border border-green-400/30 rounded-lg p-4">
-        <summary className="cursor-pointer text-green-400 font-mono text-sm flex items-center">
+      <details className="bg-slate-900/50 border border-slate-800/50 rounded-lg p-4">
+        <summary className="cursor-pointer text-slate-300 font-mono text-sm flex items-center">
           <EyeOff className="w-4 h-4 mr-2" />
           Column Visibility ({visibleColumnsList.length}/{columns.length})
         </summary>
@@ -343,10 +343,10 @@ const SpreadsheetEditor = ({
       )}
 
       {/* Table */}
-      <div className="border border-green-400/30 rounded-lg overflow-hidden bg-black/90">
+      <div className="border border-slate-800/50 rounded-lg overflow-hidden bg-slate-900/90">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-green-400/20 border-b border-green-400/30">
+            <thead className="bg-slate-800/50 border-b border-slate-700/50">
               <tr>
                 <th className="p-2 text-left w-10">
                   <input
@@ -359,13 +359,13 @@ const SpreadsheetEditor = ({
                         setSelectedRows(new Set());
                       }
                     }}
-                    className="rounded border-green-400"
+                    className="rounded border-slate-600"
                   />
                 </th>
                 {visibleColumnsList.map((col) => (
                   <th
                     key={col.key}
-                    className="p-2 text-left text-green-400 font-mono cursor-pointer hover:bg-green-400/20 transition-colors"
+                    className="p-2 text-left text-slate-300 font-mono cursor-pointer hover:bg-slate-700/50 transition-colors"
                     style={{ minWidth: col.minWidth || 100, width: col.width || 'auto' }}
                     onClick={() => handleSort(col.key)}
                   >
@@ -377,20 +377,20 @@ const SpreadsheetEditor = ({
                     </div>
                   </th>
                 ))}
-                <th className="p-2 text-left w-20 text-green-400 font-mono">Actions</th>
+                <th className="p-2 text-left w-20 text-slate-300 font-mono">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-black/70">
+            <tbody className="bg-slate-900/70">
               {isLoading ? (
                 <tr>
                   <td colSpan={visibleColumnsList.length + 2} className="p-8 text-center">
-                    <RefreshCw className="w-6 h-6 animate-spin mx-auto text-green-400" />
-                    <div className="text-green-400 mt-2">Loading...</div>
+                    <RefreshCw className="w-6 h-6 animate-spin mx-auto text-blue-400" />
+                    <div className="text-slate-300 mt-2">Loading...</div>
                   </td>
                 </tr>
               ) : sortedRows.length === 0 ? (
                 <tr>
-                  <td colSpan={visibleColumnsList.length + 2} className="p-8 text-center text-green-400/60">
+                  <td colSpan={visibleColumnsList.length + 2} className="p-8 text-center text-slate-400/60">
                     No data found
                   </td>
                 </tr>
@@ -401,8 +401,8 @@ const SpreadsheetEditor = ({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: rowIndex * 0.02 }}
-                    className={`border-b border-green-400/10 hover:bg-green-400/10 transition-colors ${
-                      selectedRows.has(row.id) ? 'bg-green-400/15' : 'bg-black/50'
+                    className={`border-b border-slate-800/30 hover:bg-slate-800/50 transition-colors ${
+                      selectedRows.has(row.id) ? 'bg-blue-500/10' : 'bg-slate-900/50'
                     }`}
                   >
                     <td className="p-2">
@@ -420,7 +420,7 @@ const SpreadsheetEditor = ({
                             return next;
                           });
                         }}
-                        className="rounded border-green-400"
+                        className="rounded border-slate-600"
                       />
                     </td>
                     {visibleColumnsList.map((col) => (
@@ -461,7 +461,7 @@ const SpreadsheetEditor = ({
       </div>
 
       {/* Footer Stats */}
-      <div className="flex items-center justify-between text-xs text-green-400/60 font-mono">
+      <div className="flex items-center justify-between text-xs text-slate-400/60 font-mono">
         <div>Table: {tableName}</div>
         <div>
           Showing {sortedRows.length} of {rows.length} rows
