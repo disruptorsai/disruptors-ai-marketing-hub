@@ -22,6 +22,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabaseAdmin } from '@/lib/supabase-client';
+import * as XLSX from 'xlsx';
 
 /**
  * SubmissionsManager Component
@@ -192,6 +193,88 @@ const SubmissionsManager = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const exportToXLSX = (data, filename) => {
+    if (!data || data.length === 0) {
+      alert('No data to export');
+      return;
+    }
+
+    // Flatten the data structure for Excel
+    const flattenedData = data.map(row => {
+      const flattened = {
+        'Source': row.source === 'kiosk' ? 'Kiosk' : 'Survey',
+        'Full Name': row.full_name || '',
+        'Email': row.email || '',
+        'Company': row.company || '',
+        'Phone': row.phone || '',
+        'Job Title': row.job_title || '',
+        'Event Name': row.event_name || '',
+        'Checked In At': row.checked_in_at ? new Date(row.checked_in_at).toLocaleString() : '',
+        'Referral Source': row.referral_source || '',
+        'Notes': row.notes || '',
+      };
+
+      // Add survey responses if they exist
+      if (row.survey_responses && typeof row.survey_responses === 'object') {
+        flattened['Survey - What brings you to this event?'] = row.survey_responses.primary_interest || '';
+        flattened['Survey - Biggest business challenges'] = row.survey_responses.current_challenges || '';
+        flattened['Survey - Services interested in'] = Array.isArray(row.survey_responses.services_interested)
+          ? row.survey_responses.services_interested.join(', ')
+          : '';
+        flattened['Survey - Follow-up interest'] = row.survey_responses.follow_up_interest || '';
+        flattened['Survey - Additional comments'] = row.survey_responses.additional_comments || '';
+      } else {
+        flattened['Survey - What brings you to this event?'] = '';
+        flattened['Survey - Biggest business challenges'] = '';
+        flattened['Survey - Services interested in'] = '';
+        flattened['Survey - Follow-up interest'] = '';
+        flattened['Survey - Additional comments'] = '';
+      }
+
+      // Add consent fields for kiosk entries
+      if (row.source === 'kiosk') {
+        flattened['Consent - Feedback'] = row.consent_feedback ? 'Yes' : 'No';
+        flattened['Consent - SMS'] = row.consent_sms ? 'Yes' : 'No';
+      }
+
+      return flattened;
+    });
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
+
+    // Set column widths
+    const columnWidths = [
+      { wch: 10 },  // Source
+      { wch: 20 },  // Full Name
+      { wch: 30 },  // Email
+      { wch: 20 },  // Company
+      { wch: 15 },  // Phone
+      { wch: 20 },  // Job Title
+      { wch: 20 },  // Event Name
+      { wch: 20 },  // Checked In At
+      { wch: 20 },  // Referral Source
+      { wch: 30 },  // Notes
+      { wch: 40 },  // Survey - Primary Interest
+      { wch: 40 },  // Survey - Challenges
+      { wch: 40 },  // Survey - Services
+      { wch: 15 },  // Survey - Follow-up
+      { wch: 40 },  // Survey - Comments
+    ];
+    worksheet['!cols'] = columnWidths;
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Event Check-ins');
+
+    // Generate filename with date
+    const dateStr = new Date().toISOString().split('T')[0];
+    const fullFilename = `${filename}_${dateStr}.xlsx`;
+
+    // Download
+    XLSX.writeFile(workbook, fullFilename);
   };
 
   const filterData = (data, emailField = 'email') => {
@@ -455,13 +538,13 @@ const SubmissionsManager = () => {
             Event Check-ins ({filteredData.length})
           </h3>
           <Button
-            onClick={() => exportToCSV(eventCheckins, 'event_checkins')}
+            onClick={() => exportToXLSX(eventCheckins, 'event_checkins')}
             variant="outline"
             size="sm"
             className="bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20"
           >
             <Download className="w-4 h-4 mr-2" />
-            Export CSV
+            Export to Excel
           </Button>
         </div>
 
@@ -557,27 +640,88 @@ const SubmissionsManager = () => {
               {filteredData.map((checkin) => (
                 <Card key={checkin.id} className="bg-white/5 border-white/10">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-white text-sm">
-                      {checkin.full_name} ({checkin.email})
+                    <CardTitle className="text-white text-sm flex items-center justify-between">
+                      <span>{checkin.full_name} ({checkin.email})</span>
+                      <Badge
+                        variant="outline"
+                        className={checkin.source === 'kiosk'
+                          ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
+                          : "bg-green-500/10 text-green-400 border-green-500/30"
+                        }
+                      >
+                        {checkin.source === 'kiosk' ? 'Kiosk' : 'Survey'}
+                      </Badge>
                     </CardTitle>
+                    <CardDescription className="text-white/50 text-xs">
+                      {checkin.company && `${checkin.company} • `}
+                      {checkin.job_title && `${checkin.job_title} • `}
+                      Checked in: {formatDate(checkin.checked_in_at)}
+                    </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-sm">
-                    {checkin.survey_responses?.current_challenges && (
-                      <div>
-                        <span className="text-white/70 font-medium">Current Challenges: </span>
-                        <span className="text-white/90">{checkin.survey_responses.current_challenges}</span>
-                      </div>
-                    )}
-                    {checkin.survey_responses?.additional_comments && (
-                      <div>
-                        <span className="text-white/70 font-medium">Comments: </span>
-                        <span className="text-white/90">{checkin.survey_responses.additional_comments}</span>
+                  <CardContent className="space-y-3 text-sm">
+                    {/* Only show survey responses if source is survey and responses exist */}
+                    {checkin.source === 'survey' && checkin.survey_responses ? (
+                      <>
+                        {checkin.survey_responses?.primary_interest && (
+                          <div className="p-3 bg-white/5 rounded-lg">
+                            <span className="text-emerald-400 font-medium block mb-1">What brings you to this event?</span>
+                            <span className="text-white/90">{checkin.survey_responses.primary_interest}</span>
+                          </div>
+                        )}
+                        {checkin.survey_responses?.current_challenges && (
+                          <div className="p-3 bg-white/5 rounded-lg">
+                            <span className="text-blue-400 font-medium block mb-1">Biggest business challenges:</span>
+                            <span className="text-white/90">{checkin.survey_responses.current_challenges}</span>
+                          </div>
+                        )}
+                        {checkin.survey_responses?.services_interested && Array.isArray(checkin.survey_responses.services_interested) && checkin.survey_responses.services_interested.length > 0 && (
+                          <div className="p-3 bg-white/5 rounded-lg">
+                            <span className="text-purple-400 font-medium block mb-2">Services interested in:</span>
+                            <div className="flex flex-wrap gap-1">
+                              {checkin.survey_responses.services_interested.map((service, idx) => (
+                                <Badge key={idx} variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/30 text-xs">
+                                  {service}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {checkin.survey_responses?.follow_up_interest && (
+                          <div className="p-3 bg-white/5 rounded-lg">
+                            <span className="text-amber-400 font-medium block mb-1">Follow-up consultation:</span>
+                            <Badge className={checkin.survey_responses.follow_up_interest === 'yes'
+                              ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                              : "bg-white/5 text-white/50 border-white/20"
+                            }>
+                              {checkin.survey_responses.follow_up_interest === 'yes' ? 'Yes, Please' : 'Not Right Now'}
+                            </Badge>
+                          </div>
+                        )}
+                        {checkin.survey_responses?.additional_comments && (
+                          <div className="p-3 bg-white/5 rounded-lg">
+                            <span className="text-orange-400 font-medium block mb-1">Additional comments:</span>
+                            <span className="text-white/90">{checkin.survey_responses.additional_comments}</span>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-white/50 text-center py-3">
+                        {checkin.source === 'kiosk'
+                          ? 'Kiosk check-in (no survey data available)'
+                          : 'No survey responses recorded'
+                        }
                       </div>
                     )}
                     {checkin.referral_source && (
-                      <div>
+                      <div className="pt-2 border-t border-white/10">
                         <span className="text-white/70 font-medium">Referral Source: </span>
                         <span className="text-white/90">{checkin.referral_source}</span>
+                      </div>
+                    )}
+                    {checkin.notes && (
+                      <div className="pt-2 border-t border-white/10">
+                        <span className="text-white/70 font-medium">Notes: </span>
+                        <span className="text-white/90">{checkin.notes}</span>
                       </div>
                     )}
                   </CardContent>
