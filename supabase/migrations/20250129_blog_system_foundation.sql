@@ -490,28 +490,34 @@ CREATE POLICY "Service role full access - publishing_rate_tracker" ON publishing
 CREATE POLICY "Service role full access - article_performance_snapshots" ON article_performance_snapshots FOR ALL USING (auth.jwt()->>'role' = 'service_role');
 CREATE POLICY "Service role full access - blog_system_config" ON blog_system_config FOR ALL USING (auth.jwt()->>'role' = 'service_role');
 
--- Admin users can read/write everything
-CREATE POLICY "Admin full access - internal_knowledge" ON internal_knowledge FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin full access - case_studies" ON case_studies FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin full access - methodologies" ON methodologies FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin full access - ai_marketing_tools" ON ai_marketing_tools FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin full access - content_ideas" ON content_ideas FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin full access - blog_drafts" ON blog_drafts FOR ALL USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN ('admin', 'super_admin'))
-);
-CREATE POLICY "Admin read access - published_articles" ON published_articles FOR SELECT USING (
-  EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid())
-);
+-- Admin users can read/write everything (conditional on admin_users table existing)
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'admin_users') THEN
+    -- Admin policies only if admin_users table exists
+    EXECUTE 'CREATE POLICY "Admin full access - internal_knowledge" ON internal_knowledge FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin full access - case_studies" ON case_studies FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin full access - methodologies" ON methodologies FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin full access - ai_marketing_tools" ON ai_marketing_tools FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin full access - content_ideas" ON content_ideas FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin full access - blog_drafts" ON blog_drafts FOR ALL USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid() AND role IN (''admin'', ''super_admin''))
+    )';
+    EXECUTE 'CREATE POLICY "Admin read access - published_articles" ON published_articles FOR SELECT USING (
+      EXISTS (SELECT 1 FROM admin_users WHERE user_id = auth.uid())
+    )';
+  END IF;
+END $$;
 
 -- Public can read published articles and tools (for public display)
 CREATE POLICY "Public read published articles" ON published_articles FOR SELECT USING (status = 'live');
