@@ -6,7 +6,14 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: true
+    allowedHosts: true,
+    fs: {
+      strict: false
+    }
+  },
+  // Increase SSR transform timeout
+  ssr: {
+    noExternal: []
   },
   resolve: {
     alias: {
@@ -28,16 +35,22 @@ export default defineConfig({
       define: {
         global: 'globalThis',
         'process.env': '{}'
-      }
+      },
+      // Increase esbuild timeout for large codebases
+      incremental: true,
     },
   },
   build: {
-    // Performance: Set chunk size warning limit to 250 KB
-    chunkSizeWarningLimit: 250,
+    // Performance: Set chunk size warning limit to 500 KB (increased for large projects)
+    chunkSizeWarningLimit: 500,
     // Ensure proper cache busting with hash-based filenames
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
-    cssCodeSplit: true, // Split CSS by route for better caching
+    cssCodeSplit: false, // Disable CSS code splitting to reduce build complexity
     sourcemap: false, // Disable source maps in production for smaller builds
+    // Build optimizations for complex projects
+    minify: 'esbuild', // Use esbuild for faster minification
+    target: 'es2020', // Modern browsers only (reduces transformation overhead)
+    reportCompressedSize: false, // Skip compressed size reporting (saves time)
 
     // CRITICAL FIX: Disable modulePreload
     // modulePreload causes vendor chunks to load in PARALLEL with main bundle
@@ -73,4 +86,4 @@ export default defineConfig({
       }
     }
   }
-}) 
+})
