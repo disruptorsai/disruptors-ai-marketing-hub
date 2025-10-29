@@ -654,7 +654,20 @@ CREATE TRIGGER update_blog_drafts_updated_at BEFORE UPDATE ON blog_drafts
 -- MIGRATION COMPLETE
 -- ============================================================================
 
--- Add migration record
-INSERT INTO schema_migrations (version, description) VALUES
-  ('20250129_blog_system_foundation', 'Next-Gen Blog System Foundation - Universal Content Mode, QA Pipeline, Publishing Automation')
-ON CONFLICT (version) DO NOTHING;
+-- Create schema_migrations table if it doesn't exist and add migration record
+DO $$
+BEGIN
+  -- Create schema_migrations table if it doesn't exist
+  IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'schema_migrations') THEN
+    CREATE TABLE schema_migrations (
+      version VARCHAR(255) PRIMARY KEY,
+      description TEXT,
+      applied_at TIMESTAMP DEFAULT NOW()
+    );
+  END IF;
+
+  -- Insert migration record
+  INSERT INTO schema_migrations (version, description)
+  VALUES ('20250129_blog_system_foundation', 'Next-Gen Blog System Foundation - Universal Content Mode, QA Pipeline, Publishing Automation')
+  ON CONFLICT (version) DO NOTHING;
+END $$;
