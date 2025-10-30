@@ -36,8 +36,6 @@ export default defineConfig({
         global: 'globalThis',
         'process.env': '{}'
       },
-      // Increase esbuild timeout for large codebases
-      incremental: true,
     },
   },
   // Increase worker threads for faster parallel processing
