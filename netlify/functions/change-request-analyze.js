@@ -12,7 +12,6 @@
 
 import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
-import pdf from 'pdf-parse';
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseServiceKey = process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
@@ -57,6 +56,8 @@ Return ONLY valid JSON array, no other text.`;
  */
 async function parsePdfToText(pdfBuffer) {
   try {
+    // Dynamic import for CommonJS module compatibility
+    const pdf = (await import('pdf-parse')).default;
     const data = await pdf(pdfBuffer);
     return data.text;
   } catch (error) {
