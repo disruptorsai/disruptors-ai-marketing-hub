@@ -56,13 +56,20 @@ Return ONLY valid JSON array, no other text.`;
  */
 async function parsePdfToText(pdfBuffer) {
   try {
+    console.log('PDF buffer length:', pdfBuffer.length);
+    console.log('PDF buffer type:', typeof pdfBuffer);
+
     // Dynamic import for CommonJS module compatibility
     const pdf = (await import('pdf-parse')).default;
+    console.log('pdf-parse module loaded:', typeof pdf);
+
     const data = await pdf(pdfBuffer);
+    console.log('PDF parsed successfully, text length:', data.text?.length || 0);
     return data.text;
   } catch (error) {
-    console.error('PDF parsing error:', error);
-    throw new Error('Failed to parse PDF document');
+    console.error('PDF parsing detailed error:', error);
+    console.error('Error stack:', error.stack);
+    throw new Error(`Failed to parse PDF document: ${error.message}`);
   }
 }
 
