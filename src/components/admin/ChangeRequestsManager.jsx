@@ -23,7 +23,10 @@ import {
   Upload,
   FileImage,
   Image as ImageIcon,
-  Loader2
+  Loader2,
+  Cpu,
+  Brain,
+  Play
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -500,6 +503,111 @@ const ChangeRequestsManager = () => {
     );
   };
 
+  const getAutomationBadge = (feasibility, confidence) => {
+    const config = {
+      fully_automatable: {
+        color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        icon: Cpu,
+        label: 'Fully Automatable'
+      },
+      partially_automatable: {
+        color: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+        icon: Brain,
+        label: 'Partially Automatable'
+      },
+      manual_required: {
+        color: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        icon: User,
+        label: 'Manual Required'
+      },
+      external_required: {
+        color: 'bg-red-500/10 text-red-400 border-red-500/30',
+        icon: AlertCircle,
+        label: 'External Required'
+      },
+      not_analyzed: {
+        color: 'bg-slate-500/10 text-slate-400 border-slate-500/30',
+        icon: Clock,
+        label: 'Not Analyzed'
+      }
+    };
+
+    const { color, icon: Icon, label } = config[feasibility] || config.not_analyzed;
+
+    return (
+      <Badge variant="outline" className={color}>
+        <Icon className="w-3 h-3 mr-1" />
+        {label}
+        {confidence && (
+          <span className="ml-1 text-xs opacity-70">
+            ({Math.round(confidence * 100)}%)
+          </span>
+        )}
+      </Badge>
+    );
+  };
+
+  // Analyze automation feasibility for a request
+  const analyzeAutomation = async (requestId) => {
+    try {
+      const response = await fetch('/.netlify/functions/change-request-automation-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requestId })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Analysis failed');
+      }
+
+      // Reload requests to show updated automation status
+      loadRequests();
+
+      return result;
+    } catch (error) {
+      console.error('Automation analysis error:', error);
+      alert(`Analysis failed: ${error.message}`);
+    }
+  };
+
+  // Analyze all pending requests
+  const analyzeAllPending = async () => {
+    const pendingIds = requests
+      .filter(r => r.status === 'pending' && r.automation_feasibility === 'not_analyzed')
+      .map(r => r.id);
+
+    if (pendingIds.length === 0) {
+      alert('No pending requests to analyze');
+      return;
+    }
+
+    if (!confirm(`Analyze ${pendingIds.length} pending request(s)?`)) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/.netlify/functions/change-request-automation-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requestIds: pendingIds })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Batch analysis failed');
+      }
+
+      alert(`Analyzed ${result.analyzed} request(s) successfully!`);
+      loadRequests();
+    } catch (error) {
+      console.error('Batch automation analysis error:', error);
+      alert(`Batch analysis failed: ${error.message}`);
+    }
+  };
+
   const filteredRequests = filterRequests();
 
   if (loading) {
@@ -530,6 +638,15 @@ const ChangeRequestsManager = () => {
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
+          </Button>
+          <Button
+            onClick={analyzeAllPending}
+            variant="outline"
+            size="sm"
+            className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20"
+          >
+            <Brain className="w-4 h-4 mr-2" />
+            Analyze Automation
           </Button>
           <Button
             onClick={() => setShowAIAnalyzer(!showAIAnalyzer)}
@@ -1027,6 +1144,7 @@ const ChangeRequestsManager = () => {
                   <th className="text-left p-3 text-white/70 font-medium">Status</th>
                   <th className="text-left p-3 text-white/70 font-medium">Priority</th>
                   <th className="text-left p-3 text-white/70 font-medium">Category</th>
+                  <th className="text-left p-3 text-white/70 font-medium">Automation</th>
                   <th className="text-left p-3 text-white/70 font-medium">Created</th>
                   <th className="text-left p-3 text-white/70 font-medium">Actions</th>
                 </tr>
@@ -1053,6 +1171,25 @@ const ChangeRequestsManager = () => {
                     <td className="p-3">{getStatusBadge(request.status)}</td>
                     <td className="p-3">{getPriorityBadge(request.priority)}</td>
                     <td className="p-3">{getCategoryBadge(request.category)}</td>
+                    <td className="p-3">
+                      <div className="space-y-1">
+                        {getAutomationBadge(
+                          request.automation_feasibility || 'not_analyzed',
+                          request.automation_confidence
+                        )}
+                        {request.automation_feasibility === 'not_analyzed' && (
+                          <Button
+                            onClick={() => analyzeAutomation(request.id)}
+                            size="sm"
+                            variant="outline"
+                            className="bg-cyan-500/10 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 h-6 text-xs px-2"
+                          >
+                            <Play className="w-3 h-3 mr-1" />
+                            Analyze
+                          </Button>
+                        )}
+                      </div>
+                    </td>
                     <td className="p-3 text-white/70 text-sm">{formatDate(request.created_at)}</td>
                     <td className="p-3">
                       <div className="flex items-center space-x-2">
