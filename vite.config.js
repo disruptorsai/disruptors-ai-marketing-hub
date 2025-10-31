@@ -48,8 +48,8 @@ export default defineConfig({
     logLimit: 0,
   },
   build: {
-    // Performance: Set chunk size warning limit to 500 KB (increased for large projects)
-    chunkSizeWarningLimit: 500,
+    // Performance: Set chunk size warning limit to 1MB (increased for large projects)
+    chunkSizeWarningLimit: 1000,
     // Ensure proper cache busting with hash-based filenames
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: false, // Disable CSS code splitting to reduce build complexity
@@ -58,8 +58,6 @@ export default defineConfig({
     minify: 'esbuild', // Use esbuild for faster minification
     target: 'es2020', // Modern browsers only (reduces transformation overhead)
     reportCompressedSize: false, // Skip compressed size reporting (saves time)
-    // Increase timeout for large codebases with many lazy-loaded routes
-    chunkSizeWarningLimit: 1000, // Increase to 1MB to avoid warnings during build
     emptyOutDir: true, // Clean dist folder before build
 
     // CRITICAL FIX: Disable modulePreload
