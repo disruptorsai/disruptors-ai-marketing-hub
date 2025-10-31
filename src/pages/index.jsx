@@ -14,8 +14,11 @@ const PageLoader = () => (
 );
 
 // Lazy load all pages for optimal performance with automatic retry on chunk load failure
-// Home page loaded immediately for faster initial render
-import Home from "./Home.jsx";
+// Home page now lazy-loaded to reduce initial bundle size and improve LCP
+const Home = lazyWithRetry(() => {
+    console.log('🔄 [LAZY LOAD] Loading Home.jsx...');
+    return import('./Home.jsx');
+});
 
 // Core pages - lazy loaded with retry logic to handle deployments
 const Assessment = lazyWithRetry(() => {
@@ -68,7 +71,7 @@ const Pricing = lazyWithRetry(() => {
 });
 
 // Dev pages for comparison - lazy loaded with retry
-import HomeDev from "./Home-dev.jsx";
+const HomeDev = lazyWithRetry(() => import('./Home-dev.jsx'));
 const AboutDev = lazyWithRetry(() => import('./about-dev.jsx'));
 const SolutionsDev = lazyWithRetry(() => import('./solutions-dev.jsx'));
 const WorkDev = lazyWithRetry(() => import('./work-dev.jsx'));
@@ -141,11 +144,8 @@ const Faq = lazyWithRetry(() => import('./faq.jsx'));
 const ResourcesAiSuitcaseTermsDecoded = lazyWithRetry(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
 const FreeResources = lazyWithRetry(() => import('./free-resources.jsx'));
 
-// Demo pages with 3D/animations - lazy loaded with retry (saves 1.98 MB physics bundle)
+// Demo pages - lazy loaded with retry
 const ScrollAnimationDemo = lazyWithRetry(() => import('../components/examples/ScrollAnimationExamples.jsx'));
-const FullAnimationDemo = lazyWithRetry(() => import('./full-animation-demo.jsx'));
-const SplineDemo = lazyWithRetry(() => import('./spline-demo.jsx'));
-const SplineHandPreview = lazyWithRetry(() => import('./spline-hand-preview.jsx'));
 const VideoScrubDemo = lazyWithRetry(() => import('./video-scrub-demo.jsx'));
 const TextGlitchDemo = lazyWithRetry(() => import('./TextGlitchDemo.jsx'));
 
@@ -271,15 +271,7 @@ const PAGES = {
     faq: Faq,
 
     "animations-demo": ScrollAnimationDemo,
-
-    "full-animation": FullAnimationDemo,
-
-    "spline-demo": SplineDemo,
-
-    "spline-hand-preview": SplineHandPreview,
-
     "video-scrub-demo": VideoScrubDemo,
-
     "text-glitch-demo": TextGlitchDemo,
 
     // Landing page demos
@@ -456,13 +448,6 @@ function PagesContent() {
                             <Route path="/faq" element={<Faq />} />
 
                             <Route path="/animations-demo" element={<ScrollAnimationDemo />} />
-
-                            <Route path="/full-animation" element={<FullAnimationDemo />} />
-
-                            <Route path="/spline-demo" element={<SplineDemo />} />
-
-                            <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
-
                             <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
                             <Route path="/text-glitch-demo" element={<TextGlitchDemo />} />
 
