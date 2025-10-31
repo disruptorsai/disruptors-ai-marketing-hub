@@ -51,18 +51,6 @@ export default function ReadingProgress() {
           ease: "easeInOut"
         }}
       />
-
-      {/* Progress Percentage Badge */}
-      {progress > 0 && (
-        <motion.div
-          className="fixed top-4 right-4 z-50 px-4 py-2 bg-gradient-to-br from-yellow-400 to-amber-600 text-gray-900 font-bold text-sm rounded-full shadow-xl shadow-yellow-500/30 border-2 border-yellow-300"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {progress}%
-        </motion.div>
-      )}
     </>
   );
 }

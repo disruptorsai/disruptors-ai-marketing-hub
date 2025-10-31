@@ -60,36 +60,6 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* CTA Section */}
-        <BlurSection>
-          <section className="py-8 sm:py-12 text-center">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                  Wondering What This Could Look Like for Your Business?
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Let's audit your systems and uncover the untapped growth potential in your pipeline, marketing, and operations.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Button asChild size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("book-strategy-session")}>Book a Free Strategy Session</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("marketing-audit")}>Get a Free Marketing Consultation</Link>
-                  </Button>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        </BlurSection>
-
         {/* Footer CTA */}
         <section className="bg-gray-900 text-white relative z-10">
           <DualCTABlock />

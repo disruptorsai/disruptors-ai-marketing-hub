@@ -4,9 +4,9 @@ import { TeamMember } from '@/api/entities';
 import { Linkedin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { Button } from '@/components/ui/button';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
-import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 
 const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
@@ -149,8 +149,8 @@ export default function About() {
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
       cta: {
-        label: "Schedule a Consultation",
-        link: "book-strategy-session"
+        label: "Live Events",
+        link: "event-checkin"
       }
     }
   ];
@@ -658,18 +658,16 @@ export default function About() {
       <AlternatingLayout sections={partnershipData} />
 
       {/* Call to Action */}
-       <section className="bg-gray-900 text-white py-8">
-         <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
-            <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>
+       <section className="bg-gray-900 text-white py-16">
+         <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-4">Work with the Disruptors</h2>
+            <p className="text-lg text-gray-300 mb-8">We help you scale your business without losing its soul. Start with a free strategy session.</p>
+            <Button asChild size="lg" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold text-lg px-8 py-6">
+              <Link to={createPageUrl("book-strategy-session")}>
+                Book a Free Strategy Session
+              </Link>
+            </Button>
          </div>
-         <DualCTABlock
-          title=""
-          cta1_text="Book a Free Strategy Session"
-          cta1_link="book-strategy-session"
-          cta2_text="Get a Free Marketing Consultation"
-          cta2_link="marketing-audit"
-         />
       </section>
     </div>
   );

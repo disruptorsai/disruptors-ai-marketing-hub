@@ -246,14 +246,14 @@ export default function BlogDetail() {
                 >
                     <span className="flex items-center gap-2.5 text-sm">
                         <User className="w-4 h-4 text-yellow-400" />
-                        <span className="font-semibold text-gray-200">
+                        <span className="font-semibold text-black">
                             {post.author_id ? `User ${post.author_id.substring(0, 8)}` : 'Disruptors Team'}
                         </span>
                     </span>
-                    <span className="text-gray-700">•</span>
+                    <span className="text-black">•</span>
                     <span className="flex items-center gap-2.5 text-sm">
                         <Calendar className="w-4 h-4 text-yellow-400" />
-                        <span className="font-medium text-gray-300">
+                        <span className="font-medium text-black">
                             {new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
                                 month: 'long',
                                 day: 'numeric',
@@ -272,8 +272,8 @@ export default function BlogDetail() {
                     )}
                     {wordCount > 0 && (
                         <>
-                            <span className="text-gray-700">•</span>
-                            <span className="text-sm text-gray-400 font-medium">
+                            <span className="text-black">•</span>
+                            <span className="text-sm text-black font-medium">
                                 {wordCount.toLocaleString()} words
                             </span>
                         </>
