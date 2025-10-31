@@ -20,6 +20,8 @@
     timeout = 120
   [functions."admin-image-generator"]
     timeout = 60
+  [functions."change-request-analyze"]
+    timeout = 60
   external_node_modules = [
     "@ai-sdk/openai",
     "@ai-sdk/anthropic",
@@ -29,7 +31,8 @@
     "@mendable/firecrawl-js",
     "node-vibrant",
     "ai",
-    "culori"
+    "culori",
+    "pdf-parse"
   ]
 
 [[redirects]]
