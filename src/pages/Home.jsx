@@ -293,57 +293,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Link
-              to={createPageUrl('marketing-audit')}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black text-lg font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
-            >
-              <span>See How AI Can Transform Your Business</span>
-              <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-        </div>
-
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
-      </section>
-
-      {/* Free Marketing Consultation CTA */}
-      <section className="relative py-16 sm:py-20 lg:py-24 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6">
-              Ready to Accelerate Your Growth?
-            </h2>
-            <p className="font-sans text-lg sm:text-xl text-black mb-10 max-w-2xl mx-auto">
-              Get a free, comprehensive marketing consultation and discover untapped opportunities in your business.
-            </p>
-            <Link
-              to={createPageUrl('marketing-audit')}
-              className="font-sans group relative inline-flex items-center justify-center h-16 px-10 xl:px-12 text-lg font-bold text-[#FFD700] uppercase bg-black hover:bg-gray-900 border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
-              style={{
-                clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
-                animation: 'goldPulse 3s ease-in-out infinite',
-                boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
-              }}
-            >
-              <span>Free Marketing Consultation</span>
-              <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-        </div>
       </section>
 
       {/* Services / Solutions */}

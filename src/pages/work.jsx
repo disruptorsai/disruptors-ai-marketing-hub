@@ -20,7 +20,7 @@ export default function Work() {
     <DynamicBackground pageContext="work" intensity={0.8}>
       <div className="min-h-screen">
         {/* Page Title */}
-        <PageTitle title="WORK" />
+        <PageTitle title="OUR WORK" />
 
         {/* Hero Section */}
         <BlurSection>

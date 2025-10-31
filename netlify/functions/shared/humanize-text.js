@@ -135,8 +135,7 @@ async function humanizeWithClaude(text) {
 
   try {
     const anthropic = new Anthropic({
-      apiKey: apiKey,
-      dangerouslyAllowBrowser: false
+      apiKey: apiKey
     });
 
     const message = await anthropic.messages.create({

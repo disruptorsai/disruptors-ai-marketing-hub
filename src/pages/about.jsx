@@ -176,7 +176,7 @@ export default function About() {
   return (
     <div>
       {/* Page Title */}
-      <PageTitle title="ABOUT" />
+      <PageTitle title="ABOUT US" />
 
       {/* Hero Video Section */}
       <section className="w-full bg-transparent overflow-hidden">
