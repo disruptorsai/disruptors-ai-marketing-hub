@@ -2,18 +2,20 @@
  * BLOG QA PIPELINE FUNCTION
  *
  * Runs comprehensive quality assurance checks on blog drafts:
- * 1. Fact-checking (Google Fact Check API)
- * 2. Grammar & style (LanguageTool)
- * 3. Toxicity & bias (Perspective API)
- * 4. Plagiarism detection (Copyscape/SerpAPI)
- * 5. Originality score
- * 6. Schema validation
+ * 1. AI Detection & Humanization (EdgeShop.ai / Undetectable.ai)
+ * 2. Fact-checking (Google Fact Check API)
+ * 3. Grammar & style (LanguageTool)
+ * 4. Toxicity & bias (Perspective API)
+ * 5. Plagiarism detection (Copyscape/SerpAPI)
+ * 6. Originality score
+ * 7. Schema validation
  *
  * Each check is tracked in qa_executions table with results
  */
 
 import { createClient } from '@supabase/supabase-js';
 import Anthropic from '@anthropic-ai/sdk';
+import { humanizeText } from './shared/humanize-text.js';
 
 const supabase = createClient(
   process.env.VITE_SUPABASE_URL,
@@ -42,6 +44,7 @@ export const handler = async (event) => {
 
     // Run all QA checks in sequence (some depend on previous results)
     const results = {
+      ai_detection: await runAIDetectionCheck(draft),
       fact_check: await runFactCheck(draft),
       grammar: await runGrammarCheck(draft),
       toxicity: await runToxicityCheck(draft),
@@ -107,6 +110,79 @@ async function getQAThresholds() {
     plagiarism: 0.15,
     originality: 0.8
   };
+}
+
+/**
+ * AI DETECTION & HUMANIZATION
+ * Detects if content is AI-generated and optionally humanizes it
+ */
+async function runAIDetectionCheck(draft) {
+  const startTime = Date.now();
+  console.log('Running AI detection check...');
+
+  try {
+    // Use humanizeText with detectOnly mode (via EdgeShop.ai)
+    const detectionResult = await humanizeText(draft.content, {
+      preferredProvider: 'edgeshop', // Free detection
+      detectOnly: true
+    });
+
+    if (!detectionResult.success) {
+      // If EdgeShop fails, skip AI detection (non-critical)
+      return {
+        stage: 'ai_detection',
+        status: 'passed',
+        tool_used: 'none',
+        input_data: { content_length: draft.content.length },
+        output_data: { skipped: true, reason: detectionResult.error },
+        issues_found: [],
+        severity_score: 0,
+        execution_time_ms: Date.now() - startTime,
+        cost_usd: 0.0
+      };
+    }
+
+    const aiScore = detectionResult.aiScore || 0;
+    const threshold = 0.3; // If >30% AI-detected, flag as warning
+
+    const issues = [];
+    if (aiScore > threshold) {
+      issues.push({
+        type: 'high_ai_score',
+        message: `Content detected as ${Math.round(aiScore * 100)}% AI-generated (threshold: ${threshold * 100}%)`,
+        severity: aiScore > 0.6 ? 'high' : 'medium',
+        suggestion: 'Consider humanizing content with /.netlify/functions/blog-humanize'
+      });
+    }
+
+    const result = {
+      stage: 'ai_detection',
+      status: aiScore <= threshold ? 'passed' : 'warning',
+      tool_used: detectionResult.provider || 'edgeshop',
+      input_data: { content_length: draft.content.length },
+      output_data: {
+        ai_score: aiScore,
+        threshold: threshold,
+        detection_details: detectionResult.detectionResults
+      },
+      issues_found: issues,
+      severity_score: aiScore > 0.6 ? 5 : 0,
+      execution_time_ms: Date.now() - startTime,
+      cost_usd: detectionResult.cost || 0.0
+    };
+
+    await logQAExecution(draft.id, result);
+
+    return result;
+  } catch (error) {
+    console.error('AI detection error:', error);
+    return {
+      stage: 'ai_detection',
+      status: 'passed',
+      error_message: error.message,
+      execution_time_ms: Date.now() - startTime
+    };
+  }
 }
 
 /**
