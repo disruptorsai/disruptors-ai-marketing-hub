@@ -9,6 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+#### AI-Powered Change Request Analyzer (NEW)
+- **GPT-4 Vision Integration**: Automatic extraction of change requests from text, images, and PDFs
+- **Multi-Input Support**:
+  - Text paste for bulk change requests
+  - Image upload for screenshots, mockups, wireframes (JPEG, PNG, WebP up to 10MB)
+  - PDF upload with automatic text extraction (up to 10MB)
+- **Intelligent Analysis**:
+  - Automatic categorization (bug_fix, feature, content_change, design_change, performance, security, other)
+  - Priority assignment based on urgency keywords (low, medium, high, urgent)
+  - Detailed task breakdown for complex requests
+  - Batch grouping for related requests
+- **Database Schema Enhancements**:
+  - New `change_request_ai_analyses` table for tracking analysis sessions
+  - Added columns to `change_requests`: source_type, source_document_url, ai_analysis_id, batch_id, task_items (JSONB)
+  - Indexes for batch_id, source_type, analysis status, and timestamps
+  - RLS policies for secure access control
+- **Netlify Function**: `change-request-analyze.js` for AI processing with OpenAI GPT-4o
+- **UI Components**:
+  - AI Analyzer modal with tabbed interface (text/image/pdf)
+  - Real-time file preview for images
+  - Progress indicators during analysis
+  - Team member selection and tracking
+- **Dependencies**: Added pdf-parse for PDF text extraction
+- **Documentation**:
+  - Complete feature guide: `docs/AI_CHANGE_REQUEST_ANALYZER.md`
+  - Setup instructions: `docs/SETUP_AI_CHANGE_ANALYZER.md`
+  - Migration script: `scripts/apply-change-requests-ai-migration.js`
+- **Migration**: `supabase/migrations/20250131_change_requests_ai_analysis.sql`
+
+### Added
+
 #### Modules System - AI-First Website OS (Phase 1 Complete)
 - **NEW ARCHITECTURE**: Modular "Website OS" where features are self-contained micro-tools operating at three access levels (internal/client/public)
 - Supabase migration for complete modules infrastructure (4 tables, 6 functions, RLS policies)

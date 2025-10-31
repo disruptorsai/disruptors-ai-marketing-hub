@@ -18,7 +18,12 @@ import {
   Calendar,
   Tag,
   FileText,
-  Zap
+  Zap,
+  Sparkles,
+  Upload,
+  FileImage,
+  Image as ImageIcon,
+  Loader2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -43,6 +48,7 @@ const ChangeRequestsManager = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [showAIAnalyzer, setShowAIAnalyzer] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [filterPriority, setFilterPriority] = useState('all');
@@ -64,6 +70,18 @@ const ChangeRequestsManager = () => {
     priority: 'medium',
     category: 'other'
   });
+
+  // AI Analyzer state
+  const [aiAnalyzerData, setAIAnalyzerData] = useState({
+    requester_name: '',
+    requester_email: '',
+    input_method: 'text', // 'text', 'image', 'pdf'
+    text_content: '',
+    uploaded_file: null,
+    file_preview: null
+  });
+  const [aiAnalyzing, setAIAnalyzing] = useState(false);
+  const [aiAnalysisResult, setAIAnalysisResult] = useState(null);
 
   useEffect(() => {
     loadRequests();
@@ -162,6 +180,127 @@ const ChangeRequestsManager = () => {
     } catch (error) {
       console.error('Error updating request status:', error);
       alert('Failed to update status. Please try again.');
+    }
+  };
+
+  // Handle file upload for AI analysis
+  const handleFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'application/pdf'];
+    if (!validTypes.includes(file.type)) {
+      alert('Please upload a valid image (JPEG, PNG, WebP) or PDF file');
+      return;
+    }
+
+    // Validate file size (10MB max)
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size must be less than 10MB');
+      return;
+    }
+
+    // Create preview for images
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAIAnalyzerData({
+          ...aiAnalyzerData,
+          uploaded_file: file,
+          file_preview: reader.result,
+          input_method: 'image'
+        });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // PDF
+      setAIAnalyzerData({
+        ...aiAnalyzerData,
+        uploaded_file: file,
+        file_preview: null,
+        input_method: 'pdf'
+      });
+    }
+  };
+
+  // Handle AI analysis submission
+  const handleAIAnalysis = async () => {
+    // Validation
+    if (!aiAnalyzerData.requester_name.trim()) {
+      alert('Please enter the team member name');
+      return;
+    }
+
+    if (aiAnalyzerData.input_method === 'text' && !aiAnalyzerData.text_content.trim()) {
+      alert('Please enter or paste the change request text');
+      return;
+    }
+
+    if ((aiAnalyzerData.input_method === 'image' || aiAnalyzerData.input_method === 'pdf') && !aiAnalyzerData.uploaded_file) {
+      alert('Please upload a file');
+      return;
+    }
+
+    setAIAnalyzing(true);
+    setAIAnalysisResult(null);
+
+    try {
+      let content;
+      let sourceType = aiAnalyzerData.input_method;
+
+      if (sourceType === 'text') {
+        content = aiAnalyzerData.text_content;
+      } else {
+        // Convert file to base64
+        const reader = new FileReader();
+        content = await new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(aiAnalyzerData.uploaded_file);
+        });
+      }
+
+      // Call Netlify function
+      const response = await fetch('/.netlify/functions/change-request-analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          requesterName: aiAnalyzerData.requester_name,
+          requesterEmail: aiAnalyzerData.requester_email,
+          sourceType,
+          content
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Analysis failed');
+      }
+
+      // Show success result
+      setAIAnalysisResult(result);
+
+      // Reset form
+      setAIAnalyzerData({
+        requester_name: '',
+        requester_email: '',
+        input_method: 'text',
+        text_content: '',
+        uploaded_file: null,
+        file_preview: null
+      });
+
+      // Reload requests to show new ones
+      loadRequests();
+
+      alert(`Success! Created ${result.requestsCreated} change request(s)`);
+    } catch (error) {
+      console.error('AI analysis error:', error);
+      alert(`Analysis failed: ${error.message}`);
+    } finally {
+      setAIAnalyzing(false);
     }
   };
 
@@ -347,11 +486,18 @@ const ChangeRequestsManager = () => {
             Refresh
           </Button>
           <Button
+            onClick={() => setShowAIAnalyzer(!showAIAnalyzer)}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            AI Analyzer
+          </Button>
+          <Button
             onClick={() => setShowForm(!showForm)}
             className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white"
           >
             <Plus className="w-4 h-4 mr-2" />
-            New Request
+            Manual Entry
           </Button>
         </div>
       </div>
@@ -515,6 +661,235 @@ const ChangeRequestsManager = () => {
                     </Button>
                   </div>
                 </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* AI Analyzer Form */}
+      <AnimatePresence>
+        {showAIAnalyzer && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-500/30">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-purple-500/20 rounded-lg">
+                    <Sparkles className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-white flex items-center space-x-2">
+                      <span>AI-Powered Change Request Analyzer</span>
+                      <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+                        GPT-4 Vision
+                      </Badge>
+                    </CardTitle>
+                    <CardDescription className="text-white/60">
+                      Upload documents, paste text, or upload images/PDFs containing change requests.
+                      AI will automatically extract and create structured change requests with tasks.
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* Team Member Info */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Team Member Name *
+                      </label>
+                      <Input
+                        type="text"
+                        value={aiAnalyzerData.requester_name}
+                        onChange={(e) => setAIAnalyzerData({ ...aiAnalyzerData, requester_name: e.target.value })}
+                        placeholder="John Doe"
+                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                        disabled={aiAnalyzing}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Email (optional)
+                      </label>
+                      <Input
+                        type="email"
+                        value={aiAnalyzerData.requester_email}
+                        onChange={(e) => setAIAnalyzerData({ ...aiAnalyzerData, requester_email: e.target.value })}
+                        placeholder="john@example.com"
+                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                        disabled={aiAnalyzing}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Input Method Tabs */}
+                  <Tabs
+                    value={aiAnalyzerData.input_method}
+                    onValueChange={(value) => setAIAnalyzerData({
+                      ...aiAnalyzerData,
+                      input_method: value,
+                      text_content: '',
+                      uploaded_file: null,
+                      file_preview: null
+                    })}
+                    className="w-full"
+                  >
+                    <TabsList className="grid grid-cols-3 bg-white/5">
+                      <TabsTrigger value="text" disabled={aiAnalyzing}>
+                        <FileText className="w-4 h-4 mr-2" />
+                        Paste Text
+                      </TabsTrigger>
+                      <TabsTrigger value="image" disabled={aiAnalyzing}>
+                        <ImageIcon className="w-4 h-4 mr-2" />
+                        Upload Image
+                      </TabsTrigger>
+                      <TabsTrigger value="pdf" disabled={aiAnalyzing}>
+                        <FileImage className="w-4 h-4 mr-2" />
+                        Upload PDF
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="text" className="mt-4">
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-2">
+                          Paste Change Requests *
+                        </label>
+                        <Textarea
+                          value={aiAnalyzerData.text_content}
+                          onChange={(e) => setAIAnalyzerData({ ...aiAnalyzerData, text_content: e.target.value })}
+                          placeholder="Paste your change requests here. Include all details like:&#10;&#10;- Fix the contact form validation&#10;- Update hero section with new copy&#10;- Add new testimonial slider&#10;&#10;The AI will automatically categorize and prioritize each request."
+                          className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[200px]"
+                          disabled={aiAnalyzing}
+                        />
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="image" className="mt-4">
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-2">
+                            Upload Image (Screenshots, Mockups, etc.) *
+                          </label>
+                          <div className="flex items-center space-x-4">
+                            <Input
+                              type="file"
+                              accept="image/jpeg,image/png,image/jpg,image/webp"
+                              onChange={handleFileUpload}
+                              className="bg-white/5 border-white/10 text-white file:bg-purple-500/20 file:text-purple-300 file:border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md"
+                              disabled={aiAnalyzing}
+                            />
+                          </div>
+                          <p className="text-xs text-white/50 mt-2">
+                            Supported: JPEG, PNG, WebP (max 10MB)
+                          </p>
+                        </div>
+                        {aiAnalyzerData.file_preview && (
+                          <div className="border border-white/10 rounded-lg p-4 bg-white/5">
+                            <p className="text-sm text-white/70 mb-2">Preview:</p>
+                            <img
+                              src={aiAnalyzerData.file_preview}
+                              alt="Upload preview"
+                              className="max-w-full max-h-64 rounded-md"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="pdf" className="mt-4">
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-2">
+                            Upload PDF Document *
+                          </label>
+                          <div className="flex items-center space-x-4">
+                            <Input
+                              type="file"
+                              accept="application/pdf"
+                              onChange={handleFileUpload}
+                              className="bg-white/5 border-white/10 text-white file:bg-purple-500/20 file:text-purple-300 file:border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md"
+                              disabled={aiAnalyzing}
+                            />
+                          </div>
+                          <p className="text-xs text-white/50 mt-2">
+                            PDF files will be converted to text for analysis (max 10MB)
+                          </p>
+                        </div>
+                        {aiAnalyzerData.uploaded_file && (
+                          <div className="border border-white/10 rounded-lg p-4 bg-white/5">
+                            <FileImage className="w-12 h-12 text-purple-400 mx-auto mb-2" />
+                            <p className="text-sm text-white/70 text-center">
+                              {aiAnalyzerData.uploaded_file.name}
+                            </p>
+                            <p className="text-xs text-white/50 text-center mt-1">
+                              {(aiAnalyzerData.uploaded_file.size / 1024).toFixed(0)} KB
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+
+                  {/* AI Analysis Info Box */}
+                  <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
+                    <h4 className="text-white font-medium mb-2 flex items-center">
+                      <Sparkles className="w-4 h-4 mr-2 text-purple-400" />
+                      How AI Analysis Works
+                    </h4>
+                    <ul className="text-sm text-white/60 space-y-1 list-disc list-inside">
+                      <li>AI extracts individual change requests from your content</li>
+                      <li>Automatically categorizes (bug fix, feature, design, etc.)</li>
+                      <li>Assigns priority based on urgency keywords</li>
+                      <li>Creates detailed task breakdowns for complex requests</li>
+                      <li>All requests are created with "pending" status for review</li>
+                    </ul>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex justify-end space-x-3 pt-4">
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        setShowAIAnalyzer(false);
+                        setAIAnalyzerData({
+                          requester_name: '',
+                          requester_email: '',
+                          input_method: 'text',
+                          text_content: '',
+                          uploaded_file: null,
+                          file_preview: null
+                        });
+                      }}
+                      variant="outline"
+                      className="bg-white/5 border-white/10 text-white hover:bg-white/10"
+                      disabled={aiAnalyzing}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleAIAnalysis}
+                      disabled={aiAnalyzing}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                    >
+                      {aiAnalyzing ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Analyzing with AI...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4 mr-2" />
+                          Analyze & Create Requests
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
