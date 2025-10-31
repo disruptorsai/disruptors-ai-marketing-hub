@@ -31,8 +31,7 @@
     "@mendable/firecrawl-js",
     "node-vibrant",
     "ai",
-    "culori",
-    "pdf-parse"
+    "culori"
   ]
 
 [[redirects]]

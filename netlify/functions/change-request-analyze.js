@@ -7,7 +7,7 @@
  * Supports:
  * - Text input (direct paste)
  * - Image uploads (screenshots, mockups, wireframes)
- * - PDF documents (converted to images for analysis)
+ * - PDF documents (converted to images client-side, then analyzed as images)
  */
 
 import { createClient } from '@supabase/supabase-js';
@@ -50,28 +50,6 @@ IMPORTANT RULES:
 8. For bugs, describe the issue and expected behavior
 
 Return ONLY valid JSON array, no other text.`;
-
-/**
- * Parse PDF buffer to text
- */
-async function parsePdfToText(pdfBuffer) {
-  try {
-    console.log('PDF buffer length:', pdfBuffer.length);
-    console.log('PDF buffer type:', typeof pdfBuffer);
-
-    // Dynamic import for CommonJS module compatibility
-    const pdf = (await import('pdf-parse')).default;
-    console.log('pdf-parse module loaded:', typeof pdf);
-
-    const data = await pdf(pdfBuffer);
-    console.log('PDF parsed successfully, text length:', data.text?.length || 0);
-    return data.text;
-  } catch (error) {
-    console.error('PDF parsing detailed error:', error);
-    console.error('Error stack:', error.stack);
-    throw new Error(`Failed to parse PDF document: ${error.message}`);
-  }
-}
 
 /**
  * Analyze content using OpenAI GPT-4 Vision
@@ -170,8 +148,8 @@ export async function handler(event) {
     const {
       requesterName,
       requesterEmail,
-      sourceType, // 'text', 'image', or 'pdf'
-      content, // Text content, base64 image, or PDF base64
+      sourceType, // 'text' or 'image' (PDFs are converted to images client-side)
+      content, // Text content or base64 image
       documentUrl // Optional: URL to uploaded document
     } = JSON.parse(event.body);
 
@@ -205,25 +183,13 @@ export async function handler(event) {
     }
 
     const analysisId = analysisRecord.id;
-    let processedContent = content;
 
     try {
-      // Handle PDF conversion
-      if (sourceType === 'pdf') {
-        // Decode base64 PDF
-        const pdfBuffer = Buffer.from(content, 'base64');
-        processedContent = await parsePdfToText(pdfBuffer);
-
-        // If PDF text extraction fails or is too short, return error
-        if (!processedContent || processedContent.trim().length < 10) {
-          throw new Error('PDF contains no readable text. Please use an image-based PDF or screenshot instead.');
-        }
-      }
-
+      // Note: PDFs are converted to images client-side, so we only handle text and image here
       // Analyze content with OpenAI
       const { rawResponse, parsedRequests } = await analyzeContent(
-        processedContent,
-        sourceType === 'pdf' ? 'text' : sourceType
+        content,
+        sourceType
       );
 
       // Validate parsed requests

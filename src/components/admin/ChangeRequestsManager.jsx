@@ -39,6 +39,43 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { supabaseAdmin } from '@/lib/supabase-client';
+import * as pdfjsLib from 'pdfjs-dist';
+
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+
+/**
+ * Convert PDF to images (one image per page)
+ * Returns array of base64 image strings
+ */
+async function convertPdfToImages(file) {
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const images = [];
+
+  // Convert first 5 pages max (to avoid huge requests)
+  const numPages = Math.min(pdf.numPages, 5);
+
+  for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 2.0 }); // 2x scale for better quality
+
+    // Create canvas
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    // Render PDF page to canvas
+    await page.render({ canvasContext: context, viewport }).promise;
+
+    // Convert canvas to base64
+    const imageData = canvas.toDataURL('image/jpeg', 0.9);
+    images.push(imageData.split(',')[1]); // Remove data:image/jpeg;base64, prefix
+  }
+
+  return images;
+}
 
 /**
  * ChangeRequestsManager Component
@@ -214,7 +251,7 @@ const ChangeRequestsManager = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      // PDF
+      // PDF - convert to images client-side
       setAIAnalyzerData({
         ...aiAnalyzerData,
         uploaded_file: file,
@@ -251,8 +288,17 @@ const ChangeRequestsManager = () => {
 
       if (sourceType === 'text') {
         content = aiAnalyzerData.text_content;
+      } else if (sourceType === 'pdf') {
+        // Convert PDF to images client-side
+        console.log('🔄 Converting PDF to images...');
+        const images = await convertPdfToImages(aiAnalyzerData.uploaded_file);
+        console.log(`✅ Converted PDF to ${images.length} image(s)`);
+
+        // Use first page image for analysis (GPT-4 Vision will analyze it)
+        content = images[0];
+        sourceType = 'image'; // Change to image since we're sending an image
       } else {
-        // Convert file to base64
+        // Convert image file to base64
         const reader = new FileReader();
         content = await new Promise((resolve, reject) => {
           reader.onload = () => resolve(reader.result.split(',')[1]);
