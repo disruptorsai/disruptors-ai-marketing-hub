@@ -77,40 +77,15 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
 
-        // PERFORMANCE: Smart vendor chunking
-        // Separates large libraries into individual chunks for better caching and parallel loading
-        // React core stays in main bundle to prevent initialization errors
-        manualChunks: (id) => {
-          // Keep React in main bundle to avoid forwardRef errors
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
-            return 'vendor-react';
-          }
-
-          // Supabase - frequently updated, separate for cache optimization
-          if (id.includes('@supabase')) {
-            return 'vendor-supabase';
-          }
-
-          // UI component libraries - stable, good for long-term caching
-          if (id.includes('@radix-ui') || id.includes('lucide-react')) {
-            return 'vendor-ui';
-          }
-
-          // Animation libraries - moderate size, frequently used
-          if (id.includes('framer-motion') || id.includes('gsap')) {
-            return 'vendor-animation';
-          }
-
-          // Router - stable, good for caching
-          if (id.includes('react-router')) {
-            return 'vendor-router';
-          }
-
-          // Other large node_modules (>50KB) go into vendor chunk
-          if (id.includes('node_modules')) {
-            return 'vendor-misc';
-          }
-        }
+        // AUTOMATIC CHUNKING: Let Vite handle it
+        // Manual chunking causes React initialization errors when React is split from dependencies
+        // Vite's automatic chunking respects dependency order and prevents "Cannot read properties of undefined" errors
+        // Trade-off: May result in slightly larger initial bundle, but site actually works
+        //
+        // Previous manual chunking caused: "Cannot read properties of undefined (reading 'useLayoutEffect')"
+        // This happened because vendor-misc tried to use React before vendor-react loaded
+        //
+        // No manualChunks = automatic chunking based on Vite's smart defaults
       }
     }
   }
