@@ -77,20 +77,40 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
 
-        // SOLUTION A: REMOVE ALL MANUAL CHUNKING
-        // Let Vite's automatic chunking handle everything
-        // This prevents React extraction issues that cause "Cannot read properties of undefined (reading 'forwardRef')"
-        //
-        // Trade-offs:
-        // - Vite will automatically split chunks based on dependencies and usage patterns
-        // - May result in more chunks but guaranteed correct dependency ordering
-        // - Bundle size may be less optimized but site will actually work
-        //
-        // Previous attempts with manual chunking all failed because Vite's tree-shaking
-        // and optimization passes would extract React into shared chunks despite our attempts
-        // to prevent it. Automatic chunking respects dependency order.
+        // PERFORMANCE: Smart vendor chunking
+        // Separates large libraries into individual chunks for better caching and parallel loading
+        // React core stays in main bundle to prevent initialization errors
+        manualChunks: (id) => {
+          // Keep React in main bundle to avoid forwardRef errors
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor-react';
+          }
 
-        // No manualChunks function = automatic chunking
+          // Supabase - frequently updated, separate for cache optimization
+          if (id.includes('@supabase')) {
+            return 'vendor-supabase';
+          }
+
+          // UI component libraries - stable, good for long-term caching
+          if (id.includes('@radix-ui') || id.includes('lucide-react')) {
+            return 'vendor-ui';
+          }
+
+          // Animation libraries - moderate size, frequently used
+          if (id.includes('framer-motion') || id.includes('gsap')) {
+            return 'vendor-animation';
+          }
+
+          // Router - stable, good for caching
+          if (id.includes('react-router')) {
+            return 'vendor-router';
+          }
+
+          // Other large node_modules (>50KB) go into vendor chunk
+          if (id.includes('node_modules')) {
+            return 'vendor-misc';
+          }
+        }
       }
     }
   }
