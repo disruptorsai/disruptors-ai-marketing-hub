@@ -135,52 +135,71 @@ export default function BlogDetail() {
     };
 
     return (
-        <div className="text-white">
-            {/* Schema.org JSON-LD for SEO */}
-            <script type="application/ld+json">
-                {JSON.stringify(schemaData)}
-            </script>
+        <>
+            {/* Meta tags for SEO */}
+            <title>{post.title} | Disruptors Media Blog</title>
+            <meta name="description" content={post.excerpt || post.title} />
+            <meta property="og:title" content={post.title} />
+            <meta property="og:description" content={post.excerpt || post.title} />
+            <meta property="og:image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
+            <meta property="og:url" content={window.location.href} />
+            <meta property="og:type" content="article" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={post.title} />
+            <meta name="twitter:description" content={post.excerpt || post.title} />
+            <meta name="twitter:image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
 
-            {/* Reading Progress Bar */}
-            <ReadingProgress />
+            <div className="text-white">
+                {/* Schema.org JSON-LD for SEO */}
+                <script type="application/ld+json">
+                    {JSON.stringify(schemaData)}
+                </script>
+
+                {/* Reading Progress Bar */}
+                <ReadingProgress />
 
             {/* Breadcrumbs - Refined */}
-            <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
-                <ol className="flex items-center gap-3 text-sm">
-                    <li>
+            <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6" aria-label="Breadcrumb">
+                <ol className="flex items-center gap-3 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+                    <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
                         <a
                             href="/"
-                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-200 font-medium"
+                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-1"
+                            itemProp="item"
                         >
-                            Home
+                            <span itemProp="name">Home</span>
                         </a>
+                        <meta itemProp="position" content="1" />
                     </li>
-                    <li className="text-gray-600">
+                    <li className="text-gray-600" aria-hidden="true">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </li>
-                    <li>
+                    <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
                         <a
                             href="/blog"
-                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-200 font-medium"
+                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded px-1"
+                            itemProp="item"
                         >
-                            Blog
+                            <span itemProp="name">Blog</span>
                         </a>
+                        <meta itemProp="position" content="2" />
                     </li>
-                    <li className="text-gray-600">
+                    <li className="text-gray-600" aria-hidden="true">
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </li>
-                    <li className="text-gray-300 truncate max-w-[300px] sm:max-w-[500px] font-medium">
-                        {post.title}
+                    <li className="text-gray-300 truncate max-w-[300px] sm:max-w-[500px] font-medium" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" aria-current="page">
+                        <span itemProp="name">{post.title}</span>
+                        <meta itemProp="position" content="3" />
                     </li>
                 </ol>
             </nav>
 
             {/* Featured Image Hero - Luxury Design */}
-            <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+            <header className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
                     {/* Featured Image */}
                     {post.featured_image && (
@@ -189,6 +208,10 @@ export default function BlogDetail() {
                                 src={post.featured_image}
                                 alt={post.title}
                                 className="w-full h-full object-cover transform group-hover:scale-[1.02] transition-transform duration-700"
+                                loading="eager"
+                                width="1200"
+                                height="675"
+                                fetchpriority="high"
                             />
                             {/* Sophisticated gradient overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
@@ -279,14 +302,14 @@ export default function BlogDetail() {
                         </>
                     )}
                 </motion.div>
-            </section>
+            </header>
 
             {/* Main Content */}
-            <div className="py-8 sm:py-12">
+            <main className="py-8 sm:py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-12 xl:gap-16">
                         {/* Table of Contents - Desktop Sidebar */}
-                        <aside className="hidden lg:block">
+                        <aside className="hidden lg:block" role="complementary" aria-label="Table of contents">
                             <TableOfContents content={post.content} wordCount={wordCount} />
                         </aside>
 
@@ -297,7 +320,12 @@ export default function BlogDetail() {
                                 <TableOfContents content={post.content} wordCount={wordCount} />
                             </div>
 
-                            <article className="bg-white/98 backdrop-blur-md text-gray-900 rounded-3xl p-8 sm:p-12 lg:p-20 shadow-2xl ring-1 ring-gray-200/50">
+                            <article className="bg-white/98 backdrop-blur-md text-gray-900 rounded-3xl p-8 sm:p-12 lg:p-20 shadow-2xl ring-1 ring-gray-200/50" itemScope itemType="https://schema.org/BlogPosting">
+                                <meta itemProp="headline" content={post.title} />
+                                <meta itemProp="image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
+                                <meta itemProp="datePublished" content={post.published_at || post.created_at} />
+                                <meta itemProp="dateModified" content={post.updated_at || post.published_at || post.created_at} />
+                                <meta itemProp="author" content="Disruptors Media" />
                                 {/* Tags - Premium Design */}
                                 {post.tags && post.tags.length > 0 && (
                                     <motion.div
@@ -498,11 +526,11 @@ export default function BlogDetail() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </main>
 
             {/* Related Posts Section */}
             {relatedPosts.length > 0 && (
-                <section className="py-12 sm:py-16 bg-gray-900/50">
+                <section className="py-12 sm:py-16 bg-gray-900/50" aria-label="Related articles">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between mb-8">
                             <h2 className="text-2xl sm:text-3xl font-bold text-white">Related Articles</h2>
@@ -572,6 +600,7 @@ export default function BlogDetail() {
             )}
 
             <DualCTABlock />
-        </div>
+            </div>
+        </>
     );
 }
