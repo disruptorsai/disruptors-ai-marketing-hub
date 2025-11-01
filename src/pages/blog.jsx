@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, User, Loader2 } from 'lucide-react';
+import { ArrowRight, Calendar, User, Loader2, Search, Filter, X, Tag } from 'lucide-react';
 import DualCTABlock from "@/components/shared/DualCTABlock";
 import GeometricSeparator from "@/components/shared/WavySeparator";
 import { customClient } from '@/lib/custom-sdk';
@@ -21,42 +21,67 @@ const PostCard = ({ post, isFeatured = false }) => {
   };
 
   return (
-    <motion.div
+    <motion.article
       className={`bg-white/80 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 shadow-lg group ${isFeatured ? 'col-span-1 md:col-span-2 lg:col-span-3 grid lg:grid-cols-2 gap-0' : 'flex flex-col'}`}
       whileHover={{ y: -5 }}
       transition={{ type: 'spring', stiffness: 300 }}
+      aria-label={`Blog post: ${post.title}`}
     >
       <div className={`relative ${isFeatured ? 'h-full' : 'h-48'}`}>
           <img
             src={post.image || post.cover_image_url || 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop'}
             alt={post.title}
             className="w-full h-full object-cover"
+            loading="lazy"
+            width={isFeatured ? "800" : "400"}
+            height={isFeatured ? "600" : "192"}
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
       </div>
       <div className="p-8 flex flex-col justify-between flex-grow">
           <div>
-              <h3 className={`font-bold text-black mb-4 ${isFeatured ? 'text-3xl' : 'text-xl'}`}>{post.title}</h3>
+              {post.category && (
+                <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
+                  {post.category}
+                </span>
+              )}
+              <h2 className={`font-bold text-black mb-4 ${isFeatured ? 'text-3xl' : 'text-xl'}`}>{post.title}</h2>
               <p className="text-black leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-4" aria-label="Post tags">
+                  {post.tags.slice(0, 3).map((tag, i) => (
+                    <span key={i} className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                      <Tag className="w-3 h-3" aria-hidden="true" />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
           </div>
           <div>
               <div className="flex items-center text-xs text-black mb-6">
                   <div className="flex items-center mr-4">
-                    <User className="w-3 h-3 mr-1.5"/> {post.author || 'Disruptors Team'}
+                    <User className="w-3 h-3 mr-1.5" aria-hidden="true"/>
+                    <span className="sr-only">Author: </span>
+                    {post.author || 'Disruptors Team'}
                   </div>
                   <div className="flex items-center">
-                    <Calendar className="w-3 h-3 mr-1.5"/> {formatDate(post.publishDate || post.publish_date || post.date)}
+                    <Calendar className="w-3 h-3 mr-1.5" aria-hidden="true"/>
+                    <time dateTime={post.publishDate || post.publish_date || post.date}>
+                      {formatDate(post.publishDate || post.publish_date || post.date)}
+                    </time>
                   </div>
               </div>
               <Link
                 to={`/blog-detail?slug=${post.slug}`}
-                className="font-semibold text-black flex items-center hover:text-gray-700"
+                className="font-semibold text-black flex items-center hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
+                aria-label={`Read full article: ${post.title}`}
               >
-                  Read More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  Read More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
           </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 
@@ -65,6 +90,9 @@ export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedTag, setSelectedTag] = useState('all');
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -129,10 +157,49 @@ export default function Blog() {
     });
   }, []);
 
+  // Extract unique categories and tags from posts
+  const categories = useMemo(() => {
+    const cats = new Set(posts.map(p => p.category).filter(Boolean));
+    return ['all', ...Array.from(cats)];
+  }, [posts]);
+
+  const tags = useMemo(() => {
+    const tagSet = new Set();
+    posts.forEach(p => {
+      if (p.tags && Array.isArray(p.tags)) {
+        p.tags.forEach(tag => tagSet.add(tag));
+      }
+    });
+    return ['all', ...Array.from(tagSet)];
+  }, [posts]);
+
+  // Filtered posts based on search, category, and tag
+  const filteredPosts = useMemo(() => {
+    return posts.filter(post => {
+      const matchesSearch = searchQuery === '' ||
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesCategory = selectedCategory === 'all' ||
+        post.category === selectedCategory;
+
+      const matchesTag = selectedTag === 'all' ||
+        (post.tags && post.tags.includes(selectedTag));
+
+      return matchesSearch && matchesCategory && matchesTag;
+    });
+  }, [posts, searchQuery, selectedCategory, selectedTag]);
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('all');
+    setSelectedTag('all');
+  };
+
   return (
     <div>
       {/* Enhanced Hero Section */}
-      <section className="bg-transparent py-16 sm:py-24">
+      <header className="bg-transparent py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -172,27 +239,124 @@ export default function Blog() {
             </motion.div>
           </div>
         </div>
+      </header>
+
+      {/* Search and Filter Section */}
+      <section className="py-8 bg-white/50 backdrop-blur-sm border-y border-gray-200" aria-label="Blog search and filters">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Search Bar */}
+          <div className="mb-6">
+            <label htmlFor="blog-search" className="sr-only">Search blog posts</label>
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" aria-hidden="true" />
+              <input
+                id="blog-search"
+                type="search"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition-all text-gray-900 placeholder-gray-500"
+                aria-label="Search blog posts by title or content"
+              />
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="flex flex-wrap gap-3 items-center">
+              <Filter className="w-5 h-5 text-gray-600" aria-hidden="true" />
+              <span className="text-sm font-semibold text-gray-700">Filter by:</span>
+
+              {/* Category Filter */}
+              <div>
+                <label htmlFor="category-filter" className="sr-only">Filter by category</label>
+                <select
+                  id="category-filter"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="px-4 py-2 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-50 transition-colors"
+                  aria-label="Filter posts by category"
+                >
+                  {categories.map(cat => (
+                    <option key={cat} value={cat}>
+                      {cat === 'all' ? 'All Categories' : cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Tag Filter */}
+              <div>
+                <label htmlFor="tag-filter" className="sr-only">Filter by tag</label>
+                <select
+                  id="tag-filter"
+                  value={selectedTag}
+                  onChange={(e) => setSelectedTag(e.target.value)}
+                  className="px-4 py-2 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-50 transition-colors"
+                  aria-label="Filter posts by tag"
+                >
+                  {tags.map(tag => (
+                    <option key={tag} value={tag}>
+                      {tag === 'all' ? 'All Tags' : tag}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Clear Filters Button */}
+            {(searchQuery || selectedCategory !== 'all' || selectedTag !== 'all') && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                onClick={clearFilters}
+                className="flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                aria-label="Clear all filters"
+              >
+                <X className="w-4 h-4" aria-hidden="true" />
+                Clear Filters
+              </motion.button>
+            )}
+          </div>
+
+          {/* Results Count */}
+          <div className="mt-4 text-sm text-gray-600" role="status" aria-live="polite">
+            Showing <span className="font-bold text-gray-900">{filteredPosts.length}</span> of <span className="font-bold text-gray-900">{posts.length}</span> articles
+          </div>
+        </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="pb-24 sm:pb-32">
+      <section className="pb-24 sm:pb-32" aria-label="Blog posts">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {loading ? (
-              <div className="flex justify-center items-center py-20">
-                <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+              <div className="flex justify-center items-center py-20" role="status" aria-live="polite">
+                <Loader2 className="w-8 h-8 animate-spin text-indigo-600" aria-hidden="true" />
                 <span className="ml-3 text-gray-600">Loading blog posts...</span>
               </div>
             ) : error ? (
-              <div className="text-center py-20">
+              <div className="text-center py-20" role="alert">
                 <p className="text-red-600 mb-4">{error}</p>
               </div>
-            ) : posts.length === 0 ? (
+            ) : filteredPosts.length === 0 ? (
               <div className="text-center py-20">
-                <p className="text-gray-600 text-lg">No blog posts available yet. Check back soon!</p>
+                <p className="text-gray-600 text-lg">
+                  {posts.length === 0
+                    ? 'No blog posts available yet. Check back soon!'
+                    : 'No posts match your search criteria. Try adjusting your filters.'}
+                </p>
+                {posts.length > 0 && (
+                  <button
+                    onClick={clearFilters}
+                    className="mt-4 px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
+                  >
+                    Clear Filters
+                  </button>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {posts.map((post, index) => (
+                {filteredPosts.map((post, index) => (
                   <PostCard key={post.id || post.slug} post={post} isFeatured={index === 0} />
                 ))}
               </div>
