@@ -1,14 +1,101 @@
 /**
- * Version check utility to detect new deployments
- * Periodically checks if a new version is available and prompts user to reload
+ * Version check utility to detect new deployments and force cache refresh
+ * CRITICAL FIX FOR WORK PAGE CACHING ISSUE
  */
 
 let lastEtag = null;
 let checkInterval = null;
 
-/**
- * Check if a new version is available by comparing ETags
- */
+const VERSION_KEY = 'app_build_version';
+const RELOAD_ATTEMPTED_KEY = 'reload_attempted_for_version';
+
+function getBuildVersion() {
+  const meta = document.querySelector('meta[name="build-version"]');
+  return meta ? meta.getAttribute('content') : null;
+}
+
+function getCachedBuildVersion() {
+  try {
+    return localStorage.getItem(VERSION_KEY);
+  } catch (error) {
+    return null;
+  }
+}
+
+function setCachedBuildVersion(version) {
+  try {
+    localStorage.setItem(VERSION_KEY, version);
+  } catch (error) {
+    console.error('[VERSION] Failed to cache version:', error);
+  }
+}
+
+function hasAttemptedReloadForCurrentVersion() {
+  try {
+    const currentVersion = getBuildVersion();
+    const attemptedVersion = sessionStorage.getItem(RELOAD_ATTEMPTED_KEY);
+    return attemptedVersion === currentVersion;
+  } catch (error) {
+    return false;
+  }
+}
+
+function markReloadAttempted() {
+  try {
+    const currentVersion = getBuildVersion();
+    if (currentVersion) {
+      sessionStorage.setItem(RELOAD_ATTEMPTED_KEY, currentVersion);
+    }
+  } catch (error) {
+    console.error('[VERSION] Failed to mark reload attempt:', error);
+  }
+}
+
+function forceHardReload() {
+  console.log('🔄 [VERSION] Forcing hard reload with cache bypass...');
+  markReloadAttempted();
+  const url = new URL(window.location.href);
+  url.searchParams.set('_v', Date.now().toString());
+  window.location.replace(url.toString());
+}
+
+export function checkBuildVersion() {
+  const currentVersion = getBuildVersion();
+  const cachedVersion = getCachedBuildVersion();
+
+  console.log('🔍 [VERSION] Build version check:', { current: currentVersion, cached: cachedVersion });
+
+  if (!currentVersion) {
+    console.warn('⚠️ [VERSION] No build-version meta tag found');
+    return true;
+  }
+
+  if (!cachedVersion) {
+    console.log('✅ [VERSION] First visit - caching build version');
+    setCachedBuildVersion(currentVersion);
+    return true;
+  }
+
+  if (currentVersion === cachedVersion) {
+    console.log('✅ [VERSION] Build version matches cache');
+    return true;
+  }
+
+  console.warn('⚠️ [VERSION] Build version mismatch!');
+  console.warn(`   Current: ${currentVersion}`);
+  console.warn(`   Cached: ${cachedVersion}`);
+
+  if (hasAttemptedReloadForCurrentVersion()) {
+    console.error('🚨 [VERSION] Already attempted reload - preventing infinite loop');
+    setCachedBuildVersion(currentVersion);
+    return true;
+  }
+
+  console.log('🔄 [VERSION] Triggering cache-busting reload...');
+  forceHardReload();
+  return false;
+}
+
 async function checkForNewVersion() {
   try {
     const response = await fetch('/index.html', {
@@ -19,14 +106,12 @@ async function checkForNewVersion() {
     const currentEtag = response.headers.get('etag') || response.headers.get('last-modified');
 
     if (lastEtag === null) {
-      // First check - just store the ETag
       lastEtag = currentEtag;
       return false;
     }
 
-    // If ETag changed, new version is available
     if (currentEtag && currentEtag !== lastEtag) {
-      console.log('New version detected!', { old: lastEtag, new: currentEtag });
+      console.log('New version detected via ETag!', { old: lastEtag, new: currentEtag });
       return true;
     }
 

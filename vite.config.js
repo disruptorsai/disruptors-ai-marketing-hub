@@ -2,9 +2,23 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc' // Using SWC for faster builds (2025 best practice)
 import path from 'path'
 
+/**
+ * Vite plugin to inject build timestamp into index.html
+ * This enables automatic cache-busting when new deployments go live
+ */
+function injectBuildVersion() {
+  return {
+    name: 'inject-build-version',
+    transformIndexHtml(html) {
+      const buildVersion = new Date().toISOString();
+      return html.replace('BUILD_TIMESTAMP_PLACEHOLDER', buildVersion);
+    }
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), injectBuildVersion()],
   server: {
     allowedHosts: true,
     fs: {
