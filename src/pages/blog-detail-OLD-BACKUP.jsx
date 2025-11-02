@@ -107,19 +107,19 @@ export default function BlogDetail() {
         "@type": "BlogPosting",
         "headline": post.title,
         "description": post.excerpt || post.title,
-        "image": post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg",
+        "image": post.featured_image || "https://disruptorsmedia.com/og-image.jpg",
         "author": {
             "@type": "Organization",
             "name": "Disruptors Media",
-            "url": "https://dm4.wjwelsh.com"
+            "url": "https://disruptorsmedia.com"
         },
         "publisher": {
             "@type": "Organization",
             "name": "Disruptors Media",
-            "url": "https://dm4.wjwelsh.com",
+            "url": "https://disruptorsmedia.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://dm4.wjwelsh.com/logo.png"
+                "url": "https://disruptorsmedia.com/logo.png"
             }
         },
         "datePublished": post.published_at || post.created_at,
@@ -141,13 +141,13 @@ export default function BlogDetail() {
             <meta name="description" content={post.excerpt || post.title} />
             <meta property="og:title" content={post.title} />
             <meta property="og:description" content={post.excerpt || post.title} />
-            <meta property="og:image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
+            <meta property="og:image" content={post.featured_image || "https://disruptorsmedia.com/og-image.jpg"} />
             <meta property="og:url" content={window.location.href} />
             <meta property="og:type" content="article" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={post.title} />
             <meta name="twitter:description" content={post.excerpt || post.title} />
-            <meta name="twitter:image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
+            <meta name="twitter:image" content={post.featured_image || "https://disruptorsmedia.com/og-image.jpg"} />
 
             <div className="text-white">
                 {/* Schema.org JSON-LD for SEO */}
@@ -322,7 +322,7 @@ export default function BlogDetail() {
 
                             <article className="bg-white/98 backdrop-blur-md text-gray-900 rounded-3xl p-8 sm:p-12 lg:p-16 xl:p-20 shadow-2xl ring-1 ring-gray-200/50" itemScope itemType="https://schema.org/BlogPosting">
                                 <meta itemProp="headline" content={post.title} />
-                                <meta itemProp="image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
+                                <meta itemProp="image" content={post.featured_image || "https://disruptorsmedia.com/og-image.jpg"} />
                                 <meta itemProp="datePublished" content={post.published_at || post.created_at} />
                                 <meta itemProp="dateModified" content={post.updated_at || post.published_at || post.created_at} />
                                 <meta itemProp="author" content="Disruptors Media" />

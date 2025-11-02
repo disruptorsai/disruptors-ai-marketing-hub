@@ -206,7 +206,7 @@ export async function generateBlogArticle({
   title,
   primaryKeyword,
   secondaryKeyword,
-  targetUrl = 'https://dm4.wjwelsh.com',
+  targetUrl = 'https://disruptorsmedia.com',
   primaryLocation = ''
 }) {
   const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
@@ -314,7 +314,7 @@ export async function batchGenerateArticles(posts, onProgress, onStatusUpdate) {
         title: post.title,
         primaryKeyword,
         secondaryKeyword,
-        targetUrl: 'https://dm4.wjwelsh.com',
+        targetUrl: 'https://disruptorsmedia.com',
         primaryLocation: post.location || ''
       });
 

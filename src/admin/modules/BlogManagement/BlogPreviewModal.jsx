@@ -39,7 +39,7 @@ export default function BlogPreviewModal({ blog, onClose }) {
         <div className="flex items-start gap-2">
           <div className="text-green-400 flex-1">
             <div className="text-xs text-green-500/50 mb-1">
-              https://dm4.wjwelsh.com/blog/{blog.slug || 'blog-post'}
+              https://disruptorsmedia.com/blog/{blog.slug || 'blog-post'}
             </div>
             <div className="text-blue-400 text-lg hover:underline cursor-pointer">
               {blog.seo_title || blog.title}

@@ -28,7 +28,7 @@ export default function AuthCallback() {
       const hash = window.location.hash;
 
       // Construct correct URL
-      const correctUrl = `https://dm4.wjwelsh.com/auth/callback${hash}`;
+      const correctUrl = `https://disruptorsmedia.com/auth/callback${hash}`;
 
       // Replace current URL with correct one
       window.location.replace(correctUrl);
