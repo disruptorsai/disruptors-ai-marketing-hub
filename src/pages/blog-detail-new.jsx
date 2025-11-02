@@ -370,22 +370,6 @@ export default function BlogDetailNew() {
                     </div>
                 </div>
             </article>
-
-            {/* CTA Section */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-                <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-                    <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Marketing?</h2>
-                    <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-                        Join thousands of businesses using AI to dominate their markets. Get started with Disruptors AI today.
-                    </p>
-                    <a
-                        href="/app/signup"
-                        className="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
-                    >
-                        Start Free Trial
-                    </a>
-                </div>
-            </div>
         </div>
     );
 }
