@@ -99,6 +99,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **List all users**: `npm run admin:list-users` - Shows all Supabase Auth users and admin status
 - **Grant admin role**: `npm run admin:setup-role <email>` - Add admin role to existing user
 
+## CRITICAL SAFETY RULES
+
+### Deployment & Production Restrictions
+
+**NEVER** perform the following operations without explicit user approval:
+
+1. **Production Deployment**:
+   - **NEVER** run `npm run deploy:prod` automatically
+   - **NEVER** deploy to the main disruptorsmedia.com production site
+   - **NEVER** trigger production deployments via automation
+   - **Production deployment is ALWAYS manual** - User will initiate when ready
+   - Only deploy to dev site (https://dev.disruptorsmedia.com) automatically
+
+2. **Protected Git Branches**:
+   - **NEVER** merge to `main` or `master` branches
+   - **NEVER** push to `main` or `master` branches
+   - **NEVER** checkout `main` or `master` branches
+   - **NEVER** make any changes to `main` or `master` branches
+   - **NEVER** create pull requests targeting `main` or `master` without explicit user request
+   - All development work stays on feature branches (current: `kyleupdates`)
+
+3. **Deployment Workflow**:
+   - ✅ Automatic dev deployment on `git push` (any branch)
+   - ✅ Test and validate on dev site
+   - ❌ **STOP** - User manually approves and deploys to production
+   - User controls production deployment timing
+
+**Violation Prevention**: If user requests production deployment or branch merge, ask for explicit confirmation before proceeding.
+
 ## Project Overview
 
 This is a React SPA built with Vite serving as a marketing website and AI-powered platform for Disruptors AI. It features a sophisticated architecture combining:
