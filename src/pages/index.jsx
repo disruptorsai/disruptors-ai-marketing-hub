@@ -81,6 +81,7 @@ const ContactDev = lazyWithRetry(() => import('./contact-dev.jsx'));
 // Blog system - lazy loaded with retry
 const Blog = lazyWithRetry(() => import('./blog.jsx'));
 const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
+const BlogDetailNew = lazyWithRetry(() => import('./blog-detail-new.jsx'));
 // BlogManagement moved to Admin Nexus for security - was publicly accessible without auth
 // const BlogManagement = lazyWithRetry(() => import('./blog-management.jsx'));
 
@@ -383,6 +384,7 @@ function PagesContent() {
                             <Route path="/blog" element={<Blog />} />
 
                             <Route path="/blog-detail" element={<BlogDetail />} />
+                            <Route path="/blog-new" element={<BlogDetailNew />} />
 
                             {/* Blog Management moved to Admin Nexus for security */}
                             {/* <Route path="/blog-management" element={<BlogManagement />} /> */}
