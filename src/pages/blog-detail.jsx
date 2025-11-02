@@ -320,7 +320,7 @@ export default function BlogDetail() {
                                 <TableOfContents content={post.content} wordCount={wordCount} />
                             </div>
 
-                            <article className="bg-white/98 backdrop-blur-md text-gray-900 rounded-3xl p-8 sm:p-12 lg:p-20 shadow-2xl ring-1 ring-gray-200/50" itemScope itemType="https://schema.org/BlogPosting">
+                            <article className="bg-white/98 backdrop-blur-md text-gray-900 rounded-3xl p-8 sm:p-12 lg:p-16 xl:p-20 shadow-2xl ring-1 ring-gray-200/50" itemScope itemType="https://schema.org/BlogPosting">
                                 <meta itemProp="headline" content={post.title} />
                                 <meta itemProp="image" content={post.featured_image || "https://dm4.wjwelsh.com/og-image.jpg"} />
                                 <meta itemProp="datePublished" content={post.published_at || post.created_at} />
@@ -329,7 +329,7 @@ export default function BlogDetail() {
                                 {/* Tags - Premium Design */}
                                 {post.tags && post.tags.length > 0 && (
                                     <motion.div
-                                        className="flex flex-wrap gap-3 mb-16 pb-10 border-b-2 border-gradient-to-r from-transparent via-yellow-400/30 to-transparent"
+                                        className="flex flex-wrap gap-3 mb-20 pb-12 border-b-2 border-gradient-to-r from-transparent via-yellow-400/30 to-transparent"
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
@@ -352,32 +352,32 @@ export default function BlogDetail() {
                                     </motion.div>
                                 )}
 
-                                {/* Post Body with Premium Typography - Optimized Vertical Rhythm */}
+                                {/* Post Body with Premium Typography - EXTRA GENEROUS SPACING */}
                                 <div
-                                    className="blog-content prose prose-lg max-w-4xl mx-auto
+                                    className="blog-content prose prose-xl max-w-none
                                         antialiased
 
-                                        /* Headings - Clear Visual Hierarchy */
+                                        /* Headings - Clear Visual Hierarchy WITH MASSIVE SPACING */
                                         prose-headings:text-gray-900 prose-headings:font-bold prose-headings:scroll-mt-24 prose-headings:tracking-tight
 
                                         /* H1 - Main Title (rarely used in content) */
-                                        prose-h1:text-4xl prose-h1:mb-10 prose-h1:mt-0 prose-h1:leading-[1.2] prose-h1:font-extrabold prose-h1:text-gray-900
+                                        prose-h1:text-5xl prose-h1:mb-14 prose-h1:mt-0 prose-h1:leading-[1.2] prose-h1:font-extrabold prose-h1:text-gray-900
 
-                                        /* H2 - Major Sections (2× paragraph spacing before) */
-                                        prose-h2:text-3xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:leading-[1.25] prose-h2:border-b-2 prose-h2:border-gray-200 prose-h2:pb-5 prose-h2:text-gray-900 prose-h2:font-extrabold
+                                        /* H2 - Major Sections (HUGE spacing before/after) */
+                                        prose-h2:text-4xl prose-h2:mt-32 prose-h2:mb-12 prose-h2:leading-[1.25] prose-h2:border-b-2 prose-h2:border-gray-200 prose-h2:pb-6 prose-h2:text-gray-900 prose-h2:font-extrabold
 
-                                        /* H3 - Subsections */
-                                        prose-h3:text-2xl prose-h3:mt-16 prose-h3:mb-6 prose-h3:leading-[1.3] prose-h3:text-gray-800 prose-h3:font-bold
+                                        /* H3 - Subsections (BIG spacing) */
+                                        prose-h3:text-3xl prose-h3:mt-24 prose-h3:mb-10 prose-h3:leading-[1.3] prose-h3:text-gray-800 prose-h3:font-bold
 
-                                        /* H4 - Minor Sections */
-                                        prose-h4:text-xl prose-h4:mt-12 prose-h4:mb-4 prose-h4:leading-[1.35] prose-h4:text-gray-800 prose-h4:font-bold
+                                        /* H4 - Minor Sections (GOOD spacing) */
+                                        prose-h4:text-2xl prose-h4:mt-16 prose-h4:mb-8 prose-h4:leading-[1.35] prose-h4:text-gray-800 prose-h4:font-bold
 
                                         /* H5 - Smallest Headings */
-                                        prose-h5:text-lg prose-h5:mt-10 prose-h5:mb-3 prose-h5:leading-[1.4] prose-h5:text-gray-700 prose-h5:font-semibold
+                                        prose-h5:text-xl prose-h5:mt-12 prose-h5:mb-6 prose-h5:leading-[1.4] prose-h5:text-gray-700 prose-h5:font-semibold
 
-                                        /* Paragraphs - Optimal Reading Experience */
-                                        prose-p:text-gray-700 prose-p:leading-[1.65] prose-p:mb-7 prose-p:text-[19px]
-                                        prose-p:first-of-type:text-[21px] prose-p:first-of-type:leading-[1.65] prose-p:first-of-type:font-normal prose-p:first-of-type:text-gray-800
+                                        /* Paragraphs - GENEROUS spacing between paragraphs */
+                                        prose-p:text-gray-700 prose-p:leading-[1.8] prose-p:mb-10 prose-p:text-[20px]
+                                        prose-p:first-of-type:text-[22px] prose-p:first-of-type:leading-[1.75] prose-p:first-of-type:font-normal prose-p:first-of-type:text-gray-800
 
                                         /* Links - Accessible & Clear */
                                         prose-a:text-blue-600 prose-a:font-semibold prose-a:no-underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:underline hover:prose-a:text-blue-700 prose-a:transition-colors
@@ -387,32 +387,32 @@ export default function BlogDetail() {
                                         prose-em:text-gray-700 prose-em:italic
 
                                         /* Blockquotes - Clean & Elegant */
-                                        prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:bg-gray-50 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-5 prose-blockquote:italic prose-blockquote:text-gray-700 prose-blockquote:my-10 prose-blockquote:rounded-r-lg prose-blockquote:text-[19px] prose-blockquote:font-normal prose-blockquote:leading-[1.65]
+                                        prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:bg-gray-50 prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-8 prose-blockquote:italic prose-blockquote:text-gray-700 prose-blockquote:my-16 prose-blockquote:rounded-r-lg prose-blockquote:text-[20px] prose-blockquote:font-normal prose-blockquote:leading-[1.75]
 
                                         /* Code - Inline */
-                                        prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[17px] prose-code:font-mono prose-code:font-normal prose-code:border prose-code:border-gray-200
+                                        prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-[18px] prose-code:font-mono prose-code:font-normal prose-code:border prose-code:border-gray-200
 
                                         /* Code Blocks */
-                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-hidden prose-pre:shadow-lg prose-pre:my-10 prose-pre:border prose-pre:border-gray-700
+                                        prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-hidden prose-pre:shadow-lg prose-pre:my-16 prose-pre:border prose-pre:border-gray-700
 
-                                        /* Lists - Clear & Readable */
-                                        prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-7 prose-ul:space-y-3
-                                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-7 prose-ol:space-y-3
-                                        prose-li:text-gray-700 prose-li:leading-[1.65] prose-li:text-[19px] prose-li:marker:text-blue-600
-                                        prose-li>p:my-2
+                                        /* Lists - Clear & Readable WITH SPACING */
+                                        prose-ul:list-disc prose-ul:ml-8 prose-ul:mb-10 prose-ul:space-y-4
+                                        prose-ol:list-decimal prose-ol:ml-8 prose-ol:mb-10 prose-ol:space-y-4
+                                        prose-li:text-gray-700 prose-li:leading-[1.8] prose-li:text-[20px] prose-li:marker:text-blue-600
+                                        prose-li>p:my-4
 
                                         /* Images - Professional Presentation */
-                                        prose-img:rounded-lg prose-img:shadow-lg prose-img:my-14 prose-img:border prose-img:border-gray-200
+                                        prose-img:rounded-lg prose-img:shadow-lg prose-img:my-20 prose-img:border prose-img:border-gray-200
 
                                         /* Tables - Clean Data Display */
-                                        prose-table:border-collapse prose-table:w-full prose-table:my-10 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden prose-table:border prose-table:border-gray-300
+                                        prose-table:border-collapse prose-table:w-full prose-table:my-16 prose-table:shadow-md prose-table:rounded-lg prose-table:overflow-hidden prose-table:border prose-table:border-gray-300
                                         prose-thead:bg-gray-100
-                                        prose-th:p-4 prose-th:text-left prose-th:font-bold prose-th:text-gray-900 prose-th:border-b prose-th:border-gray-300 prose-th:text-base prose-th:tracking-normal
-                                        prose-td:border prose-td:border-gray-200 prose-td:p-4 prose-td:text-gray-700 prose-td:text-base
+                                        prose-th:p-5 prose-th:text-left prose-th:font-bold prose-th:text-gray-900 prose-th:border-b prose-th:border-gray-300 prose-th:text-lg prose-th:tracking-normal
+                                        prose-td:border prose-td:border-gray-200 prose-td:p-5 prose-td:text-gray-700 prose-td:text-lg
                                         prose-tr:border-b prose-tr:border-gray-200 hover:prose-tr:bg-gray-50 prose-tr:transition-colors
 
                                         /* Horizontal Rules - Section Dividers */
-                                        prose-hr:my-16 prose-hr:border-0 prose-hr:h-px prose-hr:bg-gray-300"
+                                        prose-hr:my-24 prose-hr:border-0 prose-hr:h-px prose-hr:bg-gray-300"
                                 >
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
