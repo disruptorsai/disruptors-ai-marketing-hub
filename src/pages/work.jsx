@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
-import BentoGrid from '../components/shared/BentoGrid';
+import BentoGridNew from '../components/shared/BentoGridNew';
 import CaseStudySection from '../components/shared/CaseStudySection';
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
@@ -50,7 +50,7 @@ export default function Work() {
         <BlurSection blurAmount={4}>
           <section className="py-8 sm:py-12">
             <div className="w-full px-4 sm:px-6 lg:px-8">
-              <BentoGrid items={caseStudies} />
+              <BentoGridNew items={caseStudies} />
             </div>
           </section>
         </BlurSection>
