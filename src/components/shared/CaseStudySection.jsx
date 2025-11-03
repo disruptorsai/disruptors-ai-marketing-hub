@@ -259,30 +259,30 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
   </motion.div>
 );
 
-// Standard case study card
+// Standard case study card - Dark theme with white text
 const CaseStudyCard = ({ caseStudy, index, onClick }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, x: 50 }}
+    whileInView={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
     viewport={{ once: true }}
     onClick={onClick}
-    className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/40 hover:shadow-2xl hover:border-yellow-400/40 transition-all duration-300 group h-full flex flex-col cursor-pointer hover:scale-105"
+    className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-md rounded-2xl p-6 shadow-xl border border-yellow-400/30 hover:shadow-2xl hover:border-yellow-400/60 transition-all duration-300 group flex-shrink-0 w-[400px] flex flex-col cursor-pointer hover:scale-105"
   >
     {/* Header with Industry Badge */}
     <div className="mb-4">
       {caseStudy.industry && (
-        <div className="inline-flex items-center gap-1 bg-yellow-400/10 text-yellow-600 px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-yellow-400/20">
+        <div className="inline-flex items-center gap-1 bg-yellow-400/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-yellow-400/30">
           <Award className="w-3 h-3" />
           {caseStudy.industry}
         </div>
       )}
-      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300 flex items-start gap-2">
-        <ArrowUpRight className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-1" />
+      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300 flex items-start gap-2">
+        <ArrowUpRight className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
         <span>{caseStudy.title}</span>
       </h3>
       {/* Expand hint */}
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-gray-500 flex items-center gap-1 mt-1">
+      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-gray-400 flex items-center gap-1 mt-1">
         <Maximize2 className="w-3 h-3" />
         Click for full case study
       </div>
@@ -290,36 +290,36 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
 
     {/* Approach */}
     <div className="mb-4">
-      <h4 className="text-sm font-semibold text-yellow-600 mb-2 flex items-center gap-1">
+      <h4 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-1">
         <Zap className="w-3 h-3" />
         Approach
       </h4>
-      <p className="text-gray-700 text-sm leading-relaxed">{caseStudy.approach}</p>
+      <p className="text-gray-300 text-sm leading-relaxed">{caseStudy.approach}</p>
     </div>
 
     {/* Execution */}
     <div className="mb-4">
-      <h4 className="text-sm font-semibold text-yellow-600 mb-2 flex items-center gap-1">
+      <h4 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-1">
         <Target className="w-3 h-3" />
         Execution
       </h4>
-      <p className="text-gray-700 text-sm leading-relaxed">{caseStudy.execution}</p>
+      <p className="text-gray-300 text-sm leading-relaxed">{caseStudy.execution}</p>
     </div>
 
     {/* Results */}
-    <div className="mt-auto pt-4 border-t border-gray-200">
-      <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-1">
-        <CheckCircle className="w-3 h-3 text-yellow-600" />
+    <div className="mt-auto pt-4 border-t border-gray-700">
+      <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-1">
+        <CheckCircle className="w-3 h-3 text-yellow-400" />
         Key Results
       </h4>
       <div className="grid grid-cols-2 gap-2">
         {caseStudy.results.slice(0, 4).map((result, idx) => (
           <div
             key={idx}
-            className="bg-yellow-50 rounded-lg p-2 border border-yellow-100"
+            className="bg-yellow-400/10 rounded-lg p-2 border border-yellow-400/30"
           >
-            <p className="text-lg font-bold text-gray-900">{result.value}</p>
-            <p className="text-xs text-gray-600">{result.label}</p>
+            <p className="text-lg font-bold text-white">{result.value}</p>
+            <p className="text-xs text-gray-400">{result.label}</p>
           </div>
         ))}
       </div>
@@ -444,10 +444,10 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Success Stories That <span className="text-yellow-600">Speak Volumes</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Success Stories That <span className="text-yellow-400">Speak Volumes</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Real campaigns. Real data. Real growth. See how we've helped businesses across industries achieve exceptional ROI through strategic digital marketing.
           </p>
         </motion.div>
@@ -460,17 +460,34 @@ export default function CaseStudySection() {
           />
         </div>
 
-        {/* Grid of Case Studies */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {caseStudies.map((caseStudy, index) => (
-            <CaseStudyCard
-              key={index}
-              caseStudy={caseStudy}
-              index={index}
-              onClick={() => setExpandedCaseStudy(caseStudy)}
-            />
-          ))}
+        {/* Horizontal Scrolling Case Studies */}
+        <div className="relative">
+          <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+            <div className="flex gap-6">
+              {caseStudies.map((caseStudy, index) => (
+                <CaseStudyCard
+                  key={index}
+                  caseStudy={caseStudy}
+                  index={index}
+                  onClick={() => setExpandedCaseStudy(caseStudy)}
+                />
+              ))}
+            </div>
+          </div>
+          {/* Scroll indicator */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white/10 to-transparent pointer-events-none" />
         </div>
+
+        {/* CSS for hiding scrollbar */}
+        <style jsx>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
 
         {/* Bottom CTA */}
         <motion.div
@@ -480,10 +497,10 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-lg text-gray-700 mb-4 font-medium">
+          <p className="text-lg text-gray-300 mb-4 font-medium">
             Ready to achieve similar results for your business?
           </p>
-          <div className="inline-flex items-center gap-2 bg-yellow-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-700 transition-colors duration-300 cursor-pointer shadow-lg hover:shadow-xl">
+          <div className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-500 transition-colors duration-300 cursor-pointer shadow-lg hover:shadow-xl">
             Let's Build Your Success Story
             <ArrowUpRight className="w-5 h-5" />
           </div>

@@ -22,12 +22,7 @@ export default function Work() {
         {/* Page Title */}
         <PageTitle title="OUR WORK" />
 
-        {/* Success Stories Section - Detailed Case Studies */}
-        <BlurSection blurAmount={3}>
-          <CaseStudySection />
-        </BlurSection>
-
-        {/* Hero Section - Moved after Case Studies */}
+        {/* Hero Section - Now at top */}
         <BlurSection>
           <section className="py-8 sm:py-12 text-center">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,6 +53,11 @@ export default function Work() {
               <BentoGrid items={caseStudies} />
             </div>
           </section>
+        </BlurSection>
+
+        {/* Success Stories Section - Detailed Case Studies */}
+        <BlurSection blurAmount={3}>
+          <CaseStudySection />
         </BlurSection>
 
         {/* Footer CTA */}
