@@ -6,7 +6,17 @@
  */
 
 const CACHE_VERSION_KEY = 'app_cache_version';
-const CURRENT_CACHE_VERSION = Date.now().toString();
+
+/**
+ * Get the build version from the meta tag (set at build time)
+ * This ensures cache version only changes on actual deployments, not every page load
+ */
+function getBuildVersion() {
+  const meta = document.querySelector('meta[name="build-version"]');
+  return meta ? meta.getAttribute('content') : Date.now().toString();
+}
+
+const CURRENT_CACHE_VERSION = getBuildVersion();
 
 /**
  * Clear all browser caches (localStorage, sessionStorage, Service Worker caches)
