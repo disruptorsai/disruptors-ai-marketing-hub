@@ -40,7 +40,7 @@ export const RESOURCE_TYPE = {
  */
 const CRITICAL_RESOURCES = [
   // Critical images (hero, logo)
-  'https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/logo_a4toul.png',
+  'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png',
 
   // Critical fonts (if any)
 

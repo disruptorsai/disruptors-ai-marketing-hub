@@ -28,6 +28,21 @@ export function lazyWithRetry(importFunc, maxRetries = 1) {
     console.log('🔵 [lazyWithRetry] Starting import...');
     console.log('🔵 [lazyWithRetry] hasRefreshed:', hasRefreshed);
 
+    // ⚡ AGGRESSIVE CACHE BUSTING: Clear chunk caches on EVERY lazy load
+    try {
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        for (const cacheName of cacheNames) {
+          if (cacheName.includes('chunk') || cacheName.includes('page') || cacheName.includes('assets')) {
+            console.log('🧹 [CACHE CLEAR] Clearing cache:', cacheName);
+            await caches.delete(cacheName);
+          }
+        }
+      }
+    } catch (cacheError) {
+      console.warn('⚠️ [CACHE CLEAR] Failed to clear caches:', cacheError);
+    }
+
     try {
       // Try to import the component
       console.log('🔵 [lazyWithRetry] Calling importFunc()...');
@@ -58,6 +73,24 @@ export function lazyWithRetry(importFunc, maxRetries = 1) {
 
       if (isChunkError) {
         console.log('🔄 [CHUNK ERROR DETECTED] This is likely due to a cached old deployment');
+
+        // NUCLEAR OPTION: Clear ALL caches before reload
+        console.log('☢️  [NUCLEAR CACHE CLEAR] Clearing ALL browser caches...');
+        try {
+          if ('caches' in window) {
+            const allCacheNames = await caches.keys();
+            await Promise.all(allCacheNames.map(name => caches.delete(name)));
+          }
+          // Clear localStorage (except auth)
+          const authKey = 'disruptors-ai-auth';
+          const authData = localStorage.getItem(authKey);
+          localStorage.clear();
+          if (authData) {
+            localStorage.setItem(authKey, authData);
+          }
+        } catch (clearError) {
+          console.error('❌ Failed to clear caches:', clearError);
+        }
 
         // If we haven't already tried refreshing, do it now
         if (!hasRefreshed || hasRefreshed === 'false') {

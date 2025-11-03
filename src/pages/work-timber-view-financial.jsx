@@ -22,7 +22,7 @@ const caseData = {
     { icon: Target, name: "Content Strategy" }
   ],
   testimonial: "Our clients love the new platform. It's made our entire practice more efficient and professional.",
-  clientLogo: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/timberviewfinancial_logo.webp",
+  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp",
   heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2070&auto=format&fit=crop"
 };
 

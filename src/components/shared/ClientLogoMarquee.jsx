@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 import Marquee from 'react-fast-marquee';
 
 const clientLogos = [
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/tradeworxusa_logo.svg", alt: "TradeWorx USA", slug: "work-tradeworx-usa" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/timberviewfinancial_logo.webp", alt: "Timberview Capital", slug: "work-timber-view-financial" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/thewellnessway_logo.webp", alt: "The Wellness Way", slug: "work-the-wellness-way" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/soundcorrections_logo.svg", alt: "Sound Corrections", slug: "work-sound-corrections" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/segpro_logo.png", alt: "SegPro Solutions", slug: "work-segpro" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/neuromastery_logo.webp", alt: "Neuro Mastery", slug: "work-neuro-mastery" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/muscleworks_logo.png", alt: "Muscle Works", slug: "work-muscle-works" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/granitepaving_logo.png", alt: "Granite Paving", slug: "work-granite-paving" },
-  { src: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/autotrimutah_logo.png", alt: "Auto Trim Utah", slug: "work-auto-trim-utah" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg", alt: "TradeWorx USA", slug: "work-tradeworx-usa" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp", alt: "Timberview Capital", slug: "work-timber-view-financial" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp", alt: "The Wellness Way", slug: "work-the-wellness-way" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg", alt: "Sound Corrections", slug: "work-sound-corrections" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png", alt: "SegPro Solutions", slug: "work-segpro" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp", alt: "Neuro Mastery", slug: "work-neuro-mastery" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862158/case-studies/case-studies/muscleworks_logo.png", alt: "Muscle Works", slug: "work-muscle-works" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png", alt: "Granite Paving", slug: "work-granite-paving" },
+  { src: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png", alt: "Auto Trim Utah", slug: "work-auto-trim-utah" },
 ];
 
 export default function ClientLogoMarquee({
