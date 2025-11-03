@@ -62,7 +62,7 @@ export default function Work() {
 
         {/* Footer CTA */}
         <section className="bg-gray-900 text-white relative z-10">
-          <DualCTABlock />
+          <DualCTABlock cta2_text="" />
         </section>
       </div>
     </DynamicBackground>

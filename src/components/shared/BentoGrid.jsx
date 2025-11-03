@@ -51,14 +51,14 @@ const BentoCard = ({ item, index, onExpand }) => {
     }
   };
 
-  // Vary card spans for masonry effect (using grid rows)
+  // More balanced row spans for better symmetry
   const rowSpans = [
-    'row-span-2', // Small card (2 rows)
-    'row-span-3', // Medium card (3 rows)
-    'row-span-2', // Small card
-    'row-span-4', // Large card (4 rows)
-    'row-span-3', // Medium card
-    'row-span-2', // Small card
+    'row-span-2', // Standard card
+    'row-span-3', // Tall card
+    'row-span-2', // Standard card
+    'row-span-3', // Tall card
+    'row-span-2', // Standard card
+    'row-span-2', // Standard card
   ];
   const rowSpan = rowSpans[index % rowSpans.length];
 
@@ -69,9 +69,10 @@ const BentoCard = ({ item, index, onExpand }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.2, delay: index * 0.02 }}
-      className={`group relative ${rowSpan} overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[350px]`}
+      className={`group relative ${rowSpan} overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-xl hover:shadow-2xl transition-all duration-500 min-h-[350px] cursor-pointer`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={() => onExpand(item)}
     >
       {/* Background Image/Video */}
       <div className="absolute inset-0">
@@ -124,25 +125,27 @@ const BentoCard = ({ item, index, onExpand }) => {
           </>
         )}
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        {/* Gradient Overlay - Darker for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
       </div>
 
       {/* Content - Always visible */}
       <div className="relative h-full flex flex-col justify-end p-6 z-10">
-        {/* Logo */}
+        {/* Logo with light background for contrast */}
         {item.logo && (
-          <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500">
-            <img
-              src={item.logo}
-              alt={item.client}
-              className="h-20 w-auto object-contain filter drop-shadow-lg"
-              loading="eager"
-              onError={(e) => {
-                // Hide logo if it fails to load
-                e.target.style.display = 'none';
-              }}
-            />
+          <div className="mb-6 inline-block self-start">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl transform group-hover:scale-110 transition-all duration-500 hover:bg-white">
+              <img
+                src={item.logo}
+                alt={item.client}
+                className="h-16 w-auto max-w-[200px] object-contain"
+                loading="eager"
+                onError={(e) => {
+                  // Hide logo if it fails to load
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
           </div>
         )}
 
@@ -159,9 +162,9 @@ const BentoCard = ({ item, index, onExpand }) => {
 
       {/* Border Animation */}
       <motion.div
-        className="absolute inset-0 border-2 border-yellow-400 rounded-2xl opacity-0 group-hover:opacity-100"
+        className="absolute inset-0 border-2 border-yellow-400 rounded-3xl opacity-0 group-hover:opacity-100"
         initial={false}
-        animate={isHovered ? { scale: 1.02 } : { scale: 1 }}
+        animate={isHovered ? { scale: 1.01 } : { scale: 1 }}
         transition={{ duration: 0.3 }}
       />
     </motion.div>
@@ -344,7 +347,7 @@ export default function BentoGrid({ items }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8 auto-rows-[200px] w-full overflow-x-visible" style={{ gridAutoFlow: 'dense' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 auto-rows-[180px] w-full max-w-[1800px] mx-auto" style={{ gridAutoFlow: 'dense' }}>
         {items.map((item, index) => (
           <BentoCard
             key={`${item.name}-${index}` || index}

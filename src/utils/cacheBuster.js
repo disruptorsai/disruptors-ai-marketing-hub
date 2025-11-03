@@ -10,10 +10,18 @@ const CACHE_VERSION_KEY = 'app_cache_version';
 /**
  * Get the build version from the meta tag (set at build time)
  * This ensures cache version only changes on actual deployments, not every page load
+ * In development mode, return a static version to prevent infinite reload loops
  */
 function getBuildVersion() {
+  // Detect development mode
+  const isDev = import.meta.env.DEV || window.location.hostname === 'localhost';
+
+  if (isDev) {
+    return 'dev-mode'; // Static version for dev to prevent reloads
+  }
+
   const meta = document.querySelector('meta[name="build-version"]');
-  return meta ? meta.getAttribute('content') : Date.now().toString();
+  return meta ? meta.getAttribute('content') : 'prod-default';
 }
 
 const CURRENT_CACHE_VERSION = getBuildVersion();
@@ -138,6 +146,13 @@ export function bustImportCache(importPath) {
  * Call this from main.jsx BEFORE React renders
  */
 export function initCacheBuster() {
+  const isDev = import.meta.env.DEV || window.location.hostname === 'localhost';
+
+  if (isDev) {
+    console.log('🚀 [CACHE BUSTER] Skipping in development mode');
+    return;
+  }
+
   console.log('🚀 [CACHE BUSTER] Initializing...');
 
   // Check cache version

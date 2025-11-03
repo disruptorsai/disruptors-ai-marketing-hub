@@ -52,15 +52,17 @@ export default function DualCTABlock({
                 <Link to={createPageUrl(cta1_link)}>{cta1_text}</Link>
               </Button>
             </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Button asChild variant="outline" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 h-auto bg-transparent border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 font-bold uppercase tracking-wide transition-all duration-300 w-full sm:w-auto">
-                <Link to={createPageUrl(cta2_link)}>{cta2_text}</Link>
-              </Button>
-            </motion.div>
+            {cta2_text && (
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button asChild variant="outline" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 h-auto bg-transparent border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 font-bold uppercase tracking-wide transition-all duration-300 w-full sm:w-auto">
+                  <Link to={createPageUrl(cta2_link)}>{cta2_text}</Link>
+                </Button>
+              </motion.div>
+            )}
           </div>
         </motion.div>
       </div>

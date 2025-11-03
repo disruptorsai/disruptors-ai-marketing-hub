@@ -60,6 +60,14 @@ function forceHardReload() {
 }
 
 export function checkBuildVersion() {
+  // Skip version check in development mode to prevent infinite reloads
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+  if (isDev) {
+    console.log('🔍 [VERSION] Skipping version check in development mode');
+    return true;
+  }
+
   const currentVersion = getBuildVersion();
   const cachedVersion = getCachedBuildVersion();
 
@@ -213,6 +221,14 @@ function showUpdateNotification() {
  * @param {number} intervalMs - Check interval in milliseconds (default: 5 minutes)
  */
 export function startVersionCheck(intervalMs = 5 * 60 * 1000) {
+  // Skip in development mode
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+  if (isDev) {
+    console.log('🔍 [VERSION] Skipping periodic version checks in development mode');
+    return;
+  }
+
   // Clear any existing interval
   if (checkInterval) {
     clearInterval(checkInterval);
