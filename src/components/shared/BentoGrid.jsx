@@ -100,28 +100,29 @@ const BentoCard = ({ item, index, onExpand }) => {
           </>
         ) : (
           <>
-            {/* Loading skeleton */}
-            {!imageLoaded && !imageError && (
-              <div className="w-full h-full bg-gray-800 animate-pulse" />
-            )}
             {/* Error fallback */}
             {imageError && (
               <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
                 <div className="text-gray-600 text-sm">Image unavailable</div>
               </div>
             )}
-            {/* Actual image */}
+            {/* Actual image - always visible, fades in when loaded */}
             <img
               src={item.heroImage || item.logo}
               alt={item.client}
-              className={`w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500 ${!imageLoaded ? 'invisible' : ''}`}
+              className={`w-full h-full object-cover transition-opacity duration-700 ${imageLoaded ? 'opacity-70 group-hover:opacity-90' : 'opacity-0'}`}
               onLoad={() => setImageLoaded(true)}
               onError={() => {
                 setImageError(true);
                 setImageLoaded(true);
               }}
               loading="eager"
+              decoding="async"
             />
+            {/* Loading skeleton behind image */}
+            {!imageLoaded && !imageError && (
+              <div className="absolute inset-0 bg-gray-800 animate-pulse -z-10" />
+            )}
           </>
         )}
 
