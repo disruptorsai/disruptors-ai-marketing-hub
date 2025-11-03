@@ -39,7 +39,7 @@ export default function LoadingScreen({ onComplete }) {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg)',
+            backgroundImage: 'url(https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/ui/backgrounds/loader-lft.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'

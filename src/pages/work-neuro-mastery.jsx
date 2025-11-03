@@ -24,7 +24,7 @@ const caseData = {
     { icon: Target, name: "Content Systems" }
   ],
   testimonial: "Our students are learning faster and retaining more than we ever thought possible. The AI insights are incredible.",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp",
+  clientLogo: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/neuromastery_logo.webp",
   heroImage: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2069&auto=format&fit=crop"
 };
 

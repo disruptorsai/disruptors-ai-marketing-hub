@@ -22,7 +22,7 @@ const caseData = {
     { icon: Target, name: "Progress Analytics" }
   ],
   testimonial: "The platform has transformed our gym. Members love the personalized approach and we're seeing incredible results.",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862158/case-studies/case-studies/muscleworks_logo.png",
+  clientLogo: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/muscleworks_logo.png",
   heroImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
 };
 
