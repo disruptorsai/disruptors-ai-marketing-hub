@@ -19,6 +19,14 @@ const BentoCard = ({ item, index, onExpand }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const videoRef = useRef(null);
+  const imageRef = useRef(null);
+
+  // Check if image is already loaded (from cache) on mount
+  React.useEffect(() => {
+    if (imageRef.current && imageRef.current.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
 
   const handleVideoToggle = (e) => {
     e.stopPropagation();
@@ -108,6 +116,7 @@ const BentoCard = ({ item, index, onExpand }) => {
             )}
             {/* Actual image - always visible, fades in when loaded */}
             <img
+              ref={imageRef}
               src={item.heroImage || item.logo}
               alt={item.client}
               className={`w-full h-full object-cover transition-opacity duration-700 ${imageLoaded ? 'opacity-70 group-hover:opacity-90' : 'opacity-0'}`}
