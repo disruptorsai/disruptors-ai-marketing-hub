@@ -74,7 +74,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1024,
     "height": 1024,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759270218/u4455988764_Epic_Renaissance-style_painting_in_the_manner_of__3c22e647-38af-495f-8292-d023c0447081_2_b8xndu.png",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/u4455988764_Epic_Renaissance-style_painting_in_the_manner_of__3c22e647-38af-495f-8292-d023c0447081_2_b8xndu.png",
     "bytes": 2051132,
     "createdAt": "2025-09-30T22:10:18+00:00"
   },
@@ -249,7 +249,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1456,
     "height": 816,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258703/u4455988764_httpss.mj.runkhIWs5tHXvU_httpss.mj.run6ZzCOGB_E0I_1aa4da6f-8513-4a1a-9857-967341c159bd_0_wsuk6d.png",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/u4455988764_httpss.mj.runkhIWs5tHXvU_httpss.mj.run6ZzCOGB_E0I_1aa4da6f-8513-4a1a-9857-967341c159bd_0_wsuk6d.png",
     "bytes": 2363921,
     "createdAt": "2025-09-30T18:58:23+00:00"
   },
@@ -259,7 +259,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1512,
     "height": 794,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258612/footer_amtdwc.png",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/footer_amtdwc.png",
     "bytes": 78413,
     "createdAt": "2025-09-30T18:56:52+00:00"
   },
@@ -311,7 +311,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1368,
     "height": 1968,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258611/AI_girl_hoverboards_nisxz4.jpg",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/AI_girl_hoverboards_nisxz4.jpg",
     "bytes": 2588807,
     "createdAt": "2025-09-30T18:56:51+00:00"
   },
@@ -321,7 +321,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1000,
     "height": 1281,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258611/scope-of-work_hoqqrj.jpg",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/scope-of-work_hoqqrj.jpg",
     "bytes": 1795309,
     "createdAt": "2025-09-30T18:56:51+00:00"
   },
@@ -331,7 +331,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1464,
     "height": 1872,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258610/AI_Blimp_tmy95m.jpg",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/AI_Blimp_tmy95m.jpg",
     "bytes": 2925483,
     "createdAt": "2025-09-30T18:56:50+00:00"
   },
@@ -352,7 +352,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1000,
     "height": 1281,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258610/discovery-call_sier9m.jpg",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/discovery-call_sier9m.jpg",
     "bytes": 1639856,
     "createdAt": "2025-09-30T18:56:50+00:00"
   },
@@ -393,7 +393,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 572,
     "height": 733,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258609/website-design-optimization_a0vafx.jpg",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/website-design-optimization_a0vafx.jpg",
     "bytes": 585653,
     "createdAt": "2025-09-30T18:56:49+00:00"
   },
@@ -403,7 +403,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1024,
     "height": 1024,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258608/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png",
+    "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png",
     "bytes": 1895277,
     "createdAt": "2025-09-30T18:56:48+00:00"
   }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -125,20 +125,39 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'Twitter',
-      icon: '/assets/footer/twitter.webp',
+      icon: 'twitter',
       url: 'https://twitter.com/disruptorsmedia'
     },
     {
       name: 'Instagram',
-      icon: '/assets/footer/instagram.svg',
+      icon: 'instagram',
       url: 'https://instagram.com/disruptorsmedia'
     },
     {
       name: 'Facebook',
-      icon: '/assets/footer/facebook.png',
+      icon: 'facebook',
       url: 'https://facebook.com/disruptorsmedia'
     },
   ];
+
+  const getSocialIcon = (iconName) => {
+    const iconProps = { className: "w-5 h-5 text-white/80 group-hover:text-white transition-colors" };
+    switch (iconName) {
+      case 'facebook':
+        return <Facebook {...iconProps} />;
+      case 'instagram':
+        return <Instagram {...iconProps} />;
+      case 'twitter':
+        // Using a simple Twitter/X icon - lucide-react doesn't have Twitter anymore
+        return (
+          <svg {...iconProps} viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 overflow-hidden bg-gradient-to-b from-[#0E0E0E] to-black">
@@ -242,12 +261,7 @@ export default function Footer() {
                   className="group relative w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-[#FFD700]/20 border border-white/10 hover:border-[#FFD700] transition-all duration-300 rounded"
                   aria-label={social.name}
                 >
-                  <img
-                    src={social.icon}
-                    alt={social.name}
-                    className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                    style={{ filter: 'brightness(0) invert(1)' }}
-                  />
+                  {getSocialIcon(social.icon)}
                 </a>
               ))}
             </div>

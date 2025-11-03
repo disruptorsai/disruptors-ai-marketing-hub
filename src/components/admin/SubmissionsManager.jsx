@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Download,
   Search,
@@ -14,7 +14,11 @@ import {
   Users,
   FileText,
   TrendingUp,
-  AlertCircle
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  MessageSquare,
+  Star
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabaseAdmin } from '@/lib/supabase-client';
+import * as XLSX from 'xlsx';
 
 /**
  * SubmissionsManager Component
@@ -35,6 +40,7 @@ const SubmissionsManager = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [expandedRows, setExpandedRows] = useState({});
   const [stats, setStats] = useState({
     totalLeads: 0,
     totalContacts: 0,
@@ -194,6 +200,88 @@ const SubmissionsManager = () => {
     document.body.removeChild(link);
   };
 
+  const exportToXLSX = (data, filename) => {
+    if (!data || data.length === 0) {
+      alert('No data to export');
+      return;
+    }
+
+    // Flatten the data structure for Excel
+    const flattenedData = data.map(row => {
+      const flattened = {
+        'Source': row.source === 'kiosk' ? 'Kiosk' : 'Survey',
+        'Full Name': row.full_name || '',
+        'Email': row.email || '',
+        'Company': row.company || '',
+        'Phone': row.phone || '',
+        'Job Title': row.job_title || '',
+        'Event Name': row.event_name || '',
+        'Checked In At': row.checked_in_at ? new Date(row.checked_in_at).toLocaleString() : '',
+        'Referral Source': row.referral_source || '',
+        'Notes': row.notes || '',
+      };
+
+      // Add survey responses if they exist
+      if (row.survey_responses && typeof row.survey_responses === 'object') {
+        flattened['Survey - What brings you to this event?'] = row.survey_responses.primary_interest || '';
+        flattened['Survey - Biggest business challenges'] = row.survey_responses.current_challenges || '';
+        flattened['Survey - Services interested in'] = Array.isArray(row.survey_responses.services_interested)
+          ? row.survey_responses.services_interested.join(', ')
+          : '';
+        flattened['Survey - Follow-up interest'] = row.survey_responses.follow_up_interest || '';
+        flattened['Survey - Additional comments'] = row.survey_responses.additional_comments || '';
+      } else {
+        flattened['Survey - What brings you to this event?'] = '';
+        flattened['Survey - Biggest business challenges'] = '';
+        flattened['Survey - Services interested in'] = '';
+        flattened['Survey - Follow-up interest'] = '';
+        flattened['Survey - Additional comments'] = '';
+      }
+
+      // Add consent fields for kiosk entries
+      if (row.source === 'kiosk') {
+        flattened['Consent - Feedback'] = row.consent_feedback ? 'Yes' : 'No';
+        flattened['Consent - SMS'] = row.consent_sms ? 'Yes' : 'No';
+      }
+
+      return flattened;
+    });
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
+
+    // Set column widths
+    const columnWidths = [
+      { wch: 10 },  // Source
+      { wch: 20 },  // Full Name
+      { wch: 30 },  // Email
+      { wch: 20 },  // Company
+      { wch: 15 },  // Phone
+      { wch: 20 },  // Job Title
+      { wch: 20 },  // Event Name
+      { wch: 20 },  // Checked In At
+      { wch: 20 },  // Referral Source
+      { wch: 30 },  // Notes
+      { wch: 40 },  // Survey - Primary Interest
+      { wch: 40 },  // Survey - Challenges
+      { wch: 40 },  // Survey - Services
+      { wch: 15 },  // Survey - Follow-up
+      { wch: 40 },  // Survey - Comments
+    ];
+    worksheet['!cols'] = columnWidths;
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Event Check-ins');
+
+    // Generate filename with date
+    const dateStr = new Date().toISOString().split('T')[0];
+    const fullFilename = `${filename}_${dateStr}.xlsx`;
+
+    // Download
+    XLSX.writeFile(workbook, fullFilename);
+  };
+
   const filterData = (data, emailField = 'email') => {
     if (!searchTerm) return data;
 
@@ -220,6 +308,28 @@ const SubmissionsManager = () => {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  const toggleRow = (id) => {
+    setExpandedRows(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  const calculateSurveyCompleteness = (surveyResponses) => {
+    if (!surveyResponses) return { score: 0, total: 5, label: 'No Survey' };
+
+    let score = 0;
+    const total = 5;
+
+    if (surveyResponses.primary_interest?.trim()) score++;
+    if (surveyResponses.current_challenges?.trim()) score++;
+    if (surveyResponses.services_interested?.length > 0) score++;
+    if (surveyResponses.follow_up_interest) score++;
+    if (surveyResponses.additional_comments?.trim()) score++;
+
+    return { score, total, label: `${score}/${total} Complete` };
   };
 
   const LeadCapturesTable = () => {
@@ -455,13 +565,13 @@ const SubmissionsManager = () => {
             Event Check-ins ({filteredData.length})
           </h3>
           <Button
-            onClick={() => exportToCSV(eventCheckins, 'event_checkins')}
+            onClick={() => exportToXLSX(eventCheckins, 'event_checkins')}
             variant="outline"
             size="sm"
             className="bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20"
           >
             <Download className="w-4 h-4 mr-2" />
-            Export CSV
+            Export to Excel
           </Button>
         </div>
 
@@ -469,122 +579,195 @@ const SubmissionsManager = () => {
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-white/10">
+                <th className="w-12 p-3"></th>
                 <th className="text-left p-3 text-white/70 font-medium">Source</th>
                 <th className="text-left p-3 text-white/70 font-medium">Name</th>
                 <th className="text-left p-3 text-white/70 font-medium">Email</th>
                 <th className="text-left p-3 text-white/70 font-medium">Company</th>
-                <th className="text-left p-3 text-white/70 font-medium">Job Title</th>
                 <th className="text-left p-3 text-white/70 font-medium">Phone</th>
-                <th className="text-left p-3 text-white/70 font-medium">Primary Interest</th>
-                <th className="text-left p-3 text-white/70 font-medium">Services</th>
+                <th className="text-left p-3 text-white/70 font-medium">
+                  <div className="flex items-center gap-1">
+                    <MessageSquare className="w-4 h-4 text-emerald-400" />
+                    Survey Status
+                  </div>
+                </th>
                 <th className="text-left p-3 text-white/70 font-medium">Follow-up</th>
                 <th className="text-left p-3 text-white/70 font-medium">Checked In</th>
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((checkin) => (
-                <tr key={checkin.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-3">
-                    <Badge
-                      variant="outline"
-                      className={checkin.source === 'kiosk'
-                        ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
-                        : "bg-green-500/10 text-green-400 border-green-500/30"
-                      }
-                    >
-                      {checkin.source === 'kiosk' ? 'Kiosk' : 'Survey'}
-                    </Badge>
-                  </td>
-                  <td className="p-3">
-                    <div className="flex items-center space-x-2">
-                      <Users className="w-4 h-4 text-amber-400" />
-                      <span className="text-white font-medium">{checkin.full_name}</span>
-                    </div>
-                  </td>
-                  <td className="p-3">
-                    <div className="flex items-center space-x-2">
-                      <Mail className="w-4 h-4 text-emerald-400" />
-                      <span className="text-white/70">{checkin.email}</span>
-                    </div>
-                  </td>
-                  <td className="p-3 text-white/70">{checkin.company || 'N/A'}</td>
-                  <td className="p-3 text-white/70">{checkin.job_title || 'N/A'}</td>
-                  <td className="p-3 text-white/70">{checkin.phone || 'N/A'}</td>
-                  <td className="p-3 text-white/70 max-w-xs truncate" title={checkin.survey_responses?.primary_interest}>
-                    {checkin.survey_responses?.primary_interest || 'N/A'}
-                  </td>
-                  <td className="p-3">
-                    {checkin.survey_responses?.services_interested && Array.isArray(checkin.survey_responses.services_interested) ? (
-                      <div className="flex flex-wrap gap-1">
-                        {checkin.survey_responses.services_interested.slice(0, 2).map((service, idx) => (
-                          <Badge key={idx} variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/30 text-xs">
-                            {service}
-                          </Badge>
-                        ))}
-                        {checkin.survey_responses.services_interested.length > 2 && (
-                          <Badge variant="outline" className="bg-white/5 text-white/50 border-white/20 text-xs">
-                            +{checkin.survey_responses.services_interested.length - 2}
+              {filteredData.map((checkin) => {
+                const isExpanded = expandedRows[checkin.id];
+                const completeness = calculateSurveyCompleteness(checkin.survey_responses);
+                const hasSurvey = checkin.source === 'survey' && checkin.survey_responses;
+
+                return (
+                  <React.Fragment key={checkin.id}>
+                    <tr className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                      <td className="p-3">
+                        {hasSurvey && (
+                          <button
+                            onClick={() => toggleRow(checkin.id)}
+                            className="text-white/60 hover:text-white transition-colors"
+                          >
+                            {isExpanded ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </button>
+                        )}
+                      </td>
+                      <td className="p-3">
+                        <Badge
+                          variant="outline"
+                          className={checkin.source === 'kiosk'
+                            ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
+                            : "bg-green-500/10 text-green-400 border-green-500/30"
+                          }
+                        >
+                          {checkin.source === 'kiosk' ? 'Kiosk' : 'Survey'}
+                        </Badge>
+                      </td>
+                      <td className="p-3">
+                        <div className="flex items-center space-x-2">
+                          <Users className="w-4 h-4 text-amber-400" />
+                          <span className="text-white font-medium">{checkin.full_name}</span>
+                        </div>
+                      </td>
+                      <td className="p-3">
+                        <div className="flex items-center space-x-2">
+                          <Mail className="w-4 h-4 text-emerald-400" />
+                          <span className="text-white/70 text-sm">{checkin.email}</span>
+                        </div>
+                      </td>
+                      <td className="p-3 text-white/70">{checkin.company || 'N/A'}</td>
+                      <td className="p-3 text-white/70">{checkin.phone || 'N/A'}</td>
+                      <td className="p-3">
+                        {hasSurvey ? (
+                          <div className="flex items-center gap-2">
+                            <Badge
+                              variant="outline"
+                              className={
+                                completeness.score === 5
+                                  ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                                  : completeness.score >= 3
+                                  ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
+                                  : "bg-orange-500/20 text-orange-400 border-orange-500/30"
+                              }
+                            >
+                              {completeness.score === 5 && <Star className="w-3 h-3 mr-1" />}
+                              {completeness.label}
+                            </Badge>
+                          </div>
+                        ) : (
+                          <Badge variant="outline" className="bg-white/5 text-white/50 border-white/20">
+                            {checkin.source === 'kiosk' ? 'Kiosk Only' : 'No Data'}
                           </Badge>
                         )}
-                      </div>
-                    ) : (
-                      <span className="text-white/50">N/A</span>
-                    )}
-                  </td>
-                  <td className="p-3">
-                    {checkin.survey_responses?.follow_up_interest === 'yes' ? (
-                      <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
-                        Yes
-                      </Badge>
-                    ) : (
-                      <Badge variant="outline" className="bg-white/5 text-white/50 border-white/20">
-                        No
-                      </Badge>
-                    )}
-                  </td>
-                  <td className="p-3 text-white/70 text-sm">{formatDate(checkin.checked_in_at)}</td>
-                </tr>
-              ))}
+                      </td>
+                      <td className="p-3">
+                        {checkin.survey_responses?.follow_up_interest === 'yes' ? (
+                          <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+                            <CheckCircle className="w-3 h-3 mr-1" />
+                            Yes
+                          </Badge>
+                        ) : checkin.survey_responses?.follow_up_interest === 'no' ? (
+                          <Badge variant="outline" className="bg-white/5 text-white/50 border-white/20">
+                            No
+                          </Badge>
+                        ) : (
+                          <span className="text-white/50">N/A</span>
+                        )}
+                      </td>
+                      <td className="p-3 text-white/70 text-sm">{formatDate(checkin.checked_in_at)}</td>
+                    </tr>
+
+                    {/* Expandable Survey Details Row */}
+                    <AnimatePresence>
+                      {isExpanded && hasSurvey && (
+                        <motion.tr
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <td colSpan="9" className="p-0">
+                            <div className="bg-gradient-to-br from-emerald-500/5 to-blue-500/5 border-t border-white/5">
+                              <div className="p-6 space-y-4">
+                                <div className="flex items-center gap-2 mb-4">
+                                  <MessageSquare className="w-5 h-5 text-emerald-400" />
+                                  <h4 className="text-lg font-semibold text-white">Survey Responses</h4>
+                                  <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 ml-auto">
+                                    {completeness.label}
+                                  </Badge>
+                                </div>
+
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                  {checkin.survey_responses?.primary_interest && (
+                                    <div className="p-4 bg-white/5 rounded-lg border border-emerald-500/20">
+                                      <div className="flex items-start gap-2 mb-2">
+                                        <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5" />
+                                        <span className="text-emerald-400 font-medium">What brings you to this event?</span>
+                                      </div>
+                                      <p className="text-white/90 ml-6">{checkin.survey_responses.primary_interest}</p>
+                                    </div>
+                                  )}
+
+                                  {checkin.survey_responses?.current_challenges && (
+                                    <div className="p-4 bg-white/5 rounded-lg border border-blue-500/20">
+                                      <div className="flex items-start gap-2 mb-2">
+                                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5" />
+                                        <span className="text-blue-400 font-medium">Biggest business challenges</span>
+                                      </div>
+                                      <p className="text-white/90 ml-6">{checkin.survey_responses.current_challenges}</p>
+                                    </div>
+                                  )}
+
+                                  {checkin.survey_responses?.services_interested && checkin.survey_responses.services_interested.length > 0 && (
+                                    <div className="p-4 bg-white/5 rounded-lg border border-purple-500/20">
+                                      <div className="flex items-start gap-2 mb-2">
+                                        <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5" />
+                                        <span className="text-purple-400 font-medium">Services interested in</span>
+                                      </div>
+                                      <div className="flex flex-wrap gap-2 ml-6">
+                                        {checkin.survey_responses.services_interested.map((service, idx) => (
+                                          <Badge key={idx} variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/30">
+                                            {service}
+                                          </Badge>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                  {checkin.survey_responses?.additional_comments && (
+                                    <div className="p-4 bg-white/5 rounded-lg border border-orange-500/20">
+                                      <div className="flex items-start gap-2 mb-2">
+                                        <CheckCircle className="w-4 h-4 text-orange-400 mt-0.5" />
+                                        <span className="text-orange-400 font-medium">Additional comments</span>
+                                      </div>
+                                      <p className="text-white/90 ml-6">{checkin.survey_responses.additional_comments}</p>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {checkin.referral_source && (
+                                  <div className="pt-3 border-t border-white/10">
+                                    <span className="text-white/70 font-medium">Referral Source: </span>
+                                    <span className="text-white/90">{checkin.referral_source}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                        </motion.tr>
+                      )}
+                    </AnimatePresence>
+                  </React.Fragment>
+                );
+              })}
             </tbody>
           </table>
-
-          {/* Show expanded survey details */}
-          {filteredData.length > 0 && (
-            <div className="mt-6 space-y-4">
-              <h4 className="text-md font-semibold text-white border-t border-white/10 pt-4">
-                Detailed Survey Responses
-              </h4>
-              {filteredData.map((checkin) => (
-                <Card key={checkin.id} className="bg-white/5 border-white/10">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-white text-sm">
-                      {checkin.full_name} ({checkin.email})
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2 text-sm">
-                    {checkin.survey_responses?.current_challenges && (
-                      <div>
-                        <span className="text-white/70 font-medium">Current Challenges: </span>
-                        <span className="text-white/90">{checkin.survey_responses.current_challenges}</span>
-                      </div>
-                    )}
-                    {checkin.survey_responses?.additional_comments && (
-                      <div>
-                        <span className="text-white/70 font-medium">Comments: </span>
-                        <span className="text-white/90">{checkin.survey_responses.additional_comments}</span>
-                      </div>
-                    )}
-                    {checkin.referral_source && (
-                      <div>
-                        <span className="text-white/70 font-medium">Referral Source: </span>
-                        <span className="text-white/90">{checkin.referral_source}</span>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     );

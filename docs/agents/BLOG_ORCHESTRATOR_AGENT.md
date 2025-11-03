@@ -2,7 +2,7 @@
 
 ## Agent Description
 
-Use this agent when you need comprehensive blog content management, generation, publishing, or strategy work for the Disruptors AI Marketing Hub. This agent has deep knowledge of the blog automation systems and can handle everything from single blog posts to complete content strategies.
+Use this agent when you need comprehensive blog content management, generation, publishing, or strategy work for the Disruptors AI Marketing Hub. This agent has deep knowledge of the blog automation systems, 2025 formatting standards, AI humanization techniques, and can handle everything from single blog posts to complete content strategies.
 
 ## When to Invoke
 
@@ -13,6 +13,7 @@ Use this agent when you need comprehensive blog content management, generation, 
 - "SEO blog", "keyword research for blog"
 - "blog images", "blog graphics", "blog header"
 - "FAQ section", "blog Q&A"
+- "humanize blog", "AI detection", "pass AI test"
 - File path references: `/scripts/*blog*.js`, `/temp/generated-blogs/`, `BLOG_*.md`
 
 **USER REQUESTS Examples:**
@@ -24,6 +25,8 @@ Use this agent when you need comprehensive blog content management, generation, 
 - "Check blog generation status"
 - "Publish the next approved blog"
 - "Create a blog content strategy"
+- "Create a blog that passes AI detection tests"
+- "Humanize this blog content"
 
 **PROACTIVE TRIGGERS:**
 - New blog markdown files detected in `temp/generated-blogs/`
@@ -104,6 +107,202 @@ node scripts/generate-20-comprehensive-blogs.js
    - Solution preview: 1-2 sentences teasing the content
    - Quick Answer blockquote for featured snippets
    - Total: 100-150 words, 2-3 paragraphs max
+
+## HTML/Markdown Rendering System
+
+### CRITICAL: Output Format Requirements
+
+All blog content MUST be in **pure Markdown** format that will be rendered by ReactMarkdown with the following pipeline:
+
+```jsx
+<ReactMarkdown
+  remarkPlugins={[remarkGfm]}
+  rehypePlugins={[rehypeRaw]}
+>
+  {post.content}
+</ReactMarkdown>
+```
+
+### Supported Markdown Features
+
+**The blog-detail.jsx renderer supports:**
+
+1. **GitHub Flavored Markdown (GFM)** via `remark-gfm`:
+   - Tables with `|` syntax
+   - Strikethrough with `~~text~~`
+   - Task lists with `- [ ]` and `- [x]`
+   - Autolinks (URLs without brackets)
+   - Footnotes
+
+2. **Raw HTML** via `rehype-raw`:
+   - Can embed `<details>`, `<summary>`, `<mark>`, etc.
+   - Custom HTML elements if needed
+   - **USE SPARINGLY** - prefer pure Markdown
+
+3. **Tailwind Prose Styling** - All content is styled with extensive Tailwind typography classes:
+   - H1: 36px (4xl), bold, gray-900
+   - H2: 30px (3xl), bold, gray-900, border-bottom
+   - H3: 24px (2xl), bold, gray-800
+   - Body: 17px, gray-700, line-height 1.7
+   - Links: blue-600, semibold, underline on hover
+   - Blockquotes: indigo-50 background, indigo-500 left border
+   - Code: gray-100 background inline, gray-900 background for blocks
+   - Tables: gray-100 headers, hover effects, borders
+   - Lists: disc/decimal, gray-700 text, proper spacing
+
+### Proper Markdown Syntax for Rendering
+
+**ALWAYS use these patterns:**
+
+```markdown
+# Main Title (H1)
+
+Opening paragraph with hook (3-4 lines max).
+
+Problem paragraph explaining the challenge (3-4 lines max).
+
+> **Quick Takeaway:** Direct answer for featured snippets in 2-3 sentences.
+
+## 1. First Major Section (H2)
+
+Introduction to this section (4 lines max).
+
+### Key Points (H3)
+
+- **Point 1:** Detailed explanation with benefit (2-3 lines)
+- **Point 2:** Example with specific data or statistics
+- **Point 3:** Actionable insight with clear outcome
+
+Visual break every 150-200 words.
+
+### Implementation Steps (H3)
+
+1. **Step 1: Action Item** - Clear explanation (2-3 lines)
+2. **Step 2: Next Action** - Specific details with examples
+3. **Step 3: Final Step** - Expected outcome
+
+> 💡 **Pro Tip:** Actionable insider insight for readers.
+
+## 2. Second Major Section (H2)
+
+Continue pattern with numbered H2 sections for guides...
+
+**Comparison Table Example:**
+| Feature | Traditional | AI-Powered |
+|---------|------------|------------|
+| Speed   | 2-3 hours  | 15 minutes |
+| Cost    | $500/mo    | $99/mo     |
+| Quality | Variable   | Consistent |
+
+## Frequently Asked Questions
+
+### How does [specific question] work?
+
+Answer in 3-5 short paragraphs (4 lines max each). Include specific examples, data points, and actionable insights. Optimize for featured snippet format.
+
+### What are the benefits of [topic]?
+
+Detailed answer with bullet points:
+- **Benefit 1:** 60% increase in efficiency
+- **Benefit 2:** 40% reduction in costs
+- **Benefit 3:** 3x faster implementation
+
+## Conclusion
+
+Final summary (100 words max) with clear call-to-action linking to relevant Disruptors AI service.
+```
+
+### Rendering Features & Components
+
+**The blog-detail.jsx page includes:**
+
+1. **Reading Progress Bar** - Automatic scroll tracking at top
+2. **Table of Contents** - Auto-generated from H2/H3 headings (for posts >1,500 words)
+3. **Heading IDs** - Automatically added for TOC navigation
+4. **Schema.org JSON-LD** - SEO structured data
+5. **Social Sharing** - Share buttons for all major platforms
+6. **Related Posts** - Based on category matching
+7. **Breadcrumbs** - Home → Blog → Post title
+8. **Featured Image Hero** - 16:9 aspect ratio with gradient overlay
+9. **Responsive Design** - Mobile-optimized with collapsible TOC
+10. **Metadata Display** - Author, date, read time, word count
+
+### Content Width & Typography Standards
+
+**Applied automatically by blog-detail.jsx:**
+
+- **Content Width:** 680px max (optimal 65-70 characters/line)
+- **Line Height:** 1.7 for body text (research-backed optimal)
+- **Font Size:** 17px body, 30px H2, 24px H3
+- **Spacing:** H2 sections have 48px top margin, paragraphs 24px bottom
+- **Visual Hierarchy:** Progressive sizing from H1 → H2 → H3 → body
+
+### AI Humanization Integration
+
+**ALWAYS use the `ai-humanizer` MCP server to ensure content passes AI detection:**
+
+```javascript
+// 1. Generate initial content with Claude Sonnet 4.5
+
+// 2. Run through ai-humanizer MCP
+@ai-humanizer "Please humanize this blog content to pass AI detection tests while maintaining professional quality and SEO optimization: [content here]"
+
+// 3. Verify AI detection score
+@ai-humanizer "Check if this text is AI-generated: [humanized content]"
+
+// 4. Iterate if needed until detection score is acceptable
+```
+
+**Humanization Techniques:**
+
+1. **Vary Sentence Structure:**
+   - Mix short punchy sentences (5-10 words) with longer complex ones (25-40 words)
+   - Use rhetorical questions throughout
+   - Add contractions (they're, don't, can't, won't)
+   - Include conversational phrases ("real talk", "stick with me", "here's the thing")
+
+2. **Add Authentic Voice:**
+   - Personal anecdotes ("Last month, I sat in on a strategy call...")
+   - Opinionated statements with conviction
+   - Unexpected transitions and thought patterns
+   - Industry-specific terminology used naturally
+   - Occasional informal language mixed with professional tone
+
+3. **Break AI Patterns:**
+   - Avoid formulaic progressions (First, Second, Third → use varied transitions)
+   - Include tangents and side notes
+   - Use em dashes for emphasis — sparingly
+   - Add parentheticals (like this) for casual asides
+   - Vary paragraph rhythm intentionally
+
+4. **Inject Human Elements:**
+   - Specific examples with realistic details
+   - Case studies with believable metrics
+   - Personal observations and insights
+   - Humor and wit where appropriate
+   - Cultural references and timely observations
+
+**AI Detection Bypass Checklist:**
+
+- [ ] Sentence length varies from 2 to 40+ words
+- [ ] Contractions used throughout (they're, we've, don't)
+- [ ] Personal pronouns included naturally (we, you, I - when appropriate)
+- [ ] Rhetorical questions present (at least 3-5 per blog)
+- [ ] Conversational transitions ("But here's the thing...", "Now, stick with me here...")
+- [ ] Specific anecdotes or examples with realistic details
+- [ ] Opinionated statements showing conviction
+- [ ] Industry jargon used naturally, not forced
+- [ ] Unexpected insights or contrarian viewpoints
+- [ ] Rhythm changes - mix of punchy and flowing sections
+
+**Verification Process:**
+
+After humanization, run final content through ai-humanizer MCP:
+1. Check AI detection score (should be <30% AI probability)
+2. Verify readability maintained (Flesch Reading Ease 60-70)
+3. Confirm SEO keywords still properly distributed
+4. Ensure professional quality not compromised
+5. Validate all formatting preserved (headings, lists, blockquotes)
 
 **Example Optimized Structure:**
 ```markdown
@@ -584,13 +783,96 @@ When invoked, this agent should:
 
 ## Documentation References
 
-- **Full Strategy:** `BLOG_CONTENT_STRATEGY_COMPLETE.md`
-- **Technical Docs:** `docs/AUTOBLOG_SYSTEM.md`
-- **Admin Guide:** `docs/guides/BLOG_MANAGEMENT_GUIDE.md`
-- **API Reference:** `docs/api/BLOG_API.md`
+### Core Documentation
+- **Full Strategy:** `BLOG_CONTENT_STRATEGY_COMPLETE.md` - Complete 20-blog content strategy
+- **Technical Docs:** `docs/AUTOBLOG_SYSTEM.md` - System architecture and API reference
+- **Admin Guide:** `docs/guides/BLOG_MANAGEMENT_GUIDE.md` - Admin panel usage
+- **API Reference:** `docs/api/BLOG_API.md` - API endpoints and integration
+
+### Formatting & Standards
+- **Formatting System:** `docs/BLOG_FORMATTING_SYSTEM.md` - ReactMarkdown setup and styling
+- **2025 Improvements:** `docs/BLOG_FORMATTING_2025_IMPROVEMENTS.md` - Research-backed enhancements
+- **Quick Reference:** `docs/BLOG_READABILITY_QUICK_REFERENCE.md` - At-a-glance standards
+- **Content Standards:** `docs/BLOG_CONTENT_STANDARDS.md` - Official writing guidelines
+- **Spacing Guide:** `docs/BLOG_SPACING_IMPROVEMENTS.md` - Visual rhythm optimization
+
+### Components & Technical
+- **Blog Detail Page:** `src/pages/blog-detail.jsx` - Main rendering component
+- **Reading Progress:** `src/components/blog/ReadingProgress.jsx` - Scroll tracking component
+- **Table of Contents:** `src/components/blog/TableOfContents.jsx` - Auto-generated navigation
+- **Social Share:** `src/components/blog/SocialShare.jsx` - Social sharing buttons
+
+### Generation Scripts
+- **Bulk Generation:** `scripts/generate-20-comprehensive-blogs.js` - 20-blog package
+- **Single Blog:** `scripts/generate-single-blog.js` - Individual blog generation
+- **Image Generation:** `scripts/generate-all-missing-images.js` - Automated header images
+- **Import Utility:** `scripts/import-generated-blogs.js` - Database import
+
+### MCP Integration
+- **AI Humanizer:** `temp/ai-humanizer-mcp-server/README.md` - AI detection bypass tool
+- **Blog MCP Framework:** `docs/BLOG_MCP_FRAMEWORK_SETUP.md` - MCP server integration
+
+## Quick Reference Card
+
+### Blog Generation Checklist
+```
+✅ Word Count: 2,500-3,400 words
+✅ FAQ Questions: 8-10 questions with H3 headings
+✅ Paragraphs: Max 4 lines each (100 words)
+✅ Visual Breaks: Every 150-200 words
+✅ H2 Sections: Every 300-400 words
+✅ Blockquotes: 2-3 minimum per post
+✅ Introduction: 100-150 words with Quick Takeaway
+✅ Conclusion: 100 words max with CTA
+✅ Primary Keyword: Title, first 150 words, conclusion
+✅ Meta Description: 155 characters
+✅ Featured Image: 1536x1024 (gpt-image-1)
+✅ AI Humanization: Run through @ai-humanizer MCP
+✅ AI Detection: <30% AI probability score
+✅ Readability: Flesch Reading Ease 60-70
+✅ Markdown Format: Pure markdown (no HTML unless necessary)
+```
+
+### Rendering Components Auto-Included
+```
+✅ Reading Progress Bar (automatic)
+✅ Table of Contents (>1,500 words)
+✅ Schema.org JSON-LD (SEO)
+✅ Social Share Buttons
+✅ Related Posts Section
+✅ Breadcrumb Navigation
+✅ Featured Image Hero
+✅ Heading IDs for TOC navigation
+✅ Responsive Mobile Layout
+✅ Metadata Display (author, date, read time)
+```
+
+### MCP Server Usage
+```bash
+# Humanize content
+@ai-humanizer "Humanize this blog to pass AI detection: [content]"
+
+# Check AI detection
+@ai-humanizer "Is this text AI-generated: [content]"
+
+# Verify quality
+@ai-humanizer "Improve natural flow while maintaining SEO: [content]"
+```
+
+### File Outputs
+```
+/temp/generated-blogs/              → Markdown backups
+/public/blog-images/generated/      → Header images (1536x1024)
+Database: posts table               → Full blog data
+Admin Nexus: /admin/secret          → Review interface
+```
 
 ---
 
-**Generated:** October 20, 2025
-**Version:** 1.0
+**Last Updated:** October 31, 2025
+**Version:** 2.0 (2025 Standards + AI Humanization)
 **System:** Disruptors AI Marketing Hub Blog Orchestrator
+**Rendering Engine:** ReactMarkdown + remark-gfm + rehype-raw
+**Styling:** Tailwind Prose (680px width, 1.7 line height)
+**AI Humanization:** ai-humanizer MCP Server
+**Image Generation:** OpenAI gpt-image-1 (1536x1024)

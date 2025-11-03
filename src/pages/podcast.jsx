@@ -11,10 +11,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const studioImages = [
-  "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712352/disruptors-media/content/studio/gl3a0022.jpg",
-  "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712357/disruptors-media/content/studio/gl3a0026.jpg",
-  "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712362/disruptors-media/content/studio/gl3a0030.jpg",
-  "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1757712366/disruptors-media/content/studio/gl3a0042.jpg"
+  "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/content/studio/gl3a0022.jpg",
+  "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/content/studio/gl3a0026.jpg",
+  "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/content/studio/gl3a0030.jpg",
+  "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/content/studio/gl3a0042.jpg"
 ];
 
 export default function Podcast() {

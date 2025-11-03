@@ -7,6 +7,10 @@
   NODE_VERSION = "18"
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
   PLAYWRIGHT_BROWSERS_PATH = "0"
+  # Increase Node memory for large builds (70+ lazy-loaded routes)
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  # Enable verbose logging for build diagnosis
+  CI = "true"
 
 # Admin Nexus & Growth Audit Functions Configuration
 [functions]
@@ -15,6 +19,8 @@
   [functions."admin-blog-generator"]
     timeout = 120
   [functions."admin-image-generator"]
+    timeout = 60
+  [functions."change-request-analyze"]
     timeout = 60
   external_node_modules = [
     "@ai-sdk/openai",

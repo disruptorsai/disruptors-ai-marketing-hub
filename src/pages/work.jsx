@@ -20,7 +20,7 @@ export default function Work() {
     <DynamicBackground pageContext="work" intensity={0.8}>
       <div className="min-h-screen">
         {/* Page Title */}
-        <PageTitle title="WORK" />
+        <PageTitle title="OUR WORK" />
 
         {/* Hero Section */}
         <BlurSection>
@@ -46,46 +46,16 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* Portfolio Grid - Existing Case Studies */}
-        <BlurSection blurAmount={4}>
-          <section className="py-8 sm:py-12">
-            <div className="w-full px-4 sm:px-6 lg:px-8">
-              <BentoGrid items={caseStudies} />
-            </div>
-          </section>
-        </BlurSection>
-
-        {/* Healthcare Case Studies Section - NEW */}
+        {/* Success Stories Section - Detailed Case Studies */}
         <BlurSection blurAmount={3}>
           <CaseStudySection />
         </BlurSection>
 
-        {/* CTA Section */}
-        <BlurSection>
-          <section className="py-8 sm:py-12 text-center">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                  Wondering What This Could Look Like for Your Business?
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Let's audit your systems and uncover the untapped growth potential in your pipeline, marketing, and operations.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Button asChild size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("book-strategy-session")}>Book a Free Strategy Session</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                    <Link to={createPageUrl("marketing-audit")}>Get a Free Marketing Consultation</Link>
-                  </Button>
-                </div>
-              </motion.div>
+        {/* Portfolio Grid - Client Showcase */}
+        <BlurSection blurAmount={4}>
+          <section className="py-8 sm:py-12">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
+              <BentoGrid items={caseStudies} />
             </div>
           </section>
         </BlurSection>

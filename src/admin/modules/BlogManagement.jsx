@@ -442,7 +442,7 @@ export default function BlogManagement() {
   if (loading && blogs.length === 0) {
     return (
       <div className="flex items-center justify-center p-12">
-        <div className="text-green-500 animate-pulse font-mono">
+        <div className="text-blue-500 animate-pulse font-mono">
           LOADING_BLOG_SYSTEM...
         </div>
       </div>
@@ -455,11 +455,11 @@ export default function BlogManagement() {
   return (
     <div className="space-y-6 font-mono">
       {/* Header with Stats */}
-      <div className="bg-gray-900 border border-green-500/30 p-6">
+      <div className="bg-gray-900 border border-slate-500/30 p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-green-400">BLOG_MANAGEMENT_SYSTEM</h1>
-            <p className="text-green-500/70 text-sm mt-1">
+            <h1 className="text-2xl font-bold text-blue-400">BLOG_MANAGEMENT_SYSTEM</h1>
+            <p className="text-slate-400 text-sm mt-1">
               Auto-scheduling • Keyword integration • AI generation
             </p>
           </div>

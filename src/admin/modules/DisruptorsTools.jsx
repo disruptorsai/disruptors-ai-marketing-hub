@@ -139,7 +139,7 @@ export default function DisruptorsTools() {
               <h3 className="text-white font-semibold text-sm mb-2">📱 Setup Guide</h3>
               <ul className="text-slate-400 text-xs space-y-1.5">
                 <li>• Open browser on LG StandbyME Go</li>
-                <li>• Visit dm4.wjwelsh.com</li>
+                <li>• Visit disruptorsmedia.com</li>
                 <li>• Click "Download All Content"</li>
                 <li>• Wait 5 minutes (one time)</li>
                 <li>• Present offline forever!</li>

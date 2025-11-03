@@ -39,7 +39,7 @@ export default function Layout({ children, currentPageName }) {
   } = useSecretAccess();
 
   const navItems = [
-    // { name: "Work", path: "work" }, // Temporarily disabled - loading issues requiring hard refresh
+    { name: "Work", path: "work" },
     { name: "Services", path: "solutions" },
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },
@@ -136,7 +136,7 @@ export default function Layout({ children, currentPageName }) {
                     className="relative cursor-pointer touch-manipulation"
                   >
                     <img
-                      src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
+                      src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/logo_a4toul.png"
                       alt="Disruptors Media Logo"
                       fetchpriority="high"
                       className={`object-contain h-auto transition-all duration-500 ease-in-out ${

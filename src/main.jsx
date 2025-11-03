@@ -3,6 +3,19 @@ console.log('🟢 [MAIN.JSX] Script executing - timestamp:', new Date().toISOStr
 console.log('🟢 [MAIN.JSX] Window.React available?', typeof window.React !== 'undefined');
 console.log('🟢 [MAIN.JSX] Attempting React import...');
 
+// ⚡ CRITICAL: Check build version BEFORE importing anything else
+import { checkBuildVersion } from '@/utils/versionCheck';
+
+console.log('🔍 [MAIN.JSX] Checking build version...');
+const versionCheckPassed = checkBuildVersion();
+
+if (!versionCheckPassed) {
+  console.log('🔄 [MAIN.JSX] Version mismatch - reload initiated');
+  throw new Error('Version mismatch - reload in progress');
+}
+
+console.log('✅ [MAIN.JSX] Version check passed - proceeding with app load');
+
 import React from 'react'
 
 console.log('✅ [MAIN.JSX] React imported successfully!');
