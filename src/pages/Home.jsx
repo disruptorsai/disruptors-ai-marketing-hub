@@ -7,6 +7,7 @@ import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
+import FastVideo from '../components/shared/FastVideo';
 
 export default function Home() {
 
@@ -33,13 +34,18 @@ export default function Home() {
       <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E] text-white">
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
+          <FastVideo
             src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="auto"
+            fetchpriority="high"
+            lazy={false}
+            className="w-full h-full object-cover"
+            aria-label="Disruptors AI hero background video"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
         </div>
@@ -86,15 +92,19 @@ export default function Home() {
       <section className="relative bg-black py-16 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0">
-          <video
+          <FastVideo
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
-          </video>
+            aria-label="Capabilities background video"
+          />
           {/* Black overlay with 90% opacity */}
           <div className="absolute inset-0 bg-black/90" />
         </div>
