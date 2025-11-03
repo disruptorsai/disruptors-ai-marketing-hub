@@ -49,29 +49,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Deployment Management
 
-**Two-Tier Deployment System**: Dev (auto) → Production (manual)
+**CRITICAL DEPLOYMENT POLICY**:
+- **Dev site**: https://dev.disruptorsmedia.com - Deploy ALL changes here
+- **Production site**: https://disruptorsmedia.com - NEVER TOUCH (manual updates by user ONLY)
+- These are **separate Netlify projects** - dev and production are completely isolated
 
-#### Development Deployment (Automatic)
+**Two-Tier Deployment System**: Dev (automatic) → Production (user manages manually)
+
+#### Development Deployment (Automatic - Claude Code ALWAYS deploys here)
 - **Auto-deploy to dev**: Triggered on every `git push` to any branch
 - **Dev site**: https://dev.disruptorsmedia.com
 - **Dev site ID**: `62801e39-84b0-4586-a316-6c56a5e55718`
 - **Manual dev deploy**: `npm run deploy:dev` (if needed)
+- **Purpose**: Testing, preview, approval before user manually updates production
 
-#### Production Deployment (Manual Only)
-- **Deploy to production**: `npm run deploy:prod` (ONLY after dev approval)
-- **Production site**: https://dm4.wjwelsh.com
-- **Production site ID**: `cheerful-custard-2e6fc5`
-- **Requirement**: Must test and approve on dev site first
+#### Production Deployment (FORBIDDEN - User Only)
+- **Production site**: https://disruptorsmedia.com
+- **STRICT RULE**: Claude Code must NEVER deploy to production
+- **User responsibility**: User manually updates production after testing on dev site
+- **Separate Netlify project**: Different project from dev site
 
-#### Deployment Tools
-- **Check status**: `npm run deploy:status` - Both dev and production status
+#### Deployment Tools (Dev Site Only)
+- **Check status**: `npm run deploy:status` - Dev site status
 - **Deploy Supabase**: `npm run deploy:supabase` - Database migrations
-- **Rollback dev**: `npm run deploy:rollback:dev <id>`
-- **Rollback production**: `npm run deploy:rollback:prod <id>`
+- **Rollback dev**: `npm run deploy:rollback <id>`
 - **Watch deployments**: `npm run deploy:watch`
 - **Sync environment**: `npm run deploy:sync-env`
 
-**Important**: Production deployments require full testing and approval on dev site.
+**Important**: ALL deployments go to dev.disruptorsmedia.com. User manually manages production.
 
 ### Performance & Testing
 - **Screenshot capture**: `npm run screenshot:capture` - Single page screenshot
