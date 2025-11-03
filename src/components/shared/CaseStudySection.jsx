@@ -330,6 +330,76 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
 // Main case study section component
 export default function CaseStudySection() {
   const [expandedCaseStudy, setExpandedCaseStudy] = useState(null);
+  const scrollContainerRef = React.useRef(null);
+  const isDragging = React.useRef(false);
+  const startX = React.useRef(0);
+  const scrollLeft = React.useRef(0);
+  const autoScrollRef = React.useRef(null);
+
+  // Auto-scroll functionality
+  React.useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let scrollDirection = 1; // 1 for right, -1 for left
+    const scrollSpeed = 0.5; // pixels per frame
+
+    const autoScroll = () => {
+      if (!isDragging.current && container) {
+        container.scrollLeft += scrollSpeed * scrollDirection;
+
+        // Reverse direction at ends
+        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
+          scrollDirection = -1;
+        } else if (container.scrollLeft <= 10) {
+          scrollDirection = 1;
+        }
+      }
+      autoScrollRef.current = requestAnimationFrame(autoScroll);
+    };
+
+    autoScrollRef.current = requestAnimationFrame(autoScroll);
+
+    return () => {
+      if (autoScrollRef.current) {
+        cancelAnimationFrame(autoScrollRef.current);
+      }
+    };
+  }, []);
+
+  // Drag to scroll functionality
+  const handleMouseDown = (e) => {
+    if (!scrollContainerRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX - scrollContainerRef.current.offsetLeft;
+    scrollLeft.current = scrollContainerRef.current.scrollLeft;
+    scrollContainerRef.current.style.cursor = 'grabbing';
+    scrollContainerRef.current.style.userSelect = 'none';
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = 'grab';
+      scrollContainerRef.current.style.userSelect = 'auto';
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = 'grab';
+      scrollContainerRef.current.style.userSelect = 'auto';
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 2; // Multiply for faster scroll
+    scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
 
   const caseStudies = [
     {
@@ -460,9 +530,17 @@ export default function CaseStudySection() {
           />
         </div>
 
-        {/* Horizontal Scrolling Case Studies */}
+        {/* Horizontal Scrolling Case Studies - Draggable & Auto-scroll */}
         <div className="relative">
-          <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide cursor-grab select-none"
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            style={{ scrollBehavior: isDragging.current ? 'auto' : 'smooth' }}
+          >
             <div className="flex gap-6">
               {caseStudies.map((caseStudy, index) => (
                 <CaseStudyCard

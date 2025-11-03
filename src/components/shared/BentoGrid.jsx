@@ -131,21 +131,19 @@ const BentoCard = ({ item, index, onExpand }) => {
 
       {/* Content - Always visible */}
       <div className="relative h-full flex flex-col justify-end p-6 z-10">
-        {/* Logo with light background for contrast */}
+        {/* Logo */}
         {item.logo && (
           <div className="mb-6 inline-block self-start">
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl transform group-hover:scale-110 transition-all duration-500 hover:bg-white">
-              <img
-                src={item.logo}
-                alt={item.client}
-                className="h-16 w-auto max-w-[200px] object-contain"
-                loading="eager"
-                onError={(e) => {
-                  // Hide logo if it fails to load
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
+            <img
+              src={item.logo}
+              alt={item.client}
+              className="h-16 w-auto max-w-[200px] object-contain transform group-hover:scale-110 transition-all duration-500 drop-shadow-2xl"
+              loading="eager"
+              onError={(e) => {
+                // Hide logo if it fails to load
+                e.target.style.display = 'none';
+              }}
+            />
           </div>
         )}
 
