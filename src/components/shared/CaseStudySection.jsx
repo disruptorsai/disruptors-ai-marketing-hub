@@ -575,7 +575,7 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-lg text-gray-300 mb-4 font-medium">
+          <p className="text-lg text-gray-700 mb-4 font-medium">
             Ready to achieve similar results for your business?
           </p>
           <div className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-500 transition-colors duration-300 cursor-pointer shadow-lg hover:shadow-xl">
