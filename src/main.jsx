@@ -3,6 +3,12 @@ console.log('🟢 [MAIN.JSX] Script executing - timestamp:', new Date().toISOStr
 console.log('🟢 [MAIN.JSX] Window.React available?', typeof window.React !== 'undefined');
 console.log('🟢 [MAIN.JSX] Attempting React import...');
 
+// ⚡ CRITICAL: Initialize cache buster FIRST
+import { initCacheBuster } from '@/utils/cacheBuster';
+
+console.log('🚀 [MAIN.JSX] Initializing cache buster...');
+initCacheBuster();
+
 // ⚡ CRITICAL: Check build version BEFORE importing anything else
 import { checkBuildVersion } from '@/utils/versionCheck';
 
