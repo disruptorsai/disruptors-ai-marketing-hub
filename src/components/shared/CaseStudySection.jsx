@@ -514,10 +514,10 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Success Stories That <span className="text-yellow-400">Speak Volumes</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Success Stories That <span className="text-yellow-600">Speak Volumes</span>
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Real campaigns. Real data. Real growth. See how we've helped businesses across industries achieve exceptional ROI through strategic digital marketing.
           </p>
         </motion.div>
