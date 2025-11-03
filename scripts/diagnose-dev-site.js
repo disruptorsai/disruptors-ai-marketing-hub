@@ -49,10 +49,12 @@ async function diagnoseSite() {
   });
 
   try {
-    console.log('🌐 Navigating to https://dev.disruptorsmedia.com...\n');
+    // Allow custom URL via command line argument
+    const targetUrl = process.argv[2] || 'https://dev.disruptorsmedia.com';
+    console.log(`🌐 Navigating to ${targetUrl}...\n`);
 
     // Navigate with longer timeout
-    await page.goto('https://dev.disruptorsmedia.com', {
+    await page.goto(targetUrl, {
       waitUntil: 'networkidle',
       timeout: 30000
     });
