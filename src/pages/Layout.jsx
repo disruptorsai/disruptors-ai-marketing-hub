@@ -39,8 +39,8 @@ export default function Layout({ children, currentPageName }) {
   } = useSecretAccess();
 
   const navItems = [
-    { name: "Services", path: "solutions" },
     { name: "Work", path: "work" },
+    { name: "Services", path: "solutions" },
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },
     { name: "Blog", path: "blog" },
