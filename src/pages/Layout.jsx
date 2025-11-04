@@ -241,26 +241,8 @@ export default function Layout({ children, currentPageName }) {
             <AnimatePresence mode="wait">
               <motion.main
                 key={location.pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
                 className="flex-1"
-                style={{
-                  minHeight: '50vh',
-                  opacity: 1,  // Force opacity to always be 1
-                  willChange: 'opacity'
-                }}
-                onAnimationStart={() => {
-                  console.log('🎬 [LAYOUT] Animation starting for:', location.pathname);
-                }}
-                onAnimationComplete={(definition) => {
-                  // Aggressively force opacity on ALL main elements
-                  document.querySelectorAll('main').forEach(el => {
-                    el.style.setProperty('opacity', '1', 'important');
-                  });
-                  console.log('✅ [LAYOUT] Animation complete + forced opacity for:', location.pathname);
-                }}
+                style={{ minHeight: '50vh' }}
               >
                 {children}
               </motion.main>
