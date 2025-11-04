@@ -9,6 +9,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
  * - Scroll-based blur/focus effects
  * - Smooth performance with requestAnimationFrame
  * - Customizable color palettes per page
+ *
+ * DEBUG MODE ACTIVE: Comprehensive logging for troubleshooting
  */
 
 const COLOR_SCHEMES = {
@@ -49,6 +51,7 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
   const mousePos = useRef({ x: 0.5, y: 0.5 }); // Normalized 0-1
   const targetPos = useRef({ x: 0.5, y: 0.5 });
   const animationRef = useRef(null);
+  const [renderStats, setRenderStats] = useState({ frameCount: 0, startTime: Date.now() });
 
   const { scrollYProgress } = useScroll();
 
@@ -57,9 +60,32 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
   const blur = useTransform(blurValue, (value) => `blur(${value}px)`);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 0.8, 0.8, 0.6]);
 
+  // Component mount tracking
+  useEffect(() => {
+    console.group('🎨 [DYNAMIC BACKGROUND] Component Mount');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('Page Context:', pageContext);
+    console.log('Intensity:', intensity);
+    console.log('Color Scheme:', COLOR_SCHEMES[pageContext] || COLOR_SCHEMES.default);
+    console.groupEnd();
+
+    return () => {
+      console.log('❌ [DYNAMIC BACKGROUND] Component Unmounting');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('🔄 [DYNAMIC BACKGROUND] Context/Intensity changed', { pageContext, intensity });
+  }, [pageContext, intensity]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      console.warn('⚠️ [DYNAMIC BACKGROUND] Canvas ref not available');
+      return;
+    }
+
+    console.log('🎬 [DYNAMIC BACKGROUND] Starting canvas animation');
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -170,6 +196,7 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
     animate();
 
     return () => {
+      console.log('🛑 [DYNAMIC BACKGROUND] Stopping canvas animation');
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       if (animationRef.current) {
@@ -177,6 +204,8 @@ export default function DynamicBackground({ pageContext = 'default', intensity =
       }
     };
   }, [pageContext, intensity]);
+
+  console.log('🎨 [DYNAMIC BACKGROUND] Rendering component');
 
   return (
     <div className="relative min-h-screen">

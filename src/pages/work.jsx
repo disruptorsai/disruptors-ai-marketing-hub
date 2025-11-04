@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
@@ -14,8 +14,81 @@ import { caseStudies } from '@/data/caseStudies';
  * Work Portfolio Page - Rebuilt from scratch
  * Showcases client case studies in a Bento Grid layout
  * Plus premium healthcare case studies section with detailed metrics
+ *
+ * DEBUG MODE ACTIVE: Comprehensive logging for troubleshooting load issues
  */
 export default function Work() {
+  const [debugInfo, setDebugInfo] = useState({
+    mounted: false,
+    renderCount: 0,
+    caseStudiesLoaded: false,
+    timestamp: Date.now()
+  });
+
+  // Track component lifecycle
+  useEffect(() => {
+    console.group('🔍 [WORK PAGE] Component Mount');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('Case Studies Available:', !!caseStudies);
+    console.log('Case Studies Count:', caseStudies?.length || 0);
+    console.log('Browser Cache Status:', {
+      localStorage: Object.keys(localStorage),
+      sessionStorage: Object.keys(sessionStorage)
+    });
+    console.log('Document Ready State:', document.readyState);
+    console.log('Window Performance:', {
+      navigation: performance.navigation?.type,
+      timing: {
+        domContentLoaded: performance.timing?.domContentLoadedEventEnd - performance.timing?.navigationStart,
+        domComplete: performance.timing?.domComplete - performance.timing?.navigationStart
+      }
+    });
+    console.groupEnd();
+
+    setDebugInfo(prev => ({
+      ...prev,
+      mounted: true,
+      caseStudiesLoaded: !!(caseStudies && caseStudies.length > 0),
+      renderCount: prev.renderCount + 1
+    }));
+
+    // Log when DOM is fully loaded
+    if (document.readyState === 'complete') {
+      console.log('✅ [WORK PAGE] DOM already complete');
+    } else {
+      window.addEventListener('load', () => {
+        console.log('✅ [WORK PAGE] Window loaded');
+      });
+    }
+
+    return () => {
+      console.log('❌ [WORK PAGE] Component Unmounting');
+    };
+  }, []);
+
+  // Track re-renders
+  useEffect(() => {
+    if (debugInfo.renderCount > 0) {
+      console.log(`🔄 [WORK PAGE] Re-render #${debugInfo.renderCount}`);
+    }
+  }, [debugInfo.renderCount]);
+
+  // Log case studies data
+  useEffect(() => {
+    console.group('📊 [WORK PAGE] Case Studies Data');
+    console.log('Total Case Studies:', caseStudies?.length);
+    console.log('First 3 Case Studies:', caseStudies?.slice(0, 3).map(cs => ({
+      name: cs.name,
+      client: cs.client,
+      hasHeroImage: !!cs.heroImage,
+      hasLogo: !!cs.logo,
+      hasVideo: !!cs.video
+    })));
+    console.groupEnd();
+  }, []);
+
+  console.log('🎨 [WORK PAGE] Rendering...', { debugInfo });
+
   return (
     <DynamicBackground pageContext="work" intensity={0.8}>
       <div className="min-h-screen">

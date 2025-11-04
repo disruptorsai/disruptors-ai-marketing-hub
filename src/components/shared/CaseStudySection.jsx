@@ -5,6 +5,8 @@ import { TrendingUp, Users, DollarSign, Target, Zap, CheckCircle, ArrowUpRight, 
 /**
  * CaseStudySection - Premium case studies with expandable detailed views
  * Features magazine-style layout with frosted glass cards, animated metrics, and modal expansion
+ *
+ * DEBUG MODE ACTIVE: Comprehensive logging for troubleshooting
  */
 
 // Expanded Case Study Modal
@@ -336,10 +338,28 @@ export default function CaseStudySection() {
   const scrollLeft = React.useRef(0);
   const autoScrollRef = React.useRef(null);
 
+  // Component mount tracking
+  React.useEffect(() => {
+    console.group('📚 [CASE STUDY SECTION] Component Mount');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('Case Studies Count:', caseStudies.length);
+    console.log('Flagship Case Study:', flagshipCaseStudy.title);
+    console.groupEnd();
+
+    return () => {
+      console.log('❌ [CASE STUDY SECTION] Component Unmounting');
+    };
+  }, []);
+
   // Auto-scroll functionality
   React.useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    if (!container) {
+      console.warn('⚠️ [CASE STUDY SECTION] Scroll container ref not available');
+      return;
+    }
+
+    console.log('🎬 [CASE STUDY SECTION] Starting auto-scroll animation');
 
     let scrollDirection = 1; // 1 for right, -1 for left
     const scrollSpeed = 0.5; // pixels per frame
@@ -361,11 +381,19 @@ export default function CaseStudySection() {
     autoScrollRef.current = requestAnimationFrame(autoScroll);
 
     return () => {
+      console.log('🛑 [CASE STUDY SECTION] Stopping auto-scroll animation');
       if (autoScrollRef.current) {
         cancelAnimationFrame(autoScrollRef.current);
       }
     };
   }, []);
+
+  // Track modal expansion
+  React.useEffect(() => {
+    if (expandedCaseStudy) {
+      console.log('🔍 [CASE STUDY SECTION] Case study expanded:', expandedCaseStudy.title);
+    }
+  }, [expandedCaseStudy]);
 
   // Drag to scroll functionality
   const handleMouseDown = (e) => {
@@ -400,6 +428,8 @@ export default function CaseStudySection() {
     const walk = (x - startX.current) * 2; // Multiply for faster scroll
     scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
   };
+
+  console.log('🎨 [CASE STUDY SECTION] Rendering...');
 
   const caseStudies = [
     {

@@ -11,17 +11,31 @@ import { createPageUrl } from '@/utils';
  * - Images always visible (no opacity tricks)
  * - Solid color backgrounds during load
  * - Multiple fallback strategies
+ *
+ * DEBUG MODE ACTIVE: Comprehensive logging for troubleshooting
  */
 
 // Preload all images immediately
 const preloadImages = (items) => {
-  items.forEach(item => {
+  console.group('🖼️ [BENTO GRID] Preloading Images');
+  console.log('Items to preload:', items?.length || 0);
+
+  const preloadStats = {
+    heroImages: 0,
+    logos: 0,
+    total: 0
+  };
+
+  items.forEach((item, index) => {
     if (item.heroImage) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = item.heroImage;
       document.head.appendChild(link);
+      preloadStats.heroImages++;
+      preloadStats.total++;
+      console.log(`  ✓ Preloading hero image ${index + 1}:`, item.heroImage.substring(0, 60) + '...');
     }
     if (item.logo) {
       const link = document.createElement('link');
@@ -29,8 +43,14 @@ const preloadImages = (items) => {
       link.as = 'image';
       link.href = item.logo;
       document.head.appendChild(link);
+      preloadStats.logos++;
+      preloadStats.total++;
+      console.log(`  ✓ Preloading logo ${index + 1}:`, item.logo.substring(0, 60) + '...');
     }
   });
+
+  console.log('Preload Summary:', preloadStats);
+  console.groupEnd();
 };
 
 const BentoCard = ({ item, index, onExpand }) => {
@@ -39,6 +59,22 @@ const BentoCard = ({ item, index, onExpand }) => {
   const videoRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(item.heroImage || item.logo);
   const [logoSrc, setLogoSrc] = useState(item.logo);
+  const [imageLoadState, setImageLoadState] = useState({
+    heroLoaded: false,
+    logoLoaded: false,
+    heroError: false,
+    logoError: false
+  });
+
+  // Track image loading for each card
+  useEffect(() => {
+    console.log(`🃏 [BENTO CARD #${index}] Initialized`, {
+      client: item.client,
+      hasHeroImage: !!item.heroImage,
+      hasLogo: !!item.logo,
+      hasVideo: !!item.video
+    });
+  }, []);
 
   const handleVideoToggle = (e) => {
     e.stopPropagation();
@@ -129,9 +165,16 @@ const BentoCard = ({ item, index, onExpand }) => {
               loading="eager"
               decoding="sync"
               fetchpriority="high"
+              onLoad={() => {
+                console.log(`✅ [BENTO CARD #${index}] Hero image loaded:`, item.client);
+                setImageLoadState(prev => ({ ...prev, heroLoaded: true }));
+              }}
               onError={(e) => {
+                console.error(`❌ [BENTO CARD #${index}] Hero image failed:`, item.client, imgSrc);
+                setImageLoadState(prev => ({ ...prev, heroError: true }));
                 // Fallback to logo if hero image fails
                 if (imgSrc !== item.logo && item.logo) {
+                  console.log(`🔄 [BENTO CARD #${index}] Fallback to logo:`, item.client);
                   setImgSrc(item.logo);
                 }
               }}
@@ -154,7 +197,13 @@ const BentoCard = ({ item, index, onExpand }) => {
               className="h-16 w-auto max-w-[200px] object-contain transform group-hover:scale-110 transition-all duration-500 drop-shadow-2xl"
               loading="eager"
               decoding="sync"
+              onLoad={() => {
+                console.log(`✅ [BENTO CARD #${index}] Logo loaded:`, item.client);
+                setImageLoadState(prev => ({ ...prev, logoLoaded: true }));
+              }}
               onError={(e) => {
+                console.error(`❌ [BENTO CARD #${index}] Logo failed:`, item.client, logoSrc);
+                setImageLoadState(prev => ({ ...prev, logoError: true }));
                 // Hide logo if it fails
                 setLogoSrc(null);
               }}
@@ -333,35 +382,100 @@ const ExpandedCard = ({ item, onClose }) => {
 
 export default function BentoGridNew({ items }) {
   const [expandedItem, setExpandedItem] = useState(null);
+  const [loadProgress, setLoadProgress] = useState({
+    total: 0,
+    loaded: 0,
+    failed: 0
+  });
+
+  // Component mount tracking
+  useEffect(() => {
+    console.group('🎯 [BENTO GRID] Component Mount');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('Items received:', items?.length || 0);
+    console.log('Items data:', items?.map(i => ({ name: i.name, client: i.client })));
+    console.groupEnd();
+
+    return () => {
+      console.log('❌ [BENTO GRID] Component Unmounting');
+    };
+  }, []);
 
   // AGGRESSIVE PRELOADING - Run immediately
   useEffect(() => {
-    if (!items || items.length === 0) return;
+    if (!items || items.length === 0) {
+      console.warn('⚠️ [BENTO GRID] No items to preload');
+      return;
+    }
 
-    console.log('🚀 BentoGrid: Preloading all images...');
+    console.log('🚀 [BENTO GRID] Starting aggressive preload...');
     preloadImages(items);
 
+    // Track preload progress
+    let totalImages = 0;
+    let loadedImages = 0;
+    let failedImages = 0;
+
     // Also force browser to start downloading
-    items.forEach((item) => {
+    items.forEach((item, index) => {
       if (item.heroImage) {
+        totalImages++;
         const img = new Image();
+        img.onload = () => {
+          loadedImages++;
+          console.log(`✅ [BENTO GRID] Hero preload success (${loadedImages}/${totalImages}):`, item.client);
+          setLoadProgress({ total: totalImages, loaded: loadedImages, failed: failedImages });
+        };
+        img.onerror = () => {
+          failedImages++;
+          console.error(`❌ [BENTO GRID] Hero preload failed (${failedImages} errors):`, item.client, item.heroImage);
+          setLoadProgress({ total: totalImages, loaded: loadedImages, failed: failedImages });
+        };
         img.src = item.heroImage;
       }
       if (item.logo) {
+        totalImages++;
         const logo = new Image();
+        logo.onload = () => {
+          loadedImages++;
+          console.log(`✅ [BENTO GRID] Logo preload success (${loadedImages}/${totalImages}):`, item.client);
+          setLoadProgress({ total: totalImages, loaded: loadedImages, failed: failedImages });
+        };
+        logo.onerror = () => {
+          failedImages++;
+          console.error(`❌ [BENTO GRID] Logo preload failed (${failedImages} errors):`, item.client, item.logo);
+          setLoadProgress({ total: totalImages, loaded: loadedImages, failed: failedImages });
+        };
         logo.src = item.logo;
       }
     });
-    console.log('✅ BentoGrid: Image preloading initiated');
+
+    setLoadProgress({ total: totalImages, loaded: 0, failed: 0 });
+    console.log(`📊 [BENTO GRID] Preload initiated for ${totalImages} images`);
   }, [items]);
 
+  // Track load progress
+  useEffect(() => {
+    if (loadProgress.total > 0) {
+      const percentage = Math.round(((loadProgress.loaded + loadProgress.failed) / loadProgress.total) * 100);
+      console.log(`📊 [BENTO GRID] Load Progress: ${percentage}% (${loadProgress.loaded} loaded, ${loadProgress.failed} failed, ${loadProgress.total - loadProgress.loaded - loadProgress.failed} pending)`);
+
+      if (loadProgress.loaded + loadProgress.failed === loadProgress.total) {
+        console.log(`✅ [BENTO GRID] All images processed! Success: ${loadProgress.loaded}, Failed: ${loadProgress.failed}`);
+      }
+    }
+  }, [loadProgress]);
+
   if (!items || items.length === 0) {
+    console.error('❌ [BENTO GRID] Rendering empty state - no items available');
     return (
       <div className="text-center text-white py-20">
         <p className="text-xl">No portfolio items available</p>
       </div>
     );
   }
+
+  console.log('🎨 [BENTO GRID] Rendering grid with', items.length, 'items');
 
   return (
     <>
