@@ -1,0 +1,145 @@
+{
+  "migrationDate": "2025-11-04T19:35:37.206Z",
+  "totalAssets": 15,
+  "successful": 15,
+  "failed": 0,
+  "urlMapping": {
+    "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
+    "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png",
+    "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4",
+    "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170550/gallery-bg_e0bwdz.mp4": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/tradeworxusa-logo.svg",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/timberviewfinancial-logo.webp",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/thewellnessway-logo.webp",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/soundcorrections-logo.svg",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/segpro-logo.png",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/neuromastery-logo.webp",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862158/case-studies/case-studies/muscleworks_logo.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/muscleworks-logo.png",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/granitepaving-logo.png",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/autotrimutah-logo.png",
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
+  },
+  "results": [
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046691/dmsite/home/handshake-landscape.mp4",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
+      "category": "home-page",
+      "bucket": "site-videos",
+      "size": 11098489,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4",
+      "category": "home-page",
+      "bucket": "site-videos",
+      "size": 12432144,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png",
+      "category": "home-page",
+      "bucket": "site-images",
+      "size": 287892,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4",
+      "category": "home-page",
+      "bucket": "site-videos",
+      "size": 12937373,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170550/gallery-bg_e0bwdz.mp4",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4",
+      "category": "home-page",
+      "bucket": "site-videos",
+      "size": 2666210,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/tradeworxusa-logo.svg",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 10506,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/timberviewfinancial-logo.webp",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 5640,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/thewellnessway-logo.webp",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 7528,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/soundcorrections-logo.svg",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 8997,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/segpro-logo.png",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 59255,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/neuromastery-logo.webp",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 7488,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862158/case-studies/case-studies/muscleworks_logo.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/muscleworks-logo.png",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 23263,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/granitepaving-logo.png",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 123173,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/case-studies/logos/autotrimutah-logo.png",
+      "category": "case-study-logos",
+      "bucket": "site-images",
+      "size": 12121,
+      "success": true
+    },
+    {
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png",
+      "category": "onboarding",
+      "bucket": "site-images",
+      "size": 59697,
+      "success": true
+    }
+  ]
+}
