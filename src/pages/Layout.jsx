@@ -239,17 +239,9 @@ export default function Layout({ children, currentPageName }) {
           <div className={`${!isHomePage && 'pt-20 sm:pt-26'}`}>
             <AnimatePresence mode="wait">
               <motion.main
-                key={currentPageName}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                key={location.pathname}
                 className="flex-1"
                 style={{ minHeight: '50vh' }}
-                onAnimationComplete={() => {
-                  // Ensure opacity is set after animation completes
-                  console.log('✅ [LAYOUT] Page animation complete for:', currentPageName);
-                }}
               >
                 {children}
               </motion.main>

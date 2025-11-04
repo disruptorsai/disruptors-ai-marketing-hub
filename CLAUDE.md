@@ -47,6 +47,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Release**: `npm run changelog:release`
 - **Status**: `npm run changelog:status`
 
+### Experiments Management (Marketing Experiments System)
+- **Watch experiments**: `npm run experiments:watch` - Monitor experiments directory for new submissions
+- **Background watch**: `npm run experiments:watch:bg` - Run experiment watcher in background
+- **Stop watcher**: `npm run experiments:watch:stop` - Stop background experiment watcher
+- **Check status**: `npm run experiments:status` - View active experiments and watcher status
+
+**Note**: The experiments system automatically analyzes marketing experiment submissions in `experiments/submissions/` and manages their lifecycle through approval, optimization, and graduation stages.
+
 ### Deployment Management
 
 **Two-Tier Deployment System**: Dev (auto) → Production (manual)
@@ -62,6 +70,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Production site**: https://dm4.wjwelsh.com
 - **Production site ID**: `cheerful-custard-2e6fc5`
 - **Requirement**: Must test and approve on dev site first
+- **IMPORTANT**: Production deployments are NEVER automatic - must be manually triggered after testing
 
 #### Deployment Tools
 - **Check status**: `npm run deploy:status` - Both dev and production status
@@ -136,11 +145,15 @@ import { supabase, supabaseAdmin } from '@/lib/supabase-client'
 
 React Router DOM v7.2.0 with custom lazy loading in `src/pages/index.jsx`:
 - 70+ page components with Routes-based routing
-- Home page loaded immediately, all others lazy-loaded with React.lazy()
+- ALL pages lazy-loaded with `lazyWithRetry()` utility (including Home page)
 - Layout wrapper system where `Layout.jsx` wraps all pages via Suspense boundaries
 - Custom PageLoader component for loading states
+- **Automatic retry logic**: `lazyWithRetry()` handles chunk load failures during deployments by retrying up to 3 times with exponential backoff
 
-**Important**: All pages must be wrapped in `<Suspense fallback={<PageLoader />}>` for lazy loading.
+**Important**:
+- All pages must be wrapped in `<Suspense fallback={<PageLoader />}>` for lazy loading
+- Use `lazyWithRetry()` from `@/utils/lazyWithRetry` instead of React.lazy() to handle deployment chunk errors
+- Retry mechanism prevents "ChunkLoadError" when users have stale cached bundles
 
 See `docs/architecture/ROUTING_SYSTEM.md` for details.
 
@@ -150,6 +163,10 @@ See `docs/architecture/ROUTING_SYSTEM.md` for details.
 - **Shared Components**: `src/components/shared/` - Reusable business components
 - **Admin Components**: `src/components/admin/` - Secure admin interface
 - **Path Alias**: `@/` resolves to `src/` directory
+
+**Performance Components**:
+- **FastVideo**: Use `<FastVideo>` component instead of direct `<video>` tags for automatic lazy loading and intersection observer optimization
+- Improves page load performance by deferring video loading until they're in viewport
 
 ### Animation Standards
 
@@ -270,16 +287,28 @@ See `docs/BUSINESS_BRAIN_INTEGRATION_GUIDE.md` for complete guide.
 - SWC plugin for faster builds
 - Automatic chunk splitting (no manual chunks)
 - Path alias `@/` maps to `src/`
+- **Build timestamp injection**: Custom plugin injects build timestamp into index.html for cache-busting
+- **Hash-based filenames**: All assets use content hashes for automatic cache invalidation
 
 **Why modulePreload is disabled**: Parallel loading caused vendor-ui chunks to execute before React was available, causing "Cannot read properties of undefined (reading 'forwardRef')" errors.
+
+**Cache-Busting Strategy**:
+- `index.html`: No-cache headers (always fetches fresh)
+- Assets (`/assets/*`): Immutable with 1-year cache (hash changes force reload)
+- Build timestamp triggers automatic reload when new deployment detected
 
 ### Git Workflow
 
 - **Main branch**: `master` (not `main`)
-- **Current branch**: `v8` (active development branch)
+- **Active development branch**: `updateplus` (as of 2025-11-03)
+  - Use `git branch --show-current` to verify current branch
 - **Auto-commit**: Enabled via `npm run dev:auto`
 - **Commit patterns**: Semantic messages with intelligent change detection
-- **Push commands**: `npm run push` for standard push, `npm run push:force` for force-with-lease
+- **Push commands**:
+  - `npm run push` - Standard push to origin
+  - `npm run push:force` - Force-with-lease push
+  - Dual push scripts available in `scripts/setup-dual-push.sh` and `.bat` for Windows
+- **Deployment trigger**: Every `git push` auto-deploys to dev site (https://dev.disruptorsmedia.com)
 
 ### Claude Code Best Practices
 

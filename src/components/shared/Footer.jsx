@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import FastVideo from '@/components/shared/FastVideo';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -138,6 +139,11 @@ export default function Footer() {
       icon: 'facebook',
       url: 'https://facebook.com/disruptorsmedia'
     },
+    {
+      name: 'LinkedIn',
+      icon: 'linkedin',
+      url: 'https://linkedin.com/company/disruptorsmedia'
+    },
   ];
 
   const getSocialIcon = (iconName) => {
@@ -147,6 +153,8 @@ export default function Footer() {
         return <Facebook {...iconProps} />;
       case 'instagram':
         return <Instagram {...iconProps} />;
+      case 'linkedin':
+        return <Linkedin {...iconProps} />;
       case 'twitter':
         // Using a simple Twitter/X icon - lucide-react doesn't have Twitter anymore
         return (
@@ -163,13 +171,18 @@ export default function Footer() {
     <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 overflow-hidden bg-gradient-to-b from-[#0E0E0E] to-black">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-20"
+        <FastVideo
           src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4"
+          preset="fullscreen"
+          autoplay={true}
+          loop={true}
+          muted={true}
+          playsInline={true}
+          preload="metadata"
+          fetchpriority="low"
+          lazy={true}
+          className="w-full h-full object-cover opacity-20"
+          aria-label="Footer background video"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
       </div>

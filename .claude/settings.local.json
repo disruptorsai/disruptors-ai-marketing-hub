@@ -58,7 +58,8 @@
       "Bash(pkill -f ''watch-experiments.js'':*)",
       "Read(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)",
       "Write(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(git merge:*)"
     ],
     "deny": [],
     "ask": []

@@ -7,6 +7,8 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
+import FastVideo from '@/components/shared/FastVideo';
+import { optimizeCloudinaryImage, optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-optimizer';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -110,11 +112,11 @@ export default function Solutions() {
     if (isMobile || !handRef.current || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Set fixed position at the pivot point (35% down, far right)
-      // Moved further right to hide back of hand during rotation
+      // Set fixed position at the pivot point (35% down, slightly right of center)
+      // Moved towards center for better visibility
       gsap.set(handRef.current, {
         top: "35%",
-        right: "-15%", // Moved further right to prevent back visibility
+        right: "-5%", // Brought closer to center (was -15%)
         transformOrigin: "100% 50%" // Pivot from right edge, middle of hand
       });
 
@@ -142,17 +144,45 @@ export default function Solutions() {
       {/* Hero Image */}
       <section ref={sectionRef} className="w-full relative">
         <img
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png"
+          src={optimizeCloudinaryImage(
+            "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
+            {
+              width: 1920,
+              quality: 'auto:good',
+              crop: 'scale'
+            }
+          )}
+          srcSet={`
+            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 640 })} 640w,
+            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1024 })} 1024w,
+            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1920 })} 1920w
+          `}
+          sizes="100vw"
           alt="Our approach is simple yet impactful"
           className="w-full h-auto"
+          loading="eager"
+          fetchpriority="high"
         />
         {/* Scroll-Animated Hand - Hidden on mobile devices */}
         {!isMobile && (
           <img
             ref={handRef}
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
+            src={optimizeCloudinaryImage(
+              "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png",
+              {
+                width: 1200,
+                quality: 'auto:good'
+              }
+            )}
             alt="Pointing hand"
-            className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
+            className="absolute"
+            style={{
+              width: '35vw', // Viewport-based sizing for responsive scaling
+              height: 'auto', // Maintain aspect ratio
+              maxWidth: '48rem', // Cap max size at original lg breakpoint
+              minWidth: '24rem' // Prevent getting too small
+            }}
+            loading="lazy"
           />
         )}
       </section>
@@ -165,12 +195,22 @@ export default function Solutions() {
       {/* Services Horizontal Scrolling Carousel */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
-            autoPlay
+          <FastVideo
+            src={optimizeCloudinaryVideo(
+              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+              { width: 1920, quality: 'auto' }
+            )}
+            poster={getVideoThumbnail(
+              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
+              { width: 1920 }
+            )}
+            autoplay
             loop
             muted
             playsInline
+            preload="metadata"
+            lazy={true}
+            preset="fullscreen"
             className="w-full h-full object-cover"
           />
         </div>
@@ -266,12 +306,22 @@ export default function Solutions() {
       <section className="relative overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4"
-            autoPlay
+          <FastVideo
+            src={optimizeCloudinaryVideo(
+              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
+              { width: 1920, quality: 'auto' }
+            )}
+            poster={getVideoThumbnail(
+              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
+              { width: 1920 }
+            )}
+            autoplay
             loop
             muted
             playsInline
+            preload="metadata"
+            lazy={true}
+            preset="fullscreen"
             className="w-full h-full object-cover"
           />
         </div>

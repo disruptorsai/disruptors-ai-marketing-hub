@@ -190,31 +190,59 @@ export function useAdaptiveImage(baseUrl, options = {}) {
   const [optimizedUrl, setOptimizedUrl] = useState(baseUrl);
 
   useEffect(() => {
-    if (!baseUrl || !baseUrl.includes('cloudinary.com')) {
+    if (!baseUrl) {
       setOptimizedUrl(baseUrl);
       return;
     }
 
-    // Apply connection-aware transformations
-    const uploadIndex = baseUrl.indexOf('/upload/');
-    if (uploadIndex === -1) {
-      setOptimizedUrl(baseUrl);
+    // Check if Supabase Storage URL
+    if (baseUrl.includes('supabase.co/storage')) {
+      // Dynamically import Supabase optimizer
+      import('@/utils/supabase-media-optimizer').then(({ optimizeSupabaseImage }) => {
+        // Map Cloudinary quality strings to numeric quality values
+        let qualityValue = 80; // Default
+        if (preset.imageQuality === 'auto:low') qualityValue = 50;
+        else if (preset.imageQuality === 'auto:good') qualityValue = 75;
+        else if (preset.imageQuality === 'auto:best') qualityValue = 90;
+
+        const optimized = optimizeSupabaseImage(baseUrl, {
+          width: options.width ? Math.min(options.width, preset.maxImageWidth) : preset.maxImageWidth,
+          height: options.height,
+          quality: qualityValue,
+          format: 'origin', // Automatic WebP/AVIF selection
+          resize: 'cover'
+        });
+        setOptimizedUrl(optimized);
+      });
       return;
     }
 
-    const base = baseUrl.substring(0, uploadIndex + 8);
-    const asset = baseUrl.substring(uploadIndex + 8);
+    // Legacy Cloudinary support (for gradual migration)
+    if (baseUrl.includes('cloudinary.com')) {
+      const uploadIndex = baseUrl.indexOf('/upload/');
+      if (uploadIndex === -1) {
+        setOptimizedUrl(baseUrl);
+        return;
+      }
 
-    const transformations = [
-      'f_auto', // Automatic format
-      `q_${preset.imageQuality}`, // Connection-aware quality
-      options.width ? `w_${Math.min(options.width, preset.maxImageWidth)}` : `w_${preset.maxImageWidth}`,
-      options.height ? `h_${options.height}` : null,
-      'c_limit', // Don't upscale
-      'fl_progressive', // Progressive loading
-    ].filter(Boolean).join(',');
+      const base = baseUrl.substring(0, uploadIndex + 8);
+      const asset = baseUrl.substring(uploadIndex + 8);
 
-    setOptimizedUrl(`${base}${transformations}/${asset}`);
+      const transformations = [
+        'f_auto',
+        `q_${preset.imageQuality}`,
+        options.width ? `w_${Math.min(options.width, preset.maxImageWidth)}` : `w_${preset.maxImageWidth}`,
+        options.height ? `h_${options.height}` : null,
+        'c_limit',
+        'fl_progressive',
+      ].filter(Boolean).join(',');
+
+      setOptimizedUrl(`${base}${transformations}/${asset}`);
+      return;
+    }
+
+    // Other URLs - return as-is
+    setOptimizedUrl(baseUrl);
   }, [baseUrl, quality, preset, options.width, options.height]);
 
   return optimizedUrl;
@@ -235,7 +263,7 @@ export function useAdaptiveVideo(baseUrl, options = {}) {
   });
 
   useEffect(() => {
-    if (!baseUrl || !baseUrl.includes('cloudinary.com')) {
+    if (!baseUrl) {
       setVideoConfig({
         url: baseUrl,
         shouldLoad: preset.enableVideo,
@@ -244,19 +272,8 @@ export function useAdaptiveVideo(baseUrl, options = {}) {
       return;
     }
 
-    // Don't load video on poor connections
-    if (!preset.enableVideo) {
-      setVideoConfig({
-        url: baseUrl,
-        shouldLoad: false,
-        quality: preset.videoQuality
-      });
-      return;
-    }
-
-    // Apply connection-aware transformations
-    const uploadIndex = baseUrl.indexOf('/upload/');
-    if (uploadIndex === -1) {
+    // Supabase Storage videos - no transformation API, use direct URL
+    if (baseUrl.includes('supabase.co/storage')) {
       setVideoConfig({
         url: baseUrl,
         shouldLoad: preset.enableVideo,
@@ -265,20 +282,51 @@ export function useAdaptiveVideo(baseUrl, options = {}) {
       return;
     }
 
-    const base = baseUrl.substring(0, uploadIndex + 8);
-    const asset = baseUrl.substring(uploadIndex + 8);
+    // Legacy Cloudinary support
+    if (baseUrl.includes('cloudinary.com')) {
+      // Don't load video on poor connections
+      if (!preset.enableVideo) {
+        setVideoConfig({
+          url: baseUrl,
+          shouldLoad: false,
+          quality: preset.videoQuality
+        });
+        return;
+      }
 
-    const transformations = [
-      'f_auto', // Automatic format
-      `q_${preset.videoQuality}`, // Connection-aware quality
-      options.width ? `w_${Math.min(options.width, preset.maxVideoWidth)}` : `w_${preset.maxVideoWidth}`,
-      'c_limit', // Don't upscale
-      'vc_auto', // Auto video codec
-    ].filter(Boolean).join(',');
+      const uploadIndex = baseUrl.indexOf('/upload/');
+      if (uploadIndex === -1) {
+        setVideoConfig({
+          url: baseUrl,
+          shouldLoad: preset.enableVideo,
+          quality: preset.videoQuality
+        });
+        return;
+      }
 
+      const base = baseUrl.substring(0, uploadIndex + 8);
+      const asset = baseUrl.substring(uploadIndex + 8);
+
+      const transformations = [
+        'f_auto',
+        `q_${preset.videoQuality}`,
+        options.width ? `w_${Math.min(options.width, preset.maxVideoWidth)}` : `w_${preset.maxVideoWidth}`,
+        'c_limit',
+        'vc_auto',
+      ].filter(Boolean).join(',');
+
+      setVideoConfig({
+        url: `${base}${transformations}/${asset}`,
+        shouldLoad: true,
+        quality: preset.videoQuality
+      });
+      return;
+    }
+
+    // Other URLs - return as-is
     setVideoConfig({
-      url: `${base}${transformations}/${asset}`,
-      shouldLoad: true,
+      url: baseUrl,
+      shouldLoad: preset.enableVideo,
       quality: preset.videoQuality
     });
   }, [baseUrl, quality, preset, options.width]);

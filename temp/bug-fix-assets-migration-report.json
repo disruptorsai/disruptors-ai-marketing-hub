@@ -1,0 +1,32 @@
+{
+  "migrationDate": "2025-11-04T20:12:45.871Z",
+  "totalAssets": 2,
+  "successful": 2,
+  "failed": 0,
+  "urlMapping": {
+    "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258608/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
+    "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
+  },
+  "results": [
+    {
+      "name": "DualCTABlock Background",
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258608/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
+      "category": "ui-backgrounds",
+      "bucket": "site-images",
+      "path": "ui/backgrounds/renaissance-fresco-pyramids.png",
+      "size": 1895277,
+      "success": true
+    },
+    {
+      "name": "Blog Hero Video",
+      "cloudinaryUrl": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4",
+      "supabaseUrl": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4",
+      "category": "blog",
+      "bucket": "site-videos",
+      "path": "blog/hero-michelangelo-painting.mp4",
+      "size": 7386268,
+      "success": true
+    }
+  ]
+}

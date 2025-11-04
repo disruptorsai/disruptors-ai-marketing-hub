@@ -6,7 +6,25 @@
  */
 
 const CACHE_VERSION_KEY = 'app_cache_version';
-const CURRENT_CACHE_VERSION = Date.now().toString();
+
+/**
+ * Get the build version from the meta tag (set at build time)
+ * This ensures cache version only changes on actual deployments, not every page load
+ * In development mode, return a static version to prevent infinite reload loops
+ */
+function getBuildVersion() {
+  // Detect development mode
+  const isDev = import.meta.env.DEV || window.location.hostname === 'localhost';
+
+  if (isDev) {
+    return 'dev-mode'; // Static version for dev to prevent reloads
+  }
+
+  const meta = document.querySelector('meta[name="build-version"]');
+  return meta ? meta.getAttribute('content') : 'prod-default';
+}
+
+const CURRENT_CACHE_VERSION = getBuildVersion();
 
 /**
  * Clear all browser caches (localStorage, sessionStorage, Service Worker caches)
@@ -50,6 +68,8 @@ export async function clearAllCaches() {
  */
 export function checkCacheVersion() {
   const storedVersion = localStorage.getItem(CACHE_VERSION_KEY);
+  const reloadAttemptKey = 'cache_reload_attempt';
+  const reloadAttempt = sessionStorage.getItem(reloadAttemptKey);
 
   if (!storedVersion) {
     // First visit - set version
@@ -59,10 +79,21 @@ export function checkCacheVersion() {
   }
 
   if (storedVersion !== CURRENT_CACHE_VERSION) {
+    // Prevent infinite reload loop
+    if (reloadAttempt) {
+      console.log('⚠️ [CACHE BUSTER] Reload already attempted this session');
+      console.log('🔧 [CACHE BUSTER] Updating version without reload to prevent loop');
+      localStorage.setItem(CACHE_VERSION_KEY, CURRENT_CACHE_VERSION);
+      return true;
+    }
+
     console.log('⚠️ [CACHE BUSTER] Cache version mismatch!');
     console.log(`   Stored: ${storedVersion}`);
     console.log(`   Current: ${CURRENT_CACHE_VERSION}`);
     console.log('🔄 [CACHE BUSTER] Forcing cache clear and reload...');
+
+    // Mark that we're attempting a reload to prevent infinite loops
+    sessionStorage.setItem(reloadAttemptKey, 'true');
 
     clearAllCaches().then(() => {
       localStorage.setItem(CACHE_VERSION_KEY, CURRENT_CACHE_VERSION);
@@ -115,24 +146,33 @@ export function bustImportCache(importPath) {
  * Call this from main.jsx BEFORE React renders
  */
 export function initCacheBuster() {
+  const isDev = import.meta.env.DEV || window.location.hostname === 'localhost';
+
+  if (isDev) {
+    console.log('🚀 [CACHE BUSTER] Skipping in development mode');
+    return;
+  }
+
   console.log('🚀 [CACHE BUSTER] Initializing...');
 
   // Check cache version
   checkCacheVersion();
 
   // Listen for visibility changes (user returns to tab)
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-      console.log('👁️ [CACHE BUSTER] Tab visible - checking for updates...');
-      checkCacheVersion();
-    }
-  });
+  // DISABLED: Can cause infinite reload loops
+  // document.addEventListener('visibilitychange', () => {
+  //   if (document.visibilityState === 'visible') {
+  //     console.log('👁️ [CACHE BUSTER] Tab visible - checking for updates...');
+  //     checkCacheVersion();
+  //   }
+  // });
 
   // Listen for online/offline events
-  window.addEventListener('online', () => {
-    console.log('🌐 [CACHE BUSTER] Back online - checking for updates...');
-    checkCacheVersion();
-  });
+  // DISABLED: Can cause infinite reload loops
+  // window.addEventListener('online', () => {
+  //   console.log('🌐 [CACHE BUSTER] Back online - checking for updates...');
+  //   checkCacheVersion();
+  // });
 
   // Force refresh on focus if page has been in background > 5 minutes
   let lastFocusTime = Date.now();
