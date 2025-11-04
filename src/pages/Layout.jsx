@@ -244,16 +244,22 @@ export default function Layout({ children, currentPageName }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="flex-1"
-                style={{ minHeight: '50vh' }}
+                style={{
+                  minHeight: '50vh',
+                  opacity: 1,  // Force opacity to always be 1
+                  willChange: 'opacity'
+                }}
+                onAnimationStart={() => {
+                  console.log('🎬 [LAYOUT] Animation starting for:', location.pathname);
+                }}
                 onAnimationComplete={(definition) => {
-                  // Force opacity to 1 after animation completes
-                  const element = document.querySelector('main');
-                  if (element) {
-                    element.style.opacity = '1';
-                  }
-                  console.log('✅ [LAYOUT] Page animation complete for:', location.pathname);
+                  // Aggressively force opacity on ALL main elements
+                  document.querySelectorAll('main').forEach(el => {
+                    el.style.setProperty('opacity', '1', 'important');
+                  });
+                  console.log('✅ [LAYOUT] Animation complete + forced opacity for:', location.pathname);
                 }}
               >
                 {children}
