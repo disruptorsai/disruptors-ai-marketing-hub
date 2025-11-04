@@ -240,16 +240,20 @@ export default function Layout({ children, currentPageName }) {
           <div className={`${!isHomePage && 'pt-20 sm:pt-26'}`}>
             <AnimatePresence mode="wait">
               <motion.main
-                key={currentPageName}
+                key={location.pathname}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className="flex-1"
                 style={{ minHeight: '50vh' }}
-                onAnimationComplete={() => {
-                  // Ensure opacity is set after animation completes
-                  console.log('✅ [LAYOUT] Page animation complete for:', currentPageName);
+                onAnimationComplete={(definition) => {
+                  // Force opacity to 1 after animation completes
+                  const element = document.querySelector('main');
+                  if (element) {
+                    element.style.opacity = '1';
+                  }
+                  console.log('✅ [LAYOUT] Page animation complete for:', location.pathname);
                 }}
               >
                 {children}
