@@ -312,7 +312,7 @@ export const caseStudies = [
     title: 'GetEducated Online College Comparison Platform',
     path: 'work-geteducated',
     logo: 'https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/logos/geteducated-logo.png',
-    heroImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop',
+    heroImage: 'https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/geteducated-hero.jpg',
     video: null,
     industry: 'Education Technology',
     overview: 'Built comprehensive college comparison platform that helps adult learners find accredited online degree programs.',
