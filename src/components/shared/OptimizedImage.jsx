@@ -8,12 +8,18 @@
  * - Lazy loading with adaptive margins
  * - Progressive loading with LQIP (Low Quality Image Placeholder)
  * - Automatic format selection (WebP/AVIF)
+ * - Supabase Storage optimization with transformation API
  */
 
 import React, { useState } from 'react';
 import { useAdaptiveImage } from '@/hooks/useConnectionQuality';
 import { useLazyLoad } from '@/hooks/useImageOptimization';
-import { getViewportOptimizedDimensions } from '@/utils/cloudinary-optimizer';
+import {
+  getViewportOptimizedDimensions,
+  getSupabaseLQIP,
+  optimizeSupabaseImage,
+  isSupabaseStorageUrl
+} from '@/utils/supabase-media-optimizer';
 
 /**
  * OptimizedImage Component
@@ -58,8 +64,8 @@ export default function OptimizedImage({
   });
 
   // Generate LQIP (Low Quality Image Placeholder) URL
-  const placeholderSrc = src?.includes('cloudinary.com')
-    ? src.replace('/upload/', '/upload/w_50,q_auto:low,f_auto,e_blur:1000/')
+  const placeholderSrc = isSupabaseStorageUrl(src)
+    ? getSupabaseLQIP(src)
     : null;
 
   const handleLoad = (e) => {

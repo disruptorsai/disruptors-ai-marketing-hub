@@ -1,0 +1,207 @@
+{
+  "downloadDate": "2025-11-04T18:53:12.671Z",
+  "totalImages": 25,
+  "successful": 24,
+  "failed": 1,
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
+      "name": "tradeworx-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\tradeworx-hero.jpg",
+      "size": 353462
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop",
+      "name": "timberview-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\timberview-hero.jpg",
+      "size": 282053
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2070&auto=format&fit=crop",
+      "name": "wellness-way-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\wellness-way-hero.jpg",
+      "size": 1820214
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1519824145371-296894a0daa9?q=80&w=2070&auto=format&fit=crop",
+      "name": "sound-corrections-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\sound-corrections-hero.jpg",
+      "size": 191319
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=2070&auto=format&fit=crop",
+      "name": "segpro-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\segpro-hero.jpg",
+      "size": 242263
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2070&auto=format&fit=crop",
+      "name": "neuro-mastery-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\neuro-mastery-hero.jpg",
+      "size": 176206
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop",
+      "name": "muscle-works-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\muscle-works-hero.jpg",
+      "size": 406635
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop",
+      "name": "granite-paving-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\granite-paving-hero.jpg",
+      "size": 228069
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2070&auto=format&fit=crop",
+      "name": "auto-trim-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\auto-trim-hero.jpg",
+      "size": 294136
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073&auto=format&fit=crop",
+      "name": "commission-express-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\commission-express-hero.jpg",
+      "size": 231164
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop",
+      "name": "acumen-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\acumen-hero.jpg",
+      "size": 455622
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+      "name": "core-benefits-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\core-benefits-hero.jpg",
+      "size": 398516
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
+      "name": "geteducated-hero.jpg",
+      "type": "hero",
+      "success": false,
+      "error": "HTTP 404"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=2070&auto=format&fit=crop",
+      "name": "financial-haus-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\financial-haus-hero.jpg",
+      "size": 242263
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
+      "name": "pendari-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\pendari-hero.jpg",
+      "size": 299312
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+      "name": "exeo-advisors-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\exeo-advisors-hero.jpg",
+      "size": 398516
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2069&auto=format&fit=crop",
+      "name": "greene-design-hero.jpg",
+      "type": "hero",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\heroes\\greene-design-hero.jpg",
+      "size": 231926
+    },
+    {
+      "url": "https://www.commissionexpress.com/wp-content/uploads/2019/07/Asset-1@2x.png",
+      "name": "commission-express-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\commission-express-logo.png",
+      "size": 8293
+    },
+    {
+      "url": "https://acumenfl.com/wp-content/uploads/2015/06/logo.png",
+      "name": "acumen-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\acumen-logo.png",
+      "size": 5543
+    },
+    {
+      "url": "https://www.corebenefits.org/cbn/wp-content/uploads/2020/08/cropped-CORE-BENEFITS-LOGO2-e1596752565466.jpg",
+      "name": "core-benefits-logo.jpg",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\core-benefits-logo.jpg",
+      "size": 5064
+    },
+    {
+      "url": "https://www.geteducated.com/wp-content/uploads/2019/09/logo-get-educated.png",
+      "name": "geteducated-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\geteducated-logo.png",
+      "size": 7657
+    },
+    {
+      "url": "https://thefinancialhaus.com/wp-content/uploads/2022/07/LOGO_FinancialHaus_horiz-stacked_BLK.png",
+      "name": "financial-haus-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\financial-haus-logo.png",
+      "size": 8700
+    },
+    {
+      "url": "https://pendari.com/wp-content/uploads/2019/05/logo.png",
+      "name": "pendari-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\pendari-logo.png",
+      "size": 851
+    },
+    {
+      "url": "https://static.wixstatic.com/media/a712e2_e2068188bbbc4f2ca2cb1ea57c4fa573~mv2.png",
+      "name": "exeo-advisors-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\exeo-advisors-logo.png",
+      "size": 123663
+    },
+    {
+      "url": "https://greenedesignandbuild.com/wp-content/uploads/2025/08/51124-Greene-Logo.png",
+      "name": "greene-design-logo.png",
+      "type": "logo",
+      "success": true,
+      "outputPath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\temp\\work-images-download\\logos\\greene-design-logo.png",
+      "size": 30861
+    }
+  ]
+}

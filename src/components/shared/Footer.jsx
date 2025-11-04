@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -139,6 +139,11 @@ export default function Footer() {
       icon: 'facebook',
       url: 'https://facebook.com/disruptorsmedia'
     },
+    {
+      name: 'LinkedIn',
+      icon: 'linkedin',
+      url: 'https://linkedin.com/company/disruptorsmedia'
+    },
   ];
 
   const getSocialIcon = (iconName) => {
@@ -148,6 +153,8 @@ export default function Footer() {
         return <Facebook {...iconProps} />;
       case 'instagram':
         return <Instagram {...iconProps} />;
+      case 'linkedin':
+        return <Linkedin {...iconProps} />;
       case 'twitter':
         // Using a simple Twitter/X icon - lucide-react doesn't have Twitter anymore
         return (

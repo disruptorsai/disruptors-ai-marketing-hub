@@ -110,11 +110,11 @@ export default function Solutions() {
     if (isMobile || !handRef.current || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Set fixed position at the pivot point (35% down, far right)
-      // Moved further right to hide back of hand during rotation
+      // Set fixed position at the pivot point (35% down, slightly right of center)
+      // Moved towards center for better visibility
       gsap.set(handRef.current, {
         top: "35%",
-        right: "-15%", // Moved further right to prevent back visibility
+        right: "-5%", // Brought closer to center (was -15%)
         transformOrigin: "100% 50%" // Pivot from right edge, middle of hand
       });
 
@@ -152,7 +152,13 @@ export default function Solutions() {
             ref={handRef}
             src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
             alt="Pointing hand"
-            className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
+            className="absolute"
+            style={{
+              width: '35vw', // Viewport-based sizing for responsive scaling
+              height: 'auto', // Maintain aspect ratio
+              maxWidth: '48rem', // Cap max size at original lg breakpoint
+              minWidth: '24rem' // Prevent getting too small
+            }}
           />
         )}
       </section>

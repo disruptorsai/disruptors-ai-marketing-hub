@@ -226,7 +226,7 @@ export default function Blog() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
                 <video
-                  src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4"
+                  src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
                   className="w-full h-full object-cover"
                   autoPlay
                   muted
