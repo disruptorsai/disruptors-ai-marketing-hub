@@ -120,8 +120,9 @@ export function optimizeCloudinaryVideo(url, options = {}) {
     width,
     height,
     quality = 'auto',
-    format = 'auto',
-    crop = 'fill',
+    format = 'mp4', // Use MP4 explicitly for compatibility
+    crop = 'limit', // Use limit to maintain aspect ratio without distortion
+    streaming = false, // Disable advanced streaming (may require paid plan)
   } = options;
 
   const uploadIndex = url.indexOf('/upload/');
@@ -132,23 +133,19 @@ export function optimizeCloudinaryVideo(url, options = {}) {
 
   const transformations = [];
 
-  // Video format optimization
-  if (format === 'auto') {
-    transformations.push('f_auto');
-  } else {
-    transformations.push(`f_${format}`);
-  }
+  // Video format
+  transformations.push(`f_${format}`);
 
   // Quality
   transformations.push(`q_${quality}`);
 
-  // Dimensions
+  // Dimensions (use limit to avoid upscaling and maintain aspect ratio)
   if (width) transformations.push(`w_${width}`);
   if (height) transformations.push(`h_${height}`);
-  if (crop) transformations.push(`c_${crop}`);
+  transformations.push(`c_${crop}`);
 
-  // Video-specific optimizations
-  transformations.push('vc_auto'); // Auto video codec
+  // Video codec optimization (H.264 for best compatibility)
+  transformations.push('vc_h264');
 
   const transformString = transformations.join(',');
 
