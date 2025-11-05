@@ -1,0 +1,55 @@
+{
+  "success": [
+    {
+      "client": "Granite Paving",
+      "filename": "granite-paving-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/granite-paving-hero.jpg"
+    },
+    {
+      "client": "SegPro Solutions",
+      "filename": "segpro-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/segpro-hero.jpg"
+    },
+    {
+      "client": "Financial Haus",
+      "filename": "financial-haus-updated-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/financial-haus-updated-hero.jpg"
+    },
+    {
+      "client": "GetEducated",
+      "filename": "geteducated-updated-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/geteducated-updated-hero.jpg"
+    }
+  ],
+  "failed": [],
+  "urlMapping": [
+    {
+      "client": "Granite Paving",
+      "filename": "granite-paving-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/granite-paving-hero.jpg",
+      "description": "Asphalt road for Granite Paving (construction/landscaping)",
+      "prompt": "Professional photograph of a smooth, newly paved asphalt road stretching into the distance, fresh black asphalt surface with perfect lines, construction equipment in background, golden hour lighting, wide angle shot, high quality, photorealistic, 4k"
+    },
+    {
+      "client": "SegPro Solutions",
+      "filename": "segpro-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/segpro-hero.jpg",
+      "description": "Financial calculator/tax spreadsheet for SegPro (industrial safety)",
+      "prompt": "Professional photograph of a modern financial calculator and tax spreadsheet on a sleek desk, calculator displaying numbers, spreadsheet with financial data, organized office environment, professional lighting, business setting, high quality, photorealistic, 4k"
+    },
+    {
+      "client": "Financial Haus",
+      "filename": "financial-haus-updated-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/financial-haus-updated-hero.jpg",
+      "description": "Money and coins for Financial Haus (financial planning)",
+      "prompt": "Professional photograph of stacks of money and gold coins arranged artistically, US dollar bills neatly stacked, gleaming gold coins scattered, wealth and prosperity theme, dramatic lighting, luxury setting, high quality, photorealistic, 4k"
+    },
+    {
+      "client": "GetEducated",
+      "filename": "geteducated-updated-hero.jpg",
+      "url": "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/work/heros/geteducated-updated-hero.jpg",
+      "description": "Online classroom/educational setting for GetEducated (education technology)",
+      "prompt": "Professional photograph of a modern online classroom setting, laptop displaying virtual learning interface, books and digital tablet on desk, minimalist workspace, bright natural lighting, educational atmosphere, clean and professional, high quality, photorealistic, 4k"
+    }
+  ]
+}
