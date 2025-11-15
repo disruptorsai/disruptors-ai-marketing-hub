@@ -34,6 +34,21 @@
     "culori"
   ]
 
+# Exception for sitemap.xml - serve as static file
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+# Exception for robots.txt - serve as static file
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+# SPA fallback - redirect everything else to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -106,3 +121,16 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+# SEO files - cache for 1 day but allow revalidation
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+    Cache-Control = "public, max-age=86400, must-revalidate"
