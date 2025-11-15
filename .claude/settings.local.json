@@ -59,7 +59,9 @@
       "Read(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)",
       "Write(/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/experiments/**)",
       "Bash(mkdir:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(npx netlify api getSite:*)",
+      "Bash(npx netlify:*)"
     ],
     "deny": [],
     "ask": []
