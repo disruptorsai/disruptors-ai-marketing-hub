@@ -42,7 +42,6 @@ export default function Layout({ children, currentPageName }) {
     { name: "Work", path: "work" },
     { name: "Services", path: "solutions" },
     { name: "About", path: "about" },
-    { name: "Pricing", path: "pricing" },
     { name: "Podcasting", path: "podcast" },
     { name: "Blog", path: "blog" },
     { name: "Gallery", path: "gallery" }

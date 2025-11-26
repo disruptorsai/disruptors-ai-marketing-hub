@@ -109,7 +109,6 @@ export default function Footer() {
   const company = [
     { name: 'About Us', path: 'about' },
     // { name: 'Our Work', path: 'work' }, // Temporarily disabled - loading issues
-    { name: 'Pricing', path: 'pricing' },
     { name: 'Blog', path: 'blog' },
     { name: 'Podcast', path: 'podcast' },
     // { name: 'AI Tools', path: 'ai-tools' }, // Temporarily disabled
