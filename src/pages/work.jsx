@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 import BentoGridNew from '../components/shared/BentoGridNew';
-// import CaseStudySection from '../components/shared/CaseStudySection'; // TEMPORARILY DISABLED - contains inaccurate placeholder data
+import CaseStudySection from '../components/shared/CaseStudySection';
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
 
@@ -125,11 +125,10 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* Success Stories Section - TEMPORARILY DISABLED: Contains inaccurate placeholder data
+        {/* Success Stories Section - Detailed Case Studies */}
         <BlurSection blurAmount={3}>
           <CaseStudySection />
         </BlurSection>
-        */}
 
         {/* Footer CTA */}
         <section className="bg-gray-900 text-white relative z-10">
