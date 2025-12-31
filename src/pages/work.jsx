@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import PageTitle from '../components/shared/PageTitle';
 import BentoGridNew from '../components/shared/BentoGridNew';
-import CaseStudySection from '../components/shared/CaseStudySection';
+// import CaseStudySection from '../components/shared/CaseStudySection'; // TEMPORARILY DISABLED - contains inaccurate placeholder data
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
 
@@ -128,10 +125,11 @@ export default function Work() {
           </section>
         </BlurSection>
 
-        {/* Success Stories Section - Detailed Case Studies */}
+        {/* Success Stories Section - TEMPORARILY DISABLED: Contains inaccurate placeholder data
         <BlurSection blurAmount={3}>
           <CaseStudySection />
         </BlurSection>
+        */}
 
         {/* Footer CTA */}
         <section className="bg-gray-900 text-white relative z-10">
