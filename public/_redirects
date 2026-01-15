@@ -1,1 +1,5 @@
+# Serve static images directly (don't redirect to SPA)
+/images/*   /images/:splat   200
+
+# SPA fallback - redirect everything else to index.html
 /*    /index.html   200

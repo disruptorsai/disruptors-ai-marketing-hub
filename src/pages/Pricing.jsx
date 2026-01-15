@@ -110,8 +110,7 @@ export default function Pricing() {
         'Oversight of In-House/External Teams',
         'Weekly Leadership Sync Meetings'
       ],
-      description: 'For teams ready to connect their marketing systems and grow with intelligent automation.',
-      isPopular: true
+      description: 'For teams ready to connect their marketing systems and grow with intelligent automation.'
     },
     {
       name: 'Executive Plan',
@@ -126,7 +125,8 @@ export default function Pricing() {
         'Strategic Consultations with Disruptors Team',
         'Chief Revenue Officer-Style KPI Tracking & Strategy'
       ],
-      description: 'For companies seeking executive-level leadership that combines marketing strategy with technical precision.'
+      description: 'For companies seeking executive-level leadership that combines marketing strategy with technical precision.',
+      isPopular: true
     },
     {
       name: 'Enterprise Plan',
