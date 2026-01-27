@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TeamMember } from '@/api/entities';
-import { Linkedin, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
-import { Button } from '@/components/ui/button';
+import { Linkedin } from 'lucide-react';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import PageTitle from '../components/shared/PageTitle';
@@ -440,19 +437,6 @@ export default function About() {
 
       {/* Partnership Section */}
       <AlternatingLayout sections={partnershipData} />
-
-      {/* Call to Action */}
-       <section className="bg-gray-900 text-white py-16">
-         <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-4">Work with the Disruptors</h2>
-            <p className="text-lg text-gray-300 mb-8">We help you scale your business without losing its soul. Start with a free strategy session.</p>
-            <Button asChild size="lg" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold text-lg px-8 py-6">
-              <Link to={createPageUrl("book-strategy-session")}>
-                Book a Free Strategy Session
-              </Link>
-            </Button>
-         </div>
-      </section>
     </div>
   );
 }
