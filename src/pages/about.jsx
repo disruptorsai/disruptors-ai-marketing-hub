@@ -1,47 +1,39 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TeamMember } from '@/api/entities';
-import { Linkedin } from 'lucide-react';
-import TwoColumnLayout from '../components/shared/TwoColumnLayout';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import PageTitle from '../components/shared/PageTitle';
 
-const TeamMemberCard = ({ member, delay, isHovered, isOtherHovered, onHover, onLeave }) => (
+const TeamMemberCard = ({ member, delay }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    onMouseEnter={onHover}
-    onMouseLeave={onLeave}
-    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20 cursor-pointer flex flex-col items-center"
+    className="bg-white rounded-lg shadow-lg overflow-hidden"
   >
-    <motion.div
-      animate={{
-        scale: isHovered ? 1.2 : 1,
-        opacity: isOtherHovered ? 0.4 : 1,
-      }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-48 h-48 mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
-      style={{
-        filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
-      }}
-    >
+    {/* Square image container */}
+    <div className="aspect-square w-full overflow-hidden bg-gray-100">
       <img
         src={member.headshot}
         alt={member.name}
         className="w-full h-full object-cover object-center"
       />
-    </motion.div>
-    <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
-    <p className="text-black font-semibold text-lg">{member.title}</p>
+    </div>
+    {/* Content */}
+    <div className="p-6">
+      <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+      <p className="text-purple-600 font-medium mb-4">{member.title}</p>
+      {member.bio && (
+        <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+      )}
+    </div>
   </motion.div>
 );
 
 export default function About() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredMember, setHoveredMember] = useState(null);
 
   const aboutIntroData = [
     {
@@ -341,94 +333,64 @@ export default function About() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
 
-      {/* Section 3: Meet the Team (Unchanged) */}
-      <section className="py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 max-w-2xl mx-auto">
+      {/* Section 3: Meet the Team */}
+      <section className="relative py-16">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png)',
+          }}
+        />
+        <div className="absolute inset-0 bg-white/60" />
+
+        {/* Header with gray background */}
+        <div className="relative bg-gray-100 py-12 mb-12">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Meet the Disruptors</h2>
               <p className="text-lg text-gray-600">The disruptive personalities behind the creative genius of Disruptors Media.</p>
-            </div>
-          </motion.div>
-          
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Team Cards Grid */}
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
-            <>
-              {/* Mobile: Single column carousel-like layout with hierarchy
-                 Tablet/Portrait: 2 columns
-                 Desktop: All 5 in a single row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
-                {/* Sort team by hierarchy: Josh first, then others */}
-                {[...team]
-                  .sort((a, b) => {
-                    // Josh first (CEO/Founder priority)
-                    if (a.name.toLowerCase().includes('josh')) return -1;
-                    if (b.name.toLowerCase().includes('josh')) return 1;
-                    // Then Kyle and Tyler (co-founders/leadership)
-                    if (a.name.toLowerCase().includes('kyle') || a.name.toLowerCase().includes('tyler')) return -1;
-                    if (b.name.toLowerCase().includes('kyle') || b.name.toLowerCase().includes('tyler')) return 1;
-                    return 0;
-                  })
-                  .map((member, index) => (
-                    <TeamMemberCard
-                      key={member.id}
-                      member={member}
-                      delay={index * 0.1}
-                      isHovered={hoveredMember?.id === member.id}
-                      isOtherHovered={hoveredMember !== null && hoveredMember?.id !== member.id}
-                      onHover={() => setHoveredMember(member)}
-                      onLeave={() => setHoveredMember(null)}
-                    />
-                  ))}
-              </div>
-
-              {/* Full-width description box below team grid */}
-              <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-12">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{
-                    opacity: hoveredMember ? 1 : 0,
-                    y: hoveredMember ? 0 : 20,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="px-4 sm:px-6 lg:px-8"
-                  style={{ minHeight: hoveredMember ? 'auto' : '150px' }}
-                >
-                  {hoveredMember && (
-                    <div className="bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-white/30 max-w-7xl mx-auto">
-                      <h3 className="text-3xl font-bold text-black mb-4 text-center">{hoveredMember.name}</h3>
-                      <p className="text-black text-base leading-relaxed text-center">
-                        {hoveredMember.bio}
-                      </p>
-                      {hoveredMember.social_links?.linkedin && (
-                        <div className="mt-6 flex justify-center">
-                          <a
-                            href={hoveredMember.social_links.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
-                          >
-                            <Linkedin className="w-6 h-6" />
-                            <span className="font-semibold">Connect on LinkedIn</span>
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </motion.div>
-              </div>
-            </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...team]
+                .sort((a, b) => {
+                  // Sort by display_order if available, otherwise by name hierarchy
+                  if (a.display_order !== undefined && b.display_order !== undefined) {
+                    return a.display_order - b.display_order;
+                  }
+                  if (a.name.toLowerCase().includes('josh')) return -1;
+                  if (b.name.toLowerCase().includes('josh')) return 1;
+                  if (a.name.toLowerCase().includes('tyler')) return -1;
+                  if (b.name.toLowerCase().includes('tyler')) return 1;
+                  if (a.name.toLowerCase().includes('kyle')) return -1;
+                  if (b.name.toLowerCase().includes('kyle')) return 1;
+                  return 0;
+                })
+                .map((member, index) => (
+                  <TeamMemberCard
+                    key={member.id}
+                    member={member}
+                    delay={index * 0.1}
+                  />
+                ))}
+            </div>
           ) : (
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
               <p className="text-gray-600">No team members available at this time.</p>
             </div>
           )}
