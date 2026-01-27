@@ -25,19 +25,10 @@ const FORBIDDEN_MODELS = ['dall-e-3', 'dall-e-2', 'dall-e', 'DALL-E'];
 
 class AIMediaOrchestrator {
   constructor() {
-    this.replicate = new Replicate({
-      auth: import.meta.env.VITE_REPLICATE_API_TOKEN,
-    });
-
-    this.openai = new OpenAI({
-      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-      dangerouslyAllowBrowser: true
-    });
-
-    // Use new Google Gen AI SDK
-    this.gemini = new GoogleGenAI({
-      apiKey: import.meta.env.VITE_GEMINI_API_KEY
-    });
+    // Lazy-initialized clients - only created when actually used
+    this._replicate = null;
+    this._openai = null;
+    this._gemini = null;
 
     // Default model configurations using APPROVED_IMAGE_MODELS constants
     this.defaultModels = {
@@ -86,6 +77,43 @@ class AIMediaOrchestrator {
         imagery: "High-tech, AI-forward, business-professional with premium feel"
       }
     };
+  }
+
+  // Lazy getters for AI clients - only initialize when first accessed
+  get replicate() {
+    if (!this._replicate) {
+      const token = import.meta.env.VITE_REPLICATE_API_TOKEN;
+      if (!token) {
+        console.warn('Replicate API token not configured');
+        return null;
+      }
+      this._replicate = new Replicate({ auth: token });
+    }
+    return this._replicate;
+  }
+
+  get openai() {
+    if (!this._openai) {
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      if (!apiKey) {
+        console.warn('OpenAI API key not configured');
+        return null;
+      }
+      this._openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+    }
+    return this._openai;
+  }
+
+  get gemini() {
+    if (!this._gemini) {
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      if (!apiKey) {
+        console.warn('Gemini API key not configured');
+        return null;
+      }
+      this._gemini = new GoogleGenAI({ apiKey });
+    }
+    return this._gemini;
   }
 
   /**
@@ -348,6 +376,11 @@ class AIMediaOrchestrator {
    * @param {Object} context - Generation context with quality, size, inputFidelity
    */
   async generateWithOpenAI(prompt, context = {}) {
+    // Check if OpenAI is configured
+    if (!this.openai) {
+      throw new Error('OpenAI API key not configured. Set VITE_OPENAI_API_KEY environment variable.');
+    }
+
     // Double-check model ID
     const model = APPROVED_IMAGE_MODELS.OPENAI;
     this._validateModel(model);
@@ -408,6 +441,11 @@ class AIMediaOrchestrator {
    * Uses new @google/genai SDK
    */
   async generateWithGemini(prompt, options = {}) {
+    // Check if Gemini is configured
+    if (!this.gemini) {
+      throw new Error('Gemini API key not configured. Set VITE_GEMINI_API_KEY environment variable.');
+    }
+
     // Double-check model ID
     const modelId = APPROVED_IMAGE_MODELS.GOOGLE;
     this._validateModel(modelId);
@@ -456,6 +494,11 @@ class AIMediaOrchestrator {
    * Replicate Generation (Images, Videos, Audio)
    */
   async generateWithReplicate(model, prompt, options = {}) {
+    // Check if Replicate is configured
+    if (!this.replicate) {
+      throw new Error('Replicate API token not configured. Set VITE_REPLICATE_API_TOKEN environment variable.');
+    }
+
     try {
       const input = this.buildReplicateInput(model, prompt, options);
 
