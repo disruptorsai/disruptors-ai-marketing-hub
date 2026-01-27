@@ -74,7 +74,7 @@ export default function Home() {
             </h1>
 
             <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
-              We drive growth with expert digital marketing, then multiply results with AI for business
+              We can help you transform your marketing
             </p>
           </motion.div>
         </div>
