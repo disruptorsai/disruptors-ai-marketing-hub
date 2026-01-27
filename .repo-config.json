@@ -1,0 +1,29 @@
+{
+  "name": "disruptors-ai-marketing-hub",
+  "cloned": "2026-01-17",
+  "github": {
+    "url": "https://github.com/disruptorsai/disruptors-ai-marketing-hub",
+    "account": "disruptorsai",
+    "defaultBranch": "updateplus"
+  },
+  "client": "Disruptors Media",
+  "clientType": "partner",
+  "bb1_project": "Disruptors-AI-Marketing-Hub",
+  "supabase": {
+    "enabled": true,
+    "project_id": null,
+    "project_name": null
+  },
+  "tech_stack": [
+    "react",
+    "typescript",
+    "vite",
+    "tailwindcss",
+    "supabase",
+    "netlify"
+  ],
+  "deployment": {
+    "platform": "netlify",
+    "production_url": null
+  }
+}

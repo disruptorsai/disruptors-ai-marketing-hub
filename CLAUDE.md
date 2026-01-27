@@ -2,6 +2,32 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## V6 Branch - Cleanup Release
+
+**Branch:** `v6` (cleanup and organization branch)
+**Date:** 2026-01-26
+
+This branch contains a major codebase cleanup:
+- Removed 6 unused page files
+- Removed 10 unused Netlify functions
+- Organized 200+ scripts into `scripts/archived/`
+- Added comprehensive documentation
+
+See `docs/CODEBASE_AUDIT_2026.md` for full details on what was removed.
+
+**New Developer?** Start with `docs/NEW_DEVELOPER_GUIDE.md` for quick onboarding.
+
+---
+
+## BB1 Project Context
+
+**Linked Project:** `C:\Users\Disruptors\Documents\Tech Integration Labs BB1\Projects\Disruptors-AI-Marketing-Hub\`
+
+When searching for context, requirements, client info, or project documentation that isn't in this repo, check the linked BB1 project folder above. Key files there include:
+- `CLAUDE.md` - Project management context
+- `_context/` - Requirements, decisions, meeting notes
+- `_project-management/` - Status, timeline, budget
+
 ## Development Commands
 
 ### Core Development
@@ -543,5 +569,10 @@ See `docs/TECHNOLOGY_STACK.md` for complete stack details.
 ### Analysis & Planning
 - `docs/BASE44_AI_CONTENT_WRITER_ANALYSIS.md` - Base44 feature analysis
 - `docs/USER_ACCOUNT_ADMIN_INTEGRATION_PLAN.md` - Admin integration roadmap
+
+### Onboarding & Maintenance
+- `docs/NEW_DEVELOPER_GUIDE.md` - Quick start guide for new developers
+- `docs/CODEBASE_AUDIT_2026.md` - V6 cleanup audit and removed code list
+- `scripts/README.md` - Scripts directory organization
 
 For comprehensive documentation, browse the `/docs` directory or see `docs/README.md` for a complete index.
