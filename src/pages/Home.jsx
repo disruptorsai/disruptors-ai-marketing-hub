@@ -74,7 +74,7 @@ export default function Home() {
             </h1>
 
             <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
-              Most businesses suck at marketing because they have outdated tactics and broken systems. We help you fix that by automating and improving your marketing with AI.
+              Most businesses suck at marketing because they're stuck with outdated tactics and broken systems. We fix it by building smarter, AI-driven systems.
             </p>
           </motion.div>
         </div>
