@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
@@ -21,7 +21,19 @@ export default function BookStrategySession() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [bookingUrl, setBookingUrl] = useState("");
+
+  // Load GHL embed script when calendar is shown
+  useEffect(() => {
+    if (bookingUrl) {
+      const script = document.createElement('script');
+      script.src = 'https://link.msgsndr.com/js/form_embed.js';
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+      return () => document.body.removeChild(script);
+    }
+  }, [bookingUrl]);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -30,14 +42,12 @@ export default function BookStrategySession() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
     try {
-      // Submit to GHL Calendar Booking function
       const response = await fetch('/.netlify/functions/ghl-calendar-booking', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
 
@@ -47,17 +57,14 @@ export default function BookStrategySession() {
       }
 
       const data = await response.json();
-      console.log('✅ Booking submitted:', data);
 
-      // Store the booking URL for the iframe/redirect
       if (data.bookingUrl) {
         setBookingUrl(data.bookingUrl);
       }
 
       setIsSubmitted(true);
-    } catch (error) {
-      console.error('Failed to submit form:', error);
-      alert('Sorry, there was an error submitting your request. Please try again or contact us directly.');
+    } catch (err) {
+      setError("Something went wrong. Please try again or contact us directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -97,22 +104,20 @@ export default function BookStrategySession() {
                     <li>• Receive a custom growth roadmap</li>
                   </ul>
                 </div>
-                
+
                 {/* GoHighLevel Calendar Widget */}
                 {bookingUrl && (
                   <div className="mt-8">
                     <h4 className="text-center font-semibold text-gray-900 mb-4">
                       Select Your Preferred Time
                     </h4>
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden" style={{ minHeight: '600px' }}>
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden" style={{ minHeight: '700px' }}>
                       <iframe
                         src={bookingUrl}
-                        width="100%"
-                        height="600"
-                        frameBorder="0"
-                        scrolling="yes"
+                        style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '700px' }}
+                        scrolling="no"
+                        id="ghl-calendar-embed"
                         title="Book Strategy Session Calendar"
-                        className="w-full"
                       />
                     </div>
                     <p className="text-xs text-gray-500 mt-4 text-center">
@@ -232,6 +237,10 @@ export default function BookStrategySession() {
                     placeholder="What's your biggest struggle with lead generation, operations, or growth?"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-red-500 text-sm">{error}</p>
+                )}
 
                 {/* Submit */}
                 <div className="pt-4">

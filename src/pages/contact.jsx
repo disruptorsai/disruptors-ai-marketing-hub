@@ -11,12 +11,41 @@ import PageTitle from '../components/shared/PageTitle';
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Integrate with backend function
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError("");
+
+    const webhookUrl = import.meta.env.VITE_GHL_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.warn("GHL webhook URL not configured");
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          source: "website_contact_form",
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+      setIsSubmitted(true);
+    } catch (err) {
+      setError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactHeroData = [
@@ -67,8 +96,13 @@ export default function Contact() {
                   <Label htmlFor="message" className="font-semibold text-black text-sm sm:text-base">Message</Label>
                   <Textarea id="message" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="mt-2 text-base touch-manipulation min-h-[120px] sm:min-h-[140px]" placeholder="How can we help?" rows={5}/>
                 </div>
+                {error && (
+                  <p className="text-red-500 text-sm">{error}</p>
+                )}
                 <div className="pt-2 sm:pt-4">
-                  <Button type="submit" className="w-full text-base sm:text-lg py-5 sm:py-6 h-auto touch-manipulation">Send Message</Button>
+                  <Button type="submit" disabled={isSubmitting} className="w-full text-base sm:text-lg py-5 sm:py-6 h-auto touch-manipulation">
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
                 </div>
               </form>
             )}
