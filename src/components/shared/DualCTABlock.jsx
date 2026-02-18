@@ -11,7 +11,7 @@ export default function DualCTABlock({
   cta1_link = "book-strategy-session",
   cta2_text = "Get a Free Marketing Assessment",
   cta2_link = "free-business-audit",
-  backgroundImage = "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
+  backgroundImage = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
   className = ""
 }) {
   return (

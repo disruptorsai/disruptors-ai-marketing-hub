@@ -334,7 +334,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                             className="inline-flex items-center justify-center mb-6"
                           >
                             <img
-                              src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
+                              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
                               alt="Disruptors Logo"
                               className="w-20 h-20 object-contain"
                             />
@@ -380,7 +380,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                   >
                                     <div className="w-20 h-20 rounded-full bg-neutral-800 flex items-center justify-center shadow-lg p-3">
                                       <img
-                                        src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
+                                        src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
                                         alt="Disruptors Logo"
                                         className="w-full h-full object-contain"
                                       />
@@ -502,7 +502,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                                         className="w-16 h-16 rounded-full bg-neutral-800 flex items-center justify-center p-3"
                                       >
                                         <img
-                                          src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
+                                          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
                                           alt="Disruptors Logo"
                                           className="w-full h-full object-contain"
                                         />

@@ -15,7 +15,7 @@
  */
 
 // Supabase project configuration
-const SUPABASE_PROJECT_URL = import.meta.env.VITE_SUPABASE_URL || 'https://ubqxflzuvxowigbjmqfb.supabase.co';
+const SUPABASE_PROJECT_URL = import.meta.env.VITE_SUPABASE_URL || 'https://ulfnzcniivkjtfaoxfmi.supabase.co';
 
 /**
  * Extract bucket and path from Supabase Storage URL

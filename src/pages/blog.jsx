@@ -226,7 +226,7 @@ export default function Blog() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
                 <video
-                  src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
+                  src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
                   className="w-full h-full object-cover"
                   autoPlay
                   muted
