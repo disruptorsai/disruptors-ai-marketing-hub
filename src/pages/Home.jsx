@@ -16,7 +16,7 @@ export default function Home() {
       kicker: "",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      video: "https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
+      video: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
@@ -34,16 +34,13 @@ export default function Home() {
       <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E] text-white">
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <FastVideo
-            src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
-            preset="fullscreen"
-            autoplay={true}
-            loop={true}
-            muted={true}
-            playsInline={true}
+          <video
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             preload="auto"
-            fetchpriority="high"
-            lazy={false}
             className="w-full h-full object-cover"
             aria-label="Disruptors AI hero background video"
           />
@@ -59,7 +56,7 @@ export default function Home() {
           >
             {/* Logo */}
             <motion.img
-              src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Disruptors AI"
               className="h-24 sm:h-32 lg:h-40 w-auto mx-auto mb-8 object-contain"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -93,7 +90,7 @@ export default function Home() {
         {/* Background Video */}
         <div className="absolute inset-0">
           <FastVideo
-            src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -311,7 +308,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://ubqxflzuvxowigbjmqfb.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
             autoPlay
             loop
             muted
