@@ -508,9 +508,9 @@ export default function ConnectResults() {
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <AlertTriangle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                <AlertTriangle className="w-5 h-5 text-gold-shine flex-shrink-0" />
                 <div>
-                  <p className="text-yellow-500 font-semibold">
+                  <p className="text-gold-shine font-semibold">
                     {results?.totalResponses > 0 ? 'Connection Issue - Showing Cached Data' : 'Unable to Load Results'}
                   </p>
                   <p className="text-yellow-400/80 text-sm">

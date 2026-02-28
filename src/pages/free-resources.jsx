@@ -306,7 +306,7 @@ function ResourceCard({ resource, index, onClick, getIconComponent }) {
 
         <div className="flex items-center gap-3 text-white/30 text-sm">
           {resource.is_featured && (
-            <div className="flex items-center gap-1 text-yellow-500">
+            <div className="flex items-center gap-1 text-gold-shine">
               <Star size={14} fill="currentColor" />
             </div>
           )}

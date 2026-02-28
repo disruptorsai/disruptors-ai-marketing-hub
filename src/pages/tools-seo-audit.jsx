@@ -146,12 +146,12 @@ export default function ToolsSEOAudit() {
               transition={{ duration: 0.6 }}
             >
               <div className="inline-flex items-center space-x-2 px-4 py-2 bg-[#FFD700]/10 border border-[#FFD700]/20 rounded-full mb-6">
-                <Sparkles className="w-4 h-4 text-[#FFD700]" />
-                <span className="text-sm text-[#FFD700]">AI-Powered SEO Analysis</span>
+                <Sparkles className="w-4 h-4 text-gold-shine" />
+                <span className="text-sm text-gold-shine">AI-Powered SEO Analysis</span>
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                Free <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#FFA500]">Comprehensive</span><br />
+                Free <span className="text-gold-shine">Comprehensive</span><br />
                 SEO Audit
               </h1>
 
@@ -247,7 +247,7 @@ function FeatureBadge({ icon, text }) {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center space-y-2 p-4 bg-[#1a1a1a]/50 border border-gray-800 rounded-lg hover:border-[#FFD700]/30 transition-all"
     >
-      <div className="text-[#FFD700]">{icon}</div>
+      <div className="text-gold-shine">{icon}</div>
       <span className="text-sm text-gray-300">{text}</span>
     </motion.div>
   );
@@ -435,7 +435,7 @@ function AnalyzingStep({ progress, currentMessage, typingMessage, domain }) {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-300">{currentMessage}</span>
-          <span className="text-sm font-semibold text-[#FFD700]">{progress}%</span>
+          <span className="text-sm font-semibold text-gold-shine">{progress}%</span>
         </div>
         <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
           <motion.div
@@ -617,7 +617,7 @@ function ResultsStep({ auditData, domain, email }) {
           Analysis Complete!
         </h2>
         <p className="text-gray-400">
-          Your comprehensive SEO report for <span className="text-[#FFD700]">{domain}</span> is ready
+          Your comprehensive SEO report for <span className="text-gold-shine">{domain}</span> is ready
         </p>
       </motion.div>
 
@@ -793,7 +793,7 @@ function TrustIndicator({ number, label, icon }) {
       viewport={{ once: true }}
       className="flex flex-col items-center"
     >
-      <div className="text-[#FFD700] mb-3">{icon}</div>
+      <div className="text-gold-shine mb-3">{icon}</div>
       <div className="text-4xl font-bold text-white mb-2">{number}</div>
       <div className="text-sm text-gray-400">{label}</div>
     </motion.div>

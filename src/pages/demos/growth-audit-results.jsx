@@ -97,7 +97,7 @@ export default function GrowthAuditResults() {
         <Card className="max-w-md w-full bg-slate-800/50 backdrop-blur-xl border-[#FFD700]/30">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <Loader2 className="w-6 h-6 animate-spin text-[#FFD700]" />
+              <Loader2 className="w-6 h-6 animate-spin text-gold-shine" />
               <CardTitle className="text-white">Analyzing Your Business...</CardTitle>
             </div>
           </CardHeader>

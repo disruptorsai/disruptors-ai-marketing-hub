@@ -137,7 +137,7 @@ export default function HomeDev() {
             <h1 className="font-sans text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
               Digital Marketing
               <br />
-              <span className="text-[#FFD700]">× AI Solutions</span>
+              <span className="text-gold-shine">× AI Solutions</span>
             </h1>
 
             <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
@@ -186,7 +186,7 @@ export default function HomeDev() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
@@ -225,7 +225,7 @@ export default function HomeDev() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <svg className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <circle cx="12" cy="12" r="3" />
                           <circle cx="12" cy="12" r="9" />
                         </svg>
@@ -237,7 +237,7 @@ export default function HomeDev() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
                     </div>
 
                     <div className="space-y-3">
@@ -282,7 +282,7 @@ export default function HomeDev() {
                     </div>
 
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">10x faster</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">10x faster</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         AI Automation
                       </h3>
@@ -307,7 +307,7 @@ export default function HomeDev() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <svg className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
                       </div>
@@ -316,7 +316,7 @@ export default function HomeDev() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">300% ROI</p>
@@ -356,7 +356,7 @@ export default function HomeDev() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Smart insights</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Smart insights</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Predictive Analytics
                       </h3>
@@ -381,7 +381,7 @@ export default function HomeDev() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <svg className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                       </div>
@@ -390,7 +390,7 @@ export default function HomeDev() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Live data</p>
@@ -430,7 +430,7 @@ export default function HomeDev() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Content at Scale
                       </h3>
@@ -455,7 +455,7 @@ export default function HomeDev() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <svg className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
@@ -464,7 +464,7 @@ export default function HomeDev() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Marketing</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Qualified leads</p>
@@ -504,7 +504,7 @@ export default function HomeDev() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">AI Powered</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">20+ hrs saved</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">20+ hrs saved</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Marketing Automation
                       </h3>
@@ -540,7 +540,7 @@ export default function HomeDev() {
             </p>
             <Link
               to={createPageUrl('book-strategy-session')}
-              className="font-sans group relative inline-flex items-center justify-center h-16 px-10 xl:px-12 text-lg font-bold text-[#FFD700] uppercase bg-black hover:bg-gray-900 border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
+              className="font-sans group relative inline-flex items-center justify-center h-16 px-10 xl:px-12 text-lg font-bold text-gold-shine uppercase bg-black hover:bg-gray-900 border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300"
               style={{
                 clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                 animation: 'goldPulse 3s ease-in-out infinite',

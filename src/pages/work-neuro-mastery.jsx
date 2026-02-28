@@ -52,7 +52,7 @@ export default function WorkNeuroMastery() {
             {caseData.results.map((item, i) => (
               <motion.div key={item.label} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.5, delay: i * 0.1}} viewport={{once: true}}>
                 <div className="w-16 h-16 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-[#FFD700]" />
+                  <item.icon className="w-8 h-8 text-gold-shine" />
                 </div>
                 <p className="text-3xl md:text-4xl font-bold text-black">{item.value}</p>
                 <p className="text-sm text-black mt-1">{item.label}</p>
@@ -72,7 +72,7 @@ export default function WorkNeuroMastery() {
               {caseData.services.map(service => (
                 <div key={service.name} className="flex flex-col items-center text-center p-6 bg-white/50 border border-gray-300 rounded-xl hover:border-[#FFD700]/30 transition-colors">
                   <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="w-6 h-6 text-[#FFD700]" />
+                    <service.icon className="w-6 h-6 text-gold-shine" />
                   </div>
                   <p className="font-semibold text-black">{service.name}</p>
                 </div>

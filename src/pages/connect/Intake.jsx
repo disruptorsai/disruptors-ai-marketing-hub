@@ -135,7 +135,7 @@ export default function ConnectIntake() {
             <span className="sm:hidden">Back</span>
           </Button>
 
-          <span className="text-[#FFD700] text-lg md:text-xl font-semibold">Check-In</span>
+          <span className="text-gold-shine text-lg md:text-xl font-semibold">Check-In</span>
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export default function ConnectIntake() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] mb-3 md:mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gold-shine mb-3 md:mb-4"
             >
               Welcome to Disruptors Connect
             </motion.h1>
@@ -314,7 +314,7 @@ export default function ConnectIntake() {
                   className="mt-1 md:mt-2 w-7 h-7 md:w-8 md:h-8 border-2 border-[#FFD700]/50 data-[state=checked]:bg-[#FFD700] data-[state=checked]:text-black flex-shrink-0"
                 />
                 <Label htmlFor="consent" className="text-white text-base md:text-lg leading-relaxed cursor-pointer flex-1">
-                  <span className="font-semibold text-[#FFD700]">Would you be open to giving us your honest feedback after the event?</span>
+                  <span className="font-semibold text-gold-shine">Would you be open to giving us your honest feedback after the event?</span>
                   <span className="block text-gray-400 text-sm md:text-base mt-2 md:mt-3">
                     By checking Yes, you agree to receive event reminders and a short feedback survey.
                     Msg & data rates may apply. Reply STOP to opt out.

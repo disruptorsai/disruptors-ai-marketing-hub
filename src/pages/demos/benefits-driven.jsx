@@ -94,13 +94,13 @@ export default function BenefitsDrivenDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
+            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-gold-shine text-sm font-semibold mb-6">
               DIGITAL MARKETING × AI SOLUTIONS
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Marketing Strategies That Work.
               <br />
-              <span className="text-[#FFD700]">AI That Scales Them.</span>
+              <span className="text-gold-shine">AI That Scales Them.</span>
             </h1>
             <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-8">
               We combine expert digital marketing with intelligent automation to deliver measurable, scalable results
@@ -221,13 +221,13 @@ export default function BenefitsDrivenDemo() {
                   >
                     <td className="px-6 py-4 font-medium text-gray-900">{row.feature}</td>
                     <td className="px-6 py-4 text-center bg-yellow-50">
-                      {row.us ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
+                      {row.us ? <Check className="w-6 h-6 text-gold-shine mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                     <td className="px-6 py-4 text-center">
-                      {row.agency ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
+                      {row.agency ? <Check className="w-6 h-6 text-gold-shine mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                     <td className="px-6 py-4 text-center">
-                      {row.inhouse ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
+                      {row.inhouse ? <Check className="w-6 h-6 text-gold-shine mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                   </motion.tr>
                 ))}
@@ -362,15 +362,15 @@ export default function BenefitsDrivenDemo() {
 
           <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">90 sec</div>
+              <div className="text-4xl font-bold text-gold-shine mb-2">90 sec</div>
               <div className="text-[#C7C7C7]">Quick overview</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">Real</div>
+              <div className="text-4xl font-bold text-gold-shine mb-2">Real</div>
               <div className="text-[#C7C7C7]">Actual client results</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">Live</div>
+              <div className="text-4xl font-bold text-gold-shine mb-2">Live</div>
               <div className="text-[#C7C7C7]">Platform walkthrough</div>
             </div>
           </div>
@@ -548,7 +548,7 @@ export default function BenefitsDrivenDemo() {
               <ul className="space-y-4">
                 {beforeAfter.before.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-[#FFD700] text-xl mt-1">✗</span>
+                    <span className="text-gold-shine text-xl mt-1">✗</span>
                     <span className="text-[#EAEAEA]">{item}</span>
                   </li>
                 ))}
@@ -566,7 +566,7 @@ export default function BenefitsDrivenDemo() {
               <ul className="space-y-4">
                 {beforeAfter.after.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-[#FFD700] text-xl mt-1">✓</span>
+                    <span className="text-gold-shine text-xl mt-1">✓</span>
                     <span className="text-[#EAEAEA]">{item}</span>
                   </li>
                 ))}

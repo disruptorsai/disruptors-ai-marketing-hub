@@ -459,7 +459,7 @@ const SplineScrollAnimationEnhanced = ({
         </div>
 
         {shouldReduceQuality && (
-          <div className="mt-4 text-xs text-yellow-400">
+          <div className="mt-4 text-xs text-gold-shine">
             Performance mode: Optimizing for your device
           </div>
         )}

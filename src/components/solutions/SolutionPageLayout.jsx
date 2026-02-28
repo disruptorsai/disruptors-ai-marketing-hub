@@ -120,7 +120,7 @@ export default function SolutionPageLayout({ service }) {
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    <CheckCircle className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
+                                    <CheckCircle className="w-8 h-8 text-gold-shine mx-auto mb-4" />
                                     <h3 className="font-bold text-lg mb-2 text-white">{outcome.title}</h3>
                                     <p className="text-gray-100 text-sm">{outcome.description}</p>
                                 </motion.div>
@@ -166,7 +166,7 @@ export default function SolutionPageLayout({ service }) {
                                     </div>
                                     {index < process.length - 1 && (
                                         <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                                            <ArrowRight className="w-8 h-8 text-yellow-400" />
+                                            <ArrowRight className="w-8 h-8 text-gold-shine" />
                                         </div>
                                     )}
                                 </motion.div>
@@ -254,11 +254,11 @@ export default function SolutionPageLayout({ service }) {
                                             className="w-full p-6 flex items-center justify-between gap-4 text-left hover:bg-white/5 transition-colors"
                                         >
                                             <div className="flex items-start gap-4 flex-1">
-                                                <HelpCircle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+                                                <HelpCircle className="w-6 h-6 text-gold-shine flex-shrink-0 mt-1" />
                                                 <h3 className="font-bold text-lg text-white">{faq.question}</h3>
                                             </div>
                                             <ChevronDown
-                                                className={`w-6 h-6 text-yellow-400 flex-shrink-0 transition-transform duration-300 ${
+                                                className={`w-6 h-6 text-gold-shine flex-shrink-0 transition-transform duration-300 ${
                                                     isOpen ? 'rotate-180' : ''
                                                 }`}
                                             />

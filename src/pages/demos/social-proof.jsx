@@ -97,13 +97,13 @@ export default function SocialProofDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
+            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-gold-shine text-sm font-semibold mb-6">
               DIGITAL MARKETING × AI SOLUTIONS
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Proven Results from
               <br />
-              <span className="text-[#FFD700]">Marketing + AI</span>
+              <span className="text-gold-shine">Marketing + AI</span>
             </h1>
             <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-12">
               See how we combine digital marketing expertise with AI automation to transform businesses like yours
@@ -129,7 +129,7 @@ export default function SocialProofDemo() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What Our Clients Say
             </h2>
-            <div className="flex items-center justify-center gap-2 text-[#FFD700] mb-2">
+            <div className="flex items-center justify-center gap-2 text-gold-shine mb-2">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} className="w-6 h-6 fill-current" />
               ))}
@@ -164,13 +164,13 @@ export default function SocialProofDemo() {
               >
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="p-12">
-                    <div className="text-[#FFD700] text-sm font-bold mb-2">
+                    <div className="text-gold-shine text-sm font-bold mb-2">
                       {study.industry.toUpperCase()}
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-4">
                       {study.company}
                     </h3>
-                    <div className="text-2xl font-bold text-[#FFD700] mb-6">
+                    <div className="text-2xl font-bold text-gold-shine mb-6">
                       {study.result}
                     </div>
 
@@ -248,7 +248,7 @@ export default function SocialProofDemo() {
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-[#FFD700] fill-current" />
+                    <Star key={i} className="w-5 h-5 text-gold-shine fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4">

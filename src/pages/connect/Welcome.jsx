@@ -58,7 +58,7 @@ export default function ConnectWelcome() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="relative inline-block"
               >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gold-shine leading-tight">
                   Disruptors<br/>Connect
                 </h1>
               </motion.div>
@@ -81,11 +81,11 @@ export default function ConnectWelcome() {
               transition={{ delay: 1 }}
               className="inline-flex items-center gap-4 md:gap-6 bg-black/40 border-2 border-[#FFD700]/30 rounded-2xl px-6 sm:px-8 py-5 md:py-7 backdrop-blur-sm"
             >
-              <Wifi className="w-10 h-10 md:w-12 md:h-12 text-[#FFD700] flex-shrink-0" />
+              <Wifi className="w-10 h-10 md:w-12 md:h-12 text-gold-shine flex-shrink-0" />
               <div className="text-left">
                 <div className="text-sm md:text-base text-gray-400 uppercase tracking-wider font-semibold">Wi-Fi Network</div>
                 <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">DisruptorsEventHall</div>
-                <div className="text-lg md:text-xl text-gray-300 mt-1">Password: <span className="text-[#FFD700] font-semibold">Disrupt2025</span></div>
+                <div className="text-lg md:text-xl text-gray-300 mt-1">Password: <span className="text-gold-shine font-semibold">Disrupt2025</span></div>
               </div>
             </motion.div>
           </motion.div>
@@ -104,7 +104,7 @@ export default function ConnectWelcome() {
               className="bg-black/60 border-2 border-[#FFD700]/30 rounded-3xl p-8 sm:p-10 md:p-12 backdrop-blur-sm hover:border-[#FFD700]/60 transition-all duration-300 w-full max-w-2xl"
             >
               <div className="flex flex-col items-center justify-center gap-6 md:gap-8">
-                <Smartphone className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-[#FFD700]" />
+                <Smartphone className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-gold-shine" />
                 <p className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center">
                   Scan to Check In
                 </p>

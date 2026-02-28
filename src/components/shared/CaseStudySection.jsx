@@ -43,7 +43,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
           {/* Header with Industry Badge */}
           <div>
             {caseStudy.industry && (
-              <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-yellow-400/30">
+              <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm text-gold-shine px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-yellow-400/30">
                 <Award className="w-4 h-4" />
                 {caseStudy.industry}
               </div>
@@ -58,7 +58,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
           {caseStudy.challenge && (
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Target className="w-6 h-6 text-yellow-400" />
+                <Target className="w-6 h-6 text-gold-shine" />
                 The Challenge
               </h3>
               <p className="text-gray-300 text-lg leading-relaxed">{caseStudy.challenge}</p>
@@ -69,14 +69,14 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-yellow-400" />
+                <Zap className="w-5 h-5 text-gold-shine" />
                 Our Approach
               </h3>
               <p className="text-gray-300 leading-relaxed">{caseStudy.approach}</p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <Globe className="w-5 h-5 text-yellow-400" />
+                <Globe className="w-5 h-5 text-gold-shine" />
                 Execution
               </h3>
               <p className="text-gray-300 leading-relaxed">{caseStudy.execution}</p>
@@ -86,7 +86,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
           {/* Results - Large Metrics */}
           <div className="bg-gradient-to-br from-yellow-400/10 to-yellow-600/10 backdrop-blur-md rounded-2xl p-8 border border-yellow-400/30">
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <BarChart3 className="w-6 h-6 text-yellow-400" />
+              <BarChart3 className="w-6 h-6 text-gold-shine" />
               Results That Speak Volumes
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -98,7 +98,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="text-center p-6 bg-white/10 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300"
                 >
-                  <result.icon className="w-10 h-10 text-yellow-400 mx-auto mb-3" />
+                  <result.icon className="w-10 h-10 text-gold-shine mx-auto mb-3" />
                   <p className="text-4xl font-bold text-white mb-2">{result.value}</p>
                   <p className="text-sm text-gray-300">{result.label}</p>
                 </motion.div>
@@ -117,7 +117,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
           {caseStudy.timeline && (
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-yellow-400" />
+                <Calendar className="w-5 h-5 text-gold-shine" />
                 Campaign Timeline
               </h3>
               <p className="text-gray-300">{caseStudy.timeline}</p>
@@ -180,7 +180,7 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
 
     {/* Badge & Industry Tag */}
     <div className="flex flex-wrap items-center gap-3 mb-6">
-      <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold border border-yellow-400/30">
+      <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm text-gold-shine px-4 py-2 rounded-full text-sm font-semibold border border-yellow-400/30">
         <Target className="w-4 h-4" />
         Flagship Case Study
       </div>
@@ -206,14 +206,14 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
       {/* Approach & Execution */}
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-          <h4 className="text-yellow-400 font-semibold mb-3 flex items-center gap-2">
+          <h4 className="text-gold-shine font-semibold mb-3 flex items-center gap-2">
             <Zap className="w-4 h-4" />
             Approach
           </h4>
           <p className="text-gray-300 leading-relaxed">{caseStudy.approach}</p>
         </div>
         <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-          <h4 className="text-yellow-400 font-semibold mb-3 flex items-center gap-2">
+          <h4 className="text-gold-shine font-semibold mb-3 flex items-center gap-2">
             <Globe className="w-4 h-4" />
             Execution
           </h4>
@@ -224,7 +224,7 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
       {/* Results - Large featured metrics */}
       <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-yellow-400/20">
         <h4 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-yellow-400" />
+          <BarChart3 className="w-5 h-5 text-gold-shine" />
           Results That Speak Volumes
         </h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -237,7 +237,7 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
               viewport={{ once: true }}
               className="text-center p-4 bg-white/5 rounded-xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300"
             >
-              <result.icon className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
+              <result.icon className="w-8 h-8 text-gold-shine mx-auto mb-2" />
               <p className="text-3xl font-bold text-white mb-1">{result.value}</p>
               <p className="text-xs text-gray-400">{result.label}</p>
             </motion.div>
@@ -274,13 +274,13 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
     {/* Header with Industry Badge */}
     <div className="mb-4">
       {caseStudy.industry && (
-        <div className="inline-flex items-center gap-1 bg-yellow-400/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-yellow-400/30">
+        <div className="inline-flex items-center gap-1 bg-yellow-400/20 text-gold-shine px-3 py-1 rounded-full text-xs font-semibold mb-3 border border-yellow-400/30">
           <Award className="w-3 h-3" />
           {caseStudy.industry}
         </div>
       )}
       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300 flex items-start gap-2">
-        <ArrowUpRight className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+        <ArrowUpRight className="w-5 h-5 text-gold-shine flex-shrink-0 mt-1" />
         <span>{caseStudy.title}</span>
       </h3>
       {/* Expand hint */}
@@ -292,7 +292,7 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
 
     {/* Approach */}
     <div className="mb-4">
-      <h4 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-1">
+      <h4 className="text-sm font-semibold text-gold-shine mb-2 flex items-center gap-1">
         <Zap className="w-3 h-3" />
         Approach
       </h4>
@@ -301,7 +301,7 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
 
     {/* Execution */}
     <div className="mb-4">
-      <h4 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-1">
+      <h4 className="text-sm font-semibold text-gold-shine mb-2 flex items-center gap-1">
         <Target className="w-3 h-3" />
         Execution
       </h4>
@@ -311,7 +311,7 @@ const CaseStudyCard = ({ caseStudy, index, onClick }) => (
     {/* Results */}
     <div className="mt-auto pt-4 border-t border-gray-700">
       <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-1">
-        <CheckCircle className="w-3 h-3 text-yellow-400" />
+        <CheckCircle className="w-3 h-3 text-gold-shine" />
         Key Results
       </h4>
       <div className="grid grid-cols-2 gap-2">

@@ -126,14 +126,14 @@ export default function Podcast() {
               <div className="inline-block mb-4">
                 <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20 backdrop-blur-sm">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                  <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Broadcast Quality</span>
+                  <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Broadcast Quality</span>
                 </div>
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight text-white">
                 Build Authority
                 <br />
-                <span className="text-[#FFD700]">With Audio.</span>
+                <span className="text-gold-shine">With Audio.</span>
               </h1>
 
               <p className="text-xl sm:text-2xl text-gray-200 mb-8 leading-relaxed">
@@ -191,7 +191,7 @@ export default function Podcast() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Full Production Service</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Full Production Service</span>
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
@@ -229,14 +229,14 @@ export default function Podcast() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Video className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
+                        <Video className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Production</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Production</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Professional</p>
@@ -274,7 +274,7 @@ export default function Podcast() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Audio</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Broadcast Quality</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Broadcast Quality</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Crystal Clear Audio
                       </h3>
@@ -299,14 +299,14 @@ export default function Podcast() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Sparkles className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
+                        <Sparkles className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Editing</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Editing</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Fast Turnaround</p>
@@ -344,7 +344,7 @@ export default function Podcast() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Distribution</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">All Platforms</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">All Platforms</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Multi-Platform Publishing
                       </h3>
@@ -369,14 +369,14 @@ export default function Podcast() {
                     <div className="w-20 h-20 relative">
                       <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                       <div className="relative w-20 h-20 flex items-center justify-center">
-                        <Users className="w-12 h-12 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
+                        <Users className="w-12 h-12 text-gold-shine group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-                      <span className="text-yellow-500 text-xs font-bold tracking-[0.2em] uppercase">Guests</span>
+                      <span className="text-gold-shine text-xs font-bold tracking-[0.2em] uppercase">Guests</span>
                     </div>
                     <div className="space-y-3">
                       <p className="text-yellow-500/70 text-sm font-semibold tracking-wide uppercase">Done for you</p>
@@ -414,7 +414,7 @@ export default function Podcast() {
                       <span className="text-white/70 text-xs font-bold tracking-[0.2em] uppercase">Content</span>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Maximum ROI</p>
+                      <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Maximum ROI</p>
                       <h3 className="text-white text-3xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                         Content Repurposing
                       </h3>
@@ -449,7 +449,7 @@ export default function Podcast() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Studio</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Our Studio</span>
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
@@ -506,7 +506,7 @@ export default function Podcast() {
               >
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
-                    <Video className="w-8 h-8 text-yellow-500" />
+                    <Video className="w-8 h-8 text-gold-shine" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Professional Video Production</h3>
@@ -524,7 +524,7 @@ export default function Podcast() {
               >
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
-                    <Headphones className="w-8 h-8 text-yellow-500" />
+                    <Headphones className="w-8 h-8 text-gold-shine" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Broadcast-Quality Audio</h3>
@@ -542,7 +542,7 @@ export default function Podcast() {
               >
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
-                    <Sparkles className="w-8 h-8 text-yellow-500" />
+                    <Sparkles className="w-8 h-8 text-gold-shine" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-500 transition-colors">Complete Post-Production</h3>
@@ -580,7 +580,7 @@ export default function Podcast() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Testimonials</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Testimonials</span>
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">What Our Guests Say</h2>
@@ -660,7 +660,7 @@ export default function Podcast() {
             <div className="inline-block mb-6">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Get Started</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Get Started</span>
               </div>
             </div>
 

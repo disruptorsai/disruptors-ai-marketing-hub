@@ -46,7 +46,7 @@ export default function WorkGranitePaving() {
           <motion.div initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{ duration: 0.8 }} className="text-center">
             {/* Industry Tags */}
             <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="px-4 py-1.5 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-yellow-400 text-sm font-semibold">
+              <span className="px-4 py-1.5 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-gold-shine text-sm font-semibold">
                 {caseData.meta.industry}
               </span>
               <span className="px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-gray-300 text-sm">
@@ -94,7 +94,7 @@ export default function WorkGranitePaving() {
             {caseData.results.map((item, i) => (
               <motion.div key={item.label} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.5, delay: i * 0.1}} viewport={{once: true}}>
                 <div className="w-16 h-16 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-[#FFD700]" />
+                  <item.icon className="w-8 h-8 text-gold-shine" />
                 </div>
                 <p className="text-3xl md:text-4xl font-bold text-black">{item.value}</p>
                 <p className="text-sm text-black mt-1">{item.label}</p>
@@ -114,7 +114,7 @@ export default function WorkGranitePaving() {
               {caseData.services.map(service => (
                 <div key={service.name} className="flex flex-col items-center text-center p-6 bg-white/50 border border-gray-300 rounded-xl hover:border-[#FFD700]/30 transition-colors">
                   <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="w-6 h-6 text-[#FFD700]" />
+                    <service.icon className="w-6 h-6 text-gold-shine" />
                   </div>
                   <p className="font-semibold text-black">{service.name}</p>
                 </div>

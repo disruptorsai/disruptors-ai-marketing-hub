@@ -61,7 +61,7 @@ export default function Assessment() {
     return (
       <div className="bg-transparent text-white min-h-screen flex items-center justify-center">
         <motion.div initial={{opacity:0, scale:0.9}} animate={{opacity:1, scale:1}} className="text-center p-8 max-w-2xl">
-          <CheckCircle className="w-16 h-16 text-[#FFD700] mx-auto mb-6" />
+          <CheckCircle className="w-16 h-16 text-gold-shine mx-auto mb-6" />
           <h1 className="text-3xl font-bold mb-4">Here’s your 90-day pilot plan.</h1>
           <p className="text-[#C7C7C7] text-lg mb-8">We’ve emailed a PDF to <span className="text-white font-semibold">{answers.contact}</span> with details, including your KPI tree, review gates, and recommended prompts.</p>
           <Button size="lg" className="bg-yellow-500 text-black font-semibold hover:bg-yellow-400 rounded-xl">Book a 30-minute review</Button>
@@ -85,7 +85,7 @@ export default function Assessment() {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
             >
-              <p className="font-accent text-sm text-[#FFD700] mb-2">Step {currentStep + 1} of {steps.length}</p>
+              <p className="font-accent text-sm text-gold-shine mb-2">Step {currentStep + 1} of {steps.length}</p>
               <h1 className="text-3xl font-bold mb-6">{currentQ.question}</h1>
               
               <form onSubmit={handleSubmit}>
@@ -94,7 +94,7 @@ export default function Assessment() {
                     <div className="space-y-3">
                       {currentQ.options.map(opt => (
                         <Label key={opt} className="flex items-center p-4 bg-[#0E0E0E] border border-[#2A2A2A] rounded-xl cursor-pointer hover:border-[#FFD700]/50 has-[:checked]:border-[#FFD700]">
-                          <RadioGroupItem value={opt} id={opt} className="text-[#FFD700] border-[#9CA3AF]" />
+                          <RadioGroupItem value={opt} id={opt} className="text-gold-shine border-[#9CA3AF]" />
                           <span className="ml-4 text-lg">{opt}</span>
                         </Label>
                       ))}

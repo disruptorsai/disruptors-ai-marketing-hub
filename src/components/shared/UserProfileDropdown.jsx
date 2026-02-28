@@ -188,7 +188,7 @@ export default function UserProfileDropdown() {
                   <p className="font-semibold text-white truncate">{displayName}</p>
                   <p className="text-sm text-gray-400 truncate">{user.email}</p>
                   {userBrain && (
-                    <p className="text-xs text-yellow-400 mt-0.5 truncate">
+                    <p className="text-xs text-gold-shine mt-0.5 truncate">
                       {userBrain.business_name}
                     </p>
                   )}

@@ -8,7 +8,7 @@ export default function ResourcesAiSuitcaseTermsDecoded() {
     <div className="bg-[#1A1A1A] text-[#EAEAEA]">
       <div className="bg-[#0E0E0E] border-b border-[#2A2A2A] pt-20 pb-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold text-[#FFD700] mb-2">AI Guides • 5 min read</p>
+          <p className="text-sm font-semibold text-gold-shine mb-2">AI Guides • 5 min read</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">AI suitcase terms, decoded</h1>
           <p className="mt-6 text-lg sm:text-xl text-[#C7C7C7]">Agent, RAG, autonomy—terms that carry too many meanings. Here’s what leaders actually need to know to make decisions.</p>
         </div>

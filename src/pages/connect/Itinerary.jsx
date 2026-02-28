@@ -84,7 +84,7 @@ export default function ConnectItinerary() {
             <span className="sm:hidden">Back</span>
           </Button>
 
-          <span className="text-[#FFD700] text-lg md:text-xl font-semibold">Event Schedule</span>
+          <span className="text-gold-shine text-lg md:text-xl font-semibold">Event Schedule</span>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ export default function ConnectItinerary() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8 md:mb-12"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700] mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-shine mb-4">
               Disruptors Connect
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl text-white font-semibold mb-4">
@@ -106,11 +106,11 @@ export default function ConnectItinerary() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-gray-400">
               <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-[#FFD700]" />
+                <Clock className="w-5 h-5 text-gold-shine" />
                 <span className="text-base md:text-lg">6:00–7:30 PM</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-[#FFD700]" />
+                <MapPin className="w-5 h-5 text-gold-shine" />
                 <span className="text-base md:text-lg">650 N Main St, North Salt Lake, UT 84054</span>
               </div>
             </div>
@@ -129,8 +129,8 @@ export default function ConnectItinerary() {
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   <div className="sm:min-w-[140px]">
                     <div className="inline-flex items-center gap-2 bg-[#FFD700]/20 border border-[#FFD700]/40 rounded-lg px-3 py-2">
-                      <Clock className="w-4 h-4 text-[#FFD700]" />
-                      <span className="text-[#FFD700] font-semibold text-sm">{item.time}</span>
+                      <Clock className="w-4 h-4 text-gold-shine" />
+                      <span className="text-gold-shine font-semibold text-sm">{item.time}</span>
                     </div>
                   </div>
 
@@ -140,7 +140,7 @@ export default function ConnectItinerary() {
                     </h3>
 
                     {item.subtitle && (
-                      <p className="text-[#FFD700] text-base md:text-lg font-semibold mb-2">
+                      <p className="text-gold-shine text-base md:text-lg font-semibold mb-2">
                         {item.subtitle}
                       </p>
                     )}
@@ -175,7 +175,7 @@ export default function ConnectItinerary() {
             <div className="grid sm:grid-cols-2 gap-6">
               {SPEAKERS.map((speaker, index) => (
                 <div key={index} className="text-center">
-                  <h3 className="text-[#FFD700] text-xl font-bold mb-2">
+                  <h3 className="text-gold-shine text-xl font-bold mb-2">
                     {speaker.name}
                   </h3>
                   <p className="text-white text-base font-semibold mb-2">

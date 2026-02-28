@@ -112,6 +112,6 @@ const SliderGroup = ({ label, value, setValue }) => (
 const OutputCard = ({ label, value, isPrimary = false, isGold = false }) => (
   <div className={`p-6 rounded-xl ${isPrimary ? 'bg-white text-[#0E0E0E]' : 'bg-[#0E0E0E] text-white'} border ${isPrimary ? 'border-transparent' : 'border-[#2A2A2A]'}`}>
     <p className={`text-sm font-medium ${isPrimary ? 'text-[#0E0E0E]/70' : 'text-[#9CA3AF]'}`}>{label}</p>
-    <p className={`text-4xl font-bold ${isGold ? 'text-[#FFD700]' : ''}`}>{value}</p>
+    <p className={`text-4xl font-bold ${isGold ? 'text-gold-shine' : ''}`}>{value}</p>
   </div>
 );

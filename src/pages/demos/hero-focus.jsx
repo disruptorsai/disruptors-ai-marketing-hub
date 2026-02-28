@@ -40,7 +40,7 @@ export default function HeroFocusDemo() {
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
               Digital Marketing
               <br />
-              <span className="text-[#FFD700]">× AI Solutions</span>
+              <span className="text-gold-shine">× AI Solutions</span>
             </h1>
 
             <p className="text-xl sm:text-2xl lg:text-3xl text-[#EAEAEA] mb-4 max-w-3xl mx-auto font-light">
@@ -93,7 +93,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">500+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-gold-shine mb-2">500+</div>
               <div className="text-xs sm:text-sm">Clients Transformed</div>
             </motion.div>
             <motion.div
@@ -103,7 +103,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">300%</div>
+              <div className="text-3xl sm:text-4xl font-bold text-gold-shine mb-2">300%</div>
               <div className="text-xs sm:text-sm">Average Growth</div>
             </motion.div>
             <motion.div
@@ -113,7 +113,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">24/7</div>
+              <div className="text-3xl sm:text-4xl font-bold text-gold-shine mb-2">24/7</div>
               <div className="text-xs sm:text-sm">AI-Powered Support</div>
             </motion.div>
             <motion.div
@@ -123,7 +123,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">$50M+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-gold-shine mb-2">$50M+</div>
               <div className="text-xs sm:text-sm">Revenue Generated</div>
             </motion.div>
           </div>
@@ -145,26 +145,26 @@ export default function HeroFocusDemo() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Digital Marketing */}
             <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-[#2A2A2A]">
-              <div className="text-[#FFD700] text-sm font-bold mb-3">SERVICE 1</div>
+              <div className="text-gold-shine text-sm font-bold mb-3">SERVICE 1</div>
               <h3 className="text-3xl font-bold mb-4">Digital Marketing</h3>
               <p className="text-[#EAEAEA] text-lg mb-6">
                 Expert strategies that drive traffic, generate leads, and convert customers through proven channels
               </p>
               <ul className="space-y-3 text-[#C7C7C7]">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>SEO & Content Marketing</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Social Media Management</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Paid Advertising (Google, Meta, LinkedIn)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Email & SMS Campaigns</span>
                 </li>
               </ul>
@@ -172,26 +172,26 @@ export default function HeroFocusDemo() {
 
             {/* AI Solutions */}
             <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-[#2A2A2A]">
-              <div className="text-[#FFD700] text-sm font-bold mb-3">SERVICE 2</div>
+              <div className="text-gold-shine text-sm font-bold mb-3">SERVICE 2</div>
               <h3 className="text-3xl font-bold mb-4">AI for Business</h3>
               <p className="text-[#EAEAEA] text-lg mb-6">
                 Intelligent automation that scales your operations, personalizes experiences, and multiplies your results
               </p>
               <ul className="space-y-3 text-[#C7C7C7]">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>AI-Powered Lead Generation</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Marketing Automation Systems</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Predictive Analytics & Insights</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-gold-shine mt-1">✓</span>
                   <span>Custom AI Solutions</span>
                 </li>
               </ul>
@@ -199,7 +199,7 @@ export default function HeroFocusDemo() {
           </div>
 
           <div className="text-center">
-            <button className="inline-flex items-center gap-2 border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
+            <button className="inline-flex items-center gap-2 border-2 border-[#FFD700] text-gold-shine hover:bg-[#FFD700] hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
               See How They Work Together
               <ArrowRight className="w-5 h-5" />
             </button>

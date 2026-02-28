@@ -150,13 +150,13 @@ export default function About() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Our Capabilities</span>
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
               What We Bring to the Table
             </h2>
-            <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 max-w-3xl mx-auto">
+            <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gold-shine max-w-3xl mx-auto">
               AI Powered Marketing
             </p>
           </motion.div>
@@ -189,7 +189,7 @@ export default function About() {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Multi-channel</p>
+                  <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Multi-channel</p>
                   <h3 className="text-white text-2xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                     Expert Marketing Services
                   </h3>
@@ -223,7 +223,7 @@ export default function About() {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">10x faster</p>
+                  <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">10x faster</p>
                   <h3 className="text-white text-2xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                     AI Automation Expertise
                   </h3>
@@ -254,7 +254,7 @@ export default function About() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
+                  <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">100+ pieces/day</p>
                   <h3 className="text-white text-2xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                     Content at Scale
                   </h3>
@@ -278,14 +278,14 @@ export default function About() {
                   <div className="w-16 h-16 relative">
                     <div className="absolute inset-0 bg-yellow-500/20 rounded-2xl blur-xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                     <div className="relative w-16 h-16 flex items-center justify-center">
-                      <svg className="w-10 h-10 text-yellow-500 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <svg className="w-10 h-10 text-gold-shine group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Qualified leads</p>
+                  <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Qualified leads</p>
                   <h3 className="text-white text-2xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                     Lead Generation
                   </h3>
@@ -316,7 +316,7 @@ export default function About() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-yellow-500 text-sm font-semibold tracking-wide uppercase">Live data</p>
+                  <p className="text-gold-shine text-sm font-semibold tracking-wide uppercase">Live data</p>
                   <h3 className="text-white text-2xl font-bold leading-tight group-hover:text-yellow-500 transition-colors duration-300">
                     Live Performance Tracking
                   </h3>

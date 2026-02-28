@@ -259,7 +259,7 @@ const ExpandedCard = ({ item, onClose }) => {
                     transition={{ delay: i * 0.1 }}
                     className="text-center p-4 bg-black/30 rounded-xl border border-yellow-400/20"
                   >
-                    <result.icon className="w-10 h-10 text-yellow-400 mx-auto mb-3" />
+                    <result.icon className="w-10 h-10 text-gold-shine mx-auto mb-3" />
                     <p className="text-3xl font-bold text-white mb-1">{result.value}</p>
                     <p className="text-gray-400 text-sm">{result.label}</p>
                   </motion.div>
@@ -294,7 +294,7 @@ const ExpandedCard = ({ item, onClose }) => {
                     key={i}
                     className="flex items-center gap-3 p-4 bg-black/30 rounded-xl border border-yellow-400/20"
                   >
-                    <service.icon className="w-6 h-6 text-yellow-400" />
+                    <service.icon className="w-6 h-6 text-gold-shine" />
                     <span className="text-white font-medium">{service.name}</span>
                   </div>
                 ))}

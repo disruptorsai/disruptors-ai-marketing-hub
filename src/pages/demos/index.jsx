@@ -97,7 +97,7 @@ export default function DemosIndex() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
               Landing Page
               <br />
-              <span className="text-[#FFD700]">Demo Gallery</span>
+              <span className="text-gold-shine">Demo Gallery</span>
             </h1>
             <p className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto">
               Explore 7 different demos including AI-powered tools. Each designed for specific conversion goals.
@@ -156,10 +156,10 @@ export default function DemosIndex() {
 
                       {/* CTA */}
                       <div className="flex items-center justify-between">
-                        <span className="text-[#FFD700] font-semibold group-hover:underline">
+                        <span className="text-gold-shine font-semibold group-hover:underline">
                           View Demo
                         </span>
-                        <ArrowRight className="w-5 h-5 text-[#FFD700] group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="w-5 h-5 text-gold-shine group-hover:translate-x-2 transition-transform" />
                       </div>
                     </div>
                   </Link>
@@ -202,7 +202,7 @@ export default function DemosIndex() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
+              <h3 className="text-xl font-bold mb-3 text-gold-shine">
                 For Visual Brands
               </h3>
               <p className="text-[#C7C7C7]">
@@ -210,7 +210,7 @@ export default function DemosIndex() {
               </p>
             </div>
             <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
+              <h3 className="text-xl font-bold mb-3 text-gold-shine">
                 For Trust Building
               </h3>
               <p className="text-[#C7C7C7]">
@@ -218,7 +218,7 @@ export default function DemosIndex() {
               </p>
             </div>
             <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
+              <h3 className="text-xl font-bold mb-3 text-gold-shine">
                 For Lead Generation
               </h3>
               <p className="text-[#C7C7C7]">

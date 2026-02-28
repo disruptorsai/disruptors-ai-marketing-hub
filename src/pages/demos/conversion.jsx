@@ -90,7 +90,7 @@ export default function ConversionDemo() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
                 Marketing + AI =
                 <br />
-                <span className="text-[#FFD700]">90 Days or Less</span>
+                <span className="text-gold-shine">90 Days or Less</span>
               </h1>
               <p className="text-xl text-[#EAEAEA] mb-8">
                 Join 500+ businesses using AI to generate predictable, scalable growth
@@ -105,7 +105,7 @@ export default function ConversionDemo() {
                   "24/7 support and optimization"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-[#FFD700] flex-shrink-0" />
+                    <CheckCircle2 className="w-6 h-6 text-gold-shine flex-shrink-0" />
                     <span className="text-lg">{item}</span>
                   </div>
                 ))}
@@ -266,7 +266,7 @@ export default function ConversionDemo() {
             <p className="text-lg text-gray-700">
               Due to high demand, we're limiting new clients to ensure quality delivery.
               <br />
-              <span className="font-bold text-[#FFD700]">Don't miss this opportunity.</span>
+              <span className="font-bold text-gold-shine">Don't miss this opportunity.</span>
             </p>
           </div>
         </div>
@@ -315,7 +315,7 @@ export default function ConversionDemo() {
                 <ul className="space-y-3">
                   {item.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-[#FFD700] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-gold-shine flex-shrink-0 mt-0.5" />
                       <span className="text-gray-800 font-medium">{feature}</span>
                     </li>
                   ))}
@@ -327,7 +327,7 @@ export default function ConversionDemo() {
           <div className="text-center mt-12">
             <div className="inline-block bg-[#0E0E0E] text-white px-12 py-6 rounded-2xl border-4 border-[#FFD700] shadow-2xl">
               <div className="text-sm font-semibold mb-2 text-[#C7C7C7]">Total Value: $23,000+</div>
-              <div className="text-4xl font-bold text-[#FFD700]">Your Investment: $4,997</div>
+              <div className="text-4xl font-bold text-gold-shine">Your Investment: $4,997</div>
             </div>
           </div>
         </div>

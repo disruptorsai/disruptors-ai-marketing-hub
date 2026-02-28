@@ -195,7 +195,7 @@ export default function InteractiveDemo() {
           >
             Your Marketing Journey
             <br />
-            <span className="text-[#FFD700]">From Chaos to Success</span>
+            <span className="text-gold-shine">From Chaos to Success</span>
           </motion.h1>
           <motion.p
             className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto"
@@ -238,7 +238,7 @@ export default function InteractiveDemo() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <div className="text-[#FFD700] text-sm font-bold mb-2">{chapter.subtitle}</div>
+                    <div className="text-gold-shine text-sm font-bold mb-2">{chapter.subtitle}</div>
                     <div className="text-2xl font-bold">Chapter {chapter.number}</div>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function InteractiveDemo() {
               {/* Content Column */}
               <div className={`story-card ${chapter.align === 'right' ? 'lg:order-1' : 'lg:order-2'}`}>
                 <div className={`bg-gradient-to-r ${chapter.gradient} border-l-4 ${chapter.border} p-8 sm:p-12 rounded-2xl`}>
-                  <div className="text-[#FFD700] text-xs font-bold tracking-wider mb-4">{chapter.subtitle}</div>
+                  <div className="text-gold-shine text-xs font-bold tracking-wider mb-4">{chapter.subtitle}</div>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
                     {chapter.title}
                   </h2>
@@ -260,7 +260,7 @@ export default function InteractiveDemo() {
                     <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/20">
                       {chapter.stats.map((stat, i) => (
                         <div key={i} className="text-center">
-                          <div className="stat-number text-3xl sm:text-4xl font-bold text-[#FFD700] mb-1">
+                          <div className="stat-number text-3xl sm:text-4xl font-bold text-gold-shine mb-1">
                             {stat.value}
                           </div>
                           <div className="text-sm text-[#C7C7C7]">{stat.label}</div>
@@ -324,7 +324,7 @@ export default function InteractiveDemo() {
             <h2 className="text-5xl sm:text-6xl font-bold mb-8">
               Ready to Start
               <br />
-              <span className="text-[#FFD700]">Your Success Story?</span>
+              <span className="text-gold-shine">Your Success Story?</span>
             </h2>
             <p className="text-xl text-[#C7C7C7] mb-12 max-w-2xl mx-auto">
               Join 500+ companies who've transformed their marketing with the power of Digital Marketing + AI

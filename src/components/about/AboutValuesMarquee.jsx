@@ -187,7 +187,7 @@ export default function AboutValuesMarquee() {
                       <div className="relative">
                         <div className="absolute inset-0 bg-yellow-500/20 rounded-xl blur-md group-hover:bg-yellow-500/30 transition-all duration-300" />
                         <div className="relative bg-yellow-500/10 rounded-xl p-3 border border-yellow-500/30 group-hover:border-yellow-500/50 transition-all duration-300">
-                          <Icon className="w-7 h-7 text-yellow-500 group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+                          <Icon className="w-7 h-7 text-gold-shine group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
                         </div>
                       </div>
 

@@ -172,7 +172,7 @@ export default function BestOfAllDemo() {
           >
             Transform Your Business with
             <br />
-            <span className="text-[#FFD700]">AI-Powered Marketing</span>
+            <span className="text-gold-shine">AI-Powered Marketing</span>
           </motion.h1>
 
           <motion.p
@@ -214,7 +214,7 @@ export default function BestOfAllDemo() {
               { value: "$50M+", label: "Revenue" }
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl font-bold text-[#FFD700] mb-2">{stat.value}</div>
+                <div className="text-4xl font-bold text-gold-shine mb-2">{stat.value}</div>
                 <div className="text-[#C7C7C7]">{stat.label}</div>
               </div>
             ))}
@@ -272,7 +272,7 @@ export default function BestOfAllDemo() {
                   "Inconsistent results"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-[#FFD700] text-2xl">✗</span>
+                    <span className="text-gold-shine text-2xl">✗</span>
                     <span className="text-gray-700 text-lg">{item}</span>
                   </li>
                 ))}
@@ -282,7 +282,7 @@ export default function BestOfAllDemo() {
             {/* After */}
             <div className="bg-gradient-to-br from-[#FFD700] to-[#E0B200] text-white rounded-3xl p-8 shadow-2xl">
               <div className="text-center mb-6">
-                <div className="inline-block px-6 py-2 bg-white text-[#FFD700] rounded-full font-bold mb-4">
+                <div className="inline-block px-6 py-2 bg-white text-gold-shine rounded-full font-bold mb-4">
                   The Disruptors Way
                 </div>
               </div>
@@ -350,7 +350,7 @@ export default function BestOfAllDemo() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Real Results from Real Companies
             </h2>
-            <div className="flex items-center justify-center gap-2 text-[#FFD700] mb-4">
+            <div className="flex items-center justify-center gap-2 text-gold-shine mb-4">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} className="w-6 h-6 fill-current" />
               ))}
@@ -367,11 +367,11 @@ export default function BestOfAllDemo() {
                 className="interactive-card bg-[#1A1A1A] rounded-2xl p-8 hover:bg-gray-750 transition-all"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                <div className="text-5xl font-bold text-[#FFD700] mb-4">
+                <div className="text-5xl font-bold text-gold-shine mb-4">
                   {study.metric}
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{study.company}</h3>
-                <div className="text-lg text-[#FFD700] mb-4">{study.result}</div>
+                <div className="text-lg text-gold-shine mb-4">{study.result}</div>
                 <p className="text-[#C7C7C7] italic">"{study.quote}"</p>
               </motion.div>
             ))}
@@ -418,7 +418,7 @@ export default function BestOfAllDemo() {
                 <ul className="space-y-3">
                   {item.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-[#FFD700] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-gold-shine flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
@@ -470,15 +470,15 @@ export default function BestOfAllDemo() {
             {/* Trust Badges */}
             <div className="mt-16 flex items-center justify-center gap-12">
               <div className="text-center">
-                <Shield className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
+                <Shield className="w-12 h-12 text-gold-shine mx-auto mb-2" />
                 <div className="text-sm">Money-Back Guarantee</div>
               </div>
               <div className="text-center">
-                <Star className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
+                <Star className="w-12 h-12 text-gold-shine mx-auto mb-2" />
                 <div className="text-sm">4.9/5 Rating</div>
               </div>
               <div className="text-center">
-                <Sparkles className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
+                <Sparkles className="w-12 h-12 text-gold-shine mx-auto mb-2" />
                 <div className="text-sm">AI-Powered</div>
               </div>
             </div>

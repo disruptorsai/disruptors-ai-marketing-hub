@@ -75,7 +75,7 @@ export default function WaitlistModal({ isOpen, onClose, toolName }) {
                 <div className="mb-2">
                   <h2 className="text-3xl font-black tracking-tight mb-2">GET EARLY ACCESS</h2>
                 </div>
-                <p className="text-[#FFD700] font-semibold text-lg">
+                <p className="text-gold-shine font-semibold text-lg">
                   {toolName}
                 </p>
               </div>
@@ -161,7 +161,7 @@ export default function WaitlistModal({ isOpen, onClose, toolName }) {
                     className="text-center py-12"
                   >
                     <div className="w-20 h-20 bg-[#FFD700]/20 border-2 border-[#FFD700] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Check className="w-10 h-10 text-[#FFD700]" strokeWidth={3} />
+                      <Check className="w-10 h-10 text-gold-shine" strokeWidth={3} />
                     </div>
                     <h3 className="text-3xl font-black text-white mb-2 uppercase tracking-tight">YOU'RE IN!</h3>
                     <p className="text-gray-400 text-lg">

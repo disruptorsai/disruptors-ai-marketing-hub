@@ -257,14 +257,14 @@ function GalleryItem({ asset, onClick, index }) {
           <div className="flex items-center gap-2">
             {asset.type === 'video' ? (
               <>
-                <Play className="w-5 h-5 text-[#FFD700]" />
+                <Play className="w-5 h-5 text-gold-shine" />
                 <span className="text-sm font-semibold">
                   {asset.duration?.toFixed(1)}s
                 </span>
               </>
             ) : (
               <>
-                <ImageIcon className="w-5 h-5 text-[#FFD700]" />
+                <ImageIcon className="w-5 h-5 text-gold-shine" />
                 <span className="text-sm font-semibold">
                   {asset.width} × {asset.height}
                 </span>
@@ -400,9 +400,9 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         >
           <div className="flex items-center gap-3">
             {asset.type === 'video' ? (
-              <VideoIcon className="w-6 h-6 text-[#FFD700]" />
+              <VideoIcon className="w-6 h-6 text-gold-shine" />
             ) : (
-              <ImageIcon className="w-6 h-6 text-[#FFD700]" />
+              <ImageIcon className="w-6 h-6 text-gold-shine" />
             )}
             <div>
               <p className="font-semibold">

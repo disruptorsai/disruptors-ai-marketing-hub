@@ -52,7 +52,7 @@ const PricingTier = ({ tier, index, isPopular }) => {
               className="flex items-start gap-3"
             >
               <Check className={`w-5 h-5 flex-shrink-0 mt-1 ${
-                isPopular ? 'text-yellow-500' : 'text-white'
+                isPopular ? 'text-gold-shine' : 'text-white'
               }`} />
               <span className="text-white/90 text-sm leading-relaxed">{feature}</span>
             </motion.li>
@@ -176,7 +176,7 @@ export default function Pricing() {
             <div className="inline-block mb-4">
               <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500 text-sm font-bold tracking-wider uppercase">Flexible Pricing</span>
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Flexible Pricing</span>
               </div>
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
@@ -232,7 +232,7 @@ export default function Pricing() {
               className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10"
             >
               <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6">
-                <Sparkles className="w-8 h-8 text-yellow-500" />
+                <Sparkles className="w-8 h-8 text-gold-shine" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">AI-Powered Efficiency</h3>
               <p className="text-white/70 leading-relaxed">
@@ -248,7 +248,7 @@ export default function Pricing() {
               className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10"
             >
               <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6">
-                <ArrowRight className="w-8 h-8 text-yellow-500" />
+                <ArrowRight className="w-8 h-8 text-gold-shine" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Proven Track Record</h3>
               <p className="text-white/70 leading-relaxed">
@@ -264,7 +264,7 @@ export default function Pricing() {
               className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10"
             >
               <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6">
-                <Check className="w-8 h-8 text-yellow-500" />
+                <Check className="w-8 h-8 text-gold-shine" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Flexible & Transparent</h3>
               <p className="text-white/70 leading-relaxed">

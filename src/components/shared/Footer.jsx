@@ -238,7 +238,7 @@ export default function Footer() {
 
             {/* Newsletter Signup */}
             <div className="mb-8">
-              <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-4">
+              <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-gold-shine mb-4">
                 Stay Updated
               </h3>
               <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
@@ -260,7 +260,7 @@ export default function Footer() {
                 </Button>
               </form>
               {subscribeStatus === 'success' && (
-                <p className="text-xs text-[#FFD700] mt-2">Thanks for subscribing!</p>
+                <p className="text-xs text-gold-shine mt-2">Thanks for subscribing!</p>
               )}
             </div>
 
@@ -283,7 +283,7 @@ export default function Footer() {
 
           {/* Column 2: Solutions - Spans 3 cols */}
           <div className="lg:col-span-3">
-            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-gold-shine mb-6">
               Solutions
             </h3>
             <ul className="space-y-3">
@@ -305,7 +305,7 @@ export default function Footer() {
 
           {/* Column 3: Company - Spans 2 cols */}
           <div className="lg:col-span-2">
-            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-gold-shine mb-6">
               Company
             </h3>
             <ul className="space-y-3">
@@ -327,7 +327,7 @@ export default function Footer() {
 
           {/* Column 4: Contact & Tools - Spans 3 cols */}
           <div className="lg:col-span-3">
-            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-[#FFD700] mb-6">
+            <h3 className="font-supply text-xs font-semibold uppercase tracking-[0.2em] text-gold-shine mb-6">
               Get In Touch
             </h3>
             <ul className="space-y-4 mb-8">
@@ -336,7 +336,7 @@ export default function Footer() {
                   href="tel:+18019180223"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-gold-shine" />
                   <span>(801) 918-0223</span>
                 </a>
               </li>
@@ -345,13 +345,13 @@ export default function Footer() {
                   href="mailto:tyler@disruptorsmedia.com"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-[#FFD700]" />
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-gold-shine" />
                   <span>tyler@disruptorsmedia.com</span>
                 </a>
               </li>
               <li>
                 <div className="flex items-start gap-3 text-sm text-[#C7C7C7]">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#FFD700]" />
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gold-shine" />
                   <span>650 N Main St<br />North Salt Lake, UT 84054</span>
                 </div>
               </li>

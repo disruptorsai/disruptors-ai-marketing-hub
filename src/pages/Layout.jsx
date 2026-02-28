@@ -167,7 +167,7 @@ export default function Layout({ children, currentPageName }) {
                    {/* CTA Button */}
                    <Link
                      to={createPageUrl('book-strategy-session')}
-                     className="font-supply group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-base font-bold text-[#FFD700] uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300 whitespace-nowrap"
+                     className="font-supply group relative inline-flex items-center justify-center h-12 px-6 xl:px-8 text-base font-bold text-gold-shine uppercase bg-transparent border-2 border-[#FFD700] hover:bg-[#FFD700]/10 touch-manipulation transition-all duration-300 whitespace-nowrap"
                      style={{
                        clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                        animation: 'goldPulse 3s ease-in-out infinite',

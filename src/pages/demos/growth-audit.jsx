@@ -51,7 +51,7 @@ export default function GrowthAuditDemo() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
       <div className="container mx-auto px-4 py-20">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFD700]/20 border border-[#FFD700]/30 text-[#FFD700] text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFD700]/20 border border-[#FFD700]/30 text-gold-shine text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
             AI-Powered Growth Analysis
           </div>
@@ -98,7 +98,7 @@ export default function GrowthAuditDemo() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
             <Card className="border-[#FFD700]/30 bg-slate-800/50 backdrop-blur-xl">
               <CardHeader>
-                <Zap className="w-8 h-8 text-[#FFD700] mb-2" />
+                <Zap className="w-8 h-8 text-gold-shine mb-2" />
                 <CardTitle className="text-lg text-white">Live Brand Detection</CardTitle>
                 <CardDescription className="text-slate-400">Auto-extracts logo, colors, and brand identity</CardDescription>
               </CardHeader>

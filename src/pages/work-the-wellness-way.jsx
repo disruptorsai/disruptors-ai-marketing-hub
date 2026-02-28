@@ -60,7 +60,7 @@ export default function WorkTheWellnessWay() {
               {caseData.services.map(service => (
                 <div key={service.name} className="flex flex-col items-center text-center p-6 bg-[#E0E0E0] border border-[#C7C7C7] rounded-xl hover:border-[#FFD700]/30 transition-colors">
                   <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="w-6 h-6 text-[#FFD700]" />
+                    <service.icon className="w-6 h-6 text-gold-shine" />
                   </div>
                   <p className="font-semibold text-gray-800">{service.name}</p>
                 </div>
