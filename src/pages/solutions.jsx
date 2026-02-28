@@ -250,13 +250,15 @@ export default function Solutions() {
               <p className="text-xl text-gray-800 leading-relaxed font-mono mb-8">
                 Call us traditional, but we believe in the old-fashioned way of connection. And no, we don't mean Myspace. You can have a killer product or service, but that's not what sets you apart. It's how people feel after each interaction.
               </p>
-              <Link
-                to={createPageUrl('marketing-audit')}
+              <a
+                href="https://audit.disruptorsmedia.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black text-base font-bold uppercase transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <span>Start Your Assessment</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </a>
             </motion.div>
 
             {/* Right Column - Accordion */}

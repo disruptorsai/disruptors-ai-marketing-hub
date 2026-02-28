@@ -143,10 +143,10 @@ export default function Podcast() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to={createPageUrl('book-strategy-session')}
-                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-[#FFD700] hover:bg-[#FFD700]/90 transition-all duration-300"
+                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-gold-shine uppercase bg-transparent border-2 border-[#BF953F] hover:bg-[#BF953F]/10 transition-all duration-300"
                   style={{
                     clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
-                    boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
+                    boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
                   }}
                 >
                   <span>Start Your Podcast</span>
@@ -673,10 +673,10 @@ export default function Podcast() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to={createPageUrl('book-strategy-session')}
-                className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-[#FFD700] hover:bg-[#FFD700]/90 transition-all duration-300"
+                className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-gold-shine uppercase bg-transparent border-2 border-[#BF953F] hover:bg-[#BF953F]/10 transition-all duration-300"
                 style={{
                   clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
-                  boxShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
+                  boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
                 }}
               >
                 <span>Book a Strategy Session</span>

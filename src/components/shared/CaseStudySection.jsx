@@ -98,7 +98,7 @@ const ExpandedCaseStudyModal = ({ caseStudy, onClose }) => {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="text-center p-6 bg-white/10 rounded-xl border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300"
                 >
-                  <result.icon className="w-10 h-10 text-gold-shine mx-auto mb-3" />
+                  <result.icon className="w-10 h-10 icon-gold-shine mx-auto mb-3" />
                   <p className="text-4xl font-bold text-white mb-2">{result.value}</p>
                   <p className="text-sm text-gray-300">{result.label}</p>
                 </motion.div>
@@ -237,7 +237,7 @@ const FeaturedCaseStudy = ({ caseStudy, onClick }) => (
               viewport={{ once: true }}
               className="text-center p-4 bg-white/5 rounded-xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300"
             >
-              <result.icon className="w-8 h-8 text-gold-shine mx-auto mb-2" />
+              <result.icon className="w-8 h-8 icon-gold-shine mx-auto mb-2" />
               <p className="text-3xl font-bold text-white mb-1">{result.value}</p>
               <p className="text-xs text-gray-400">{result.label}</p>
             </motion.div>

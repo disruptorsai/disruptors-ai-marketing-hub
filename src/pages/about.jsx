@@ -1,39 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 import { TeamMember } from '@/api/entities';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import PageTitle from '../components/shared/PageTitle';
 
-const TeamMemberCard = ({ member, delay }) => (
+const TeamMemberCard = ({ member, delay, onSelect }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="bg-white rounded-lg shadow-lg overflow-hidden"
+    className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer group"
+    onClick={() => onSelect(member)}
   >
-    {/* Square image container */}
     <div className="aspect-square w-full overflow-hidden bg-gray-100">
       <img
         src={member.headshot}
         alt={member.name}
-        className="w-full h-full object-cover object-center"
+        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
       />
     </div>
-    {/* Content */}
     <div className="p-6">
       <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-      <p className="text-purple-600 font-medium mb-4">{member.title}</p>
+      <p className="text-purple-600 font-medium">{member.title}</p>
       {member.bio && (
-        <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+        <p className="text-gray-400 text-xs mt-2">Tap to read more</p>
       )}
     </div>
   </motion.div>
 );
 
+const TeamMemberModal = ({ member, onClose }) => {
+  if (!member) return null;
+  return createPortal(
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="relative">
+            <img
+              src={member.headshot}
+              alt={member.name}
+              className="w-full aspect-[3/2] object-cover object-top"
+            />
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="p-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
+            <p className="text-purple-600 font-medium mb-4">{member.title}</p>
+            {member.bio && (
+              <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>,
+    document.body
+  );
+};
+
 export default function About() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const aboutIntroData = [
     {
@@ -52,15 +100,16 @@ export default function About() {
 
   const partnershipData = [
     {
-      headline: "Utah-Based. Nationwide Reach. In-Person When It Matters.",
-      body: "Being based in Salt Lake City means Utah clients get something special: face-to-face strategy sessions, on-site collaboration, and the responsiveness that comes from working in the same market. We understand local nuances because we live them. But our AI-powered systems and proven frameworks serve ambitious brands nationwide—giving you enterprise-level marketing capability whether you're down the street or across the country. Local roots. National impact.",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png",
+      headline: "Based in Utah. Serving Brands Nationwide.",
+      body: "We work with brands in Utah and across the globe. We also host live and digital events that bring leaders together.",
+      image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/about/utah-digital-globe.png",
       imageAlt: "Partnership and collaboration visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
       cta: {
         label: "Live Events",
-        link: "event-checkin"
+        link: "event-checkin",
+        variant: "solid"
       }
     }
   ];
@@ -89,7 +138,7 @@ export default function About() {
       <PageTitle title="ABOUT US" />
 
       {/* Hero Video Section */}
-      <section className="w-full bg-transparent overflow-hidden">
+      {/* <section className="w-full bg-transparent overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -110,10 +159,10 @@ export default function About() {
               Your browser does not support the video tag.
             </video>
           </div>
-        </motion.div>
+        </motion.div> */}
         {/* Golden section divider */}
-        <div className="w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-      </section>
+        {/* <div className="w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
+      </section> */}
 
       {/* Enhanced Intro Section */}
       <AlternatingLayout sections={aboutIntroData} />
@@ -334,19 +383,19 @@ export default function About() {
       </section>
 
       {/* Section 3: Meet the Team */}
-      <section className="relative py-16">
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png)',
-          }}
-        />
-        <div className="absolute inset-0 bg-white/60" />
+      <section
+        className="relative py-16"
+        style={{
+          backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg)',
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
 
-        {/* Header with gray background */}
-        <div className="relative bg-gray-100 py-12 mb-12">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+        {/* Header with rounded card */}
+        <div className="relative max-w-3xl mx-auto px-4 mb-12">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl py-10 px-8 text-center shadow-lg">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -366,7 +415,7 @@ export default function About() {
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[...team]
                 .sort((a, b) => {
                   // Sort by display_order if available, otherwise by name hierarchy
@@ -386,6 +435,7 @@ export default function About() {
                     key={member.id}
                     member={member}
                     delay={index * 0.1}
+                    onSelect={setSelectedMember}
                   />
                 ))}
             </div>
@@ -399,6 +449,11 @@ export default function About() {
 
       {/* Partnership Section */}
       <AlternatingLayout sections={partnershipData} />
+
+      {/* Team Member Modal */}
+      {selectedMember && (
+        <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} />
+      )}
     </div>
   );
 }

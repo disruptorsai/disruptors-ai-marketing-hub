@@ -178,26 +178,26 @@ export default function Footer() {
         <div className="relative mb-16 sm:mb-20" id="footer-lines-container">
           {/* Animated horizontal lines */}
           <div className="relative h-[100px] sm:h-[110px] md:h-[120px] mb-0">
-            <div className="sep-line sep-line-1" style={{ background: '#FFD700' }}></div>
-            <div className="sep-line sep-line-2" style={{ background: '#FFD700' }}></div>
-            <div className="sep-line sep-line-3" style={{ background: '#FFD700' }}></div>
-            <div className="sep-line sep-line-4" style={{ background: '#FFD700' }}></div>
-            <div className="sep-line sep-line-5" style={{ background: '#FFD700' }}></div>
-            <div className="sep-line sep-line-6" style={{ background: '#FFD700' }}></div>
+            <div className="sep-line sep-line-1" style={{ background: '#BF953F' }}></div>
+            <div className="sep-line sep-line-2" style={{ background: '#FCF6BA' }}></div>
+            <div className="sep-line sep-line-3" style={{ background: '#B38728' }}></div>
+            <div className="sep-line sep-line-4" style={{ background: '#FBF5B7' }}></div>
+            <div className="sep-line sep-line-5" style={{ background: '#BF953F' }}></div>
+            <div className="sep-line sep-line-6" style={{ background: '#AA771C' }}></div>
           </div>
 
           {/* Book a call button */}
           <Link
             to={createPageUrl('book-strategy-session')}
-            className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-white text-black hover:bg-white/90 transition-all duration-300 min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation whitespace-nowrap"
+            className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-white hover:bg-gray-100 transition-all duration-300 min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation whitespace-nowrap"
             style={{
               boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)',
             }}
           >
-            <span className="font-montreal text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight">
+            <span className="font-montreal text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-black">
               Let's Talk
             </span>
-            <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
+            <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4 text-black" />
           </Link>
         </div>
 
@@ -235,7 +235,7 @@ export default function Footer() {
                 <Button
                   type="submit"
                   disabled={subscribeStatus === 'subscribing'}
-                  className="bg-[#FFD700] text-black hover:bg-[#FFD700]/90 h-12 px-6 font-semibold"
+                  className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-black hover:shadow-[0_0_25px_rgba(191,149,63,0.5)] h-12 px-6 font-semibold transition-all duration-300"
                 >
                   {subscribeStatus === 'subscribing' ? '...' : subscribeStatus === 'success' ? '✓' : 'Subscribe'}
                 </Button>
@@ -317,7 +317,7 @@ export default function Footer() {
                   href="tel:+18019180223"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-gold-shine" />
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform icon-gold-shine" />
                   <span>(801) 918-0223</span>
                 </a>
               </li>
@@ -326,13 +326,13 @@ export default function Footer() {
                   href="mailto:tyler@disruptorsmedia.com"
                   className="flex items-start gap-3 text-sm text-[#C7C7C7] hover:text-[#FFD700] transition-colors group"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform text-gold-shine" />
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform icon-gold-shine" />
                   <span>tyler@disruptorsmedia.com</span>
                 </a>
               </li>
               <li>
                 <div className="flex items-start gap-3 text-sm text-[#C7C7C7]">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gold-shine" />
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 icon-gold-shine" />
                   <span>650 N Main St<br />North Salt Lake, UT 84054</span>
                 </div>
               </li>
@@ -390,10 +390,10 @@ export default function Footer() {
 
             {/* Coordinates */}
             <div className="hidden lg:block text-right order-3">
-              <p className="font-supply text-xs text-[#FFD700]/60">
+              <p className="font-supply text-xs text-gold-shine">
                 40.853400, -111.911790
               </p>
-              <p className="font-supply text-xs text-[#FFD700]/40 mt-1">
+              <p className="font-supply text-xs text-gold-shine mt-1">
                 Load Address: 034526-01
               </p>
             </div>

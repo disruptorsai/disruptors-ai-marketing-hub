@@ -142,7 +142,11 @@ function ParallaxSection({ section, textOnLeft }) {
                 <Button
                   asChild
                   size="lg"
-                  className="font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-black"
+                  className={`font-sans text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-auto font-semibold touch-manipulation w-full sm:w-auto transition-all duration-300 ${
+                    section.cta.variant === 'solid'
+                      ? 'bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-black hover:shadow-[0_0_25px_rgba(191,149,63,0.5)]'
+                      : 'bg-transparent border-2 border-[#BF953F] text-gold-shine hover:bg-[#BF953F]/10 hover:shadow-[0_0_20px_rgba(191,149,63,0.4)]'
+                  }`}
                 >
                   <Link to={createPageUrl(section.cta.link)}>
                     {section.cta.label}

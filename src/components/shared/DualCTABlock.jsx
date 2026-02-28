@@ -10,7 +10,7 @@ export default function DualCTABlock({
   cta1_text = "Book a Free Strategy Session",
   cta1_link = "book-strategy-session",
   cta2_text = "Get a Free AI Audit",
-  cta2_link = "free-business-audit",
+  cta2_link = "https://audit.disruptorsmedia.com/",
   backgroundImage = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
   className = ""
 }) {
@@ -59,7 +59,11 @@ export default function DualCTABlock({
                 transition={{ duration: 0.2 }}
               >
                 <Button asChild variant="outline" size="lg" className="text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 h-auto bg-transparent border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 font-bold uppercase tracking-wide transition-all duration-300 w-full sm:w-auto">
-                  <Link to={createPageUrl(cta2_link)}>{cta2_text}</Link>
+                  {cta2_link.startsWith('http') ? (
+                    <a href={cta2_link} target="_blank" rel="noopener noreferrer">{cta2_text}</a>
+                  ) : (
+                    <Link to={createPageUrl(cta2_link)}>{cta2_text}</Link>
+                  )}
                 </Button>
               </motion.div>
             )}
