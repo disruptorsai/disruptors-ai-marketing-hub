@@ -1,15 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import FastVideo from '../components/shared/FastVideo';
+import BillboardModal from '../components/shared/BillboardModal';
+import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { isOpen, isReturning, close, accept } = useBillboardPopup(1500);
+
+  const handleBillboardYes = () => {
+    accept();
+    navigate('/billboard');
+  };
 
   const alternatingData = [
     {
@@ -81,6 +90,29 @@ export default function Home() {
       <div className="relative bg-gray-900 overflow-hidden">
         <ClientLogoMarquee />
       </div>
+
+      {/* Billboard Banner (below client logos) */}
+      <Link to="/billboard" className="group relative block overflow-hidden bg-black">
+        <div className="relative max-w-5xl mx-auto px-4 py-6 sm:py-8 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <img
+              src="/billboard.png"
+              alt="Your marketing sucks billboard"
+              className="h-14 sm:h-20 w-auto rounded-lg border border-[#BF953F]/30
+                         group-hover:border-[#BF953F]/60 transition-all duration-300"
+            />
+            <div>
+              <p className="text-gold-shine text-xs font-bold tracking-wider uppercase mb-1">
+                Saw Our Billboard?
+              </p>
+              <p className="text-white text-sm sm:text-base font-semibold
+                            group-hover:text-gold-shine transition-colors">
+                Learn what we can do for your business
+              </p>
+            </div>
+          </div>
+        </div>
+      </Link>
 
       {/* PARTNERSHIP Section */}
       <AlternatingLayout sections={alternatingData} />
@@ -324,6 +356,9 @@ export default function Home() {
 
       {/* Google Reviews Section */}
       <GoogleReviewsSection />
+
+      {/* Billboard Popup Modal */}
+      <BillboardModal isOpen={isOpen} onClose={close} onYes={handleBillboardYes} isReturning={isReturning} />
     </div>
   );
 }

@@ -114,6 +114,7 @@ export default function Footer() {
     // { name: 'AI Tools', path: 'ai-tools' }, // Temporarily disabled
     { name: 'Gallery', path: 'gallery' },
     { name: 'FAQ', path: 'faq' },
+    { name: 'Billboard', path: 'billboard' },
   ];
 
   const tools = [

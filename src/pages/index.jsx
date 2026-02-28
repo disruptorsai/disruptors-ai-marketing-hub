@@ -137,6 +137,9 @@ const SolutionsCustomApps = lazyWithRetry(() => import('./solutions-custom-apps.
 const SolutionsCrmManagement = lazyWithRetry(() => import('./solutions-crm-management.jsx'));
 const SolutionsFractionalCmo = lazyWithRetry(() => import('./solutions-fractional-cmo.jsx'));
 
+// Billboard funnel - lazy loaded with retry
+const Billboard = lazyWithRetry(() => import('./billboard.jsx'));
+
 // Additional pages - lazy loaded with retry
 const BookStrategySession = lazyWithRetry(() => import('./book-strategy-session.jsx'));
 const Podcast = lazyWithRetry(() => import('./podcast.jsx'));
@@ -245,6 +248,8 @@ const PAGES = {
     
     "work-auto-trim-utah": WorkAutoTrimUtah,
     
+    "billboard": Billboard,
+
     "book-strategy-session": BookStrategySession,
     
     "solutions-ai-automation": SolutionsAiAutomation,
@@ -427,6 +432,8 @@ function PagesContent() {
                             <Route path="/work-granite-paving" element={<WorkGranitePaving />} />
 
                             <Route path="/work-auto-trim-utah" element={<WorkAutoTrimUtah />} />
+
+                            <Route path="/billboard" element={<Billboard />} />
 
                             <Route path="/book-strategy-session" element={<BookStrategySession />} />
 

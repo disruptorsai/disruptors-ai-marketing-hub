@@ -138,7 +138,7 @@ When searching for context, requirements, client info, or project documentation 
 
 This is a React SPA built with Vite serving as a marketing website and AI-powered platform for Disruptors AI. It features a sophisticated architecture combining:
 
-- **Custom Routing System**: 74+ pages with centralized mapping in `src/pages/index.jsx` (75 routes, 71 lazy imports)
+- **Custom Routing System**: 75+ pages with centralized mapping in `src/pages/index.jsx` (76 routes, 72 lazy imports)
 - **Dual API Integration**: Custom SDK wrapper over Supabase with Base44 compatibility
 - **AI-First Modules System**: Self-contained micro-tools with three-level access (internal/client/public)
 - **Multi-Provider AI Services**: OpenAI gpt-image-1, Google Gemini, Replicate, Claude Sonnet 4.5
@@ -275,6 +275,37 @@ Disruptors AI uses a modular "Website OS" architecture:
 3. **Growth Audit** - Multi-API orchestration, SSE streaming, 5/month client quota
 
 See `docs/MODULES_SYSTEM.md` for complete documentation.
+
+### Billboard Funnel System
+
+Billboard-to-booking conversion funnel for offline-to-online lead capture.
+
+**Components**:
+- `src/components/shared/BillboardModal.jsx` — 3-state popup modal (Ask → Reveal → Followup) via React Portal at `z-[100]`
+- `src/hooks/useBillboardPopup.js` — Display logic with escalating cooldowns (24h → 3d → 7d), localStorage key: `billboard-popup`
+- `src/pages/billboard.jsx` — Full landing page (7 sections: Hero, Why Marketing Fails, Philosophy, Video, Five-Step Framework, Case Studies Marquee, Booking Form)
+- Route: `/billboard` (lazy-loaded with `lazyWithRetry()`)
+
+**Popup Behavior**:
+- Appears 1.5s after homepage load
+- Escalating cooldowns on dismiss via localStorage
+- Return visitors get alternate copy ("Still thinking about it?")
+- "Yes" click permanently dismisses and navigates to `/billboard`
+- `sessionStorage` guard prevents multiple popups per page load
+- Backdrop click does NOT close — must use buttons or X
+
+**Gold Shimmer Branding** (site-wide CSS):
+- `.text-gold-shine` — Animated metallic shimmer text (`background-clip: text`, 110deg gradient, 10s animation)
+- `.icon-gold-shine` — Animated gold color cycling with drop-shadow glow (4s animation)
+- Gold palette: `#BF953F` (primary), `#FCF6BA` (light), `#B38728` (dark), `#AA771C` (deepest)
+- Defined in `src/index.css`
+
+**Integration Points**:
+- Homepage: BillboardModal + useBillboardPopup hook + banner with billboard.png thumbnail below client logos
+- Footer: Billboard link in company section
+- GHL booking: Uses existing `netlify/functions/ghl-calendar-booking.js`
+
+See `docs/BILLBOARD_CHANGELOG.md` for complete build reference with exact copy, URLs, and styling.
 
 ### Admin vs Public User Systems
 
