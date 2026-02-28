@@ -60,6 +60,7 @@ export default defineConfig({
   esbuild: {
     logLevel: 'info',
     logLimit: 0,
+    drop: ['console', 'debugger'],
   },
   build: {
     // Performance: Set chunk size warning limit to 1MB (increased for large projects)
