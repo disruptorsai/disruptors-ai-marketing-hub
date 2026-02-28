@@ -364,17 +364,6 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* CTA Block */}
-      <section className="relative bg-gray-800 text-white py-20">
-         <GeometricSeparator type="top" className="text-white" />
-         <DualCTABlock
-            title="Get Insights Delivered"
-            cta1_text="Subscribe to Newsletter"
-            cta1_link="#"
-            cta2_text="Book a Strategy Session"
-            cta2_link="book-strategy-session"
-         />
-      </section>
     </div>
   );
 }

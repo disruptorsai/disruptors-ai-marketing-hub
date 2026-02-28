@@ -143,6 +143,7 @@ export default function Solutions() {
 
       {/* Hero Image */}
       <section ref={sectionRef} className="w-full relative">
+        {/* Desktop image */}
         <img
           src={optimizeCloudinaryImage(
             "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
@@ -153,16 +154,27 @@ export default function Solutions() {
             }
           )}
           srcSet={`
-            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 640 })} 640w,
             ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1024 })} 1024w,
             ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1920 })} 1920w
           `}
           sizes="100vw"
           alt="Our approach is simple yet impactful"
-          className="w-full h-auto"
+          className="hidden md:block w-full h-auto"
           loading="eager"
           fetchpriority="high"
         />
+        {/* Mobile: different image + text below */}
+        <div className="md:hidden">
+          <img
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/new%20images/funnel-approach-disruptors%20(1).webp"
+            alt="Our full funnel approach"
+            className="w-full h-auto"
+            loading="eager"
+          />
+          <p className="px-6 py-8 text-white text-center text-base leading-relaxed font-medium bg-black">
+            Our approach is simple yet impactful. We combine strategic thinking with creative flair to enhance your digital presence and drive real results. Whether expanding your audience or boosting your online profile, our process is designed to take your brand from ordinary to extraordinary, efficiently and effectively.
+          </p>
+        </div>
         {/* Scroll-Animated Hand - Hidden on mobile devices */}
         {!isMobile && (
           <img

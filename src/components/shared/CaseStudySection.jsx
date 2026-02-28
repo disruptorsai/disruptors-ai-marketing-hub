@@ -597,22 +597,6 @@ export default function CaseStudySection() {
           }
         `}</style>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <p className="text-lg text-gray-700 mb-4 font-medium">
-            Ready to achieve similar results for your business?
-          </p>
-          <div className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-500 transition-colors duration-300 cursor-pointer shadow-lg hover:shadow-xl">
-            Let's Build Your Success Story
-            <ArrowUpRight className="w-5 h-5" />
-          </div>
-        </motion.div>
       </div>
 
       {/* Expanded Case Study Modal */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -126,19 +126,9 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      name: 'Twitter',
-      icon: 'twitter',
-      url: 'https://twitter.com/disruptorsmedia'
-    },
-    {
       name: 'Instagram',
       icon: 'instagram',
       url: 'https://instagram.com/disruptorsmedia'
-    },
-    {
-      name: 'Facebook',
-      icon: 'facebook',
-      url: 'https://facebook.com/disruptorsmedia'
     },
     {
       name: 'LinkedIn',
@@ -150,19 +140,10 @@ export default function Footer() {
   const getSocialIcon = (iconName) => {
     const iconProps = { className: "w-5 h-5 text-white/80 group-hover:text-white transition-colors" };
     switch (iconName) {
-      case 'facebook':
-        return <Facebook {...iconProps} />;
       case 'instagram':
         return <Instagram {...iconProps} />;
       case 'linkedin':
         return <Linkedin {...iconProps} />;
-      case 'twitter':
-        // Using a simple Twitter/X icon - lucide-react doesn't have Twitter anymore
-        return (
-          <svg {...iconProps} viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        );
       default:
         return null;
     }

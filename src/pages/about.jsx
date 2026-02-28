@@ -72,7 +72,7 @@ export default function About() {
         // Fetch team members sorted by display_order
         const members = await TeamMember.list('display_order');
         // Filter only active members
-        const activeMembers = members.filter(member => member.is_active);
+        const activeMembers = members.filter(member => member.is_active && member.name !== 'William Welsh');
         setTeam(activeMembers);
       } catch (error) {
         console.error('Error fetching team members:', error);

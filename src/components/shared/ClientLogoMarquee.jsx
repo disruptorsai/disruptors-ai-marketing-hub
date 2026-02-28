@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Marquee from 'react-fast-marquee';
 
 const clientLogos = [
@@ -20,7 +19,6 @@ export default function ClientLogoMarquee({
 }) {
   return (
     <section className="py-8 md:py-2 overflow-hidden bg-[#191919]">
-      {/* Mobile Heading */}
       <h2 className="block md:hidden text-center text-2xl font-bold text-white mb-6 px-4">
         Our Clients
       </h2>
@@ -31,7 +29,8 @@ export default function ClientLogoMarquee({
         gradientColor="rgb(25, 25, 25)"
         gradientWidth={100}
         pauseOnHover={true}
-        className="py-2"
+        className="py-2 overflow-y-hidden"
+        style={{ overflowY: 'hidden' }}
       >
         {logos.map((logo, index) => (
           <div

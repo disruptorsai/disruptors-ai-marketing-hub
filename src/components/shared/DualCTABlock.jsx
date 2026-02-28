@@ -9,7 +9,7 @@ export default function DualCTABlock({
   title = "Ready to grow?",
   cta1_text = "Book a Free Strategy Session",
   cta1_link = "book-strategy-session",
-  cta2_text = "Get a Free Marketing Assessment",
+  cta2_text = "Get a Free AI Audit",
   cta2_link = "free-business-audit",
   backgroundImage = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
   className = ""
