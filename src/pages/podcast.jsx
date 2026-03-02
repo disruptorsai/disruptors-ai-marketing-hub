@@ -130,11 +130,11 @@ export default function Podcast() {
                 </div>
               </div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight text-white">
-                Build Authority
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-white">
+                Build Real Authority
                 <br />
-                <span className="text-gold-shine">With Audio.</span>
-              </h1>
+                <span className="text-gold-shine">& Trust With Podcasting.</span>
+              </h2>
 
               <p className="text-xl sm:text-2xl text-gray-200 mb-8 leading-relaxed">
                 From concept to distribution, we create professional podcast content that positions you as an industry leader and drives real business growth.
@@ -143,7 +143,7 @@ export default function Podcast() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to={createPageUrl('book-strategy-session')}
-                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-gold-shine uppercase bg-transparent border-2 border-[#BF953F] hover:bg-[#BF953F]/10 transition-all duration-300"
+                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-[0_0_25px_rgba(191,149,63,0.5)] transition-all duration-300"
                   style={{
                     clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                     boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
@@ -453,10 +453,10 @@ export default function Podcast() {
               </div>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              State-of-the-Art Podcast Studio
+              Cinematic Podcasting. Comfortable Energy.
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Professional equipment, cinematic lighting, and acoustic perfection for broadcast-quality content
+              Professional gear inside a space built for relaxed, powerful conversations.
             </p>
           </motion.div>
 
