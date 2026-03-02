@@ -104,12 +104,14 @@ export default function Podcast() {
 
       {/* Full-Screen Hero with Full-Width Image */}
       <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
-        {/* Full-Width Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
-            alt="Podcast Studio"
-            className="w-full h-full object-cover object-center"
+        {/* Full-Width Background Video (YouTube silent autoplay) */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <iframe
+            src="https://www.youtube.com/embed/UU4a5VOucJg?autoplay=1&mute=1&loop=1&playlist=UU4a5VOucJg&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+            title="Podcast Highlight Background"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] min-w-full min-h-full pointer-events-none"
+            style={{ border: 'none' }}
           />
           {/* Gradient Overlay - Dark to transparent from left */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
@@ -152,12 +154,48 @@ export default function Podcast() {
                   <span>Start Your Podcast</span>
                   <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
-                  View Our Work
-                </Button>
+                <a href="#podcast-highlight" onClick={(e) => { e.preventDefault(); document.getElementById('podcast-highlight')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                  <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
+                    View Our Work
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Podcast Highlight */}
+      <section id="podcast-highlight" className="relative bg-black py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              Podcasting Excellence <span className="text-gold-shine">In Action</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-400 mb-10">
+              Real shows. Real brands. Real momentum.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/UU4a5VOucJg"
+              title="Podcast Highlight Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </motion.div>
         </div>
       </section>
 
