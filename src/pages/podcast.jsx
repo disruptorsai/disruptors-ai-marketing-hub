@@ -711,7 +711,7 @@ export default function Podcast() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 to={createPageUrl('book-strategy-session')}
-                className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-gold-shine uppercase bg-transparent border-2 border-[#BF953F] hover:bg-[#BF953F]/10 transition-all duration-300"
+                className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-[0_0_25px_rgba(191,149,63,0.5)] transition-all duration-300"
                 style={{
                   clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
                   boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
@@ -721,11 +721,6 @@ export default function Podcast() {
                 <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
               </Link>
 
-              <Link to={createPageUrl('contact')}>
-                <Button variant="outline" size="lg" className="border-white/40 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
-                  Get More Info
-                </Button>
-              </Link>
             </div>
           </motion.div>
         </div>

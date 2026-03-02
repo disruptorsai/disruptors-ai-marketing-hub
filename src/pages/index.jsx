@@ -53,10 +53,11 @@ const AITools = lazyWithRetry(() => {
     console.log('🔄 [LAZY LOAD] Loading ai-tools.jsx...');
     return import('./ai-tools.jsx');
 });
-const Contact = lazyWithRetry(() => {
-    console.log('🔄 [LAZY LOAD] Loading contact.jsx...');
-    return import('./contact.jsx');
-});
+// ARCHIVED: contact.jsx moved to src/pages/archived/ (2026-03-02)
+// const Contact = lazyWithRetry(() => {
+//     console.log('🔄 [LAZY LOAD] Loading contact.jsx...');
+//     return import('./contact.jsx');
+// });
 const Privacy = lazyWithRetry(() => {
     console.log('🔄 [LAZY LOAD] Loading privacy.jsx...');
     return import('./privacy.jsx');
@@ -196,7 +197,7 @@ const PAGES = {
 
     "ai-tools": AITools,
 
-    contact: Contact,
+    // contact: Contact, // ARCHIVED
 
     // Dev pages for comparison
     "Home-dev": HomeDev,
@@ -377,7 +378,7 @@ function PagesContent() {
                             {/* Free downloadable resources (lead magnets) */}
                             <Route path="/free-resources" element={<FreeResources />} />
 
-                            <Route path="/contact" element={<Contact />} />
+                            {/* <Route path="/contact" element={<Contact />} /> ARCHIVED */}
 
                             {/* Dev pages for comparison */}
                             <Route path="/Home-dev" element={<HomeDev />} />
