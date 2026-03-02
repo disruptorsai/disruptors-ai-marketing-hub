@@ -204,8 +204,7 @@ export default function Billboard() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 tracking-tight"
           >
-            You're Honest About{' '}
-            <span className="text-gold-shine">Your Business!</span>
+            If You're Reading This…
           </motion.h1>
 
           <motion.p
@@ -214,9 +213,7 @@ export default function Billboard() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-10"
           >
-            You saw our billboard — that means you're honest about your business'
-            strengths and weaknesses. Yours is the type of company we can take
-            to a whole new level.
+            That Means You're <span className="text-gold-shine font-bold">HONEST</span> About Your Business' Strengths And Weaknesses. <span className="text-gold-shine font-bold">CONGRATULATIONS!</span>
           </motion.p>
 
           <motion.div
