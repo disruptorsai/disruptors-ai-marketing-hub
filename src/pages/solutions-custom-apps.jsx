@@ -1,119 +1,446 @@
-import React from 'react';
-import SolutionPageLayout from '../components/solutions/SolutionPageLayout';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import { Button } from '@/components/ui/button';
+import DualCTABlock from '@/components/shared/DualCTABlock';
+import { ArrowRight, CheckCircle, Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench, HelpCircle, ChevronDown, Quote } from 'lucide-react';
+
+const featureIcons = [Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench];
 
 const service = {
   title: 'Custom Apps',
   h2: 'Turn Your Ideas Into Tools.',
   descriptivePhrase: 'Create Custom Software & Applications',
   overview: 'With AI, turning ideas into tools has never been faster-we can take a concept, workflow, or software idea and bring it to life quickly and effectively. From custom calculators to AI-powered content machines, and even fully functional games, we have already built tools that solve real problems. Whatever your business needs, we can create a custom app or system that makes your work easier, smarter, and more scalable.',
-  image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/after-phone-sec.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg',
   heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/custom-apps.mp4',
-  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/custom-apps.mp4',
+  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/custom-apps.jpg',
   outcomes: [
-    {
-      title: 'Faster Development',
-      description: 'Build custom solutions in weeks instead of months using AI-accelerated development workflows.'
-    },
-    {
-      title: 'Tailored Solutions',
-      description: 'Get exactly what your business needs-no forcing your workflow into off-the-shelf software.'
-    },
-    {
-      title: 'Competitive Advantage',
-      description: 'Gain unique tools and systems that differentiate you from competitors stuck with generic solutions.'
-    }
+    { title: 'Faster Development', description: 'Build custom solutions in weeks instead of months using AI-accelerated development workflows.' },
+    { title: 'Tailored Solutions', description: 'Get exactly what your business needs-no forcing your workflow into off-the-shelf software.' },
+    { title: 'Competitive Advantage', description: 'Gain unique tools and systems that differentiate you from competitors stuck with generic solutions.' }
   ],
   process: [
-    {
-      title: 'Discovery & Requirements',
-      description: 'Deep dive into your business process, pain points, and desired outcomes to define the perfect solution.'
-    },
-    {
-      title: 'Design & Prototyping',
-      description: 'Create wireframes, user flows, and interactive prototypes to validate the concept before full development.'
-    },
-    {
-      title: 'Development & Testing',
-      description: 'Build your custom application with modern tech stack, rigorous testing, and quality assurance.'
-    },
-    {
-      title: 'Launch & Support',
-      description: 'Deploy your application, train your team, and provide ongoing maintenance and feature enhancements.'
-    }
+    { title: 'Discovery & Requirements', description: 'Deep dive into your business process, pain points, and desired outcomes to define the perfect solution.' },
+    { title: 'Design & Prototyping', description: 'Create wireframes, user flows, and interactive prototypes to validate the concept before full development.' },
+    { title: 'Development & Testing', description: 'Build your custom application with modern tech stack, rigorous testing, and quality assurance.' },
+    { title: 'Launch & Support', description: 'Deploy your application, train your team, and provide ongoing maintenance and feature enhancements.' }
   ],
   features: [
-    {
-      title: 'Web Application Development',
-      description: 'Custom web apps built with React, Node.js, and modern frameworks'
-    },
-    {
-      title: 'Mobile App Development',
-      description: 'Native iOS and Android apps or cross-platform solutions'
-    },
-    {
-      title: 'AI-Powered Tools',
-      description: 'Integrate AI capabilities for automation, analysis, and intelligence'
-    },
-    {
-      title: 'Custom Calculators & Tools',
-      description: 'Lead generation tools and calculators tailored to your industry'
-    },
-    {
-      title: 'API Development & Integration',
-      description: 'Connect your app to external services and data sources'
-    },
-    {
-      title: 'Database Design & Management',
-      description: 'Scalable data architecture supporting your application'
-    },
-    {
-      title: 'User Interface & Experience Design',
-      description: 'Intuitive, beautiful interfaces that users love'
-    },
-    {
-      title: 'Maintenance & Updates',
-      description: 'Ongoing support, bug fixes, and feature enhancements'
-    }
+    { title: 'Web Application Development', description: 'Custom web apps built with React, Node.js, and modern frameworks' },
+    { title: 'Mobile App Development', description: 'Native iOS and Android apps or cross-platform solutions' },
+    { title: 'AI-Powered Tools', description: 'Integrate AI capabilities for automation, analysis, and intelligence' },
+    { title: 'Custom Calculators & Tools', description: 'Lead generation tools and calculators tailored to your industry' },
+    { title: 'API Development & Integration', description: 'Connect your app to external services and data sources' },
+    { title: 'Database Design & Management', description: 'Scalable data architecture supporting your application' },
+    { title: 'User Interface & Experience Design', description: 'Intuitive, beautiful interfaces that users love' },
+    { title: 'Maintenance & Updates', description: 'Ongoing support, bug fixes, and feature enhancements' }
   ],
   faqs: [
-    {
-      question: 'How long does custom app development take?',
-      answer: 'Simple applications take 4-8 weeks. More complex systems with integrations, AI features, and advanced functionality take 12-16 weeks. We provide detailed timelines during discovery and break projects into phases for faster time-to-value.'
-    },
-    {
-      question: 'What technologies do you use?',
-      answer: 'We build with modern, proven technology stacks including React, Node.js, Python, PostgreSQL, and cloud infrastructure like AWS or Google Cloud. Technology choices are driven by your specific needs, not our preferences. We recommend the best tools for your use case.'
-    },
-    {
-      question: 'Can you integrate with our existing systems?',
-      answer: 'Yes. We integrate with virtually any system via APIs, webhooks, or custom connectors. Common integrations include CRMs (HubSpot, Salesforce), payment processors (Stripe), email systems (SendGrid), and databases. We ensure seamless data flow between your new app and existing tools.'
-    },
-    {
-      question: 'Do you provide hosting and maintenance?',
-      answer: 'Yes. We offer managed hosting and ongoing maintenance packages that include server management, security updates, bug fixes, and feature enhancements. You own the code and can host anywhere, but many clients prefer our managed service for peace of mind.'
-    },
-    {
-      question: 'What if my idea changes during development?',
-      answer: 'We embrace iteration and flexibility. Projects are structured in phases with regular check-ins and demos. While major scope changes affect timeline and budget, minor adjustments and improvements are expected. We use agile methodology to adapt to evolving requirements.'
-    }
+    { question: 'How long does custom app development take?', answer: 'Simple applications take 4-8 weeks. More complex systems with integrations, AI features, and advanced functionality take 12-16 weeks. We provide detailed timelines during discovery and break projects into phases for faster time-to-value.' },
+    { question: 'What technologies do you use?', answer: 'We build with modern, proven technology stacks including React, Node.js, Python, PostgreSQL, and cloud infrastructure like AWS or Google Cloud. Technology choices are driven by your specific needs, not our preferences. We recommend the best tools for your use case.' },
+    { question: 'Can you integrate with our existing systems?', answer: 'Yes. We integrate with virtually any system via APIs, webhooks, or custom connectors. Common integrations include CRMs (HubSpot, Salesforce), payment processors (Stripe), email systems (SendGrid), and databases. We ensure seamless data flow between your new app and existing tools.' },
+    { question: 'Do you provide hosting and maintenance?', answer: 'Yes. We offer managed hosting and ongoing maintenance packages that include server management, security updates, bug fixes, and feature enhancements. You own the code and can host anywhere, but many clients prefer our managed service for peace of mind.' },
+    { question: 'What if my idea changes during development?', answer: 'We embrace iteration and flexibility. Projects are structured in phases with regular check-ins and demos. While major scope changes affect timeline and budget, minor adjustments and improvements are expected. We use agile methodology to adapt to evolving requirements.' }
   ],
   testimonials: [
-    {
-      name: 'Mitchell Halvorsen',
-      company: 'Google Review',
-      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
-    },
-    {
-      name: 'Chris',
-      company: 'Google Review',
-      quote: 'Professional, well organized, and knowledgeable. If you\'re looking for a company that can drive revenue and expand your business success, this is the right place for you.'
-    }
-  ],
-  cta_label: 'Book a Strategy Session',
-  cta_link: 'book-strategy-session'
+    { name: 'Mitchell Halvorsen', company: 'Google Review', quote: "I can't say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today's fast-paced digital world. They made the process smooth from start to finish." },
+    { name: 'Chris', company: 'Google Review', quote: "Professional, well organized, and knowledgeable. If you're looking for a company that can drive revenue and expand your business success, this is the right place for you." }
+  ]
 };
 
 export default function CustomApps() {
-  return <SolutionPageLayout service={service} />;
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  return (
+    <div className="text-white">
+      {/* Full-Screen Hero — Podcast Style */}
+      <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            src={service.heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={service.heroImage}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+        </div>
+
+        {/* Hero Content — Left Aligned */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-block mb-4">
+                <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20 backdrop-blur-sm">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                  <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">AI-Powered Development</span>
+                </div>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-white">
+                {service.h2.replace('.', '')}
+                <br />
+                <span className="text-gold-shine">Custom Apps & Software.</span>
+              </h1>
+
+              <p className="text-xl sm:text-2xl text-gray-200 mb-8 leading-relaxed">
+                From concept to launch, we build custom applications that solve real problems and give your business a competitive edge.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to={createPageUrl('book-strategy-session')}
+                  className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-[0_0_25px_rgba(191,149,63,0.5)] transition-all duration-300"
+                  style={{
+                    clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
+                    boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
+                  }}
+                >
+                  <span>Book a Strategy Session</span>
+                  <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <a href="#how-it-works" onClick={(e) => { e.preventDefault(); document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                  <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
+                    See How It Works
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Overview Section */}
+      <section className="relative bg-black py-20 sm:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              {service.descriptivePhrase.split('&')[0]}
+              <span className="text-gold-shine">& Applications</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mt-6 max-w-3xl mx-auto">
+              {service.overview}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Outcomes */}
+      <section className="relative bg-black py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Results</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Expected Outcomes</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {service.outcomes.map((outcome, i) => (
+              <motion.div
+                key={i}
+                className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <CheckCircle className="w-8 h-8 icon-gold-shine mb-4" />
+                <h3 className="font-bold text-xl mb-2 text-white group-hover:text-yellow-500 transition-colors">{outcome.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{outcome.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works / Process */}
+      <section id="how-it-works" className="relative py-16 sm:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Our Process</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">How It Works</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Our proven process for delivering results
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {service.process.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 h-full group">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-black rounded-full flex items-center justify-center font-bold text-xl mb-4">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-bold text-xl mb-3 text-white group-hover:text-yellow-500 transition-colors">{step.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+                </div>
+                {index < service.process.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <ArrowRight className="w-8 h-8 icon-gold-shine" />
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features / What You Get */}
+      <section className="relative bg-black py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Capabilities</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">What You Get</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Comprehensive solutions tailored to your needs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {service.features.map((feature, index) => {
+              const Icon = featureIcons[index] || CheckCircle;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4 group-hover:bg-yellow-500/20 transition-colors">
+                    <Icon className="w-6 h-6 icon-gold-shine" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2 text-white group-hover:text-yellow-500 transition-colors">{feature.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="relative py-16 sm:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">FAQ</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-400">
+              Everything you need to know about Custom Apps
+            </p>
+          </motion.div>
+
+          <div className="space-y-4">
+            {service.faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full p-6 flex items-center justify-between gap-4 text-left hover:bg-white/5 transition-colors"
+                  >
+                    <div className="flex items-start gap-4 flex-1">
+                      <HelpCircle className="w-6 h-6 icon-gold-shine flex-shrink-0 mt-1" />
+                      <h3 className="font-bold text-lg text-white">{faq.question}</h3>
+                    </div>
+                    <ChevronDown
+                      className={`w-6 h-6 icon-gold-shine flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pl-16">
+                          <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="relative bg-black py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="inline-block mb-4">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Testimonials</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">Client Success Stories</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              See the real-world impact of our solutions.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {service.testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-yellow-500/30 transition-all duration-300"
+              >
+                <Quote className="w-10 h-10 text-yellow-400/30 mb-4" />
+                <blockquote className="text-gray-300 leading-relaxed mb-6">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-xl">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-white">{testimonial.name}</h3>
+                    {testimonial.company && <p className="text-sm text-gray-400">{testimonial.company}</p>}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-block mb-6">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Get Started</span>
+              </div>
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Ready to Build Your Custom App?</h2>
+
+            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Let's turn your idea into a powerful tool that drives real business results
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                to={createPageUrl('book-strategy-session')}
+                className="group relative inline-flex items-center justify-center h-16 px-10 text-lg font-bold text-black uppercase bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-[0_0_25px_rgba(191,149,63,0.5)] transition-all duration-300"
+                style={{
+                  clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)',
+                  boxShadow: '0 0 20px rgba(191, 149, 63, 0.4)'
+                }}
+              >
+                <span>Book a Strategy Session</span>
+                <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link to={createPageUrl('solutions')}>
+                <Button variant="outline" size="lg" className="border-white/60 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm h-16 px-8 text-lg">
+                  See Other Solutions
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
 }
