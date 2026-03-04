@@ -22,9 +22,7 @@ const corporateStudioImages = [
   "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235602.png",
   "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235615.png",
   "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235700.png",
-  "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235720.png",
-  "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235626.png",
-  "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235650.png"
+  "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/podcast/peerspace-imgs/Screenshot%202026-03-03%20235720.png"
 ];
 
 export default function Podcast() {
@@ -111,7 +109,7 @@ export default function Podcast() {
   return (
     <div className="text-white">
       {/* Page Title */}
-      <PageTitle title="PODCAST PRODUCTION" />
+      {/*<PageTitle title="PODCAST PRODUCTION" />*/}
 
       {/* Full-Screen Hero with Full-Width Image */}
       <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
@@ -176,39 +174,6 @@ export default function Podcast() {
         </div>
       </section>
 
-      {/* Podcast Highlight */}
-      <section id="podcast-highlight" className="relative bg-black py-16 sm:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
-              Podcasting Excellence <span className="text-gold-shine">In Action</span>
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400 mb-10">
-              Real shows. Real brands. Real momentum.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/UU4a5VOucJg"
-              title="Podcast Highlight Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-            />
-          </motion.div>
-        </div>
-      </section>
 
       {/* Production Services Horizontal Scroller */}
       <section className="relative bg-black py-12 overflow-hidden">
@@ -482,6 +447,40 @@ export default function Podcast() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
       </section>
 
+      {/* Podcast Highlight */}
+      <section id="podcast-highlight" className="relative bg-black py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              Podcasting Excellence <span className="text-gold-shine">In Action</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-400 mb-10">
+              Real shows. Real brands. Real momentum.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/UU4a5VOucJg"
+              title="Podcast Highlight Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Studio Showcase with Glassmorphic Cards */}
       <section className="relative py-24 sm:py-32 overflow-hidden">
         {/* Background */}
@@ -650,38 +649,21 @@ export default function Podcast() {
                 />
               </motion.div>
 
-              {/* Thumbnails — 4 per row, second row centered */}
-              <div className="mt-12 max-w-6xl mx-auto">
-                <div className="grid grid-cols-4 gap-8">
-                  {corporateStudioImages.slice(0, 4).map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveCorporateImage(index)}
-                      className={`aspect-video rounded-2xl overflow-hidden border-4 transition-all ${
-                        activeCorporateImage === index
-                          ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-110'
-                          : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-110'
-                      }`}
-                    >
-                      <img src={image} alt={`Corporate Studio ${index + 1}`} className="w-full h-full object-cover" loading="lazy" />
-                    </button>
-                  ))}
-                </div>
-                <div className="flex justify-center gap-8 mt-8">
-                  {corporateStudioImages.slice(4).map((image, index) => (
-                    <button
-                      key={index + 4}
-                      onClick={() => setActiveCorporateImage(index + 4)}
-                      className={`aspect-video w-[calc(25%-1.5rem)] rounded-2xl overflow-hidden border-4 transition-all ${
-                        activeCorporateImage === index + 4
-                          ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-110'
-                          : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-110'
-                      }`}
-                    >
-                      <img src={image} alt={`Corporate Studio ${index + 5}`} className="w-full h-full object-cover" loading="lazy" />
-                    </button>
-                  ))}
-                </div>
+              {/* Thumbnails — single row of 5 */}
+              <div className="grid grid-cols-5 gap-8 mt-12 max-w-6xl mx-auto">
+                {corporateStudioImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveCorporateImage(index)}
+                    className={`aspect-video rounded-2xl overflow-hidden border-4 transition-all ${
+                      activeCorporateImage === index
+                        ? 'border-yellow-500 shadow-lg shadow-yellow-500/50 scale-110'
+                        : 'border-white/20 opacity-70 hover:opacity-100 hover:border-yellow-500/50 hover:scale-110'
+                    }`}
+                  >
+                    <img src={image} alt={`Corporate Studio ${index + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                  </button>
+                ))}
               </div>
             </div>
 
