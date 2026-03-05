@@ -27,25 +27,27 @@ const service = {
     { title: 'Launch & Support', description: 'Deploy your application, train your team, and provide ongoing maintenance and feature enhancements.' }
   ],
   features: [
-    { title: 'Web Application Development', description: 'Custom web apps built with React, Node.js, and modern frameworks' },
-    { title: 'Mobile App Development', description: 'Native iOS and Android apps or cross-platform solutions' },
-    { title: 'AI-Powered Tools', description: 'Integrate AI capabilities for automation, analysis, and intelligence' },
-    { title: 'Custom Calculators & Tools', description: 'Lead generation tools and calculators tailored to your industry' },
-    { title: 'API Development & Integration', description: 'Connect your app to external services and data sources' },
-    { title: 'Database Design & Management', description: 'Scalable data architecture supporting your application' },
-    { title: 'User Interface & Experience Design', description: 'Intuitive, beautiful interfaces that users love' },
-    { title: 'Maintenance & Updates', description: 'Ongoing support, bug fixes, and feature enhancements' }
+    { title: 'Web Application Development', description: 'Full-stack web apps built with modern frameworks like React and Node.js. Fast, responsive, and built to handle real business workloads from day one.' },
+    { title: 'Mobile App Development', description: 'iOS and Android apps — native or cross-platform — that give your customers a polished, professional experience right from their pocket.' },
+    { title: 'AI-Powered Tools', description: 'Embed AI directly into your workflow. From intelligent content generators to automated analysis engines, we build tools that think so your team doesn\'t have to.' },
+    { title: 'Custom Calculators & Tools', description: 'Interactive lead-gen tools — ROI calculators, quote builders, assessment tools — that capture prospects and demonstrate your value before a single call.' },
+    { title: 'API Development & Integration', description: 'Connect your app to the platforms you already use. CRMs, payment processors, data feeds — we make everything talk to each other seamlessly.' },
+    { title: 'Database Design & Management', description: 'Structured, scalable data architecture that keeps your app fast and reliable as your user base grows. No bottlenecks, no data chaos.' },
+    { title: 'User Interface & Experience Design', description: 'Clean, intuitive interfaces that feel easy to use — because software your team actually enjoys using gets used, and software that doesn\'t gets ignored.' },
+    { title: 'Maintenance & Updates', description: 'Your app grows with your business. We provide ongoing support, feature additions, and performance improvements long after launch day.' }
   ],
   faqs: [
     { question: 'How long does custom app development take?', answer: 'Simple applications take 4-8 weeks. More complex systems with integrations, AI features, and advanced functionality take 12-16 weeks. We provide detailed timelines during discovery and break projects into phases for faster time-to-value.' },
     { question: 'What technologies do you use?', answer: 'We build with modern, proven technology stacks including React, Node.js, Python, PostgreSQL, and cloud infrastructure like AWS or Google Cloud. Technology choices are driven by your specific needs, not our preferences. We recommend the best tools for your use case.' },
     { question: 'Can you integrate with our existing systems?', answer: 'Yes. We integrate with virtually any system via APIs, webhooks, or custom connectors. Common integrations include CRMs (HubSpot, Salesforce), payment processors (Stripe), email systems (SendGrid), and databases. We ensure seamless data flow between your new app and existing tools.' },
     { question: 'Do you provide hosting and maintenance?', answer: 'Yes. We offer managed hosting and ongoing maintenance packages that include server management, security updates, bug fixes, and feature enhancements. You own the code and can host anywhere, but many clients prefer our managed service for peace of mind.' },
-    { question: 'What if my idea changes during development?', answer: 'We embrace iteration and flexibility. Projects are structured in phases with regular check-ins and demos. While major scope changes affect timeline and budget, minor adjustments and improvements are expected. We use agile methodology to adapt to evolving requirements.' }
+    { question: 'What if my idea changes during development?', answer: 'We embrace iteration and flexibility. Projects are structured in phases with regular check-ins and demos. While major scope changes affect timeline and budget, minor adjustments and improvements are expected. We use agile methodology to adapt to evolving requirements.' },
+    { question: 'How much does a custom app cost with AI vs. traditional development?', answer: 'Traditional software development typically runs $50,000–$250,000+ and takes 6–18 months — before you factor in ongoing developer salaries or agency retainers. That\'s the old way. With AI-accelerated development (what some call "vibe coding"), we can build the same quality tools in a fraction of the time at a fraction of the cost. Most of our custom apps come in well under what a single month of a traditional dev agency would charge — and they\'re ready in weeks, not quarters. The result is the same powerful, tailored software — just smarter, faster, and more affordable.' }
   ],
   testimonials: [
     { name: 'Mitchell Halvorsen', company: 'Google Review', quote: "I can't say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today's fast-paced digital world. They made the process smooth from start to finish." },
-    { name: 'Chris', company: 'Google Review', quote: "Professional, well organized, and knowledgeable. If you're looking for a company that can drive revenue and expand your business success, this is the right place for you." }
+    { name: 'Chris', company: 'Google Review', quote: "Professional, well organized, and knowledgeable. If you're looking for a company that can drive revenue and expand your business success, this is the right place for you." },
+    { name: 'Sarah M.', company: 'Business Owner', quote: "They built us a custom quoting tool that our sales team uses every single day. What would have taken months with a traditional developer was live in a few weeks. It's already paid for itself." }
   ]
 };
 
@@ -69,7 +71,7 @@ export default function CustomApps() {
             muted
             playsInline
             poster={service.heroImage}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
+            className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
@@ -199,7 +201,7 @@ export default function CustomApps() {
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">How It Works</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Our proven process for delivering results
+              This is our proven process to create powerful tools that fit your workflow, serve your customers, and scale with your business.
             </p>
           </motion.div>
 
