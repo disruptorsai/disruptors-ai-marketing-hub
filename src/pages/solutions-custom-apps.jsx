@@ -71,7 +71,7 @@ export default function CustomApps() {
             muted
             playsInline
             poster={service.heroImage}
-            className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
+            className="absolute top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
@@ -125,21 +125,52 @@ export default function CustomApps() {
       </section>
 
       {/* Overview Section */}
-      <section className="relative bg-black py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0d0d0d] to-black" />
+        {/* Subtle gold glow behind heading */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+            <div className="inline-block mb-5">
+              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">What We Do</span>
+              </div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               {service.descriptivePhrase.split('&')[0]}
               <span className="text-gold-shine">& Applications</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mt-6 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
               {service.overview}
             </p>
+          </motion.div>
+
+          {/* Stats strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10"
+          >
+            {[
+              { value: '4–8 Weeks', label: 'Average Delivery Time' },
+              { value: '10×', label: 'Faster Than Traditional Dev' },
+              { value: '100%', label: 'Custom to Your Business' },
+            ].map((stat, i) => (
+              <div key={i} className="bg-[#0d0d0d] px-8 py-8 text-center hover:bg-white/5 transition-colors">
+                <div className="text-3xl sm:text-4xl font-bold text-gold-shine mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
