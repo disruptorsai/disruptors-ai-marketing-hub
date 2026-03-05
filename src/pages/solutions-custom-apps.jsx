@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import DualCTABlock from '@/components/shared/DualCTABlock';
-import { ArrowRight, CheckCircle, Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench, HelpCircle, ChevronDown, Quote } from 'lucide-react';
+import { ArrowRight, CheckCircle, Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench, HelpCircle, ChevronDown, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const featureIcons = [Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench];
 
@@ -382,43 +382,68 @@ export default function CustomApps() {
       </section>
 
       {/* Testimonials — Carousel */}
-      <section className="relative py-20 sm:py-28 overflow-hidden bg-[#0a0e1a]">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 pointer-events-none" />
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 sm:py-24 overflow-hidden bg-[#080c18]">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
 
-          {/* Large quote icon */}
-          <Quote className="w-14 h-14 text-[#BF953F]/40 mx-auto mb-8" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section label */}
+          <div className="flex justify-center mb-10">
+            <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+              <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Client Stories</span>
+            </div>
+          </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTestimonial}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.4 }}
+          {/* Card */}
+          <div className="relative bg-white/5 border border-white/10 rounded-3xl px-8 py-12 sm:px-16 sm:py-16 text-center">
+            {/* Decorative quote mark */}
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[120px] leading-none text-[#BF953F]/10 font-serif select-none pointer-events-none">"</div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTestimonial}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
+                className="relative z-10"
+              >
+                <p className="text-lg sm:text-xl lg:text-2xl font-light leading-relaxed text-white mb-10">
+                  "{service.testimonials[activeTestimonial].quote}"
+                </p>
+                <div className="flex flex-col items-center gap-1">
+                  <div className="w-10 h-px bg-[#BF953F]/50 mb-4" />
+                  <span className="font-bold text-white text-lg">{service.testimonials[activeTestimonial].name}</span>
+                  {service.testimonials[activeTestimonial].company && (
+                    <span className="text-sm text-[#BF953F]">{service.testimonials[activeTestimonial].company}</span>
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Prev / Next arrows */}
+            <button
+              onClick={() => setActiveTestimonial((activeTestimonial - 1 + service.testimonials.length) % service.testimonials.length)}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:border-[#BF953F]/60 hover:text-[#BF953F] transition-all"
             >
-              <blockquote className="text-xl sm:text-2xl text-white/90 leading-relaxed mb-10 font-light">
-                "{service.testimonials[activeTestimonial].quote}"
-              </blockquote>
-              <div className="mb-10">
-                <p className="font-bold text-lg text-white">{service.testimonials[activeTestimonial].name}</p>
-                {service.testimonials[activeTestimonial].company && (
-                  <p className="text-sm text-[#BF953F] mt-1">{service.testimonials[activeTestimonial].company}</p>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setActiveTestimonial((activeTestimonial + 1) % service.testimonials.length)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:border-[#BF953F]/60 hover:text-[#BF953F] transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
 
           {/* Dots */}
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2 mt-8">
             {service.testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveTestimonial(i)}
                 className={`rounded-full transition-all duration-300 ${
-                  i === activeTestimonial
-                    ? 'w-8 h-2 bg-[#BF953F]'
-                    : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                  i === activeTestimonial ? 'w-8 h-2 bg-[#BF953F]' : 'w-2 h-2 bg-white/20 hover:bg-white/40'
                 }`}
               />
             ))}
