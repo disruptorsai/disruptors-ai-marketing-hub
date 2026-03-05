@@ -53,6 +53,7 @@ const service = {
 
 export default function CustomApps() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -71,7 +72,8 @@ export default function CustomApps() {
             muted
             playsInline
             poster={service.heroImage}
-            className="absolute top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 20%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
@@ -379,52 +381,46 @@ export default function CustomApps() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="relative bg-black py-16 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-block mb-4">
-              <div className="flex items-center gap-3 bg-yellow-500/10 px-6 py-2 rounded-full border border-yellow-500/20">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Testimonials</span>
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">Client Success Stories</h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              See the real-world impact of our solutions.
-            </p>
-          </motion.div>
+      {/* Testimonials — Carousel */}
+      <section className="relative py-20 sm:py-28 overflow-hidden bg-[#0a0e1a]">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {service.testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-yellow-500/30 transition-all duration-300"
-              >
-                <Quote className="w-10 h-10 text-yellow-400/30 mb-4" />
-                <blockquote className="text-gray-300 leading-relaxed mb-6">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-black font-bold text-xl">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-white">{testimonial.name}</h3>
-                    {testimonial.company && <p className="text-sm text-gray-400">{testimonial.company}</p>}
-                  </div>
-                </div>
-              </motion.div>
+          {/* Large quote icon */}
+          <Quote className="w-14 h-14 text-[#BF953F]/40 mx-auto mb-8" />
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTestimonial}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.4 }}
+            >
+              <blockquote className="text-xl sm:text-2xl text-white/90 leading-relaxed mb-10 font-light">
+                "{service.testimonials[activeTestimonial].quote}"
+              </blockquote>
+              <div className="mb-10">
+                <p className="font-bold text-lg text-white">{service.testimonials[activeTestimonial].name}</p>
+                {service.testimonials[activeTestimonial].company && (
+                  <p className="text-sm text-[#BF953F] mt-1">{service.testimonials[activeTestimonial].company}</p>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dots */}
+          <div className="flex items-center justify-center gap-2">
+            {service.testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTestimonial(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeTestimonial
+                    ? 'w-8 h-2 bg-[#BF953F]'
+                    : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                }`}
+              />
             ))}
           </div>
         </div>
