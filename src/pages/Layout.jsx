@@ -136,10 +136,10 @@ export default function Layout({ children, currentPageName }) {
                     className="relative cursor-pointer touch-manipulation"
                   >
                     <img
-                      src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/logo.svg"
+                      src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-logos/logo-banner-white.webp"
                       alt="Disruptors Media Logo"
                       fetchpriority="high"
-                      className={`object-contain h-auto brightness-0 invert transition-all duration-500 ease-in-out ${
+                      className={`object-contain h-auto transition-all duration-500 ease-in-out ${
                         scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'
                       }`}
                     />
