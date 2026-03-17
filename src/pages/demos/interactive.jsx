@@ -180,7 +180,7 @@ export default function InteractiveDemo() {
           style={{ opacity }}
         >
           <motion.img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
             alt="Disruptors AI"
             className="h-32 mx-auto mb-8"
             initial={{ opacity: 0, y: -50 }}

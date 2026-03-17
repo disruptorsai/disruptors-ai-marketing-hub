@@ -208,7 +208,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link to={createPageUrl('')} className="inline-block mb-6">
               <img
-                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+                src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                 alt="Disruptors Media"
                 className="h-16 w-auto"
               />

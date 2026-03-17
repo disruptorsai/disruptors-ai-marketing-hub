@@ -14,7 +14,7 @@ const FALLBACK_MEDIA = {
     alt: "Website demo reel"
   },
   logo: {
-    url: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png",
+    url: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png",
     alt: "Disruptors Media Gold Logo"
   }
 };

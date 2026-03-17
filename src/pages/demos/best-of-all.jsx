@@ -156,7 +156,7 @@ export default function BestOfAllDemo() {
           style={{ opacity: heroOpacity }}
         >
           <motion.img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
             alt="Disruptors AI"
             className="h-28 sm:h-36 mx-auto mb-8"
             initial={{ opacity: 0, scale: 0.8 }}

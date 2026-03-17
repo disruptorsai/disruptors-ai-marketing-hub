@@ -16,7 +16,7 @@ import FastVideo from '@/components/shared/FastVideo';
 // ─── URLs ─────────────────────────────────────────────────────────────
 const HERO_VIDEO = 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4';
 const MAIN_BG = 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg';
-const FRESCO_BG = 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/v1759258608/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png';
+const FRESCO_BG = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png';
 const ADAPT_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/billboard/adapt-or-die.mp4';
 const ROMAN_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4';
 

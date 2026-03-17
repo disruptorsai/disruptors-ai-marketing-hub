@@ -190,7 +190,7 @@ export default function GoogleReviewsSection() {
               {/* Logo */}
               <div className="mb-6">
                 <img
-                  src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+                  src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                   alt="Disruptors AI"
                   className="h-12 object-contain"
                 />

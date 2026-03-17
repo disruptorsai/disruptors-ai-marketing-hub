@@ -23,7 +23,7 @@ const caseData = {
   ],
   testimonial: "I have been so impressed — they've gotten me millions of views on my social media, and I've seen a large uptick in new patients in my office. The strategy and support they've given is significantly better than the 5 or so other marketing companies I've worked with.",
   testimonialAuthor: "Jason Painter, Healthcare Practice",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp",
+  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/thewellnessway-logo.webp",
   heroImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop"
 };
 

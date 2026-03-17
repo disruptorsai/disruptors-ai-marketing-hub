@@ -22,7 +22,7 @@ const PRESENTATION_VIDEOS = [
 
 // High-resolution images to cache
 const PRESENTATION_IMAGES = [
-  'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png',
+  'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
   'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/v1/disruptors-media/hero-poster.jpg',
 ];
 

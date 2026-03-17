@@ -29,7 +29,7 @@ export default function HeroFocusDemo() {
           >
             {/* Logo */}
             <motion.img
-              src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Disruptors AI"
               className="h-24 sm:h-32 lg:h-40 mx-auto mb-8"
               initial={{ opacity: 0, scale: 0.8 }}

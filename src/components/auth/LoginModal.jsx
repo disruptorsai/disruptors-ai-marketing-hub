@@ -214,7 +214,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                         className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-neutral-800 mb-4 shadow-lg p-3"
                       >
                         <img
-                          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697002/disruptors-media/brand/logos/gold-logo.png"
+                          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo.png"
                           alt="Disruptors Logo"
                           className="w-full h-full object-contain"
                         />

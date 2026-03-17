@@ -24,7 +24,7 @@ const caseData = {
     { icon: Target, name: "Project Gallery" }
   ],
   testimonial: "The digital showroom has brought our work to life online. Customers love seeing our detailed craftsmanship.",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png",
+  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/autotrimutah-logo.png",
   heroImage: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop"
 };
 

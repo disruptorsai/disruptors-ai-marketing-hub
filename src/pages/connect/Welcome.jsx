@@ -41,7 +41,7 @@ export default function ConnectWelcome() {
             {/* Golden Eye Banner Logo */}
             <div className="flex justify-center">
               <motion.img
-                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+                src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                 alt="Disruptors AI"
                 className="h-24 sm:h-28 md:h-36 lg:h-48 w-auto object-contain drop-shadow-2xl"
                 initial={{ scale: 0.9, opacity: 0 }}

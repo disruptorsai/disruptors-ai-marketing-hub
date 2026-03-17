@@ -24,7 +24,7 @@ const caseData = {
     { icon: Target, name: "Content Automation" }
   ],
   testimonial: "The automation suite has been a game-changer. Our campaigns are more targeted and effective than ever.",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png",
+  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/segpro-logo.png",
   heroImage: "https://images.unsplash.com/photo-1554224311-beee460c201a?q=80&w=2070&auto=format&fit=crop"
 };
 

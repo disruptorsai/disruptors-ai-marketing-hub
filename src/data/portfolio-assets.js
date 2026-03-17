@@ -403,7 +403,7 @@ export const portfolioAssets = [
     "type": "image",
     "width": 1024,
     "height": 1024,
-    "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759258608/u4455988764_A_vast_Renaissance_fresco_depicting_the_Great_Pyr_830a33dd-1da9-470b-99fa-8e12d1867455_3_l5wfrc.png",
+    "url": "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
     "bytes": 1895277,
     "createdAt": "2025-09-30T18:56:48+00:00"
   }

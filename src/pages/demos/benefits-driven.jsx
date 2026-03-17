@@ -581,7 +581,7 @@ export default function BenefitsDrivenDemo() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="mb-8">
             <img
-              src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Client"
               className="h-16 mx-auto mb-6 opacity-60"
             />

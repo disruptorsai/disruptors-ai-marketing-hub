@@ -24,7 +24,7 @@ const caseData = {
     { icon: Target, name: "Lead Generation" }
   ],
   testimonial: "Our business has grown exponentially since launching the new platform. The project showcases are incredible.",
-  clientLogo: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/granitepaving-logo.png",
   heroImage: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop"
 };
 
