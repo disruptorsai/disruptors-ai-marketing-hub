@@ -8,7 +8,7 @@ export default function HeroNew() {
     <section className="relative bg-transparent pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
         <img
-          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
+          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg"
           alt=""
           className="w-full h-full object-cover"
           loading="lazy"

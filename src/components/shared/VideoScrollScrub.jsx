@@ -29,8 +29,8 @@ gsap.registerPlugin(ScrollTrigger);
  * @param {Object} props.scrollTriggerOptions - Custom ScrollTrigger configuration
  */
 const VideoScrollScrub = ({
-  videoSrc = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4",
-  poster = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
+  videoSrc = "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
+  poster = "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/v1/disruptors-media/hero-poster.jpg",
   title = "AI-Powered Marketing Innovation",
   description = "Discover how we transform businesses with cutting-edge AI solutions",
   className = "",
