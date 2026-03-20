@@ -93,7 +93,7 @@ export default function HomeDev() {
       kicker: "PARTNERSHIP",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+      video: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black"
@@ -112,7 +112,7 @@ export default function HomeDev() {
             muted
             playsInline
             className="w-full h-full object-cover"
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
         </div>
@@ -166,7 +166,7 @@ export default function HomeDev() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
+            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
           </video>
           {/* Black overlay with 90% opacity */}
           <div className="absolute inset-0 bg-black/90" />
@@ -558,7 +558,7 @@ export default function HomeDev() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
             autoPlay
             loop
             muted

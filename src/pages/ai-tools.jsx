@@ -291,7 +291,7 @@ export default function AITools() {
             playsInline
             preload="metadata"
             className="w-full h-full object-cover"
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759352555/airis_lk5i30.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
             poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23000' width='100' height='100'/%3E%3C/svg%3E"
           />
         )}

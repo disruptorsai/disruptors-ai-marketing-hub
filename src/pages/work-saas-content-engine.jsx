@@ -4,7 +4,7 @@ import React from 'react';
 const caseData = {
   client: 'SaaS Content Engine',
   goal: 'Scaled content production by 300% and reduced cost-per-article by 70%.',
-  heroMedia: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737507200/saas-content-engine-dashboard.webp',
+  heroMedia: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png',
   // metrics property removed as per request ("Stats removed")
   challenge: <p>A B2B SaaS client struggled to produce high-quality, technical content at the volume needed to compete in organic search. Their small marketing team was bottlenecked by research, writing, and review cycles, leading to a sparse content calendar and slow growth.</p>,
   approach: <p>We designed and implemented a "Content Engine" powered by AI. This system used fine-tuned language models for initial drafting, automated research agents to gather data and sources, and a streamlined human-in-the-loop workflow for editing and approval. We integrated this with their existing CMS for one-click publishing.</p>,

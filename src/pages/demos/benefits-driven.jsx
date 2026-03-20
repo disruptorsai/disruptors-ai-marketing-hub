@@ -349,9 +349,9 @@ export default function BenefitsDrivenDemo() {
           >
             <video
               className="w-full h-full object-cover"
-              poster="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+              poster="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
               controls
-              src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="bg-[#FFD700] rounded-full p-6 shadow-2xl">

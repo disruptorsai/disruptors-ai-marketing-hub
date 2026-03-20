@@ -8,7 +8,6 @@ import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
 import FastVideo from '@/components/shared/FastVideo';
-import { optimizeCloudinaryImage, optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-optimizer';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -145,19 +144,7 @@ export default function Solutions() {
       <section ref={sectionRef} className="w-full relative">
         {/* Desktop image */}
         <img
-          src={optimizeCloudinaryImage(
-            "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
-            {
-              width: 1920,
-              quality: 'auto:good',
-              crop: 'scale'
-            }
-          )}
-          srcSet={`
-            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1024 })} 1024w,
-            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1920 })} 1920w
-          `}
-          sizes="100vw"
+          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/new%20images/funnel-approach-disruptors%20(1).webp"
           alt="Our approach is simple yet impactful"
           className="hidden md:block w-full h-auto"
           loading="eager"
@@ -179,13 +166,7 @@ export default function Solutions() {
         {!isMobile && (
           <img
             ref={handRef}
-            src={optimizeCloudinaryImage(
-              "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png",
-              {
-                width: 1200,
-                quality: 'auto:good'
-              }
-            )}
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
             alt="Pointing hand"
             className="absolute"
             style={{
@@ -208,14 +189,8 @@ export default function Solutions() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src={optimizeCloudinaryVideo(
-              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
-              { width: 1920, quality: 'auto' }
-            )}
-            poster={getVideoThumbnail(
-              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4",
-              { width: 1920 }
-            )}
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
+            poster="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
             autoplay
             loop
             muted
@@ -321,14 +296,8 @@ export default function Solutions() {
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src={optimizeCloudinaryVideo(
-              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
-              { width: 1920, quality: 'auto' }
-            )}
-            poster={getVideoThumbnail(
-              "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
-              { width: 1920 }
-            )}
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            poster="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
             autoplay
             loop
             muted

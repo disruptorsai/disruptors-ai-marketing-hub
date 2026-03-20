@@ -16,7 +16,7 @@ export default function AuditProvenGrowth() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/work/work-hero-background.jpg"
+          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
           alt=""
           className="w-full h-full object-cover"
         />

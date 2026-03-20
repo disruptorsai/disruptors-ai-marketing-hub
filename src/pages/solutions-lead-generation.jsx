@@ -6,10 +6,10 @@ const service = {
   h2: 'Fill Your Pipeline, Fast.',
   descriptivePhrase: 'Cold Outbound Systems That Convert',
   overview: 'We send millions of cold emails and social media DMs every month, which means we have mastered the art of starting conversations that turn into opportunities. If you are in the B2B space, cold outbound is the fastest and most affordable way to fill your pipeline with qualified prospects. We handle everything-targeting, copywriting, and automation-so you can focus on closing deals while we keep the conversations flowing.',
-  image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-1.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/lead-generation.jpg',
-  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/lead-generation.mp4',
-  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/lead-generation.mp4',
+  image: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
+  heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png',
+  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4',
+  cardVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4',
   outcomes: [
     {
       title: 'Qualified Prospects',

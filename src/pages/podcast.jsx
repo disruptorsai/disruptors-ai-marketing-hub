@@ -186,7 +186,7 @@ export default function Podcast() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046521/dmsite/services/podcasting.mp4" type="video/mp4" />
+            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/80" />
         </div>
@@ -731,7 +731,7 @@ export default function Podcast() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
             autoPlay
             loop
             muted

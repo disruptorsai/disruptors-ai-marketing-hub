@@ -161,7 +161,7 @@ export default function Pricing() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
+            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/85" />
         </div>

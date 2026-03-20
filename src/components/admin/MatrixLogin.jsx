@@ -160,7 +160,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover opacity-20"
-        src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759352555/airis_lk5i30.mp4"
+        src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
         autoPlay
         loop
         muted={isMuted}

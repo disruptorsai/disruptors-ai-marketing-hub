@@ -10,7 +10,7 @@ const FALLBACK_MEDIA = {
     alt: ""
   },
   video: {
-    url: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+    url: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4",
     alt: "Website demo reel"
   },
   logo: {

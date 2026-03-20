@@ -39,7 +39,7 @@ export default function LoadingScreen({ onComplete }) {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
           style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697023/disruptors-media/ui/backgrounds/loader-lft.jpg)',
+            backgroundImage: 'url(https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -55,7 +55,7 @@ export default function LoadingScreen({ onComplete }) {
             {/* Left Side - Disruptors Logo */}
             <div className="flex-1 flex items-center justify-center">
               <motion.img
-                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/brand/logos/logo.svg"
+                src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                 alt="Disruptors Media"
                 className="h-16 brightness-0 invert opacity-90"
                 initial={{ scale: 0.8, opacity: 0 }}

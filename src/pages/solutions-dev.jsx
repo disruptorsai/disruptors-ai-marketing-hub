@@ -129,14 +129,14 @@ export default function SolutionsDev() {
       {/* Hero Image */}
       <section ref={sectionRef} className="w-full relative">
         <img
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png"
+          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/new%20images/funnel-approach-disruptors%20(1).webp"
           alt="Our approach is simple yet impactful"
           className="w-full h-auto"
         />
         {/* Scroll-Animated Hand */}
         <img
           ref={handRef}
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png"
+          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
           alt="Pointing hand"
           className="absolute w-96 md:w-[36rem] lg:w-[48rem]"
         />
@@ -146,7 +146,7 @@ export default function SolutionsDev() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258610/gallery-bg_lrxadn.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
             autoPlay
             loop
             muted

@@ -127,7 +127,7 @@ export default function AboutDev() {
     {
       headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760122863/social_u4455988764_wide_landscape_scene_in_an_ancient_GreekRoman_for_d1743cde-0bcd-4c10-8d24-bbd35b21bed2_0_krsrsm.mp4",
+      video: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4",
       imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-transparent backdrop-blur-md",
       textColor: "text-black"
@@ -138,7 +138,7 @@ export default function AboutDev() {
     {
       headline: "Local Salt Lake City Expertise, National Impact",
       body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1760126800/u4455988764_epic_wide_battlefield_at_dawn_outside_an_ancient_ro_16901c5a-6870-4b9f-9700-1b416cbdb668_mz8mq3.png",
+      image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
       imageAlt: "Partnership and collaboration visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black"
@@ -184,9 +184,9 @@ export default function AboutDev() {
               loop
               playsInline
               controls
-              poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg"
+              poster="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png"
             >
-              <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4" type="video/mp4" />
+              <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -207,7 +207,7 @@ export default function AboutDev() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759269831/social_u4455988764_a_michealangelo_painting_of_the_roman_army_in_a_w_c2966bc6-6ae4-4a6c-a3a0-10417b7e23ee_0_vnc9jx.mp4" type="video/mp4" />
+            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
           </video>
           {/* Black overlay with 90% opacity */}
           <div className="absolute inset-0 bg-black/90" />
