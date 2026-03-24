@@ -145,19 +145,7 @@ export default function Solutions() {
       <section ref={sectionRef} className="w-full relative">
         {/* Desktop image */}
         <img
-          src={optimizeCloudinaryImage(
-            "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png",
-            {
-              width: 1920,
-              quality: 'auto:good',
-              crop: 'scale'
-            }
-          )}
-          srcSet={`
-            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1024 })} 1024w,
-            ${optimizeCloudinaryImage("https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759862401/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png", { width: 1920 })} 1920w
-          `}
-          sizes="100vw"
+          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/Our_approach_is_simple_yet_impactful._We_combine_strategic_thinking_with_creative_flair_to_enhance_your_digital_presence_and_drive_real_results._Whether_expanding_your_audience_or_boosting_your_on_bal2jf.png"
           alt="Our approach is simple yet impactful"
           className="hidden md:block w-full h-auto"
           loading="eager"
@@ -179,20 +167,14 @@ export default function Solutions() {
         {!isMobile && (
           <img
             ref={handRef}
-            src={optimizeCloudinaryImage(
-              "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697014/disruptors-media/services/graphics/hand-srv.png",
-              {
-                width: 1200,
-                quality: 'auto:good'
-              }
-            )}
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/services/graphics/hand-robot_point_left.png"
             alt="Pointing hand"
             className="absolute"
             style={{
-              width: '35vw', // Viewport-based sizing for responsive scaling
+              width: '45vw', // Viewport-based sizing for responsive scaling
               height: 'auto', // Maintain aspect ratio
-              maxWidth: '48rem', // Cap max size at original lg breakpoint
-              minWidth: '24rem' // Prevent getting too small
+              maxWidth: '56rem', // Cap max size
+              minWidth: '28rem' // Prevent getting too small
             }}
             loading="lazy"
           />
