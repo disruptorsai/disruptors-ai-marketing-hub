@@ -12,55 +12,55 @@ const FALLBACK_SERVICES = [
     title: "AI Automation",
     hook: "Transform your business operations by automating repetitive tasks, streamlining workflows, and eliminating manual bottlenecks. Our AI-powered solutions free your team to focus on high-value activities while machines handle the routine work with precision and speed.",
     slug: "solutions-ai-automation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/ai-automation.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/ai-automation.jpg"
   },
   {
     title: "Social Media Marketing",
     hook: "Build authentic connections with your audience through strategic content that cuts through the noise. We create data-driven campaigns that engage your community, spark conversations, and turn followers into loyal customers who advocate for your brand.",
     slug: "solutions-social-media",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/social-media-marketing.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/social-media-marketing.jpg"
   },
   {
     title: "SEO & GEO",
     hook: "Dominate local and organic search results to ensure your ideal customers find you first. We combine technical SEO expertise with geo-targeted strategies to boost your visibility, drive qualified traffic, and establish your authority in your market.",
     slug: "solutions-seo-geo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/seo-geo.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/seo-geo.jpg"
   },
   {
     title: "Lead Generation",
     hook: "Fill your sales pipeline with high-quality, ready-to-convert prospects through proven multi-channel strategies. We identify your ideal customers, craft compelling offers, and deploy targeted campaigns that consistently deliver qualified leads to fuel your growth.",
     slug: "solutions-lead-generation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/lead-generation.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/lead-generation.jpg"
   },
   {
     title: "Paid Advertising",
     hook: "Maximize your advertising ROI across Google Ads, Meta, LinkedIn, and emerging platforms with data-driven campaigns. Our performance marketing experts continuously optimize your ad spend to reduce acquisition costs while scaling results that directly impact your bottom line.",
     slug: "solutions-paid-advertising",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/paid-advertising.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/paid-advertising.jpg"
   },
   {
     title: "Podcasting",
     hook: "Establish thought leadership and build deep audience connections through strategic podcast production and promotion. We handle everything from concept development to editing, distribution, and amplification—turning your voice into a powerful brand asset that drives authority and trust.",
     slug: "solutions-podcasting",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/podcasting.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/podcasting.jpg"
   },
   {
     title: "Custom Apps",
     hook: "Solve unique business challenges with tailor-made software solutions designed specifically for your workflows and goals. From internal tools to customer-facing platforms, we build scalable applications that give you a competitive edge and streamline your operations.",
     slug: "solutions-custom-apps",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/custom-apps.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/custom-apps.jpg"
   },
   {
     title: "CRM Management",
     hook: "Transform scattered customer data into a strategic asset with expertly configured and managed CRM systems. We optimize your customer relationship workflows, implement automation that nurtures leads at scale, and provide insights that help you close more deals faster.",
     slug: "solutions-crm-management",
-    image: "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto:good,so_0/v1/dmsite/services/crm-management.jpg?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/crm-management.jpg"
   },
   {
     title: "Fractional CMO",
     hook: "Access C-suite marketing leadership without the full-time executive cost. Our fractional CMOs bring decades of experience developing growth strategies, building high-performing teams, and driving measurable results—giving you the strategic guidance needed to scale.",
     slug: "solutions-fractional-cmo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto:good/v1/dmsite/services/fractional-cmo?_a=BAMAK+eC0"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/v1/dmsite/services/fractional-cmo.jpg"
   }
 ];
 

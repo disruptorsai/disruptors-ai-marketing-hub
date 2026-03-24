@@ -186,7 +186,7 @@ export default function Podcast() {
             muted
             playsInline
           >
-            <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760046521/dmsite/services/podcasting.mp4" type="video/mp4" />
+            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/podcasting.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/80" />
         </div>

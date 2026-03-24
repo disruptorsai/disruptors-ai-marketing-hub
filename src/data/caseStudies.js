@@ -11,7 +11,7 @@ export const caseStudies = [
     client: 'TradeWorx USA',
     title: 'TradeWorx USA Digital Transformation',
     path: 'work-tradeworx-usa',
-    logo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/tradeworxusa-logo.svg',
+    logo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/tradeworxusa_logo.svg',
     heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/work/heros/tradeworx-hero.jpg',
     video: null, // Add video URL if available
     industry: 'Construction & Trading',
@@ -86,7 +86,7 @@ export const caseStudies = [
     client: 'Sound Corrections',
     title: 'Sound Corrections Audio Engineering Brand',
     path: 'work-sound-corrections',
-    logo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/soundcorrections-logo.svg',
+    logo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/soundcorrections_logo.svg',
     heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/work/heros/sound-corrections-hero.jpg',
     video: null,
     industry: 'Audio Engineering & Production',

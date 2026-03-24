@@ -7,9 +7,9 @@ const service = {
   descriptivePhrase: 'Social Media Content - Smarter With AI',
   overview: 'We help businesses create systems to consistently share their message in the places it matters most through short-form and long-form video, newsletters, carousels, written content, and more. Our team handles the strategy, creation, and distribution so your voice shows up consistently across every platform. The result is content that does not just get seen, but builds trust, momentum, and growth.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/phone.png',
-  heroImage: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/q_auto:good/v1/dmsite/services/social-media-marketing.jpg',
-  heroVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/social-media-marketing.mp4',
-  cardVideo: 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1/dmsite/services/social-media-marketing.mp4',
+  heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/social-media-marketing.jpg',
+  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/social-media-marketing.mp4',
+  cardVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/social-media-marketing.mp4',
   outcomes: [
     {
       title: 'Consistent Brand Presence',

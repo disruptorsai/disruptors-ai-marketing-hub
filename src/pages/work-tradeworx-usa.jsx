@@ -24,7 +24,7 @@ const caseData = {
     { icon: Target, name: "CRM Integration" }
   ],
   testimonial: "The team transformed our entire operation. We've never been more efficient or profitable.",
-  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/logos/tradeworxusa-logo.svg",
+  clientLogo: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/tradeworxusa_logo.svg",
   heroImage: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop"
 };
 
