@@ -14,7 +14,8 @@ import {
 import FastVideo from '@/components/shared/FastVideo';
 
 // ─── URLs ─────────────────────────────────────────────────────────────
-const HERO_VIDEO = 'https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4';
+const HERO_IMAGE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-assets/videos/v1/dmsite/services/crm-management.jpg?width=1920&quality=80&format=origin';
+const HERO_IMAGE_MOBILE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-assets/videos/v1/dmsite/services/crm-management.jpg?width=768&quality=75&format=origin';
 const MAIN_BG = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg';
 const FRESCO_BG = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png';
 const ADAPT_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/billboard/adapt-or-die.mp4';
@@ -161,18 +162,16 @@ export default function Billboard() {
 
       {/* ═══════════════════ SECTION 1 — HERO ═══════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background video */}
+        {/* Background image */}
         <div className="absolute inset-0 z-0">
-          <FastVideo
-            src={HERO_VIDEO}
-            preset="fullscreen"
-            autoplay={true}
-            loop={true}
-            muted={true}
-            playsInline={true}
-            preload="auto"
+          <img
+            src={HERO_IMAGE}
+            srcSet={`${HERO_IMAGE_MOBILE} 768w, ${HERO_IMAGE} 1920w`}
+            sizes="100vw"
+            alt=""
             fetchpriority="high"
-            lazy={false}
+            decoding="async"
+            loading="eager"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/80" />
