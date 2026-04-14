@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import FastVideo from '@/components/shared/FastVideo';
 import PlaceholderAnimation from '../shared/PlaceholderAnimation';
 import DualCTABlock from '../shared/DualCTABlock';
 import { CheckCircle, Quote, ArrowRight, HelpCircle, ChevronDown } from 'lucide-react';
@@ -60,14 +61,19 @@ export default function SolutionPageLayout({ service }) {
                             className="rounded-3xl overflow-hidden shadow-2xl"
                         >
                             {heroVideo ? (
-                                <video
+                                <FastVideo
                                     src={heroVideo}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
+                                    preset="hero"
+                                    autoplay={true}
+                                    loop={true}
+                                    muted={true}
+                                    playsInline={true}
+                                    preload="metadata"
+                                    fetchpriority="high"
+                                    lazy={false}
                                     className="w-full h-auto object-cover"
                                     poster={heroImage}
+                                    aria-label="Solution hero video"
                                 />
                             ) : heroImage ? (
                                 <img

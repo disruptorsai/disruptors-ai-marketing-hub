@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { TeamMember } from '@/api/entities';
+import FastVideo from '@/components/shared/FastVideo';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import PageTitle from '../components/shared/PageTitle';
 
@@ -171,15 +172,19 @@ export default function About() {
       <section className="relative bg-black py-16 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0">
-          <video
+          <FastVideo
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
-          </video>
+            aria-label="Capabilities section background"
+          />
           {/* Black overlay with 90% opacity */}
           <div className="absolute inset-0 bg-black/90" />
         </div>

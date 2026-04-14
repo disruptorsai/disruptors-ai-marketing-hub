@@ -43,13 +43,16 @@ export default function Home() {
       <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E] text-white">
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <video
+          <FastVideo
             src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="high"
+            lazy={false}
             className="w-full h-full object-cover"
             aria-label="Disruptors AI hero background video"
           />
@@ -65,8 +68,10 @@ export default function Home() {
           >
             {/* Logo */}
             <motion.img
-              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png?width=800&quality=85&format=origin"
               alt="Disruptors AI"
+              fetchpriority="high"
+              decoding="async"
               className="h-24 sm:h-32 lg:h-40 w-auto mx-auto mb-8 object-contain"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -96,8 +101,10 @@ export default function Home() {
         <div className="relative max-w-5xl mx-auto px-4 py-6 sm:py-8 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-6">
             <img
-              src="/billboard.png"
+              src="/billboard.webp"
               alt="Your marketing sucks billboard"
+              loading="lazy"
+              decoding="async"
               className="h-14 sm:h-20 w-auto rounded-lg border border-[#BF953F]/30
                          group-hover:border-[#BF953F]/60 transition-all duration-300"
             />
@@ -345,13 +352,18 @@ export default function Home() {
       {/* Services / Solutions */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
+          <FastVideo
             src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
             className="w-full h-full object-cover"
+            aria-label="Services section background"
           />
         </div>
         <div className="absolute inset-0 z-[1] bg-black/60"></div>

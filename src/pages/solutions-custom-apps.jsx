@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
+import FastVideo from '@/components/shared/FastVideo';
 import DualCTABlock from '@/components/shared/DualCTABlock';
 import { ArrowRight, CheckCircle, Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench, HelpCircle, ChevronDown, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -65,15 +66,20 @@ export default function CustomApps() {
       <section className="relative h-screen overflow-hidden flex items-center bg-[#0E0E0E]">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
+          <FastVideo
             src={service.heroVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="high"
+            lazy={false}
             poster={service.heroImage}
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center 20%' }}
+            aria-label="Custom apps hero background"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>

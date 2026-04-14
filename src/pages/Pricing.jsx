@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import FastVideo from '@/components/shared/FastVideo';
 import PageTitle from '../components/shared/PageTitle';
 
 const PricingTier = ({ tier, index, isPopular }) => {
@@ -154,15 +155,19 @@ export default function Pricing() {
       {/* Hero Section */}
       <section className="relative bg-black py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <video
+          <FastVideo
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="high"
+            lazy={false}
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
-          </video>
+            aria-label="Pricing hero background"
+          />
           <div className="absolute inset-0 bg-black/85" />
         </div>
 

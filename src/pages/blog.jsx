@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User, Loader2, Search, Filter, X, Tag } from 'lucide-react';
 import DualCTABlock from "@/components/shared/DualCTABlock";
+import FastVideo from "@/components/shared/FastVideo";
 import GeometricSeparator from "@/components/shared/WavySeparator";
 import { customClient } from '@/lib/custom-sdk';
 
@@ -225,14 +226,17 @@ export default function Blog() {
               className="relative"
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
-                <video
+                <FastVideo
                   src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
+                  preset="hero"
+                  autoplay={true}
+                  muted={true}
+                  loop={true}
+                  playsInline={true}
+                  preload="metadata"
+                  fetchpriority="high"
+                  lazy={false}
                   className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
                   aria-label="Content creation and blogging"
                 />
               </div>

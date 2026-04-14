@@ -48,7 +48,7 @@ export default function HoverPlayVideo({
         aria-label={alt}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         loop
       />
     </div>

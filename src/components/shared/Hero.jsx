@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { customClient } from '@/lib/custom-sdk';
 import { useImageParallax, useParallax } from '@/hooks/useParallax';
+import FastVideo from '@/components/shared/FastVideo';
 
 // Fallback hardcoded media (used if database fetch fails)
 const FALLBACK_MEDIA = {
@@ -113,13 +114,18 @@ export default function Hero({
           className="relative w-full"
         >
           <div className="relative overflow-hidden shadow-2xl aspect-video">
-            <video
+            <FastVideo
               src={media.video.url}
-              autoPlay
-              loop
-              muted
-              playsInline
+              preset="hero"
+              autoplay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+              preload="metadata"
+              fetchpriority="high"
+              lazy={false}
               className="w-full h-full object-cover scale-105"
+              aria-label="Hero feature video"
             />
             {/* Black Transparent Overlay */}
             <div className="absolute inset-0 bg-black/40"></div>

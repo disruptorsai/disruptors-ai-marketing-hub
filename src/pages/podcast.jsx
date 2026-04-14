@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
+import FastVideo from '@/components/shared/FastVideo';
 import { Play, Mic, Headphones, Video, ArrowRight, Radio, Users, Sparkles, Crown, Shield } from 'lucide-react';
 import PageTitle from '../components/shared/PageTitle';
 import gsap from 'gsap';
@@ -179,15 +180,19 @@ export default function Podcast() {
       <section className="relative bg-black py-12 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0">
-          <video
+          <FastVideo
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/podcasting.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/podcasting.mp4" type="video/mp4" />
-          </video>
+            aria-label="Production services background"
+          />
           <div className="absolute inset-0 bg-black/80" />
         </div>
 
@@ -730,13 +735,18 @@ export default function Podcast() {
       {/* Client Testimonials - Glassmorphic Design */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
+          <FastVideo
             src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
             className="w-full h-full object-cover"
+            aria-label="Testimonials section background"
           />
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
