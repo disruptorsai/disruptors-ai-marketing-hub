@@ -97,6 +97,7 @@ const BentoCard = ({ item, index, onExpand }) => {
             {/* Video Controls Overlay */}
             <button
               onClick={handleVideoToggle}
+              aria-label={isVideoPlaying ? 'Pause video' : 'Play video'}
               className="absolute top-4 right-4 z-10 bg-black/60 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/80"
             >
               {isVideoPlaying ? (
@@ -200,6 +201,7 @@ const ExpandedCard = ({ item, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close case study"
           className="sticky top-4 right-4 float-right z-10 bg-black/60 backdrop-blur-sm rounded-full p-3 hover:bg-black/80 transition-colors"
         >
           <X className="w-6 h-6 text-white" />

@@ -192,6 +192,9 @@ export default function GoogleReviewsSection() {
                 <img
                   src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                   alt="Disruptors AI"
+                  width="800"
+                  height="160"
+                  loading="lazy"
                   className="h-12 object-contain"
                 />
               </div>
@@ -348,13 +351,17 @@ export default function GoogleReviewsSection() {
                   onClick={() => scrollToIndex(index)}
                   onMouseEnter={() => setIsPaused(true)}
                   onMouseLeave={() => setIsPaused(false)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'bg-[#C9A53B] w-8'
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
+                  className="flex items-center justify-center min-w-[44px] min-h-[44px]"
                   aria-label={`Go to review ${index + 1}`}
-                />
+                >
+                  <span
+                    className={`block h-2.5 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? 'bg-[#8A6A1E] w-8'
+                        : 'bg-gray-300 w-2.5 hover:bg-gray-400'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>

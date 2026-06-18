@@ -140,6 +140,7 @@ const BentoCard = ({ item, index }) => {
             {/* Video Controls */}
             <button
               onClick={handleVideoToggle}
+              aria-label={isVideoPlaying ? 'Pause video' : 'Play video'}
               className="absolute top-4 right-4 z-10 bg-black/60 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/80"
             >
               {isVideoPlaying ? (

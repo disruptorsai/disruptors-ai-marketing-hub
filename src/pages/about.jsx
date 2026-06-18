@@ -60,6 +60,7 @@ const TeamMemberModal = ({ member, onClose }) => {
             />
             <button
               onClick={onClose}
+              aria-label="Close"
               className="absolute top-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
             >
               <X className="w-5 h-5" />

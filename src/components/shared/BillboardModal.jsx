@@ -46,6 +46,7 @@ export default function BillboardModal({ isOpen, onClose, onYes, isReturning = f
             >
               {/* X close button */}
               <button onClick={onClose}
+                aria-label="Close"
                 className="absolute top-3 right-3 p-1.5 rounded-full bg-black/40
                            hover:bg-black/60 text-gray-400 hover:text-white transition-colors z-10">
                 <X className="w-4 h-4" />
@@ -152,6 +153,8 @@ export default function BillboardModal({ isOpen, onClose, onYes, isReturning = f
                       <img
                         src="/billboard.webp"
                         alt="Disruptors AI Billboard"
+                        width={800}
+                        height={225}
                         className="max-w-[200px] rounded-lg border border-[#BF953F]/20"
                       />
                     </div>
