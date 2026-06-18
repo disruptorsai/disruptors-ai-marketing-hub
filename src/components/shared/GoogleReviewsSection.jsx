@@ -227,7 +227,7 @@ export default function GoogleReviewsSection() {
                   href="https://share.google/D1q2PMgFUnQJrfgn8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#C9A53B] hover:bg-[#a88a2f] text-white font-semibold rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#8A6A1E] hover:bg-[#6f4f15] text-white font-semibold rounded-lg transition-colors duration-200"
                 >
                   <span>See all reviews</span>
                 </a>
@@ -235,7 +235,7 @@ export default function GoogleReviewsSection() {
                   href="https://share.google/D1q2PMgFUnQJrfgn8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#C9A53B] text-[#C9A53B] hover:bg-[#C9A53B] hover:text-white font-semibold rounded-lg transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#8A6A1E] text-[#8A6A1E] hover:bg-[#8A6A1E] hover:text-white font-semibold rounded-lg transition-colors duration-200"
                 >
                   <span>review us on</span>
                   <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -298,9 +298,9 @@ export default function GoogleReviewsSection() {
                     viewport={{ once: true }}
                     className="flex-shrink-0 w-[340px]"
                   >
-                    <div className="h-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 relative">
+                    <blockquote className="h-full m-0 bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 relative">
                       {/* Google Logo */}
-                      <div className="absolute top-4 right-4">
+                      <div className="absolute top-4 right-4" aria-hidden="true">
                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -309,10 +309,10 @@ export default function GoogleReviewsSection() {
                         </svg>
                       </div>
 
-                      {/* Name */}
-                      <h4 className="text-lg font-bold text-gray-900 mb-1 pr-8">
+                      {/* Attribution */}
+                      <cite className="not-italic block text-lg font-bold text-gray-900 mb-1 pr-8">
                         {review.name}
-                      </h4>
+                      </cite>
 
                       {/* Time */}
                       <p className="text-sm text-gray-500 mb-3">
@@ -320,10 +320,11 @@ export default function GoogleReviewsSection() {
                       </p>
 
                       {/* Stars */}
-                      <div className="flex gap-1 mb-4">
+                      <div className="flex gap-1 mb-4" role="img" aria-label={`Rated ${review.rating} out of 5 stars`}>
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
+                            aria-hidden="true"
                             className="w-5 h-5 text-[#C9A53B] fill-[#C9A53B]"
                           />
                         ))}
@@ -333,7 +334,7 @@ export default function GoogleReviewsSection() {
                       <p className="text-sm text-gray-700 leading-relaxed">
                         {review.quote}
                       </p>
-                    </div>
+                    </blockquote>
                   </motion.div>
                 ))}
               </div>
