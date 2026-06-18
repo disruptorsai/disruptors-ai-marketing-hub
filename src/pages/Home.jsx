@@ -54,6 +54,7 @@ export default function Home() {
             preload="metadata"
             fetchpriority="high"
             lazy={false}
+            disableOnMobile={true}
             className="w-full h-full object-cover"
             aria-label="Disruptors AI hero background video"
           />
@@ -165,6 +166,7 @@ export default function Home() {
             preload="metadata"
             fetchpriority="low"
             lazy={true}
+            disableOnMobile={true}
             className="absolute inset-0 w-full h-full object-cover"
             aria-label="Capabilities background video"
           />
@@ -417,6 +419,7 @@ export default function Home() {
             preload="metadata"
             fetchpriority="low"
             lazy={true}
+            disableOnMobile={true}
             className="w-full h-full object-cover"
             aria-label="Services section background"
           />

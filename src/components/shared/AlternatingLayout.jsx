@@ -43,8 +43,8 @@ function ParallaxSection({ section, textOnLeft }) {
               loop={true}
               playsInline={true}
               preload="metadata"
-              fetchpriority="high"
-              lazy={false}
+              fetchpriority="low"
+              lazy={true}
               className="w-full h-full"
               aria-label={section.imageAlt || section.headline || 'Section video'}
             />

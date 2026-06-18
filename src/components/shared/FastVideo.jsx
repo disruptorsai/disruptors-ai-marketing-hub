@@ -15,6 +15,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useAdaptiveVideo } from '@/hooks/useConnectionQuality';
 import { useLazyLoad } from '@/hooks/useImageOptimization';
 import { getViewportOptimizedDimensions } from '@/utils/cloudinary-optimizer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 /**
  * FastVideo Component
@@ -48,11 +49,13 @@ export default function FastVideo({
   preload = 'metadata',
   fetchpriority = 'auto',
   lazy = true,
+  disableOnMobile = false,
   className = '',
   onLoad,
   onPlay,
   ...props
 }) {
+  const isMobile = useIsMobile();
   const videoRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -120,6 +123,24 @@ export default function FastVideo({
       video.removeEventListener('error', handleError);
     };
   }, [shouldRender, shouldLoadVideo, optimizedVideoUrl, videoDimensions, fetchpriority, isVisible, onLoad, onPlay]);
+
+  // Skip heavy background videos on mobile (opt-in): saves bandwidth, shows poster or the
+  // parent section's background. Avoids pulling multi-MB videos on phones.
+  if (disableOnMobile && isMobile) {
+    return (
+      <div ref={containerRef} className={`relative ${className}`}>
+        {poster && (
+          <img
+            src={poster}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        )}
+      </div>
+    );
+  }
 
   // Don't load video on poor connections
   if (!shouldLoadVideo) {
