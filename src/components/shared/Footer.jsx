@@ -210,6 +210,9 @@ export default function Footer() {
               <img
                 src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
                 alt="Disruptors Media"
+                width="800"
+                height="160"
+                loading="lazy"
                 className="h-16 w-auto"
               />
             </Link>

@@ -311,6 +311,7 @@ export default function OnboardingFlow({ isOpen, onClose, user }) {
                   <button
                     onClick={handleSkip}
                     disabled={isInitializing}
+                    aria-label="Skip onboarding"
                     className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <X className="w-5 h-5 text-white" />

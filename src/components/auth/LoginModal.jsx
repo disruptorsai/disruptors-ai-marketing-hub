@@ -199,6 +199,7 @@ export default function LoginModal({ isOpen, onClose, onAuthSuccess }) {
                   {/* Close Button */}
                   <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                   >
                     <X className="w-5 h-5 text-white" />

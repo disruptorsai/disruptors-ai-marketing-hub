@@ -89,7 +89,13 @@ async function main() {
   }
 
   const server = await startServer();
-  const browser = await chromium.launch({ args: ['--no-sandbox'] });
+  // Optional override: point at a specific Chromium binary (e.g. the full build when the
+  // headless-shell variant isn't installed). Defaults to Playwright's managed browser.
+  const launchOpts = { args: ['--no-sandbox'] };
+  if (process.env.PRERENDER_CHROMIUM_PATH) {
+    launchOpts.executablePath = process.env.PRERENDER_CHROMIUM_PATH;
+  }
+  const browser = await chromium.launch(launchOpts);
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 
   let failed = 0;
