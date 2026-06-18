@@ -138,6 +138,18 @@ export default function About() {
       {/* Page Title */}
       <PageTitle title="ABOUT US" />
 
+      {/* What is Disruptors Media? — self-contained answer block for AI citation (GEO) */}
+      <section aria-labelledby="what-is-disruptors-media" className="bg-white py-12 sm:py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="what-is-disruptors-media" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            What is Disruptors Media?
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            Disruptors Media is a fractional Chief AI Officer (CAIO) and Chief Marketing Officer service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so you own everything we install. It's the output of a full agency without the bloated retainer or the dependency.
+          </p>
+        </div>
+      </section>
+
       {/* Hero Video Section */}
       {/* <section className="w-full bg-transparent overflow-hidden">
         <motion.div

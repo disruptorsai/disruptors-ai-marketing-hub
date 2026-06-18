@@ -8,6 +8,7 @@ import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import FastVideo from '../components/shared/FastVideo';
+import FAQAccordion from '../components/shared/FAQAccordion';
 import BillboardModal from '../components/shared/BillboardModal';
 import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 
@@ -70,6 +71,8 @@ export default function Home() {
             <motion.img
               src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png?width=800&quality=85&format=origin"
               alt="Disruptors AI"
+              width="800"
+              height="160"
               fetchpriority="high"
               decoding="async"
               className="h-24 sm:h-32 lg:h-40 w-auto mx-auto mb-8 object-contain"
@@ -79,15 +82,31 @@ export default function Home() {
             />
 
             <h1 className="font-sans text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
-              Digital Marketing
-              <br />
-              <span className="text-gold-shine">× AI Solutions</span>
+              {/* Canonical page subject for SEO/GEO + screen readers (visual styling preserved below) */}
+              <span className="sr-only">Disruptors Media — AI-Powered Marketing &amp; Fractional CAIO/CMO</span>
+              <span aria-hidden="true">
+                Digital Marketing
+                <br />
+                <span className="text-gold-shine">× AI Solutions</span>
+              </span>
             </h1>
 
             <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
               Most businesses are stuck with outdated tactics and broken systems. We help you fix that by automating and improving your marketing with AI.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* What is Disruptors Media? — self-contained answer block for AI citation (GEO) */}
+      <section aria-labelledby="what-is-disruptors-media" className="bg-white py-16 sm:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="what-is-disruptors-media" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            What is Disruptors Media?
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            Disruptors Media is a fractional Chief AI Officer (CAIO) and Chief Marketing Officer service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so you own everything we install. It's the output of a full agency without the bloated retainer or the dependency.
+          </p>
         </div>
       </section>
 
@@ -103,6 +122,8 @@ export default function Home() {
             <img
               src="/billboard.webp"
               alt="Your marketing sucks billboard"
+              width="800"
+              height="225"
               loading="lazy"
               decoding="async"
               className="h-14 sm:h-20 w-auto rounded-lg border border-[#BF953F]/30
@@ -349,6 +370,40 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
       </section>
 
+      {/* Our Process — sequential steps as a real ordered list (GEO: numbered lists for steps) */}
+      <section aria-labelledby="our-process" className="bg-white py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="our-process" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center">
+            How We Work
+          </h2>
+          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
+            A simple, four-step process to install AI-powered marketing systems inside your business.
+          </p>
+          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none p-0 m-0">
+            <li className="relative pl-14">
+              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">1</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Audit</h3>
+              <p className="text-gray-600 leading-relaxed">We map your current marketing, systems, and data to find the highest-impact opportunities.</p>
+            </li>
+            <li className="relative pl-14">
+              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">2</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Research Competitors</h3>
+              <p className="text-gray-600 leading-relaxed">We analyze your market and competitors to define how you win on search, content, and conversion.</p>
+            </li>
+            <li className="relative pl-14">
+              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">3</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Create AI Systems</h3>
+              <p className="text-gray-600 leading-relaxed">We build and install AI-powered systems for content, SEO, lead generation, and follow-up — that you own.</p>
+            </li>
+            <li className="relative pl-14">
+              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">4</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Track &amp; Optimize</h3>
+              <p className="text-gray-600 leading-relaxed">We measure performance with live dashboards and continuously improve what's working.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
       {/* Services / Solutions */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -374,6 +429,24 @@ export default function Home() {
 
       {/* Google Reviews Section */}
       <GoogleReviewsSection />
+
+      {/* Frequently Asked Questions (GEO: FAQ + FAQPage schema in index.html) */}
+      <section aria-labelledby="home-faq-heading" className="bg-white py-16 sm:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="home-faq-heading" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">
+            Frequently Asked Questions
+          </h2>
+          <FAQAccordion />
+          <div className="mt-10 text-center">
+            <Link
+              to="/faq"
+              className="inline-flex items-center justify-center min-h-[44px] px-6 py-3 rounded-full bg-gray-900 text-white font-semibold hover:bg-gray-800 transition-colors"
+            >
+              See all FAQs
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Billboard Popup Modal */}
       <BillboardModal isOpen={isOpen} onClose={close} onYes={handleBillboardYes} isReturning={isReturning} />
