@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Marquee from 'react-fast-marquee';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 
 const clientLogos = [
   { src: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/case-studies/case-studies/tradeworxusa_logo.svg", alt: "TradeWorx USA", slug: "work-tradeworx-usa" },
@@ -65,7 +66,7 @@ export default function ClientLogoMarquee({
                   />
                 ) : (
                   <img
-                    src={logo.src}
+                    src={optimizeSupabaseImage(logo.src, { width: 280, quality: 80 })}
                     alt={logo.alt}
                     loading="lazy"
                     className="max-h-30 max-w-44 md:max-h-40 md:max-w-60 w-auto h-auto object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"

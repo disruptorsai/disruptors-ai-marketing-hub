@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 
 const reviews = [
   {
@@ -190,7 +191,10 @@ export default function GoogleReviewsSection() {
               {/* Logo */}
               <div className="mb-6">
                 <img
-                  src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
+                  src={optimizeSupabaseImage(
+                    'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
+                    { width: 480, quality: 80 }
+                  )}
                   alt="Disruptors AI"
                   width="800"
                   height="160"

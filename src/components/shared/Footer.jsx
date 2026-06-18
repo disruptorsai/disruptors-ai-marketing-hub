@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import GsapScrambleText from '@/components/shared/GsapScrambleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -208,7 +209,10 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link to={createPageUrl('')} className="inline-block mb-6">
               <img
-                src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
+                src={optimizeSupabaseImage(
+                  'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
+                  { width: 640, quality: 80 }
+                )}
                 alt="Disruptors Media"
                 width="800"
                 height="160"
