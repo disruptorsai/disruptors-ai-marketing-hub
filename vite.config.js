@@ -68,7 +68,7 @@ export default defineConfig({
     // Ensure proper cache busting with hash-based filenames
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: false, // Disable CSS code splitting to reduce build complexity
-    sourcemap: false, // Disable source maps in production for smaller builds
+    sourcemap: true, // Emit source maps in production (clears the "missing source maps" diagnostic flag and enables bundle analysis)
     // Build optimizations for complex projects
     minify: 'esbuild', // Use esbuild for faster minification
     target: 'es2020', // Modern browsers only (reduces transformation overhead)

@@ -12,6 +12,8 @@
     "dev:orchestrated": "concurrently \"npm run dev\" \"npm run orchestrator:watch\"",
     "dev:safe": "vite",
     "build": "vite build",
+    "build:prerender": "vite build && node scripts/prerender.js",
+    "analyze:bundle": "npx --yes source-map-explorer 'dist/assets/*.js'",
     "lint": "eslint .",
     "preview": "vite preview",
     "auto-commit": "node scripts/auto-commit.js commit",

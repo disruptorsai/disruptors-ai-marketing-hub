@@ -45,11 +45,22 @@ import '@/index.css'
 console.log('✅ [MAIN.JSX] CSS imported successfully!');
 console.log('✅ [MAIN.JSX] All imports complete, rendering app...');
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+
+const appTree = (
   <ChunkErrorBoundary>
     <App />
   </ChunkErrorBoundary>
-)
+);
+
+// Prerendered marketing routes (see scripts/prerender.js) ship real HTML inside #root.
+// Hydrate those snapshots; fall back to a fresh client render for non-prerendered routes.
+if (rootElement.hasChildNodes()) {
+  console.log('💧 [MAIN.JSX] Prerendered HTML detected — hydrating...');
+  ReactDOM.hydrateRoot(rootElement, appTree);
+} else {
+  ReactDOM.createRoot(rootElement).render(appTree);
+}
 
 console.log('✅ [MAIN.JSX] App rendered successfully!');
 
