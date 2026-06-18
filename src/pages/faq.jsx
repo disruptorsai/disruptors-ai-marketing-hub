@@ -2,8 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PageTitle from '../components/shared/PageTitle';
 import FAQAccordion from '../components/shared/FAQAccordion';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function FAQ() {
+  usePageMeta({
+    title: 'FAQ — Disruptors Media',
+    description:
+      'Frequently asked questions about Disruptors Media, our fractional CAIO/CMO service, the services we offer, and how we install AI-powered marketing systems inside your business.',
+    path: '/faq',
+    jsonLd: breadcrumb('FAQ', '/faq'),
+  });
+
   return (
     <div>
       {/* Page Title (renders the single <h1> for this route) */}

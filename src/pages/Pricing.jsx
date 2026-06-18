@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FastVideo from '@/components/shared/FastVideo';
 import PageTitle from '../components/shared/PageTitle';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const PricingTier = ({ tier, index, isPopular }) => {
   const delayBase = index * 0.15;
@@ -82,6 +83,14 @@ const PricingTier = ({ tier, index, isPopular }) => {
 };
 
 export default function Pricing() {
+  usePageMeta({
+    title: 'Pricing — Disruptors Media AI Marketing Plans',
+    description:
+      'Disruptors Media pricing and plans for AI-powered marketing — from channel-specific campaign management to a fully embedded fractional CMO partnership.',
+    path: '/pricing',
+    jsonLd: breadcrumb('Pricing', '/pricing'),
+  });
+
   const pricingTiers = [
     {
       name: 'Agency Plan',

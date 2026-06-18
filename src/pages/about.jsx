@@ -6,6 +6,7 @@ import { TeamMember } from '@/api/entities';
 import FastVideo from '@/components/shared/FastVideo';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import PageTitle from '../components/shared/PageTitle';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const TeamMemberCard = ({ member, delay, onSelect }) => (
   <motion.div
@@ -81,6 +82,14 @@ const TeamMemberModal = ({ member, onClose }) => {
 };
 
 export default function About() {
+  usePageMeta({
+    title: 'About Disruptors Media — Fractional CAIO & CMO Team',
+    description:
+      'Meet Disruptors Media: a fractional Chief AI Officer (CAIO) and CMO service that installs AI-powered marketing systems inside your business. Learn how we work and who we are.',
+    path: '/about',
+    jsonLd: breadcrumb('About', '/about'),
+  });
+
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedMember, setSelectedMember] = useState(null);

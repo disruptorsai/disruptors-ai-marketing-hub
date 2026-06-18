@@ -11,10 +11,18 @@ import FastVideo from '../components/shared/FastVideo';
 import FAQAccordion from '../components/shared/FAQAccordion';
 import BillboardModal from '../components/shared/BillboardModal';
 import { useBillboardPopup } from '@/hooks/useBillboardPopup';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 export default function Home() {
   const navigate = useNavigate();
   const { isOpen, isReturning, close, accept } = useBillboardPopup(1500);
+
+  usePageMeta({
+    title: 'Disruptors Media — AI-Powered Marketing & Fractional CAIO/CMO',
+    description:
+      'Disruptors Media is a fractional Chief AI Officer (CAIO) and CMO service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — inside your business, so you own everything we install.',
+    path: '/',
+  });
 
   const handleBillboardYes = () => {
     accept();

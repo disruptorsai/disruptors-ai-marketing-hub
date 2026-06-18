@@ -7,6 +7,7 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import DualCTABlock from '../components/shared/DualCTABlock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PageTitle from '../components/shared/PageTitle';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import FastVideo from '@/components/shared/FastVideo';
 import { optimizeCloudinaryImage, optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-optimizer';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
@@ -88,6 +89,14 @@ const ServiceCard = ({ service, index }) => {
 };
 
 export default function Solutions() {
+  usePageMeta({
+    title: 'Marketing Solutions — SEO, GEO, AI Automation & Lead Gen | Disruptors Media',
+    description:
+      "Disruptors Media's AI-powered marketing solutions: SEO & GEO, AI automation, social media, paid advertising, lead generation, content, podcasting, custom apps, CRM, and fractional CMO leadership.",
+    path: '/solutions',
+    jsonLd: breadcrumb('Solutions', '/solutions'),
+  });
+
   const handRef = useRef(null);
   const sectionRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
