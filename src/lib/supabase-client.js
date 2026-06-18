@@ -22,21 +22,24 @@ const LOCALHOST_URL = 'http://127.0.0.1:54321'
 const LOCALHOST_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
 // Get Supabase configuration with environment-aware fallbacks
-const supabaseUrl = getEnvVar('VITE_SUPABASE_URL', isDevelopment ? LOCALHOST_URL : '')
-const supabaseAnonKey = getEnvVar('VITE_SUPABASE_ANON_KEY', isDevelopment ? LOCALHOST_ANON_KEY : '')
+let supabaseUrl = getEnvVar('VITE_SUPABASE_URL', isDevelopment ? LOCALHOST_URL : '')
+let supabaseAnonKey = getEnvVar('VITE_SUPABASE_ANON_KEY', isDevelopment ? LOCALHOST_ANON_KEY : '')
 
-// Production safety: Fail fast if environment variables are missing
-if (!supabaseUrl || !supabaseAnonKey) {
-  const errorMessage = 'CRITICAL: Missing Supabase configuration. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.'
-  console.error(errorMessage)
+// Whether a usable Supabase configuration was found. Callers that depend on the data
+// layer can import this to guard their calls.
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey)
+
+// Graceful degradation: if config is missing, warn loudly but DO NOT throw at import time.
+// Throwing here crashes the entire SPA (blank #root) — including static marketing pages
+// that don't need Supabase to render, and the build-time prerender. Instead we substitute
+// inert placeholders so module init succeeds; any real Supabase request fails at call time.
+if (!isSupabaseConfigured) {
+  console.error('Missing Supabase configuration (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY). Data features are disabled; static pages will still render.')
   console.error('Current mode:', isDevelopment ? 'development' : 'production')
   console.error('VITE_SUPABASE_URL:', supabaseUrl || 'NOT SET')
   console.error('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'SET' : 'NOT SET')
-
-  if (!isDevelopment) {
-    // In production, throw an error to fail fast
-    throw new Error(errorMessage)
-  }
+  supabaseUrl = supabaseUrl || 'https://placeholder.supabase.co'
+  supabaseAnonKey = supabaseAnonKey || 'missing-anon-key'
 }
 
 // Development warning: Log when using localhost fallback
