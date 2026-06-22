@@ -87,7 +87,17 @@ export default function About() {
     description:
       'Meet Disruptors Media: a fractional Chief AI Officer (CAIO) and CMO service that installs AI-powered marketing systems inside your business. Learn how we work and who we are.',
     path: '/about',
-    jsonLd: breadcrumb('About', '/about'),
+    jsonLd: [
+      breadcrumb('About', '/about'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Tyler Welsh',
+        jobTitle: 'Founder',
+        worksFor: { '@type': 'Organization', name: 'Disruptors Media', url: 'https://disruptorsmedia.com' },
+        url: 'https://disruptorsmedia.com/about',
+      },
+    ],
   });
 
   const [team, setTeam] = useState([]);

@@ -23,7 +23,22 @@ export default function Home() {
     description:
       'Disruptors Media is a fractional Chief AI Officer (CAIO) and CMO service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — inside your business, so you own everything we install.',
     path: '/',
-    jsonLd: faqPageSchema(),
+    jsonLd: [
+      faqPageSchema(),
+      {
+        // Mirrors the visible "How We Work" ordered list verbatim.
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: 'How Disruptors Media installs AI-powered marketing',
+        description: 'A four-step process to install AI-powered marketing systems inside your business.',
+        step: [
+          { '@type': 'HowToStep', position: 1, name: 'Audit', text: 'We map your current marketing, systems, and data to find the highest-impact opportunities.' },
+          { '@type': 'HowToStep', position: 2, name: 'Research Competitors', text: 'We analyze your market and competitors to define how you win on search, content, and conversion.' },
+          { '@type': 'HowToStep', position: 3, name: 'Create AI Systems', text: 'We build and install AI-powered systems for content, SEO, lead generation, and follow-up — that you own.' },
+          { '@type': 'HowToStep', position: 4, name: 'Track & Optimize', text: "We measure performance with live dashboards and continuously improve what's working." },
+        ],
+      },
+    ],
   });
 
   const handleBillboardYes = () => {

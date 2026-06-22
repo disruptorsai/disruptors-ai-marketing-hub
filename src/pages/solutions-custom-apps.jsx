@@ -179,9 +179,11 @@ export default function CustomApps() {
                 <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">What We Do</span>
               </div>
             </div>
+            <p className="text-sm font-semibold tracking-wider uppercase text-gold-shine mb-3">
+              {service.descriptivePhrase}
+            </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              {service.descriptivePhrase.split('&')[0]}
-              <span className="text-gold-shine">& Applications</span>
+              What is <span className="text-gold-shine">{service.title}</span>?
             </h2>
             <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
               {service.overview}

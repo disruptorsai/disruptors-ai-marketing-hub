@@ -140,7 +140,12 @@ export default function SolutionPageLayout({ service }) {
                         viewport={{ once: true }}
                         className="bg-gray-900/90 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-gray-700 text-center"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">{descriptivePhrase}</h2>
+                        {descriptivePhrase && (
+                            <p className="text-sm font-semibold tracking-wider uppercase text-gold-shine mb-3">{descriptivePhrase}</p>
+                        )}
+                        {/* Answer-first framing: a clear question heading + the overview as a
+                            self-contained answer that AI engines can lift (GEO). */}
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">What is {title}?</h2>
                         <p className="text-lg text-gray-100 leading-relaxed mb-8">{overview}</p>
                         <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold">
                             <Link to={createPageUrl(cta_link)}>{cta_label}</Link>
