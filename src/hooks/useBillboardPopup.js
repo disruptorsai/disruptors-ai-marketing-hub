@@ -27,11 +27,24 @@ export function useBillboardPopup(delayMs = 1500) {
       setIsReturning(true);
     }
     if (sessionStorage.getItem(STORAGE_KEY)) return;          // already shown this page load
-    const timer = setTimeout(() => {
+
+    let idleHandle;
+    const reveal = () => {
       setIsOpen(true);
       sessionStorage.setItem(STORAGE_KEY, 'shown');
+    };
+    // Defer to browser idle time after the delay so the popup never competes with LCP/initial paint
+    const timer = setTimeout(() => {
+      idleHandle = typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(reveal, { timeout: 1000 })
+        : setTimeout(reveal, 0);
     }, delayMs);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (idleHandle != null) {
+        (window.cancelIdleCallback || clearTimeout)(idleHandle);
+      }
+    };
   }, [delayMs]);
 
   const close = useCallback(() => {
