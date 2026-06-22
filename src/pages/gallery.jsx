@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioAssets, portfolioImages, portfolioVideos } from '@/data/portfolio-assets';
 import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
 import PageTitle from '../components/shared/PageTitle';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { optimizeCloudinaryImage, optimizeCloudinaryVideo, getVideoThumbnail, CLOUDINARY_PRESETS } from '@/utils/cloudinary-optimizer';
 
 const FILTER_OPTIONS = [
@@ -12,6 +13,12 @@ const FILTER_OPTIONS = [
 ];
 
 export default function Gallery() {
+  usePageMeta({
+    title: 'Gallery | Disruptors Media',
+    description: 'A visual gallery of Disruptors Media work, productions, and behind-the-scenes from our studio.',
+    path: '/gallery',
+    jsonLd: breadcrumb('Gallery', '/gallery'),
+  });
   const [filter, setFilter] = useState('all');
   const [selectedIndex, setSelectedIndex] = useState(null);
 

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import FastVideo from '@/components/shared/FastVideo';
 import { Play, Mic, Headphones, Video, ArrowRight, Radio, Users, Sparkles, Crown, Shield } from 'lucide-react';
 import PageTitle from '../components/shared/PageTitle';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -27,6 +28,12 @@ const corporateStudioImages = [
 ];
 
 export default function Podcast() {
+  usePageMeta({
+    title: 'Podcast | Disruptors Media',
+    description: 'The Disruptors Media podcast — conversations on AI, marketing, and building businesses that win in the new search era.',
+    path: '/podcast',
+    jsonLd: breadcrumb('Podcast', '/podcast'),
+  });
   const [activeImage, setActiveImage] = useState(0);
   const [activeCorporateImage, setActiveCorporateImage] = useState(0);
   const scrollContainerRef = useRef(null);
@@ -109,6 +116,8 @@ export default function Podcast() {
 
   return (
     <div className="text-white">
+      {/* Accessible page heading (visual title is presented in the hero below) */}
+      <h1 className="sr-only">Podcast Production | Disruptors Media</h1>
       {/* Page Title */}
       {/*<PageTitle title="PODCAST PRODUCTION" />*/}
 

@@ -8,9 +8,34 @@ import FastVideo from '@/components/shared/FastVideo';
 import PlaceholderAnimation from '../shared/PlaceholderAnimation';
 import DualCTABlock from '../shared/DualCTABlock';
 import { CheckCircle, Quote, ArrowRight, HelpCircle, ChevronDown } from 'lucide-react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function SolutionPageLayout({ service }) {
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+    // Per-route SEO/GEO metadata + Service schema, derived from the service config.
+    const metaPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+    const metaDescription = service
+        ? `${service.descriptivePhrase ? service.descriptivePhrase + '. ' : ''}${service.overview || ''}`
+            .replace(/\s+/g, ' ').trim().slice(0, 155)
+        : '';
+    usePageMeta(service ? {
+        title: `${service.title} | Disruptors Media`,
+        description: metaDescription,
+        path: metaPath,
+        jsonLd: [
+            {
+                '@context': 'https://schema.org',
+                '@type': 'Service',
+                name: service.title,
+                description: metaDescription,
+                provider: { '@type': 'Organization', name: 'Disruptors Media' },
+                areaServed: { '@type': 'Country', name: 'United States' },
+                url: `https://disruptorsmedia.com${metaPath}`,
+            },
+            breadcrumb(service.title, metaPath),
+        ],
+    } : {});
 
     if (!service) {
         return <div>Loading service details...</div>;

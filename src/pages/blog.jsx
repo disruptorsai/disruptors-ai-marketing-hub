@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User, Loader2, Search, Filter, X, Tag } from 'lucide-react';
@@ -88,6 +89,12 @@ const PostCard = ({ post, isFeatured = false }) => {
 
 
 export default function Blog() {
+  usePageMeta({
+    title: 'Blog — AI Marketing, SEO & Growth | Disruptors Media',
+    description: 'Insights on AI-powered marketing, SEO and GEO, lead generation, and growth from the Disruptors Media team.',
+    path: '/blog',
+    jsonLd: breadcrumb('Blog', '/blog'),
+  });
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -6,6 +6,7 @@ import BentoGridNew from '../components/shared/BentoGridNew';
 import CaseStudySection from '../components/shared/CaseStudySection';
 import DynamicBackground, { BlurSection } from '../components/shared/DynamicBackground';
 import { caseStudies } from '@/data/caseStudies';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 /**
  * Work Portfolio Page - Rebuilt from scratch
@@ -15,6 +16,12 @@ import { caseStudies } from '@/data/caseStudies';
  * DEBUG MODE ACTIVE: Comprehensive logging for troubleshooting load issues
  */
 export default function Work() {
+  usePageMeta({
+    title: 'Our Work — Client Case Studies | Disruptors Media',
+    description: 'See how Disruptors Media drives results for clients with AI-powered marketing — case studies across healthcare, finance, trades, and more.',
+    path: '/work',
+    jsonLd: breadcrumb('Work', '/work'),
+  });
   const [debugInfo, setDebugInfo] = useState({
     mounted: false,
     renderCount: 0,
@@ -102,9 +109,9 @@ export default function Work() {
                 transition={{ duration: 0.6 }}
                 className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-white/40"
               >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight mb-4">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight mb-4">
                   Real Clients. <span className="text-yellow-600">Real Results.</span>
-                </h1>
+                </h2>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-6">
                   Growth Systems That Speak for Themselves
                 </h2>

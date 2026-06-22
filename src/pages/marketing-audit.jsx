@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft, CheckCircle, Loader2, TrendingUp, Target, Zap, Users, Globe, BarChart3, MessageSquare, Search, Mail, DollarSign } from 'lucide-react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const STEPS = [
   { id: 1, title: 'Business Basics', icon: Globe },
@@ -10,6 +11,12 @@ const STEPS = [
 ];
 
 export default function MarketingAudit() {
+  usePageMeta({
+    title: 'Free Marketing Audit | Disruptors Media',
+    description: 'Get a free AI-powered marketing audit. Answer a few questions and receive tailored recommendations to grow your business.',
+    path: '/marketing-audit',
+    jsonLd: breadcrumb('Marketing Audit', '/marketing-audit'),
+  });
   const [currentStep, setCurrentStep] = useState(1);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showResults, setShowResults] = useState(false);

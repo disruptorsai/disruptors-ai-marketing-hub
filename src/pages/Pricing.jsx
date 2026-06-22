@@ -193,9 +193,9 @@ export default function Pricing() {
                 <span className="text-gold-shine text-sm font-bold tracking-wider uppercase">Flexible Pricing</span>
               </div>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
               Choose Your Growth Path
-            </h1>
+            </h2>
             <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               From tactical execution to full CMO partnership, we have the right solution for your business stage and growth goals.
             </p>

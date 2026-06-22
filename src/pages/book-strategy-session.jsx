@@ -8,8 +8,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle } from "lucide-react";
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function BookStrategySession() {
+  usePageMeta({
+    title: 'Book a Strategy Session | Disruptors Media',
+    description: 'Book a free strategy session with Disruptors Media. We audit your marketing, find the highest-impact opportunities, and map the AI systems to install.',
+    path: '/book-strategy-session',
+    jsonLd: breadcrumb('Book a Strategy Session', '/book-strategy-session'),
+  });
   const [formData, setFormData] = useState({
     fullName: "",
     businessName: "",

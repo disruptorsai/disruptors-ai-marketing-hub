@@ -1,6 +1,13 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function Terms() {
+  usePageMeta({
+    title: 'Terms & Conditions | Disruptors Media',
+    description: 'The terms and conditions governing use of the Disruptors Media website and services.',
+    path: '/terms',
+    jsonLd: breadcrumb('Terms & Conditions', '/terms'),
+  });
   return (
     <div className="py-20 sm:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,13 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function Privacy() {
+  usePageMeta({
+    title: 'Privacy Policy | Disruptors Media',
+    description: 'How Disruptors Media collects, uses, and protects your information.',
+    path: '/privacy',
+    jsonLd: breadcrumb('Privacy Policy', '/privacy'),
+  });
   return (
     <div className="py-20 sm:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

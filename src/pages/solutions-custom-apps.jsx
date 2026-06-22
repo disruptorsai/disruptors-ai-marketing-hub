@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import FastVideo from '@/components/shared/FastVideo';
 import DualCTABlock from '@/components/shared/DualCTABlock';
 import { ArrowRight, CheckCircle, Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench, HelpCircle, ChevronDown, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const featureIcons = [Code, Smartphone, Bot, Calculator, Plug, Database, Palette, Wrench];
 
@@ -53,6 +54,23 @@ const service = {
 };
 
 export default function CustomApps() {
+  usePageMeta({
+    title: 'Custom Apps | Disruptors Media',
+    description: 'Custom software and AI-powered applications built fast — from calculators to content machines — that solve real business problems.',
+    path: '/solutions-custom-apps',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Custom Apps',
+        description: 'Custom software and AI-powered applications that solve real business problems.',
+        provider: { '@type': 'Organization', name: 'Disruptors Media' },
+        areaServed: { '@type': 'Country', name: 'United States' },
+        url: 'https://disruptorsmedia.com/solutions-custom-apps',
+      },
+      breadcrumb('Custom Apps', '/solutions-custom-apps'),
+    ],
+  });
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
