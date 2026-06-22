@@ -21,7 +21,7 @@
  *     On Netlify this must run during the build step (flag for infra/Bryan).
  */
 import http from 'node:http';
-import { createReadStream, existsSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
+import { createReadStream, existsSync, statSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
@@ -56,18 +56,21 @@ const MIME = {
   '.webmanifest': 'application/manifest+json', '.mp4': 'video/mp4',
 };
 
-function startServer() {
+function startServer(shellHtml) {
   const server = http.createServer((req, res) => {
     const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
     const candidate = join(DIST, urlPath);
-    if (existsSync(candidate) && statSync(candidate).isFile()) {
+    // Serve real static asset files (JS/CSS/images/etc.) directly. Never serve an .html
+    // file from disk — always use the in-memory clean shell for navigations, otherwise a
+    // route prerendered earlier in this run would become the template for later routes.
+    if (existsSync(candidate) && statSync(candidate).isFile() && extname(candidate) !== '.html') {
       res.writeHead(200, { 'Content-Type': MIME[extname(candidate)] || 'application/octet-stream' });
       createReadStream(candidate).pipe(res);
       return;
     }
-    // SPA fallback to the freshly built index.html
+    // SPA fallback to the clean build shell captured before any snapshots were written.
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    createReadStream(join(DIST, 'index.html')).pipe(res);
+    res.end(shellHtml);
   });
   return new Promise((resolve) => server.listen(PORT, () => resolve(server)));
 }
@@ -101,7 +104,11 @@ async function main() {
     process.exit(1);
   }
 
-  const server = await startServer();
+  // Capture the clean build shell BEFORE writing any snapshots, and strip any leftover
+  // page-injected JSON-LD so re-runs on an already-prerendered dist stay idempotent.
+  const shellHtml = readFileSync(join(DIST, 'index.html'), 'utf8')
+    .replace(/\s*<script type="application\/ld\+json" data-page-schema[^>]*>[\s\S]*?<\/script>/g, '');
+  const server = await startServer(shellHtml);
   // Optional override: point at a specific Chromium binary (e.g. the full build when the
   // headless-shell variant isn't installed). Defaults to Playwright's managed browser.
   const launchOpts = { args: ['--no-sandbox'] };
@@ -109,13 +116,16 @@ async function main() {
     launchOpts.executablePath = process.env.PRERENDER_CHROMIUM_PATH;
   }
   const browser = await chromium.launch(launchOpts);
-  const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 
   let ok = 0;
   const coreFailures = [];
   const softFailures = [];
   for (const route of ROUTES) {
     const isCore = CORE_ROUTES.has(route);
+    // Fresh, isolated context per route (no shared service worker, cache, or carried-over
+    // DOM/head state) so page-injected per-route JSON-LD can't leak between routes.
+    const context = await browser.newContext({ viewport: { width: 1366, height: 900 }, serviceWorkers: 'block' });
+    const page = await context.newPage();
     try {
       await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
       // Wait for the SPA to actually render headings into #root.
@@ -146,6 +156,8 @@ async function main() {
     } catch (err) {
       (isCore ? coreFailures : softFailures).push(`${route} (${err.message.split('\n')[0]})`);
       console.error(`[prerender] ${isCore ? '✗' : '•'} ${route} — ${err.message.split('\n')[0]}`);
+    } finally {
+      await context.close();
     }
   }
 
