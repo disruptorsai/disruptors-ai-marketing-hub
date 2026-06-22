@@ -30,8 +30,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
 const PORT = 4317;
 
-// Marketing routes that must ship real HTML for SEO/GEO/AI-citation.
-const ROUTES = ['/', '/about', '/solutions', '/pricing', '/faq'];
+// Indexable routes that must ship real HTML for SEO/GEO/AI-citation.
+// Keep this list in sync with public/sitemap.xml.
+const ROUTES = [
+  '/', '/about', '/solutions', '/pricing', '/faq', '/work',
+  '/book-strategy-session', '/blog', '/podcast', '/gallery', '/marketing-audit',
+  '/privacy', '/terms',
+  '/solutions-ai-automation', '/solutions-social-media', '/solutions-seo-geo',
+  '/solutions-lead-generation', '/solutions-paid-advertising', '/solutions-podcasting',
+  '/solutions-custom-apps', '/solutions-crm-management', '/solutions-fractional-cmo',
+];
+
+// Core routes: if any of these fail to prerender, fail the build. Other routes that
+// fail are logged and skipped (they fall back to the SPA shell, same as before — no
+// regression), so one flaky/interactive page never blocks a deploy.
+const CORE_ROUTES = new Set(['/', '/about', '/solutions', '/pricing', '/faq']);
 
 const MIME = {
   '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript',
@@ -98,8 +111,11 @@ async function main() {
   const browser = await chromium.launch(launchOpts);
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
 
-  let failed = 0;
+  let ok = 0;
+  const coreFailures = [];
+  const softFailures = [];
   for (const route of ROUTES) {
+    const isCore = CORE_ROUTES.has(route);
     try {
       await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
       // Wait for the SPA to actually render headings into #root.
@@ -113,28 +129,37 @@ async function main() {
       await settle(page);
 
       const html = '<!doctype html>\n' + (await page.evaluate(() => document.documentElement.outerHTML));
+      const hasH1 = /<h1[\s>]/i.test(html);
+
+      if (!hasH1) {
+        // Don't write a snapshot without a real <h1>; let it fall back to the SPA shell.
+        (isCore ? coreFailures : softFailures).push(`${route} (no <h1>)`);
+        console.error(`[prerender] ${isCore ? '✗' : '•'} ${route.padEnd(26)} skipped — no <h1>`);
+        continue;
+      }
 
       const outDir = route === '/' ? DIST : join(DIST, route);
       mkdirSync(outDir, { recursive: true });
       writeFileSync(join(outDir, 'index.html'), html, 'utf8');
-
-      const hasH1 = /<h1[\s>]/i.test(html);
-      console.log(`[prerender] ✓ ${route.padEnd(12)} -> ${join(outDir, 'index.html').replace(DIST, 'dist')}  (h1: ${hasH1 ? 'yes' : 'NO'}, ${(html.length / 1024).toFixed(0)} KB)`);
-      if (!hasH1) failed++;
+      ok++;
+      console.log(`[prerender] ✓ ${route.padEnd(26)} -> ${join(outDir, 'index.html').replace(DIST, 'dist')}  (${(html.length / 1024).toFixed(0)} KB)`);
     } catch (err) {
-      failed++;
-      console.error(`[prerender] ✗ ${route} — ${err.message}`);
+      (isCore ? coreFailures : softFailures).push(`${route} (${err.message.split('\n')[0]})`);
+      console.error(`[prerender] ${isCore ? '✗' : '•'} ${route} — ${err.message.split('\n')[0]}`);
     }
   }
 
   await browser.close();
   server.close();
 
-  if (failed > 0) {
-    console.error(`[prerender] ${failed} route(s) failed or missing <h1>.`);
+  if (softFailures.length) {
+    console.warn(`[prerender] ${softFailures.length} non-core route(s) skipped (SPA fallback): ${softFailures.join(', ')}`);
+  }
+  if (coreFailures.length) {
+    console.error(`[prerender] CORE route(s) failed: ${coreFailures.join(', ')}`);
     process.exit(1);
   }
-  console.log(`[prerender] Done — ${ROUTES.length} marketing routes snapshotted.`);
+  console.log(`[prerender] Done — ${ok}/${ROUTES.length} routes snapshotted.`);
 }
 
 main().catch((err) => {
