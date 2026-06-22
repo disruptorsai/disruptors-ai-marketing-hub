@@ -3,7 +3,12 @@ import * as React from "react"
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState(undefined)
+  // Initialize synchronously from the viewport so the first render is correct.
+  // (Returning false on the first render caused mobile-gated media — e.g. heavy
+  // hero videos — to mount briefly before an effect could correct it.)
+  const [isMobile, setIsMobile] = React.useState(
+    typeof window !== "undefined" ? window.innerWidth < MOBILE_BREAKPOINT : false
+  )
 
   React.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
