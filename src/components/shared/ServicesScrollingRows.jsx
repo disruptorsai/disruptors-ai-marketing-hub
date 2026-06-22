@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, animate } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
@@ -81,8 +82,11 @@ function ServiceCard({ service, isDragging }) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={service.image}
+          src={optimizeSupabaseImage(service.image, { width: 600, quality: 75 })}
           alt={service.title}
+          width="600"
+          height="600"
+          decoding="async"
           className="w-full h-full object-cover transition-transform ease-out"
           style={{
             transform: isHovered ? 'scale(1.05)' : 'scale(1)',
@@ -146,12 +150,10 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
   const x = useMotionValue(0);
   const [cardWidth, setCardWidth] = useState(0);
 
-  // Lighter spring physics for smoother, more responsive feel
-  const springX = useSpring(x, {
-    damping: 30,
-    stiffness: 300,
-    mass: 0.5
-  });
+  // Note: the row is driven directly by the `x` motion value. A useSpring() chasing a
+  // linearly-animated `x` caused visible jitter (the spring oscillates around the moving
+  // target) and a jump on each position-wrap (it animated across the totalWidth reset).
+  // framer-motion's drag already updates `x` smoothly, so no spring is needed.
 
   // Duplicate services for seamless infinite loop (6x for ultra-smooth infinite scrolling)
   const duplicatedServices = [
@@ -263,7 +265,7 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
         ref={rowRef}
         className="flex"
         style={{
-          x: isDragging ? x : springX,
+          x,
           willChange: 'transform'
         }}
         drag="x"
