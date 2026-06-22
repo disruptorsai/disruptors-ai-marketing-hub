@@ -3,13 +3,14 @@
  * Caches all site assets for instant offline access
  */
 
-const CACHE_VERSION = 'v1-presentation';
+const CACHE_VERSION = 'v2-presentation';
 const CACHE_NAME = `disruptors-${CACHE_VERSION}`;
 
-// Assets to cache immediately on install
+// Assets to cache immediately on install.
+// NOTE: do not pre-cache the HTML shell ('/' or '/index.html'). HTML is served
+// network-first below so new deploys (and prerendered content) always win; caching
+// the shell here would let a stale copy be served before the network response.
 const CRITICAL_ASSETS = [
-  '/',
-  '/index.html',
   '/manifest.json',
   '/favicon.svg',
 ];
@@ -71,6 +72,28 @@ self.addEventListener('fetch', (event) => {
 
   // Skip chrome extensions
   if (request.url.startsWith('chrome-extension://')) return;
+
+  // Network-first for HTML/navigation requests so new deploys and prerendered content
+  // always render (cache is only an offline fallback). Cache-first on HTML would pin
+  // returning visitors to a stale shell forever.
+  const isNavigation =
+    request.mode === 'navigate' ||
+    (request.headers.get('accept') || '').includes('text/html');
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200 && response.type !== 'error') {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request).then((c) => c || caches.match('/index.html')))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
