@@ -6,7 +6,6 @@ import { createPageUrl } from "@/utils";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import LoadingScreen from "@/components/shared/LoadingScreen";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
@@ -23,8 +22,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [showLoading, setShowLoading] = React.useState(true);
-  const [initialLoad, setInitialLoad] = React.useState(true);
   const [scrolled, setScrolled] = React.useState(false);
 
   // Secret admin access hook
@@ -46,11 +43,6 @@ export default function Layout({ children, currentPageName }) {
     { name: "Blog", path: "blog" },
     { name: "Gallery", path: "gallery" }
   ];
-
-  const handleLoadingComplete = () => {
-    setShowLoading(false);
-    setInitialLoad(false);
-  };
 
   // Initialize performance optimizations
   useSmartPreloading();
@@ -74,22 +66,6 @@ export default function Layout({ children, currentPageName }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  React.useEffect(() => {
-    const hasLoadedBefore = sessionStorage.getItem('hasLoaded');
-    if (hasLoadedBefore) {
-      setShowLoading(false);
-      setInitialLoad(false);
-    } else {
-      sessionStorage.setItem('hasLoaded', 'true');
-      // Ensure loading completes after a short delay if stuck
-      const timeout = setTimeout(() => {
-        setShowLoading(false);
-        setInitialLoad(false);
-      }, 4000);
-      return () => clearTimeout(timeout);
-    }
-  }, []);
-
   // Conditionally apply header animation only on homepage
   const isHomePage = currentPageName === 'Home';
 
@@ -105,10 +81,6 @@ export default function Layout({ children, currentPageName }) {
         
         {/* Content Layer */}
         <div className="relative z-10 min-h-screen">
-          {showLoading && initialLoad && (
-            <LoadingScreen onComplete={handleLoadingComplete} />
-          )}
-
           {/* Admin Interface - Show instead of normal content when authenticated */}
           {isAdminAuthenticated && (
             <DisruptorsAdmin username={adminUser} onLogout={handleLogout} />

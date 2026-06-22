@@ -3,16 +3,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Layout from "./Layout.jsx";
 import { lazyWithRetry } from '@/utils/lazyWithRetry';
 
-// Loading component for lazy-loaded routes
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black">
-    <div className="text-center">
-      <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <p className="text-white font-medium">Loading...</p>
-    </div>
-  </div>
-);
-
 // Lazy load all pages for optimal performance with automatic retry on chunk load failure
 // Home page now lazy-loaded to reduce initial bundle size and improve LCP
 const Home = lazyWithRetry(() => {
@@ -329,7 +319,7 @@ function PagesContent() {
     console.log('🔍 [ROUTING] Available pages:', Object.keys(PAGES));
 
     return (
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={null}>
             <Routes>
                 {/* Disruptors Connect (Kiosk check-in system) - Standalone pages without header/footer */}
                 <Route path="/connectqr1" element={<ConnectWelcome />} />
