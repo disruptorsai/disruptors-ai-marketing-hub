@@ -85,7 +85,7 @@ export default function About() {
   usePageMeta({
     title: 'About Disruptors Media — Fractional CAIO & CMO Team',
     description:
-      'Meet Disruptors Media: a fractional Chief AI Officer (CAIO) and CMO service that installs AI-powered marketing systems inside your business. Learn how we work and who we are.',
+      'Meet Disruptors Media — a fractional Chief AI Officer (CAIO) and CMO service that installs AI-powered marketing systems inside your business.',
     path: '/about',
     jsonLd: [
       breadcrumb('About', '/about'),

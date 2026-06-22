@@ -21,7 +21,7 @@ export default function Home() {
   usePageMeta({
     title: 'Disruptors Media — AI-Powered Marketing & Fractional CAIO/CMO',
     description:
-      'Disruptors Media is a fractional Chief AI Officer (CAIO) and CMO service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — inside your business, so you own everything we install.',
+      'A fractional Chief AI Officer (CAIO) & CMO service that builds AI-powered marketing systems — content, SEO, lead gen, and follow-up — inside your business.',
     path: '/',
     jsonLd: [
       faqPageSchema(),

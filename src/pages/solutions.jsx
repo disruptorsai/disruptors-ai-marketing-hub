@@ -90,9 +90,9 @@ const ServiceCard = ({ service, index }) => {
 
 export default function Solutions() {
   usePageMeta({
-    title: 'Marketing Solutions — SEO, GEO, AI Automation & Lead Gen | Disruptors Media',
+    title: 'AI Marketing Solutions & Services | Disruptors Media',
     description:
-      "Disruptors Media's AI-powered marketing solutions: SEO & GEO, AI automation, social media, paid advertising, lead generation, content, podcasting, custom apps, CRM, and fractional CMO leadership.",
+      "Disruptors Media's AI-powered marketing solutions: SEO & GEO, AI automation, social, paid ads, lead generation, content, and fractional CMO.",
     path: '/solutions',
     jsonLd: breadcrumb('Solutions', '/solutions'),
   });

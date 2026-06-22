@@ -9,7 +9,7 @@ export default function FAQ() {
   usePageMeta({
     title: 'FAQ — Disruptors Media',
     description:
-      'Frequently asked questions about Disruptors Media, our fractional CAIO/CMO service, the services we offer, and how we install AI-powered marketing systems inside your business.',
+      'Answers about Disruptors Media, our fractional CAIO/CMO service, the services we offer, and how we install AI-powered marketing systems.',
     path: '/faq',
     jsonLd: [breadcrumb('FAQ', '/faq'), faqPageSchema()],
   });
