@@ -19,6 +19,10 @@ export function useBillboardPopup(delayMs = 1500) {
   const [isReturning, setIsReturning] = useState(false);
 
   useEffect(() => {
+    // Never open in automated/prerender contexts (Playwright sets navigator.webdriver).
+    // Otherwise the open modal gets baked into the prerendered HTML as an orphaned,
+    // non-interactive portal node that can't be closed after hydration.
+    if (typeof navigator !== 'undefined' && navigator.webdriver) return;
     const state = getState();
     if (state?.accepted) return;                              // permanent dismiss
     if (state?.dismissedAt) {
