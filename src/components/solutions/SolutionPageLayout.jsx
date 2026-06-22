@@ -19,22 +19,35 @@ export default function SolutionPageLayout({ service }) {
         ? `${service.descriptivePhrase ? service.descriptivePhrase + '. ' : ''}${service.overview || ''}`
             .replace(/\s+/g, ' ').trim().slice(0, 155)
         : '';
+    const solutionJsonLd = service ? [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: service.title,
+            description: metaDescription,
+            provider: { '@type': 'Organization', name: 'Disruptors Media' },
+            areaServed: { '@type': 'Country', name: 'United States' },
+            url: `https://disruptorsmedia.com${metaPath}`,
+        },
+        breadcrumb(service.title, metaPath),
+    ] : [];
+    // FAQPage schema mirrors the rendered FAQ accordion verbatim (Google requires parity).
+    if (service?.faqs?.length) {
+        solutionJsonLd.push({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: service.faqs.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+            })),
+        });
+    }
     usePageMeta(service ? {
         title: `${service.title} | Disruptors Media`,
         description: metaDescription,
         path: metaPath,
-        jsonLd: [
-            {
-                '@context': 'https://schema.org',
-                '@type': 'Service',
-                name: service.title,
-                description: metaDescription,
-                provider: { '@type': 'Organization', name: 'Disruptors Media' },
-                areaServed: { '@type': 'Country', name: 'United States' },
-                url: `https://disruptorsmedia.com${metaPath}`,
-            },
-            breadcrumb(service.title, metaPath),
-        ],
+        jsonLd: solutionJsonLd,
     } : {});
 
     if (!service) {

@@ -12,6 +12,7 @@ import FAQAccordion from '../components/shared/FAQAccordion';
 import BillboardModal from '../components/shared/BillboardModal';
 import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { faqPageSchema } from '@/data/faqContent';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export default function Home() {
     description:
       'Disruptors Media is a fractional Chief AI Officer (CAIO) and CMO service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — inside your business, so you own everything we install.',
     path: '/',
+    jsonLd: faqPageSchema(),
   });
 
   const handleBillboardYes = () => {

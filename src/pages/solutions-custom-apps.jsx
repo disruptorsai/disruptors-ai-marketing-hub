@@ -69,6 +69,15 @@ export default function CustomApps() {
         url: 'https://disruptorsmedia.com/solutions-custom-apps',
       },
       breadcrumb('Custom Apps', '/solutions-custom-apps'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: service.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
     ],
   });
   const [openFaqIndex, setOpenFaqIndex] = useState(null);

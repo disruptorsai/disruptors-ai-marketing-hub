@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageTitle from '../components/shared/PageTitle';
 import FAQAccordion from '../components/shared/FAQAccordion';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { faqPageSchema } from '@/data/faqContent';
 
 export default function FAQ() {
   usePageMeta({
@@ -10,7 +11,7 @@ export default function FAQ() {
     description:
       'Frequently asked questions about Disruptors Media, our fractional CAIO/CMO service, the services we offer, and how we install AI-powered marketing systems inside your business.',
     path: '/faq',
-    jsonLd: breadcrumb('FAQ', '/faq'),
+    jsonLd: [breadcrumb('FAQ', '/faq'), faqPageSchema()],
   });
 
   return (
