@@ -1,5 +1,29 @@
 # Serve static images directly (don't redirect to SPA)
 /images/*   /images/:splat   200
 
-# SPA fallback - redirect everything else to index.html
+# ============================================================================
+# LEGACY 301 REDIRECTS  (Task 9 — populate from Semrush Backlink Audit / old
+# sitemap / Wayback). Format: <old-path>  <new-path>  301
+# 301 = permanent; preserves historical link equity from the 469 referring
+# domains. Add one line per legacy URL. Keep these ABOVE the SPA fallback.
+# Examples (REPLACE — do not ship these placeholders):
+#   /old-services        /solutions              301
+#   /digital-marketing   /solutions              301
+#   /seo                 /solutions-seo-geo      301
+#   /contact-us          /book-strategy-session  301
+# ============================================================================
+
+
+# ----------------------------------------------------------------------------
+# OPTIONAL hard-404 for unknown paths (Task 9, part 2 — NOT enabled).
+# The line below would return a real 404 for any unmatched path. It is left
+# commented because the SPA also serves ~60 client-only routes (app, demos,
+# work/solutions detail pages) that are not prerendered; enabling it without a
+# full valid-route allowlist above would 404 those legitimate pages.
+# To enable hard-404: list every valid client route as `<route> /index.html 200`
+# above this line, then uncomment:
+#   /*    /404.html    404
+# ----------------------------------------------------------------------------
+
+# SPA fallback - serve the app shell for client-side routes (keep last):
 /*    /index.html   200
