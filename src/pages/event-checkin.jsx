@@ -7,9 +7,18 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { supabase } from '@/lib/supabase-client';
 
 const EventCheckin = () => {
+  // Utility/event tool — give it its own metadata and keep it out of the index
+  // (prevents the SPA fallback from serving home content to crawlers).
+  usePageMeta({
+    title: 'Event Check-In | Disruptors Media',
+    description: 'Check in to a live Disruptors Media event.',
+    path: '/event-checkin',
+    noindex: true,
+  });
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',

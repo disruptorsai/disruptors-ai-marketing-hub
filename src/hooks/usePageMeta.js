@@ -44,7 +44,7 @@ function upsertCanonical(href) {
   el.setAttribute('href', href);
 }
 
-export function usePageMeta({ title, description, path = '/', ogImage, jsonLd } = {}) {
+export function usePageMeta({ title, description, path = '/', ogImage, jsonLd, noindex = false } = {}) {
   const url = `${SITE_URL}${path}`;
   const ldString = jsonLd ? JSON.stringify(jsonLd) : null;
 
@@ -63,11 +63,12 @@ export function usePageMeta({ title, description, path = '/', ogImage, jsonLd } 
     upsertCanonical(url);
     upsertMeta('property', 'og:url', url);
     upsertMeta('property', 'twitter:url', url);
+    upsertMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
 
     const img = ogImage || DEFAULT_OG_IMAGE;
     upsertMeta('property', 'og:image', img);
     upsertMeta('property', 'twitter:image', img);
-  }, [title, description, url, ogImage]);
+  }, [title, description, url, ogImage, noindex]);
 
   useEffect(() => {
     if (!ldString) return undefined;

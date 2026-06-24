@@ -673,7 +673,7 @@ export default function AboutDev() {
           cta1_text="Book a Free Strategy Session"
           cta1_link="book-strategy-session"
           cta2_text="Get a Free Business Audit"
-          cta2_link="free-business-audit"
+          cta2_link="marketing-audit"
          />
       </section>
     </div>

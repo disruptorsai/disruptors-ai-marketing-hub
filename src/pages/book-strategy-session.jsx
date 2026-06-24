@@ -272,7 +272,7 @@ export default function BookStrategySession() {
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-4">Looking for something else?</p>
               <Button asChild variant="outline">
-                <Link to={createPageUrl('free-business-audit')}>Get a Free Marketing Assessment Instead</Link>
+                <Link to={createPageUrl('marketing-audit')}>Get a Free Marketing Assessment Instead</Link>
               </Button>
             </div>
           )}

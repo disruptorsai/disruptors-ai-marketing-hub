@@ -39,6 +39,11 @@ const ROUTES = [
   '/solutions-ai-automation', '/solutions-social-media', '/solutions-seo-geo',
   '/solutions-lead-generation', '/solutions-paid-advertising', '/solutions-podcasting',
   '/solutions-custom-apps', '/solutions-crm-management', '/solutions-fractional-cmo',
+  // Publicly-linked campaign page (indexable).
+  '/billboard',
+  // NOTE: /event-checkin is intentionally NOT prerendered — it's a utility tool with a
+  // client-only hydration mismatch, and it's marked noindex via an X-Robots-Tag header
+  // in netlify.toml, so it never needs to ship indexable static HTML.
 ];
 
 // Core routes: if any of these fail to prerender, fail the build. Other routes that

@@ -13,6 +13,10 @@
 #   /contact-us          /book-strategy-session  301
 # ============================================================================
 
+# Known internal mislink: /free-business-audit was linked but never existed.
+# Point it at the real free audit page.
+/free-business-audit   /marketing-audit   301
+
 
 # ----------------------------------------------------------------------------
 # OPTIONAL hard-404 for unknown paths (Task 9, part 2 — NOT enabled).

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   CheckCircle, Search, Crosshair, Cpu, Rocket, SlidersHorizontal,
@@ -109,6 +110,12 @@ const parallaxStyle = {
 };
 
 export default function Billboard() {
+  usePageMeta({
+    title: 'Your Marketing Sucks — Let Us Fix It | Disruptors Media',
+    description:
+      'Saw our billboard? See how Disruptors Media installs AI-powered marketing systems that generate leads and growth — and book a free strategy session.',
+    path: '/billboard',
+  });
   // ─── Booking Form State ───────────────────────────────────────────
   const [formData, setFormData] = useState({
     fullName: '', businessName: '', email: '', phone: '',
