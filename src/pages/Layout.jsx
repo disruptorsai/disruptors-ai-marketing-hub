@@ -6,6 +6,7 @@ import { createPageUrl } from "@/utils";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { optimizeSupabaseImage } from "@/utils/supabase-media-optimizer";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
@@ -108,8 +109,10 @@ export default function Layout({ children, currentPageName }) {
                     className="relative cursor-pointer touch-manipulation"
                   >
                     <img
-                      src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-logos/logo-banner-white.webp"
+                      src={optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-logos/logo-banner-white.webp', { width: 512, quality: 85 })}
                       alt="Disruptors Media Logo"
+                      width="800"
+                      height="160"
                       fetchpriority="high"
                       className={`object-contain h-auto brightness-0 invert transition-all duration-500 ease-in-out ${
                         scrolled ? 'w-24 sm:w-32' : 'w-48 sm:w-64'

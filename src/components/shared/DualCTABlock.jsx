@@ -21,6 +21,9 @@ export default function DualCTABlock({
         <img
           src={backgroundImage}
           alt=""
+          width="1920"
+          height="1080"
+          loading="lazy"
           className="w-full h-full object-cover"
         />
       </div>
