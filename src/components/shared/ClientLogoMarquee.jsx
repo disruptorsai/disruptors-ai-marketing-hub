@@ -61,16 +61,16 @@ export default function ClientLogoMarquee({
                   <SvgImage
                     src={logo.src}
                     alt={logo.alt}
-                    className="max-h-30 max-w-44 md:max-h-40 md:max-w-60 w-auto h-auto object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
-                    style={logo.alt === "Sound Corrections" ? { transform: "scale(1.3)" } : {}}
+                    className="max-h-[120px] max-w-[176px] md:max-h-[150px] md:max-w-[230px] w-auto h-auto object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
+                    style={logo.alt === "Sound Corrections" ? { transform: "scale(1.1)" } : {}}
                   />
                 ) : (
                   <img
-                    src={optimizeSupabaseImage(logo.src, { width: 280, quality: 80 })}
+                    src={optimizeSupabaseImage(logo.src, { width: 280, quality: 80, resize: 'contain' })}
                     alt={logo.alt}
                     loading="lazy"
-                    className="max-h-30 max-w-44 md:max-h-40 md:max-w-60 w-auto h-auto object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
-                    style={logo.alt === "Sound Corrections" ? { transform: "scale(1.3)" } : {}}
+                    className="max-h-[120px] max-w-[176px] md:max-h-[150px] md:max-w-[230px] w-auto h-auto object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_24px_rgba(0,0,0,0.75)]"
+                    style={logo.alt === "Sound Corrections" ? { transform: "scale(1.1)" } : {}}
                     draggable="false"
                   />
                 )
