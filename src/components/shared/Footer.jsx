@@ -211,7 +211,7 @@ export default function Footer() {
               <img
                 src={optimizeSupabaseImage(
                   'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
-                  { width: 640, quality: 80 }
+                  { width: 640, quality: 80, resize: 'contain' }
                 )}
                 alt="Disruptors Media"
                 width="800"
