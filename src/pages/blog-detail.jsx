@@ -5,16 +5,21 @@ import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import usePageMeta from '@/hooks/usePageMeta';
+import { useParams } from 'react-router-dom';
+
+const ORG_ID = 'https://disruptorsmedia.com/#organization';
 
 export default function BlogDetail() {
+    const { slug: routeSlug } = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchPost = async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const slug = urlParams.get('slug');
+            // Prefer the clean path param (/blog/:slug); fall back to legacy ?slug= for old links.
+            const slug = routeSlug || new URLSearchParams(window.location.search).get('slug');
 
             if (!slug) {
                 setError("No post slug provided in URL.");
@@ -41,7 +46,44 @@ export default function BlogDetail() {
         };
 
         fetchPost();
-    }, []);
+    }, [routeSlug]);
+
+    // Per-post SEO/GEO metadata + BlogPosting JSON-LD. Called unconditionally (before the
+    // loading/error early-returns) so hook order stays stable; emits nothing until `post` loads.
+    const metaDescription = post
+        ? (post.excerpt || post.meta_description ||
+           String(post.content || '')
+               .replace(/[#*_`>\[\]!~]/g, '')
+               .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+               .replace(/\s+/g, ' ')
+               .trim()
+               .slice(0, 155))
+        : '';
+    // Canonical is always the clean path-based URL, regardless of how the page was reached.
+    const postPath = post ? `/blog/${post.slug}` : '/blog';
+    const postUrl = `https://disruptorsmedia.com${postPath}`;
+    usePageMeta(post ? {
+        title: `${post.title} | Disruptors Media`,
+        description: metaDescription,
+        path: postPath,
+        ogImage: post.featured_image,
+        jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            ...(metaDescription ? { description: metaDescription } : {}),
+            ...(post.featured_image ? { image: post.featured_image } : {}),
+            datePublished: post.published_at || post.created_at,
+            dateModified: post.updated_at || post.published_at || post.created_at,
+            author: post.author_name
+                ? { '@type': 'Person', name: post.author_name }
+                : { '@type': 'Organization', '@id': ORG_ID, name: 'Disruptors Media' },
+            publisher: { '@id': ORG_ID },
+            ...(post.category ? { articleSection: post.category } : {}),
+            ...(Array.isArray(post.tags) && post.tags.length ? { keywords: post.tags.join(', ') } : {}),
+            mainEntityOfPage: postUrl,
+        },
+    } : {});
 
     if (loading) {
         return (
@@ -91,7 +133,7 @@ export default function BlogDetail() {
                     <div className="flex flex-wrap items-center gap-6 text-gray-300">
                         <div className="flex items-center gap-2">
                             <User className="w-5 h-5" />
-                            <span>Disruptors Team</span>
+                            <span>{post.author_name || 'Disruptors Team'}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <Calendar className="w-5 h-5" />

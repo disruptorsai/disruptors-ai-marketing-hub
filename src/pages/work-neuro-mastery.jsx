@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkNeuroMastery() {
+  usePageMeta({
+    title: 'Neuro Mastery Case Study | Disruptors Media',
+    description: 'How Disruptors Media built an AI learning platform that lifted Neuro Mastery’s learning retention by 280% while cutting study time by 60%.',
+    path: '/work-neuro-mastery',
+    jsonLd: breadcrumb('Neuro Mastery Case Study', '/work-neuro-mastery'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

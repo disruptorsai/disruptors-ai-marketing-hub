@@ -75,7 +75,7 @@ const PostCard = ({ post, isFeatured = false }) => {
                   </div>
               </div>
               <Link
-                to={`/blog-detail?slug=${post.slug}`}
+                to={`/blog/${post.slug}`}
                 className="font-semibold text-black flex items-center hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
                 aria-label={`Read full article: ${post.title}`}
               >

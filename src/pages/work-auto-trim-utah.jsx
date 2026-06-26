@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkAutoTrimUtah() {
+  usePageMeta({
+    title: 'Auto Trim Utah Case Study | Disruptors Media',
+    description: 'How Disruptors Media drove +420% online bookings and +180% customer-base growth for Auto Trim Utah with a digital showroom and automated booking.',
+    path: '/work-auto-trim-utah',
+    jsonLd: breadcrumb('Auto Trim Utah Case Study', '/work-auto-trim-utah'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

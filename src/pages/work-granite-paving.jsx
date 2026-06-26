@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkGranitePaving() {
+  usePageMeta({
+    title: 'Granite Paving Case Study | Disruptors Media',
+    description: 'How Disruptors Media drove +380% lead generation and +250% service-area growth for Granite Paving with a showcase site and automated lead generation.',
+    path: '/work-granite-paving',
+    jsonLd: breadcrumb('Granite Paving Case Study', '/work-granite-paving'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

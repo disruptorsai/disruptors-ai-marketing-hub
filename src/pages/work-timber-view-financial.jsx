@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,13 @@ const caseData = {
 };
 
 export default function WorkTimberViewFinancial() {
+  usePageMeta({
+    title: 'Timberview Capital Case Study | Disruptors Media',
+    description: 'How Disruptors Media built an AI-enhanced client portal with automated risk assessment to modernize Timberview Capital’s financial advisory practice.',
+    path: '/work-timber-view-financial',
+    jsonLd: breadcrumb('Timberview Capital Case Study', '/work-timber-view-financial'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

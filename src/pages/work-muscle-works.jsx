@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,13 @@ const caseData = {
 };
 
 export default function WorkMuscleWorks() {
+  usePageMeta({
+    title: 'Muscle Works Case Study | Disruptors Media',
+    description: 'How Disruptors Media built an AI fitness management system for Muscle Works with automated progress tracking and personalized workout generation.',
+    path: '/work-muscle-works',
+    jsonLd: breadcrumb('Muscle Works Case Study', '/work-muscle-works'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

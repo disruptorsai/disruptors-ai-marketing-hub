@@ -1,10 +1,17 @@
 [build]
-  command = "npm run build"
+  # Prerender marketing routes so crawlers/AI get real HTML (not an empty SPA shell).
+  # `build:prerender` = `vite build && node scripts/prerender.js` (Playwright/headless Chromium).
+  # Chromium is installed explicitly here because PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD disables the
+  # automatic npm-install download. If prerender ever fails it surfaces on the DEV deploy first
+  # (production is manual), so it can't silently ship a broken production build.
+  command = "npx playwright install chromium && npm run build:prerender"
   publish = "dist"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
+  # Skip the implicit browser download during `npm install`; we install Chromium explicitly in
+  # the build command above (keeps `npm install` fast while still giving prerender a browser).
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
   PLAYWRIGHT_BROWSERS_PATH = "0"
   # Increase Node memory for large builds (70+ lazy-loaded routes)

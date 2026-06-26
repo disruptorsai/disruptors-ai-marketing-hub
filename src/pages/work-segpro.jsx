@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkSegPro() {
+  usePageMeta({
+    title: 'SegPro Solutions Case Study | Disruptors Media',
+    description: 'How Disruptors Media drove +450% campaign ROI and +300% lead quality for SegPro Solutions with an AI-powered marketing automation suite.',
+    path: '/work-segpro',
+    jsonLd: breadcrumb('SegPro Solutions Case Study', '/work-segpro'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

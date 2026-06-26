@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkSoundCorrections() {
+  usePageMeta({
+    title: 'Sound Corrections Case Study | Disruptors Media',
+    description: 'How Disruptors Media built an AI audio platform that boosted Sound Corrections’ processing speed by 400% while cutting manual work by 90%.',
+    path: '/work-sound-corrections',
+    jsonLd: breadcrumb('Sound Corrections Case Study', '/work-sound-corrections'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

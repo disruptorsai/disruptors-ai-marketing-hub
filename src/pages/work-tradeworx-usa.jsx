@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,13 @@ const caseData = {
 };
 
 export default function WorkTradeWorxUSA() {
+  usePageMeta({
+    title: 'TradeWorx USA Case Study | Disruptors Media',
+    description: 'How Disruptors Media drove +185% lead generation and +120% customer retention for TradeWorx USA through a full digital transformation.',
+    path: '/work-tradeworx-usa',
+    jsonLd: breadcrumb('TradeWorx USA Case Study', '/work-tradeworx-usa'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

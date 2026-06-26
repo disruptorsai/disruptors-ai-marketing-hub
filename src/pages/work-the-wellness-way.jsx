@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -28,6 +29,13 @@ const caseData = {
 };
 
 export default function WorkTheWellnessWay() {
+  usePageMeta({
+    title: 'The Wellness Way Case Study | Disruptors Media',
+    description: 'How Disruptors Media built an AI-powered wellness platform for The Wellness Way, driving millions of social views and a large uptick in new patients.',
+    path: '/work-the-wellness-way',
+    jsonLd: breadcrumb('The Wellness Way Case Study', '/work-the-wellness-way'),
+  });
+
   return (
     <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}

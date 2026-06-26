@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const caseData = {
   client: 'SaaS Content Engine',
@@ -14,6 +15,13 @@ const caseData = {
 };
 
 export default function WorkSaaSContentEngine() {
+  usePageMeta({
+    title: 'SaaS Content Engine Case Study | Disruptors Media',
+    description: 'How Disruptors Media scaled a B2B SaaS client’s content production by 300% and reduced cost-per-article by 70% with an AI-powered content engine.',
+    path: '/work-saas-content-engine',
+    jsonLd: breadcrumb('SaaS Content Engine Case Study', '/work-saas-content-engine'),
+  });
+
   return (
     <div className="bg-white text-gray-800 min-h-screen">
       {/* Hero Section */}

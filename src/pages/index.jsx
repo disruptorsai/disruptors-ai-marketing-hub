@@ -385,6 +385,8 @@ function PagesContent() {
                             <Route path="/blog" element={<Blog />} />
 
                             <Route path="/blog-detail" element={<BlogDetail />} />
+                            {/* Clean canonical blog URLs (path-based); /blog-detail?slug= kept for back-compat */}
+                            <Route path="/blog/:slug" element={<BlogDetail />} />
                             <Route path="/blog-new" element={<BlogDetailNew />} />
 
                             {/* Blog Management moved to Admin Nexus for security */}

@@ -14,5 +14,3 @@ Disallow: /api/
 # Sitemap location
 Sitemap: https://disruptorsmedia.com/sitemap.xml
 
-# Crawl delay (optional - prevents aggressive crawling)
-Crawl-delay: 1

@@ -41,6 +41,10 @@ const ROUTES = [
   '/solutions-custom-apps', '/solutions-crm-management', '/solutions-fractional-cmo',
   // Publicly-linked campaign page (indexable).
   '/billboard',
+  // Case-study detail pages — high-value, statistic-rich content for citability.
+  '/work-saas-content-engine', '/work-tradeworx-usa', '/work-timber-view-financial',
+  '/work-the-wellness-way', '/work-sound-corrections', '/work-segpro',
+  '/work-neuro-mastery', '/work-muscle-works', '/work-granite-paving', '/work-auto-trim-utah',
   // NOTE: /event-checkin is intentionally NOT prerendered — it's a utility tool with a
   // client-only hydration mismatch, and it's marked noindex via an X-Robots-Tag header
   // in netlify.toml, so it never needs to ship indexable static HTML.
@@ -60,6 +64,19 @@ const MIME = {
   '.ttf': 'font/ttf', '.map': 'application/json', '.txt': 'text/plain',
   '.webmanifest': 'application/manifest+json', '.mp4': 'video/mp4',
 };
+
+// Replace whatever is inside <div id="root">…</div> with nothing, keeping the trailing
+// build <script>/<link> tags intact. Regex can't reliably match the matching </div> when
+// the snapshot has nested divs, so we slice from the #root open tag to the first <script>
+// that follows it (the app entry always sits after #root in the body).
+function emptyRoot(html) {
+  const open = html.indexOf('<div id="root"');
+  if (open === -1) return html;
+  const gt = html.indexOf('>', open);
+  const nextScript = html.indexOf('<script', gt);
+  if (gt === -1 || nextScript === -1) return html;
+  return html.slice(0, gt + 1) + '</div>\n    ' + html.slice(nextScript);
+}
 
 function startServer(shellHtml) {
   const server = http.createServer((req, res) => {
@@ -103,16 +120,69 @@ async function settle(page) {
   await page.waitForTimeout(1500);
 }
 
+// Best-effort: pull published blog posts so each ships static HTML at /blog/<slug> and lands in
+// the sitemap. Non-fatal — if Supabase env/credentials/table are unavailable at build time, blog
+// posts simply fall back to the SPA shell (no regression) and a warning is logged.
+async function fetchBlogPosts() {
+  const url = process.env.VITE_SUPABASE_URL;
+  const key = process.env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    console.warn('[prerender] Supabase env not set — skipping blog-post prerender/sitemap.');
+    return [];
+  }
+  try {
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabase = createClient(url, key, { auth: { persistSession: false } });
+    const { data, error } = await supabase
+      .from('posts')
+      .select('slug, published_at, updated_at, created_at')
+      .eq('is_published', true);
+    if (error) throw error;
+    const posts = (data || []).filter((p) => p.slug);
+    console.log(`[prerender] +${posts.length} published blog post(s) from Supabase.`);
+    return posts;
+  } catch (err) {
+    console.warn(`[prerender] blog fetch failed (${err.message.split('\n')[0]}) — skipping blog posts.`);
+    return [];
+  }
+}
+
+// Inject <url> entries for blog posts into the built dist/sitemap.xml (skips ones already present).
+function appendBlogToSitemap(posts) {
+  const sitemapPath = join(DIST, 'sitemap.xml');
+  if (!existsSync(sitemapPath) || !posts.length) return;
+  let xml = readFileSync(sitemapPath, 'utf8');
+  const entries = posts
+    .filter((p) => !xml.includes(`/blog/${p.slug}<`))
+    .map((p) => {
+      const lastmod = (p.updated_at || p.published_at || p.created_at || '').slice(0, 10) || '2026-06-26';
+      return `  <url><loc>https://disruptorsmedia.com/blog/${p.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`;
+    });
+  if (!entries.length) return;
+  xml = xml.replace('</urlset>', `${entries.join('\n')}\n</urlset>`);
+  writeFileSync(sitemapPath, xml, 'utf8');
+  console.log(`[prerender] sitemap.xml += ${entries.length} blog URL(s).`);
+}
+
 async function main() {
   if (!existsSync(join(DIST, 'index.html'))) {
     console.error('[prerender] dist/index.html not found — run `vite build` first.');
     process.exit(1);
   }
 
-  // Capture the clean build shell BEFORE writing any snapshots, and strip any leftover
-  // page-injected JSON-LD so re-runs on an already-prerendered dist stay idempotent.
-  const shellHtml = readFileSync(join(DIST, 'index.html'), 'utf8')
-    .replace(/\s*<script type="application\/ld\+json" data-page-schema[^>]*>[\s\S]*?<\/script>/g, '');
+  // Capture the build shell BEFORE writing any snapshots. Two cleanups make this robust:
+  //   1. Strip leftover page-injected JSON-LD so re-runs stay idempotent.
+  //   2. Force an EMPTY #root. dist/index.html may already be a prior home snapshot
+  //      (e.g. a re-run, or a build that didn't refresh index.html), which would carry
+  //      home's rendered DOM. Serving that makes the client `hydrateRoot` against
+  //      mismatched markup, and pages whose hydration errors hard never run their
+  //      usePageMeta effect — leaving home's <title>/canonical on every route. An empty
+  //      #root forces `createRoot` (CSR) instead, so each page renders fresh and its own
+  //      usePageMeta is authoritative. The hashed asset <script>/<link> tags are preserved.
+  const shellHtml = emptyRoot(
+    readFileSync(join(DIST, 'index.html'), 'utf8')
+      .replace(/\s*<script type="application\/ld\+json" data-page-schema[^>]*>[\s\S]*?<\/script>/g, '')
+  );
   const server = await startServer(shellHtml);
   // Optional override: point at a specific Chromium binary (e.g. the full build when the
   // headless-shell variant isn't installed). Defaults to Playwright's managed browser.
@@ -122,10 +192,13 @@ async function main() {
   }
   const browser = await chromium.launch(launchOpts);
 
+  const blogPosts = await fetchBlogPosts();
+  const routes = [...ROUTES, ...blogPosts.map((p) => `/blog/${p.slug}`)];
+
   let ok = 0;
   const coreFailures = [];
   const softFailures = [];
-  for (const route of ROUTES) {
+  for (const route of routes) {
     const isCore = CORE_ROUTES.has(route);
     // Fresh, isolated context per route (no shared service worker, cache, or carried-over
     // DOM/head state) so page-injected per-route JSON-LD can't leak between routes.
@@ -168,6 +241,7 @@ async function main() {
 
   await browser.close();
   server.close();
+  appendBlogToSitemap(blogPosts);
 
   if (softFailures.length) {
     console.warn(`[prerender] ${softFailures.length} non-core route(s) skipped (SPA fallback): ${softFailures.join(', ')}`);
@@ -176,7 +250,7 @@ async function main() {
     console.error(`[prerender] CORE route(s) failed: ${coreFailures.join(', ')}`);
     process.exit(1);
   }
-  console.log(`[prerender] Done — ${ok}/${ROUTES.length} routes snapshotted.`);
+  console.log(`[prerender] Done — ${ok}/${routes.length} routes snapshotted.`);
 }
 
 main().catch((err) => {
