@@ -193,7 +193,7 @@ export default function GoogleReviewsSection() {
                 <img
                   src={optimizeSupabaseImage(
                     'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png',
-                    { width: 480, quality: 80 }
+                    { width: 480, quality: 80, resize: 'contain' }
                   )}
                   alt="Disruptors AI"
                   width="800"
