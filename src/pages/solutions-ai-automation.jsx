@@ -1,119 +1,98 @@
 import React from 'react';
-import SolutionPageLayout from '../components/solutions/SolutionPageLayout';
+import ServicePagePro from '../components/solutions/ServicePagePro';
 
+// AI Automation on the locked Hybrid template (ServicePagePro).
+// Framing: outcome-led — automate the busywork across the whole business (marketing, sales,
+// ops, support); revenue is a downstream outcome, not the headline. Positioning: fractional
+// Chief AI Officer, systems built in + owned by the client. SEO/GEO: "AI automation" leads the
+// subhead's first sentence; FAQs are self-contained, liftable answers.
 const service = {
   title: 'AI Automation & Infrastructure',
-  h2: 'Build Your AI-Powered Future.',
-  descriptivePhrase: 'Streamline. Automate. Scale.',
-  overview: 'Our AI automation services help businesses streamline operations, generate leads, and scale with efficiency by integrating advanced tools like GoHighLevel, n8n, and custom AI systems. We design tailored solutions that eliminate repetitive tasks, enhance customer engagement, and drive measurable ROI. Whether you need automated marketing, CRM workflows, or AI-powered content systems, we create scalable infrastructure that grows with your business.',
-  image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-human.png',
+  eyebrow: 'Fractional Chief AI Officer',
+  headline: 'Automate the busywork. Focus on what matters.',
+  headlineAccent: 'Focus',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/ai-automation.jpg',
   heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/ai-automation.mp4',
-  cardVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/ai-automation.mp4',
+  stats: [
+    { value: 24, suffix: '/7', label: 'Always-on operation' },
+    { display: '10 – 30', suffix: ' hrs', label: 'Reclaimed / week' },
+    { display: '4 – 8', suffix: ' wks', label: 'To full deployment' },
+    { value: 100, suffix: '%', label: 'Owned by you' },
+  ],
+  subhead:
+    'AI automation is simply software that handles your repetitive, manual work — across marketing, sales, operations, and support — so your team spends time on the things that actually move the business forward. We build it into your business, and you own it.',
+
+  chips: ['Marketing', 'Sales', 'Operations', 'Customer Support', 'Content', 'Reporting'],
+
+  platform: {
+    label: 'The Engine',
+    title: 'One system for the whole business.',
+    body: "Whatever eats your team's time — follow-ups, data entry, content, reporting — we automate it. One connected system that scales with you, and you keep everything we build.",
+    features: [
+      { num: '01', title: 'Live in weeks', desc: 'Pre-built templates get your automations running fast — signup to working system in a fraction of the usual time.', viz: 'terminal' },
+      { num: '02', title: 'Intelligent Routing', desc: 'Send anything to the right place — leads, tickets, tasks — based on intent, priority, and context. Nothing slips.', viz: 'routing' },
+    ],
+    mini: [
+      { icon: 'zap', title: 'Real-time Sync', desc: 'Bi-directional CRM updates.' },
+      { icon: 'shield', title: 'You Own It', desc: 'Infrastructure you keep.' },
+      { icon: 'clock', title: '24/7 Operation', desc: 'Runs while you sleep.' },
+      { icon: 'file', title: 'Full Handoff', desc: 'Docs + training included.' },
+    ],
+  },
+
+  outcomesEyebrow: '02 · Outcomes',
+  outcomesTitle: 'What it changes.',
   outcomes: [
-    {
-      title: 'Eliminate Repetitive Tasks',
-      description: 'Automate workflows that drain time and resources, freeing your team to focus on high-value strategic work.'
-    },
-    {
-      title: 'Scale Operations Efficiently',
-      description: 'Handle increased volume without proportional cost increases through intelligent automation systems.'
-    },
-    {
-      title: 'Measurable ROI',
-      description: 'Track clear metrics showing time saved, costs reduced, and revenue generated through automation.'
-    }
+    { icon: 'clock', title: 'Get your time back', desc: 'Automate the repetitive work and reclaim 10–30 hours a week for the things only your team can do.' },
+    { icon: 'layers', title: 'Scale without hiring', desc: 'Handle more volume with the same team. The system absorbs the work that would otherwise force you to add headcount.' },
+    { icon: 'trending', title: 'Grow, measurably', desc: 'Faster response and consistent follow-up convert more of what you already have — and it compounds over time.' },
   ],
+
+  processEyebrow: '03 · Process',
+  processTitle: 'How we install it.',
   process: [
-    {
-      title: 'Discovery & Audit',
-      description: 'We analyze your current workflows to identify automation opportunities and inefficiencies costing you time and money.'
-    },
-    {
-      title: 'Strategy & Design',
-      description: 'Our team designs custom automation systems tailored to your business processes, tools, and growth objectives.'
-    },
-    {
-      title: 'Build & Integration',
-      description: 'We implement your automation infrastructure, integrating with existing tools and ensuring seamless operation.'
-    },
-    {
-      title: 'Optimize & Scale',
-      description: 'Continuous monitoring and refinement ensure your systems evolve with your business and maximize ROI.'
-    }
+    { title: 'Discovery & Audit', description: "We map where your team's time goes and where the biggest wins are." },
+    { title: 'Strategy & Design', description: 'We design automation around your workflows and the tools you already use.' },
+    { title: 'Build & Integration', description: 'Built into your stack — GoHighLevel, n8n, CRM, custom AI — validated end to end.' },
+    { title: 'Optimize & Hand Off', description: 'Documented and transferred. It keeps working — and compounding — without us.' },
   ],
-  features: [
-    {
-      title: 'Marketing Automation',
-      description: 'Automated email sequences, lead nurturing, and campaign management'
-    },
-    {
-      title: 'CRM Workflow Automation',
-      description: 'Automated data entry, follow-ups, and pipeline management'
-    },
-    {
-      title: 'AI-Powered Content Systems',
-      description: 'Content generation, distribution, and optimization with AI assistance'
-    },
-    {
-      title: 'Lead Generation Automation',
-      description: 'Automated outreach, qualification, and scheduling systems'
-    },
-    {
-      title: 'Custom Integration Development',
-      description: 'Connect disparate tools and create unified workflows'
-    },
-    {
-      title: 'Process Documentation',
-      description: 'Complete documentation and training for your team'
-    },
-    {
-      title: 'Performance Monitoring',
-      description: 'Real-time dashboards tracking automation performance and ROI'
-    },
-    {
-      title: 'Ongoing Support & Optimization',
-      description: 'Continuous refinement and expansion of your automation systems'
-    }
-  ],
+
+  successStory: {
+    metric: 'Beyond forecast',
+    quote: 'They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.',
+    name: 'Alde Nguyen',
+    company: 'Google Review',
+  },
+
+  faqsEyebrow: '04 · Questions',
+  faqsTitle: 'Frequently asked.',
   faqs: [
     {
-      question: 'What tools and platforms do you work with?',
-      answer: 'We work with leading automation platforms including GoHighLevel, n8n, Make (Integromat), Zapier, and custom API integrations. We also build proprietary automation systems tailored to your specific needs when off-the-shelf solutions fall short.'
+      question: 'What is AI automation, exactly?',
+      answer: "It's intelligent software that runs repetitive business tasks — things like lead follow-up, data entry, content, scheduling, and reporting — without anyone doing them by hand. It works across marketing, sales, operations, and support, so your team can focus on the work that needs a human.",
     },
     {
-      question: 'How long does it take to implement automation systems?',
-      answer: 'Simple automation workflows can be implemented in 1-2 weeks, while comprehensive automation infrastructure typically takes 4-8 weeks. Timeline depends on complexity, number of integrations, and your current systems. We provide detailed timelines during discovery.'
+      question: "I'm not sure what I'd even automate. Can you help?",
+      answer: "That's exactly what the first call is for. We audit where your team's time goes, then show you the highest-impact things to automate first. You don't need to arrive with a plan — that's our job.",
     },
     {
-      question: 'What kind of ROI can I expect from automation?',
-      answer: 'Most clients see 5-10x ROI within the first year through time savings, increased efficiency, and reduced errors. Typical time savings range from 10-30 hours per week, equivalent to hiring 0.25-0.75 full-time employees. We track metrics throughout to ensure measurable impact.'
+      question: 'How is this different from hiring a marketing agency?',
+      answer: 'A traditional agency rents you services and keeps the systems. We act as your fractional Chief AI Officer and build the infrastructure inside your business — you own everything we install. That means full-agency output without the ongoing retainer or dependency.',
     },
     {
-      question: 'Do I need technical expertise to maintain the automations?',
-      answer: 'No. We build systems that are maintainable by non-technical teams and provide comprehensive documentation and training. For complex systems, we offer ongoing support and maintenance packages so you never have to worry about technical issues.'
+      question: 'What tools do you work with, and how long does it take?',
+      answer: 'GoHighLevel, n8n, Make, and Zapier, plus custom integrations and AI models. Simple workflows go live in 1–2 weeks; a full system typically takes 4–8 weeks depending on scope.',
     },
     {
-      question: 'Can you automate processes in my specific industry?',
-      answer: 'Yes. We have experience automating processes across manufacturing, professional services, healthcare, real estate, e-commerce, and more. Industry-specific compliance and regulations are factored into every automation system we build.'
-    }
+      question: 'Do I need technical skills to run it?',
+      answer: 'No. We build for non-technical teams and include full documentation and training. You own the system and are never locked in.',
+    },
   ],
-  testimonials: [
-    {
-      name: 'Alde Nguyen',
-      company: 'Google Review',
-      quote: 'Disruptors are a brilliant full-suite marketing and product agency. They handled entire operations for our rollouts and campaigns, producing phenomenal creative assets and positioning our brand competitively. They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.'
-    },
-    {
-      name: 'Chris',
-      company: 'Google Review',
-      quote: 'Professional, well organized, and knowledgeable. If you\'re looking for a company that can drive revenue and expand your business success, this is the right place for you.'
-    }
-  ],
+
   cta_label: 'Book a Strategy Session',
-  cta_link: 'book-strategy-session'
+  cta_link: 'book-strategy-session',
 };
 
 export default function AiAutomation() {
-  return <SolutionPageLayout service={service} />;
+  return <ServicePagePro service={service} />;
 }

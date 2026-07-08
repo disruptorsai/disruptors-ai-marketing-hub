@@ -73,8 +73,20 @@ const ROW_2 = SERVICES.slice(4, 9); // Last 5 services
 function ServiceCard({ service, isDragging }) {
   const [isHovered, setIsHovered] = useState(false);
 
+  // Guard against the drag gesture firing a navigation when the user was
+  // scrubbing the carousel rather than intentionally tapping a card.
+  const handleClick = (e) => {
+    if (isDragging) {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <div
+    <Link
+      to={createPageUrl(service.slug)}
+      onClick={handleClick}
+      draggable={false}
+      aria-label={`${service.title} — learn more`}
       className="relative block flex-shrink-0 w-[300px] sm:w-[390px] lg:w-[480px] h-[300px] sm:h-[390px] lg:h-[480px] rounded-2xl overflow-hidden mx-3 sm:mx-4 shadow-xl hover:shadow-2xl transition-shadow duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -134,7 +146,7 @@ function ServiceCard({ service, isDragging }) {
         animate={{ borderColor: isHovered ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0)' }}
         transition={{ duration: 1.2 }}
       />
-    </div>
+    </Link>
   );
 }
 
@@ -148,12 +160,11 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
   const [hasDragged, setHasDragged] = useState(false);
   const dragStartX = useRef(0);
   const x = useMotionValue(0);
-  const [cardWidth, setCardWidth] = useState(0);
-
-  // Note: the row is driven directly by the `x` motion value. A useSpring() chasing a
-  // linearly-animated `x` caused visible jitter (the spring oscillates around the moving
-  // target) and a jump on each position-wrap (it animated across the totalWidth reset).
-  // framer-motion's drag already updates `x` smoothly, so no spring is needed.
+  // Width of a single service set (one card * services.length), kept in a ref so the
+  // animation loop reads the latest measurement without re-subscribing, plus a state
+  // flag to (re)start the loop once we have a real measurement.
+  const oneSetRef = useRef(0);
+  const [measured, setMeasured] = useState(false);
 
   // Duplicate services for seamless infinite loop (6x for ultra-smooth infinite scrolling)
   const duplicatedServices = [
@@ -165,55 +176,56 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
     ...services
   ];
 
-  // Calculate card width on mount
+  // Measure one set's rendered width on mount AND on resize. A stale/zero measurement
+  // (taken before layout settles) made the wrap shift by the wrong amount, which is what
+  // produced the visible "jump back" — so we re-measure whenever the layout can change.
   useEffect(() => {
-    if (!rowRef.current) return;
-    const firstCard = rowRef.current.querySelector('.service-card');
-    if (firstCard) {
-      // Get actual card width including margins
+    const measure = () => {
+      if (!rowRef.current) return;
+      const firstCard = rowRef.current.querySelector('.service-card');
+      if (!firstCard) return;
       const rect = firstCard.getBoundingClientRect();
       const styles = window.getComputedStyle(firstCard);
-      const marginLeft = parseFloat(styles.marginLeft);
-      const marginRight = parseFloat(styles.marginRight);
-      setCardWidth(rect.width + marginLeft + marginRight);
-    }
-  }, []);
+      const cardWidth = rect.width + parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
+      if (cardWidth > 0) {
+        oneSetRef.current = cardWidth * services.length;
+        setMeasured(true);
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [services.length]);
 
-  // Auto-scroll animation when not dragging - truly infinite
+  // Auto-scroll, driven by a persistent per-frame delta. Using the frame timestamp delta
+  // (rather than startX + elapsed-since-effect-start) means a position wrap never resets
+  // the clock or the baseline, so there is no jump when the row wraps.
   useEffect(() => {
-    if (!cardWidth || isDragging) return;
+    if (!measured || isDragging) return;
 
-    const totalWidth = cardWidth * services.length;
+    const oneSet = oneSetRef.current;
 
-    // Start from the middle set of duplicates to allow smooth wrapping in both directions
+    // Seed into the middle band on first run so we can wrap in either direction.
     if (x.get() === 0) {
-      x.set(-totalWidth * 2);
+      x.set(-oneSet * 2);
     }
 
     let animationId;
-    const startTime = Date.now();
-    const startX = x.get();
+    let last = null;
+    const dir = direction === 'left' ? -1 : 1;
 
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const pixelsPerSecond = direction === 'left' ? -speed : speed;
-      const newX = startX + (pixelsPerSecond * elapsed) / 1000;
+    const animate = (now) => {
+      if (last === null) last = now;
+      const dt = (now - last) / 1000;
+      last = now;
 
-      // Seamless wrapping - always keep within the middle range
-      let wrappedX = newX;
-      if (direction === 'left') {
-        // Scrolling left (negative direction)
-        while (wrappedX <= -totalWidth * 3) {
-          wrappedX += totalWidth;
-        }
-      } else {
-        // Scrolling right (positive direction)
-        while (wrappedX >= -totalWidth) {
-          wrappedX -= totalWidth;
-        }
-      }
+      let next = x.get() + dir * speed * dt;
+      // Keep within the middle band [-3*oneSet, -oneSet]. Shifting by exactly one set is
+      // pixel-identical because the strip is the same services repeated 6x.
+      if (next <= -oneSet * 3) next += oneSet;
+      else if (next >= -oneSet) next -= oneSet;
+      x.set(next);
 
-      x.set(wrappedX);
       animationId = requestAnimationFrame(animate);
     };
 
@@ -222,11 +234,12 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
     };
-  }, [x, cardWidth, services.length, isDragging, direction, speed]);
+  }, [x, measured, isDragging, direction, speed]);
 
-  // Handle drag constraints and wrapping
+  // Wrap the position during drag so the user can scrub infinitely in either direction.
   const handleDrag = (event, info) => {
-    if (!cardWidth) return;
+    const oneSet = oneSetRef.current;
+    if (!oneSet) return;
 
     // Track if user has actually dragged (moved more than 5px)
     const dragDistance = Math.abs(info.point.x - dragStartX.current);
@@ -234,16 +247,12 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
       setHasDragged(true);
     }
 
-    const totalWidth = cardWidth * services.length;
-    let currentX = x.get();
-
+    const currentX = x.get();
     // Seamless wrap during drag - keep in middle range
-    if (currentX <= -totalWidth * 3) {
-      currentX = currentX + totalWidth;
-      x.set(currentX);
-    } else if (currentX >= -totalWidth) {
-      currentX = currentX - totalWidth;
-      x.set(currentX);
+    if (currentX <= -oneSet * 3) {
+      x.set(currentX + oneSet);
+    } else if (currentX >= -oneSet) {
+      x.set(currentX - oneSet);
     }
   };
 
@@ -269,14 +278,12 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
           willChange: 'transform'
         }}
         drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.3}
+        dragConstraints={false}
+        dragElastic={0}
         dragMomentum={true}
         dragTransition={{
-          power: 0.3,
-          timeConstant: 150,
-          bounceStiffness: 200,
-          bounceDamping: 20
+          power: 0.25,
+          timeConstant: 200
         }}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}

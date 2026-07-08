@@ -1,119 +1,99 @@
 import React from 'react';
-import SolutionPageLayout from '../components/solutions/SolutionPageLayout';
+import ServicePagePro from '../components/solutions/ServicePagePro';
 
+// SEO & GEO on the locked Hybrid template (ServicePagePro).
+// Framing: outcome-led — get found where buyers actually search now, which is Google AND
+// AI answers (ChatGPT, Perplexity, Gemini, Google AI Overviews). GEO — being the source AI
+// cites — is the modern edge. Positioning: fractional Chief AI Officer applying an AI lens to
+// search. SEO/GEO: "SEO and GEO" leads the subhead's first sentence; Utah long-tail woven in;
+// FAQs are self-contained, liftable answers.
 const service = {
   title: 'SEO & GEO',
-  h2: 'Be Seen Where It Matters Most.',
-  descriptivePhrase: 'Search Engine and Generative Engine Optimization',
-  overview: 'The game of getting seen online has changed-AI is reshaping how people search, discover, and choose businesses. It is no longer just about ranking on Google, but about showing up in AI platforms and conversations that shape decisions. We build strategies that position your brand where attention is moving, making sure you are visible, trusted, and chosen in the new search era.',
-  image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx.png',
+  eyebrow: 'Fractional Chief AI Officer',
+  headline: 'Get found in Google and in AI answers.',
+  headlineAccent: 'found',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/seo-geo.jpg',
   heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/seo-geo.mp4',
-  cardVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/seo-geo.mp4',
+  stats: [
+    { value: 3, suffix: '-4 mo', label: 'First traction' },
+    { display: '6 – 12', suffix: ' mo', label: 'Compounding growth' },
+    { value: 4, suffix: 'x', label: 'AI surfaces to win' },
+    { value: 100, suffix: '%', label: 'Owned by you' },
+  ],
+  subhead:
+    'SEO and GEO are how your business gets found now — ranking on Google and getting cited inside AI answers like ChatGPT, Perplexity, and Google AI Overviews. Buyers ask a question and pick from what shows up. We make sure that answer is you.',
+
+  chips: ['Traditional SEO', 'Generative Engine Optimization', 'AI Overviews', 'Local & Utah Search', 'Content', 'Schema'],
+
+  platform: {
+    label: 'The Engine',
+    title: 'Built to be the answer, not just a link.',
+    body: "Ranking on Google still matters — but more people now ask an AI and take the first answer it gives. We optimize for both: pages that rank, and content structured so AI models quote you as the source and send that trust back to your brand.",
+    features: [
+      { num: '01', title: 'Cited by AI', desc: 'We structure your content the way AI models read it — clear claims, sources, and answer-first formatting — so ChatGPT, Perplexity, and AI Overviews quote you by name.', viz: 'terminal' },
+      { num: '02', title: 'Intent Routing', desc: 'Every question maps to the right page — informational, local, or ready-to-buy — so searchers in Utah and beyond land where they convert. Nothing gets wasted.', viz: 'routing' },
+    ],
+    mini: [
+      { icon: 'trending', title: 'Rank & Get Cited', desc: 'Google plus AI answers.' },
+      { icon: 'file', title: 'Answer-First Content', desc: 'Written to be quoted.' },
+      { icon: 'cpu', title: 'Schema & llms.txt', desc: 'Machine-readable trust.' },
+      { icon: 'shield', title: 'You Own It', desc: 'Assets you keep.' },
+    ],
+  },
+
+  outcomesEyebrow: '02 · Outcomes',
+  outcomesTitle: 'What it changes.',
   outcomes: [
-    {
-      title: 'AI-Era Visibility',
-      description: 'Rank not just on Google, but in ChatGPT, Perplexity, and other AI platforms where your customers are searching.'
-    },
-    {
-      title: 'Organic Traffic Growth',
-      description: 'Attract qualified leads through optimized content that answers real questions and solves real problems.'
-    },
-    {
-      title: 'Long-Term Authority',
-      description: 'Build sustainable search presence that compounds over time, reducing dependence on paid advertising.'
-    }
+    { icon: 'trending', title: 'Show up where buyers look', desc: 'Rank on Google and get named inside AI answers — so you win the click and the recommendation, not just one of them.' },
+    { icon: 'zap', title: 'Attract intent, not noise', desc: 'Content built around real questions pulls in qualified leads who are ready to act, not casual traffic that never converts.' },
+    { icon: 'layers', title: 'Authority that compounds', desc: 'Every ranked page and AI citation stacks on the last, building a search presence that keeps paying off long after the work.' },
   ],
+
+  processEyebrow: '03 · Process',
+  processTitle: 'How we install it.',
   process: [
-    {
-      title: 'Audit & Research',
-      description: 'Comprehensive analysis of your current search presence, competitor landscape, and keyword opportunities.'
-    },
-    {
-      title: 'Strategy Development',
-      description: 'Create a tailored SEO and GEO roadmap targeting both traditional search engines and AI platforms.'
-    },
-    {
-      title: 'Implementation',
-      description: 'Execute technical optimizations, create high-quality content, and build authoritative backlinks.'
-    },
-    {
-      title: 'Monitor & Refine',
-      description: 'Continuous tracking of rankings, traffic, and conversions with ongoing optimization for maximum impact.'
-    }
+    { title: 'Audit & Research', description: 'We map where you show up today across Google and AI answers, size the gaps, and find the winnable, high-intent keywords.' },
+    { title: 'Strategy & Roadmap', description: 'A single plan targeting traditional search and Generative Engine Optimization — built around how your buyers actually ask.' },
+    { title: 'Build & Optimize', description: 'Technical fixes, schema, answer-first content, and local Utah signals — all structured so both Google and AI can trust it.' },
+    { title: 'Track & Compound', description: 'We monitor rankings, citations, and conversions, then double down on what moves — and hand you the assets you keep.' },
   ],
-  features: [
-    {
-      title: 'Traditional SEO Optimization',
-      description: 'On-page, technical, and off-page SEO for Google rankings'
-    },
-    {
-      title: 'Generative Engine Optimization (GEO)',
-      description: 'Optimize for AI platforms like ChatGPT, Perplexity, and Gemini'
-    },
-    {
-      title: 'Keyword Research & Strategy',
-      description: 'Data-driven targeting of high-intent, winnable keywords'
-    },
-    {
-      title: 'Content Creation & Optimization',
-      description: 'SEO-optimized blog posts, landing pages, and service pages'
-    },
-    {
-      title: 'Technical SEO Audits',
-      description: 'Site speed, mobile optimization, schema markup, and crawlability'
-    },
-    {
-      title: 'Link Building Campaigns',
-      description: 'Authoritative backlinks from relevant, high-quality sources'
-    },
-    {
-      title: 'Local SEO & Google Business Profile',
-      description: 'Dominate local search and map results in your area'
-    },
-    {
-      title: 'Performance Tracking & Reporting',
-      description: 'Monthly reports showing rankings, traffic, and ROI metrics'
-    }
-  ],
+
+  successStory: {
+    metric: 'Beyond forecast',
+    quote: 'They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.',
+    name: 'Alde Nguyen',
+    company: 'Google Review',
+  },
+
+  faqsEyebrow: '04 · Questions',
+  faqsTitle: 'Frequently asked.',
   faqs: [
     {
-      question: 'What is Generative Engine Optimization (GEO)?',
-      answer: 'GEO is the practice of optimizing your content to appear in AI-generated responses from platforms like ChatGPT, Perplexity, Google Gemini, and Bing AI. As more people use AI for search and discovery, GEO ensures your brand is referenced, recommended, and trusted by these platforms.'
+      question: 'What is GEO, and how is it different from SEO?',
+      answer: 'GEO — Generative Engine Optimization — is the practice of getting your business referenced inside AI-generated answers from tools like ChatGPT, Perplexity, Google Gemini, and Google AI Overviews. SEO gets you ranked on a search results page; GEO gets you cited as the trusted source when an AI answers the question directly. Both matter now, because buyers split their time between clicking links on Google and taking the first answer an AI hands them.',
     },
     {
-      question: 'How long does SEO take to show results?',
-      answer: 'Initial improvements typically appear within 3-4 months, with significant traffic growth by 6-12 months. SEO is a long-term investment that compounds over time. Unlike paid ads that stop when you stop paying, SEO continues delivering value years after implementation.'
+      question: 'Why should I care about being cited by AI search?',
+      answer: 'More people now ask ChatGPT or Perplexity a question and act on the single answer they get back, without ever scrolling a results page. If your business is the source that AI quotes, you win the recommendation before a competitor is even seen. That is the modern edge — and most businesses have not optimized for it yet, so the window to get ahead is open right now.',
     },
     {
-      question: 'Do you guarantee first page rankings?',
-      answer: 'No reputable SEO agency can guarantee specific rankings because search algorithms change constantly and competition varies. We focus on driving measurable traffic, leads, and revenue growth through proven SEO strategies that have delivered results across industries.'
+      question: 'How is this different from a traditional agency?',
+      answer: 'A traditional agency rents you rankings and keeps the playbook. We act as your fractional Chief AI Officer — applying an AI lens to your search strategy and building the content, schema, and assets inside your business, which you own outright. You get full-agency SEO and GEO output without the endless retainer or the dependency, and everything we create stays yours.',
     },
     {
-      question: 'What\'s the difference between SEO and paid advertising?',
-      answer: 'Paid ads provide immediate visibility but require ongoing spend. SEO builds long-term organic presence that continues generating traffic without per-click costs. The best strategy often combines both: paid ads for immediate results while SEO builds sustainable long-term growth.'
+      question: 'Do you do local SEO for businesses in Utah?',
+      answer: 'Yes. We optimize your Google Business Profile, local landing pages, and location signals so you dominate map results and "near me" searches across Utah — from Salt Lake City to Provo and beyond. We also structure that local content so AI answers surface you when someone asks an assistant to recommend a business in your area.',
     },
     {
-      question: 'How do you measure SEO success?',
-      answer: 'We track keyword rankings, organic traffic growth, click-through rates, conversion rates, and revenue attribution. Success is not just about rankings - it is about driving qualified traffic that converts into customers and generates measurable business outcomes.'
-    }
+      question: 'How long does it take to see results?',
+      answer: 'Early traction usually shows within 3 to 4 months, with meaningful, compounding growth by 6 to 12 months. SEO and GEO are long-term plays: unlike paid ads that stop the moment you stop spending, ranked pages and AI citations keep working and building on each other for years after the work is done.',
+    },
   ],
-  testimonials: [
-    {
-      name: 'Jason Painter',
-      company: 'Healthcare Professional - Google Review',
-      quote: 'I have been so impressed — they\'ve gotten me millions of views on my social media, and I\'ve seen a large uptick in new patients in my office. The strategy and support they\'ve given is significantly better than the 5 or so other marketing companies I\'ve worked with.'
-    },
-    {
-      name: 'Mitchell Halvorsen',
-      company: 'Google Review',
-      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
-    }
-  ],
+
   cta_label: 'Book a Strategy Session',
-  cta_link: 'book-strategy-session'
+  cta_link: 'book-strategy-session',
 };
 
 export default function SeoGeo() {
-  return <SolutionPageLayout service={service} />;
+  return <ServicePagePro service={service} />;
 }

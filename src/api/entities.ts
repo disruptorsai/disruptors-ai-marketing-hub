@@ -5,6 +5,7 @@
 
 import { api } from './client'
 import { supabase } from './auth'
+import { base44 } from './base44Client'
 
 /**
  * Brain Facts API
@@ -356,3 +357,17 @@ export const BrandRuleAPI = {
     }
   }
 }
+
+/**
+ * Base44 entity wrappers — consolidated from the former src/api/entities.js so this file is
+ * the single `@/api/entities` source. Restores the public-site entities (TeamMember, etc.)
+ * that the About page and other pages import, alongside the Brain APIs above.
+ */
+export const Testimonial = base44.entities.Testimonial
+export const Service = base44.entities.Service
+export const CaseStudy = base44.entities.CaseStudy
+export const TeamMember = base44.entities.TeamMember
+export const Resource = base44.entities.Resource
+
+// auth sdk
+export const User = base44.auth

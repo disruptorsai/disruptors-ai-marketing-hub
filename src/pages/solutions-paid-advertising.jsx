@@ -1,119 +1,99 @@
 import React from 'react';
-import SolutionPageLayout from '../components/solutions/SolutionPageLayout';
+import ServicePagePro from '../components/solutions/ServicePagePro';
 
+// Paid Advertising on the locked Hybrid template (ServicePagePro).
+// Positioning: reframe "paid ads" with an AI lens — paid advertising automations / AI-optimized
+// ad systems, not a generic ad agency. Disruptors acts as a fractional Chief AI Officer that
+// builds the ad-buying machine into your business. Outcome-led: profitable customer acquisition,
+// not clicks. SEO/GEO: "Paid advertising" leads the subhead's first sentence; Utah long-tail
+// woven naturally; FAQs are self-contained, liftable answers.
 const service = {
-  title: 'Paid Advertising',
-  h2: 'Maximize Your Ad Spend ROI.',
-  descriptivePhrase: 'Paid Campaigns that Convert on Search & Social',
-  overview: 'Our team has managed millions in ad spend across search and social platforms, giving us the experience to know what works, and what does not. We study proven ads from successful competitors, elevate their ad creative to a higher level, then rapidly test countless variations until we uncover the winner. With the speed and efficiency of AI behind every step, we scale campaigns that book calls on your calendar and generate sales for your business.',
-  image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-2.png',
+  title: 'Paid Advertising Automations',
+  eyebrow: 'Fractional Chief AI Officer',
+  headline: 'Turn ad spend into predictable pipeline.',
+  headlineAccent: 'predictable',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/paid-advertising.jpg',
   heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/paid-advertising.mp4',
-  cardVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/paid-advertising.mp4',
+  stats: [
+    { display: '100s', suffix: '', label: 'Ad variations tested' },
+    { display: '7 – 14', suffix: ' days', label: 'To first signal' },
+    { display: '30 – 60', suffix: ' days', label: 'To profitable scale' },
+    { value: 24, suffix: '/7', label: 'AI optimization' },
+  ],
+  subhead:
+    'Paid advertising works when the system behind it never stops learning — and that is what we build. We stand up an AI-optimized ad engine across Google and social that tests, cuts losers, and scales winners on its own. Built into your business, owned by you, tuned for revenue.',
+
+  chips: ['Google Ads', 'Meta', 'LinkedIn', 'YouTube', 'Retargeting', 'Attribution'],
+
+  platform: {
+    label: 'The Ad Engine',
+    title: 'An AI ad system, not a media buyer.',
+    body: "Most agencies hand-tweak a few campaigns and hope. We build an ad engine that runs continuous experiments, routes budget to what converts, and reports on the metrics that matter. You keep every account, pixel, and asset we build.",
+    features: [
+      { num: '01', title: 'Launch in weeks', desc: 'Proven account structures and creative frameworks get campaigns live fast — from kickoff to spending in a fraction of the usual time.', viz: 'terminal' },
+      { num: '02', title: 'Budget That Routes Itself', desc: 'AI shifts spend toward the audiences, placements, and creative that convert — in real time — so no dollar sits on a losing ad.', viz: 'routing' },
+    ],
+    mini: [
+      { icon: 'zap', title: 'Rapid Testing', desc: 'Hundreds of variations, fast.' },
+      { icon: 'trending', title: 'ROAS Focused', desc: 'Optimized to revenue, not clicks.' },
+      { icon: 'layers', title: 'Full Funnel', desc: 'Cold to retargeting, covered.' },
+      { icon: 'shield', title: 'You Own It', desc: 'Accounts, pixels, and data.' },
+    ],
+  },
+
+  outcomesEyebrow: '02 · Outcomes',
+  outcomesTitle: 'What it changes.',
   outcomes: [
-    {
-      title: 'Maximum ROI',
-      description: 'Get more leads and sales for every dollar spent through continuous testing and optimization.'
-    },
-    {
-      title: 'Rapid Testing',
-      description: 'Leverage AI to test hundreds of variations in the time competitors test a handful, finding winners faster.'
-    },
-    {
-      title: 'Scalable Growth',
-      description: 'Once we find what works, scale your campaigns profitably to reach your revenue goals.'
-    }
+    { icon: 'trending', title: 'Lower cost per customer', desc: 'Continuous AI testing finds the creative and audiences that convert, so you pay less for every lead and sale over time.' },
+    { icon: 'zap', title: 'Find winners faster', desc: 'Test hundreds of variations in the time competitors test a handful — and pour budget into what works before they even notice.' },
+    { icon: 'layers', title: 'Scale without guessing', desc: 'Once the system proves what converts, we scale spend profitably toward your revenue goals instead of hoping it holds.' },
   ],
+
+  processEyebrow: '03 · Process',
+  processTitle: 'How we install it.',
   process: [
-    {
-      title: 'Competitive Analysis',
-      description: 'Research successful competitor ads and identify winning angles, messaging, and creative strategies.'
-    },
-    {
-      title: 'Campaign Architecture',
-      description: 'Build strategic account structure with proper tracking, audience segmentation, and funnel optimization.'
-    },
-    {
-      title: 'Creative Testing',
-      description: 'Launch multiple ad variations across platforms, testing messaging, visuals, and targeting simultaneously.'
-    },
-    {
-      title: 'Scale & Optimize',
-      description: 'Identify winning combinations and scale profitable campaigns while continuously optimizing for better performance.'
-    }
+    { title: 'Audit & Competitive Recon', description: "We study the ads winning in your market and audit your accounts, tracking, and past spend for fast wins." },
+    { title: 'Campaign Architecture', description: 'We build the account structure, conversion tracking, and audience segmentation your AI engine runs on.' },
+    { title: 'Creative & Launch', description: 'We produce the ads and launch a testing matrix across Google and social — messaging, visuals, and targeting at once.' },
+    { title: 'Scale & Optimize', description: 'AI cuts losers and scales winners daily; you get plain-English reporting on cost per lead, ROAS, and revenue.' },
   ],
-  features: [
-    {
-      title: 'Google Search Ads',
-      description: 'Capture high-intent searchers actively looking for your solution'
-    },
-    {
-      title: 'Facebook & Instagram Ads',
-      description: 'Reach your ideal audience with engaging visual and video content'
-    },
-    {
-      title: 'LinkedIn Advertising',
-      description: 'Target decision-makers and professionals in B2B campaigns'
-    },
-    {
-      title: 'YouTube Advertising',
-      description: 'Video ads that build awareness and drive conversions'
-    },
-    {
-      title: 'AI-Powered Creative Testing',
-      description: 'Rapidly test hundreds of ad variations to find winners'
-    },
-    {
-      title: 'Landing Page Optimization',
-      description: 'High-converting landing pages designed for your campaigns'
-    },
-    {
-      title: 'Conversion Tracking & Attribution',
-      description: 'Know exactly what is driving results and ROI'
-    },
-    {
-      title: 'Retargeting Campaigns',
-      description: 'Re-engage prospects who showed interest but did not convert'
-    }
-  ],
+
+  successStory: {
+    metric: 'Attention that converts',
+    quote: "I can't say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today's fast-paced digital world. They made the process smooth from start to finish.",
+    name: 'Mitchell Halvorsen',
+    company: 'Google Review',
+  },
+
+  faqsEyebrow: '04 · Questions',
+  faqsTitle: 'Frequently asked.',
   faqs: [
     {
+      question: 'What is paid advertising, and how does AI improve it?',
+      answer: 'Paid advertising is buying placement on platforms like Google, Meta, LinkedIn, and YouTube to put your offer in front of people actively searching or a well-matched audience. AI improves it by running far more experiments than a human can — testing hundreds of creative and audience variations, then automatically shifting budget toward what converts and cutting what does not. The result is a system that gets cheaper and more profitable the longer it runs.',
+    },
+    {
+      question: 'How is this different from a traditional ad agency?',
+      answer: 'A traditional agency rents you a media buyer, keeps the accounts and systems, and bills a retainer whether or not it performs. We act as your fractional Chief AI Officer and build an AI-optimized ad engine inside your business — you own the ad accounts, pixels, creative, and data. That means agency-level output plus a compounding system you keep, instead of a dependency you rent.',
+    },
+    {
       question: 'How much should I budget for paid advertising?',
-      answer: 'Minimum recommended ad spend is $3,000-$5,000 per month for meaningful testing and results. This excludes management fees and allows for sufficient data collection. Budgets scale based on your goals, industry competition, and customer lifetime value. We will provide recommendations during strategy sessions.'
+      answer: 'For meaningful testing we recommend a minimum of $3,000 to $5,000 per month in ad spend, separate from management fees, so the AI has enough data to find winners. From there, budget scales with your goals, industry competition, and customer lifetime value. We give you specific numbers during the strategy session before you commit anything.',
     },
     {
-      question: 'How long before I see results from paid ads?',
-      answer: 'You will see initial data within 7-14 days. Optimized, profitable campaigns typically emerge within 30-60 days after sufficient testing. Unlike SEO, paid ads provide fast feedback, allowing us to iterate quickly and find what works for your specific business and offer.'
+      question: 'How long before I see results, and which platforms do you run?',
+      answer: 'You will see initial signal within 7 to 14 days and profitable, optimized campaigns typically emerge within 30 to 60 days. We run Google, Facebook, Instagram, LinkedIn, YouTube, and TikTok, and usually start with the one or two platforms your buyers actually use before expanding as campaigns prove out.',
     },
     {
-      question: 'What platforms do you advertise on?',
-      answer: 'We manage campaigns across Google Ads, Facebook, Instagram, LinkedIn, YouTube, TikTok, and other platforms. Platform selection depends on your target audience, industry, and offer. We recommend starting with 1-2 platforms and expanding as campaigns prove profitable.'
+      question: 'Do you handle the ad creative, and can you work with Utah businesses?',
+      answer: 'Yes on both. We produce everything the engine needs — copywriting, design, video, and AI-generated variations — and welcome any assets you already have. We work with local Utah businesses and national brands alike, and can tune campaigns for Utah geo-targeting or nationwide reach depending on where your customers are.',
     },
-    {
-      question: 'Do you create the ad creative or do I need to provide it?',
-      answer: 'We handle all creative production including copywriting, graphic design, video editing, and AI-generated content. While we welcome any existing assets you have, our team creates everything needed to launch and optimize your campaigns from scratch.'
-    },
-    {
-      question: 'How do you measure success beyond just clicks?',
-      answer: 'We track the metrics that matter: cost per lead, cost per acquisition, return on ad spend (ROAS), customer lifetime value, and overall revenue attribution. Success is not about vanity metrics - it is about profitable customer acquisition that grows your business.'
-    }
   ],
-  testimonials: [
-    {
-      name: 'Mitchell Halvorsen',
-      company: 'Google Review',
-      quote: 'I can\'t say enough good things about Disruptors Media. Their team is professional, creative, and truly understands how to capture attention in today\'s fast-paced digital world. They made the process smooth from start to finish.'
-    },
-    {
-      name: 'Gabriel Costa e Silva',
-      company: 'Google Review',
-      quote: 'All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.'
-    }
-  ],
+
   cta_label: 'Book a Strategy Session',
-  cta_link: 'book-strategy-session'
+  cta_link: 'book-strategy-session',
 };
 
 export default function PaidAdvertising() {
-  return <SolutionPageLayout service={service} />;
+  return <ServicePagePro service={service} />;
 }
