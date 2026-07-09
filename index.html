@@ -293,52 +293,6 @@
   <body>
     <div id="root"></div>
 
-    <!-- 🔍 DEBUG: Monitor chunk loading and errors -->
-    <script>
-      console.log('🔵 [INDEX.HTML] Page load started - timestamp:', new Date().toISOString());
-
-      // Track all script loads
-      const scriptLoadOrder = [];
-      const originalCreateElement = document.createElement;
-      document.createElement = function(tagName) {
-        const element = originalCreateElement.call(document, tagName);
-        if (tagName.toLowerCase() === 'script') {
-          element.addEventListener('load', function() {
-            const src = this.src || this.innerHTML.substring(0, 50);
-            scriptLoadOrder.push({ src, time: Date.now() });
-            console.log('📦 [SCRIPT LOADED]', scriptLoadOrder.length, ':', src.split('/').pop());
-          });
-          element.addEventListener('error', function() {
-            console.error('❌ [SCRIPT ERROR]', this.src);
-          });
-        }
-        return element;
-      };
-
-      // Track errors
-      window.addEventListener('error', function(e) {
-        console.error('❌ [GLOBAL ERROR]', e.message, 'at', e.filename, 'line', e.lineno);
-        if (e.message.includes('forwardRef')) {
-          console.error('🚨 [CRITICAL] ForwardRef error detected!');
-          console.error('🚨 Script load order:', scriptLoadOrder);
-        }
-      });
-
-      // Track React availability
-      const checkReact = setInterval(function() {
-        if (typeof React !== 'undefined') {
-          console.log('✅ [REACT DETECTED] React is now globally available');
-          console.log('✅ React.version:', React.version);
-          clearInterval(checkReact);
-        }
-      }, 100);
-
-      setTimeout(function() {
-        clearInterval(checkReact);
-        console.log('🔍 [DEBUG] Final script load order:', scriptLoadOrder);
-      }, 5000);
-    </script>
-
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

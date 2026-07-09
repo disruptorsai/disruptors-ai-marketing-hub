@@ -120,9 +120,12 @@ class ResourcePriorityManager {
       }
     });
 
-    observer.observe({
-      entryTypes: ['resource', 'largest-contentful-paint', 'first-contentful-paint']
-    });
+    // Only observe entry types the browser actually supports. 'first-contentful-paint'
+    // is not a valid observer entryType (paint timing is exposed via 'paint'), so
+    // requesting it directly triggers a console warning in the browser.
+    const wanted = ['resource', 'largest-contentful-paint', 'paint'];
+    const supported = (PerformanceObserver.supportedEntryTypes || wanted).filter((t) => wanted.includes(t));
+    if (supported.length) observer.observe({ entryTypes: supported });
   }
 
   /**
