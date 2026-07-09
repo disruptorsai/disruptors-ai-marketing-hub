@@ -17,6 +17,10 @@
 # Point it at the real free audit page.
 /free-business-audit   /marketing-audit   301
 
+# Gallery removed (all portfolio media lived on a now-dead Cloudinary account).
+# Send it to the real portfolio hub so link equity + bookmarks aren't lost.
+/gallery               /work              301
+
 
 # ----------------------------------------------------------------------------
 # OPTIONAL hard-404 for unknown paths (Task 9, part 2 — NOT enabled).

@@ -34,7 +34,7 @@ const PORT = 4317;
 // Keep this list in sync with public/sitemap.xml.
 const ROUTES = [
   '/', '/about', '/solutions', '/pricing', '/faq', '/work',
-  '/book-strategy-session', '/blog', '/podcast', '/gallery', '/marketing-audit',
+  '/book-strategy-session', '/blog', '/podcast', '/marketing-audit',
   '/privacy', '/terms',
   '/solutions-ai-automation', '/solutions-social-media', '/solutions-seo-geo',
   '/solutions-lead-generation', '/solutions-paid-advertising', '/solutions-podcasting',

@@ -61,14 +61,6 @@ const Pricing = lazyWithRetry(() => {
     return import('./Pricing.jsx');
 });
 
-// Dev pages for comparison - lazy loaded with retry
-const HomeDev = lazyWithRetry(() => import('./Home-dev.jsx'));
-const AboutDev = lazyWithRetry(() => import('./about-dev.jsx'));
-const SolutionsDev = lazyWithRetry(() => import('./solutions-dev.jsx'));
-const WorkDev = lazyWithRetry(() => import('./work-dev.jsx'));
-const ResourcesDev = lazyWithRetry(() => import('./resources-dev.jsx'));
-const ContactDev = lazyWithRetry(() => import('./contact-dev.jsx'));
-
 // Blog system - lazy loaded with retry
 const Blog = lazyWithRetry(() => import('./blog.jsx'));
 const BlogDetail = lazyWithRetry(() => import('./blog-detail.jsx'));
@@ -134,7 +126,6 @@ const Billboard = lazyWithRetry(() => import('./billboard.jsx'));
 // Additional pages - lazy loaded with retry
 const BookStrategySession = lazyWithRetry(() => import('./book-strategy-session.jsx'));
 const Podcast = lazyWithRetry(() => import('./podcast.jsx'));
-const Gallery = lazyWithRetry(() => import('./gallery.jsx'));
 const Faq = lazyWithRetry(() => import('./faq.jsx'));
 const ResourcesAiSuitcaseTermsDecoded = lazyWithRetry(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
 const FreeResources = lazyWithRetry(() => import('./free-resources.jsx'));
@@ -189,14 +180,6 @@ const PAGES = {
 
     // contact: Contact, // ARCHIVED
 
-    // Dev pages for comparison
-    "Home-dev": HomeDev,
-    "about-dev": AboutDev,
-    "solutions-dev": SolutionsDev,
-    "work-dev": WorkDev,
-    "resources-dev": ResourcesDev,
-    "contact-dev": ContactDev,
-    
     privacy: Privacy,
 
     terms: Terms,
@@ -262,9 +245,7 @@ const PAGES = {
     "solutions-fractional-cmo": SolutionsFractionalCmo,
     
     podcast: Podcast,
-    
-    gallery: Gallery,
-    
+        
     faq: Faq,
 
     "animations-demo": ScrollAnimationDemo,
@@ -370,14 +351,6 @@ function PagesContent() {
 
                             {/* <Route path="/contact" element={<Contact />} /> ARCHIVED */}
 
-                            {/* Dev pages for comparison */}
-                            <Route path="/Home-dev" element={<HomeDev />} />
-                            <Route path="/about-dev" element={<AboutDev />} />
-                            <Route path="/solutions-dev" element={<SolutionsDev />} />
-                            <Route path="/work-dev" element={<WorkDev />} />
-                            <Route path="/resources-dev" element={<ResourcesDev />} />
-                            <Route path="/contact-dev" element={<ContactDev />} />
-
                             <Route path="/privacy" element={<Privacy />} />
 
                             <Route path="/terms" element={<Terms />} />
@@ -449,8 +422,6 @@ function PagesContent() {
                             <Route path="/solutions-fractional-cmo" element={<SolutionsFractionalCmo />} />
 
                             <Route path="/podcast" element={<Podcast />} />
-
-                            <Route path="/gallery" element={<Gallery />} />
 
                             <Route path="/faq" element={<Faq />} />
 

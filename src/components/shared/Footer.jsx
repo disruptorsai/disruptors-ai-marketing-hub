@@ -113,7 +113,6 @@ export default function Footer() {
     { name: 'Blog', path: 'blog' },
     { name: 'Podcast', path: 'podcast' },
     // { name: 'AI Tools', path: 'ai-tools' }, // Temporarily disabled
-    { name: 'Gallery', path: 'gallery' },
     { name: 'FAQ', path: 'faq' },
     { name: 'Billboard', path: 'billboard' },
   ];

@@ -41,8 +41,7 @@ export default function Layout({ children, currentPageName }) {
     { name: "Services", path: "solutions" },
     { name: "About", path: "about" },
     { name: "Podcasting", path: "podcast" },
-    { name: "Blog", path: "blog" },
-    { name: "Gallery", path: "gallery" }
+    { name: "Blog", path: "blog" }
   ];
 
   // Initialize performance optimizations
