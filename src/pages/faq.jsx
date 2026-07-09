@@ -7,7 +7,7 @@ import { faqPageSchema } from '@/data/faqContent';
 
 export default function FAQ() {
   usePageMeta({
-    title: 'FAQ — Disruptors Media',
+    title: 'FAQ — AI Marketing, SEO & Fractional CMO | Disruptors Media',
     description:
       'Answers about Disruptors Media, our fractional CAIO/CMO service, the services we offer, and how we install AI-powered marketing systems.',
     path: '/faq',

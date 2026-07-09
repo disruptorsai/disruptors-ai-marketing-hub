@@ -108,7 +108,7 @@ export default function About() {
     {
       headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1760122863/social_u4455988764_wide_landscape_scene_in_an_ancient_GreekRoman_for_d1743cde-0bcd-4c10-8d24-bbd35b21bed2_0_krsrsm.mp4",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
       imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-transparent backdrop-blur-md",
       textColor: "text-black",
@@ -157,45 +157,6 @@ export default function About() {
     <div>
       {/* Page Title */}
       <PageTitle title="ABOUT US" />
-
-      {/* What is Disruptors Media? — self-contained answer block for AI citation (GEO) */}
-      <section aria-labelledby="what-is-disruptors-media" className="bg-white py-12 sm:py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="what-is-disruptors-media" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            What is Disruptors Media?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-            Disruptors Media is a fractional Chief AI Officer (CAIO) and Chief Marketing Officer service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so you own everything we install. It's the output of a full agency without the bloated retainer or the dependency.
-          </p>
-        </div>
-      </section>
-
-      {/* Hero Video Section */}
-      {/* <section className="w-full bg-transparent overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full overflow-hidden"
-        >
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/so_0/v1758170556/dm-abt_ypkipj.jpg"
-            >
-              <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170556/dm-abt_ypkipj.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </motion.div> */}
-        {/* Golden section divider */}
-        {/* <div className="w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-      </section> */}
 
       {/* Enhanced Intro Section */}
       <AlternatingLayout sections={aboutIntroData} />

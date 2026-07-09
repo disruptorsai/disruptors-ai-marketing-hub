@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -14,12 +14,29 @@ import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { faqPageSchema } from '@/data/faqContent';
 
+// Small scroll-triggered count-up for the "What is Disruptors Media?" proof stats.
+function CountUp({ to, suffix = '', duration = 1.6 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, to, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setVal(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, to, duration]);
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const { isOpen, isReturning, close, accept } = useBillboardPopup(1500);
 
   usePageMeta({
-    title: 'Disruptors Media — AI-Powered Marketing & Fractional CAIO/CMO',
+    title: 'Disruptors Media — AI Marketing & Fractional CAIO/CMO',
     description:
       'A fractional Chief AI Officer (CAIO) & CMO service that builds AI-powered marketing systems — content, SEO, lead gen, and follow-up — inside your business.',
     path: '/',
@@ -125,14 +142,70 @@ export default function Home() {
       </section>
 
       {/* What is Disruptors Media? — self-contained answer block for AI citation (GEO) */}
-      <section aria-labelledby="what-is-disruptors-media" className="bg-white py-16 sm:py-20">
+      <section aria-labelledby="what-is-disruptors-media" className="py-16 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="what-is-disruptors-media" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            What is Disruptors Media?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-            Disruptors Media is a fractional Chief AI Officer (CAIO) and Chief Marketing Officer service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so you own everything we install. It's the output of a full agency without the bloated retainer or the dependency.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            {/* Kicker */}
+            <span className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-[#8a6a1f]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#BF953F]" /> Who We Are
+            </span>
+
+            <h2 id="what-is-disruptors-media" className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
+              What is Disruptors Media?
+            </h2>
+            {/* Gold flare underline */}
+            <div aria-hidden="true" className="mt-5 h-px w-24 bg-gradient-to-r from-[#BF953F] via-[#B38728] to-transparent" />
+
+            <p className="mt-7 text-lg sm:text-xl leading-relaxed text-gray-700">
+              Disruptors Media is a <strong className="font-semibold text-gray-900">fractional Chief AI Officer (CAIO) and Chief Marketing Officer</strong> service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so <strong className="font-semibold text-gray-900">you own everything we install</strong>. It's the output of a full agency without the bloated retainer or the dependency.
+            </p>
+
+            {/* Capability chips */}
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {['Content', 'SEO', 'Lead Generation', 'Follow-up'].map((c) => (
+                <span
+                  key={c}
+                  className="rounded-full border border-[#BF953F]/40 bg-[#BF953F]/[0.06] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8a6a1f]"
+                >
+                  {c}
+                </span>
+              ))}
+              <Link
+                to={createPageUrl('solutions')}
+                className="group inline-flex items-center gap-1.5 rounded-full border border-[#BF953F] bg-[#BF953F]/[0.12] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8a6a1f] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#BF953F] hover:text-[#0b0b0c]"
+              >
+                + More services
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+
+            {/* Count-up proof */}
+            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-black/10 pt-8">
+              <div>
+                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
+                  <CountUp to={100} suffix="%" />
+                </div>
+                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Owned by you</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
+                  <CountUp to={24} suffix="/7" />
+                </div>
+                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Always-on</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
+                  <CountUp to={1} />
+                </div>
+                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Partner, not a vendor</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -398,7 +471,7 @@ export default function Home() {
       </section>
 
       {/* Our Process — sequential steps as a real ordered list (GEO: numbered lists for steps) */}
-      <section aria-labelledby="our-process" className="bg-white py-16 sm:py-20">
+      <section aria-labelledby="our-process" className="py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="our-process" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center">
             How We Work

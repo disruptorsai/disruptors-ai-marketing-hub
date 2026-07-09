@@ -29,7 +29,7 @@ const corporateStudioImages = [
 
 export default function Podcast() {
   usePageMeta({
-    title: 'Podcast | Disruptors Media',
+    title: 'Podcast — AI, Marketing & Business Growth | Disruptors Media',
     description: 'The Disruptors Media podcast — conversations on AI, marketing, and building businesses that win in the new search era.',
     path: '/podcast',
     jsonLd: breadcrumb('Podcast', '/podcast'),
