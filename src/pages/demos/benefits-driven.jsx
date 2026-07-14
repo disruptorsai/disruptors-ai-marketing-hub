@@ -351,7 +351,7 @@ export default function BenefitsDrivenDemo() {
               className="w-full h-full object-cover"
               poster="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
               controls
-              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
+              src="/site-videos/dmsite/home/website-demo-reel.mp4"
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="bg-[#FFD700] rounded-full p-6 shadow-2xl">

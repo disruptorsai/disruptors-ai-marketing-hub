@@ -13,7 +13,7 @@ const service = {
   headline: 'Get found in Google and in AI answers.',
   headlineAccent: 'found',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/seo-geo.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/seo-geo.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/seo-geo.mp4',
   stats: [
     { value: 3, suffix: '-4 mo', label: 'First traction' },
     { display: '6 – 12', suffix: ' mo', label: 'Compounding growth' },
@@ -58,12 +58,7 @@ const service = {
     { title: 'Track & Compound', description: 'We monitor rankings, citations, and conversions, then double down on what moves — and hand you the assets you keep.' },
   ],
 
-  successStory: {
-    metric: 'Beyond forecast',
-    quote: 'They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.',
-    name: 'Alde Nguyen',
-    company: 'Google Review',
-  },
+  // successStory intentionally omitted — pending a real SEO/GEO-specific client story (do not reuse another page's review).
 
   faqsEyebrow: '04 · Questions',
   faqsTitle: 'Frequently asked.',

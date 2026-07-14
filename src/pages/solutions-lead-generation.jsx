@@ -12,7 +12,7 @@ const service = {
   headline: 'Fill your pipeline. Talk to buyers, not tire-kickers.',
   headlineAccent: 'buyers',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/lead-generation.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/lead-generation.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/lead-generation.mp4',
   stats: [
     { display: '10 – 50', suffix: ' /mo', label: 'Qualified meetings' },
     { display: '40 – 60', suffix: '%', label: 'Email open rates' },
@@ -58,10 +58,10 @@ const service = {
   ],
 
   successStory: {
-    metric: 'More new patients',
-    quote: "I have been so impressed — they've gotten me millions of views on my social media, and I've seen a large uptick in new patients in my office. The strategy and support they've given is significantly better than the 5 or so other marketing companies I've worked with.",
-    name: 'Jason Painter',
-    company: 'Healthcare Professional — Google Review',
+    metric: 'Drives revenue',
+    quote: "Professional, well organized, and knowledgeable. If you're looking for a company that can drive revenue and expand your business success, this is the right place for you.",
+    name: 'Chris',
+    company: 'Google Review',
   },
 
   faqsEyebrow: '04 · Questions',

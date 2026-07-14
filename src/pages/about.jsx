@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { TeamMember } from '@/api/entities';
 import FastVideo from '@/components/shared/FastVideo';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
-import PageTitle from '../components/shared/PageTitle';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const TeamMemberCard = ({ member, delay, onSelect }) => (
@@ -19,7 +19,7 @@ const TeamMemberCard = ({ member, delay, onSelect }) => (
   >
     <div className="aspect-square w-full overflow-hidden bg-gray-100">
       <img
-        src={member.headshot}
+        src={optimizeSupabaseImage(member.headshot, { width: 500, quality: 74 })}
         alt={member.name}
         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
       />
@@ -55,7 +55,7 @@ const TeamMemberModal = ({ member, onClose }) => {
         >
           <div className="relative">
             <img
-              src={member.headshot}
+              src={optimizeSupabaseImage(member.headshot, { width: 700, quality: 76 })}
               alt={member.name}
               className="w-full aspect-[3/2] object-cover object-top"
             />
@@ -155,8 +155,37 @@ export default function About() {
 
   return (
     <div>
-      {/* Page Title */}
-      <PageTitle title="ABOUT US" />
+      {/* Real page heading (kept for SEO/GEO; the visual hero headline is below) */}
+      <h1 className="sr-only">About Disruptors Media — Fractional CAIO &amp; CMO Team</h1>
+
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden bg-[#080a0d] pt-[clamp(96px,16vw,150px)] pb-[clamp(48px,8vw,80px)]">
+        {/* Hero background video */}
+        <div aria-hidden="true" className="absolute inset-0 z-0">
+          <FastVideo
+            src="/site-videos/dmsite/home/roman-army-painting.mp4"
+            preset="fullscreen"
+            autoplay loop muted playsInline
+            preload="metadata"
+            lazy={false}
+            className="h-full w-full object-cover opacity-[0.4] grayscale contrast-110"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.5) 0%, rgba(8,10,13,.82) 60%, #080a0d 100%)' }} />
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-10 z-[1] h-80 w-80 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.14) 0%, transparent 70%)' }} />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Who We Are</span>
+            <h2 className="mt-6 text-[clamp(40px,7vw,80px)] font-bold leading-[0.98] tracking-tight text-[#fafafa]">
+              About <span className="text-gold-shine inline-block pr-[0.08em] -mr-[0.08em]">Us</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
+              We're a fractional Chief AI Officer and CMO team — strategists, creatives, and technologists who build AI-powered marketing systems inside real businesses, and hand you the keys.
+            </p>
+          </motion.div>
+        </div>
+        <div className="relative z-[2] mt-11 h-px w-full bg-gradient-to-r from-[#BF953F]/50 via-white/10 to-transparent" />
+      </section>
 
       {/* Enhanced Intro Section */}
       <AlternatingLayout sections={aboutIntroData} />
@@ -166,7 +195,7 @@ export default function About() {
         {/* Background Video */}
         <div className="absolute inset-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            src="/site-videos/dmsite/home/roman-army-painting.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -384,7 +413,7 @@ export default function About() {
       <section
         className="relative py-16"
         style={{
-          backgroundImage: 'url(https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg)',
+          backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`,
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           backgroundPosition: 'center',

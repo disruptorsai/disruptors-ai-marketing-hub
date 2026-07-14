@@ -3,8 +3,9 @@ import { motion, AnimatePresence, useInView, useMotionValue, useTransform, anima
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FastVideo from '@/components/shared/FastVideo';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import {
-    ArrowRight, Cpu, Zap, ShieldCheck, Clock, FileText, Layers, TrendingUp,
+    Cpu, Zap, ShieldCheck, Clock, FileText, Layers, TrendingUp,
 } from 'lucide-react';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
@@ -39,7 +40,7 @@ function Headline({ text, accent }) {
     const [before, after] = text.split(accent);
     return (
         <h1 className={cls}>
-            {before}<em className="italic font-normal" style={{ color: GOLD }}>{accent}</em>{after}
+            {before}<em className="text-gold-shine italic font-normal inline-block pr-[0.08em] -mr-[0.08em]">{accent}</em>{after}
         </h1>
     );
 }
@@ -263,7 +264,7 @@ export default function ServicePagePro({ service }) {
     // The site-wide white paint/plaster texture (same as Layout's main-bg) for the light sections.
     const paperBg = {
         backgroundColor: '#efece5',
-        backgroundImage: 'url(https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg)',
+        backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -277,17 +278,17 @@ export default function ServicePagePro({ service }) {
                         {heroVideo ? (
                             <FastVideo
                                 src={heroVideo}
-                                poster={heroImage}
+                                poster={optimizeSupabaseImage(heroImage, { width: 1600, quality: 70 })}
                                 preset="fullscreen"
                                 autoplay loop muted playsInline
                                 preload="metadata"
                                 lazy={false}
-                                className="h-full w-full object-cover opacity-[0.3] grayscale contrast-125"
+                                className="h-full w-full object-cover opacity-[0.5] grayscale contrast-110"
                             />
                         ) : (
-                            <img src={heroImage} alt="" className="h-full w-full object-cover opacity-[0.28] grayscale contrast-125" />
+                            <img src={optimizeSupabaseImage(heroImage, { width: 1600, quality: 72 })} alt="" className="h-full w-full object-cover opacity-[0.5] grayscale contrast-110" />
                         )}
-                        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.7) 0%, rgba(8,10,13,.86) 55%, #080a0d 100%)' }} />
+                        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.42) 0%, rgba(8,10,13,.72) 55%, #080a0d 100%)' }} />
                     </div>
                 )}
                 <div className="relative z-10 mx-auto max-w-6xl px-[clamp(18px,5vw,24px)]">
@@ -314,10 +315,6 @@ export default function ServicePagePro({ service }) {
                             <Link to={createPageUrl(cta_link)} className="rounded-[3px] bg-[#BF953F] px-7 py-3.5 text-center font-medium text-[#0b0b0c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#AA771C]">
                                 {cta_label}
                             </Link>
-                            <a href="#platform" className="group inline-flex items-center justify-center gap-2 px-2 py-3.5 text-white transition-colors hover:text-[#BF953F]">
-                                See what we can automate
-                                <ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1" />
-                            </a>
                         </motion.div>
                     </div>
                     {chips.length > 0 && (

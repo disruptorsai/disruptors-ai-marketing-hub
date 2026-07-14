@@ -37,14 +37,25 @@ export default function GsapScrambleText({
     originalText.current = text;
   }, [text]);
 
-  // Set fixed width on mount to prevent layout shift during scramble
+  // Lock a fixed width to prevent layout shift during scramble — but only AFTER
+  // web fonts are ready. Measuring before the custom font loads (cold load) locks
+  // a too-narrow fallback-font width, causing labels to overflow and overlap.
   useEffect(() => {
-    if (containerRef.current && textRef.current) {
-      // Measure the width of the original text
+    if (!containerRef.current || !textRef.current) return;
+    let cancelled = false;
+    const lockWidth = () => {
+      if (cancelled || !containerRef.current || !textRef.current) return;
+      // Reset to natural width, then re-measure with the real font in place.
+      containerRef.current.style.width = '';
       const width = textRef.current.offsetWidth;
-      // Set fixed width on container to prevent layout shift
-      containerRef.current.style.width = `${width}px`;
+      if (width) containerRef.current.style.width = `${width}px`;
+    };
+    if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(lockWidth);
+    } else {
+      lockWidth();
     }
+    return () => { cancelled = true; };
   }, [text]);
 
   const getRandomChar = () => {

@@ -13,7 +13,7 @@ const service = {
   headline: 'Turn ad spend into predictable pipeline.',
   headlineAccent: 'predictable',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/paid-advertising.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/paid-advertising.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/paid-advertising.mp4',
   stats: [
     { display: '100s', suffix: '', label: 'Ad variations tested' },
     { display: '7 – 14', suffix: ' days', label: 'To first signal' },

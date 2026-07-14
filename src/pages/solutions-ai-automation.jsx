@@ -12,7 +12,7 @@ const service = {
   headline: 'Automate the busywork. Focus on what matters.',
   headlineAccent: 'Focus',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/ai-automation.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/ai-automation.mp4',
+  // heroVideo omitted — no ai-automation.mp4 exists (404 on Supabase); uses the poster image.
   stats: [
     { value: 24, suffix: '/7', label: 'Always-on operation' },
     { display: '10 – 30', suffix: ' hrs', label: 'Reclaimed / week' },

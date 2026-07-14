@@ -15,12 +15,12 @@ import {
 import FastVideo from '@/components/shared/FastVideo';
 
 // ─── URLs ─────────────────────────────────────────────────────────────
-const HERO_IMAGE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-assets/videos/v1/dmsite/services/crm-management.jpg?width=1920&quality=80&format=origin';
-const HERO_IMAGE_MOBILE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-assets/videos/v1/dmsite/services/crm-management.jpg?width=768&quality=75&format=origin';
+const HERO_IMAGE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/crm-management.jpg';
+const HERO_IMAGE_MOBILE = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/crm-management.jpg';
 const MAIN_BG = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg';
 const FRESCO_BG = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png';
-const ADAPT_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/billboard/adapt-or-die.mp4';
-const ROMAN_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4';
+const ADAPT_VIDEO = '/site-videos/dmsite/billboard/adapt-or-die.mp4';
+const ROMAN_VIDEO = '/site-videos/dmsite/home/roman-army-painting.mp4';
 
 // ─── Case Studies Data ────────────────────────────────────────────────
 const caseStudies = [

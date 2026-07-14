@@ -68,11 +68,24 @@ console.log('✅ [MAIN.JSX] App rendered successfully!');
 import { registerServiceWorker } from '@/lib/register-sw';
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    registerServiceWorker().then((registered) => {
-      if (registered) {
-        console.log('📦 Presentation Mode available');
-      }
+  if (import.meta.env.PROD) {
+    window.addEventListener('load', () => {
+      registerServiceWorker().then((registered) => {
+        if (registered) {
+          console.log('📦 Presentation Mode available');
+        }
+      });
     });
-  });
-} 
+  } else {
+    // In dev, the presentation service worker caches JS modules cache-first and serves
+    // stale Vite dev bundles — this breaks HMR and causes "does not provide an export
+    // named X" errors. Tear down any previously-registered SW and clear its caches so
+    // the dev server is always the source of truth.
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((r) => r.unregister());
+    });
+    if (window.caches) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
+  }
+}

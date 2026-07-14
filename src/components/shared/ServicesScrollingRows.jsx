@@ -70,7 +70,7 @@ const ROW_2 = SERVICES.slice(4, 9); // Last 5 services
 /**
  * ServiceCard component with hover animation
  */
-function ServiceCard({ service, isDragging }) {
+function ServiceCard({ service, isDragging, compact }) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Guard against the drag gesture firing a navigation when the user was
@@ -87,7 +87,7 @@ function ServiceCard({ service, isDragging }) {
       onClick={handleClick}
       draggable={false}
       aria-label={`${service.title} — learn more`}
-      className="relative block flex-shrink-0 w-[300px] sm:w-[390px] lg:w-[480px] h-[300px] sm:h-[390px] lg:h-[480px] rounded-2xl overflow-hidden mx-3 sm:mx-4 shadow-xl hover:shadow-2xl transition-shadow duration-500"
+      className={`relative block flex-shrink-0 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 ${compact ? 'w-[210px] sm:w-[260px] lg:w-[320px] h-[210px] sm:h-[260px] lg:h-[320px] mx-2 sm:mx-3' : 'w-[300px] sm:w-[390px] lg:w-[480px] h-[300px] sm:h-[390px] lg:h-[480px] mx-3 sm:mx-4'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -110,15 +110,15 @@ function ServiceCard({ service, isDragging }) {
       </div>
 
       {/* Content Container */}
-      <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end h-full p-5 pointer-events-none">
+      <div className={`absolute inset-x-0 bottom-0 flex flex-col justify-end h-full pointer-events-none ${compact ? 'p-4' : 'p-5'}`}>
         {/* Title - bigger and bolder, responsive sizing */}
         <motion.div
           className="relative z-10"
           initial={{ y: 0 }}
-          animate={{ y: isHovered ? -60 : 0 }}
+          animate={{ y: isHovered ? (compact ? -44 : -60) : 0 }}
           transition={{ duration: 1.5, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+          <h3 className={`font-black text-white tracking-tight leading-tight ${compact ? 'text-lg sm:text-xl lg:text-2xl' : 'text-2xl sm:text-3xl lg:text-4xl'}`}>
             {service.title}
           </h3>
         </motion.div>
@@ -133,7 +133,7 @@ function ServiceCard({ service, isDragging }) {
           }}
           transition={{ duration: 1.5, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <p className="text-sm sm:text-base lg:text-lg text-white/95 leading-relaxed">
+          <p className={`text-white/95 leading-relaxed ${compact ? 'text-xs sm:text-sm' : 'text-sm sm:text-base lg:text-lg'}`}>
             {service.description}
           </p>
         </motion.div>
@@ -153,7 +153,7 @@ function ServiceCard({ service, isDragging }) {
 /**
  * ScrollingRow component with drag-to-scroll and infinite loop
  */
-function ScrollingRow({ services, direction = 'left', speed = 80 }) {
+function ScrollingRow({ services, direction = 'left', speed = 80, compact }) {
   const containerRef = useRef(null);
   const rowRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -269,7 +269,7 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
   };
 
   return (
-    <div ref={containerRef} className="overflow-hidden py-8 cursor-grab active:cursor-grabbing select-none">
+    <div ref={containerRef} className={`overflow-hidden cursor-grab active:cursor-grabbing select-none ${compact ? 'py-3' : 'py-8'}`}>
       <motion.div
         ref={rowRef}
         className="flex"
@@ -294,7 +294,7 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
             key={`${service.slug}-${index}`}
             className="service-card"
           >
-            <ServiceCard service={service} isDragging={hasDragged} />
+            <ServiceCard service={service} isDragging={hasDragged} compact={compact} />
           </div>
         ))}
       </motion.div>
@@ -306,13 +306,14 @@ function ScrollingRow({ services, direction = 'left', speed = 80 }) {
  * Main ServicesScrollingRows component
  */
 export default function ServicesScrollingRows({
-  title = "A Solution for Every Challenge"
+  title = "A Solution for Every Challenge",
+  compact = false
 }) {
   return (
-    <section className="relative py-8 sm:py-12 lg:py-16 overflow-hidden">
+    <section className={`relative overflow-hidden ${compact ? 'py-6 sm:py-8' : 'py-8 sm:py-12 lg:py-16'}`}>
       <div className="relative max-w-full">
         {/* Header */}
-        <div className="text-center mb-16 sm:mb-20 px-4 sm:px-6 lg:px-8">
+        <div className={`text-center px-4 sm:px-6 lg:px-8 ${compact ? 'mb-8 sm:mb-10' : 'mb-16 sm:mb-20'}`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -352,10 +353,10 @@ export default function ServicesScrollingRows({
         </div>
 
         {/* Row 1: Scrolling Right */}
-        <ScrollingRow services={ROW_1} direction="right" speed={80} />
+        <ScrollingRow services={ROW_1} direction="right" speed={80} compact={compact} />
 
         {/* Row 2: Scrolling Left */}
-        <ScrollingRow services={ROW_2} direction="left" speed={70} />
+        <ScrollingRow services={ROW_2} direction="left" speed={70} compact={compact} />
       </div>
     </section>
   );

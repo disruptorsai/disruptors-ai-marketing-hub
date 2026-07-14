@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { useImageParallax } from '@/hooks/useParallax';
 import FastVideo from '@/components/shared/FastVideo';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 
 export default function AlternatingLayout({ sections = [] }) {
   return (
@@ -52,7 +53,7 @@ function ParallaxSection({ section, textOnLeft }) {
         ) : section.image ? (
           <img
             ref={imageRef}
-            src={section.image}
+            src={optimizeSupabaseImage(section.image, { width: 1400, quality: 72 })}
             alt={section.imageAlt || section.headline || 'Section image'}
             className="w-full h-full object-cover scale-110"
             loading="lazy"

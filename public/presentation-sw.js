@@ -6,6 +6,12 @@
 const CACHE_VERSION = 'v2-presentation';
 const CACHE_NAME = `disruptors-${CACHE_VERSION}`;
 
+// This worker caches JS/CSS cache-first, which is correct in production but
+// catastrophic against the Vite dev server (it serves stale modules/CSS and breaks
+// the app). On localhost we refuse to run: we tear ourselves down and never
+// intercept requests, so the dev server is always the source of truth.
+const IS_DEV_HOST = ['localhost', '127.0.0.1', '[::1]'].includes(self.location.hostname);
+
 // Assets to cache immediately on install.
 // NOTE: do not pre-cache the HTML shell ('/' or '/index.html'). HTML is served
 // network-first below so new deploys (and prerendered content) always win; caching
@@ -44,6 +50,20 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean old caches
 self.addEventListener('activate', (event) => {
+  if (IS_DEV_HOST) {
+    // Self-destruct on localhost: purge every cache, unregister, and reload any open
+    // tabs so they re-fetch straight from the Vite dev server.
+    event.waitUntil((async () => {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((k) => caches.delete(k)));
+      await self.clients.claim();
+      await self.registration.unregister();
+      const clientList = await self.clients.matchAll({ type: 'window' });
+      clientList.forEach((client) => client.navigate(client.url));
+    })());
+    return;
+  }
+
   console.log('[Service Worker] Activating...');
 
   event.waitUntil(
@@ -65,6 +85,9 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  // Never intercept on localhost — always let requests hit the Vite dev server.
+  if (IS_DEV_HOST) return;
+
   const { request } = event;
 
   // Skip non-GET requests

@@ -234,7 +234,7 @@ export default function Blog() {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
                 <FastVideo
-                  src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/blog/hero-michelangelo-painting.mp4"
+                  src="/site-videos/blog/hero-michelangelo-painting.mp4"
                   preset="hero"
                   autoplay={true}
                   muted={true}

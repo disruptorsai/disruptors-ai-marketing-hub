@@ -13,7 +13,7 @@ const service = {
   headline: 'Record once. Show up everywhere.',
   headlineAccent: 'everywhere',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/podcasting.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/podcasting.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/podcasting.mp4',
   stats: [
     { value: 1, suffix: ' shoot', label: 'Weeks of content' },
     { display: '20 – 40', suffix: ' clips', label: 'Per recording day' },

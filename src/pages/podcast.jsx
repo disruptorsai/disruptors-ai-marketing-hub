@@ -190,7 +190,7 @@ export default function Podcast() {
         {/* Background Video */}
         <div className="absolute inset-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/podcasting.mp4"
+            src="/site-assets/videos/dmsite/services/podcasting.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -745,7 +745,7 @@ export default function Podcast() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
+            src="/site-videos/dmsite/home/gallery-bg.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}

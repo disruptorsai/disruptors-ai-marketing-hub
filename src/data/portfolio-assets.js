@@ -106,7 +106,7 @@ export const portfolioAssets = [
     "type": "video",
     "width": 1080,
     "height": 1080,
-    "url": "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4",
+    "url": "/site-videos/dmsite/home/roman-army-painting.mp4",
     "bytes": 12937373,
     "createdAt": "2025-09-30T22:03:51+00:00",
     "duration": 5.208333
@@ -341,7 +341,7 @@ export const portfolioAssets = [
     "type": "video",
     "width": 896,
     "height": 896,
-    "url": "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4",
+    "url": "/site-videos/dmsite/home/gallery-bg.mp4",
     "bytes": 3562538,
     "createdAt": "2025-09-30T18:56:50+00:00",
     "duration": 8.666667

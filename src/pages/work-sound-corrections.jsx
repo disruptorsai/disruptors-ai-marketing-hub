@@ -55,18 +55,7 @@ export default function WorkSoundCorrections() {
       <div className="py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
           
-          {/* Metrics */}
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {caseData.results.map((item, i) => (
-              <motion.div key={item.label} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{duration:0.5, delay: i * 0.1}} viewport={{once: true}}>
-                <div className="w-16 h-16 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-gold-shine" />
-                </div>
-                <p className="text-3xl md:text-4xl font-bold text-black">{item.value}</p>
-                <p className="text-sm text-black mt-1">{item.label}</p>
-              </motion.div>
-            ))}
-          </section>
+          {/* Metrics section removed */}
 
           {/* Project Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">

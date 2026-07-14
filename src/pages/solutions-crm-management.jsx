@@ -13,7 +13,7 @@ const service = {
   headline: 'Your pipeline, finally running itself.',
   headlineAccent: 'itself',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/crm-management.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/crm-management.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/crm-management.mp4',
   stats: [
     { value: 100, suffix: '%', label: 'Follow-ups logged' },
     { display: '8 – 15', suffix: ' hrs', label: 'Reclaimed / week' },
@@ -59,9 +59,9 @@ const service = {
   ],
 
   successStory: {
-    metric: 'Beyond forecast',
-    quote: 'They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.',
-    name: 'Alde Nguyen',
+    metric: 'Customer-first',
+    quote: 'All I can say is that this place is run by some awesome people of integrity. They genuinely have the best interest of their customers and go above and beyond for those they serve.',
+    name: 'Gabriel Costa e Silva',
     company: 'Google Review',
   },
 

@@ -13,7 +13,7 @@ const service = {
   headline: 'Show up daily. Turn attention into pipeline.',
   headlineAccent: 'attention',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/social-media-marketing.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/social-media-marketing.mp4',
+  // heroVideo omitted — no social-media-marketing.mp4 exists (404 on Supabase); uses the poster image.
   stats: [
     { value: 4, suffix: 'x', label: 'More output, same team' },
     { display: '12 – 30', suffix: ' posts', label: 'Per platform / month' },

@@ -154,7 +154,7 @@ export default function Footer() {
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <FastVideo
-          src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+          src="/site-videos/dmsite/home/roman-army-painting.mp4"
           preset="fullscreen"
           autoplay={true}
           loop={true}

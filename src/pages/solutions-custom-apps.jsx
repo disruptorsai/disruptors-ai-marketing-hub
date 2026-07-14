@@ -12,7 +12,7 @@ const service = {
   headline: 'Turn your idea into software. Ship it in weeks.',
   headlineAccent: 'weeks',
   heroImage: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/custom-apps.jpg',
-  heroVideo: 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/dmsite/services/custom-apps.mp4',
+  heroVideo: '/site-assets/videos/dmsite/services/custom-apps.mp4',
   stats: [
     { display: '4 – 8', suffix: ' wks', label: 'Idea to launch' },
     { value: 10, suffix: '×', label: 'Faster than traditional dev' },

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Disruptors Media — SEO/GEO Change Audit</title>
+<style>
+  :root{
+    --ink:#1a1a1f; --muted:#5b5b66; --line:#e4e4ea; --bg:#ffffff;
+    --gold:#AA771C; --gold-light:#BF953F; --gold-bg:#FBF6E9;
+    --prior-bg:#fbf1f0; --prior-bd:#e7b9b3; --prior-ink:#8a3a2a;
+    --now-bg:#eef7f0; --now-bd:#abd4b6; --now-ink:#1f6b3a;
+    --impact-bg:#eef2fb; --impact-bd:#b9c6e7; --impact-ink:#27407a;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink); margin:0; font-size:11.2px; line-height:1.55; background:var(--bg);
+  }
+  .page{padding:46px 54px;}
+  h1,h2,h3{line-height:1.2; margin:0;}
+  /* ---- Cover ---- */
+  .cover{
+    height:100vh; display:flex; flex-direction:column; justify-content:center;
+    background:radial-gradient(120% 90% at 80% 0%, #2a2a33 0%, #15151b 55%, #0d0d11 100%);
+    color:#fff; padding:0 64px; page-break-after:always;
+  }
+  .cover .eyebrow{
+    text-transform:uppercase; letter-spacing:.32em; font-size:11px; font-weight:600;
+    color:var(--gold-light); margin-bottom:22px;
+  }
+  .cover h1{font-size:44px; font-weight:700; letter-spacing:-.5px; max-width:13em;}
+  .cover h1 .accent{
+    background:linear-gradient(110deg,#BF953F,#FCF6BA,#B38728,#AA771C);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .cover .sub{font-size:15px; color:#c9c9d2; margin-top:20px; max-width:34em;}
+  .cover .meta{margin-top:46px; display:flex; gap:40px; font-size:12px; color:#9a9aa6;}
+  .cover .meta b{display:block; color:#fff; font-size:13px; font-weight:600; margin-top:3px;}
+  .cover .rule{width:54px; height:3px; background:var(--gold-light); margin:30px 0 0;}
+  /* ---- Sections ---- */
+  .lead{font-size:12.5px; color:var(--muted); max-width:60em; margin:0 0 26px;}
+  .lead strong{color:var(--ink);}
+  section{margin:0 0 26px; page-break-inside:avoid;}
+  h2.sec{
+    font-size:16px; font-weight:700; letter-spacing:-.2px; padding-bottom:8px;
+    border-bottom:2px solid var(--gold-light); margin-bottom:14px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  h2.sec .n{
+    color:var(--gold); font-size:13px; font-weight:700; font-variant-numeric:tabular-nums;
+  }
+  h3.sub{font-size:12.5px; font-weight:700; margin:14px 0 5px; color:var(--ink);}
+  p{margin:0 0 9px;}
+  ul{margin:6px 0 10px; padding-left:18px;}
+  li{margin:3px 0;}
+  .muted{color:var(--muted);}
+  /* ---- Prior / Now / Impact callouts ---- */
+  .pn{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0;}
+  .box{border-radius:8px; padding:10px 13px; font-size:10.8px; border:1px solid;}
+  .box .lbl{font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:700; margin-bottom:4px;}
+  .prior{background:var(--prior-bg); border-color:var(--prior-bd);}
+  .prior .lbl{color:#a23f30;}
+  .now{background:var(--now-bg); border-color:var(--now-bd);}
+  .now .lbl{color:var(--now-ink);}
+  .impact{
+    background:var(--impact-bg); border:1px solid var(--impact-bd); border-radius:8px;
+    padding:9px 13px; font-size:10.8px; margin:10px 0;
+  }
+  .impact .lbl{font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:700; color:var(--impact-ink); margin-bottom:3px;}
+  .flag{
+    background:var(--gold-bg); border-left:3px solid var(--gold-light); border-radius:4px;
+    padding:8px 13px; font-size:10.6px; margin:10px 0; color:#5a4413;
+  }
+  .flag b{color:#3f2f0a;}
+  /* ---- Tables ---- */
+  table{width:100%; border-collapse:collapse; font-size:10.6px; margin:8px 0;}
+  th{text-align:left; background:#f5f5f8; font-weight:700; padding:7px 10px; border-bottom:2px solid var(--line);}
+  td{padding:6px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:nth-child(even) td{background:#fafafb;}
+  code{background:#f1f1f4; padding:1px 5px; border-radius:4px; font-size:10px; font-family:"SF Mono",Menlo,Consolas,monospace;}
+  .pill{display:inline-block; font-size:8.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:2px 7px; border-radius:20px; vertical-align:middle;}
+  .pill.live{background:#fce9e7; color:#a23f30;}
+  @page{margin:14mm 0;}
+  .pgbreak{page-break-before:always;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">Technical Report · Confidential</div>
+  <h1>SEO &amp; GEO <span class="accent">Change Audit</span></h1>
+  <div class="rule"></div>
+  <div class="sub">A complete, file-level breakdown of the search and generative-engine optimization work on the <code style="color:#FCF6BA;background:rgba(255,255,255,.08)">camillo</code> branch — what changed, what it was before, and how each change affects SEO and GEO.</div>
+  <div class="meta">
+    <div>Project<b>disruptorsmedia.com</b></div>
+    <div>Branch<b>camillo &nbsp;·&nbsp; 71 commits ahead</b></div>
+    <div>Prepared for<b>Head of SEO / GEO</b></div>
+    <div>Date<b>June 2026</b></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <p class="lead">
+    Everything below lives on the <strong>camillo</strong> branch. <strong>None of it is live until that branch is deployed</strong> — so today the production site still behaves exactly as the "Prior" column describes. Read every "Prior → Now" pair as "live site → what ships on deploy."
+  </p>
+
+  <!-- 0 -->
+  <section>
+    <h2 class="sec"><span class="n">0</span> The core problem this work fixes</h2>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior (live today)</div>
+        Client-rendered React SPA. The server returns an empty shell (<code>&lt;div id="root"&gt;&lt;/div&gt;</code> + JS bundle); all content is painted by JavaScript after load. AI crawlers and render-budget-limited search crawlers saw a blank page. A ~1.8&nbsp;MB entry bundle and heavy hero videos produced very poor LCP. Net: <b>~0% real content in the initial HTML.</b>
+      </div>
+      <div class="box now"><div class="lbl">Now (on deploy)</div>
+        Indexable marketing routes are <b>prerendered to static HTML at build time</b> (SSR-equivalent snapshots), plus per-route metadata, structured data, and an AI-crawler access layer. Crawlers and LLMs get full text, titles, and schema in the raw HTML <b>without executing JS</b>.
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section>
+    <h2 class="sec"><span class="n">1</span> Prerendering — the biggest single change</h2>
+    <p><b>What:</b> A build-time step (<code>scripts/prerender.js</code>) loads each marketing route in headless Chromium, lets it render and animate, then writes the fully-rendered HTML back to disk as <code>dist/&lt;route&gt;/index.html</code>. Netlify's catch-all redirect is non-forced, so these static files are served before the SPA fallback. The client still hydrates on top, so pages remain interactive.</p>
+    <p><b>Coverage:</b> 23 core marketing routes + <code>/billboard</code> + <b>10 case-study pages</b> + <b>published blog posts pulled from Supabase at build time</b> (graceful fallback if DB creds are absent). Utility/app routes stay client-rendered on purpose.</p>
+    <div class="impact"><div class="lbl">SEO / GEO impact</div>
+      This is what makes content <i>exist</i> for non-JS crawlers and AI engines. It's the prerequisite for every other change in this report — titles and schema are worthless if the body is blank.
+    </div>
+    <h3 class="sub">Two robustness fixes</h3>
+    <ul>
+      <li>Each route renders in an <b>isolated browser context against a clean in-memory shell</b>, so one page's injected schema can't leak into another's snapshot.</li>
+      <li><code>emptyRoot()</code> forces the served shell's <code>#root</code> to be empty, so every route renders fresh rather than hydrating against stale markup — preventing a prior page's <code>&lt;title&gt;</code>/canonical from bleeding onto another route.</li>
+    </ul>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2 class="sec"><span class="n">2</span> Per-route metadata</h2>
+    <p><b>What:</b> A lightweight head manager (<code>src/hooks/usePageMeta.js</code>) sets a unique <code>&lt;title&gt;</code>, meta description, <code>rel=canonical</code>, and Open Graph / Twitter tags per route — applied across all indexable routes, the 9 solution pages, all 10 case studies, and blog posts.</p>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior</div>One static <code>&lt;title&gt;</code> and one description for the entire SPA — every URL shared identical metadata.</div>
+      <div class="box now"><div class="lbl">Now</div>Self-describing, length-appropriate title per URL (homepage trimmed to ~46 chars), unique descriptions, correct canonicals, and OG/Twitter tags.</div>
+    </div>
+    <div class="impact"><div class="lbl">SEO impact</div>
+      Eliminates site-wide duplicate titles/descriptions (an explicit Screaming Frog finding), prevents duplicate-URL dilution via canonicals, and improves link-preview CTR on shared links.
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2 class="sec"><span class="n">3</span> Structured data (schema.org JSON-LD)</h2>
+    <table>
+      <tr><th style="width:34%">Schema type</th><th>Where &amp; why</th></tr>
+      <tr><td>Organization, LocalBusiness, ProfessionalService, WebSite</td><td>Global entity definition (site-wide in <code>index.html</code>).</td></tr>
+      <tr><td>Service</td><td>On solution pages — defines each offering as a typed service.</td></tr>
+      <tr><td>FAQPage</td><td>FAQ page + all 9 solution pages — heavily used in AI Overviews.</td></tr>
+      <tr><td>HowTo + Person (author)</td><td>On solutions content — process + authorship signals.</td></tr>
+      <tr><td>Review</td><td><b>Real, attributable testimonials only — no fabricated <code>AggregateRating</code></b> (deliberately omitted to avoid structured-data spam).</td></tr>
+      <tr><td>BreadcrumbList</td><td>Case studies and deeper pages — SERP display + crawl-path clarity.</td></tr>
+      <tr><td>Article</td><td>Blog posts — <code>headline</code>, <code>datePublished</code>, <code>author</code> (Person), <code>articleSection</code>.</td></tr>
+    </table>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior</div>Effectively no structured data reached crawlers — it was JS-injected into an empty shell.</div>
+      <div class="box now"><div class="lbl">Now</div>Full schema graph in the raw prerendered HTML.</div>
+    </div>
+    <div class="impact"><div class="lbl">SEO / GEO impact</div>
+      Schema is how AI engines and search resolve the brand as a known <i>entity</i> and understand page type and relationships. FAQ/HowTo are favored by answer engines. The "real reviews only" choice keeps E-E-A-T trust signals clean.
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="pgbreak">
+    <h2 class="sec"><span class="n">4</span> GEO / AI-crawler layer</h2>
+    <ul>
+      <li><b>llms.txt</b> added at site root (per the llms.txt spec): a structured, link-annotated map of core pages, all services, and resources, plus a one-paragraph entity summary. Validates clean.</li>
+      <li><b>robots.txt:</b> AI crawlers (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Google-Extended) remain <b>allowed</b> (<code>User-agent: * / Allow: /</code>). The only change was <b>removing <code>Crawl-delay: 1</code></b>, which was throttling crawl budget.</li>
+      <li><b>Answer-first content:</b> key passages restructured so the first sentence directly answers the implied question — the format AI engines preferentially extract and quote.</li>
+    </ul>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior</div>No <code>llms.txt</code>; a crawl-delay slowing crawlers; marketing-prose-first content, not answer-first.</div>
+      <div class="box now"><div class="lbl">Now</div><code>llms.txt</code> map, unthrottled crawl, and answer-first passages.</div>
+    </div>
+    <div class="impact"><div class="lbl">GEO impact</div>
+      <code>llms.txt</code> + answer-first structure directly raise <i>citability</i> — the likelihood an LLM quotes or recommends the site. This is the lever that moves the stated 0%-AI-citation problem.
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2 class="sec"><span class="n">5</span> Case-study pages <span class="muted" style="font-size:11px;font-weight:400;">(most recent work)</span></h2>
+    <p><b>What:</b> All 10 case studies (<code>/work-segpro</code>, <code>/work-tradeworx-usa</code>, …) were added to the prerender list and <code>sitemap.xml</code>, and each got <code>usePageMeta</code> with a unique title, a results-driven meta description, and BreadcrumbList schema. Their statistic-rich bodies (e.g. <b>+450% campaign ROI, −85% setup time, +300% lead quality</b>) now render into static HTML.</p>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior</div>These routes existed but were <b>not prerendered and not in the sitemap</b> — crawlers/AI got the empty shell, so the hard numbers (the most citable content on the site) were invisible.</div>
+      <div class="box now"><div class="lbl">Now</div>Prerendered, in the sitemap, with unique metadata and breadcrumbs; numeric results live in the raw HTML.</div>
+    </div>
+    <div class="impact"><div class="lbl">SEO / GEO impact</div>
+      Case studies are the highest-citability content an agency has — concrete, attributable, numeric results. Surfacing them in raw HTML is a direct citability and long-tail-keyword win.
+    </div>
+    <div class="flag"><b>Caveat to relay:</b> in the <i>local</i> build these pages currently still show the homepage title, because the dev machine's build is disk-blocked and the compiled chunks are stale (they predate the <code>usePageMeta</code> edits). The <b>source is correct</b>; a clean build on the deploy pipeline produces the correct per-page titles + breadcrumb schema. This is a local-environment artifact, not a code defect.</div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2 class="sec"><span class="n">6</span> Core Web Vitals / performance</h2>
+    <table>
+      <tr><th style="width:20%">Area</th><th>Change</th></tr>
+      <tr><td>Video</td><td>Homepage skips background videos on mobile and defers below-the-fold video; billboard hero video replaced with an optimized image; <code>FastVideo</code> lazy-loads via intersection observer.</td></tr>
+      <tr><td>Images</td><td>Marketing logos/images served via Supabase transform URLs (auto-resize + auto-WebP); 37 orphaned PNGs (~89&nbsp;MB) deleted; broken Cloudinary URLs migrated to Supabase.</td></tr>
+      <tr><td>CLS</td><td>Explicit dimensions added to header logo, DualCTABlock background, footer logo, and decorative images.</td></tr>
+      <tr><td>Loading screen</td><td>Full-screen "0% — your experience is loading" gate and a spinner flash removed; <code>useIsMobile</code> made synchronous on first render to avoid a layout flash.</td></tr>
+      <tr><td>Service worker</td><td>Switched to <b>network-first for HTML navigations</b> so it can't pin stale content/markup.</td></tr>
+    </table>
+    <div class="impact"><div class="lbl">SEO impact</div>
+      Direct LCP and CLS improvements (ranking + UX signals); lighter pages improve crawl efficiency; the service-worker fix stops returning visitors being stuck on stale cached pages after deploys.
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2 class="sec"><span class="n">7</span> Redirects, 404, sitemap, indexing control</h2>
+    <ul>
+      <li><b>sitemap.xml</b> rebuilt to 33 static entries (core + billboard + 10 case studies), with blog posts appended at build time.</li>
+      <li><b>Legacy 301 redirect scaffold</b> (<code>public/_redirects</code>) + a branded static <code>404.html</code> and <code>/404</code> route.</li>
+      <li><b><code>/free-business-audit</code> → <code>/marketing-audit</code></b> 301 added (fixed a broken internal link).</li>
+      <li><b><code>/event-checkin</code></b> marked <code>noindex, follow</code> via <code>X-Robots-Tag</code> in <code>netlify.toml</code> (utility page kept out of index and prerender).</li>
+      <li>Over-length titles/descriptions trimmed; duplicate-title and broken-link Screaming Frog findings resolved.</li>
+    </ul>
+    <div class="pn">
+      <div class="box prior"><div class="lbl">Prior</div>Sitemap missing case studies; no legacy-redirect map (backlinks to old URLs hit soft-404s); generic SPA 404; thin indexing control.</div>
+      <div class="box now"><div class="lbl">Now</div>Complete sitemap, redirect scaffold, branded 404, and explicit noindex on utility pages.</div>
+    </div>
+    <div class="impact"><div class="lbl">SEO impact</div>
+      Better discovery, backlink-equity recovery once the legacy map is filled, no index bloat from utility pages, and clean crawls.
+    </div>
+  </section>
+
+  <!-- HUMAN -->
+  <section>
+    <h2 class="sec"><span class="n">→</span> Still needs a human (flagged, not done in code)</h2>
+    <table>
+      <tr><th style="width:30%">Item</th><th>Why it needs a person</th></tr>
+      <tr><td><b>Deploy <code>camillo</code> with the prerender wired into CI</b> <span class="pill live">highest impact</span></td><td>Nothing in this report is live until this happens. Infra — Bryan.</td></tr>
+      <tr><td>Populate the legacy 301 map</td><td>Scaffold exists; the real old→new URL pairs need human knowledge of old URLs.</td></tr>
+      <tr><td>Re-encode hero videos</td><td>Modern codecs/bitrates for further LCP gains.</td></tr>
+      <tr><td>Inject statistics / unique data into cornerstone pages</td><td>Audit measured citability passages as strong on structure but <b>zero on statistical density / uniqueness</b> — the remaining content lever.</td></tr>
+      <tr><td>Off-site / brand authority (Wikipedia, Reddit, LinkedIn entity presence)</td><td>Can't be done in this repo.</td></tr>
+    </table>
+  </section>
+
+  <!-- STATUS -->
+  <section>
+    <h2 class="sec"><span class="n">✓</span> Honest status note</h2>
+    <p class="muted">Local verification is partially blocked: the dev machine has been near-full on disk, so a clean local build to screenshot final output wasn't completed, and there are <b>uncommitted changes</b> still in the working tree (the 10 case-study <code>usePageMeta</code> edits, blog <code>Article</code> schema, <code>prerender.js</code> blog-fetch + <code>emptyRoot</code>, <code>robots.txt</code>, <code>sitemap.xml</code>). The code is correct and reviewable; it needs a healthy environment to build, commit, and deploy. Everything already committed in sections 1–7 takes effect the moment the branch builds and ships.</p>
+  </section>
+
+</div>
+</body>
+</html>

@@ -68,7 +68,7 @@ export default function Home() {
       kicker: "",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      video: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/handshake-landscape.mp4",
+      video: "/site-videos/dmsite/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
@@ -87,7 +87,7 @@ export default function Home() {
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/website-demo-reel.mp4"
+            src="/site-videos/dmsite/home/website-demo-reel.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -112,7 +112,7 @@ export default function Home() {
           >
             {/* Logo */}
             <motion.img
-              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/render/image/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png?width=800&quality=85&format=origin"
+              src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png"
               alt="Disruptors AI"
               width="800"
               height="160"
@@ -255,7 +255,7 @@ export default function Home() {
         {/* Background Video */}
         <div className="absolute inset-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/roman-army-painting.mp4"
+            src="/site-videos/dmsite/home/roman-army-painting.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -508,7 +508,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/dmsite/home/gallery-bg.mp4"
+            src="/site-videos/dmsite/home/gallery-bg.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 
 export default function DualCTABlock({
   title = "Ready to grow?",
@@ -11,7 +12,7 @@ export default function DualCTABlock({
   cta1_link = "book-strategy-session",
   cta2_text = "Get a Free AI Audit",
   cta2_link = "https://audit.disruptorsmedia.com/",
-  backgroundImage = "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png",
+  backgroundImage = optimizeSupabaseImage("https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png", { width: 1920, quality: 70 }),
   className = ""
 }) {
   return (

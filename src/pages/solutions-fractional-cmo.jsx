@@ -56,12 +56,7 @@ const service = {
     { title: 'Measure & Optimize', description: 'We report against objectives every month and refine the plan so results compound instead of resetting each quarter.' },
   ],
 
-  successStory: {
-    metric: 'Beyond forecast',
-    quote: 'They optimized our go-to-market strategy, overdelivering beyond forecasts by large margins.',
-    name: 'Alde Nguyen',
-    company: 'Google Review',
-  },
+  // successStory intentionally omitted — pending a real fractional-CMO client story (do not reuse another page's review).
 
   faqsEyebrow: '04 · Questions',
   faqsTitle: 'Frequently asked.',
