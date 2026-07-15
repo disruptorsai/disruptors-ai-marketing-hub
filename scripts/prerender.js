@@ -39,8 +39,11 @@ const ROUTES = [
   '/solutions-ai-automation', '/solutions-social-media', '/solutions-seo-geo',
   '/solutions-lead-generation', '/solutions-paid-advertising', '/solutions-podcasting',
   '/solutions-custom-apps', '/solutions-crm-management', '/solutions-fractional-cmo',
+  '/solutions-ai-agents',
   // Publicly-linked campaign page (indexable).
   '/billboard',
+  // Location page.
+  '/utah',
   // Case-study detail pages — high-value, statistic-rich content for citability.
   '/work-saas-content-engine', '/work-tradeworx-usa', '/work-timber-view-financial',
   '/work-the-wellness-way', '/work-sound-corrections', '/work-segpro',

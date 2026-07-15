@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Brain, FileText, Calculator, TrendingUp } from 'lucide-react';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 /**
  * Tools Landing Page
  *
- * Central hub for all AI-powered tools and applications
+ * Central hub for all AI-powered tools and applications. Mostly links to
+ * auth-gated /app/* features, so it's an internal dashboard, not a page
+ * worth ranking in search — noindexed rather than optimized for SEO.
  */
 export default function Tools() {
+  usePageMeta({ title: 'Tools | Disruptors Media', path: '/tools', noindex: true });
+
   const tools = [
     {
       id: 'business-brain-manager',
@@ -173,7 +178,7 @@ export default function Tools() {
             Start using our AI tools to accelerate your business growth today.
           </p>
           <Link
-            to="/contact"
+            to="/book-strategy-session"
             className="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
           >
             Contact Us

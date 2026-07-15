@@ -117,7 +117,7 @@ export default function Podcast() {
   return (
     <div className="text-white">
       {/* Accessible page heading (visual title is presented in the hero below) */}
-      <h1 className="sr-only">Podcast Production | Disruptors Media</h1>
+      <h1 className="sr-only">The Disruptors Media Podcast &amp; Studio</h1>
       {/* Page Title */}
       {/*<PageTitle title="PODCAST PRODUCTION" />*/}
 

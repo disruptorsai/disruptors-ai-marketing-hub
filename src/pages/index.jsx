@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Layout from "./Layout.jsx";
 import { lazyWithRetry } from '@/utils/lazyWithRetry';
 
@@ -119,6 +119,8 @@ const SolutionsPodcasting = lazyWithRetry(() => import('./solutions-podcasting.j
 const SolutionsCustomApps = lazyWithRetry(() => import('./solutions-custom-apps.jsx'));
 const SolutionsCrmManagement = lazyWithRetry(() => import('./solutions-crm-management.jsx'));
 const SolutionsFractionalCmo = lazyWithRetry(() => import('./solutions-fractional-cmo.jsx'));
+const SolutionsAiAgents = lazyWithRetry(() => import('./solutions-ai-agents.jsx'));
+const Utah = lazyWithRetry(() => import('./utah.jsx'));
 
 // Billboard funnel - lazy loaded with retry
 const Billboard = lazyWithRetry(() => import('./billboard.jsx'));
@@ -243,7 +245,11 @@ const PAGES = {
     "solutions-crm-management": SolutionsCrmManagement,
     
     "solutions-fractional-cmo": SolutionsFractionalCmo,
-    
+
+    "solutions-ai-agents": SolutionsAiAgents,
+
+    "utah": Utah,
+
     podcast: Podcast,
         
     faq: Faq,
@@ -343,8 +349,9 @@ function PagesContent() {
 
                             <Route path="/ai-tools" element={<AITools />} />
 
-                            {/* Redirect old resources route to new ai-tools route */}
-                            <Route path="/resources" element={<AITools />} />
+                            {/* Redirect old resources route to new ai-tools route (was previously
+                                rendering AITools directly on both paths, which is duplicate content) */}
+                            <Route path="/resources" element={<Navigate to="/ai-tools" replace />} />
 
                             {/* Free downloadable resources (lead magnets) */}
                             <Route path="/free-resources" element={<FreeResources />} />
@@ -420,6 +427,8 @@ function PagesContent() {
                             <Route path="/solutions-crm-management" element={<SolutionsCrmManagement />} />
 
                             <Route path="/solutions-fractional-cmo" element={<SolutionsFractionalCmo />} />
+                            <Route path="/solutions-ai-agents" element={<SolutionsAiAgents />} />
+                            <Route path="/utah" element={<Utah />} />
 
                             <Route path="/podcast" element={<Podcast />} />
 

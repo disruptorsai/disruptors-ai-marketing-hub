@@ -369,6 +369,14 @@ button:focus-visible {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gold-shimmer 10s ease-in-out infinite;
+  /* The gradient that provides this text's color is painted only within the element's
+     own box. Headlines that set a tight `leading-*` (some go as low as 0.98) shrink that
+     box below the font's natural descender depth, so descenders on letters like g/y/p/q
+     render with no gradient behind them — i.e. invisible, which looks like clipping.
+     Line-height here is deliberately independent of whatever the parent sets, so it always
+     leaves enough room for descenders regardless of the surrounding heading's leading. */
+  line-height: 1.2;
+  padding-bottom: 0.06em;
 }
 
 /* SVG fallback — can't use background-clip on SVGs */

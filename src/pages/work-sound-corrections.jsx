@@ -34,7 +34,16 @@ export default function WorkSoundCorrections() {
     title: 'Sound Corrections Case Study | Disruptors Media',
     description: 'How Disruptors Media built an AI audio platform that boosted Sound Corrections’ processing speed by 400% while cutting manual work by 90%.',
     path: '/work-sound-corrections',
-    jsonLd: breadcrumb('Sound Corrections Case Study', '/work-sound-corrections'),
+    jsonLd: [
+      breadcrumb('Sound Corrections Case Study', '/work-sound-corrections'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Review',
+        itemReviewed: { '@type': 'Organization', name: 'Disruptors Media' },
+        author: { '@type': 'Organization', name: caseData.client },
+        reviewBody: caseData.testimonial,
+      },
+    ],
   });
 
   return (
@@ -94,7 +103,7 @@ export default function WorkSoundCorrections() {
           <div className="text-center pt-8">
             <h3 className="text-2xl font-bold text-black mb-6">Ready for similar results?</h3>
             <Button asChild size="lg" className="bg-[#FFD700] text-black font-semibold hover:bg-[#E0B200] rounded-xl px-8 py-3">
-              <Link to={createPageUrl("contact")}>Start Your Project <ArrowRight className="w-5 h-5 ml-2" /></Link>
+              <Link to={createPageUrl("book-strategy-session")}>Start Your Project <ArrowRight className="w-5 h-5 ml-2" /></Link>
             </Button>
           </div>
         </div>

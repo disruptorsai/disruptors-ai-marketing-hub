@@ -34,7 +34,16 @@ export default function WorkSegPro() {
     title: 'SegPro Solutions Case Study | Disruptors Media',
     description: 'How Disruptors Media drove +450% campaign ROI and +300% lead quality for SegPro Solutions with an AI-powered marketing automation suite.',
     path: '/work-segpro',
-    jsonLd: breadcrumb('SegPro Solutions Case Study', '/work-segpro'),
+    jsonLd: [
+      breadcrumb('SegPro Solutions Case Study', '/work-segpro'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Review',
+        itemReviewed: { '@type': 'Organization', name: 'Disruptors Media' },
+        author: { '@type': 'Organization', name: caseData.client },
+        reviewBody: caseData.testimonial,
+      },
+    ],
   });
 
   return (
@@ -94,7 +103,7 @@ export default function WorkSegPro() {
           <div className="text-center pt-8">
             <h3 className="text-2xl font-bold text-black mb-6">Ready for similar results?</h3>
             <Button asChild size="lg" className="bg-[#FFD700] text-black font-semibold hover:bg-[#E0B200] rounded-xl px-8 py-3">
-              <Link to={createPageUrl("contact")}>Start Your Project <ArrowRight className="w-5 h-5 ml-2" /></Link>
+              <Link to={createPageUrl("book-strategy-session")}>Start Your Project <ArrowRight className="w-5 h-5 ml-2" /></Link>
             </Button>
           </div>
         </div>

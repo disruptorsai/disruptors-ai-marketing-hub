@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -36,20 +36,41 @@ export default function Solutions() {
     jsonLd: breadcrumb('Solutions', '/solutions'),
   });
 
-  // Mouse-parallax drift for the background hand (desktop; harmless on touch).
+  // Wrist-hinge rotation for the background hand (desktop; harmless on touch).
+  // Pivots from the image's right edge / vertical-center — where the forearm exits
+  // frame — and tracks the cursor angle, so the hand hinges at the wrist instead
+  // of sliding as a whole.
   const heroRef = useRef(null);
-  const hx = useMotionValue(0);
-  const hy = useMotionValue(0);
-  const sx = useSpring(hx, { stiffness: 45, damping: 18, mass: 0.7 });
-  const sy = useSpring(hy, { stiffness: 45, damping: 18, mass: 0.7 });
+  const handRef = useRef(null);
+  // Cached in screen coords, measured while unrotated: rotating around the
+  // transform-origin doesn't move that point, but getBoundingClientRect() on an
+  // already-rotated element returns the rotated shape's axis-aligned box, not the
+  // original corner — so re-reading it every mousemove drifts the pivot estimate.
+  const pivotRef = useRef(null);
+  const rot = useMotionValue(0);
+  const srot = useSpring(rot, { stiffness: 60, damping: 18, mass: 0.8 });
+
+  useEffect(() => {
+    const measurePivot = () => {
+      const r = handRef.current?.getBoundingClientRect();
+      if (!r) return;
+      pivotRef.current = { x: r.right, y: r.top + r.height / 2 };
+    };
+    measurePivot();
+    window.addEventListener('resize', measurePivot);
+    return () => window.removeEventListener('resize', measurePivot);
+  }, []);
 
   const handleHeroMouse = (e) => {
-    const r = heroRef.current?.getBoundingClientRect();
-    if (!r) return;
-    hx.set(((e.clientX - r.left) / r.width - 0.5) * 46);
-    hy.set(((e.clientY - r.top) / r.height - 0.5) * 34);
+    const p = pivotRef.current;
+    if (!p) return;
+    const angle = Math.atan2(e.clientY - p.y, e.clientX - p.x) * (180 / Math.PI);
+    let delta = angle - 180; // 0 == hand's drawn (resting) pose
+    if (delta < -180) delta += 360; // normalize: resting pose sits on the atan2 +/-180 branch cut
+    if (delta > 180) delta -= 360;
+    rot.set(Math.max(-28, Math.min(28, delta)));
   };
-  const resetHero = () => { hx.set(0); hy.set(0); };
+  const resetHero = () => rot.set(0);
 
   return (
     <div className="bg-[#080a0d]">
@@ -63,13 +84,14 @@ export default function Solutions() {
         onMouseLeave={resetHero}
         className="relative flex min-h-[86vh] items-center overflow-hidden bg-[#080a0d]"
       >
-        {/* Background hand — mouse-parallax */}
+        {/* Background hand — hinges at the wrist, follows the cursor */}
         <motion.img
+          ref={handRef}
           src={HAND_IMG}
           alt=""
           aria-hidden="true"
-          style={{ x: sx, y: sy }}
-          className="pointer-events-none absolute right-[-12%] top-1/2 w-[80vw] min-w-[440px] max-w-[940px] -translate-y-1/2 opacity-60 grayscale-[.15] md:opacity-80"
+          style={{ rotate: srot, y: '-50%', transformOrigin: '100% 50%' }}
+          className="pointer-events-none absolute right-[-12%] top-1/2 w-[80vw] min-w-[440px] max-w-[940px] opacity-60 grayscale-[.15] md:opacity-80"
         />
         {/* Left-dark → right-transparent gradient for text legibility */}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, #080a0d 0%, rgba(8,10,13,.86) 44%, rgba(8,10,13,.25) 100%)' }} />
@@ -133,7 +155,7 @@ export default function Solutions() {
         {/* Top fade: blends the carousel video up into the hero's black (no harsh seam) */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-[#080a0d] to-transparent"></div>
         <div className="relative z-10">
-          <ServicesScrollingRows title="Choose Your Path to Growth" compact />
+          <ServicesScrollingRows title="Choose Your Path to Growth" compact ctaDropdown />
         </div>
       </section>
 

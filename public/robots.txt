@@ -1,14 +1,20 @@
 # Disruptors Media - Robots.txt
-# Allow all search engines to crawl the site
+# Allow all search engines to crawl the site.
+#
+# Internal/demo/auth-gated tool routes (/demos/*, /connectqr1/*, /app/*, and
+# the standalone tool pages) are intentionally NOT disallowed here. They carry
+# an X-Robots-Tag: noindex header instead (see netlify.toml) - Google's own
+# guidance is to prefer noindex over Disallow for pages you want excluded from
+# search, since Disallow stops crawling before the crawler ever sees a noindex
+# directive, which can paradoxically leave a blocked URL indexed with no
+# snippet if it's linked from elsewhere.
 
 User-agent: *
 Allow: /
 
-# Disallow admin areas
+# Reserved for future admin/API surfaces - no such paths exist today, but kept
+# here so nothing needs to be added under time pressure if one is stood up.
 Disallow: /admin/
-Disallow: /app/admin/
-
-# Disallow API endpoints
 Disallow: /api/
 
 # Sitemap location

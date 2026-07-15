@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 // Service data with first frames from uploaded videos
 const SERVICES = [
+  {
+    title: "AI Agents",
+    description: "Deploy AI agents that take real action inside your business — not just chat. We build agentic systems that qualify leads, follow up, update your CRM, and escalate to a human only when one is actually needed, connected to the tools you already use.",
+    slug: "solutions-ai-agents",
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/ai-automation.jpg"
+  },
   {
     title: "AI Automation",
     description: "Transform your business operations with cutting-edge AI automation. We build intelligent systems that handle repetitive tasks, streamline workflows, and free your team to focus on high-value work. From chatbots to process automation, we deploy AI that works 24/7.",
@@ -303,11 +309,74 @@ function ScrollingRow({ services, direction = 'left', speed = 80, compact }) {
 }
 
 /**
+ * "Our Services" button that opens a dropdown listing every individual
+ * service page, instead of just linking back to the services page itself.
+ */
+function ServicesDropdownCta() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isOpen]);
+
+  return (
+    <div ref={dropdownRef} className="relative inline-block">
+      <button
+        type="button"
+        onClick={() => setIsOpen((v) => !v)}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        className="font-sans group inline-flex items-center justify-center h-12 px-8 text-base font-bold text-white uppercase bg-transparent border-2 border-white hover:bg-white hover:text-black touch-manipulation transition-all duration-300 rounded-lg"
+      >
+        <span>Our Services</span>
+        <ChevronDown className={`w-5 h-5 ml-2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-1/2 top-full z-30 mt-2 w-72 -translate-x-1/2 overflow-hidden rounded-xl border border-white/15 bg-[#0f0f14] text-left shadow-xl"
+          >
+            <ul className="max-h-[70vh] overflow-y-auto py-2">
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={createPageUrl(service.slug)}
+                    onClick={() => setIsOpen(false)}
+                    className="block px-5 py-2.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/**
  * Main ServicesScrollingRows component
  */
 export default function ServicesScrollingRows({
   title = "A Solution for Every Challenge",
-  compact = false
+  compact = false,
+  ctaDropdown = false
 }) {
   return (
     <section className={`relative overflow-hidden ${compact ? 'py-6 sm:py-8' : 'py-8 sm:py-12 lg:py-16'}`}>
@@ -342,13 +411,17 @@ export default function ServicesScrollingRows({
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Link
-              to={createPageUrl('solutions')}
-              className="font-sans group inline-flex items-center justify-center h-12 px-8 text-base font-bold text-white uppercase bg-transparent border-2 border-white hover:bg-white hover:text-black touch-manipulation transition-all duration-300 rounded-lg"
-            >
-              <span>Our Services</span>
-              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            {ctaDropdown ? (
+              <ServicesDropdownCta />
+            ) : (
+              <Link
+                to={createPageUrl('solutions')}
+                className="font-sans group inline-flex items-center justify-center h-12 px-8 text-base font-bold text-white uppercase bg-transparent border-2 border-white hover:bg-white hover:text-black touch-manipulation transition-all duration-300 rounded-lg"
+              >
+                <span>Our Services</span>
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
+            )}
           </motion.div>
         </div>
 

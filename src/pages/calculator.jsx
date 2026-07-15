@@ -6,10 +6,18 @@ import { Button } from '@/components/ui/button';
 import { DollarSign, Percent } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import { Link } from 'react-router-dom';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 
 export default function ROICalculator() {
+  usePageMeta({
+    title: 'AI Marketing ROI Calculator | Disruptors Media',
+    description: 'Estimate the revenue impact of AI-powered marketing automation on your leads, conversion rate, and sales velocity.',
+    path: '/calculator',
+    jsonLd: breadcrumb('ROI Calculator', '/calculator'),
+  });
+
   const [leads, setLeads] = useState(1000);
   const [conversion, setConversion] = useState(5);
   const [acv, setAcv] = useState(10000);
@@ -70,7 +78,7 @@ export default function ROICalculator() {
                   <h3 className="text-xl font-bold text-white mb-4">Review Your Model</h3>
                   <p className="text-[#C7C7C7] mb-6">Let's build a detailed plan based on your numbers.</p>
                   <Button asChild size="lg" className="bg-white text-[#0E0E0E] font-semibold hover:bg-[#EAEAEA] rounded-xl">
-                      <Link to={createPageUrl("contact")}>Talk to an expert</Link>
+                      <Link to={createPageUrl("book-strategy-session")}>Talk to an expert</Link>
                   </Button>
               </div>
             </div>

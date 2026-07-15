@@ -55,15 +55,111 @@
   status = 200
   force = true
 
+# Legacy /resources route now lives at /ai-tools - permanent redirect so it
+# doesn't get indexed/crawled as duplicate content on both URLs.
+[[redirects]]
+  from = "/resources"
+  to = "/ai-tools"
+  status = 301
+  force = true
+
 # SPA fallback - redirect everything else to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Keep utility/tool routes out of the search index (not for organic discovery)
+# Keep utility/tool/internal routes out of the search index (not for organic discovery).
+# HTTP header rather than a per-page meta tag so it applies before any client JS runs.
 [[headers]]
   for = "/event-checkin"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/demos"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/demos/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/connectqr1"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/connectqr1/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+# Auth-gated app tools - client-side auth only, so give them the same
+# noindex signal at the HTTP level rather than relying on the login gate.
+[[headers]]
+  for = "/app/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/business-brain-manager"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/ai-content-writer"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/keyword-research"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/carousel-generator"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/animations-demo"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/video-scrub-demo"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/text-glitch-demo"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/graveyard-archive"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/screenshot-manager"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/tools"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/blog-new"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/404"
   [headers.values]
     X-Robots-Tag = "noindex, follow"
 

@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 const steps = [
   { id: 'size', title: 'Company Size', question: 'How many employees are in your company?', options: ['1–10', '11–50', '51–200', '200+'], type: 'radio' },
@@ -18,6 +19,13 @@ const steps = [
 ];
 
 export default function Assessment() {
+  usePageMeta({
+    title: 'Free AI Marketing Assessment | Disruptors Media',
+    description: 'Answer a few questions about your business and get a tailored 90-day AI marketing pilot plan from Disruptors Media.',
+    path: '/assessment',
+    jsonLd: breadcrumb('Assessment', '/assessment'),
+  });
+
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);

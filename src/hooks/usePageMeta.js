@@ -81,6 +81,18 @@ export function usePageMeta({ title, description, path = '/', ogImage, jsonLd, n
   }, [ldString]);
 }
 
+/** Truncate to a max length at the nearest word boundary, appending an ellipsis
+ * instead of cutting mid-word. */
+export function truncateDescription(text, maxLength = 155) {
+  if (!text) return text;
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= maxLength) return clean;
+  const cut = clean.slice(0, maxLength);
+  const lastSpace = cut.lastIndexOf(' ');
+  const safe = lastSpace > 40 ? cut.slice(0, lastSpace) : cut;
+  return `${safe.trim()}…`;
+}
+
 /** Helper: build a simple two-level BreadcrumbList (Home > current page). */
 export function breadcrumb(name, path) {
   return {

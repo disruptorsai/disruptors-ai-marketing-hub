@@ -1,12 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { X, ArrowUpRight } from 'lucide-react';
 import { TeamMember } from '@/api/entities';
 import FastVideo from '@/components/shared/FastVideo';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { createPageUrl } from '@/utils';
+
+// Local fallback roster — used only when the Supabase team_members fetch fails or is
+// empty (e.g. no DB configured for local dev). Mirrors the production seed data
+// (scripts/supabase-migration/CREATE_TEAM_MEMBERS.sql) plus the two new hires; update
+// the real team_members table for production changes, this is just a dev/testing net.
+const FALLBACK_TEAM = [
+  {
+    id: 'fallback-josh',
+    name: 'Josh Patel',
+    title: 'Chief Executive Officer',
+    bio: "After years of consulting billion-dollar companies on customer acquisition and high-level operations, he grew frustrated with marketing agencies that couldn't bring his vision to life. Instead of hiring outside teams for every project, Josh built his own elite group of marketing experts to power all his current and future ventures.",
+    headshot: '/images/team/josh-patel.jpg',
+    is_active: true,
+    display_order: 1,
+  },
+  {
+    id: 'fallback-kyle',
+    name: 'Kyle Painter',
+    title: 'Chief Communications Officer',
+    bio: 'Kyle Painter is the Head of Communications at Disruptors Media, with extensive leadership experience guiding sales teams across the U.S. He has personally sold over $450,000 in revenue within nine months and trained teams that generated more than $1.5 million in just six months. With expertise in revenue strategy and AI-driven automation, Kyle designs and deploys AI employees that streamline every stage of the marketing and sales process.',
+    headshot: '/images/team/kyle.jpg',
+    is_active: true,
+    display_order: 2,
+  },
+  {
+    id: 'fallback-tyler',
+    name: 'Tyler Gordon',
+    title: 'Chief Marketing Officer',
+    bio: 'A high-performing marketer with proven experience driving large-scale growth, including his work at TikTok. He specializes in cold outbound lead generation, managing 350k+ emails per week and overseeing hundreds of social media messaging automations. With expertise in social media growth and paid advertising, he has scaled pages to hundreds of thousands of followers and deployed significant ad spend across major social and search platforms.',
+    headshot: '/images/team/tyler.jpg',
+    is_active: true,
+    display_order: 3,
+  },
+  {
+    id: 'fallback-camilo',
+    name: 'Camilo Montejo',
+    title: 'Client Strategist',
+    // TODO: replace with real bio copy before this goes live.
+    bio: 'Camilo works directly with clients to translate their goals into clear, actionable strategy — keeping every engagement focused on the results that matter.',
+    headshot: '/images/team/camilo-montejo.jpg',
+    is_active: true,
+    display_order: 4,
+  },
+  {
+    id: 'fallback-kimball',
+    name: 'Kimball Mueller',
+    title: 'Partner',
+    // TODO: replace with real bio copy before this goes live.
+    bio: 'Kimball helps guide the overall direction of Disruptors Media, bringing a partner-level perspective to how the team serves and grows with its clients.',
+    headshot: '/images/team/kimball-mueller.jpg',
+    is_active: true,
+    display_order: 5,
+  },
+];
 
 const TeamMemberCard = ({ member, delay, onSelect }) => (
   <motion.div
@@ -104,21 +160,6 @@ export default function About() {
   const [loading, setLoading] = useState(true);
   const [selectedMember, setSelectedMember] = useState(null);
 
-  const aboutIntroData = [
-    {
-      headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
-      body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-      imageAlt: "AI empowerment visualization",
-      backgroundColor: "bg-transparent backdrop-blur-md",
-      textColor: "text-black",
-      cta: {
-        label: "Get Started Today",
-        link: "book-strategy-session"
-      }
-    }
-  ];
-
   const partnershipData = [
     {
       headline: "Based in Utah. Serving Brands Nationwide.",
@@ -143,9 +184,10 @@ export default function About() {
         const members = await TeamMember.list('display_order');
         // Filter only active members
         const activeMembers = members.filter(member => member.is_active && member.name !== 'William Welsh');
-        setTeam(activeMembers);
+        setTeam(activeMembers.length > 0 ? activeMembers : FALLBACK_TEAM);
       } catch (error) {
-        console.error('Error fetching team members:', error);
+        console.error('Error fetching team members, using local fallback roster:', error);
+        setTeam(FALLBACK_TEAM);
       } finally {
         setLoading(false);
       }
@@ -159,36 +201,120 @@ export default function About() {
       <h1 className="sr-only">About Disruptors Media — Fractional CAIO &amp; CMO Team</h1>
 
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden bg-[#080a0d] pt-[clamp(96px,16vw,150px)] pb-[clamp(48px,8vw,80px)]">
+      <section className="relative flex min-h-[70vh] flex-col justify-center overflow-hidden bg-[#080a0d] pt-[clamp(96px,16vw,150px)] pb-[clamp(48px,8vw,80px)]">
         {/* Hero background video */}
         <div aria-hidden="true" className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/roman-army-painting.mp4"
+            src="/site-videos/dmsite/home/gallery-bg.mp4"
             preset="fullscreen"
             autoplay loop muted playsInline
             preload="metadata"
             lazy={false}
-            className="h-full w-full object-cover opacity-[0.4] grayscale contrast-110"
+            className="h-full w-full scale-110 object-cover opacity-[0.7] grayscale contrast-110"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.5) 0%, rgba(8,10,13,.82) 60%, #080a0d 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.25) 0%, rgba(8,10,13,.6) 60%, #080a0d 100%)' }} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-10 z-[1] h-80 w-80 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.14) 0%, transparent 70%)' }} />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-3xl text-center">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Who We Are</span>
-            <h2 className="mt-6 text-[clamp(40px,7vw,80px)] font-bold leading-[0.98] tracking-tight text-[#fafafa]">
+            <h2 className="mt-6 text-5xl font-bold leading-[0.98] tracking-tight text-[#fafafa] sm:text-7xl lg:text-8xl">
               About <span className="text-gold-shine inline-block pr-[0.08em] -mr-[0.08em]">Us</span>
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
-              We're a fractional Chief AI Officer and CMO team — strategists, creatives, and technologists who build AI-powered marketing systems inside real businesses, and hand you the keys.
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
+              A fractional Chief AI Officer and CMO team, building AI-powered marketing systems for real businesses.
             </p>
           </motion.div>
         </div>
-        <div className="relative z-[2] mt-11 h-px w-full bg-gradient-to-r from-[#BF953F]/50 via-white/10 to-transparent" />
       </section>
 
-      {/* Enhanced Intro Section */}
-      <AlternatingLayout sections={aboutIntroData} />
+      {/* Philosophy Statement */}
+      <section className="relative bg-[#080a0d] py-16 sm:py-20 lg:py-24">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Philosophy</span>
+            <h2 className="mt-6 text-[clamp(26px,3.6vw,42px)] font-bold leading-tight tracking-tight text-[#fafafa]">
+              We're Not Here to Replace You with AI. We're Here to Empower You With It.
+            </h2>
+            <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-white/65 sm:text-xl">
+              Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.
+            </p>
+            <Link
+              to={createPageUrl('book-strategy-session')}
+              className="mt-8 inline-flex items-center gap-1.5 font-medium text-gold-shine transition-all duration-300 hover:gap-2.5"
+            >
+              Get Started Today <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Grid */}
+      <section className="relative bg-[#080a0d] pb-16 sm:pb-20 lg:pb-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-x-16 gap-y-14 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">What We Stand For</span>
+              <p className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[#fafafa] sm:text-3xl">
+                We believe the systems we build for you should belong to you — not live locked inside an agency's black box.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">The Impact</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">We're Making a Real Difference</h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                From lead generation to content at scale, our AI systems take the busywork off your plate so you can spend your time on what only you can do — leading your company.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Mission</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
+                A Fractional CMO and AI team, without the enterprise price tag.
+              </h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                We install real marketing infrastructure — strategy, automation, and content — inside your business, built to outlast any single hire.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Vision</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
+                A future where every business runs on systems, not guesswork.
+              </h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                We're building toward a world where AI handles the repetitive work of marketing, freeing business owners to spend their time on strategy, relationships, and growth.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Capabilities - What We Bring to the Table */}
       <section className="relative bg-black py-16 overflow-hidden">
@@ -436,13 +562,13 @@ export default function About() {
         </div>
 
         {/* Team Cards Grid */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
               {[...team]
                 .sort((a, b) => {
                   // Sort by display_order if available, otherwise by name hierarchy

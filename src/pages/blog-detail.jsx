@@ -5,7 +5,7 @@ import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import usePageMeta from '@/hooks/usePageMeta';
+import usePageMeta, { truncateDescription } from '@/hooks/usePageMeta';
 import { useParams } from 'react-router-dom';
 
 const ORG_ID = 'https://disruptorsmedia.com/#organization';
@@ -52,12 +52,11 @@ export default function BlogDetail() {
     // loading/error early-returns) so hook order stays stable; emits nothing until `post` loads.
     const metaDescription = post
         ? (post.excerpt || post.meta_description ||
-           String(post.content || '')
-               .replace(/[#*_`>\[\]!~]/g, '')
-               .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-               .replace(/\s+/g, ' ')
-               .trim()
-               .slice(0, 155))
+           truncateDescription(
+               String(post.content || '')
+                   .replace(/[#*_`>\[\]!~]/g, '')
+                   .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+           ))
         : '';
     // Canonical is always the clean path-based URL, regardless of how the page was reached.
     const postPath = post ? `/blog/${post.slug}` : '/blog';

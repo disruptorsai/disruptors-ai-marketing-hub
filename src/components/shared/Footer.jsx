@@ -96,6 +96,7 @@ export default function Footer() {
   };
 
   const solutions = [
+    { name: 'AI Agents', path: 'solutions-ai-agents' },
     { name: 'AI Automation', path: 'solutions-ai-automation' },
     { name: 'Social Media', path: 'solutions-social-media' },
     { name: 'SEO & Local SEO', path: 'solutions-seo-geo' },
@@ -115,6 +116,7 @@ export default function Footer() {
     // { name: 'AI Tools', path: 'ai-tools' }, // Temporarily disabled
     { name: 'FAQ', path: 'faq' },
     { name: 'Billboard', path: 'billboard' },
+    { name: 'Utah', path: 'utah' },
   ];
 
   const tools = [

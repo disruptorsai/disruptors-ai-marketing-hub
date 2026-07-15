@@ -5,8 +5,15 @@ import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
+// Legacy route (`?slug=` query param). The real blog post page (`blog-detail.jsx`, mounted
+// at `/blog/:slug`) supersedes this — it supports both the clean path and this same query
+// param fallback, plus full per-post metadata. Kept only so old `/blog-new?slug=` links
+// don't 404; noindexed so it never competes with the canonical `/blog/:slug` URL.
 export default function BlogDetailNew() {
+    usePageMeta({ noindex: true });
+
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

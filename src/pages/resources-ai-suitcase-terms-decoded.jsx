@@ -2,8 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 export default function ResourcesAiSuitcaseTermsDecoded() {
+  usePageMeta({
+    title: 'AI Suitcase Terms, Decoded — Agent, RAG, Autonomy | Disruptors Media',
+    description: 'Agent, RAG, autonomy — terms that carry too many meanings. Here’s what leaders actually need to know about each one to make decisions.',
+    path: '/resources-ai-suitcase-terms-decoded',
+    jsonLd: [
+      breadcrumb('AI Suitcase Terms, Decoded', '/resources-ai-suitcase-terms-decoded'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'AI suitcase terms, decoded',
+        description: 'Agent, RAG, autonomy — terms that carry too many meanings. Here’s what leaders actually need to know to make decisions.',
+        author: { '@type': 'Organization', name: 'Disruptors Media' },
+        publisher: { '@type': 'Organization', name: 'Disruptors Media' },
+      },
+    ],
+  });
+
   return (
     <div className="bg-[#1A1A1A] text-[#EAEAEA]">
       <div className="bg-[#0E0E0E] border-b border-[#2A2A2A] pt-20 pb-12">

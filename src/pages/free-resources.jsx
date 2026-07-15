@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import * as leadMagnetAPI from '@/lib/lead-magnet-api'
 import { toast } from 'sonner'
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta'
 
 // Icon mapping for dynamic icons
 const ICON_MAP = {
@@ -41,6 +42,13 @@ const ICON_MAP = {
 }
 
 export default function FreeResources() {
+  usePageMeta({
+    title: 'Free Marketing Resources & Guides | Disruptors Media',
+    description: 'Free, downloadable marketing resources and guides from Disruptors Media — templates, playbooks, and tools to help you grow with AI-powered marketing.',
+    path: '/free-resources',
+    jsonLd: breadcrumb('Free Resources', '/free-resources'),
+  })
+
   const navigate = useNavigate()
   const [resources, setResources] = useState([])
   const [filteredResources, setFilteredResources] = useState([])

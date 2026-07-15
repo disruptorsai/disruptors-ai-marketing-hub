@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import ResourceCard from '@/components/shared/ResourceCard';
 import WaitlistModal from '@/components/shared/WaitlistModal';
+import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
 // Tool categories and data
 const TOOL_CATEGORIES = [
@@ -193,6 +194,13 @@ const TOOL_CATEGORIES = [
 ];
 
 export default function AITools() {
+  usePageMeta({
+    title: 'AI Tools | Disruptors Media',
+    description: 'Explore the AI-powered tools Disruptors Media builds for content, images, analytics, and marketing automation.',
+    path: '/ai-tools',
+    jsonLd: breadcrumb('AI Tools', '/ai-tools'),
+  });
+
   const navigate = useNavigate();
   const [selectedTool, setSelectedTool] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
