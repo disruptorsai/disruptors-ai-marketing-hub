@@ -173,7 +173,7 @@ function GridCard({ study, index }) {
       >
         <div className="relative aspect-[16/11] overflow-hidden">
           <img
-            src={optimizeSupabaseImage(study.heroImage, { width: 600, quality: 72 })}
+            src={optimizeSupabaseImage(study.heroImage, { width: 600, height: 413, quality: 72 })}
             alt={study.client}
             loading="lazy"
             decoding="async"
@@ -230,9 +230,9 @@ export default function Work() {
             autoplay loop muted playsInline
             preload="metadata"
             lazy={false}
-            className="h-full w-full object-cover opacity-[0.45] grayscale contrast-110"
+            className="h-full w-full object-cover opacity-[0.75] grayscale-[.3] contrast-105"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.5) 0%, rgba(8,10,13,.8) 60%, #080a0d 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.28) 0%, rgba(8,10,13,.62) 60%, #080a0d 100%)' }} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-10 z-[1] h-80 w-80 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.14) 0%, transparent 70%)' }} />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

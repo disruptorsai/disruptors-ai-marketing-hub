@@ -75,7 +75,7 @@ export default function Layout({ children, currentPageName }) {
         <div 
           className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`
+            backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1600, height: 1600, quality: 70 })})`
           }}
         />
         
@@ -108,7 +108,7 @@ export default function Layout({ children, currentPageName }) {
                     className="relative cursor-pointer touch-manipulation"
                   >
                     <img
-                      src={optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-logos/logo-banner-white.webp', { width: 512, quality: 85 })}
+                      src={optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-logos/logo-banner-white.webp', { width: 512, height: 119, quality: 85 })}
                       alt="Disruptors Media Logo"
                       width="800"
                       height="160"

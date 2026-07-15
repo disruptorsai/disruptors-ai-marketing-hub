@@ -33,6 +33,11 @@ export const FAQ_ITEMS = [
       'Traditional agencies rent you deliverables and keep the systems. Disruptors Media installs AI-powered marketing systems inside your business that you own, so you get the output of a full agency without the bloated retainer or the dependency.',
   },
   {
+    question: 'How does Disruptors Media work?',
+    answer:
+      "Disruptors Media installs AI-powered marketing systems inside your business in four steps. 1) Audit — we map your current marketing, systems, and data to find the highest-impact opportunities. 2) Research competitors — we analyze your market and competitors to define how you win on search, content, and conversion. 3) Create AI systems — we build and install AI-powered systems for content, SEO, lead generation, and follow-up that you own. 4) Track and optimize — we measure performance with live dashboards and continuously improve what's working.",
+  },
+  {
     question: 'Who does Disruptors Media work with?',
     answer:
       'Disruptors Media works with business owners and teams who want to generate more leads, streamline operations, and scale with AI-powered marketing systems — with full transparency and ownership of what gets built.',

@@ -53,7 +53,7 @@ function ParallaxSection({ section, textOnLeft }) {
         ) : section.image ? (
           <img
             ref={imageRef}
-            src={optimizeSupabaseImage(section.image, { width: 1400, quality: 72 })}
+            src={optimizeSupabaseImage(section.image, { width: 1400, height: 788, quality: 72 })}
             alt={section.imageAlt || section.headline || 'Section image'}
             className="w-full h-full object-cover scale-110"
             loading="lazy"

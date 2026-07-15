@@ -413,6 +413,7 @@ export default function Footer() {
           <img
             src="/assets/footer/logo-emboss.png"
             alt=""
+            aria-hidden="true"
             width="800"
             height="400"
             className="w-full h-auto"

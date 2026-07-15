@@ -75,7 +75,7 @@ const TeamMemberCard = ({ member, delay, onSelect }) => (
   >
     <div className="aspect-square w-full overflow-hidden bg-gray-100">
       <img
-        src={optimizeSupabaseImage(member.headshot, { width: 500, quality: 74 })}
+        src={optimizeSupabaseImage(member.headshot, { width: 500, height: 500, quality: 74 })}
         alt={member.name}
         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
       />
@@ -111,7 +111,7 @@ const TeamMemberModal = ({ member, onClose }) => {
         >
           <div className="relative">
             <img
-              src={optimizeSupabaseImage(member.headshot, { width: 700, quality: 76 })}
+              src={optimizeSupabaseImage(member.headshot, { width: 700, height: 700, quality: 76 })}
               alt={member.name}
               className="w-full aspect-[3/2] object-cover object-top"
             />
@@ -210,18 +210,18 @@ export default function About() {
             autoplay loop muted playsInline
             preload="metadata"
             lazy={false}
-            className="h-full w-full scale-110 object-cover opacity-[0.7] grayscale contrast-110"
+            className="h-full w-full scale-110 object-cover opacity-[0.9] grayscale-[.3] contrast-105"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.25) 0%, rgba(8,10,13,.6) 60%, #080a0d 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.1) 0%, rgba(8,10,13,.42) 60%, #080a0d 100%)' }} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-10 z-[1] h-80 w-80 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.14) 0%, transparent 70%)' }} />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-3xl text-center">
+        <div className="relative z-10 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl text-left">
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Who We Are</span>
             <h2 className="mt-6 text-5xl font-bold leading-[0.98] tracking-tight text-[#fafafa] sm:text-7xl lg:text-8xl">
               About <span className="text-gold-shine inline-block pr-[0.08em] -mr-[0.08em]">Us</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
               A fractional Chief AI Officer and CMO team, building AI-powered marketing systems for real businesses.
             </p>
           </motion.div>
@@ -254,8 +254,78 @@ export default function About() {
         </div>
       </section>
 
+      {/* Meet the Team — sits below the Philosophy section */}
+      <section
+        className="relative overflow-hidden py-20 sm:py-28"
+        style={{
+          backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1600, height: 1600, quality: 70 })})`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Edge fades: eased, multi-stop gradients so the plaster emerges gradually. The long
+            low-alpha tail (…0.3 → 0.08 → 0) removes the slope change that a plain linear
+            from-#080a0d fade leaves visible where it meets the bright plaster. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 sm:h-36" style={{ background: 'linear-gradient(to bottom, #080a0d 0%, rgba(8,10,13,0.7) 34%, rgba(8,10,13,0.3) 60%, rgba(8,10,13,0.08) 82%, rgba(8,10,13,0) 100%)' }} />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 sm:h-36" style={{ background: 'linear-gradient(to top, #080a0d 0%, rgba(8,10,13,0.7) 34%, rgba(8,10,13,0.3) 60%, rgba(8,10,13,0.08) 82%, rgba(8,10,13,0) 100%)' }} />
+
+        {/* Header with rounded card */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 mb-12">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl py-10 px-8 text-center shadow-lg">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Meet the Disruptors</h2>
+              <p className="text-lg text-gray-600">The disruptive personalities behind the creative genius of Disruptors Media.</p>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Team Cards Grid */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {loading ? (
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
+              <p className="text-gray-600">Loading team members...</p>
+            </div>
+          ) : team.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+              {[...team]
+                .sort((a, b) => {
+                  // Sort by display_order if available, otherwise by name hierarchy
+                  if (a.display_order !== undefined && b.display_order !== undefined) {
+                    return a.display_order - b.display_order;
+                  }
+                  if (a.name.toLowerCase().includes('josh')) return -1;
+                  if (b.name.toLowerCase().includes('josh')) return 1;
+                  if (a.name.toLowerCase().includes('tyler')) return -1;
+                  if (b.name.toLowerCase().includes('tyler')) return 1;
+                  if (a.name.toLowerCase().includes('kyle')) return -1;
+                  if (b.name.toLowerCase().includes('kyle')) return 1;
+                  return 0;
+                })
+                .map((member, index) => (
+                  <TeamMemberCard
+                    key={member.id}
+                    member={member}
+                    delay={index * 0.1}
+                    onSelect={setSelectedMember}
+                  />
+                ))}
+            </div>
+          ) : (
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
+              <p className="text-gray-600">No team members available at this time.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Mission & Vision Grid */}
-      <section className="relative bg-[#080a0d] pb-16 sm:pb-20 lg:pb-24">
+      <section className="relative bg-[#080a0d] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-14 md:grid-cols-2">
             <motion.div
@@ -533,71 +603,6 @@ export default function About() {
 
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
-      </section>
-
-      {/* Section 3: Meet the Team */}
-      <section
-        className="relative py-16"
-        style={{
-          backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-
-        {/* Header with rounded card */}
-        <div className="relative max-w-3xl mx-auto px-4 mb-12">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl py-10 px-8 text-center shadow-lg">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Meet the Disruptors</h2>
-              <p className="text-lg text-gray-600">The disruptive personalities behind the creative genius of Disruptors Media.</p>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Team Cards Grid */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
-              <p className="text-gray-600">Loading team members...</p>
-            </div>
-          ) : team.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-              {[...team]
-                .sort((a, b) => {
-                  // Sort by display_order if available, otherwise by name hierarchy
-                  if (a.display_order !== undefined && b.display_order !== undefined) {
-                    return a.display_order - b.display_order;
-                  }
-                  if (a.name.toLowerCase().includes('josh')) return -1;
-                  if (b.name.toLowerCase().includes('josh')) return 1;
-                  if (a.name.toLowerCase().includes('tyler')) return -1;
-                  if (b.name.toLowerCase().includes('tyler')) return 1;
-                  if (a.name.toLowerCase().includes('kyle')) return -1;
-                  if (b.name.toLowerCase().includes('kyle')) return 1;
-                  return 0;
-                })
-                .map((member, index) => (
-                  <TeamMemberCard
-                    key={member.id}
-                    member={member}
-                    delay={index * 0.1}
-                    onSelect={setSelectedMember}
-                  />
-                ))}
-            </div>
-          ) : (
-            <div className="bg-white rounded-lg shadow-lg p-12 text-center max-w-md mx-auto">
-              <p className="text-gray-600">No team members available at this time.</p>
-            </div>
-          )}
-        </div>
       </section>
 
       {/* Partnership Section */}

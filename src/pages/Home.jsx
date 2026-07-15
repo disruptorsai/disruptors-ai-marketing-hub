@@ -1,8 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, animate } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
@@ -13,23 +11,6 @@ import BillboardModal from '../components/shared/BillboardModal';
 import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { faqPageSchema } from '@/data/faqContent';
-
-// Small scroll-triggered count-up for the "What is Disruptors Media?" proof stats.
-function CountUp({ to, suffix = '', duration = 1.6 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(0, to, {
-      duration,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setVal(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, to, duration]);
-  return <span ref={ref}>{val}{suffix}</span>;
-}
 
 export default function Home() {
   const navigate = useNavigate();
@@ -43,7 +24,8 @@ export default function Home() {
     jsonLd: [
       faqPageSchema(),
       {
-        // Mirrors the visible "How We Work" ordered list verbatim.
+        // Process steps, also surfaced visibly in the FAQ ("How does Disruptors Media work?").
+        // Kept as HowTo structured data for GEO / AI step extraction.
         '@context': 'https://schema.org',
         '@type': 'HowTo',
         name: 'How Disruptors Media installs AI-powered marketing',
@@ -85,9 +67,13 @@ export default function Home() {
       {/* Full-Screen Hero with Video Background */}
       <section className="relative h-screen overflow-hidden flex items-center justify-center bg-[#0E0E0E] text-white">
         {/* Background Video */}
+        {/* PERF TODO: website-demo-reel.mp4 is 7.4 MB (the mobile hero payload now that it plays
+            on mobile). Re-encode to ~2-3 MB (H.264 CRF ~26 / two-pass, or add an H.265/AV1 source)
+            for a faster mobile LCP. gallery-bg.mp4 (2.4 MB, ~uncompressed) is also worth a pass. */}
         <div className="absolute inset-0 z-0">
           <FastVideo
             src="/site-videos/dmsite/home/website-demo-reel.mp4"
+            poster="/site-videos/dmsite/home/website-demo-reel-poster.webp"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -96,7 +82,6 @@ export default function Home() {
             preload="metadata"
             fetchpriority="high"
             lazy={false}
-            disableOnMobile={true}
             className="w-full h-full object-cover"
             aria-label="Disruptors AI hero background video"
           />
@@ -137,74 +122,6 @@ export default function Home() {
             <p className="font-sans text-lg sm:text-xl text-[#C7C7C7] max-w-2xl mx-auto">
               Most businesses are stuck with outdated tactics and broken systems. We help you fix that by automating and improving your marketing with AI.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* What is Disruptors Media? — self-contained answer block for AI citation (GEO) */}
-      <section aria-labelledby="what-is-disruptors-media" className="py-16 sm:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: '-80px' }}
-          >
-            {/* Kicker */}
-            <span className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-[#8a6a1f]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#BF953F]" /> Who We Are
-            </span>
-
-            <h2 id="what-is-disruptors-media" className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
-              What is Disruptors Media?
-            </h2>
-            {/* Gold flare underline */}
-            <div aria-hidden="true" className="mt-5 h-px w-24 bg-gradient-to-r from-[#BF953F] via-[#B38728] to-transparent" />
-
-            <p className="mt-7 text-lg sm:text-xl leading-relaxed text-gray-700">
-              Disruptors Media is a <strong className="font-semibold text-gray-900">fractional Chief AI Officer (CAIO) and Chief Marketing Officer</strong> service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so <strong className="font-semibold text-gray-900">you own everything we install</strong>. It's the output of a full agency without the bloated retainer or the dependency.
-            </p>
-
-            {/* Capability chips */}
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              {['Content', 'SEO', 'Lead Generation', 'Follow-up'].map((c) => (
-                <span
-                  key={c}
-                  className="rounded-full border border-[#BF953F]/40 bg-[#BF953F]/[0.06] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8a6a1f]"
-                >
-                  {c}
-                </span>
-              ))}
-              <Link
-                to={createPageUrl('solutions')}
-                className="group inline-flex items-center gap-1.5 rounded-full border border-[#BF953F] bg-[#BF953F]/[0.12] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-[#8a6a1f] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#BF953F] hover:text-[#0b0b0c]"
-              >
-                + More services
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-
-            {/* Count-up proof */}
-            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-black/10 pt-8">
-              <div>
-                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
-                  <CountUp to={100} suffix="%" />
-                </div>
-                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Owned by you</div>
-              </div>
-              <div>
-                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
-                  <CountUp to={24} suffix="/7" />
-                </div>
-                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Always-on</div>
-              </div>
-              <div>
-                <div className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 tabular-nums">
-                  <CountUp to={1} />
-                </div>
-                <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-black/50">Partner, not a vendor</div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -468,40 +385,6 @@ export default function Home() {
 
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
-      </section>
-
-      {/* Our Process — sequential steps as a real ordered list (GEO: numbered lists for steps) */}
-      <section aria-labelledby="our-process" className="py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="our-process" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center">
-            How We Work
-          </h2>
-          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            A simple, four-step process to install AI-powered marketing systems inside your business.
-          </p>
-          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none p-0 m-0">
-            <li className="relative pl-14">
-              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">1</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Audit</h3>
-              <p className="text-gray-600 leading-relaxed">We map your current marketing, systems, and data to find the highest-impact opportunities.</p>
-            </li>
-            <li className="relative pl-14">
-              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">2</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Research Competitors</h3>
-              <p className="text-gray-600 leading-relaxed">We analyze your market and competitors to define how you win on search, content, and conversion.</p>
-            </li>
-            <li className="relative pl-14">
-              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">3</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Create AI Systems</h3>
-              <p className="text-gray-600 leading-relaxed">We build and install AI-powered systems for content, SEO, lead generation, and follow-up — that you own.</p>
-            </li>
-            <li className="relative pl-14">
-              <span aria-hidden="true" className="absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-bold">4</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Track &amp; Optimize</h3>
-              <p className="text-gray-600 leading-relaxed">We measure performance with live dashboards and continuously improve what's working.</p>
-            </li>
-          </ol>
-        </div>
       </section>
 
       {/* Services / Solutions */}

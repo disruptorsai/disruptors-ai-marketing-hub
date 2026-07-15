@@ -10,10 +10,10 @@ import { optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-o
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { ArrowUpRight, Search, Crosshair, Cpu, Rocket, SlidersHorizontal } from 'lucide-react';
 
-const HAND_IMG = optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/services/graphics/hand-robot_point_left.png', { width: 940, quality: 78 });
+const HAND_IMG = optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/services/graphics/hand-robot_point_left.png', { width: 940, height: 309, quality: 78 });
 const PAPER_BG = {
   backgroundColor: '#efece5',
-  backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`,
+  backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1600, height: 1600, quality: 70 })})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 };
@@ -91,10 +91,10 @@ export default function Solutions() {
           alt=""
           aria-hidden="true"
           style={{ rotate: srot, y: '-50%', transformOrigin: '100% 50%' }}
-          className="pointer-events-none absolute right-[-12%] top-1/2 w-[80vw] min-w-[440px] max-w-[940px] opacity-60 grayscale-[.15] md:opacity-80"
+          className="pointer-events-none absolute right-[-12%] top-1/2 w-[80vw] min-w-[440px] max-w-[940px] opacity-80 grayscale-0 md:opacity-95"
         />
         {/* Left-dark → right-transparent gradient for text legibility */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, #080a0d 0%, rgba(8,10,13,.86) 44%, rgba(8,10,13,.25) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, #080a0d 0%, rgba(8,10,13,.72) 44%, rgba(8,10,13,.1) 100%)' }} />
         {/* Fade the bottom edge into the next section */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#080a0d]" />
         {/* Gold ambient glow */}

@@ -11,7 +11,11 @@ const SERVICES = [
     title: "AI Agents",
     description: "Deploy AI agents that take real action inside your business — not just chat. We build agentic systems that qualify leads, follow up, update your CRM, and escalate to a human only when one is actually needed, connected to the tools you already use.",
     slug: "solutions-ai-agents",
-    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/ai-automation.jpg"
+    // Distinct from AI Automation (which keeps ai-automation.jpg) — uses the fractional-cmo
+    // artwork, the one service image not otherwise shown in this carousel, so no duplicate.
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/v1/dmsite/services/fractional-cmo.jpg",
+    // Portrait (928x1232) — anchor the square crop near the top so the face isn't cut off.
+    imagePosition: "center 15%"
   },
   {
     title: "AI Automation",
@@ -53,7 +57,9 @@ const SERVICES = [
     title: "Custom Apps",
     description: "Get software built specifically for your business needs. Whether it's a customer portal, internal tool, or unique business application, we design and develop custom solutions that give you a competitive edge. Your business is unique—your software should be too.",
     slug: "solutions-custom-apps",
-    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/custom-apps.jpg"
+    image: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/videos/v1/dmsite/services/custom-apps.jpg",
+    // Portrait (1080x1482) — anchor the square crop near the top so the face isn't cut off.
+    imagePosition: "center 15%"
   },
   {
     title: "CRM Management",
@@ -99,14 +105,21 @@ function ServiceCard({ service, isDragging, compact }) {
     >
       {/* Background Image */}
       <div className="absolute inset-0">
+        {/* Supabase's render API distorts width-only requests (a 1080x1080 source comes back
+            600x1080), which then gets object-cover-cropped and looks zoomed in. Square sources
+            get an explicit square render; portrait sources (imagePosition set) keep their native
+            aspect so object-position can frame the face instead of a server-side center-crop. */}
         <img
-          src={optimizeSupabaseImage(service.image, { width: 600, quality: 75 })}
+          src={service.imagePosition
+            ? service.image
+            : optimizeSupabaseImage(service.image, { width: 600, height: 600, quality: 75 })}
           alt={service.title}
           width="600"
           height="600"
           decoding="async"
           className="w-full h-full object-cover transition-transform ease-out"
           style={{
+            objectPosition: service.imagePosition || 'center',
             transform: isHovered ? 'scale(1.05)' : 'scale(1)',
             transitionDuration: '1500ms'
           }}

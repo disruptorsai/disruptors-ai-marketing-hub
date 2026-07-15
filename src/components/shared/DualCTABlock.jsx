@@ -12,7 +12,7 @@ export default function DualCTABlock({
   cta1_link = "book-strategy-session",
   cta2_text = "Get a Free AI Audit",
   cta2_link = "https://audit.disruptorsmedia.com/",
-  backgroundImage = optimizeSupabaseImage("https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png", { width: 1920, quality: 70 }),
+  backgroundImage = optimizeSupabaseImage("https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/ui/backgrounds/renaissance-fresco-pyramids.png", { width: 1280, height: 1280, quality: 70 }),
   className = ""
 }) {
   return (

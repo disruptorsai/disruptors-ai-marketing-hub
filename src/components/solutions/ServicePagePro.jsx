@@ -262,7 +262,7 @@ export default function ServicePagePro({ service }) {
     // The site-wide white paint/plaster texture (same as Layout's main-bg) for the light sections.
     const paperBg = {
         backgroundColor: '#efece5',
-        backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1920, quality: 72 })})`,
+        backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1600, height: 1600, quality: 70 })})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -276,17 +276,17 @@ export default function ServicePagePro({ service }) {
                         {heroVideo ? (
                             <FastVideo
                                 src={heroVideo}
-                                poster={optimizeSupabaseImage(heroImage, { width: 1600, quality: 70 })}
+                                poster={optimizeSupabaseImage(heroImage, { width: 1200, height: 1200, quality: 70 })}
                                 preset="fullscreen"
                                 autoplay loop muted playsInline
                                 preload="metadata"
                                 lazy={false}
-                                className="h-full w-full object-cover opacity-[0.5] grayscale contrast-110"
+                                className="h-full w-full object-cover opacity-[0.78] grayscale-[.3] contrast-105"
                             />
                         ) : (
-                            <img src={optimizeSupabaseImage(heroImage, { width: 1600, quality: 72 })} alt="" className="h-full w-full object-cover opacity-[0.5] grayscale contrast-110" />
+                            <img src={optimizeSupabaseImage(heroImage, { width: 1200, height: 1200, quality: 72 })} alt="" className="h-full w-full object-cover opacity-[0.78] grayscale-[.3] contrast-105" />
                         )}
-                        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.42) 0%, rgba(8,10,13,.72) 55%, #080a0d 100%)' }} />
+                        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.24) 0%, rgba(8,10,13,.56) 55%, #080a0d 100%)' }} />
                     </div>
                 )}
                 <div className="relative z-10 mx-auto max-w-6xl px-[clamp(18px,5vw,24px)]">

@@ -51,16 +51,16 @@ const FAQS = [
     answer: 'A fractional CMO is a part-time, executive-level Chief Marketing Officer who sets strategy and directs your marketing without the cost of a full-time hire. It fits businesses that have outgrown ad-hoc marketing but aren’t ready for (or don’t want) a full-time CMO salary.',
   },
   {
-    question: 'What makes a Utah-based AI marketing agency different?',
-    answer: 'The work itself is the same wherever you are — AI-powered marketing systems installed inside your business, and owned by you. Being local just means faster in-person collaboration when you want it.',
+    question: 'What is a fractional Chief AI Officer (CAIO), and how is it different from an agency?',
+    answer: 'A fractional Chief AI Officer is a part-time, executive-level leader who decides where AI belongs in your business and builds it in — marketing, automation, SEO, and lead generation systems installed inside your business and owned by you. Unlike an agency you rent month to month, a CAIO leaves you owning everything we install. Being Utah-based just means faster in-person collaboration when you want it.',
   },
 ];
 
 export default function Utah() {
   usePageMeta({
-    title: 'Fractional CMO & AI Marketing Agency in Utah | Disruptors Media',
+    title: 'Utah Fractional Chief AI Officer (CAIO) & CMO | Disruptors Media',
     description:
-      'Disruptors Media is a Utah-based fractional CMO and AI marketing agency serving Salt Lake City and businesses nationwide — AI automation, SEO, lead generation, and more.',
+      'Utah-based fractional Chief AI Officer (CAIO) & CMO serving Salt Lake City and nationwide — AI marketing, SEO, and lead-generation systems installed inside your business.',
     path: '/utah',
     jsonLd: [
       breadcrumb('Utah', '/utah'),
@@ -92,7 +92,7 @@ export default function Utah() {
 
   return (
     <div className="bg-[#080a0d]">
-      <h1 className="sr-only">Fractional CMO &amp; AI Marketing Agency in Utah | Disruptors Media</h1>
+      <h1 className="sr-only">Fractional Chief AI Officer (CAIO) &amp; CMO in Utah | Disruptors Media</h1>
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-[#080a0d] pt-[clamp(96px,16vw,150px)] pb-[clamp(48px,8vw,80px)]">
@@ -103,19 +103,19 @@ export default function Utah() {
             autoplay loop muted playsInline
             preload="metadata"
             lazy={false}
-            className="h-full w-full object-cover opacity-[0.4] grayscale contrast-110"
+            className="h-full w-full object-cover opacity-[0.75] grayscale-[.3] contrast-105"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.5) 0%, rgba(8,10,13,.82) 60%, #080a0d 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.28) 0%, rgba(8,10,13,.62) 60%, #080a0d 100%)' }} />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-10 z-[1] h-80 w-80 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.14) 0%, transparent 70%)' }} />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <Eyebrow>Based in North Salt Lake, UT</Eyebrow>
             <h2 className="mt-6 text-[clamp(36px,6vw,68px)] font-bold leading-[0.98] tracking-tight text-[#fafafa]">
-              Your fractional CMO & <span className="text-gold-shine inline-block pr-[0.08em] -mr-[0.08em]">AI marketing agency</span> in Utah
+              Your fractional <span className="text-gold-shine inline-block pr-[0.08em] -mr-[0.08em]">Chief AI Officer</span> & CMO in Utah
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl">
-              We build AI-powered marketing systems for Salt Lake City businesses and clients nationwide — installed inside your business, and owned by you.
+              We install a fractional Chief AI Officer inside your business — the AI-powered marketing, automation, and lead-generation systems a modern company needs, built for Salt Lake City businesses and clients nationwide, and owned by you.
             </p>
             <div className="mt-9">
               <Link
