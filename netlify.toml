@@ -29,17 +29,11 @@
     timeout = 60
   [functions."change-request-analyze"]
     timeout = 60
-  external_node_modules = [
-    "@ai-sdk/openai",
-    "@ai-sdk/anthropic",
-    "chromium-bidi",
-    "playwright-core",
-    "playwright",
-    "@mendable/firecrawl-js",
-    "node-vibrant",
-    "ai",
-    "culori"
-  ]
+    # NOTE: external_node_modules removed. This function only imports
+    # @supabase/supabase-js and openai. The old list (playwright, chromium-bidi,
+    # firecrawl, ai-sdk, node-vibrant, culori) copied those packages verbatim into
+    # the function zip, which pushed it past Netlify's upload size limit and caused
+    # "could not parse form file: http: request body too large" deploy failures.
 
 # Exception for sitemap.xml - serve as static file
 [[redirects]]
