@@ -192,6 +192,61 @@ function GridCard({ study, index }) {
   );
 }
 
+// Client video testimonials. Videos are compressed 720p MP4s hosted in Supabase Storage;
+// posters were captured from the source films. To add/replace: upload to the
+// site-videos/case-studies/ bucket and update `src`/`poster` below.
+const CS_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/case-studies';
+const CASE_STUDY_VIDEOS = [
+  { key: 'muscle-works', name: 'Muscle Works', role: 'Client Testimonial', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
+  { key: 'sunflower', name: 'Ashley Buckner', role: 'SunFlower Movement', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
+  { key: 'paasch', name: 'Bobby Paasch', role: 'Paasch Construction & Consulting', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
+  { key: 'tittle', name: 'John Tittle', role: 'Tittle Advisory Group', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
+  { key: 'bosshardt', name: 'Neal Bosshardt', role: 'Client Testimonial', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
+];
+
+function VideoTestimonialModal({ item, onClose }) {
+  if (!item) return null;
+  return createPortal(
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ type: 'spring', damping: 26, stiffness: 300 }}
+          className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-[#0f0f14]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button onClick={onClose} aria-label="Close" className="absolute right-3 top-3 z-10 rounded-full bg-black/60 p-2 text-white transition-colors hover:bg-black/80">
+            <X className="h-5 w-5" />
+          </button>
+          <div className="relative aspect-video bg-black">
+            {item.youtube ? (
+              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${item.youtube}?autoplay=1&rel=0`} title={item.name} allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
+            ) : item.src ? (
+              <video className="absolute inset-0 h-full w-full" src={item.src} poster={item.poster} controls autoPlay playsInline />
+            ) : (
+              <>
+                <img src={item.poster} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-50" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold-shine">Video coming soon</p>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="p-5">
+            <h3 className="text-lg font-bold tracking-tight text-white">{item.name}</h3>
+            <p className="text-sm text-white/55">{item.role}</p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>,
+    document.body
+  );
+}
+
 export default function Work() {
   usePageMeta({
     title: 'Our Work — Client Case Studies | Disruptors Media',
@@ -215,6 +270,7 @@ export default function Work() {
   );
 
   const [selectedStory, setSelectedStory] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   return (
     <div className="bg-[#080a0d]">
@@ -248,6 +304,44 @@ export default function Work() {
         </div>
         <div className="relative z-[2] mt-11 h-px w-full bg-gradient-to-r from-[#BF953F]/50 via-white/10 to-transparent" />
       </section>
+
+      {/* ===== CLIENT VIDEO TESTIMONIALS ===== */}
+      <section className="bg-[#080a0d] py-[clamp(40px,7vw,80px)]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <Eyebrow>In Their Words</Eyebrow>
+            <h2 className="mt-4 text-[clamp(26px,3.6vw,40px)] font-bold tracking-tight text-white">Client video testimonials</h2>
+            <p className="mt-3 text-white/55">Hear directly from the business owners behind the results.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CASE_STUDY_VIDEOS.map((v, i) => (
+              <motion.button
+                key={v.key}
+                type="button"
+                onClick={() => setSelectedVideo(v)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                viewport={{ once: true }}
+                className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60"
+                aria-label={`Play ${v.name} testimonial`}
+              >
+                <img src={v.poster} alt={`${v.name} — ${v.role}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#BF953F] text-[#0b0b0c] shadow-lg transition-transform duration-300 group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="text-base font-bold tracking-tight text-white">{v.name}</h3>
+                  <p className="text-xs text-white/60">{v.role}</p>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <VideoTestimonialModal item={selectedVideo} onClose={() => setSelectedVideo(null)} />
 
       {/* ===== SUCCESS STORIES (HEALTHCARE) ===== */}
       <section className="bg-[#080a0d] py-[clamp(40px,7vw,80px)]">
