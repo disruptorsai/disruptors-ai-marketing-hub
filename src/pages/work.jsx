@@ -385,11 +385,11 @@ export default function Work() {
 
       {/* ===== CLIENT VIDEO TESTIMONIALS ===== */}
       <section className="relative overflow-hidden bg-[#080a0d] py-[clamp(48px,8vw,96px)]">
-        {/* Depth: subtle dot-grid + gold ambient glows + top hairline (per the imagery guide) */}
+        {/* Depth: subtle dot-grid + gold ambient glows (per the imagery guide).
+            No top hairline here — the hero section already renders one directly above. */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.35]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px)', backgroundSize: '22px 22px' }} />
         <div aria-hidden="true" className="pointer-events-none absolute -left-28 top-4 h-96 w-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.16) 0%, transparent 70%)' }} />
         <div aria-hidden="true" className="pointer-events-none absolute -right-28 bottom-0 h-96 w-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.10) 0%, transparent 70%)' }} />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BF953F]/60 to-transparent" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
