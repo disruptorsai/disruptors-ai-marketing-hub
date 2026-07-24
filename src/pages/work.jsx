@@ -21,20 +21,19 @@ const GOLD = '#BF953F';
 const CATEGORY_MAP = {
   'Healthcare & Wellness': 'Healthcare',
   'Health & Cognitive Training': 'Healthcare',
-  'Fitness & Wellness': 'Healthcare',
-  'Financial Services': 'Finance',
+  'Chiropractic Care': 'Healthcare',
+  'Real Estate Investment': 'Finance',
   'Real Estate Finance': 'Finance',
   'Financial Planning': 'Finance',
+  'Cost Segregation': 'Finance',
   'M&A Advisory & Consulting': 'Finance',
   'Employee Benefits & Insurance': 'Finance',
-  'Construction & Trading': 'Construction',
-  'Construction & Landscaping': 'Construction',
+  'Skilled Trades Staffing': 'Construction',
+  'Asphalt Paving': 'Construction',
   'Custom Home Construction': 'Construction',
   'Business Software Solutions': 'Tech',
   'Web Development & Design': 'Tech',
   'Education Technology': 'Tech',
-  'Audio Engineering & Production': 'Other',
-  'Industrial Safety': 'Other',
   'Automotive Services': 'Other',
 };
 const categoryOf = (industry) => CATEGORY_MAP[industry] || 'Other';
@@ -171,15 +170,18 @@ function GridCard({ study, index }) {
         study={study}
         className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60"
       >
-        <div className="relative aspect-[16/11] overflow-hidden">
+        {/* Company logos on a uniform dark tile, matching the homepage client marquee:
+            grayscale + a soft dark drop-shadow unifies the mixed brand logos without
+            recoloring them (so detailed/full-color logos keep their design). Restores
+            full color and opacity on hover. object-contain so nothing is cropped. */}
+        <div className="relative flex aspect-[16/11] items-center justify-center overflow-hidden border-b border-white/10 bg-[#191919] p-6 sm:p-8">
           <img
-            src={optimizeSupabaseImage(study.heroImage, { width: 600, height: 413, quality: 72 })}
-            alt={study.client}
+            src={study.logo}
+            alt={`${study.client} logo`}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover grayscale-[.25] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+            className="max-h-full max-w-full object-contain opacity-90 grayscale drop-shadow-[0_0_24px_rgba(0,0,0,0.75)] transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f14] to-transparent opacity-80" />
         </div>
         <div className="flex flex-1 flex-col p-5">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">{study.industry}</span>
@@ -198,11 +200,12 @@ function GridCard({ study, index }) {
 const CS_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/case-studies';
 // `company` is the headline on each card; `person` is the speaker underneath.
 const CASE_STUDY_VIDEOS = [
-  { key: 'muscle-works', company: 'Muscle Works', person: 'Jason Painter', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
-  { key: 'sunflower', company: 'SunFlower Movement', person: 'Ashley Buckner', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
-  { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
-  { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
-  { key: 'bosshardt', company: 'WHOlives', person: 'Neal Bosshardt', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
+  { key: 'muscle-works', company: 'Muscle Works Chiropractic', person: 'Dr. Jason Painter', role: 'Chiropractor', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
+  { key: 'sunflower', company: 'Sunflower Movement', person: 'Ashley Buckner', role: 'Licensed Therapist', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
+  { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', role: 'VP of Construction', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
+  { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', role: 'President', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
+  { key: 'bosshardt', company: 'We Eat Clay', person: 'Neal Bosshardt', role: 'Founder & Author', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
+  { key: 'robyn', company: 'Karl G. Maeser Preparatory Academy', person: 'Robyn Ellis', role: 'Director', duration: '7:08', poster: '/images/case-studies-video/robyn.jpg', src: `${CS_VIDEO}/robyn.mp4` },
 ];
 
 /**
@@ -235,7 +238,7 @@ function TestimonialCard({ item, featured = false, onOpen }) {
       onBlur={stop}
       aria-label={`Play ${item.company} testimonial with ${item.person}`}
       className={`group relative overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,.8)] ${
-        featured ? 'aspect-video sm:col-span-2 lg:row-span-2 lg:aspect-auto' : 'aspect-video'
+        featured ? 'aspect-video lg:col-span-2 lg:row-span-2 lg:aspect-auto' : 'aspect-video'
       }`}
     >
       <img
@@ -275,8 +278,8 @@ function TestimonialCard({ item, featured = false, onOpen }) {
       </span>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
-        <h3 className={`font-bold tracking-tight text-white ${featured ? 'text-xl sm:text-2xl' : 'text-base'}`}>{item.company}</h3>
-        <p className={`text-white/60 ${featured ? 'text-sm' : 'text-xs'}`}>{item.person}</p>
+        <h3 className={`font-bold tracking-tight text-white ${featured ? 'text-xl sm:text-2xl' : 'text-sm sm:text-base'}`}>{item.company}</h3>
+        <p className={`text-white/60 ${featured ? 'text-sm' : 'text-xs'}`}>{item.role ? `${item.person} · ${item.role}` : item.person}</p>
       </div>
     </button>
   );
@@ -316,7 +319,7 @@ function VideoTestimonialModal({ item, onClose }) {
           </div>
           <div className="p-5">
             <h3 className="text-lg font-bold tracking-tight text-white">{item.company}</h3>
-            <p className="text-sm text-white/55">{item.person}</p>
+            <p className="text-sm text-white/55">{item.role ? `${item.person} · ${item.role}` : item.person}</p>
           </div>
         </motion.div>
       </motion.div>
@@ -406,7 +409,7 @@ export default function Work() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
             {CASE_STUDY_VIDEOS.map((v, i) => (
               <TestimonialCard key={v.key} item={v} featured={i === 0} onOpen={setSelectedVideo} />
