@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
@@ -196,13 +196,91 @@ function GridCard({ study, index }) {
 // posters were captured from the source films. To add/replace: upload to the
 // site-videos/case-studies/ bucket and update `src`/`poster` below.
 const CS_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/case-studies';
+// `company` is the headline on each card; `person` is the speaker underneath.
 const CASE_STUDY_VIDEOS = [
-  { key: 'muscle-works', name: 'Muscle Works', role: 'Client Testimonial', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
-  { key: 'sunflower', name: 'Ashley Buckner', role: 'SunFlower Movement', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
-  { key: 'paasch', name: 'Bobby Paasch', role: 'Paasch Construction & Consulting', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
-  { key: 'tittle', name: 'John Tittle', role: 'Tittle Advisory Group', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
-  { key: 'bosshardt', name: 'Neal Bosshardt', role: 'Client Testimonial', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
+  { key: 'muscle-works', company: 'Muscle Works', person: 'Jason Painter', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
+  { key: 'sunflower', company: 'SunFlower Movement', person: 'Ashley Buckner', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
+  { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
+  { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
+  { key: 'bosshardt', company: 'WeEatClay', person: 'Neal Bosshardt', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
 ];
+
+/**
+ * Testimonial card. Shows the poster still, then silently plays the clip on hover/focus
+ * (muted + looped) as a live preview; clicking opens the full modal with sound.
+ * `preload="none"` keeps the videos off the wire until the user actually hovers.
+ */
+function TestimonialCard({ item, featured = false, onOpen }) {
+  const vidRef = useRef(null);
+  const [preview, setPreview] = useState(false);
+
+  const start = () => {
+    setPreview(true);
+    const v = vidRef.current;
+    if (v) { try { v.currentTime = 0; const p = v.play(); if (p) p.catch(() => {}); } catch { /* ignore */ } }
+  };
+  const stop = () => {
+    setPreview(false);
+    const v = vidRef.current;
+    if (v) { try { v.pause(); } catch { /* ignore */ } }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(item)}
+      onMouseEnter={start}
+      onMouseLeave={stop}
+      onFocus={start}
+      onBlur={stop}
+      aria-label={`Play ${item.company} testimonial with ${item.person}`}
+      className={`group relative overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,.8)] ${
+        featured ? 'aspect-video sm:col-span-2 lg:row-span-2 lg:aspect-auto' : 'aspect-video'
+      }`}
+    >
+      <img
+        src={item.poster}
+        alt={`${item.company} — ${item.person}`}
+        loading="lazy"
+        decoding="async"
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${preview ? 'opacity-0' : 'opacity-100'}`}
+      />
+      <video
+        ref={vidRef}
+        src={item.src}
+        poster={item.poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-hidden="true"
+        tabIndex={-1}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${preview ? 'opacity-100' : 'opacity-0'}`}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+
+      {/* duration chip */}
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/65 px-2.5 py-1 font-mono text-[10px] tracking-wider text-white/80 backdrop-blur-sm">
+        {item.duration}
+      </span>
+
+      {/* play button — recedes while previewing */}
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#BF953F] text-[#0b0b0c] shadow-lg transition-all duration-300 group-hover:scale-110 ${
+          featured ? 'h-16 w-16' : 'h-12 w-12'
+        } ${preview ? 'opacity-0 scale-90' : 'opacity-100'}`}
+      >
+        <svg viewBox="0 0 24 24" className={`ml-0.5 ${featured ? 'h-7 w-7' : 'h-5 w-5'}`} fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+      </span>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
+        <h3 className={`font-bold tracking-tight text-white ${featured ? 'text-xl sm:text-2xl' : 'text-base'}`}>{item.company}</h3>
+        <p className={`text-white/60 ${featured ? 'text-sm' : 'text-xs'}`}>{item.person}</p>
+      </div>
+    </button>
+  );
+}
 
 function VideoTestimonialModal({ item, onClose }) {
   if (!item) return null;
@@ -224,12 +302,12 @@ function VideoTestimonialModal({ item, onClose }) {
           </button>
           <div className="relative aspect-video bg-black">
             {item.youtube ? (
-              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${item.youtube}?autoplay=1&rel=0`} title={item.name} allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
+              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${item.youtube}?autoplay=1&rel=0`} title={item.company} allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
             ) : item.src ? (
               <video className="absolute inset-0 h-full w-full" src={item.src} poster={item.poster} controls autoPlay playsInline />
             ) : (
               <>
-                <img src={item.poster} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-50" />
+                <img src={item.poster} alt={item.company} className="absolute inset-0 h-full w-full object-cover opacity-50" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold-shine">Video coming soon</p>
                 </div>
@@ -237,8 +315,8 @@ function VideoTestimonialModal({ item, onClose }) {
             )}
           </div>
           <div className="p-5">
-            <h3 className="text-lg font-bold tracking-tight text-white">{item.name}</h3>
-            <p className="text-sm text-white/55">{item.role}</p>
+            <h3 className="text-lg font-bold tracking-tight text-white">{item.company}</h3>
+            <p className="text-sm text-white/55">{item.person}</p>
           </div>
         </motion.div>
       </motion.div>
@@ -306,38 +384,34 @@ export default function Work() {
       </section>
 
       {/* ===== CLIENT VIDEO TESTIMONIALS ===== */}
-      <section className="bg-[#080a0d] py-[clamp(40px,7vw,80px)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 max-w-2xl">
-            <Eyebrow>In Their Words</Eyebrow>
-            <h2 className="mt-4 text-[clamp(26px,3.6vw,40px)] font-bold tracking-tight text-white">Client video testimonials</h2>
-            <p className="mt-3 text-white/55">Hear directly from the business owners behind the results.</p>
+      <section className="relative overflow-hidden bg-[#080a0d] py-[clamp(48px,8vw,96px)]">
+        {/* Depth: subtle dot-grid + gold ambient glows (per the imagery guide).
+            No top hairline here — the hero section already renders one directly above. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.35]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px)', backgroundSize: '22px 22px' }} />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-28 top-4 h-96 w-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.16) 0%, transparent 70%)' }} />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-28 bottom-0 h-96 w-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.10) 0%, transparent 70%)' }} />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div className="max-w-2xl">
+              <Eyebrow>In Their Words</Eyebrow>
+              <h2 className="mt-4 text-[clamp(26px,3.6vw,40px)] font-bold tracking-tight text-white">Client video testimonials</h2>
+              <p className="mt-3 text-white/55">Hear directly from the business owners behind the results.</p>
+            </div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Hover to preview · Click to watch</p>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {CASE_STUDY_VIDEOS.map((v, i) => (
-              <motion.button
-                key={v.key}
-                type="button"
-                onClick={() => setSelectedVideo(v)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                viewport={{ once: true }}
-                className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60"
-                aria-label={`Play ${v.name} testimonial`}
-              >
-                <img src={v.poster} alt={`${v.name} — ${v.role}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#BF953F] text-[#0b0b0c] shadow-lg transition-transform duration-300 group-hover:scale-110">
-                  <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <h3 className="text-base font-bold tracking-tight text-white">{v.name}</h3>
-                  <p className="text-xs text-white/60">{v.role}</p>
-                </div>
-              </motion.button>
+              <TestimonialCard key={v.key} item={v} featured={i === 0} onOpen={setSelectedVideo} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
