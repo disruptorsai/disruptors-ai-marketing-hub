@@ -170,17 +170,18 @@ function GridCard({ study, index }) {
         study={study}
         className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60"
       >
-        {/* Company logos on a uniform dark tile, matching the homepage client marquee:
-            grayscale + a soft dark drop-shadow unifies the mixed brand logos without
-            recoloring them (so detailed/full-color logos keep their design). Restores
-            full color and opacity on hover. object-contain so nothing is cropped. */}
-        <div className="relative flex aspect-[16/11] items-center justify-center overflow-hidden border-b border-white/10 bg-[#191919] p-6 sm:p-8">
+        {/* Company logos in full brand color on a soft warm off-white card — the classic
+            "our clients" treatment: a decisive light panel (not an orphan tint) that pairs
+            with the dark/gold page and keeps every logo crisp in its real colors. The few
+            white-only logos (Timberview, Neuro, Auto Trim, Core Benefits) use dark variants
+            so they read on the light card. object-contain so nothing is cropped. */}
+        <div className="relative flex aspect-[16/11] items-center justify-center overflow-hidden border-b border-white/10 bg-[#f3f1ec] p-6 sm:p-8">
           <img
             src={study.logo}
             alt={`${study.client} logo`}
             loading="lazy"
             decoding="async"
-            className="max-h-full max-w-full object-contain opacity-90 grayscale drop-shadow-[0_0_24px_rgba(0,0,0,0.75)] transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
           />
         </div>
         <div className="flex flex-1 flex-col p-5">
@@ -341,7 +342,9 @@ export default function Work() {
 
   const categories = useMemo(() => {
     const set = new Set(rest.map((c) => categoryOf(c.industry)));
-    return ['All', ...Array.from(set)];
+    // Named categories alphabetically, but keep the catch-all "Other" pinned last.
+    const named = [...set].filter((c) => c !== 'Other').sort();
+    return ['All', ...named, ...(set.has('Other') ? ['Other'] : [])];
   }, [rest]);
 
   const [filter, setFilter] = useState('All');

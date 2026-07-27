@@ -324,68 +324,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission & Vision Grid */}
-      <section className="relative bg-[#080a0d] py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-x-16 gap-y-14 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">What We Stand For</span>
-              <p className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[#fafafa] sm:text-3xl">
-                We believe the systems we build for you should belong to you — not live locked inside an agency's black box.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">The Impact</span>
-              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">We're Making a Real Difference</h3>
-              <p className="mt-4 leading-relaxed text-white/60">
-                From lead generation to content at scale, our AI systems take the busywork off your plate so you can spend your time on what only you can do — leading your company.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Mission</span>
-              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
-                A Fractional CMO and AI team, without the enterprise price tag.
-              </h3>
-              <p className="mt-4 leading-relaxed text-white/60">
-                We install real marketing infrastructure — strategy, automation, and content — inside your business, built to outlast any single hire.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Vision</span>
-              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
-                A future where every business runs on systems, not guesswork.
-              </h3>
-              <p className="mt-4 leading-relaxed text-white/60">
-                We're building toward a world where AI handles the repetitive work of marketing, freeing business owners to spend their time on strategy, relationships, and growth.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Capabilities - What We Bring to the Table */}
       <section className="relative bg-black py-16 overflow-hidden">
         {/* Background Video */}
@@ -603,6 +541,68 @@ export default function About() {
 
         {/* Bottom yellow accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+      </section>
+
+      {/* Mission & Vision Grid */}
+      <section className="relative bg-[#080a0d] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-x-16 gap-y-14 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">What We Stand For</span>
+              <p className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[#fafafa] sm:text-3xl">
+                We believe the systems we build for you should belong to you — not live locked inside an agency's black box.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">The Impact</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">We're Making a Real Difference</h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                From lead generation to content at scale, our AI systems take the busywork off your plate so you can spend your time on what only you can do — leading your company.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Mission</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
+                A Fractional CMO and AI team, without the enterprise price tag.
+              </h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                We install real marketing infrastructure — strategy, automation, and content — inside your business, built to outlast any single hire.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#BF953F]">Our Vision</span>
+              <h3 className="mt-4 text-xl font-bold text-[#fafafa] sm:text-2xl">
+                A future where every business runs on systems, not guesswork.
+              </h3>
+              <p className="mt-4 leading-relaxed text-white/60">
+                We're building toward a world where AI handles the repetitive work of marketing, freeing business owners to spend their time on strategy, relationships, and growth.
+              </p>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Partnership Section */}
