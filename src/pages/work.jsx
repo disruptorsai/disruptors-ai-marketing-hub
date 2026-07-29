@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { BarChart3, X } from 'lucide-react';
+import { BarChart3, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import { caseStudies } from '@/data/caseStudies';
 import { healthcareSuccessStories } from '@/data/healthcareSuccessStories';
@@ -203,34 +203,43 @@ const CS_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/pub
 const CASE_STUDY_VIDEOS = [
   { key: 'muscle-works', company: 'Muscle Works Chiropractic', person: 'Dr. Jason Painter', role: 'Chiropractor', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
   { key: 'sunflower', company: 'Sunflower Movement', person: 'Ashley Buckner', role: 'Licensed Therapist', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
+  { key: 'bosshardt', company: 'We Eat Clay', person: 'Neal Bosshardt', role: 'Founder & Author', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
   { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', role: 'VP of Construction', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
   { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', role: 'President', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
-  { key: 'bosshardt', company: 'We Eat Clay', person: 'Neal Bosshardt', role: 'Founder & Author', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
   { key: 'robyn', company: 'Karl G. Maeser Preparatory Academy', person: 'Robyn Ellis', role: 'Director', duration: '7:08', poster: '/images/case-studies-video/robyn.jpg', src: `${CS_VIDEO}/robyn.mp4` },
+  { key: 'slc-bus-tours', company: 'SLC Bus Tours', person: 'Andre Olinov', role: 'Co-founder', duration: '2:04', poster: '/images/case-studies-video/slc-bus-tours.jpg', src: `${CS_VIDEO}/slc-bus-tours.mp4` },
 ];
 
 /**
- * Testimonial card. Shows the poster still, then silently plays the clip on hover/focus
- * (muted + looped) as a live preview; clicking opens the full modal with sound.
- * `preload="none"` keeps the videos off the wire until the user actually hovers.
+ * Portrait testimonial card for the carousel. Shows the poster still and, after a short
+ * hover, expands (scales up) while silently playing the muted clip as a preview; clicking
+ * opens the full 16:9 modal with sound. `preload="none"` keeps videos off the wire until hover.
  */
-function TestimonialCard({ item, featured = false, onOpen }) {
+function TestimonialCard({ item, index = 0, onOpen }) {
   const vidRef = useRef(null);
   const [preview, setPreview] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const expandTimer = useRef(null);
 
   const start = () => {
     setPreview(true);
     const v = vidRef.current;
     if (v) { try { v.currentTime = 0; const p = v.play(); if (p) p.catch(() => {}); } catch { /* ignore */ } }
+    clearTimeout(expandTimer.current);
+    expandTimer.current = setTimeout(() => setExpanded(true), 500); // expand after a beat
   };
   const stop = () => {
+    clearTimeout(expandTimer.current);
+    setExpanded(false);
     setPreview(false);
     const v = vidRef.current;
     if (v) { try { v.pause(); } catch { /* ignore */ } }
   };
+  useEffect(() => () => clearTimeout(expandTimer.current), []);
 
   return (
-    <button
+    <motion.button
+      data-card
       type="button"
       onClick={() => onOpen(item)}
       onMouseEnter={start}
@@ -238,8 +247,15 @@ function TestimonialCard({ item, featured = false, onOpen }) {
       onFocus={start}
       onBlur={stop}
       aria-label={`Play ${item.company} testimonial with ${item.person}`}
-      className={`group relative overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60 hover:shadow-[0_18px_40px_-12px_rgba(0,0,0,.8)] ${
-        featured ? 'aspect-video lg:col-span-2 lg:row-span-2 lg:aspect-auto' : 'aspect-video'
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      style={{ zIndex: expanded ? 20 : 1 }}
+      className={`group relative aspect-[3/4] w-[62%] shrink-0 overflow-hidden rounded-2xl border bg-[#0f0f14] text-left transition-[transform,border-color,box-shadow] duration-500 ease-out sm:w-[36%] lg:w-[21%] ${
+        expanded
+          ? 'scale-[1.22] border-[#BF953F]/70 shadow-[0_30px_70px_-18px_rgba(191,149,63,.55)]'
+          : 'border-white/10 shadow-[0_10px_30px_-14px_rgba(0,0,0,.7)]'
       }`}
     >
       <img
@@ -247,7 +263,7 @@ function TestimonialCard({ item, featured = false, onOpen }) {
         alt={`${item.company} — ${item.person}`}
         loading="lazy"
         decoding="async"
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${preview ? 'opacity-0' : 'opacity-100'}`}
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <video
         ref={vidRef}
@@ -259,30 +275,153 @@ function TestimonialCard({ item, featured = false, onOpen }) {
         preload="none"
         aria-hidden="true"
         tabIndex={-1}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${preview ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ${preview ? 'opacity-100' : 'opacity-0'}`}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+      {/* subtle top vignette + a STRONG bottom scrim so the name/role stay legible over any video */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/85 to-transparent" />
 
       {/* duration chip */}
-      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/65 px-2.5 py-1 font-mono text-[10px] tracking-wider text-white/80 backdrop-blur-sm">
+      <span className="pointer-events-none absolute right-2.5 top-2.5 rounded-full bg-black/65 px-2 py-0.5 font-mono text-[10px] tracking-wider text-white/85 backdrop-blur-sm">
         {item.duration}
       </span>
 
-      {/* play button — recedes while previewing */}
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#BF953F] text-[#0b0b0c] shadow-lg transition-all duration-300 group-hover:scale-110 ${
-          featured ? 'h-16 w-16' : 'h-12 w-12'
-        } ${preview ? 'opacity-0 scale-90' : 'opacity-100'}`}
-      >
-        <svg viewBox="0 0 24 24" className={`ml-0.5 ${featured ? 'h-7 w-7' : 'h-5 w-5'}`} fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-      </span>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
-        <h3 className={`font-bold tracking-tight text-white ${featured ? 'text-xl sm:text-2xl' : 'text-sm sm:text-base'}`}>{item.company}</h3>
-        <p className={`text-white/60 ${featured ? 'text-sm' : 'text-xs'}`}>{item.role ? `${item.person} · ${item.role}` : item.person}</p>
+      {/* bottom overlay: small play button beside the name (carousel-reference composition) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center gap-2.5 p-3.5">
+        <span aria-hidden="true" className="relative flex h-9 w-9 shrink-0 items-center justify-center">
+          <motion.span
+            className="absolute inset-0 rounded-lg bg-[#BF953F]/40 blur-md"
+            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: (index % 3) * 0.5 }}
+          />
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-[#BF953F] text-[#0b0b0c] shadow-lg transition-transform duration-300 group-hover:scale-110">
+            <svg viewBox="0 0 24 24" className="ml-0.5 h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+          </span>
+        </span>
+        <div className="min-w-0">
+          <h3 className="truncate text-[13px] font-bold tracking-tight text-white [text-shadow:0_1px_4px_rgba(0,0,0,.95)]">{item.company}</h3>
+          <p className="truncate text-[11px] text-white/75 [text-shadow:0_1px_4px_rgba(0,0,0,.95)]">{item.role ? `${item.person} · ${item.role}` : item.person}</p>
+        </div>
       </div>
+    </motion.button>
+  );
+}
+
+/**
+ * Horizontal, snap-scrolling carousel for the testimonial cards. Native touch/trackpad
+ * scroll on any device, plus gold prev/next arrows on desktop that page by one card.
+ */
+function VideoCarousel({ items, onOpen }) {
+  const ref = useRef(null);
+  const pausedRef = useRef(false);
+  const resumeTimer = useRef(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const update = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 2);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
+  }, []);
+
+  useEffect(() => {
+    update();
+    const el = ref.current;
+    if (!el) return;
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => { el.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
+  }, [update]);
+
+  // Gentle continuous auto-scroll that ping-pongs at the ends and pauses on interaction.
+  // Respects prefers-reduced-motion.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let raf;
+    let dir = 1;
+    let pos = el.scrollLeft; // float accumulator — browsers round stored scrollLeft, so
+                             // tracking the true sub-pixel position keeps a slow drift moving
+    const speed = 1.1; // px per frame (~66px/s)
+    const step = () => {
+      if (!pausedRef.current) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 4) {
+          pos += dir * speed;
+          if (pos >= max) { pos = max; dir = -1; }
+          else if (pos <= 0) { pos = 0; dir = 1; }
+          el.scrollLeft = pos;
+        }
+      } else {
+        pos = el.scrollLeft; // resync after manual scroll / arrows so resume is seamless
+      }
+      raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const pause = () => { pausedRef.current = true; };
+  const resume = () => { pausedRef.current = false; };
+  const pauseBriefly = (ms = 2600) => {
+    pausedRef.current = true;
+    clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => { pausedRef.current = false; }, ms);
+  };
+  useEffect(() => () => clearTimeout(resumeTimer.current), []);
+
+  const page = (dir) => {
+    const el = ref.current;
+    if (!el) return;
+    pauseBriefly();
+    const card = el.querySelector('[data-card]');
+    const amount = card ? card.offsetWidth + 16 : el.clientWidth * 0.85;
+    el.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  };
+
+  const Arrow = ({ dir, disabled }) => (
+    <button
+      type="button"
+      onClick={() => page(dir)}
+      disabled={disabled}
+      aria-label={dir < 0 ? 'Previous testimonials' : 'Next testimonials'}
+      className="hidden h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#0f0f14]/80 text-white backdrop-blur transition-all duration-300 hover:border-[#BF953F]/70 hover:text-gold-shine disabled:pointer-events-none disabled:opacity-30 sm:flex"
+    >
+      {dir < 0 ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
     </button>
+  );
+
+  return (
+    <div className="relative">
+      {/* arrows, top-right (sit above the track) */}
+      <div className="mb-2 flex justify-end gap-2">
+        <Arrow dir={-1} disabled={atStart} />
+        <Arrow dir={1} disabled={atEnd} />
+      </div>
+
+      <div
+        className="relative"
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onFocusCapture={pause}
+        onBlurCapture={resume}
+      >
+        {/* py gives room for the hover-expand scale so it isn't clipped */}
+        <div
+          ref={ref}
+          className="flex gap-4 overflow-x-auto px-1 py-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((v, i) => (
+            <TestimonialCard key={v.key} item={v} index={i} onOpen={onOpen} />
+          ))}
+        </div>
+        {/* edge fades hint that the row scrolls */}
+        <div className={`pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#080a0d] to-transparent transition-opacity duration-300 ${atStart ? 'opacity-0' : 'opacity-100'}`} />
+        <div className={`pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#080a0d] to-transparent transition-opacity duration-300 ${atEnd ? 'opacity-0' : 'opacity-100'}`} />
+      </div>
+    </div>
   );
 }
 
@@ -404,20 +543,10 @@ export default function Work() {
               <h2 className="mt-4 text-[clamp(26px,3.6vw,40px)] font-bold tracking-tight text-white">Client video testimonials</h2>
               <p className="mt-3 text-white/55">Hear directly from the business owners behind the results.</p>
             </div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Hover to preview · Click to watch</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">Swipe · Click to watch</p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {CASE_STUDY_VIDEOS.map((v, i) => (
-              <TestimonialCard key={v.key} item={v} featured={i === 0} onOpen={setSelectedVideo} />
-            ))}
-          </motion.div>
+          <VideoCarousel items={CASE_STUDY_VIDEOS} onOpen={setSelectedVideo} />
         </div>
       </section>
 
