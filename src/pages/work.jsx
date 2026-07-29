@@ -201,13 +201,13 @@ function GridCard({ study, index }) {
 const CS_VIDEO = 'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/case-studies';
 // `company` is the headline on each card; `person` is the speaker underneath.
 const CASE_STUDY_VIDEOS = [
-  { key: 'muscle-works', company: 'Muscle Works Chiropractic', person: 'Dr. Jason Painter', role: 'Chiropractor', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg', src: `${CS_VIDEO}/muscle-works.mp4` },
-  { key: 'sunflower', company: 'Sunflower Movement', person: 'Ashley Buckner', role: 'Licensed Therapist', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg', src: `${CS_VIDEO}/sunflower-movement.mp4` },
-  { key: 'bosshardt', company: 'We Eat Clay', person: 'Neal Bosshardt', role: 'Founder & Author', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
-  { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', role: 'VP of Construction', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg', src: `${CS_VIDEO}/paasch-construction.mp4` },
-  { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', role: 'President', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg', src: `${CS_VIDEO}/john-tittle.mp4` },
-  { key: 'robyn', company: 'Karl G. Maeser Preparatory Academy', person: 'Robyn Ellis', role: 'Director', duration: '7:08', poster: '/images/case-studies-video/robyn.jpg', src: `${CS_VIDEO}/robyn.mp4` },
-  { key: 'slc-bus-tours', company: 'SLC Bus Tours', person: 'Andre Olinov', role: 'Co-founder', duration: '2:04', poster: '/images/case-studies-video/slc-bus-tours.jpg', src: `${CS_VIDEO}/slc-bus-tours.mp4` },
+  { key: 'muscle-works', company: 'Muscle Works Chiropractic', person: 'Dr. Jason Painter', role: 'Chiropractor', duration: '2:03', poster: '/images/case-studies-video/muscle-works.jpg?v=2', src: `${CS_VIDEO}/muscle-works.mp4` },
+  { key: 'sunflower', company: 'Sunflower Movement', person: 'Ashley Buckner', role: 'Licensed Therapist', duration: '2:08', poster: '/images/case-studies-video/sunflower-movement.jpg?v=2', src: `${CS_VIDEO}/sunflower-movement.mp4` },
+  { key: 'bosshardt', company: 'We Eat Clay', person: 'Neal Bosshardt', role: 'Founder & Author', duration: '5:00', poster: '/images/case-studies-video/neal-bosshardt.jpg?v=2', src: `${CS_VIDEO}/neal-bosshardt.mp4` },
+  { key: 'paasch', company: 'Paasch Construction & Consulting', person: 'Bobby Paasch', role: 'VP of Construction', duration: '1:38', poster: '/images/case-studies-video/paasch-construction.jpg?v=2', src: `${CS_VIDEO}/paasch-construction.mp4` },
+  { key: 'tittle', company: 'Tittle Advisory Group', person: 'John Tittle', role: 'President', duration: '5:30', poster: '/images/case-studies-video/john-tittle.jpg?v=2', src: `${CS_VIDEO}/john-tittle.mp4` },
+  { key: 'robyn', company: 'Karl G. Maeser Preparatory Academy', person: 'Robyn Ellis', role: 'Director', duration: '7:08', poster: '/images/case-studies-video/robyn.jpg?v=2', src: `${CS_VIDEO}/robyn.mp4` },
+  { key: 'slc-bus-tours', company: 'SLC Bus Tours', person: 'Andre Olinov', role: 'Co-founder', duration: '2:04', poster: '/images/case-studies-video/slc-bus-tours.jpg?v=2', src: `${CS_VIDEO}/slc-bus-tours.mp4` },
 ];
 
 /**
