@@ -6,7 +6,6 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import FastVideo from '@/components/shared/FastVideo';
-import YouTubeFacade from '@/components/shared/YouTubeFacade';
 import { optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-optimizer';
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { ArrowUpRight, Search, Crosshair, Cpu, Rocket, SlidersHorizontal } from 'lucide-react';
@@ -19,12 +18,11 @@ const PAPER_BG = {
   backgroundPosition: 'center',
 };
 
-// Walkthrough video for the closing proof section. Poster is self-hosted (pulled from
-// YouTube's maxresdefault) so the prerendered page doesn't depend on a third-party image.
+// Walkthrough video for the closing proof section. Embedded plainly so YouTube renders
+// its own thumbnail and default play control rather than a custom overlay.
 const WALKTHROUGH = {
   videoId: 'WaF_4bUFT24',
   title: 'How I Grew 10K Followers in 90 Days (Full AI Workflow)',
-  poster: '/images/solutions/ai-workflow-video.jpg?v=1',
 };
 
 // Five-step "Our Process" framework (ported from the billboard funnel).
@@ -354,11 +352,19 @@ export default function Solutions() {
             viewport={{ once: true }}
             className="mx-auto max-w-4xl"
           >
-            <YouTubeFacade
-              videoId={WALKTHROUGH.videoId}
-              poster={WALKTHROUGH.poster}
-              title={WALKTHROUGH.title}
-            />
+            {/* Plain embed so YouTube shows its own thumbnail and default play button.
+                No autoplay param — that is what keeps the native poster + control visible. */}
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl">
+              <iframe
+                src={`https://www.youtube.com/embed/${WALKTHROUGH.videoId}?rel=0`}
+                title={WALKTHROUGH.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                className="absolute inset-0 h-full w-full"
+                style={{ border: 'none' }}
+              />
+            </div>
           </motion.div>
 
           <motion.div
