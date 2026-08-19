@@ -6,7 +6,6 @@ import { BarChart3, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import { caseStudies } from '@/data/caseStudies';
 import { healthcareSuccessStories } from '@/data/healthcareSuccessStories';
-import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import FastVideo from '@/components/shared/FastVideo';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 
@@ -46,9 +45,26 @@ function Eyebrow({ children }) {
   );
 }
 
-// Cards are intentionally non-navigating for now (no case-study or website link).
+/** True when this study has a real detail page to navigate to. Only 9 of the 16
+ *  case studies have one, so the rest must not advertise a click they can't honour.
+ *  Flip `hasDetailPage` in src/data/caseStudies.js as the remaining pages get built. */
+function hasCaseStudyPage(study) {
+  return Boolean(study?.hasDetailPage && study?.path);
+}
+
 function CardLink({ study, className, children }) {
-  return <div className={className}>{children}</div>;
+  if (!hasCaseStudyPage(study)) {
+    return <div className={className}>{children}</div>;
+  }
+  return (
+    <Link
+      to={createPageUrl(study.path)}
+      className={className}
+      aria-label={`View the ${study.client} case study`}
+    >
+      {children}
+    </Link>
+  );
 }
 
 function ResultStat({ value, label }) {
@@ -159,6 +175,9 @@ function SuccessStoryModal({ story, onClose }) {
 }
 
 function GridCard({ study, index }) {
+  // Lift/border/zoom hover states read as "this is clickable" — only apply them to
+  // cards that actually navigate somewhere.
+  const linked = hasCaseStudyPage(study);
   return (
     <motion.div
       layout
@@ -168,7 +187,9 @@ function GridCard({ study, index }) {
     >
       <CardLink
         study={study}
-        className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] transition-all duration-300 hover:-translate-y-1 hover:border-[#BF953F]/60"
+        className={`group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f0f14] transition-all duration-300 ${
+          linked ? 'hover:-translate-y-1 hover:border-[#BF953F]/60' : ''
+        }`}
       >
         {/* Company logos in full brand color on a soft warm off-white card — the classic
             "our clients" treatment: a decisive light panel (not an orphan tint) that pairs
@@ -181,7 +202,9 @@ function GridCard({ study, index }) {
             alt={`${study.client} logo`}
             loading="lazy"
             decoding="async"
-            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+            className={`max-h-full max-w-full object-contain transition-transform duration-500 ${
+              linked ? 'group-hover:scale-[1.04]' : ''
+            }`}
           />
         </div>
         <div className="flex flex-1 flex-col p-5">

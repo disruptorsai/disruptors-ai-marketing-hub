@@ -6,6 +6,7 @@ import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import FastVideo from '@/components/shared/FastVideo';
+import YouTubeFacade from '@/components/shared/YouTubeFacade';
 import { optimizeCloudinaryVideo, getVideoThumbnail } from '@/utils/cloudinary-optimizer';
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
 import { ArrowUpRight, Search, Crosshair, Cpu, Rocket, SlidersHorizontal } from 'lucide-react';
@@ -16,6 +17,14 @@ const PAPER_BG = {
   backgroundImage: `url(${optimizeSupabaseImage('https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-assets/images/disruptors-media/ui/backgrounds/main-bg.jpg', { width: 1600, height: 1600, quality: 70 })})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
+};
+
+// Walkthrough video for the closing proof section. Poster is self-hosted (pulled from
+// YouTube's maxresdefault) so the prerendered page doesn't depend on a third-party image.
+const WALKTHROUGH = {
+  videoId: 'WaF_4bUFT24',
+  title: 'How I Grew 10K Followers in 90 Days (Full AI Workflow)',
+  poster: '/images/solutions/ai-workflow-video.jpg?v=1',
 };
 
 // Five-step "Our Process" framework (ported from the billboard funnel).
@@ -33,7 +42,26 @@ export default function Solutions() {
     description:
       "Disruptors Media's AI-powered marketing solutions: SEO & GEO, AI automation, social, paid ads, lead generation, content, and fractional CMO.",
     path: '/solutions',
-    jsonLd: breadcrumb('Solutions', '/solutions'),
+    jsonLd: [
+      breadcrumb('Solutions', '/solutions'),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: WALKTHROUGH.title,
+        description:
+          'A full walkthrough of the AI content workflow Disruptors Media builds for clients — the same system used to grow an audience to 10,000 followers in 90 days.',
+        thumbnailUrl: `https://i.ytimg.com/vi/${WALKTHROUGH.videoId}/maxresdefault.jpg`,
+        uploadDate: '2026-08-13T16:30:14-07:00',
+        duration: 'PT13M12S',
+        embedUrl: `https://www.youtube.com/embed/${WALKTHROUGH.videoId}`,
+        contentUrl: `https://www.youtube.com/watch?v=${WALKTHROUGH.videoId}`,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Disruptors Media',
+          url: 'https://disruptorsmedia.com',
+        },
+      },
+    ],
   });
 
   // Wrist-hinge rotation for the background hand (desktop; harmless on touch).
@@ -290,6 +318,66 @@ export default function Solutions() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* See It Work — walkthrough video + closing CTA */}
+      <section className="relative overflow-hidden bg-[#080a0d] py-20 sm:py-28">
+        {/* Gold divider top */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BF953F] to-transparent" />
+        {/* Gold ambient glow */}
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-80 w-[36rem] -translate-x-1/2 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.12) 0%, transparent 70%)' }} />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-gold-shine">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#BF953F]" /> Proof
+            </span>
+            <h2 className="mt-5 text-[clamp(32px,5vw,56px)] font-bold tracking-tight text-[#fafafa]">
+              Watch the system <span className="text-gold-shine">actually run</span>.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+              Not a pitch — the full workflow, start to finish. Our founder Kyle Painter walks through the exact AI content system we install for clients, and the 90 days it took to grow an audience to 10,000 followers with it.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-4xl"
+          >
+            <YouTubeFacade
+              videoId={WALKTHROUGH.videoId}
+              poster={WALKTHROUGH.poster}
+              title={WALKTHROUGH.title}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <p className="mx-auto max-w-xl text-lg text-white/70">
+              Want this running inside your business instead of your feed?
+            </p>
+            <Link
+              to={createPageUrl('book-strategy-session')}
+              className="mt-6 inline-flex rounded-[3px] bg-[#BF953F] px-7 py-3.5 text-center font-medium text-[#0b0b0c] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#AA771C]"
+            >
+              Book a Strategy Session
+            </Link>
+          </motion.div>
         </div>
       </section>
 
