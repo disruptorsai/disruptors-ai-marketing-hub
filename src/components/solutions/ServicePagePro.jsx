@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import FastVideo from '@/components/shared/FastVideo';
 import { optimizeSupabaseImage } from '@/utils/supabase-media-optimizer';
+// Duotone glyphs, generated from Phosphor (MIT). See duotoneIcons.jsx for why this is a
+// local module rather than a direct @phosphor-icons/react import.
 import {
-    Cpu, Zap, ShieldCheck, Clock, FileText, Layers, TrendingUp,
-} from 'lucide-react';
+    Cpu, Vault, GraduationCap, ClockCountdown, UsersThree, PlugsConnected, ListChecks, Lightning, ArrowsClockwise, HourglassSimple, ChartLineUp, Keyboard, BellRinging, Funnel, SealCheck, Broom, Binoculars, Brain, Blueprint, RocketLaunch, PuzzlePiece, Trophy, Target, Robot, Handshake, Presentation, CurrencyCircleDollar, Compass, Engine, UserFocus, PaperPlaneTilt, ChartBar, FlowArrow, FastForward, Flask, FunnelSimple, TrendDown, Medal, NotePencil, FilmStrip, Crown, ShareNetwork, CalendarCheck, Ranking, ChatCenteredText, Code, MagnifyingGlass, Magnet, TrendUp, MagicWand, FrameCorners, ChartPieSlice, Broadcast, Megaphone,
+} from './duotoneIcons';
 import { usePageMeta, breadcrumb, truncateDescription } from '@/hooks/usePageMeta';
 
 /**
@@ -21,7 +23,94 @@ import { usePageMeta, breadcrumb, truncateDescription } from '@/hooks/usePageMet
 
 const GOLD = '#BF953F';
 const GOLD_DEEP = '#8a6a1f'; // higher-contrast gold for the white/paper sections
-const ICONS = { zap: Zap, shield: ShieldCheck, clock: Clock, file: FileText, layers: Layers, trending: TrendingUp, cpu: Cpu };
+/**
+ * Icon vocabulary — one glyph per *meaning*, not per shape.
+ *
+ * This previously held 7 lucide icons stretched across ~70 slots on 10 service pages, so
+ * a single Zap stood for "Real-time Sync", "Fast Turnaround" and "Attract intent, not
+ * noise" alike. Keys are now named after the concept, so a page declares what a row means
+ * and the template picks the glyph. Repeats are deliberate where the copy repeats (every
+ * "You Own It" is the same vault); they are not a fallback.
+ *
+ * Rendered duotone — the two-tone fill reads warmer inside the gold tiles than a hairline
+ * stroke. Import names are verified against @phosphor-icons/react.
+ */
+const ICONS = {
+    // Shared across pages (identical copy → identical glyph)
+    own: Vault,                        // "You Own It"
+    handoff: GraduationCap,            // "Full Handoff"
+    alwayson: ClockCountdown,          // "24/7 Operation"
+    team: UsersThree,                  // "Scale / Sell more without hiring"
+    growth: ChartLineUp,               // "Grow, measurably" / "Scale without guessing"
+    compound: TrendUp,                 // "…that compounds"
+
+    // AI agents
+    tools: PlugsConnected,             // "Tool-Connected"
+    reliable: ListChecks,              // "Nothing falls through"
+    speed: Lightning,                  // "Faster response" / "Fast Turnaround"
+
+    // AI automation
+    sync: ArrowsClockwise,             // "Real-time Sync"
+    timeback: HourglassSimple,         // "Get your time back"
+
+    // CRM
+    autoentry: Keyboard,               // "Auto Data Entry"
+    followup: BellRinging,             // "Timed Follow-ups"
+    pipeline: Funnel,                  // "Live Pipeline"
+    capture: SealCheck,                // "Stop losing leads"
+    busywork: Broom,                   // "Kill the busywork"
+    clarity: Binoculars,               // "See the truth"
+
+    // Custom apps
+    ai: Brain,                         // "AI Built In"
+    scale: Blueprint,                  // "Built to Scale"
+    ship: RocketLaunch,                // "Ship in weeks, not quarters"
+    fit: PuzzlePiece,                  // "Software that fits exactly"
+    edge: Trophy,                      // "A real competitive edge"
+
+    // Fractional CMO
+    revenue: Target,                   // "Revenue Focus" / "ROAS Focused"
+    aiforward: Robot,                  // "AI-Forward"
+    align: Handshake,                  // "Team Alignment"
+    execreport: Presentation,          // "Exec Reporting"
+    tiedrevenue: CurrencyCircleDollar, // "Marketing that ties to revenue"
+    direction: Compass,                // "A team pulling one direction"
+    engine: Engine,                    // "An AI-forward marketing engine"
+
+    // Lead generation
+    personalize: UserFocus,            // "AI Personalization"
+    outreach: PaperPlaneTilt,          // "Always-On Outreach"
+    report: ChartBar,                  // "Full Reporting"
+    predictable: FlowArrow,            // "A predictable pipeline"
+    fastbuild: FastForward,            // "Skip the slow build"
+
+    // Paid advertising
+    testing: Flask,                    // "Rapid Testing"
+    funnel: FunnelSimple,              // "Full Funnel"
+    lowercost: TrendDown,              // "Lower cost per customer"
+    winners: Medal,                    // "Find winners faster"
+
+    // Podcasting
+    shownotes: NotePencil,             // "Show Notes"
+    clips: FilmStrip,                  // "Clip Library"
+    authority: Crown,                  // "Become the authority"
+    repurpose: ShareNetwork,           // "One shoot, everywhere"
+    consistent: CalendarCheck,         // "Stay consistent, effortlessly"
+
+    // SEO / GEO
+    rank: Ranking,                     // "Rank & Get Cited"
+    answers: ChatCenteredText,         // "Answer-First Content"
+    schema: Code,                      // "Schema & llms.txt"
+    visible: MagnifyingGlass,          // "Show up where buyers look"
+    intent: Magnet,                    // "Attract intent, not noise"
+
+    // Social
+    production: MagicWand,             // "AI-Assisted Production"
+    formats: FrameCorners,             // "Every Format"
+    monthlyreport: ChartPieSlice,      // "Monthly Reporting"
+    broadcast: Broadcast,              // "Never go quiet again"
+    reach: Megaphone,                  // "More reach, no new hires"
+};
 
 const reveal = {
     initial: { opacity: 0, y: 28 },
@@ -355,7 +444,7 @@ export default function ServicePagePro({ service }) {
                     <div className="relative z-10 grid grid-cols-1 md:grid-cols-12">
                         <div className="flex flex-col justify-center border-b border-white/10 p-[clamp(24px,5vw,32px)] md:col-span-4 md:border-b-0 md:border-r md:p-12">
                             <div className="mb-4 flex items-center gap-2">
-                                <Cpu className="h-4 w-4" style={{ color: GOLD }} strokeWidth={2} />
+                                <Cpu className="h-4 w-4" style={{ color: GOLD }} weight="duotone" />
                                 <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#BF953F]">{platform.label || 'The Engine'}</span>
                             </div>
                             <h2 className="mb-3.5 text-[clamp(24px,3.2vw,34px)] font-bold tracking-tight text-[#fafafa]">{platform.title}</h2>
@@ -376,10 +465,10 @@ export default function ServicePagePro({ service }) {
                     {(platform.mini || []).length > 0 && (
                         <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
                             {platform.mini.map((m, i) => {
-                                const Icon = ICONS[m.icon] || Zap;
+                                const Icon = ICONS[m.icon] || Lightning;
                                 return (
                                     <div key={i} className="group flex flex-col gap-3 border-b border-white/10 p-[22px] transition-colors hover:bg-white/[0.02] sm:border-r">
-                                        <Icon className="h-5 w-5 text-slate-400 transition-colors group-hover:text-[#BF953F]" strokeWidth={2} />
+                                        <Icon className="h-5 w-5 text-slate-400 transition-colors group-hover:text-[#BF953F]" weight="duotone" />
                                         <div>
                                             <h4 className="text-sm font-medium text-[#fafafa]">{m.title}</h4>
                                             <p className="mt-[3px] font-mono text-[10.5px] text-white/45">{m.desc}</p>
@@ -403,7 +492,7 @@ export default function ServicePagePro({ service }) {
                         </motion.div>
                         <div className="mt-11 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
                             {outcomes.map((o, i) => {
-                                const Icon = ICONS[o.icon] || TrendingUp;
+                                const Icon = ICONS[o.icon] || TrendUp;
                                 return (
                                     <motion.div
                                         key={i} {...reveal} transition={{ ...reveal.transition, delay: i * 0.08 }}
@@ -412,7 +501,7 @@ export default function ServicePagePro({ service }) {
                                     >
                                         <div className="mb-5 flex items-start justify-between">
                                             <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#8a6a1f]/30 bg-[#8a6a1f]/[0.1] transition-transform duration-500 group-hover:scale-110">
-                                                <Icon className="h-[22px] w-[22px]" style={{ color: GOLD_DEEP }} strokeWidth={1.6} />
+                                                <Icon className="h-[22px] w-[22px]" style={{ color: GOLD_DEEP }} weight="duotone" />
                                             </div>
                                             <span className="rounded-full border border-black/15 px-2.5 py-1 font-mono text-xs text-black/50">0{i + 1}</span>
                                         </div>

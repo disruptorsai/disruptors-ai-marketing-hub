@@ -34,19 +34,19 @@ const service = {
       { num: '02', title: 'Right post, right platform', desc: 'Every asset is cut, captioned, and formatted for where it lands — TikTok, Reels, LinkedIn, YouTube — so nothing gets posted flat or ignored.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'zap', title: 'AI-Assisted Production', desc: 'Scale output, keep the voice.' },
-      { icon: 'layers', title: 'Every Format', desc: 'Video, carousels, captions.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Audience and system stay yours.' },
-      { icon: 'file', title: 'Monthly Reporting', desc: 'What worked, what is next.' },
+      { icon: 'production', title: 'AI-Assisted Production', desc: 'Scale output, keep the voice.' },
+      { icon: 'formats', title: 'Every Format', desc: 'Video, carousels, captions.' },
+      { icon: 'own', title: 'You Own It', desc: 'Audience and system stay yours.' },
+      { icon: 'monthlyreport', title: 'Monthly Reporting', desc: 'What worked, what is next.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'clock', title: 'Never go quiet again', desc: 'A full calendar runs in the background, so your brand posts consistently even in your busiest weeks — no scrambling for content.' },
-    { icon: 'trending', title: 'Attention that compounds', desc: 'Consistent, on-brand content grows reach and trust over time, turning passive scrollers into followers, leads, and customers.' },
-    { icon: 'layers', title: 'More reach, no new hires', desc: 'AI-assisted production multiplies what one voice can create, so you cover every platform without building an in-house content team.' },
+    { icon: 'broadcast', title: 'Never go quiet again', desc: 'A full calendar runs in the background, so your brand posts consistently even in your busiest weeks — no scrambling for content.' },
+    { icon: 'compound', title: 'Attention that compounds', desc: 'Consistent, on-brand content grows reach and trust over time, turning passive scrollers into followers, leads, and customers.' },
+    { icon: 'reach', title: 'More reach, no new hires', desc: 'AI-assisted production multiplies what one voice can create, so you cover every platform without building an in-house content team.' },
   ],
 
   processEyebrow: '03 · Process',

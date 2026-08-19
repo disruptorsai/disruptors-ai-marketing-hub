@@ -32,19 +32,19 @@ const service = {
       { num: '02', title: 'One aligned team', desc: 'We route strategy, in-house staff, and outside vendors toward the same goals, so effort stops scattering and every initiative maps to revenue.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'trending', title: 'Revenue Focus', desc: 'Every play tied to pipeline.' },
-      { icon: 'cpu', title: 'AI-Forward', desc: 'Modern systems, not just decks.' },
-      { icon: 'layers', title: 'Team Alignment', desc: 'Staff + vendors, one plan.' },
-      { icon: 'file', title: 'Exec Reporting', desc: 'Clear numbers, every month.' },
+      { icon: 'revenue', title: 'Revenue Focus', desc: 'Every play tied to pipeline.' },
+      { icon: 'aiforward', title: 'AI-Forward', desc: 'Modern systems, not just decks.' },
+      { icon: 'align', title: 'Team Alignment', desc: 'Staff + vendors, one plan.' },
+      { icon: 'execreport', title: 'Exec Reporting', desc: 'Clear numbers, every month.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'trending', title: 'Marketing that ties to revenue', desc: 'Senior leadership makes the calls that move pipeline — so spend, channels, and messaging finally connect to the numbers that matter.' },
-    { icon: 'layers', title: 'A team pulling one direction', desc: 'Your people, agencies, and freelancers stop working in silos. One cohesive plan aligns every initiative behind shared goals.' },
-    { icon: 'cpu', title: 'An AI-forward marketing engine', desc: 'You get a CMO who installs modern AI systems and automation into how you market — not a strategy deck that sits in a drawer.' },
+    { icon: 'tiedrevenue', title: 'Marketing that ties to revenue', desc: 'Senior leadership makes the calls that move pipeline — so spend, channels, and messaging finally connect to the numbers that matter.' },
+    { icon: 'direction', title: 'A team pulling one direction', desc: 'Your people, agencies, and freelancers stop working in silos. One cohesive plan aligns every initiative behind shared goals.' },
+    { icon: 'engine', title: 'An AI-forward marketing engine', desc: 'You get a CMO who installs modern AI systems and automation into how you market — not a strategy deck that sits in a drawer.' },
   ],
 
   processEyebrow: '03 · Process',

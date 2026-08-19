@@ -36,19 +36,19 @@ const service = {
       { num: '02', title: 'Routes to the right system', desc: 'Every event — a new lead, a support ticket, a booking — gets picked up and routed to the right tool or person automatically.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'zap', title: 'Tool-Connected', desc: 'Acts inside your real stack.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Infrastructure you keep.' },
-      { icon: 'clock', title: '24/7 Operation', desc: 'Works nights and weekends.' },
-      { icon: 'file', title: 'Full Handoff', desc: 'Docs + training included.' },
+      { icon: 'tools', title: 'Tool-Connected', desc: 'Acts inside your real stack.' },
+      { icon: 'own', title: 'You Own It', desc: 'Infrastructure you keep.' },
+      { icon: 'alwayson', title: '24/7 Operation', desc: 'Works nights and weekends.' },
+      { icon: 'handoff', title: 'Full Handoff', desc: 'Docs + training included.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'clock', title: 'Nothing falls through', desc: 'An agent follows up on every lead and every task, every time — not just when someone remembers to.' },
-    { icon: 'layers', title: 'Scale without hiring', desc: 'One agent can carry the repetitive parts of several roles at once, freeing your team for the judgment calls.' },
-    { icon: 'trending', title: 'Faster response, more revenue', desc: 'Agents respond in seconds instead of hours — consistently the single biggest lever on conversion.' },
+    { icon: 'reliable', title: 'Nothing falls through', desc: 'An agent follows up on every lead and every task, every time — not just when someone remembers to.' },
+    { icon: 'team', title: 'Scale without hiring', desc: 'One agent can carry the repetitive parts of several roles at once, freeing your team for the judgment calls.' },
+    { icon: 'speed', title: 'Faster response, more revenue', desc: 'Agents respond in seconds instead of hours — consistently the single biggest lever on conversion.' },
   ],
 
   processEyebrow: '03 · Process',

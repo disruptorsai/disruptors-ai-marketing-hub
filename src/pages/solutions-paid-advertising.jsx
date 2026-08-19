@@ -34,19 +34,19 @@ const service = {
       { num: '02', title: 'Budget That Routes Itself', desc: 'AI shifts spend toward the audiences, placements, and creative that convert — in real time — so no dollar sits on a losing ad.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'zap', title: 'Rapid Testing', desc: 'Hundreds of variations, fast.' },
-      { icon: 'trending', title: 'ROAS Focused', desc: 'Optimized to revenue, not clicks.' },
-      { icon: 'layers', title: 'Full Funnel', desc: 'Cold to retargeting, covered.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Accounts, pixels, and data.' },
+      { icon: 'testing', title: 'Rapid Testing', desc: 'Hundreds of variations, fast.' },
+      { icon: 'revenue', title: 'ROAS Focused', desc: 'Optimized to revenue, not clicks.' },
+      { icon: 'funnel', title: 'Full Funnel', desc: 'Cold to retargeting, covered.' },
+      { icon: 'own', title: 'You Own It', desc: 'Accounts, pixels, and data.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'trending', title: 'Lower cost per customer', desc: 'Continuous AI testing finds the creative and audiences that convert, so you pay less for every lead and sale over time.' },
-    { icon: 'zap', title: 'Find winners faster', desc: 'Test hundreds of variations in the time competitors test a handful — and pour budget into what works before they even notice.' },
-    { icon: 'layers', title: 'Scale without guessing', desc: 'Once the system proves what converts, we scale spend profitably toward your revenue goals instead of hoping it holds.' },
+    { icon: 'lowercost', title: 'Lower cost per customer', desc: 'Continuous AI testing finds the creative and audiences that convert, so you pay less for every lead and sale over time.' },
+    { icon: 'winners', title: 'Find winners faster', desc: 'Test hundreds of variations in the time competitors test a handful — and pour budget into what works before they even notice.' },
+    { icon: 'growth', title: 'Scale without guessing', desc: 'Once the system proves what converts, we scale spend profitably toward your revenue goals instead of hoping it holds.' },
   ],
 
   processEyebrow: '03 · Process',

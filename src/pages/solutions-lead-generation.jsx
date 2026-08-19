@@ -33,19 +33,19 @@ const service = {
       { num: '02', title: 'Smart Qualification', desc: 'Every reply is scored and routed by intent — hot buyers to your calendar, maybes to nurture, wrong-fit filtered out. Nothing slips.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'cpu', title: 'AI Personalization', desc: 'Researched, not templated.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Lists + systems you keep.' },
-      { icon: 'clock', title: 'Always-On Outreach', desc: 'Pipeline while you sleep.' },
-      { icon: 'file', title: 'Full Reporting', desc: 'Live outreach dashboards.' },
+      { icon: 'personalize', title: 'AI Personalization', desc: 'Researched, not templated.' },
+      { icon: 'own', title: 'You Own It', desc: 'Lists + systems you keep.' },
+      { icon: 'outreach', title: 'Always-On Outreach', desc: 'Pipeline while you sleep.' },
+      { icon: 'report', title: 'Full Reporting', desc: 'Live outreach dashboards.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'trending', title: 'A predictable pipeline', desc: 'Know how many qualified conversations to expect each month instead of guessing where the next deal comes from.' },
-    { icon: 'clock', title: 'Skip the slow build', desc: 'Start conversations with in-market buyers now — no waiting months for SEO or content to compound.' },
-    { icon: 'layers', title: 'Sell more without hiring', desc: 'AI does the prospecting, qualifying, and chasing of an entire SDR team, so your closers only talk to people worth their time.' },
+    { icon: 'predictable', title: 'A predictable pipeline', desc: 'Know how many qualified conversations to expect each month instead of guessing where the next deal comes from.' },
+    { icon: 'fastbuild', title: 'Skip the slow build', desc: 'Start conversations with in-market buyers now — no waiting months for SEO or content to compound.' },
+    { icon: 'team', title: 'Sell more without hiring', desc: 'AI does the prospecting, qualifying, and chasing of an entire SDR team, so your closers only talk to people worth their time.' },
   ],
 
   processEyebrow: '03 · Process',

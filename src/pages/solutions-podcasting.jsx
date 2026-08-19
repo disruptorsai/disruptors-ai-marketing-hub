@@ -34,19 +34,19 @@ const service = {
       { num: '02', title: 'Multi-Platform Distribution', desc: 'Long-form to YouTube and Spotify, clips to Reels, Shorts, and TikTok, show notes to your blog — every asset routed to the right place on schedule.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'file', title: 'Show Notes', desc: 'Transcripts + timestamps.' },
-      { icon: 'layers', title: 'Clip Library', desc: 'Weeks of short-form.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Every asset is yours.' },
-      { icon: 'zap', title: 'Fast Turnaround', desc: 'Edited within days.' },
+      { icon: 'shownotes', title: 'Show Notes', desc: 'Transcripts + timestamps.' },
+      { icon: 'clips', title: 'Clip Library', desc: 'Weeks of short-form.' },
+      { icon: 'own', title: 'You Own It', desc: 'Every asset is yours.' },
+      { icon: 'speed', title: 'Fast Turnaround', desc: 'Edited within days.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'trending', title: 'Become the authority', desc: 'A consistent, well-produced show puts your expertise on record and makes you the name people already trust before the first sales call.' },
-    { icon: 'layers', title: 'One shoot, everywhere', desc: 'AI repurposing turns a single recording day into weeks of clips, posts, and articles — so you stay visible without living inside the content grind.' },
-    { icon: 'clock', title: 'Stay consistent, effortlessly', desc: 'We handle strategy, editing, and publishing so episodes actually ship on schedule instead of stalling after the first few.' },
+    { icon: 'authority', title: 'Become the authority', desc: 'A consistent, well-produced show puts your expertise on record and makes you the name people already trust before the first sales call.' },
+    { icon: 'repurpose', title: 'One shoot, everywhere', desc: 'AI repurposing turns a single recording day into weeks of clips, posts, and articles — so you stay visible without living inside the content grind.' },
+    { icon: 'consistent', title: 'Stay consistent, effortlessly', desc: 'We handle strategy, editing, and publishing so episodes actually ship on schedule instead of stalling after the first few.' },
   ],
 
   processEyebrow: '03 · Process',

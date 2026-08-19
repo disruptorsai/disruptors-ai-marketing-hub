@@ -34,19 +34,19 @@ const service = {
       { num: '02', title: 'Intent Routing', desc: 'Every question maps to the right page — informational, local, or ready-to-buy — so searchers in Utah and beyond land where they convert. Nothing gets wasted.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'trending', title: 'Rank & Get Cited', desc: 'Google plus AI answers.' },
-      { icon: 'file', title: 'Answer-First Content', desc: 'Written to be quoted.' },
-      { icon: 'cpu', title: 'Schema & llms.txt', desc: 'Machine-readable trust.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Assets you keep.' },
+      { icon: 'rank', title: 'Rank & Get Cited', desc: 'Google plus AI answers.' },
+      { icon: 'answers', title: 'Answer-First Content', desc: 'Written to be quoted.' },
+      { icon: 'schema', title: 'Schema & llms.txt', desc: 'Machine-readable trust.' },
+      { icon: 'own', title: 'You Own It', desc: 'Assets you keep.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'trending', title: 'Show up where buyers look', desc: 'Rank on Google and get named inside AI answers — so you win the click and the recommendation, not just one of them.' },
-    { icon: 'zap', title: 'Attract intent, not noise', desc: 'Content built around real questions pulls in qualified leads who are ready to act, not casual traffic that never converts.' },
-    { icon: 'layers', title: 'Authority that compounds', desc: 'Every ranked page and AI citation stacks on the last, building a search presence that keeps paying off long after the work.' },
+    { icon: 'visible', title: 'Show up where buyers look', desc: 'Rank on Google and get named inside AI answers — so you win the click and the recommendation, not just one of them.' },
+    { icon: 'intent', title: 'Attract intent, not noise', desc: 'Content built around real questions pulls in qualified leads who are ready to act, not casual traffic that never converts.' },
+    { icon: 'compound', title: 'Authority that compounds', desc: 'Every ranked page and AI citation stacks on the last, building a search presence that keeps paying off long after the work.' },
   ],
 
   processEyebrow: '03 · Process',

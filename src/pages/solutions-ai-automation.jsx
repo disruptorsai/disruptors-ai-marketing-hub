@@ -33,19 +33,19 @@ const service = {
       { num: '02', title: 'Intelligent Routing', desc: 'Send anything to the right place — leads, tickets, tasks — based on intent, priority, and context. Nothing slips.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'zap', title: 'Real-time Sync', desc: 'Bi-directional CRM updates.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Infrastructure you keep.' },
-      { icon: 'clock', title: '24/7 Operation', desc: 'Runs while you sleep.' },
-      { icon: 'file', title: 'Full Handoff', desc: 'Docs + training included.' },
+      { icon: 'sync', title: 'Real-time Sync', desc: 'Bi-directional CRM updates.' },
+      { icon: 'own', title: 'You Own It', desc: 'Infrastructure you keep.' },
+      { icon: 'alwayson', title: '24/7 Operation', desc: 'Runs while you sleep.' },
+      { icon: 'handoff', title: 'Full Handoff', desc: 'Docs + training included.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'clock', title: 'Get your time back', desc: 'Automate the repetitive work and reclaim 10–30 hours a week for the things only your team can do.' },
-    { icon: 'layers', title: 'Scale without hiring', desc: 'Handle more volume with the same team. The system absorbs the work that would otherwise force you to add headcount.' },
-    { icon: 'trending', title: 'Grow, measurably', desc: 'Faster response and consistent follow-up convert more of what you already have — and it compounds over time.' },
+    { icon: 'timeback', title: 'Get your time back', desc: 'Automate the repetitive work and reclaim 10–30 hours a week for the things only your team can do.' },
+    { icon: 'team', title: 'Scale without hiring', desc: 'Handle more volume with the same team. The system absorbs the work that would otherwise force you to add headcount.' },
+    { icon: 'growth', title: 'Grow, measurably', desc: 'Faster response and consistent follow-up convert more of what you already have — and it compounds over time.' },
   ],
 
   processEyebrow: '03 · Process',

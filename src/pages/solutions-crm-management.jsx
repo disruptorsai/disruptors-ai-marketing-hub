@@ -34,19 +34,19 @@ const service = {
       { num: '02', title: 'Smart Lead Routing', desc: 'Every inbound lead lands with the right rep, tagged and prioritized by intent — with follow-up sequences that fire automatically. Nothing slips.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'zap', title: 'Auto Data Entry', desc: 'Contacts logged for you.' },
-      { icon: 'clock', title: 'Timed Follow-ups', desc: 'No lead goes cold.' },
-      { icon: 'trending', title: 'Live Pipeline', desc: 'Reporting you can trust.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Your CRM, your data.' },
+      { icon: 'autoentry', title: 'Auto Data Entry', desc: 'Contacts logged for you.' },
+      { icon: 'followup', title: 'Timed Follow-ups', desc: 'No lead goes cold.' },
+      { icon: 'pipeline', title: 'Live Pipeline', desc: 'Reporting you can trust.' },
+      { icon: 'own', title: 'You Own It', desc: 'Your CRM, your data.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'file', title: 'Stop losing leads', desc: 'Every inquiry is captured and worked. Automated follow-ups mean deals stop falling through the cracks between busy weeks.' },
-    { icon: 'clock', title: 'Kill the busywork', desc: 'Automate the logging, updating, and chasing that eats your reps’ day — reclaim 8–15 hours a week for actual selling.' },
-    { icon: 'trending', title: 'See the truth', desc: 'A clean pipeline gives you accurate forecasts and reporting, so you make decisions on real numbers instead of gut feel.' },
+    { icon: 'capture', title: 'Stop losing leads', desc: 'Every inquiry is captured and worked. Automated follow-ups mean deals stop falling through the cracks between busy weeks.' },
+    { icon: 'busywork', title: 'Kill the busywork', desc: 'Automate the logging, updating, and chasing that eats your reps’ day — reclaim 8–15 hours a week for actual selling.' },
+    { icon: 'clarity', title: 'See the truth', desc: 'A clean pipeline gives you accurate forecasts and reporting, so you make decisions on real numbers instead of gut feel.' },
   ],
 
   processEyebrow: '03 · Process',

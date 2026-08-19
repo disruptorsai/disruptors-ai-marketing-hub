@@ -33,19 +33,19 @@ const service = {
       { num: '02', title: 'Connected to Everything', desc: 'Your new app talks to the tools you already use — CRM, payments, data feeds — through clean APIs. Everything stays in sync, nothing lives on an island.', viz: 'routing' },
     ],
     mini: [
-      { icon: 'cpu', title: 'AI Built In', desc: 'Intelligence in the workflow.' },
-      { icon: 'shield', title: 'You Own It', desc: 'Your code, your app.' },
-      { icon: 'layers', title: 'Built to Scale', desc: 'Grows with your users.' },
-      { icon: 'file', title: 'Full Handoff', desc: 'Docs + training included.' },
+      { icon: 'ai', title: 'AI Built In', desc: 'Intelligence in the workflow.' },
+      { icon: 'own', title: 'You Own It', desc: 'Your code, your app.' },
+      { icon: 'scale', title: 'Built to Scale', desc: 'Grows with your users.' },
+      { icon: 'handoff', title: 'Full Handoff', desc: 'Docs + training included.' },
     ],
   },
 
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
-    { icon: 'clock', title: 'Ship in weeks, not quarters', desc: 'AI-accelerated development turns a 6-month build into a few weeks — so your idea is solving real problems while competitors are still scoping theirs.' },
-    { icon: 'zap', title: 'Software that fits exactly', desc: "Stop bending your process around generic tools. You get an app built for the way your team actually works — no workarounds, no compromises." },
-    { icon: 'trending', title: 'A real competitive edge', desc: 'Custom calculators, AI tools, and internal systems your competitors simply do not have — assets that capture leads, save hours, and compound over time.' },
+    { icon: 'ship', title: 'Ship in weeks, not quarters', desc: 'AI-accelerated development turns a 6-month build into a few weeks — so your idea is solving real problems while competitors are still scoping theirs.' },
+    { icon: 'fit', title: 'Software that fits exactly', desc: "Stop bending your process around generic tools. You get an app built for the way your team actually works — no workarounds, no compromises." },
+    { icon: 'edge', title: 'A real competitive edge', desc: 'Custom calculators, AI tools, and internal systems your competitors simply do not have — assets that capture leads, save hours, and compound over time.' },
   ],
 
   processEyebrow: '03 · Process',
