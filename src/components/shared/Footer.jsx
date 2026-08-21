@@ -153,21 +153,11 @@ export default function Footer() {
 
   return (
     <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 overflow-hidden bg-gradient-to-b from-[#0E0E0E] to-black">
-      {/* Video Background */}
+      {/* Background. The 1.47MB roman-army-painting.mp4 that used to sit here rendered at
+          opacity-20 behind this gradient - almost invisible, but it downloaded on EVERY page
+          of the site because the footer is global. Removed 2026-08-21 during the bandwidth
+          incident; the gradient alone is visually near-identical. */}
       <div className="absolute inset-0 z-0">
-        <FastVideo
-          src="/site-videos/dmsite/home/roman-army-painting.mp4"
-          preset="fullscreen"
-          autoplay={true}
-          loop={true}
-          muted={true}
-          playsInline={true}
-          preload="metadata"
-          fetchpriority="low"
-          lazy={true}
-          className="w-full h-full object-cover opacity-20"
-          aria-label="Footer background video"
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
       </div>
 

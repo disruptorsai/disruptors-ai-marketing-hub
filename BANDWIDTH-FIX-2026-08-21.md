@@ -206,3 +206,89 @@ changes that.
 
 Worth setting a **spend alert at 50%** of the allowance so the next overage
 surfaces before it becomes an outage.
+
+---
+
+# Round 2 — same day, urgent
+
+Round 1 shipped and its cache headers were **verified live**:
+
+```
+/site-videos/.../website-demo-reel.mp4  →  public,max-age=31536000,immutable  ✓
+/site-videos/.../roman-army-painting.mp4 → public,max-age=31536000,immutable  ✓
+/site-videos/.../adapt-or-die.mp4       →  public,max-age=31536000,immutable  ✓
+/assets/index-*.js  (1.91 MB)           →  public,max-age=31536000,immutable  ✓
+sourceMappingURL in bundle              →  gone  ✓
+```
+
+**But credits kept draining**, which tells us something important: caching only helps
+*repeat* visitors. It does nothing for first-time visitors or for bots, which don't
+keep caches at all. So Round 2 removes bytes outright rather than negotiating with
+the browser.
+
+Also confirmed live during Round 1 testing:
+
+```
+GET /wp-admin/setup-config.php  →  HTTP 200 + 270KB of index.html
+```
+
+The most-probed URL on the internet was returning a full page. To a scanner that
+reads as a live WordPress install, which invites deeper probing.
+
+## Changes
+
+### `src/components/shared/Footer.jsx` — removed the global background video
+`roman-army-painting.mp4` (1.47 MB) rendered at `opacity-20` behind a dark gradient —
+almost invisible, but it downloaded on **every page of the site** because the footer
+is global. Gradient alone is visually near-identical.
+
+### `src/pages/Home.jsx` — removed two overlay-buried background videos
+- `roman-army-painting.mp4` (1.47 MB) — sat behind `bg-black/90`, ~90% invisible
+- `gallery-bg.mp4` (2.39 MB) — sat behind `bg-black/60`
+
+Kept: the hero reel, and `handshake-landscape.mp4` (visible content, not a background).
+
+### `src/components/shared/Hero.jsx` — mobile spared the 7.43 MB reel
+Added `disableOnMobile={true}`. This is the shared hero used across many pages, so
+it was the single largest automatic mobile payload site-wide.
+
+### `public/_redirects` — 23 scanner-trap 404 rules
+Added above the SPA fallback: `/wp-admin/*`, `/*.php`, `/.env`, `/.git/*`,
+`/phpmyadmin/*`, `/*.sql`, `/*.map`, and similar.
+
+Safe by construction — this is a React SPA, so none of these can ever be a real
+client-side route.
+
+| | Before | After |
+|---|---:|---:|
+| Junk URL response | 270 KB | **1.2 KB** |
+| Per 1,000 scanner probes | 270 MB | **1.2 MB** |
+
+### `public/robots.txt` — blocked 16 bulk scrapers
+GPTBot, CCBot, Bytespider, ClaudeBot, PerplexityBot, Amazonbot, AhrefsBot,
+SemrushBot, MJ12bot, DotBot and others, plus `Disallow` on the video directories.
+
+**Googlebot, Bingbot and DuckDuckBot are deliberately NOT blocked** — those send real
+traffic. Note that well-behaved bots honour this; malicious ones ignore it. The 404
+rules above are what actually stops the bad ones.
+
+## Cumulative effect
+
+| Page | Before both rounds | After |
+|---|---:|---:|
+| Homepage, desktop | ~15.8 MB | **~9.6 MB** |
+| Homepage, mobile | ~15.8 MB | **~2.2 MB** |
+| Any other page, mobile | ~1.5 MB+ | **~0 MB video** |
+| Junk/scanner URL | 270 KB | **1.2 KB** |
+| Return visit (any page) | full re-download | **~0** (cached 1y) |
+
+Build verified: `npm run build` → `✓ built in 1m 40s`.
+
+## Still available if needed
+
+| Task | Saves |
+|---|---|
+| `adapt-or-die.mp4` (23.5 MB) → YouTube | Biggest file, but already click-to-play only |
+| Re-encode `website-demo-reel.mp4` 7.43 MB → ~2 MB | Per the existing PERF TODO |
+| `handshake-landscape.mp4` (2.17 MB) → mobile-disable | Visible content, so it's a design call |
+| Upload compressed videos to Supabase | See Round 1 notes re: storage limits |

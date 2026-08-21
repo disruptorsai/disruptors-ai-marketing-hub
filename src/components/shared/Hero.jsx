@@ -119,6 +119,7 @@ export default function Hero({
               preset="hero"
               autoplay={true}
               loop={true}
+              disableOnMobile={true}
               muted={true}
               playsInline={true}
               preload="metadata"

@@ -33,5 +33,39 @@
 #   /*    /404.html    404
 # ----------------------------------------------------------------------------
 
+# ============================================================================
+# SCANNER TRAPS (added 2026-08-21, bandwidth incident)
+# Without these, the SPA fallback below answered EVERY unknown URL with a 200 and
+# the full ~270KB index.html. That included /wp-admin/setup-config.php - the most
+# probed URL on the internet - so botnets scanning for WordPress got a 200 back,
+# which reads as "live WordPress here" and invites deeper probing. Each probe cost
+# 270KB. These rules return the ~1KB 404 page instead (99.6% less per probe).
+#
+# SAFE: this is a React SPA. It has no .php routes, no /wp-*, no /.env. None of
+# these paths can ever be a legitimate client-side route.
+# ============================================================================
+/wp-admin/*        /404.html   404
+/wp-includes/*     /404.html   404
+/wp-content/*      /404.html   404
+/wp-login.php      /404.html   404
+/xmlrpc.php        /404.html   404
+/*.php             /404.html   404
+/*.asp             /404.html   404
+/*.aspx            /404.html   404
+/*.jsp             /404.html   404
+/*.cgi             /404.html   404
+/.env              /404.html   404
+/.env.*            /404.html   404
+/.git/*            /404.html   404
+/.aws/*            /404.html   404
+/config.json       /404.html   404
+/phpmyadmin/*      /404.html   404
+/phpMyAdmin/*      /404.html   404
+/vendor/*          /404.html   404
+/cgi-bin/*         /404.html   404
+/*.sql             /404.html   404
+/*.bak             /404.html   404
+/*.map             /404.html   404
+
 # SPA fallback - serve the app shell for client-side routes (keep last):
 /*    /index.html   200
