@@ -172,8 +172,20 @@ export default function Home() {
       <section className="relative bg-black py-16 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0">
-          {/* 1.47MB background video removed 2026-08-21 - it sat behind the bg-black/90
-              overlay below, so it was ~90% invisible while costing a full download. */}
+          <FastVideo
+            src="/site-videos/dmsite/home/roman-army-painting.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
+            disableOnMobile={true}
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-label="Capabilities background video"
+          />
           {/* Black overlay with 90% opacity */}
           <div className="absolute inset-0 bg-black/90" />
         </div>
@@ -379,7 +391,20 @@ export default function Home() {
       {/* Services / Solutions */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* 2.39MB background video removed 2026-08-21 - sat behind a bg-black/60 overlay. */}
+          <FastVideo
+            src="/site-videos/dmsite/home/gallery-bg.mp4"
+            preset="fullscreen"
+            autoplay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
+            preload="metadata"
+            fetchpriority="low"
+            lazy={true}
+            disableOnMobile={true}
+            className="w-full h-full object-cover"
+            aria-label="Services section background"
+          />
         </div>
         <div className="absolute inset-0 z-[1] bg-black/60"></div>
         <div className="relative z-10">

@@ -8,6 +8,17 @@
   publish = "dist"
   functions = "netlify/functions"
 
+  # Skip the build entirely when a push touches nothing that can affect output.
+  # Every push previously triggered a full deploy: Chromium check + Vite build +
+  # Playwright prerender of 57 pages (~250s of build compute each). Docs-only and
+  # changelog-only commits were paying that in full.
+  #
+  # Netlify semantics: exit 0 = SKIP the build, non-zero = RUN it. `git diff --quiet`
+  # exits 0 when there are NO changes outside the excluded paths, so a commit that
+  # only touches markdown/docs/reports is skipped. If HEAD^ does not exist (first
+  # build, shallow clone) git errors -> non-zero -> the build runs. Fail-safe.
+  ignore = "git diff --quiet HEAD^ HEAD -- . ':(exclude)*.md' ':(exclude)docs/' ':(exclude)lighthouse-reports/' ':(exclude)*.html' ':(exclude)LICENSE'"
+
 [build.environment]
   NODE_VERSION = "18"
   # Skip the implicit browser download during `npm install`; we install Chromium explicitly in

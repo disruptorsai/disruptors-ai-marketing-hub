@@ -292,3 +292,95 @@ Build verified: `npm run build` → `✓ built in 1m 40s`.
 | Re-encode `website-demo-reel.mp4` 7.43 MB → ~2 MB | Per the existing PERF TODO |
 | `handshake-landscape.mp4` (2.17 MB) → mobile-disable | Visible content, so it's a design call |
 | Upload compressed videos to Supabase | See Round 1 notes re: storage limits |
+
+---
+
+# Round 3 — root cause confirmed, videos restored
+
+## The actual numbers (Netlify usage breakdown, Aug 9 - Sep 8)
+
+| Meter | Credits | Share |
+|---|---:|---:|
+| **Bandwidth** (243.41 GB) | **4,868.2** | **92%** |
+| Web requests (1,635,858) | 327.2 | 6% |
+| Production deploys (6) | 90 | 2% |
+| Compute | 0.4 | ~0% |
+| AI inference | 0 | 0% |
+| **Total** | **5,285.7** | |
+
+**This rules out almost everything that was suspected:**
+
+- Functions/compute: **0.4 credits**. The 3s polling loops, background functions,
+  `brain-*`, `agent_train-background` - all irrelevant.
+- AI inference: **0 credits**. No agent (Hermes or otherwise) is consuming here.
+- Database: 0.
+
+## The real cause: 270 KB served for every junk URL
+
+```
+243.41 GB / 1,635,858 requests = ~152 KB average per request
+```
+
+152 KB average is enormous - a normal site averages 20-40 KB, since most requests
+are small JS chunks and icons. The SPA shell is **270 KB**, and:
+
+```
+243.41 GB / 270 KB = ~900,000 requests
+```
+
+Roughly 900k requests receiving the full shell accounts for essentially the entire
+bandwidth bill. And the request volume confirms who's asking:
+
+```
+1,635,858 requests / 13 days = ~126,000/day = ~87 every minute, 24/7
+```
+
+That is bot traffic, not people. Verified live earlier in the incident:
+
+```
+GET /wp-admin/setup-config.php  ->  HTTP 200 + 270 KB
+```
+
+**The scanner-trap 404 rules added in Round 2 are the fix for 92% of this bill.**
+Junk URLs drop from 270 KB to 1.2 KB - roughly 243 GB down to ~1 GB.
+
+## Correction: videos were never the main cause
+
+Rounds 1 and 2 anchored on video weight because bandwidth spiked right after
+`e3217ec` (2026-07-14) localised 50 MB of video. The timing was real but
+misleading - the dominant cost is bot traffic hitting the SPA catch-all, not
+visitors downloading videos.
+
+**All video removals from Round 2 have been reverted.** Footer and both homepage
+background videos are restored and unchanged.
+
+## Also corrected
+
+- The "6 functions deployed but not in the repo" finding was wrong. They are
+  `.ts` files (`agent_train-background.ts`, `ai_invoke.ts`, `brain-*.ts`,
+  `ingest_dispatch-background.ts`); an earlier count only globbed `*.js`.
+  24 `.js` + 6 `.ts` = the 30 deployed. Nothing unaccounted for.
+- `versionCheck.js` polls `/index.html` every 5 min but uses `method: 'HEAD'` -
+  headers only, negligible bandwidth.
+- A cancelled `ffmpeg` batch had partially re-encoded `roman-army-painting.mp4`
+  (1.47 MB -> 0.95 MB) before being stopped. Restored from backup; `git status`
+  confirms all four homepage videos byte-match the committed versions.
+
+## This commit
+
+- `Footer.jsx` - background video restored
+- `Home.jsx` - both background videos restored
+- `netlify.toml` - build `ignore` rule so docs-only commits skip the ~250s
+  Playwright prerender build (deploys were 90 credits for 6 builds)
+
+Retained from Round 1: media cache headers, `sourcemap: false`, and
+`disableOnMobile` on the homepage hero (mobile shows the existing poster).
+Retained from Round 2: scanner-trap 404s and `robots.txt` scraper blocking.
+
+## Still recommended
+
+1. **Branch deploys** - Site settings > Build & deploy. Any push to any of 10
+   branches currently triggers a full build. Restrict to `v7-main-branch` + `dev`.
+2. **Spend alert at 50%** so the next overage arrives as a warning, not an outage.
+3. Netlify's billing banner notes *"credit consumption reporting may be delayed"* -
+   observed real-time ticking is batch lag, not live spend.
