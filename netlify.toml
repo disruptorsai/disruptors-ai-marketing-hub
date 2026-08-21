@@ -215,13 +215,59 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# --- Media caching (bandwidth fix, 2026-08-21) ---
+# Videos and images living outside /assets/ had NO Cache-Control rule at all, so
+# Netlify served them with its default (revalidate on every request). Combined with
+# autoplay+loop background videos, browsers re-fetched multi-MB files repeatedly
+# instead of reusing them. This was the main driver of the Aug 2026 overage
+# (bandwidth went from 761 credits/mo to 11,000 after videos moved into /public).
+#
+# NOTE: unlike /assets/*, these filenames are NOT content-hashed. To replace one of
+# these files, rename it or append a query string (e.g. ?v=2) - otherwise browsers
+# will keep the cached copy for up to a year.
 [[headers]]
-  for = "/*.js"
+  for = "/site-videos/*"
   [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.css"
+  for = "/site-assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Unversioned image dirs - long but not immutable, so replacements still propagate.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/generated/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/blog-images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Service worker must never be cached - it controls what everything else caches.
+# This replaces a blanket "/*.js" + "/*.css" no-store pair. Those globs also matched
+# the content-hashed /assets/*.js and /assets/*.css bundles and, being declared later
+# in this file, cancelled their immutable caching - forcing every visitor to
+# re-download the full ~2MB JS bundle on every single page view.
+[[headers]]
+  for = "/presentation-sw.js"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 

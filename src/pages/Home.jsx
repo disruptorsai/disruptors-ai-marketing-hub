@@ -82,6 +82,7 @@ export default function Home() {
             preload="metadata"
             fetchpriority="high"
             lazy={false}
+            disableOnMobile={true}
             className="w-full h-full object-cover"
             aria-label="Disruptors AI hero background video"
           />

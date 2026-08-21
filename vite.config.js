@@ -68,7 +68,11 @@ export default defineConfig({
     // Ensure proper cache busting with hash-based filenames
     assetsInlineLimit: 4096, // 4kb - inline small assets as base64
     cssCodeSplit: false, // Disable CSS code splitting to reduce build complexity
-    sourcemap: true, // Emit source maps in production (clears the "missing source maps" diagnostic flag and enables bundle analysis)
+    // Source maps are NOT emitted in production. They were 18.23MB across 136 files
+    // (73% of /assets), publicly downloadable, and linked via //# sourceMappingURL -
+    // which vulnerability scanners actively crawl for. Bandwidth fix, 2026-08-21.
+    // For local bundle analysis, temporarily flip this to true and run `npm run build`.
+    sourcemap: false,
     // Build optimizations for complex projects
     minify: 'esbuild', // Use esbuild for faster minification
     target: 'es2020', // Modern browsers only (reduces transformation overhead)
