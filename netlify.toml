@@ -46,6 +46,14 @@
     # the function zip, which pushed it past Netlify's upload size limit and caused
     # "could not parse form file: http: request body too large" deploy failures.
 
+# Edge-level block for the stale-UA scraper that accounted for ~37% of bandwidth
+# (Windows Chrome/117: 680 requests, 544 MB, ~800 KB each). It identifies as a
+# browser, so robots.txt cannot stop it. See netlify/edge-functions/block-scrapers.js
+# for the full rationale, the allowlist, and how to widen or disable it.
+[[edge_functions]]
+  function = "block-scrapers"
+  path = "/*"
+
 # Exception for sitemap.xml - serve as static file
 [[redirects]]
   from = "/sitemap.xml"

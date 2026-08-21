@@ -384,3 +384,73 @@ Retained from Round 2: scanner-trap 404s and `robots.txt` scraper blocking.
 2. **Spend alert at 50%** so the next overage arrives as a warning, not an outage.
 3. Netlify's billing banner notes *"credit consumption reporting may be delayed"* -
    observed real-time ticking is batch lag, not live spend.
+
+---
+
+# Round 4 — edge block for the stale-UA scraper (2026-08-22)
+
+## What the user-agent report showed
+
+| User agent | Requests | Bandwidth | Per request |
+|---|---:|---:|---:|
+| **Windows Chrome/117** | **680** | **544.02 MB** | **~800 KB** |
+| Windows Chrome/131 | 533 | 9.66 MB | ~18 KB |
+| iPhone Safari 13 | 1.8K | 32.29 MB | ~18 KB |
+| ChatGPT-User | 1.5K | 32.6 MB | ~22 KB |
+
+One client - Windows Chrome/117 - was ~37% of all bandwidth in the sample window,
+at ~44x the bytes-per-request of current Chrome. That is media downloading, not
+browsing. Chrome 117 shipped September 2023; a frozen desktop UA is the signature
+of a scraper with a hardcoded string.
+
+By category, bots were *cheap*: crawlers averaged 30 KB/request and AI agents
+22 KB/request - they fetch HTML and leave, they don't play video. Browsers were
+76% of bandwidth from 39% of requests. Netlify classifies this scraper as
+"Browser", which is exactly why earlier rounds mis-attributed it to real visitors.
+
+**robots.txt cannot stop this** - that only works on clients that choose to obey.
+
+## `netlify/edge-functions/block-scrapers.js`
+
+Returns 403 (~40 bytes) for video requests from Windows desktop Chrome below 120.
+
+Three safety layers, because it runs on every request (`path = "/*"`):
+
+1. **Fail-open.** Whole body wrapped in try/catch -> any error passes the request
+   through untouched. Worst case is that the file does nothing; it cannot 500 the site.
+2. **Narrow match.** Six pass-through returns vs one block. A request must be
+   Windows + desktop Chrome + below 120 + asking for video before anything happens.
+3. **Video only.** An earlier draft also blocked `/images/` and `/generated/` - that
+   was wrong, since those are visible content and would have shown broken placeholders.
+   Video degrades gracefully: every one is a muted decorative background behind an
+   overlay with a poster image, the same fallback `FastVideo` already serves to mobile.
+
+Allowlisted: Chrome-Lighthouse (Mission Control's PageSpeed Insights SEO reports),
+Googlebot, Google-InspectionTool, bingbot, DuckDuckBot, Slackbot, facebookexternalhit,
+Twitterbot, LinkedInBot, UptimeRobot, Better Uptime, Pingdom. Edge and Opera are
+skipped explicitly since they embed `Chrome/NNN` in their UA.
+
+## Limits
+
+- The request still **reaches** Netlify, so the Web requests meter (327 of 5,286
+  credits, ~6%) still applies. This kills the bandwidth (92%), not the knock.
+- It matches on **user agent**. A scraper that changes its UA walks straight past.
+  Cloudflare's Bot Fight Mode detects behaviour rather than labels and is the
+  durable fix; this buys time.
+
+## Revert
+
+```
+git revert <sha>          # undoes the whole commit
+```
+or delete `netlify/edge-functions/block-scrapers.js` and the `[[edge_functions]]`
+block in `netlify.toml`.
+
+## Mission Control ruled out
+
+Checked `mammoth/mission-control`. It has no headless-browser dependency and no
+`fetch()` to disruptorsmedia.com anywhere in source - it publishes by writing rows
+directly to the main site's Supabase project. Its only indirect path is
+`runSeoReport` -> Google PageSpeed Insights, but PSI's Lighthouse identifies as
+Android mobile (`Chrome-Lighthouse`), not Windows desktop, and is allowlisted above.
+It is not the source.
