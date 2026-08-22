@@ -65,8 +65,34 @@ const ALLOW_SUBSTRINGS = [
   "Pingdom",
 ];
 
+// Paths that no longer exist here. The four home-page videos moved to Supabase in
+// e6558fe and were deleted from the deploy, but bots that know the old URLs keep
+// asking. Matched exactly - NOT by extension - so the nine .mp4 files still hosted
+// here (adapt-or-die, hero-michelangelo-painting, full-animation-scrub, and the six
+// service videos) are untouched.
+const GONE_EXACT = new Set([
+  "/site-videos/dmsite/home/website-demo-reel.mp4",
+  "/site-videos/dmsite/home/roman-army-painting.mp4",
+  "/site-videos/dmsite/home/gallery-bg.mp4",
+  "/site-videos/dmsite/home/handshake-landscape.mp4",
+]);
+
+// Extensions a React SPA never serves. These were originally added to _redirects as
+// `/*.php`-style rules - but Netlify's redirect splat must be a trailing path
+// SEGMENT, so suffix patterns silently never match. Verified live: /wp-admin/* gave
+// 404 (1,227 bytes) while /something.php gave 200 (270,289 bytes, the full SPA
+// shell). Extension matching has to happen here instead.
+const DEAD_EXTS = [".php", ".asp", ".aspx", ".jsp", ".cgi", ".sql", ".bak", ".map", ".env"];
+
 export default async (request, context) => {
   try {
+    const p = new URL(request.url).pathname;
+    if (GONE_EXACT.has(p) || DEAD_EXTS.some((e) => p.endsWith(e))) {
+      return new Response("Not Found", {
+        status: 404,
+        headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" },
+      });
+    }
     return decide(request, context);
   } catch {
     // Layer 1: anything unexpected -> serve normally.

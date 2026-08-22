@@ -44,18 +44,19 @@
 # SAFE: this is a React SPA. It has no .php routes, no /wp-*, no /.env. None of
 # these paths can ever be a legitimate client-side route.
 # ============================================================================
+# NOTE (2026-08-22): extension rules like `/*.php` were removed from this file.
+# Netlify's redirect splat must be a trailing path SEGMENT, so suffix patterns never
+# match - verified live: /wp-admin/* returned 404 (1,227 bytes) while /something.php
+# returned 200 (270,289 bytes, the full SPA shell). Netlify reports them as
+# "processed" without warning. Extension blocking now lives in
+# netlify/edge-functions/block-scrapers.js, which can match properly.
+# The directory rules below DO work and are kept.
 /wp-admin/*        /404.html   404
 /wp-includes/*     /404.html   404
 /wp-content/*      /404.html   404
 /wp-login.php      /404.html   404
 /xmlrpc.php        /404.html   404
-/*.php             /404.html   404
-/*.asp             /404.html   404
-/*.aspx            /404.html   404
-/*.jsp             /404.html   404
-/*.cgi             /404.html   404
 /.env              /404.html   404
-/.env.*            /404.html   404
 /.git/*            /404.html   404
 /.aws/*            /404.html   404
 /config.json       /404.html   404
@@ -63,9 +64,6 @@
 /phpMyAdmin/*      /404.html   404
 /vendor/*          /404.html   404
 /cgi-bin/*         /404.html   404
-/*.sql             /404.html   404
-/*.bak             /404.html   404
-/*.map             /404.html   404
 
 # Deleted media (added 2026-08-22). The four home-page videos moved to Supabase and
 # were removed from this deploy, but bots that already know the old URLs keep asking
@@ -76,9 +74,6 @@
 # not forced with `!`). The nine .mp4 files still hosted here - adapt-or-die,
 # hero-michelangelo-painting, full-animation-scrub and the six service videos - are
 # real files in the deploy, so they are served normally and never reach these rules.
-/*.mp4             /404.html   404
-/*.webm            /404.html   404
-/*.mov             /404.html   404
 
 # SPA fallback - serve the app shell for client-side routes (keep last):
 /*    /index.html   200
