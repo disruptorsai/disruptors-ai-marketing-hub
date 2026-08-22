@@ -527,7 +527,7 @@ export default function Work() {
         {/* Hero background video */}
         <div aria-hidden="true" className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/handshake-landscape.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/handshake-landscape.mp4"
             preset="fullscreen"
             autoplay loop muted playsInline
             preload="metadata"

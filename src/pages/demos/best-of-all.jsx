@@ -146,7 +146,7 @@ export default function BestOfAllDemo() {
             muted
             playsInline
             className="w-full h-full object-cover opacity-30"
-            src="/site-videos/dmsite/home/website-demo-reel.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/website-demo-reel.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
         </div>

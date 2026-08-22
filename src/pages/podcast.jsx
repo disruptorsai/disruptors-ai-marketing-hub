@@ -745,7 +745,7 @@ export default function Podcast() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/gallery-bg.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/gallery-bg.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}

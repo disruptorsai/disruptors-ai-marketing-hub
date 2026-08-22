@@ -50,7 +50,7 @@ export default function Home() {
       kicker: "",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      video: "/site-videos/dmsite/home/handshake-landscape.mp4",
+      video: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/handshake-landscape.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-transparent backdrop-blur-sm",
       textColor: "text-black",
@@ -72,7 +72,7 @@ export default function Home() {
             for a faster mobile LCP. gallery-bg.mp4 (2.4 MB, ~uncompressed) is also worth a pass. */}
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/website-demo-reel.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/website-demo-reel.mp4"
             poster="/site-videos/dmsite/home/website-demo-reel-poster.webp"
             preset="fullscreen"
             autoplay={true}
@@ -173,7 +173,7 @@ export default function Home() {
         {/* Background Video */}
         <div className="absolute inset-0">
           <FastVideo
-            src="/site-videos/dmsite/home/roman-army-painting.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/roman-army-painting.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}
@@ -392,7 +392,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/gallery-bg.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/gallery-bg.mp4"
             preset="fullscreen"
             autoplay={true}
             loop={true}

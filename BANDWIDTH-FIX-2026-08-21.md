@@ -454,3 +454,72 @@ directly to the main site's Supabase project. Its only indirect path is
 `runSeoReport` -> Google PageSpeed Insights, but PSI's Lighthouse identifies as
 Android mobile (`Chrome-Lighthouse`), not Windows desktop, and is allowlisted above.
 It is not the source.
+
+---
+
+# Round 5 — video moved to Supabase (2026-08-22)
+
+## The URL breakdown settled it
+
+A one-hour window (Aug 21 15:18-16:18 UTC) showed 1.6 GB — ~38 GB/day:
+
+| URL | Requests | Bandwidth |
+|---|---:|---:|
+| `website-demo-reel.mp4` | 99 | **679.65 MB** |
+| `roman-army-painting.mp4` | 153 | **223.70 MB** |
+| `gallery-bg.mp4` | 83 | **189.54 MB** |
+| `handshake-landscape.mp4` | 86 | **184.83 MB** |
+| **video/mp4 total** | 427 | **1.27 GB — 79%** |
+| `/` (HTML) | 4.7K | 269.72 MB |
+
+`7.43 MB x 99 requests = 735 MB expected, 679 MB observed` - every request was a
+full download. The Round 1 cache headers were live during this window and did
+nothing, because these clients keep no cache. Caching was never the fix for them;
+moving the bytes off Netlify is.
+
+## What changed
+
+- All four home videos uploaded to `site-videos/web/home/` with
+  `cache-control: max-age=31536000` (Supabase defaults to `no-cache`).
+- 22 references across 16 files repointed from `/site-videos/dmsite/home/*` to the
+  Supabase public URLs.
+- The four local files deleted from `public/`, so Netlify no longer serves them at all.
+- Uncompressed originals remain untouched in `site-videos/dmsite/` as masters.
+
+## Verified locally (Playwright, service workers blocked)
+
+```
+video requests from Supabase : 3    OK
+video requests from Netlify  : 0    OK
+JS errors (home, solutions)  : 0    OK
+Netlify page weight          : 0.94 MB  (was ~15.8 MB)
+build                        : passes, dist 92M -> 78M
+```
+
+## Solutions page
+
+Removed the YouTube walkthrough embed, the `WALKTHROUGH` const, the "Watch the
+system actually run" header, and the `VideoObject` JSON-LD (it would have described
+content no longer present). The closing CTA is retained.
+
+## Suspects investigated and ruled out
+
+- **Mission Control** (`mammoth/mission-control`): no headless-browser dependency,
+  no `fetch()` to disruptorsmedia.com. Publishes by writing to Supabase directly.
+- **SEO Command Center** (`july21` / `disruptors-ags`): no crawler dependencies;
+  `crawl_runs` and `crawl_pages` last wrote **2026-08-07**; latest `site_audits` row
+  is for sliceutah.com. Its only fresh activity is `sync_runs` pulling GSC/GA4 data
+  from Google's APIs, which never loads the website. Crons are daily/weekly.
+- **Netlify functions / agents**: Compute 0.4 credits, AI inference 0.
+
+The remaining heavy client is external - Windows Chrome/117 (659 MB across 814
+requests) plus `65.155.30.101` (388 MB across 130 requests). It cannot be identified
+or negotiated with, which is why the fix is to stop serving video from the billed
+meter rather than to block a user-agent string.
+
+## Local-testing note
+
+`public/presentation-sw.js` self-destructs on `localhost`/`127.0.0.1` and calls
+`client.navigate()`, which re-registers it - 50 main-frame navigations were measured
+on a single page load. Production is unaffected (hostname-guarded), but local
+verification must either block service workers or use a LAN IP.

@@ -18,7 +18,7 @@ export default function WebsiteCTA() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/site-videos/dmsite/home/roman-army-painting.mp4" type="video/mp4" />
+          <source src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/roman-army-painting.mp4" type="video/mp4" />
         </video>
       </div>
 

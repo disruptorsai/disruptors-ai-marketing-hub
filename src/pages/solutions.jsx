@@ -18,12 +18,6 @@ const PAPER_BG = {
   backgroundPosition: 'center',
 };
 
-// Walkthrough video for the closing proof section. Embedded plainly so YouTube renders
-// its own thumbnail and default play control rather than a custom overlay.
-const WALKTHROUGH = {
-  videoId: 'WaF_4bUFT24',
-  title: 'How I Grew 10K Followers in 90 Days (Full AI Workflow)',
-};
 
 // Five-step "Our Process" framework (ported from the billboard funnel).
 const frameworkSteps = [
@@ -42,23 +36,6 @@ export default function Solutions() {
     path: '/solutions',
     jsonLd: [
       breadcrumb('Solutions', '/solutions'),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        name: WALKTHROUGH.title,
-        description:
-          'A full walkthrough of the AI content workflow Disruptors Media builds for clients — the same system used to grow an audience to 10,000 followers in 90 days.',
-        thumbnailUrl: `https://i.ytimg.com/vi/${WALKTHROUGH.videoId}/maxresdefault.jpg`,
-        uploadDate: '2026-08-13T16:30:14-07:00',
-        duration: 'PT13M12S',
-        embedUrl: `https://www.youtube.com/embed/${WALKTHROUGH.videoId}`,
-        contentUrl: `https://www.youtube.com/watch?v=${WALKTHROUGH.videoId}`,
-        publisher: {
-          '@type': 'Organization',
-          name: 'Disruptors Media',
-          url: 'https://disruptorsmedia.com',
-        },
-      },
     ],
   });
 
@@ -160,11 +137,11 @@ export default function Solutions() {
         <div className="absolute inset-0 z-0">
           <FastVideo
             src={optimizeCloudinaryVideo(
-              '/site-videos/dmsite/home/gallery-bg.mp4',
+              'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/gallery-bg.mp4',
               { width: 1920, quality: 'auto' }
             )}
             poster={getVideoThumbnail(
-              '/site-videos/dmsite/home/gallery-bg.mp4',
+              'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/gallery-bg.mp4',
               { width: 1920 }
             )}
             autoplay
@@ -319,7 +296,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* See It Work — walkthrough video + closing CTA */}
+      {/* Closing CTA. The YouTube walkthrough that used to sit here was removed 2026-08-22. */}
       <section className="relative overflow-hidden bg-[#080a0d] py-20 sm:py-28">
         {/* Gold divider top */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BF953F] to-transparent" />
@@ -327,52 +304,14 @@ export default function Solutions() {
         <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-80 w-[36rem] -translate-x-1/2 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(191,149,63,.12) 0%, transparent 70%)' }} />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="mb-12 text-center"
-          >
-            <span className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-gold-shine">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#BF953F]" /> Proof
-            </span>
-            <h2 className="mt-5 text-[clamp(32px,5vw,56px)] font-bold tracking-tight text-[#fafafa]">
-              Watch the system <span className="text-gold-shine">actually run</span>.
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
-              Not a pitch — the full workflow, start to finish. Our founder Kyle Painter walks through the exact AI content system we install for clients, and the 90 days it took to grow an audience to 10,000 followers with it.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-4xl"
-          >
-            {/* Plain embed so YouTube shows its own thumbnail and default play button.
-                No autoplay param — that is what keeps the native poster + control visible. */}
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl">
-              <iframe
-                src={`https://www.youtube.com/embed/${WALKTHROUGH.videoId}?rel=0`}
-                title={WALKTHROUGH.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                className="absolute inset-0 h-full w-full"
-                style={{ border: 'none' }}
-              />
-            </div>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mt-12 text-center"
+            className="text-center"
           >
             <p className="mx-auto max-w-xl text-lg text-white/70">
               Want this running inside your business instead of your feed?

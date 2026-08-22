@@ -98,7 +98,7 @@ export default function Utah() {
       <section className="relative overflow-hidden bg-[#080a0d] pt-[clamp(96px,16vw,150px)] pb-[clamp(48px,8vw,80px)]">
         <div aria-hidden="true" className="absolute inset-0 z-0">
           <FastVideo
-            src="/site-videos/dmsite/home/handshake-landscape.mp4"
+            src="https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/handshake-landscape.mp4"
             preset="fullscreen"
             autoplay loop muted playsInline
             preload="metadata"

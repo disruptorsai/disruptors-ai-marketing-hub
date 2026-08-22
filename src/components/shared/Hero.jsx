@@ -11,7 +11,7 @@ const FALLBACK_MEDIA = {
     alt: ""
   },
   video: {
-    url: "/site-videos/dmsite/home/website-demo-reel.mp4",
+    url: "https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-videos/web/home/website-demo-reel.mp4",
     alt: "Website demo reel"
   },
   logo: {
