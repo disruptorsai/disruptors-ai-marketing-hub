@@ -67,5 +67,18 @@
 /*.bak             /404.html   404
 /*.map             /404.html   404
 
+# Deleted media (added 2026-08-22). The four home-page videos moved to Supabase and
+# were removed from this deploy, but bots that already know the old URLs keep asking
+# for them - and the SPA fallback below was answering each with the full ~270KB
+# index.html. These return the ~1.2KB 404 instead (~2.8 GB/day at the observed rate).
+#
+# SAFE: Netlify only applies a redirect when NO real file matches the path (these are
+# not forced with `!`). The nine .mp4 files still hosted here - adapt-or-die,
+# hero-michelangelo-painting, full-animation-scrub and the six service videos - are
+# real files in the deploy, so they are served normally and never reach these rules.
+/*.mp4             /404.html   404
+/*.webm            /404.html   404
+/*.mov             /404.html   404
+
 # SPA fallback - serve the app shell for client-side routes (keep last):
 /*    /index.html   200
