@@ -311,6 +311,52 @@ function Routing() {
     );
 }
 
+// Click-to-load YouTube facade. The iframe (and the player's ~1MB of JS) stays off the
+// initial load; we paint the thumbnail and only mount the real embed on user intent.
+function VideoEmbed({ videoId, title, start }) {
+    const [active, setActive] = useState(false);
+    const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1${start ? `&start=${start}` : ''}`;
+    return (
+        <div className="relative aspect-video w-full overflow-hidden rounded-[clamp(16px,2.6vw,24px)] border border-white/10 bg-black">
+            {active ? (
+                <iframe
+                    src={src}
+                    title={title}
+                    className="absolute inset-0 h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                />
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => setActive(true)}
+                    aria-label={`Play video: ${title}`}
+                    className="group absolute inset-0 h-full w-full cursor-pointer"
+                >
+                    <img
+                        src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(8,10,13,.10) 0%, rgba(8,10,13,.42) 100%)' }} />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                        <span
+                            className="flex h-[clamp(58px,8vw,80px)] w-[clamp(58px,8vw,80px)] items-center justify-center rounded-full border backdrop-blur-[3px] transition-all duration-500 group-hover:scale-110"
+                            style={{ borderColor: 'rgba(191,149,63,.55)', backgroundColor: 'rgba(8,10,13,.55)' }}
+                        >
+                            <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-[3px] h-[clamp(22px,3vw,30px)] w-[clamp(22px,3vw,30px)]" fill={GOLD}>
+                                <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z" />
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            )}
+        </div>
+    );
+}
+
 export default function ServicePagePro({ service }) {
     const [openFaq, setOpenFaq] = useState(null);
 
@@ -324,6 +370,19 @@ export default function ServicePagePro({ service }) {
         },
         breadcrumb(service.title, metaPath),
     ] : [];
+    if (service?.video?.videoId) {
+        const v = service.video;
+        jsonLd.push({
+            '@context': 'https://schema.org', '@type': 'VideoObject',
+            name: v.videoTitle || v.title,
+            description: v.body || metaDescription,
+            thumbnailUrl: `https://i.ytimg.com/vi/${v.videoId}/maxresdefault.jpg`,
+            embedUrl: `https://www.youtube.com/embed/${v.videoId}`,
+            contentUrl: `https://www.youtube.com/watch?v=${v.videoId}`,
+            uploadDate: v.uploadDate,
+            duration: v.duration,
+        });
+    }
     if (service?.faqs?.length) {
         jsonLd.push({
             '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -338,7 +397,7 @@ export default function ServicePagePro({ service }) {
         eyebrow, headline, headlineAccent, subhead, heroImage, heroVideo, stats = [], chips = [], platform = {},
         outcomesEyebrow = '02 · Outcomes', outcomesTitle = 'What it changes.', outcomes = [],
         processEyebrow = '03 · Process', processTitle = 'How we install it.', process = [],
-        successStory, faqsEyebrow = '04 · Questions', faqsTitle = 'Frequently asked.', faqs = [],
+        video, successStory, faqsEyebrow = '04 · Questions', faqsTitle = 'Frequently asked.', faqs = [],
         cta_label = 'Book a Strategy Session', cta_link = 'book-strategy-session',
     } = service;
 
@@ -481,6 +540,25 @@ export default function ServicePagePro({ service }) {
                 </motion.div>
               </div>
             </section>
+
+            {/* ===== VIDEO (dark) — optional; only renders when `video` is configured ===== */}
+            {video?.videoId && (
+                <section id="video" className="pb-[clamp(48px,8vw,90px)]">
+                    <div className="mx-auto max-w-6xl px-[clamp(18px,5vw,24px)]">
+                        <motion.div {...reveal} className="max-w-[44rem]">
+                            <Eyebrow>{video.eyebrow || 'Watch'}</Eyebrow>
+                            <h2 className="mt-3.5 text-[clamp(28px,4.4vw,54px)] font-bold tracking-tight text-[#fafafa]">{video.title}</h2>
+                            {video.body && <p className="mt-4 text-sm leading-relaxed text-white/70">{video.body}</p>}
+                        </motion.div>
+                        <motion.div {...reveal} transition={{ ...reveal.transition, delay: 0.08 }} className="mt-9">
+                            <VideoEmbed videoId={video.videoId} title={video.videoTitle || video.title} start={video.start} />
+                            {video.caption && (
+                                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">{video.caption}</p>
+                            )}
+                        </motion.div>
+                    </div>
+                </section>
+            )}
 
             {/* ===== OUTCOMES ===== */}
             {outcomes.length > 0 && (

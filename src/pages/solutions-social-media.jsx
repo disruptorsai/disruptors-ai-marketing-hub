@@ -41,6 +41,22 @@ const service = {
     ],
   },
 
+  // Founder-led proof: the workflow this page sells, walked through end to end.
+  // Rendered as a click-to-load facade (no player JS until the visitor hits play) and
+  // mirrored by VideoObject JSON-LD for AI/search surfaces.
+  video: {
+    eyebrow: 'Watch',
+    title: 'See the workflow in action.',
+    body:
+      'Kyle walks through the exact AI content workflow behind this service — how one recording session becomes a month of platform-native posts, and what it took to grow past 10,000 followers in 90 days.',
+    videoId: 'WaF_4bUFT24',
+    videoTitle: 'How I Grew 10K Followers in 90 Days (Full AI Workflow)',
+    caption: 'Kyle Painter · AI for Business',
+    uploadDate: '2026-08-13',
+    duration: 'PT13M12S',
+    // start: 192, // uncomment to open at the 3:12 mark from the shared link
+  },
+
   outcomesEyebrow: '02 · Outcomes',
   outcomesTitle: 'What it changes.',
   outcomes: [
