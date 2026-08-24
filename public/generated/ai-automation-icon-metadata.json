@@ -1,0 +1,11 @@
+{
+  "id": "ai-automation",
+  "service": "AI Automation",
+  "filename": "ai-automation-icon-anachronistic.png",
+  "path": "/generated/ai-automation-icon-anachronistic.png",
+  "prompt": "A minimalist transparent icon representing AI automation and intelligent workflows. Features clean geometric shapes: interconnected nodes forming a neural network pattern, flowing circuit paths, abstract AI brain symbol with crystalline structures. Anachronistic-lite style with futuristic minimal design, ultra-crisp lines, subtle gradients transitioning from deep blue (#2C6BAA) to gold (#C9A53B). Professional tech aesthetic with sacred geometry foundation. Completely transparent background, PNG format with alpha channel. Clean edges, high contrast, 1:1 aspect ratio, centered composition on invisible 24px grid. No text, no background, pure icon floating in space.",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "style": "Anachronistic-lite transparent",
+  "generatedAt": "2025-09-30T00:09:27.028Z"
+}

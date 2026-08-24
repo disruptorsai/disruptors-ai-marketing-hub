@@ -1,0 +1,13 @@
+{
+  "title": "Podcast Studio",
+  "name": "podcast-studio",
+  "category": "Content",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nMichelangelo Renaissance fresco. An ornate microphone or horn with divine sound\n    waves (rendered as golden musical notation and sacred geometry) emanating outward in concentric circles\n    toward clouds. Sistine Chapel aesthetic with warm ochre, sienna, umber and lapis blue. Cracked fresco\n    texture, dramatic lighting, sfumato technique. Divine speech and wisdom theme. Voice as divine instrument.\n    Square format, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T15:57:54.691Z",
+  "filepath": "/images/resource-icons/podcast-studio.png"
+}

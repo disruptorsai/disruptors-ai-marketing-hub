@@ -1,0 +1,45 @@
+# Disruptors Media
+
+> Disruptors Media is a fractional Chief AI Officer (CAIO) and Chief Marketing Officer service. We build AI-powered marketing and sales systems — content, SEO, lead generation, and follow-up — directly inside your business, so you own everything we install.
+
+## Core Pages
+- [Home](https://disruptorsmedia.com/): AI-powered marketing and fractional CAIO/CMO overview
+- [About](https://disruptorsmedia.com/about): Agency background, team, and approach
+- [Solutions](https://disruptorsmedia.com/solutions): Full-funnel AI marketing services
+- [Pricing](https://disruptorsmedia.com/pricing): Agency, Growth, Executive, and Enterprise plans
+- [Work](https://disruptorsmedia.com/work): Client case studies and results
+- [FAQ](https://disruptorsmedia.com/faq): Common questions about the service and how we work
+- [Book a Strategy Session](https://disruptorsmedia.com/book-strategy-session): Free consultation and onboarding
+
+## Services
+- [AI Agents & Agentic AI](https://disruptorsmedia.com/solutions-ai-agents): Agentic systems that qualify leads, follow up, and take multi-step action inside your real tools
+- [AI Automation](https://disruptorsmedia.com/solutions-ai-automation): Intelligent systems that run marketing and ops 24/7
+- [SEO & GEO](https://disruptorsmedia.com/solutions-seo-geo): Search and generative-engine optimization
+- [Social Media](https://disruptorsmedia.com/solutions-social-media): Organic social strategy and content
+- [Paid Advertising](https://disruptorsmedia.com/solutions-paid-advertising): Performance ad campaigns
+- [Lead Generation](https://disruptorsmedia.com/solutions-lead-generation): Pipeline and qualified-lead systems
+- [Podcasting](https://disruptorsmedia.com/solutions-podcasting): Podcast production and distribution
+- [Custom Apps](https://disruptorsmedia.com/solutions-custom-apps): Bespoke software and tools
+- [CRM Management](https://disruptorsmedia.com/solutions-crm-management): CRM setup, automation, and follow-up
+- [Fractional CMO](https://disruptorsmedia.com/solutions-fractional-cmo): Executive marketing leadership
+
+## Locations
+- [Utah](https://disruptorsmedia.com/utah): Fractional Chief AI Officer (CAIO) and CMO based in North Salt Lake, serving Salt Lake City and Utah businesses
+
+## Case Studies
+- [TradeWorx USA](https://disruptorsmedia.com/work-tradeworx-usa): Full digital transformation — modern web platform, automated workflows, and CRM with AI lead scoring
+- [Timberview Capital](https://disruptorsmedia.com/work-timber-view-financial): AI-enhanced client portal with automated risk assessment for a financial advisory practice
+- [The Wellness Way](https://disruptorsmedia.com/work-the-wellness-way): AI-powered wellness platform connecting practitioners with patients through health assessments and content
+- [Sound Corrections](https://disruptorsmedia.com/work-sound-corrections): AI audio platform built for a professional audio engineering studio
+- [SegPro Solutions](https://disruptorsmedia.com/work-segpro): AI-powered marketing automation suite for an industrial safety supplier
+- [Neuro Mastery](https://disruptorsmedia.com/work-neuro-mastery): AI-driven neuroplasticity-based learning platform with adaptive learning paths
+- [Muscle Works](https://disruptorsmedia.com/work-muscle-works): AI fitness management system with automated progress tracking and personalized workouts
+- [Granite Paving](https://disruptorsmedia.com/work-granite-paving): Showcase website and automated lead generation for a paving contractor
+- [Auto Trim Utah](https://disruptorsmedia.com/work-auto-trim-utah): Digital showroom and automated booking system for an auto customization shop
+- [SaaS Content Engine](https://disruptorsmedia.com/work-saas-content-engine): AI-powered content engine that scaled content production for a B2B SaaS client
+
+## Resources
+- [Blog](https://disruptorsmedia.com/blog): Articles on AI marketing, SEO, and growth
+- [Podcast](https://disruptorsmedia.com/podcast): Episodes and interviews
+- [Free Resources](https://disruptorsmedia.com/free-resources): Free downloadable marketing guides and templates
+- [Billboard](https://disruptorsmedia.com/billboard): Landing page for the Disruptors Media physical billboard campaign

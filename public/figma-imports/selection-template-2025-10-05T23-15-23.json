@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-05T23:15:23.486Z",
+    "extractedBy": "figma-mcp-extractor.js",
+    "mcpServer": "http://127.0.0.1:3845/mcp",
+    "version": "1.0.0"
+  },
+  "selection": {
+    "nodes": [],
+    "count": 0,
+    "types": []
+  },
+  "instructions": {
+    "message": "This is a template file. Actual Figma data should be extracted using MCP tools.",
+    "requiredTools": [
+      "mcp__cursor-talk-to-figma__get_selection",
+      "mcp__cursor-talk-to-figma__read_my_design"
+    ],
+    "dataStructure": {
+      "nodes": [
+        {
+          "id": "node-id",
+          "name": "Node Name",
+          "type": "FRAME|COMPONENT|TEXT|SHAPE|etc",
+          "dimensions": {
+            "width": 0,
+            "height": 0,
+            "x": 0,
+            "y": 0
+          },
+          "fills": [],
+          "strokes": [],
+          "effects": [],
+          "text": {
+            "content": "",
+            "style": {
+              "fontFamily": "",
+              "fontSize": 0,
+              "fontWeight": 0,
+              "lineHeight": 0,
+              "letterSpacing": 0
+            }
+          },
+          "children": [],
+          "componentProperties": {},
+          "exportSettings": []
+        }
+      ]
+    }
+  }
+}

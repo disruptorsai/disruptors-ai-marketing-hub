@@ -1,0 +1,13 @@
+{
+  "title": "AI Content Writer",
+  "name": "ai-content-writer",
+  "category": "AI Tools",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco painting in the style of Michelangelo, dramatic scene with a divine\n    hand reaching from golden clouds to touch an ancient scroll with glowing text. Golden quill writing with\n    divine light. Dramatic chiaroscuro lighting with warm ochre, sienna, and umber earth tones. Soft blue sky\n    background. Cracked aged fresco texture throughout. Classical Renaissance composition, sfumato technique,\n    divine inspiration theme. Square format, centered composition, museum quality. No human faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T15:55:59.331Z",
+  "filepath": "/images/resource-icons/ai-content-writer.png"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "crm-management",
+  "service": "CRM Management",
+  "filename": "crm-management-icon-anachronistic.png",
+  "path": "/generated/crm-management-icon-anachronistic.png",
+  "prompt": "A minimalist transparent icon representing customer relationship management and organization. Features clean geometric shapes: interconnected user profiles or contact cards in circular arrangement, database or filing system visualization, relationship mapping network with connection nodes. Anachronistic-lite style with modern minimal design, ultra-crisp lines, subtle gradients in blue (#2C6BAA), terracotta (#C96F4C), and gold accents. Professional tech aesthetic. Completely transparent background, PNG format with alpha channel. Clean edges, 1:1 aspect ratio. No text, no background.",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "style": "Anachronistic-lite transparent",
+  "generatedAt": "2025-09-30T00:14:05.727Z"
+}

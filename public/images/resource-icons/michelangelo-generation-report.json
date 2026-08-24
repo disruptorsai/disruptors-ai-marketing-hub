@@ -1,0 +1,124 @@
+{
+  "style": "Michelangelo Renaissance Fresco",
+  "timestamp": "2025-10-08T15:58:08.560Z",
+  "totalIcons": 19,
+  "successful": 19,
+  "failed": 0,
+  "totalTimeSeconds": 136,
+  "results": [
+    {
+      "success": true,
+      "icon": "AI Content Writer",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/ai-content-writer.png",
+      "size": 2054
+    },
+    {
+      "success": true,
+      "icon": "AI Image Generator",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/ai-image-generator.png",
+      "size": 2021
+    },
+    {
+      "success": true,
+      "icon": "AI Chatbot Builder",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/chatbot-builder.png",
+      "size": 2045
+    },
+    {
+      "success": true,
+      "icon": "AI Video Generator",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/video-generator.png",
+      "size": 2221
+    },
+    {
+      "success": true,
+      "icon": "Growth Audit Tool",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/growth-audit-tool.png",
+      "size": 2210
+    },
+    {
+      "success": true,
+      "icon": "SEO Optimizer",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/seo-optimizer.png",
+      "size": 2184
+    },
+    {
+      "success": true,
+      "icon": "Social Media Manager",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/social-media-manager.png",
+      "size": 2296
+    },
+    {
+      "success": true,
+      "icon": "Email Campaign Builder",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/email-campaign-builder.png",
+      "size": 2141
+    },
+    {
+      "success": true,
+      "icon": "Analytics Dashboard",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/analytics-dashboard.png",
+      "size": 2609
+    },
+    {
+      "success": true,
+      "icon": "Conversion Tracker",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/conversion-tracker.png",
+      "size": 2401
+    },
+    {
+      "success": true,
+      "icon": "Performance Monitor",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/performance-monitor.png",
+      "size": 2327
+    },
+    {
+      "success": true,
+      "icon": "Audience Intelligence",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/audience-intelligence.png",
+      "size": 2534
+    },
+    {
+      "success": true,
+      "icon": "Workflow Automation",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/workflow-automation.png",
+      "size": 2261
+    },
+    {
+      "success": true,
+      "icon": "Lead Scoring Engine",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/lead-scoring-engine.png",
+      "size": 2424
+    },
+    {
+      "success": true,
+      "icon": "Content Calendar",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/content-calendar.png",
+      "size": 2528
+    },
+    {
+      "success": true,
+      "icon": "Integration Hub",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/integration-hub.png",
+      "size": 2484
+    },
+    {
+      "success": true,
+      "icon": "Podcast Studio",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/podcast-studio.png",
+      "size": 2294
+    },
+    {
+      "success": true,
+      "icon": "Report Generator",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/report-generator.png",
+      "size": 2178
+    },
+    {
+      "success": true,
+      "icon": "Brand Asset Library",
+      "path": "/Users/disruptors/Documents/DM4/disruptors-ai-marketing-hub/public/images/resource-icons/brand-asset-library.png",
+      "size": 2220
+    }
+  ]
+}

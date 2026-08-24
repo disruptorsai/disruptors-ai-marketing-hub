@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2025-09-30T00:14:44.947Z",
+  "style": "Anachronistic-lite transparent",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "total": 9,
+  "successful": 9,
+  "failed": 0,
+  "icons": [
+    {
+      "id": "ai-automation",
+      "service": "AI Automation",
+      "success": true,
+      "filename": "ai-automation-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "social-media-marketing",
+      "service": "Social Media Marketing",
+      "success": true,
+      "filename": "social-media-marketing-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "seo-geo",
+      "service": "SEO & GEO",
+      "success": true,
+      "filename": "seo-geo-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "lead-generation",
+      "service": "Lead Generation",
+      "success": true,
+      "filename": "lead-generation-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "paid-advertising",
+      "service": "Paid Advertising",
+      "success": true,
+      "filename": "paid-advertising-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "podcasting",
+      "service": "Podcasting",
+      "success": true,
+      "filename": "podcasting-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "custom-apps",
+      "service": "Custom Apps",
+      "success": true,
+      "filename": "custom-apps-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "crm-management",
+      "service": "CRM Management",
+      "success": true,
+      "filename": "crm-management-icon-anachronistic.png",
+      "error": null
+    },
+    {
+      "id": "fractional-cmo",
+      "service": "Fractional CMO",
+      "success": true,
+      "filename": "fractional-cmo-icon-anachronistic.png",
+      "error": null
+    }
+  ]
+}

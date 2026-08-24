@@ -1,0 +1,141 @@
+{
+  "id": "keyword-research",
+  "slug": "keyword-research",
+  "name": "Keyword Research",
+  "description": "AI-powered keyword research with real search volume, difficulty, and CPC data from DataForSEO. Find profitable keywords with opportunity scoring algorithm that balances high volume with low competition.",
+  "category": "seo",
+  "status": "approved",
+  "version": "1.0.0",
+
+  "audience": ["internal", "client", "public"],
+  "requires_brain": true,
+  "requires_auth": true,
+
+  "runtime_preference": "serverless",
+  "entry_point": "src/modules/keyword-research/index.jsx",
+  "function_endpoint": "/.netlify/functions/module-keyword-research",
+  "component_path": "src/modules/keyword-research/KeywordResearchUI.jsx",
+
+  "icon_url": "/generated/anachron-lite/keyword-research-icon-anachron-lite.png",
+  "color": "#2C6BAA",
+  "tags": ["seo", "keywords", "research", "dataforseo", "search-volume", "competition"],
+
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "seed_keyword": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "description": "The seed keyword to research"
+      },
+      "location": {
+        "type": "string",
+        "default": "2840",
+        "description": "Geographic location code (2840 = US, 2826 = UK, 2124 = Canada, 2036 = Australia, 2554 = New Zealand)"
+      },
+      "language": {
+        "type": "string",
+        "default": "en",
+        "description": "Language code for search results"
+      },
+      "limit": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100,
+        "default": 50,
+        "description": "Maximum number of keywords to return"
+      }
+    },
+    "required": ["seed_keyword"]
+  },
+
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "keywords": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "keyword": { "type": "string" },
+            "search_volume": { "type": "number" },
+            "competition": { "type": "number" },
+            "competition_level": {
+              "type": "string",
+              "enum": ["Low", "Medium", "High"]
+            },
+            "cpc": { "type": "number" },
+            "difficulty": { "type": "number" },
+            "trend": { "type": "number" },
+            "opportunity_score": { "type": "number" }
+          }
+        }
+      },
+      "count": { "type": "number" },
+      "search_term": { "type": "string" },
+      "location": { "type": "string" },
+      "business_context": {
+        "type": "object",
+        "properties": {
+          "industry": { "type": "string" },
+          "location": { "type": "string" }
+        }
+      }
+    }
+  },
+
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "default_location": {
+        "type": "string",
+        "default": "2840",
+        "description": "Default location code for searches"
+      },
+      "default_language": {
+        "type": "string",
+        "default": "en",
+        "description": "Default language for results"
+      },
+      "results_limit": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100,
+        "default": 50,
+        "description": "Default number of results to return"
+      },
+      "auto_save_to_posts": {
+        "type": "boolean",
+        "default": false,
+        "description": "Automatically save selected keywords to posts table"
+      },
+      "show_trends": {
+        "type": "boolean",
+        "default": true,
+        "description": "Display trend indicators"
+      },
+      "min_search_volume": {
+        "type": "number",
+        "default": 0,
+        "description": "Filter out keywords below this search volume"
+      }
+    }
+  },
+
+  "wordpress_compatible": true,
+  "wordpress_shortcode": "[disruptors_keyword_research]",
+  "wordpress_block": "disruptors/keyword-research",
+  "wordpress_embed_type": "iframe",
+
+  "supports_batch": false,
+  "has_preview": true,
+  "is_experimental": false,
+
+  "default_daily_limit": 10,
+  "default_monthly_limit": 100,
+  "default_cost_per_run": 0.05,
+
+  "documentation_url": "https://docs.disruptorsmedia.com/modules/keyword-research",
+  "changelog": "v1.0.0 - Initial release with DataForSEO integration, opportunity scoring, and multi-location support"
+}

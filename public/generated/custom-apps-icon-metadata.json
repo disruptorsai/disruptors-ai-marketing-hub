@@ -1,0 +1,11 @@
+{
+  "id": "custom-apps",
+  "service": "Custom Apps",
+  "filename": "custom-apps-icon-anachronistic.png",
+  "path": "/generated/custom-apps-icon-anachronistic.png",
+  "prompt": "A minimalist transparent icon representing custom application development and software solutions. Features clean geometric shapes: abstract app window or interface blocks with rounded corners, code brackets or development symbols, modular building blocks connecting together with circuit patterns. Anachronistic-lite style with futuristic minimal design, ultra-crisp lines, subtle gradients in blue (#2C6BAA), verdigris (#3C7A6A), and gold (#C9A53B). Professional tech aesthetic. Completely transparent background, PNG format with alpha channel. Clean edges, 1:1 aspect ratio. No text, no background.",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "style": "Anachronistic-lite transparent",
+  "generatedAt": "2025-09-30T00:13:18.687Z"
+}

@@ -1,0 +1,12 @@
+# Cloudflare-compatible redirects.
+#
+# SPA routing is configured in wrangler.jsonc with
+# assets.not_found_handling = "single-page-application". Do not add a
+# `/* /index.html 200` rewrite here; combining both mechanisms causes Wrangler
+# to reject the deployment as an infinite loop.
+#
+# Cloudflare _redirects files do not support 404 rewrites. Scanner and exploit
+# paths should be blocked with Cloudflare WAF rules or a Worker request handler.
+
+/free-business-audit   /marketing-audit   301
+/gallery               /work              301

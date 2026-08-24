@@ -1,0 +1,182 @@
+{
+  "id": "ai-content-writer",
+  "slug": "ai-content-writer",
+  "name": "AI Content Writer",
+  "description": "AI-powered content generation for blogs, social media, emails, product descriptions, and ad copy. Uses Claude Sonnet 4.5 with Business Brain context for brand-consistent, SEO-optimized content.",
+  "category": "content_creation",
+  "status": "approved",
+  "version": "1.0.0",
+
+  "audience": ["internal", "client"],
+  "requires_brain": true,
+  "requires_auth": true,
+
+  "runtime_preference": "serverless",
+  "entry_point": "src/modules/ai-content-writer/index.jsx",
+  "function_endpoint": "/.netlify/functions/module-ai-content-writer",
+  "component_path": "src/modules/ai-content-writer/AIContentWriterUI.jsx",
+
+  "icon_url": "/generated/anachron-lite/ai-content-writer-icon-anachron-lite.png",
+  "color": "#C96F4C",
+  "tags": ["content", "ai", "writing", "blog", "social", "email", "seo", "claude"],
+
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "content_type": {
+        "type": "string",
+        "enum": ["blog", "social", "email", "product_description", "ad_copy"],
+        "description": "Type of content to generate"
+      },
+      "topic": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200,
+        "description": "Content topic or subject"
+      },
+      "primary_keyword": {
+        "type": "string",
+        "maxLength": 100,
+        "description": "Primary SEO keyword to target"
+      },
+      "secondary_keywords": {
+        "type": "array",
+        "items": { "type": "string" },
+        "maxItems": 5,
+        "description": "Additional keywords to include"
+      },
+      "tone": {
+        "type": "string",
+        "enum": ["professional", "casual", "technical", "friendly", "bold"],
+        "default": "professional",
+        "description": "Tone of voice for the content"
+      },
+      "length": {
+        "type": "string",
+        "enum": ["short", "medium", "long"],
+        "default": "medium",
+        "description": "Target content length"
+      },
+      "target_audience": {
+        "type": "string",
+        "maxLength": 200,
+        "description": "Intended audience for the content"
+      },
+      "include_meta": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include title and meta description"
+      },
+      "use_brain_context": {
+        "type": "boolean",
+        "default": true,
+        "description": "Use Business Brain for brand context"
+      }
+    },
+    "required": ["content_type", "topic"]
+  },
+
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Generated content body"
+      },
+      "title": {
+        "type": "string",
+        "description": "Generated title (if include_meta=true)"
+      },
+      "meta_description": {
+        "type": "string",
+        "description": "SEO meta description (if include_meta=true)"
+      },
+      "word_count": {
+        "type": "number",
+        "description": "Total word count"
+      },
+      "business_context": {
+        "type": "object",
+        "properties": {
+          "brain_level": { "type": "string" },
+          "confidence_score": { "type": "number" },
+          "industry": { "type": "string" },
+          "brand_voice": { "type": "string" }
+        },
+        "description": "Business Brain context used"
+      },
+      "generation_model": {
+        "type": "string",
+        "description": "AI model used for generation"
+      },
+      "tokens_used": {
+        "type": "number",
+        "description": "Total tokens consumed"
+      }
+    }
+  },
+
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "default_tone": {
+        "type": "string",
+        "enum": ["professional", "casual", "technical", "friendly", "bold"],
+        "default": "professional",
+        "description": "Default tone for all content"
+      },
+      "default_length": {
+        "type": "string",
+        "enum": ["short", "medium", "long"],
+        "default": "medium",
+        "description": "Default content length"
+      },
+      "use_brain_context": {
+        "type": "boolean",
+        "default": true,
+        "description": "Always use Business Brain for context"
+      },
+      "auto_save_to_posts": {
+        "type": "boolean",
+        "default": false,
+        "description": "Automatically save blog posts to posts table"
+      },
+      "include_meta_by_default": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include title and meta description by default"
+      },
+      "model_preference": {
+        "type": "string",
+        "enum": ["claude-sonnet-4.5", "claude-opus-4.1"],
+        "default": "claude-sonnet-4.5",
+        "description": "Preferred AI model for generation"
+      },
+      "word_count_targets": {
+        "type": "object",
+        "properties": {
+          "short": { "type": "number", "default": 300 },
+          "medium": { "type": "number", "default": 800 },
+          "long": { "type": "number", "default": 1500 }
+        },
+        "description": "Target word counts for each length"
+      }
+    }
+  },
+
+  "wordpress_compatible": true,
+  "wordpress_shortcode": "[disruptors_content_writer]",
+  "wordpress_block": "disruptors/content-writer",
+  "wordpress_embed_type": "iframe",
+
+  "supports_batch": true,
+  "has_preview": true,
+  "is_experimental": false,
+
+  "default_daily_limit": 20,
+  "default_monthly_limit": 200,
+  "default_cost_per_run": 0.15,
+
+  "documentation_url": "https://docs.disruptorsmedia.com/modules/ai-content-writer",
+  "changelog": "v1.0.0 - Initial release with Claude Sonnet 4.5, Business Brain context, and multi-format content generation"
+}

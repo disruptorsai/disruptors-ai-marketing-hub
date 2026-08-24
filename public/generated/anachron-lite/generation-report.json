@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-09-30T04:27:47.306Z",
+  "model": "gpt-image-1",
+  "total": 9,
+  "successful": 9,
+  "failed": 0,
+  "results": [
+    {
+      "success": true,
+      "service": "AI Automation",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\ai-automation-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Social Media Marketing",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\social-media-marketing-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "SEO & GEO",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\seo-geo-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Lead Generation",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\lead-generation-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Paid Advertising",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\paid-advertising-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Podcasting",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\podcasting-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Custom Apps",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\custom-apps-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "CRM Management",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\crm-management-icon-anachron-lite.png"
+    },
+    {
+      "success": true,
+      "service": "Fractional CMO",
+      "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\generated\\anachron-lite\\fractional-cmo-icon-anachron-lite.png"
+    }
+  ]
+}

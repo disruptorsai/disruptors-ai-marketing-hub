@@ -1,0 +1,11 @@
+{
+  "id": "fractional-cmo",
+  "service": "Fractional CMO",
+  "filename": "fractional-cmo-icon-anachronistic.png",
+  "path": "/generated/fractional-cmo-icon-anachronistic.png",
+  "prompt": "A minimalist transparent icon representing marketing leadership and executive strategy. Features clean geometric shapes: elegant chess piece (king or queen) symbolizing strategic leadership, organizational chart or hierarchy visualization, strategic roadmap or compass with directional markers and laurel accents. Anachronistic-lite style with futuristic minimal design, ultra-crisp lines, subtle gradients in gold (#C9A53B), terracotta (#C96F4C), and blue (#2C6BAA). Professional tech aesthetic. Completely transparent background, PNG format with alpha channel. Clean edges, 1:1 aspect ratio. No text, no background.",
+  "model": "gpt-image-1",
+  "size": "1024x1024",
+  "style": "Anachronistic-lite transparent",
+  "generatedAt": "2025-09-30T00:14:44.946Z"
+}

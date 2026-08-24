@@ -1,0 +1,53 @@
+{
+  "total": 9,
+  "successful": 0,
+  "failed": 9,
+  "results": [
+    {
+      "success": false,
+      "service": "ai-automation",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "social-media",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "seo-geo",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "lead-generation",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "paid-advertising",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "podcasting",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "custom-apps",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "crm-management",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "success": false,
+      "service": "fractional-cmo",
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    }
+  ],
+  "generated_at": "2025-09-29T23:53:39.968Z"
+}

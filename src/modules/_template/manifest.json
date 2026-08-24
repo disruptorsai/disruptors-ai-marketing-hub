@@ -1,0 +1,61 @@
+{
+  "$schema": "../module-manifest-schema.json",
+  "id": "module-template",
+  "slug": "module-template",
+  "name": "Module Template",
+  "version": "1.0.0",
+  "description": "Template for creating new modules in the Disruptors AI system",
+  "category": "utility",
+  "status": "testing",
+  "audience": ["internal"],
+  "requires_brain": true,
+  "requires_auth": true,
+  "runtime_preference": "serverless",
+  "entry_point": "src/modules/_template/index.jsx",
+  "function_endpoint": "/.netlify/functions/module-template",
+  "component_path": "src/modules/_template/ModuleUI.jsx",
+  "icon_url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1/disruptors-media/icons/template-icon.svg",
+  "color": "#6B7280",
+  "tags": ["template", "example", "starter"],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "input_text": {
+        "type": "string",
+        "description": "Example input field"
+      }
+    },
+    "required": ["input_text"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "result": {
+        "type": "string",
+        "description": "Example output field"
+      }
+    }
+  },
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "setting_example": {
+        "type": "boolean",
+        "default": true,
+        "description": "Example user-configurable setting"
+      }
+    }
+  },
+  "wordpress_compatible": false,
+  "wordpress_shortcode": null,
+  "wordpress_block": null,
+  "wordpress_embed_type": "iframe",
+  "supports_batch": false,
+  "has_preview": true,
+  "is_experimental": true,
+  "default_daily_limit": 10,
+  "default_monthly_limit": 100,
+  "default_cost_per_run": 0.0,
+  "documentation_url": "https://docs.disruptors.ai/modules/template",
+  "changelog": "1.0.0 - Initial template"
+}

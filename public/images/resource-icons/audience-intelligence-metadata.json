@@ -1,0 +1,13 @@
+{
+  "title": "Audience Intelligence",
+  "name": "audience-intelligence",
+  "category": "Analytics",
+  "style": "Michelangelo Renaissance Fresco",
+  "artisticStyle": "Renaissance fresco painting inspired by Michelangelo's masterworks (Sistine Chapel, Creation of Adam, Last Judgment)",
+  "technique": "Chiaroscuro, sfumato, classical composition, cracked fresco texture",
+  "colorPalette": "Earth tones: ochre, sienna, umber, lapis blue, metallic gold",
+  "prompt": "Professional app icon, 1024x1024px square format, perfectly centered composition.\n\nRenaissance fresco in Michelangelo style. A glowing crystal sphere with ethereal\n    wisps and light patterns within, divine light illuminating from above. Warm earth tones, ochre, sienna,\n    umber with lapis blue accents. Cracked fresco surface, dramatic chiaroscuro, sfumato technique. Divine\n    wisdom and foresight theme. Understanding and insight. Square composition, museum quality. No human\n    faces or bodies.\n\nTechnical requirements:\n- 1024x1024px resolution\n- Square 1:1 aspect ratio\n- Centered composition with balanced padding\n- Professional app store quality\n- Museum-quality Renaissance fresco painting\n- Authentic Michelangelo artistic style\n- Cracked aged fresco surface texture throughout\n- Dramatic chiaroscuro lighting (strong contrast between light and dark)\n- Soft sfumato technique (subtle gradations)\n- Classical Renaissance color palette: warm ochres, siennas, umbers, lapis blue\n- No modern elements, no text, no UI elements\n- Timeless masterpiece quality",
+  "model": "black-forest-labs/flux-1.1-pro",
+  "timestamp": "2025-10-08T15:57:20.265Z",
+  "filepath": "/images/resource-icons/audience-intelligence.png"
+}

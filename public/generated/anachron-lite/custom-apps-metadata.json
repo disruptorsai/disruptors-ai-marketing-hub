@@ -1,0 +1,9 @@
+{
+  "service": "Custom Apps",
+  "slug": "custom-apps",
+  "prompt": "Simple flat vector icon: four squares in grid pattern, 2px black stroke, minimal geometric design, green accent color #3C7A6A, white background, extremely simple, clean lines, centered, icon style, no details, no texture",
+  "model": "gpt-image-1",
+  "timestamp": "2025-09-30T04:27:12.680Z",
+  "filepath": "/generated/anachron-lite/custom-apps-icon-anachron-lite.png",
+  "revised_prompt": null
+}
