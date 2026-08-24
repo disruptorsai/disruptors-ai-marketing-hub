@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle } from "lucide-react";
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { getBookingEndpoint } from '@/lib/booking-api';
 
 export default function BookStrategySession() {
   usePageMeta({
@@ -52,7 +53,7 @@ export default function BookStrategySession() {
     setError("");
 
     try {
-      const response = await fetch('/.netlify/functions/ghl-calendar-booking', {
+      const response = await fetch(getBookingEndpoint(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

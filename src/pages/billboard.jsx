@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { getBookingEndpoint } from '@/lib/booking-api';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   CheckCircle, Search, Crosshair, Cpu, Rocket, SlidersHorizontal,
@@ -146,7 +147,7 @@ export default function Billboard() {
     setIsSubmitting(true);
     setError('');
     try {
-      const response = await fetch('/.netlify/functions/ghl-calendar-booking', {
+      const response = await fetch(getBookingEndpoint(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, source: 'billboard_landing_page' }),

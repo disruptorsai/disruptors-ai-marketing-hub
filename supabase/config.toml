@@ -1,0 +1,2 @@
+[functions.ghl-calendar-booking]
+verify_jwt = false
