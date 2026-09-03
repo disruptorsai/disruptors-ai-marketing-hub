@@ -52,6 +52,20 @@ export default function Layout({ children, currentPageName }) {
     initResourcePriority();
   }, []);
 
+  // Meta Pixel fires PageView once from index.html on the initial document load.
+  // This SPA never reloads, so route changes must be reported manually — skipping
+  // the first run so the landing page isn't counted twice.
+  const pixelInitialLoad = React.useRef(true);
+  React.useEffect(() => {
+    if (pixelInitialLoad.current) {
+      pixelInitialLoad.current = false;
+      return;
+    }
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'PageView');
+    }
+  }, [location.pathname]);
+
   React.useEffect(() => {
     setMobileMenuOpen(false);
     // Scroll to top when page changes
