@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { usePageMeta, breadcrumb, caseStudySchema } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -36,13 +36,7 @@ export default function WorkSoundCorrections() {
     path: '/work-sound-corrections',
     jsonLd: [
       breadcrumb('Sound Corrections Case Study', '/work-sound-corrections'),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Review',
-        itemReviewed: { '@type': 'Organization', name: 'Disruptors Media' },
-        author: { '@type': 'Organization', name: caseData.client },
-        reviewBody: caseData.testimonial,
-      },
+      caseStudySchema({ headline: caseData.title, client: caseData.client, path: '/work-sound-corrections' }),
     ],
   });
 

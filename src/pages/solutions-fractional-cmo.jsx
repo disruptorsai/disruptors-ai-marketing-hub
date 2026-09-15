@@ -8,6 +8,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // sentence; Utah long-tail woven naturally; FAQs are self-contained, liftable answers.
 const service = {
   title: 'Fractional CMO',
+  seoTitle: 'Fractional CMO & Chief AI Officer | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Executive marketing leadership. Without the executive salary.',
   headlineAccent: 'Without',

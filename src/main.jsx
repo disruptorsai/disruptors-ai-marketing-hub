@@ -64,6 +64,11 @@ if (rootElement.hasChildNodes()) {
 
 console.log('✅ [MAIN.JSX] App rendered successfully!');
 
+// Load GA4 (no-op unless VITE_GA4_MEASUREMENT_ID is set). Meta Pixel loads from index.html.
+import { initAnalytics } from '@/lib/analytics';
+
+initAnalytics();
+
 // Register service worker for Presentation Mode
 import { registerServiceWorker } from '@/lib/register-sw';
 

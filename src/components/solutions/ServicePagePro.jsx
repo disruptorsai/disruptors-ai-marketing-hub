@@ -389,7 +389,13 @@ export default function ServicePagePro({ service }) {
             mainEntity: service.faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
         });
     }
-    usePageMeta(service ? { title: `${service.title} | Disruptors Media`, description: metaDescription, path: metaPath, jsonLd } : {});
+    usePageMeta(service ? {
+        title: service.seoTitle || `${service.title} | Disruptors Media`,
+        description: metaDescription,
+        path: metaPath,
+        ogImage: service.heroImage,
+        jsonLd,
+    } : {});
 
     if (!service) return <div>Loading service details...</div>;
 

@@ -12,6 +12,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // ServicePagePro — solutions-seo-geo and solutions-fractional-cmo already ship without one).
 const service = {
   title: 'AI Agents & Agentic AI',
+  seoTitle: 'AI Agent Development & Agentic AI | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Agents that work your business, not just answer it.',
   headlineAccent: 'work',

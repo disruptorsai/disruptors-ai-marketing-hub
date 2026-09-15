@@ -9,6 +9,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // FAQs are self-contained, liftable answers.
 const service = {
   title: 'CRM Management',
+  seoTitle: 'CRM Setup & Management Services | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Your pipeline, finally running itself.',
   headlineAccent: 'itself',

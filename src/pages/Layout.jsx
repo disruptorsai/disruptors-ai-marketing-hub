@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { optimizeSupabaseImage } from "@/utils/supabase-media-optimizer";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
+import { trackPageView } from "@/lib/analytics";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import Footer from "@/components/shared/Footer";
@@ -58,8 +59,11 @@ export default function Layout({ children, currentPageName }) {
   // Meta Pixel fires PageView once from index.html on the initial document load.
   // This SPA never reloads, so route changes must be reported manually — skipping
   // the first run so the landing page isn't counted twice.
+  // GA4 has its automatic page_view disabled (see initAnalytics), so it's sent on every route,
+  // including the first.
   const pixelInitialLoad = React.useRef(true);
   React.useEffect(() => {
+    trackPageView(location.pathname, document.title);
     if (pixelInitialLoad.current) {
       pixelInitialLoad.current = false;
       return;

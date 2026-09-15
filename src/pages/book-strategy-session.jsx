@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle } from "lucide-react";
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { getBookingEndpoint } from '@/lib/booking-api';
+import { trackLead } from '@/lib/analytics';
 
 export default function BookStrategySession() {
   usePageMeta({
@@ -71,6 +72,7 @@ export default function BookStrategySession() {
       }
 
       setIsSubmitted(true);
+      trackLead({ source: 'book_strategy_session', formName: 'strategy_session' });
     } catch (err) {
       setError("Something went wrong. Please try again or contact us directly.");
     } finally {

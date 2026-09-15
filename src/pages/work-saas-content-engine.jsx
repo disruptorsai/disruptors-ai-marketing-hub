@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { usePageMeta, breadcrumb, caseStudySchema } from '@/hooks/usePageMeta';
 
 const caseData = {
   client: 'SaaS Content Engine',
@@ -21,13 +21,7 @@ export default function WorkSaaSContentEngine() {
     path: '/work-saas-content-engine',
     jsonLd: [
       breadcrumb('SaaS Content Engine Case Study', '/work-saas-content-engine'),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Review',
-        itemReviewed: { '@type': 'Organization', name: 'Disruptors Media' },
-        author: { '@type': 'Organization', name: caseData.client },
-        reviewBody: caseData.testimonialQuote,
-      },
+      caseStudySchema({ headline: 'AI Content Engine for a B2B SaaS Company', path: '/work-saas-content-engine' }),
     ],
   });
 

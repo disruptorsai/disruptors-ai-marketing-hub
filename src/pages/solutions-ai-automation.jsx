@@ -8,6 +8,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // subhead's first sentence; FAQs are self-contained, liftable answers.
 const service = {
   title: 'AI Automation & Infrastructure',
+  seoTitle: 'AI Automation Services for Business | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Automate the busywork. Focus on what matters.',
   headlineAccent: 'Focus',

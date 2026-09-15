@@ -8,6 +8,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // Utah long-tail woven naturally; FAQs are self-contained, liftable answers.
 const service = {
   title: 'Lead Generation',
+  seoTitle: 'AI Lead Generation Services | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Fill your pipeline. Talk to buyers, not tire-kickers.',
   headlineAccent: 'buyers',

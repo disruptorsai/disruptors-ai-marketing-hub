@@ -9,6 +9,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // woven naturally; FAQs are self-contained, liftable answers.
 const service = {
   title: 'Paid Advertising Automations',
+  seoTitle: 'Paid Ads Management with AI Automation | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Turn ad spend into predictable pipeline.',
   headlineAccent: 'predictable',

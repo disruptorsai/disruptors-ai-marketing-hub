@@ -9,6 +9,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // FAQs are self-contained, liftable answers.
 const service = {
   title: 'Podcast Production',
+  seoTitle: 'Podcast Production & Studio Services | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Record once. Show up everywhere.',
   headlineAccent: 'everywhere',

@@ -8,6 +8,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // sentence, Utah long-tail woven in; FAQs are self-contained, liftable answers.
 const service = {
   title: 'Custom Apps',
+  seoTitle: 'Custom App Development, Built with AI | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Turn your idea into software. Ship it in weeks.',
   headlineAccent: 'weeks',

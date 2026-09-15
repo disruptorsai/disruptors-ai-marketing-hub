@@ -9,6 +9,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // FAQs are self-contained, liftable answers.
 const service = {
   title: 'SEO & GEO',
+  seoTitle: 'SEO & GEO: Rank on Google & AI Answers | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Get found in Google and in AI answers.',
   headlineAccent: 'found',

@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
 import { getBookingEndpoint } from '@/lib/booking-api';
+import { trackLead } from '@/lib/analytics';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   CheckCircle, Search, Crosshair, Cpu, Rocket, SlidersHorizontal,
@@ -159,6 +160,7 @@ export default function Billboard() {
       const data = await response.json();
       if (data.bookingUrl) setBookingUrl(data.bookingUrl);
       setIsSubmitted(true);
+      trackLead({ source: 'billboard_landing_page', formName: 'strategy_session' });
     } catch (err) {
       setError('Something went wrong. Please try again or contact us directly.');
     } finally {

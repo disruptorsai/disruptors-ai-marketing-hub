@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft, CheckCircle, Loader2, TrendingUp, Target, Zap, Users, Globe, BarChart3, MessageSquare, Search, Mail, DollarSign } from 'lucide-react';
 import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { trackLead } from '@/lib/analytics';
 
 const STEPS = [
   { id: 1, title: 'Business Basics', icon: Globe },
@@ -87,6 +88,10 @@ export default function MarketingAudit() {
       const data = await response.json();
       setAuditResults(data);
       setShowResults(true);
+      // Only a real analysis counts as a lead; the fallback path below never tracks.
+      if (response.ok) {
+        trackLead({ source: 'marketing_audit', formName: 'marketing_audit' });
+      }
     } catch (error) {
       console.error('Error analyzing audit:', error);
       // Show fallback results

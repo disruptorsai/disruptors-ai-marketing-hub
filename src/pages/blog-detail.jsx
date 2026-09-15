@@ -50,36 +50,54 @@ export default function BlogDetail() {
 
     // Per-post SEO/GEO metadata + BlogPosting JSON-LD. Called unconditionally (before the
     // loading/error early-returns) so hook order stays stable; emits nothing until `post` loads.
+    // Many posts open with a markdown "# Title" line that repeats the page's H1. Drop it so the
+    // page has a single H1 and the derived description doesn't start with the title.
+    const content = post ? String(post.content || '').replace(/^\s*#\s+[^\n]*(\n+|$)/, '') : '';
+    // Stored descriptions can exceed 160 characters, so every source goes through truncation.
     const metaDescription = post
-        ? (post.excerpt || post.meta_description ||
-           truncateDescription(
-               String(post.content || '')
-                   .replace(/[#*_`>\[\]!~]/g, '')
-                   .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-           ))
+        ? truncateDescription(
+            post.meta_description || post.seo_description || post.excerpt ||
+            content
+                .replace(/[#*_`>\[\]!~]/g, '')
+                .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+          )
         : '';
+    // Keep the <title> within 60 characters: drop the brand suffix when it would overflow.
+    const baseTitle = post ? (post.seo_title || post.meta_title || post.title) : '';
+    const brandedTitle = `${baseTitle} | Disruptors Media`;
+    const pageTitle = brandedTitle.length <= 60 ? brandedTitle : baseTitle;
+    // custom-sdk renames created_at/updated_at to created_date/updated_date in returned records.
+    const publishedAt = post ? (post.published_at || post.created_date || post.created_at) : undefined;
+    const modifiedAt = post ? (post.updated_date || post.updated_at || publishedAt) : undefined;
     // Canonical is always the clean path-based URL, regardless of how the page was reached.
     const postPath = post ? `/blog/${post.slug}` : '/blog';
     const postUrl = `https://disruptorsmedia.com${postPath}`;
     usePageMeta(post ? {
-        title: `${post.title} | Disruptors Media`,
+        title: pageTitle,
         description: metaDescription,
         path: postPath,
         ogImage: post.featured_image,
+        type: 'article',
+        article: {
+            publishedTime: publishedAt,
+            modifiedTime: modifiedAt,
+            section: post.category,
+        },
         jsonLd: {
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
             headline: post.title,
             ...(metaDescription ? { description: metaDescription } : {}),
             ...(post.featured_image ? { image: post.featured_image } : {}),
-            datePublished: post.published_at || post.created_at,
-            dateModified: post.updated_at || post.published_at || post.created_at,
+            datePublished: publishedAt,
+            dateModified: modifiedAt,
             author: post.author_name
                 ? { '@type': 'Person', name: post.author_name }
                 : { '@type': 'Organization', '@id': ORG_ID, name: 'Disruptors Media' },
             publisher: { '@id': ORG_ID },
             ...(post.category ? { articleSection: post.category } : {}),
             ...(Array.isArray(post.tags) && post.tags.length ? { keywords: post.tags.join(', ') } : {}),
+            url: postUrl,
             mainEntityOfPage: postUrl,
         },
     } : {});
@@ -137,7 +155,7 @@ export default function BlogDetail() {
                         <div className="flex items-center gap-2">
                             <Calendar className="w-5 h-5" />
                             <span>
-                                {new Date(post.published_at || post.created_at).toLocaleDateString('en-US', {
+                                {new Date(publishedAt).toLocaleDateString('en-US', {
                                     month: 'long',
                                     day: 'numeric',
                                     year: 'numeric'
@@ -364,11 +382,13 @@ export default function BlogDetail() {
                         }
                     `}</style>
 
+                    {/* H1s inside the post render as H2s: the page title above is the only H1. */}
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         rehypePlugins={[rehypeRaw]}
+                        components={{ h1: 'h2' }}
                     >
-                        {post.content}
+                        {content}
                     </ReactMarkdown>
                 </div>
 

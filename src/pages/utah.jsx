@@ -58,9 +58,9 @@ const FAQS = [
 
 export default function Utah() {
   usePageMeta({
-    title: 'Utah Fractional Chief AI Officer (CAIO) & CMO | Disruptors Media',
+    title: 'Utah Fractional CAIO & CMO | Disruptors Media',
     description:
-      'Utah-based fractional Chief AI Officer (CAIO) & CMO serving Salt Lake City and nationwide — AI marketing, SEO, and lead-generation systems installed inside your business.',
+      'Utah-based fractional Chief AI Officer & CMO serving Salt Lake City and nationwide — AI marketing, SEO, and lead-gen systems built inside your business.',
     path: '/utah',
     jsonLd: [
       breadcrumb('Utah', '/utah'),

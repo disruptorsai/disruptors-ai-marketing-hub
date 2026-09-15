@@ -11,7 +11,7 @@
     "dev:auto": "concurrently \"npm run dev\" \"npm run auto-commit:watch\"",
     "dev:orchestrated": "concurrently \"npm run dev\" \"npm run orchestrator:watch\"",
     "dev:safe": "vite",
-    "build": "vite build",
+    "build": "vite build && node --env-file-if-exists=.env scripts/generate-sitemap.mjs",
     "deploy:cloudflare": "npm run build && npx wrangler@4.125.0 deploy",
     "build:prerender": "vite build && node scripts/prerender.js",
     "analyze:bundle": "npx --yes source-map-explorer 'dist/assets/*.js'",

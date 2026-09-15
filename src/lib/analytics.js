@@ -1,33 +1,65 @@
 /**
- * Analytics Tracking Utility
- * Google Analytics 4 Event Tracking for Disruptors Media
+ * Analytics & conversion tracking for Disruptors Media (GA4 + Meta Pixel).
+ *
+ * - GA4 loads only when VITE_GA4_MEASUREMENT_ID is set at build time. Without it, every
+ *   GA call below is a no-op.
+ * - Meta Pixel is loaded by index.html; trackLead() sends its Lead event.
+ * - All tracking is skipped in automated browsers (navigator.webdriver), so the build-time
+ *   prerender and plain headless tests never send events or bake tracking into HTML.
  *
  * Usage:
- * import { trackEvent, trackCTAClick, trackFormSubmit } from '@/lib/analytics';
- *
- * trackCTAClick('hero_section');
- * trackFormSubmit('contact_form');
+ * import { trackLead } from '@/lib/analytics';
+ * trackLead({ source: 'book_strategy_session', formName: 'strategy_session' });
  */
+
+// Static env access only: dynamic import.meta.env lookups inline every VITE_* var into the
+// bundle (see src/lib/supabase-client.js).
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID;
+
+const isAutomated = () => typeof navigator !== 'undefined' && navigator.webdriver === true;
+
+// Load gtag.js. Call once at startup (src/main.jsx).
+export const initAnalytics = () => {
+  if (typeof window === 'undefined' || !GA_MEASUREMENT_ID || isAutomated() || window.gtag) return;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag('js', new Date());
+  // Page views are sent manually on every route change (Layout.jsx), so disable the automatic one.
+  window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+};
 
 // Core event tracking function
 export const trackEvent = (eventName, eventParams = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && window.gtag && !isAutomated()) {
     window.gtag('event', eventName, eventParams);
-    console.log('📊 Analytics Event:', eventName, eventParams);
-  } else {
-    console.warn('⚠️ Google Analytics not loaded');
   }
 };
 
 // Page view tracking for SPA navigation
-export const trackPageView = (url, title) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', window.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX', {
-      page_path: url,
-      page_title: title
-    });
-    console.log('📄 Page View:', url, title);
+export const trackPageView = (path, title) => {
+  trackEvent('page_view', {
+    page_path: path,
+    page_location: window.location.href,
+    page_title: title
+  });
+};
+
+// Lead conversion: Meta Pixel "Lead" + GA4 "generate_lead". Call only after a form
+// submission has actually succeeded. The shared eventID lets Meta de-duplicate this against
+// a future server-side Conversions API event.
+export const trackLead = ({ source, formName }) => {
+  if (typeof window === 'undefined' || isAutomated()) return;
+  const eventID = window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Lead', { content_name: formName, content_category: source }, { eventID });
   }
+  trackEvent('generate_lead', { form_name: formName, lead_source: source, event_id: eventID });
 };
 
 // CTA (Call-to-Action) click tracking
@@ -206,7 +238,7 @@ export const trackEngagement = (timeOnPage, scrollDepth) => {
 export const initializeAnalytics = (userId = null, userProperties = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
     if (userId) {
-      window.gtag('config', window.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX', {
+      window.gtag('config', GA_MEASUREMENT_ID, {
         user_id: userId,
         ...userProperties
       });
@@ -286,8 +318,10 @@ export const initOutboundLinkTracking = () => {
 
 // Export all tracking functions
 export default {
+  initAnalytics,
   trackEvent,
   trackPageView,
+  trackLead,
   trackCTAClick,
   trackFormSubmit,
   trackPricingView,

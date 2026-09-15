@@ -13,15 +13,19 @@ import { useEffect } from 'react';
  * route ships its own title/description/canonical in raw HTML.
  *
  * @param {Object}  opts
- * @param {string}  opts.title        - Full <title> text
- * @param {string}  opts.description  - Meta description
+ * @param {string}  opts.title        - Full <title> text (keep to 60 characters or fewer)
+ * @param {string}  opts.description  - Meta description (keep to 160 characters or fewer)
  * @param {string}  opts.path         - Route path (e.g. '/about'); builds the canonical URL
  * @param {string} [opts.ogImage]     - Open Graph image URL (defaults to brand logo)
  * @param {Object} [opts.jsonLd]      - Optional JSON-LD object injected as a <script> for this page
+ * @param {string} [opts.type]        - og:type, 'website' (default) or 'article'
+ * @param {Object} [opts.article]     - For type 'article': { publishedTime, modifiedTime, section }
  */
 const SITE_URL = 'https://disruptorsmedia.com';
+const ORG_ID = `${SITE_URL}/#organization`;
 const DEFAULT_OG_IMAGE =
   'https://ulfnzcniivkjtfaoxfmi.supabase.co/storage/v1/object/public/site-images/disruptors-media/brand/logos/gold-logo-banner.png';
+const ARTICLE_META_KEYS = ['article:published_time', 'article:modified_time', 'article:section'];
 
 function upsertMeta(attr, key, content) {
   if (!content) return;
@@ -34,6 +38,10 @@ function upsertMeta(attr, key, content) {
   el.setAttribute('content', content);
 }
 
+function removeMeta(attr, key) {
+  document.head.querySelector(`meta[${attr}="${key}"]`)?.remove();
+}
+
 function upsertCanonical(href) {
   let el = document.head.querySelector('link[rel="canonical"]');
   if (!el) {
@@ -44,31 +52,60 @@ function upsertCanonical(href) {
   el.setAttribute('href', href);
 }
 
-export function usePageMeta({ title, description, path = '/', ogImage, jsonLd, noindex = false } = {}) {
+export function usePageMeta({
+  title,
+  description,
+  path = '/',
+  ogImage,
+  jsonLd,
+  noindex = false,
+  type = 'website',
+  article,
+} = {}) {
   const url = `${SITE_URL}${path}`;
   const ldString = jsonLd ? JSON.stringify(jsonLd) : null;
+  const publishedTime = article?.publishedTime;
+  const modifiedTime = article?.modifiedTime;
+  const section = article?.section;
 
   useEffect(() => {
+    if (import.meta.env.DEV) {
+      if (title && title.length > 60) {
+        console.warn(`[usePageMeta] Title is ${title.length} characters (max 60): ${title}`);
+      }
+      if (description && description.length > 160) {
+        console.warn(`[usePageMeta] Description is ${description.length} characters (max 160) on ${path}`);
+      }
+    }
+
     if (title) {
       document.title = title;
-      upsertMeta('name', 'title', title);
       upsertMeta('property', 'og:title', title);
-      upsertMeta('property', 'twitter:title', title);
+      upsertMeta('name', 'twitter:title', title);
     }
     if (description) {
       upsertMeta('name', 'description', description);
       upsertMeta('property', 'og:description', description);
-      upsertMeta('property', 'twitter:description', description);
+      upsertMeta('name', 'twitter:description', description);
     }
     upsertCanonical(url);
     upsertMeta('property', 'og:url', url);
-    upsertMeta('property', 'twitter:url', url);
+    upsertMeta('property', 'og:type', type);
+    upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
 
     const img = ogImage || DEFAULT_OG_IMAGE;
     upsertMeta('property', 'og:image', img);
-    upsertMeta('property', 'twitter:image', img);
-  }, [title, description, url, ogImage, noindex]);
+    upsertMeta('name', 'twitter:image', img);
+
+    // Clear article tags left by a previous route, then set them for this one if it's an article.
+    ARTICLE_META_KEYS.forEach((key) => removeMeta('property', key));
+    if (type === 'article') {
+      upsertMeta('property', 'article:published_time', publishedTime);
+      upsertMeta('property', 'article:modified_time', modifiedTime);
+      upsertMeta('property', 'article:section', section);
+    }
+  }, [title, description, url, path, ogImage, noindex, type, publishedTime, modifiedTime, section]);
 
   useEffect(() => {
     if (!ldString) return undefined;
@@ -102,6 +139,24 @@ export function breadcrumb(name, path) {
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
       { '@type': 'ListItem', position: 2, name, item: `${SITE_URL}${path}` },
     ],
+  };
+}
+
+/** Helper: Article schema for a case-study page, published by Disruptors Media and about
+ * the client. Used instead of a Review of Disruptors Media, which Google treats as a
+ * self-serving review when it appears on our own site. */
+export function caseStudySchema({ headline, client, path }) {
+  const pageUrl = `${SITE_URL}${path}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    ...(client ? { about: { '@type': 'Organization', name: client } } : {}),
+    image: DEFAULT_OG_IMAGE,
+    author: { '@type': 'Organization', name: 'Disruptors Media', url: SITE_URL },
+    publisher: { '@id': ORG_ID },
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
   };
 }
 

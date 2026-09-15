@@ -9,6 +9,7 @@ import ServicePagePro from '../components/solutions/ServicePagePro';
 // FAQs are self-contained, liftable answers.
 const service = {
   title: 'Social Media Marketing',
+  seoTitle: 'AI Social Media Marketing Services | Disruptors Media',
   eyebrow: 'Fractional Chief AI Officer',
   headline: 'Show up daily. Turn attention into pipeline.',
   headlineAccent: 'attention',

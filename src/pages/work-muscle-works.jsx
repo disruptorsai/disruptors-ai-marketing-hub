@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { usePageMeta, breadcrumb } from '@/hooks/usePageMeta';
+import { usePageMeta, breadcrumb, caseStudySchema } from '@/hooks/usePageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
@@ -34,13 +34,7 @@ export default function WorkMuscleWorks() {
     path: '/work-muscle-works',
     jsonLd: [
       breadcrumb('Muscle Works Case Study', '/work-muscle-works'),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Review',
-        itemReviewed: { '@type': 'Organization', name: 'Disruptors Media' },
-        author: { '@type': 'Organization', name: caseData.client },
-        reviewBody: caseData.testimonial,
-      },
+      caseStudySchema({ headline: caseData.title, client: caseData.client, path: '/work-muscle-works' }),
     ],
   });
 

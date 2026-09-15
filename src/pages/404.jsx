@@ -1,13 +1,19 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Frown } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 export default function NotFound() {
-  usePageMeta({ title: 'Page Not Found | Disruptors Media', noindex: true });
+  const { pathname } = useLocation();
+  usePageMeta({
+    title: 'Page Not Found | Disruptors Media',
+    description: "The page you're looking for doesn't exist or has moved. Explore Disruptors Media's AI marketing services, case studies, and blog.",
+    path: pathname,
+    noindex: true,
+  });
 
   return (
     <div className="bg-[#1A1A1A] text-white min-h-screen flex items-center justify-center text-center p-4">
