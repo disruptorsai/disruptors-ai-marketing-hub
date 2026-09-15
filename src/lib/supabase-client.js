@@ -1,16 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Handle both Vite (import.meta.env) and Node.js (process.env) environments
-const getEnvVar = (key, defaultValue) => {
-  if (typeof import.meta !== 'undefined' && import.meta.env) {
-    return import.meta.env[key] || defaultValue
-  }
-  // For Node.js environments
-  if (typeof globalThis !== 'undefined' && globalThis.process && globalThis.process.env) {
-    return globalThis.process.env[key] || defaultValue
-  }
-  return defaultValue
+// Read env vars by static name only. Dynamic access (import.meta.env[key]) makes Vite
+// inline the entire env object into the bundle, shipping every VITE_* variable
+// (including secrets) to the browser.
+const viteEnv = typeof import.meta !== 'undefined' && import.meta.env
+const nodeEnv = typeof globalThis !== 'undefined' && globalThis.process && globalThis.process.env
+const ENV = {
+  VITE_SUPABASE_URL: viteEnv ? import.meta.env.VITE_SUPABASE_URL : nodeEnv?.VITE_SUPABASE_URL,
+  VITE_SUPABASE_ANON_KEY: viteEnv ? import.meta.env.VITE_SUPABASE_ANON_KEY : nodeEnv?.VITE_SUPABASE_ANON_KEY,
 }
+const getEnvVar = (key, defaultValue) => ENV[key] || defaultValue
 
 // Detect environment mode
 const isDevelopment = typeof import.meta !== 'undefined' && import.meta.env
@@ -82,34 +81,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // Export as supabaseClient for backward compatibility
 export const supabaseClient = supabase
 
-// Service role client for admin operations (bypasses RLS)
-const supabaseServiceKey = getEnvVar(
-  'VITE_SUPABASE_SERVICE_ROLE_KEY',
-  isDevelopment ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU' : ''
-)
-
-export const supabaseAdmin = supabaseServiceKey
-  ? createClient(supabaseUrl, supabaseServiceKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-        detectSessionInUrl: false,
-        storageKey: 'disruptors-ai-admin-auth', // Separate storage key to avoid GoTrueClient conflicts
-      },
-      db: {
-        schema: 'public',
-      },
-      global: {
-        headers: {
-          'X-Client-Info': 'disruptors-ai-service-role',
-        },
-      },
-    })
-  : null
-
-// Log service role availability
-if (supabaseAdmin) {
-  console.info('Supabase: Service role client initialized')
-} else {
-  console.warn('Supabase: Service role client not available (missing VITE_SUPABASE_SERVICE_ROLE_KEY)')
-}
+// The service role key must never reach the browser: it bypasses RLS for anyone who
+// reads the bundle. `supabaseAdmin` is kept as an alias of the anon client so existing
+// callers still work, subject to RLS. Operations that truly need the service role
+// belong in a Supabase Edge Function.
+export const supabaseAdmin = supabase

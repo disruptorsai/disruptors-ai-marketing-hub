@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { optimizeSupabaseImage } from "@/utils/supabase-media-optimizer";
 import MatrixLogin from "@/components/admin/MatrixLogin";
-import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
+import { lazyWithRetry } from "@/utils/lazyWithRetry";
 import GsapScrambleText from "@/components/shared/GsapScrambleText";
 import UserProfileDropdown from "@/components/shared/UserProfileDropdown";
 import Footer from "@/components/shared/Footer";
@@ -19,6 +19,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Admin panel is loaded only when an admin logs in, keeping it out of the public bundle.
+const DisruptorsAdmin = lazyWithRetry(() => import("@/components/admin/DisruptorsAdmin"));
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -97,7 +100,9 @@ export default function Layout({ children, currentPageName }) {
         <div className="relative z-10 min-h-screen">
           {/* Admin Interface - Show instead of normal content when authenticated */}
           {isAdminAuthenticated && (
-            <DisruptorsAdmin username={adminUser} onLogout={handleLogout} />
+            <React.Suspense fallback={null}>
+              <DisruptorsAdmin username={adminUser} onLogout={handleLogout} />
+            </React.Suspense>
           )}
 
           {/* Matrix Login Modal */}
