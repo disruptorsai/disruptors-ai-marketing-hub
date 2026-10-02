@@ -1,21 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import GoogleReviewsSection from '../components/shared/GoogleReviewsSection';
 import ServicesScrollingRows from '../components/shared/ServicesScrollingRows';
 import FastVideo from '../components/shared/FastVideo';
 import FAQAccordion from '../components/shared/FAQAccordion';
-import BillboardModal from '../components/shared/BillboardModal';
-import { useBillboardPopup } from '@/hooks/useBillboardPopup';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { faqPageSchema } from '@/data/faqContent';
 
 export default function Home() {
-  const navigate = useNavigate();
-  const { isOpen, isReturning, close, accept } = useBillboardPopup(1500);
-
   usePageMeta({
     title: 'Disruptors Media — AI Marketing & Fractional CAIO/CMO',
     description:
@@ -25,11 +20,6 @@ export default function Home() {
     // HowTo structured data was removed: Google retired HowTo rich results in 2023.
     jsonLd: [faqPageSchema()],
   });
-
-  const handleBillboardYes = () => {
-    accept();
-    navigate('/billboard');
-  };
 
   const alternatingData = [
     {
@@ -419,8 +409,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Billboard Popup Modal */}
-      <BillboardModal isOpen={isOpen} onClose={close} onYes={handleBillboardYes} isReturning={isReturning} />
     </div>
   );
 }
